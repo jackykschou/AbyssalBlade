@@ -22,10 +22,9 @@ namespace Assets.Scripts.GameScripts.GameLogic
         {
             if (ContainGameLogicEvent<T>(gameLogicEvent))
             {
-                foreach (KeyValuePair<GameLogic, List<MethodInfo>> pair in _gameLogicEvents[typeof(T)][gameLogicEvent])
+                foreach (var pair in _gameLogicEvents[typeof(T)][gameLogicEvent])
                 {
-                    GameLogic gameLogic = pair.Key;
-                    pair.Value.ForEach(m => m.Invoke(gameLogic, args));
+                    pair.Value.ForEach(m => m.Invoke(pair.Key, args));
                 }
             }
         }
@@ -39,7 +38,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
         {
             if (ContainGameLogicEvent(gameLogic, gameLogicEvent))
             {
-                foreach (MethodInfo m in _gameLogicEvents[gameLogic.GetType()][gameLogicEvent][gameLogic])
+                foreach (var m in _gameLogicEvents[gameLogic.GetType()][gameLogicEvent][gameLogic])
                 {
                     m.Invoke(gameLogic, args);
                 }
@@ -58,7 +57,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         private void InitializeGameLogicEvents()
         {
-            foreach (GameLogic gameLogic in GetComponents<GameLogic>())
+            foreach (var gameLogic in GetComponents<GameLogic>())
             {
                 gameLogic.GameLogicEventManager = this;
                 AddGameLogicEvents(gameLogic);
@@ -67,7 +66,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         private void AddGameLogicEvents(GameLogic gameLogic)
         {
-            gameLogic.GetType().GetMethods().ToList()
+            gameLogic.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {
                     GameLogicEvent gameLogicEvent = Attribute.GetCustomAttribute(m, typeof(GameLogicEvent)) as GameLogicEvent;

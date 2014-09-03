@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices.ComTypes;
 using Assets.Scripts.Attrubutes;
 using Assets.Scripts.Constants;
 using Assets.Scripts.Managers;
@@ -10,7 +11,7 @@ namespace Assets.Scripts.GameScripts.Components
 {
     public abstract class SerializableComponent
     {
-        public GameScript GameScript {protected get; set; }
+        public GameScript GameScript { protected get; set; }
 
         public abstract void Initialize();
 
@@ -18,7 +19,12 @@ namespace Assets.Scripts.GameScripts.Components
 
         public void TriggerGameEvent(GameEventConstants.GameEvent gameEvent, params System.Object[] args)
         {
-            GameEventManager.TriggerGameEvent(gameEvent, args);
+            GameEventManager.Instance.TriggerGameEvent(gameEvent, args);
+        }
+
+        public void TriggerComponentEvent(ComponentEventConstants.ComponentEvent componentEvent, params object[] args)
+        {
+            GameScript.TriggerComponentEvent(componentEvent, args);
         }
 
         public void TriggerComponentEvent<T>(ComponentEventConstants.ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
@@ -28,15 +34,14 @@ namespace Assets.Scripts.GameScripts.Components
 
         public void SubscribeGameEvents()
         {
-            foreach (MethodInfo info in this.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
+            foreach (var info in GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
             {
-                foreach (Attribute attr in Attribute.GetCustomAttributes(info))
+                foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
                     if (attr.GetType() == typeof(GameEvent))
                     {
                         GameEvent gameEventSubscriberAttribute = attr as GameEvent;
-                        Delegate eventDelegate = Delegate.CreateDelegate(GameEventConstants.GetEventType(gameEventSubscriberAttribute.Event), info);
-                        GameEventManager.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, eventDelegate);
+                        GameEventManager.Instance.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, info);
                     }
                 }
             }
@@ -44,15 +49,14 @@ namespace Assets.Scripts.GameScripts.Components
 
         public void UnsubscribeGameEvents()
         {
-            foreach (MethodInfo info in this.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
+            foreach (var info in GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
             {
-                foreach (Attribute attr in Attribute.GetCustomAttributes(info))
+                foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
                     if (attr.GetType() == typeof(GameEvent))
                     {
                         GameEvent gameEventSubscriberAttribute = attr as GameEvent;
-                        Delegate eventDelegate = Delegate.CreateDelegate(GameEventConstants.GetEventType(gameEventSubscriberAttribute.Event), info);
-                        GameEventManager.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event, eventDelegate);
+                        GameEventManager.Instance.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event);
                     }
                 }
             }

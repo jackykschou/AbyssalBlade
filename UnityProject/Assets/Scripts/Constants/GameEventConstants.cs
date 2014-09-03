@@ -8,26 +8,12 @@ namespace Assets.Scripts.Constants
     {
         public delegate void ExampleEvent();
 
+        //Add more events here, please specify the signiture of the event
         public enum GameEvent
         {
-            ExampleEvent
-        };
-
-        public static Type GetEventType(GameEvent gameEvent)
-        {
-            if (EventTypeMapping.ContainsKey(gameEvent))
-            {
-                return EventTypeMapping[gameEvent];
-            }
-            else
-            {
-                throw new UndefinedGameEventException();
-            }
-        }
-
-        private static readonly Dictionary<GameEvent, Type> EventTypeMapping = new Dictionary<GameEvent, Type>() 
-        {
-            {GameEvent.ExampleEvent, typeof(ExampleEvent)}
+#if DEBUG
+            ExampleEvent    // void()
+#endif
         };
     }
 }

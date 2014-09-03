@@ -18,14 +18,30 @@ namespace Assets.Scripts.GameScripts
 
         protected abstract void Deinitialize();
 
+        public void TriggerComponentEvent(ComponentEventConstants.ComponentEvent componentEvent, params object[] args)
+        {
+            foreach (var value in _componentsEvents.Values)
+            {
+                foreach (var pair in value)
+                {
+                    if (pair.Key == componentEvent)
+                    {
+                        foreach (var componentPair in pair.Value)
+                        {
+                            componentPair.Value.ForEach(m => m.Invoke(componentPair.Key, args));
+                        }
+                    }
+                }
+            }
+        }
+
         public void TriggerComponentEvent<T>(ComponentEventConstants.ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
         {
             if (ContainsComponentEvent<T>(componentEvent))
             {
-                foreach (KeyValuePair<SerializableComponent, List<MethodInfo>> pair in _componentsEvents[typeof(T)][componentEvent])
+                foreach (var pair in _componentsEvents[typeof(T)][componentEvent])
                 {
-                    SerializableComponent component = pair.Key;
-                    pair.Value.ForEach(m => m.Invoke(component, args));
+                    pair.Value.ForEach(m => m.Invoke(pair.Key, args));
                 }
             }
         }
@@ -39,7 +55,7 @@ namespace Assets.Scripts.GameScripts
         {
             if (ContainsComponentEvent(component, componentEvent))
             {
-                foreach (MethodInfo m in _componentsEvents[component.GetType()][componentEvent][component])
+                foreach (var m in _componentsEvents[component.GetType()][componentEvent][component])
                 {
                    m.Invoke(component, args);
                 }
@@ -53,15 +69,24 @@ namespace Assets.Scripts.GameScripts
 
         public void TriggerGameEvent(GameEventConstants.GameEvent gameEvent, params System.Object[] args)
         {
-            GameEventManager.TriggerGameEvent(gameEvent, args);
+            GameEventManager.Instance.TriggerGameEvent(gameEvent, args);
         }
 
         void Awake ()
         {
             InitializeFields();
-            InitializeComponents();
+        }
+
+        void Start()
+        {
             SubscribeGameEvents();
+            InitializeComponents();
             Initialize();
+        }
+
+        void OnSpawned()
+        {
+            
         }
 
         void OnDestroy()
@@ -71,6 +96,11 @@ namespace Assets.Scripts.GameScripts
             Deinitialize();
         }
 
+        void OnDespawned()
+        {
+            
+        }
+
         private void InitializeFields()
         {
             _componentsEvents = new Dictionary<Type, Dictionary<ComponentEventConstants.ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>>();
@@ -78,35 +108,45 @@ namespace Assets.Scripts.GameScripts
 	
         private void InitializeComponents()
         {
-            foreach (FieldInfo info in this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance))
+            var components =
+                GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
+                            .Select(f => f.GetValue(this) as SerializableComponent)
+                            .Where(c => c != null).ToList();
+
+            foreach (var component in components)
             {
-                SerializableComponent component = info.GetValue(this) as SerializableComponent;
-                if (component != null && info.GetValue(this) is SerializableComponent)
-                {
-                    component.GameScript = this; 
-                    component.Initialize();
-                    component.SubscribeGameEvents();
-                    AddComponentEvents(component);
-                }
+                component.GameScript = this;
+                AddComponentEvents(component);
+                component.SubscribeGameEvents();
+            }
+
+            foreach (var component in components)
+            {
+                component.Initialize();
             }
         }
 
         private void DeinitializeComponents()
         {
-            foreach (FieldInfo info in this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance))
+            var components =
+                GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
+                            .Select(f => f.GetValue(this) as SerializableComponent)
+                            .Where(c => c != null).ToList();
+
+            foreach (var component in components)
             {
-                SerializableComponent component = info.GetValue(this) as SerializableComponent;
-                if (component != null && info.GetValue(this) is SerializableComponent)
-                {
-                    component.Deinitialize();
-                    component.UnsubscribeGameEvents();
-                }
+                component.Deinitialize();
+            }
+
+            foreach (var component in components)
+            {
+                component.UnsubscribeGameEvents();
             }
         }
 
         private void AddComponentEvents(SerializableComponent component)
         {
-            component.GetType().GetMethods().ToList()
+            component.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {
                     ComponentEvent componentEvent = Attribute.GetCustomAttribute(m, typeof(ComponentEvent)) as ComponentEvent;
@@ -132,15 +172,14 @@ namespace Assets.Scripts.GameScripts
 
         private void SubscribeGameEvents()
         {
-            foreach (MethodInfo info in this.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
+            foreach (var info in GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
             {
-                foreach (Attribute attr in Attribute.GetCustomAttributes(info))
+                foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
                     if (attr.GetType() == typeof(GameEvent))
                     {
                         GameEvent gameEventSubscriberAttribute = attr as GameEvent;
-                        Delegate eventDelegate = Delegate.CreateDelegate(GameEventConstants.GetEventType(gameEventSubscriberAttribute.Event), info);
-                        GameEventManager.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, eventDelegate);
+                        GameEventManager.Instance.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, info);
                     }
                 }
             }
@@ -148,15 +187,14 @@ namespace Assets.Scripts.GameScripts
 
         private void UnsubscribeGameEvents()
         {
-            foreach (MethodInfo info in this.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
+            foreach (var info in GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
             {
-                foreach (Attribute attr in Attribute.GetCustomAttributes(info))
+                foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
                     if (attr.GetType() == typeof(GameEvent))
                     {
                         GameEvent gameEventSubscriberAttribute = attr as GameEvent;
-                        Delegate eventDelegate = Delegate.CreateDelegate(GameEventConstants.GetEventType(gameEventSubscriberAttribute.Event), info);
-                        GameEventManager.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event, eventDelegate);
+                        GameEventManager.Instance.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event);
                     }
                 }
             }

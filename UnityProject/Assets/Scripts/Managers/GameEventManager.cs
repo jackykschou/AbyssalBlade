@@ -5,95 +5,62 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.Exceptions;
 using Assets.Scripts.GameScripts;
 using Assets.Scripts.GameScripts.Components;
+using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     public class GameEventManager
     {
-        #region event delegates
-        private static event GameEventConstants.ExampleEvent ExampleEvent;
-        #endregion
-
         public static GameEventManager Instance { get { return _instance; } }
+
+        private Dictionary<GameEventConstants.GameEvent, Dictionary<System.Object, List<MethodInfo>>> _gameEvents;
+
         private static readonly GameEventManager _instance = new GameEventManager();
 
-        public static void TriggerGameEvent(GameEventConstants.GameEvent gameEvent, params System.Object[] args)
+        GameEventManager()
         {
-            Delegate eventDelegaet = GetEventDelegate(gameEvent);
-            if (eventDelegaet != null)
+            _gameEvents = new Dictionary<GameEventConstants.GameEvent, Dictionary<object, List<MethodInfo>>>();
+        }
+
+        public void TriggerGameEvent(GameEventConstants.GameEvent gameEvent, params System.Object[] args)
+        {
+            if (!_gameEvents.ContainsKey(gameEvent))
             {
-                eventDelegaet.DynamicInvoke(args);
+                return;
+            }
+
+            foreach (var pair in _gameEvents[gameEvent])
+            {
+                pair.Value.ForEach(m => m.Invoke(pair.Key, args));
             }
         }
 
-        public static void SubscribeGameEvent(GameScript gameScript, GameEventConstants.GameEvent gameEvent, Delegate subscriber)
+        public void SubscribeGameEvent(System.Object subscriber, GameEventConstants.GameEvent gameEvent, MethodInfo info)
         {
-            EventInfo eventInfo = _instance.GetType().GetEvent(GetEventName(gameEvent), BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-            if (eventInfo != null)
+            if (!_gameEvents.ContainsKey(gameEvent))
             {
-                eventInfo.AddEventHandler(gameScript, subscriber);
+                _gameEvents.Add(gameEvent, new Dictionary<object, List<MethodInfo>>());
             }
+            if (!_gameEvents[gameEvent].ContainsKey(subscriber))
+            {
+                _gameEvents[gameEvent].Add(subscriber, new List<MethodInfo>());
+            }
+            _gameEvents[gameEvent][subscriber].Add(info);
         }
 
-        public static void SubscribeGameEvent(SerializableComponent component, GameEventConstants.GameEvent gameEvent, Delegate subscriber)
+        public void UnsubscribeGameEvent(System.Object subscriber, GameEventConstants.GameEvent gameEvent)
         {
-            EventInfo eventInfo = _instance.GetType().GetEvent(GetEventName(gameEvent), BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-            if (eventInfo != null)
+            if (!_gameEvents.ContainsKey(gameEvent))
             {
-                eventInfo.AddEventHandler(component, subscriber);
+                return;
             }
+
+            if (!_gameEvents[gameEvent].ContainsKey(subscriber))
+            {
+                return;
+            }
+
+            _gameEvents[gameEvent].Remove(subscriber);
         }
-
-        public static void UnsubscribeGameEvent(GameScript gameScript, GameEventConstants.GameEvent gameEvent, Delegate subscriber)
-        {
-            EventInfo eventInfo = _instance.GetType().GetEvent(GetEventName(gameEvent), BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-            if (eventInfo != null)
-            {
-                eventInfo.RemoveEventHandler(gameScript, subscriber);
-            }
-        }
-
-        public static void UnsubscribeGameEvent(SerializableComponent component, GameEventConstants.GameEvent gameEvent, Delegate subscriber)
-        {
-            EventInfo eventInfo = _instance.GetType().GetEvent(GetEventName(gameEvent), BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-            if (eventInfo != null)
-            {
-                eventInfo.RemoveEventHandler(component, subscriber);
-            }
-        }
-
-        private static String GetEventName(GameEventConstants.GameEvent gameEvent)
-        {
-            if (EventNameMapping.ContainsKey(gameEvent))
-            {
-                return EventNameMapping[gameEvent];
-            }
-            else
-            {
-                throw new UndefinedGameEventException();
-            }
-        }
-
-        private static Delegate GetEventDelegate(GameEventConstants.GameEvent gameEvent)
-        {
-            if (EventDelegateMapping.ContainsKey(gameEvent))
-            {
-                return EventDelegateMapping[gameEvent];
-            }
-            else
-            {
-                throw new UndefinedGameEventException();
-            }
-        }
-
-        private static readonly Dictionary<GameEventConstants.GameEvent, string> EventNameMapping = new Dictionary<GameEventConstants.GameEvent, string>() 
-        {
-            {GameEventConstants.GameEvent.ExampleEvent, "ExampleEvent"}
-        };
-
-        private static readonly Dictionary<GameEventConstants.GameEvent, Delegate> EventDelegateMapping = new Dictionary<GameEventConstants.GameEvent, Delegate>() 
-        {
-            {GameEventConstants.GameEvent.ExampleEvent, ExampleEvent}
-        };
     }
 }

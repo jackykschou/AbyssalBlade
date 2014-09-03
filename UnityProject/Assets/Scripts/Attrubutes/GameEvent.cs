@@ -3,7 +3,7 @@ using Assets.Scripts.Constants;
 
 namespace Assets.Scripts.Attrubutes
 {
-    [System.AttributeUsage(System.AttributeTargets.Method)]
+    [System.AttributeUsage(AttributeTargets.Method)]
     public class GameEvent : Attribute
     {
         public GameEventConstants.GameEvent Event{get; private set;}

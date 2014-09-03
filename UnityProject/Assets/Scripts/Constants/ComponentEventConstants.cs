@@ -2,9 +2,12 @@
 {
     public static class ComponentEventConstants 
     {
+        //Add more events here, please specify the signiture of the event
         public enum ComponentEvent
         {
-            Example
+#if DEBUG
+            Example // void()
+#endif
         };
     }
 }

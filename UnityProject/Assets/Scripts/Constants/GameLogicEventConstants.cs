@@ -2,9 +2,12 @@
 {
     public static class GameLogicEventConstants
     {
+        //Add more events here, please specify the signiture of the event
         public enum GameLogicEvent
         {
-            Example
+#if DEBUG
+            Example // void()
+#endif
         };
     }
 }
