@@ -37,18 +37,16 @@ namespace Assets.Scripts.GameScripts
 
         public void TriggerComponentEvent<T>(ComponentEventConstants.ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
         {
-            if (ContainsComponentEvent<T>(componentEvent))
+            foreach (var typeDictPair in _componentsEvents)
             {
-                foreach (var pair in _componentsEvents[typeof(T)][componentEvent])
+                if ((typeof(T) == (typeDictPair.Key) || typeDictPair.Key.IsSubclassOf(typeof(T))) && typeDictPair.Value.ContainsKey(componentEvent))
                 {
-                    pair.Value.ForEach(m => m.Invoke(pair.Key, args));
+                    foreach (var componentMethodsPair in typeDictPair.Value[componentEvent])
+                    {
+                        componentMethodsPair.Value.ForEach(m => m.Invoke(componentMethodsPair.Key, args));
+                    }
                 }
             }
-        }
-
-        private bool ContainsComponentEvent<T>(ComponentEventConstants.ComponentEvent componentEvent) where T : SerializableComponent
-        {
-            return _componentsEvents.ContainsKey(typeof(T)) && _componentsEvents[typeof(T)].ContainsKey(componentEvent);
         }
 
         public void TriggerComponentEvent(SerializableComponent component, ComponentEventConstants.ComponentEvent componentEvent, params object[] args)
@@ -84,21 +82,11 @@ namespace Assets.Scripts.GameScripts
             Initialize();
         }
 
-        void OnSpawned()
-        {
-            
-        }
-
         void OnDestroy()
         {
             DeinitializeComponents();
             UnsubscribeGameEvents();
             Deinitialize();
-        }
-
-        void OnDespawned()
-        {
-            
         }
 
         private void InitializeFields()

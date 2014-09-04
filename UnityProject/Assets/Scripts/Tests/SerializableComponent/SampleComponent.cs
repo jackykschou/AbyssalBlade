@@ -1,13 +1,12 @@
 ﻿#if DEBUG
 using Assets.Scripts.Attrubutes;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components;
 using UnityEngine;
 
 namespace Assets.Scripts.Tests
 {
     [System.Serializable]
-    public class SampleComponent : SerializableComponent
+    public class SampleComponent : GameScripts.Components.SerializableComponent
     {
         public override void Initialize()
         {
@@ -25,15 +24,15 @@ namespace Assets.Scripts.Tests
         }
 
         [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]
-        private void PrivateEvent()
-        {
-            Debug.Log("SampleComponent PrivateEvent");
-        }
-
-        [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]
         public void PublicEvent()
         {
             Debug.Log("SampleComponent PublicEvent");
+        }
+
+        [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]
+        private void PrivateEvent()
+        {
+            Debug.Log("SampleComponent PrivateEvent");
         }
 
         [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]

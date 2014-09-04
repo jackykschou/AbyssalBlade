@@ -17,6 +17,11 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         protected abstract override void Deinitialize();
 
+        public void TriggerGameLogicEvnet(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
+        {
+            GameLogicEventManager.TriggerGameLogicEvnet(gameLogicEvent, args);
+        }
+
         public void TriggerGameLogicEvent<T>(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args) where T : GameLogic
         {
             GameLogicEventManager.TriggerGameLogicEvent<T>(gameLogicEvent, args);

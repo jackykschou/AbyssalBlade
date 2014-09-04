@@ -18,20 +18,32 @@ namespace Assets.Scripts.GameScripts.GameLogic
             InitializeGameLogicEvents();
         }
 
-        public void TriggerGameLogicEvent<T>(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args) where T : GameLogic
+        public void TriggerGameLogicEvnet(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
         {
-            if (ContainGameLogicEvent<T>(gameLogicEvent))
+            foreach (var value in _gameLogicEvents.Values)
             {
-                foreach (var pair in _gameLogicEvents[typeof(T)][gameLogicEvent])
+                if (value.ContainsKey(gameLogicEvent))
                 {
-                    pair.Value.ForEach(m => m.Invoke(pair.Key, args));
+                    foreach (var pair in value[gameLogicEvent])
+                    {
+                        pair.Value.ForEach(m => m.Invoke(pair.Key, args));
+                    }
                 }
             }
         }
 
-        private bool ContainGameLogicEvent<T>(GameLogicEventConstants.GameLogicEvent gameLogicEvent) where T : GameLogic
+        public void TriggerGameLogicEvent<T>(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args) where T : GameLogic
         {
-            return _gameLogicEvents.ContainsKey(typeof(T)) && _gameLogicEvents[typeof(T)].ContainsKey(gameLogicEvent);
+            foreach (var typeDictPair in _gameLogicEvents)
+            {
+                if ((typeof(T) == (typeDictPair.Key) || typeDictPair.Key.IsSubclassOf(typeof(T))) && typeDictPair.Value.ContainsKey(gameLogicEvent))
+                {
+                    foreach (var gameLogicMethodsPair in typeDictPair.Value[gameLogicEvent])
+                    {
+                        gameLogicMethodsPair.Value.ForEach(m => m.Invoke(gameLogicMethodsPair.Key, args));
+                    }
+                }
+            }
         }
 
         public void TriggerGameLogicEvent(GameLogic gameLogic, GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)

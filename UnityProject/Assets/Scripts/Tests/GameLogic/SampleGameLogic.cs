@@ -1,28 +1,30 @@
-﻿using UnityEngine.EventSystems;
+﻿using Assets.Scripts.Tests.SerializableComponent;
 #if DEBUG
 using Assets.Scripts.Attrubutes;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.GameLogic;
 using UnityEngine;
 
 namespace Assets.Scripts.Tests
 {
-    public class SampleGameLogic : GameLogic
+    public class SampleGameLogic : GameScripts.GameLogic.GameLogic
     {
         public SampleComponent Component;
 
-        public SampleComponent Component2;
+        public SampleComponentSubclass SubclassComponent;
 
         protected override void Initialize()
         {
             Debug.Log("SampleGameLogic Initialize");
 
             TriggerComponentEvent<SampleComponent>(ComponentEventConstants.ComponentEvent.Example);
+            TriggerComponentEvent<SampleComponentSubclass>(ComponentEventConstants.ComponentEvent.Example);
+            TriggerComponentEvent(ComponentEventConstants.ComponentEvent.Example);
             TriggerComponentEvent(Component, ComponentEventConstants.ComponentEvent.Example);
-            TriggerComponentEvent(Component2, ComponentEventConstants.ComponentEvent.Example);
+            TriggerComponentEvent(SubclassComponent, ComponentEventConstants.ComponentEvent.Example);
 
             TriggerGameLogicEvent(this, GameLogicEventConstants.GameLogicEvent.Example);
             TriggerGameLogicEvent<SampleGameLogic>(GameLogicEventConstants.GameLogicEvent.Example);
+            TriggerGameLogicEvnet(GameLogicEventConstants.GameLogicEvent.Example);
 
             TriggerGameEvent(GameEventConstants.GameEvent.ExampleEvent);
         }
