@@ -24,7 +24,7 @@ namespace Assets.Scripts.Tests
 
             TriggerGameLogicEvent(this, GameLogicEventConstants.GameLogicEvent.Example);
             TriggerGameLogicEvent<SampleGameLogic>(GameLogicEventConstants.GameLogicEvent.Example);
-            TriggerGameLogicEvnet(GameLogicEventConstants.GameLogicEvent.Example);
+            TriggerGameLogicEvent(GameLogicEventConstants.GameLogicEvent.Example);
 
             TriggerGameEvent(GameEventConstants.GameEvent.ExampleEvent);
         }
