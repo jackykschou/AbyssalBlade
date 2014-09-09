@@ -17,7 +17,6 @@ namespace Assets.Scripts.GameViews
 
         protected override void Deinitialize()
         {
-
         }
 
         protected void UpdateSortingOrder()

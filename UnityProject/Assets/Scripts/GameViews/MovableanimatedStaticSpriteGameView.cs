@@ -2,7 +2,7 @@
 {
     public class MovableanimatedStaticSpriteGameView : StaticAnimatedStaticSpriteGameView
     {
-        protected virtual void Update()
+        protected override void Update()
         {
             UpdateSortingOrder();
         }

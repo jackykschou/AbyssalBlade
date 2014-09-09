@@ -1,47 +1,24 @@
 ﻿using Assets.Scripts.Constants;
-using Assets.Scripts.Utility;
-using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.Components.Input
 {
     [System.Serializable]
-    public class ButtonOnReleased : SerializableComponent, IInput
+    public class ButtonOnReleased : PlayerInput
     {
-        [SerializeField]
-        private float _coolDown;
-        [SerializeField]
-        private InputKeyCode _keyCode;
-
-        private FixTimeDispatcher _timeDispatcher;
-
-        public override void Initialize()
+        public override bool Detect()
         {
-            _timeDispatcher = new FixTimeDispatcher(_coolDown);
-        }
-
-        public override void Deinitialize()
-        {
-        }
-
-        public bool Detect()
-        {
-            if (!IsInCooldown() && IsKeyReleased())
+            if (base.Detect() && IsKeyReleased())
             {
-                _timeDispatcher.Dispatch();
+                CoolDownTimeDispatcher.Dispatch();
                 return true;
             }
 
             return false;
         }
 
-        private bool IsInCooldown()
-        {
-            return !_timeDispatcher.CanDispatch();
-        }
-
         private bool IsKeyReleased()
         {
-            return UnityEngine.Input.GetButtonUp(InputConstants.GetKeyCodeName(_keyCode));
+            return UnityEngine.Input.GetButtonUp(InputConstants.GetKeyCodeName(KeyCode));
         }
     }
 }

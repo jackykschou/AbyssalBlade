@@ -17,6 +17,8 @@ namespace Assets.Scripts.GameScripts.Components
 
         public abstract void Deinitialize();
 
+        public abstract void Update();
+
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
             GameEventManager.Instance.TriggerGameEvent(gameEvent, args);

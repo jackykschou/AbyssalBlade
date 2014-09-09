@@ -17,6 +17,11 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         protected abstract override void Deinitialize();
 
+        void Update()
+        {
+            Debug.Log("GameLogic update");
+        }
+
         public void TriggerGameLogicEvent(GameLogicEvent gameLogicEvent, params object[] args)
         {
             GameLogicEventManager.TriggerGameLogicEvent(gameLogicEvent, args);

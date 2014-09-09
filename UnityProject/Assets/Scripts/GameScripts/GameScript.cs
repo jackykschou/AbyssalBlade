@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameScripts
     public abstract class GameScript : MonoBehaviour
     {
         private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>> _componentsEvents;
+        private List<SerializableComponent> _components;
 
         protected abstract void Initialize();
 
@@ -93,26 +94,32 @@ namespace Assets.Scripts.GameScripts
             Deinitialize();
         }
 
+        protected virtual void Update()
+        {
+            _components.ForEach(c => c.Update());
+        }
+
         private void InitializeFields()
         {
             _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>>();
+            _components = new List<SerializableComponent>();
         }
 	
         private void InitializeComponents()
         {
-            var components =
+            _components =
                 GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
                             .Select(f => f.GetValue(this) as SerializableComponent)
                             .Where(c => c != null).ToList();
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.GameScript = this;
                 AddComponentEvents(component);
                 component.SubscribeGameEvents();
             }
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.Initialize();
             }
@@ -120,17 +127,13 @@ namespace Assets.Scripts.GameScripts
 
         private void DeinitializeComponents()
         {
-            var components =
-                GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
-                            .Select(f => f.GetValue(this) as SerializableComponent)
-                            .Where(c => c != null).ToList();
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.Deinitialize();
             }
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.UnsubscribeGameEvents();
             }

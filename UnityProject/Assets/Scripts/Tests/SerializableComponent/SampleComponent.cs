@@ -23,6 +23,10 @@ namespace Assets.Scripts.Tests.SerializableComponent
             Debug.Log("SampleComponent Deinitialize");
         }
 
+        public override void Update()
+        {
+        }
+
         [Attributes.ComponentEvent(ComponentEvent.Example)]
         public void PublicEvent()
         {

@@ -1,48 +1,47 @@
 ﻿using Assets.Scripts.Constants;
-using Assets.Scripts.Utility;
-using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.Components.Input
 {
     [System.Serializable]
-    public class ButtonOnHold : SerializableComponent, IInput
+    public class ButtonOnHold : PlayerInput
     {
-
-        [SerializeField]
-        private float _coolDown;
-        [SerializeField]
-        private InputKeyCode _keyCode;
-
-        private FixTimeDispatcher _timeDispatcher;
+        protected bool IsHolding;
 
         public override void Initialize()
         {
-            _timeDispatcher = new FixTimeDispatcher(_coolDown);
+            base.Initialize();
+
+            IsHolding = false;
         }
 
-        public override void Deinitialize()
+        public override void Update()
         {
-        }
-
-        public bool Detect()
-        {
-            if (!IsInCooldown() && IsKeyOnHold())
+            if (IsHolding && IsKeyReleased())
             {
-                _timeDispatcher.Dispatch();
+                IsHolding = false;
+                CoolDownTimeDispatcher.Dispatch();
+            }
+        }
+
+        public override bool Detect()
+        {
+            if ((base.Detect() || IsHolding) && IsKeyOnHold())
+            {
+                IsHolding = true;
                 return true;
             }
 
             return false;
         }
 
-        private bool IsInCooldown()
-        {
-            return !_timeDispatcher.CanDispatch();
-        }
-
         private bool IsKeyOnHold()
         {
-            return UnityEngine.Input.GetButton(InputConstants.GetKeyCodeName(_keyCode));
+            return UnityEngine.Input.GetButton(InputConstants.GetKeyCodeName(KeyCode));
+        }
+
+        private bool IsKeyReleased()
+        {
+            return UnityEngine.Input.GetButtonUp(InputConstants.GetKeyCodeName(KeyCode));
         }
     }
 }
