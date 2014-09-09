@@ -1,7 +1,8 @@
-﻿
+﻿using Assets.Scripts.GameScripts;
+
 namespace Assets.Scripts.GameViews
 {
-    public abstract class GameView : GameScripts.GameScript
+    public abstract class GameView : GameScript
     {
         protected abstract override void Initialize();
 

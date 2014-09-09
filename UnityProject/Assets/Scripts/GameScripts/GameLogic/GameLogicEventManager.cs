@@ -18,7 +18,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
             InitializeGameLogicEvents();
         }
 
-        public void TriggerGameLogicEvnet(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
+        public void TriggerGameLogicEvent(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
         {
             foreach (var value in _gameLogicEvents.Values)
             {

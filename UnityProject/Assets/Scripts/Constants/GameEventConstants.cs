@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.Scripts.Exceptions;
-
-namespace Assets.Scripts.Constants
+﻿namespace Assets.Scripts.Constants
 {
     public static class GameEventConstants
     {
