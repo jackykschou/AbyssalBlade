@@ -1,9 +1,9 @@
 ﻿#if DEBUG
-using Assets.Scripts.Attrubutes;
+
 using Assets.Scripts.Constants;
 using UnityEngine;
 
-namespace Assets.Scripts.Tests
+namespace Assets.Scripts.Tests.SerializableComponent
 {
     [System.Serializable]
     public class SampleComponent : GameScripts.Components.SerializableComponent
@@ -12,10 +12,10 @@ namespace Assets.Scripts.Tests
         {
             Debug.Log("SampleComponent Initialize");
 
-            TriggerComponentEvent<SampleComponent>(ComponentEventConstants.ComponentEvent.Example);
-            TriggerComponentEvent(ComponentEventConstants.ComponentEvent.Example);
+            TriggerComponentEvent<SampleComponent>(ComponentEvent.Example);
+            TriggerComponentEvent(ComponentEvent.Example);
 
-            TriggerGameEvent(GameEventConstants.GameEvent.ExampleEvent);
+            TriggerGameEvent(GameEvent.ExampleEvent);
         }
 
         public override void Deinitialize()
@@ -23,25 +23,25 @@ namespace Assets.Scripts.Tests
             Debug.Log("SampleComponent Deinitialize");
         }
 
-        [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]
+        [Attributes.ComponentEvent(ComponentEvent.Example)]
         public void PublicEvent()
         {
             Debug.Log("SampleComponent PublicEvent");
         }
 
-        [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]
+        [Attributes.ComponentEvent(ComponentEvent.Example)]
         private void PrivateEvent()
         {
             Debug.Log("SampleComponent PrivateEvent");
         }
 
-        [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]
+        [Attributes.ComponentEvent(ComponentEvent.Example)]
         public static void StaticPublicEvent()
         {
             Debug.Log("SampleComponent StaticPublicEvent");
         }
 
-        [ComponentEvent(ComponentEventConstants.ComponentEvent.Example)]
+        [Attributes.ComponentEvent(ComponentEvent.Example)]
         private static void StaticPrivateEvent()
         {
             Debug.Log("SampleComponent StaticPrivateEvent");

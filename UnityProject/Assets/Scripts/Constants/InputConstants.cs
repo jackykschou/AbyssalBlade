@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace Assets.Scripts.Constants
 {
+    public enum InputKeyCode
+    {
+        MoveUp,
+        MoveDown,
+        MoveLeft,
+        MoveRight
+    };
+
     public static class InputConstants
     {
         public const float DoubleClickBufferTime = 0.35f;
-
-        public enum InputKeyCode
-        {
-            MoveUp,
-            MoveDown,
-            MoveLeft,
-            MoveRight
-        };
 
         private static readonly Dictionary<InputKeyCode, string> KeyCodeMapping = new Dictionary<InputKeyCode, string>()
         {

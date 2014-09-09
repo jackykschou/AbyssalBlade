@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.Tests.SerializableComponent;
+﻿using Assets.Scripts.Attributes;
+using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
 #if DEBUG
-using Assets.Scripts.Attrubutes;
-using Assets.Scripts.Constants;
+using Assets.Scripts.Tests.SerializableComponent;
 using UnityEngine;
 
-namespace Assets.Scripts.Tests
+namespace Assets.Scripts.Tests.GameLogic
 {
     public class SampleGameLogic : GameScripts.GameLogic.GameLogic
     {
@@ -16,17 +16,17 @@ namespace Assets.Scripts.Tests
         {
             Debug.Log("SampleGameLogic Initialize");
 
-            TriggerComponentEvent<SampleComponent>(ComponentEventConstants.ComponentEvent.Example);
-            TriggerComponentEvent<SampleComponentSubclass>(ComponentEventConstants.ComponentEvent.Example);
-            TriggerComponentEvent(ComponentEventConstants.ComponentEvent.Example);
-            TriggerComponentEvent(Component, ComponentEventConstants.ComponentEvent.Example);
-            TriggerComponentEvent(SubclassComponent, ComponentEventConstants.ComponentEvent.Example);
+            TriggerComponentEvent<SampleComponent>(ComponentEvent.Example);
+            TriggerComponentEvent<SampleComponentSubclass>(ComponentEvent.Example);
+            TriggerComponentEvent(ComponentEvent.Example);
+            TriggerComponentEvent(Component, ComponentEvent.Example);
+            TriggerComponentEvent(SubclassComponent, ComponentEvent.Example);
 
-            TriggerGameLogicEvent(this, GameLogicEventConstants.GameLogicEvent.Example);
-            TriggerGameLogicEvent<SampleGameLogic>(GameLogicEventConstants.GameLogicEvent.Example);
-            TriggerGameLogicEvent(GameLogicEventConstants.GameLogicEvent.Example);
+            TriggerGameLogicEvent(this, Constants.GameLogicEvent.Example);
+            TriggerGameLogicEvent<SampleGameLogic>(Constants.GameLogicEvent.Example);
+            TriggerGameLogicEvent(Constants.GameLogicEvent.Example);
 
-            TriggerGameEvent(GameEventConstants.GameEvent.ExampleEvent);
+            TriggerGameEvent(Constants.GameEvent.ExampleEvent);
         }
 
         protected override void Deinitialize()
@@ -34,49 +34,49 @@ namespace Assets.Scripts.Tests
             Debug.Log("SampleGameLogic Deinitialize");
         }
 
-        [GameLogicEvent(GameLogicEventConstants.GameLogicEvent.Example)]
+        [GameLogicEvent(Constants.GameLogicEvent.Example)]
         public void GameLogicEventPublic()
         {
             Debug.Log("SampleGameLogic GameLogicEventPublic");
         }
 
-        [GameLogicEvent(GameLogicEventConstants.GameLogicEvent.Example)]
+        [GameLogicEvent(Constants.GameLogicEvent.Example)]
         private void GameLogicEventPrivate()
         {
             Debug.Log("SampleGameLogic GameLogicEventPrivate");
         }
 
-        [GameLogicEvent(GameLogicEventConstants.GameLogicEvent.Example)]
+        [GameLogicEvent(Constants.GameLogicEvent.Example)]
         public static void GameLogicEventStaticPublic()
         {
             Debug.Log("SampleGameLogic GameLogicEventStaticPublic");
         }
 
-        [GameLogicEvent(GameLogicEventConstants.GameLogicEvent.Example)]
+        [GameLogicEvent(Constants.GameLogicEvent.Example)]
         private static void GameLogicEventStaticPrivate()
         {
             Debug.Log("SampleGameLogic GameLogicEventStaticPrivate");
         }
 
-        [GameEvent(GameEventConstants.GameEvent.ExampleEvent)]
+        [GameEvent(Constants.GameEvent.ExampleEvent)]
         public void GameEventPublic()
         {
             Debug.Log("SampleGameLogic GameEventPublic");
         }
 
-        [GameEvent(GameEventConstants.GameEvent.ExampleEvent)]
+        [GameEvent(Constants.GameEvent.ExampleEvent)]
         private void GameEventPrivate()
         {
             Debug.Log("SampleGameLogic GameEventPrivate");
         }
 
-        [GameEvent(GameEventConstants.GameEvent.ExampleEvent)]
+        [GameEvent(Constants.GameEvent.ExampleEvent)]
         public static void GameEventStaticPublic()
         {
             Debug.Log("SampleGameLogic GameEventStaticPublic");
         }
 
-        [GameEvent(GameEventConstants.GameEvent.ExampleEvent)]
+        [GameEvent(Constants.GameEvent.ExampleEvent)]
         private static void GameEventStaticPrivate()
         {
             Debug.Log("SampleGameLogic GameEventStaticPrivate");

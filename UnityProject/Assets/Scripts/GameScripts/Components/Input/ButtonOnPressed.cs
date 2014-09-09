@@ -10,7 +10,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
         [SerializeField]
         private float _coolDown;
         [SerializeField]
-        private InputConstants.InputKeyCode _keyCode;
+        private InputKeyCode _keyCode;
 
         private FixTimeDispatcher _timeDispatcher;
 
@@ -30,10 +30,8 @@ namespace Assets.Scripts.GameScripts.Components.Input
                 _timeDispatcher.Dispatch();
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         private bool IsInCooldown()

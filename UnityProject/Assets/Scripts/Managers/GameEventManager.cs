@@ -8,16 +8,16 @@ namespace Assets.Scripts.Managers
     {
         public static GameEventManager Instance { get { return _instance; } }
 
-        private Dictionary<GameEventConstants.GameEvent, Dictionary<System.Object, List<MethodInfo>>> _gameEvents;
+        private Dictionary<GameEvent, Dictionary<System.Object, List<MethodInfo>>> _gameEvents;
 
         private static readonly GameEventManager _instance = new GameEventManager();
 
         GameEventManager()
         {
-            _gameEvents = new Dictionary<GameEventConstants.GameEvent, Dictionary<object, List<MethodInfo>>>();
+            _gameEvents = new Dictionary<GameEvent, Dictionary<object, List<MethodInfo>>>();
         }
 
-        public void TriggerGameEvent(GameEventConstants.GameEvent gameEvent, params System.Object[] args)
+        public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
             if (!_gameEvents.ContainsKey(gameEvent))
             {
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Managers
             }
         }
 
-        public void SubscribeGameEvent(System.Object subscriber, GameEventConstants.GameEvent gameEvent, MethodInfo info)
+        public void SubscribeGameEvent(System.Object subscriber, GameEvent gameEvent, MethodInfo info)
         {
             if (!_gameEvents.ContainsKey(gameEvent))
             {
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Managers
             _gameEvents[gameEvent][subscriber].Add(info);
         }
 
-        public void UnsubscribeGameEvent(System.Object subscriber, GameEventConstants.GameEvent gameEvent)
+        public void UnsubscribeGameEvent(System.Object subscriber, GameEvent gameEvent)
         {
             if (!_gameEvents.ContainsKey(gameEvent))
             {
