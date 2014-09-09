@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
 using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
-using GameEvent = Assets.Scripts.Constants.GameEvent;
 using ComponentEventAttribute = Assets.Scripts.Attributes.ComponentEvent;
+using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts

@@ -4,7 +4,8 @@
     public enum GameLogicEvent
     {
 #if DEBUG
-        Example // void()
+        Example, // void()
 #endif
+        AxisMoved // void(Vector2)
     };
 }
