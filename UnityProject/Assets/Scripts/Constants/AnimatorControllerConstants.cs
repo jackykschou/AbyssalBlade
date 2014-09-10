@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace Assets.Scripts.Constants
@@ -16,14 +15,14 @@ namespace Assets.Scripts.Constants
 
         };
 
-        public static AnimatorController LoadAnimatorController(AnimatorName name)
+        public static RuntimeAnimatorController LoadAnimatorController(AnimatorName name)
         {
             if (!animatorNameMap.ContainsKey(name))
             {
                 throw new Exception("Animator name is not defined");
             }
 
-            AnimatorController controller = Resources.Load(AnimatorsPath + animatorNameMap[name]) as AnimatorController;
+            RuntimeAnimatorController controller = Resources.Load(AnimatorsPath + animatorNameMap[name]) as RuntimeAnimatorController;
 
             if(controller == null)
             {
