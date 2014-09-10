@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.GameViews
 {
-    public class MovableanimatedStaticSpriteGameView : StaticAnimatedStaticSpriteGameView
+    public class MovableAnimatedSpriteGameView : StaticAnimatedSpriteGameView
     {
         protected override void Update()
         {

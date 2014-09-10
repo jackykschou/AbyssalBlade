@@ -3,7 +3,7 @@
 namespace Assets.Scripts.GameViews
 {
     [RequireComponent(typeof(Animator))]
-    public class StaticAnimatedStaticSpriteGameView : StaticSpriteGameView
+    public class StaticAnimatedSpriteGameView : StaticSpriteGameView
     {
         protected Animator _animator;
 

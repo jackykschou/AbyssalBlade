@@ -18,7 +18,7 @@ namespace Assets.Scripts.Constants
         {
             {InputKeyCode.VerticalAxis, "VerticalAxis"},
             {InputKeyCode.HorizontalAxis, "HorizontalAxis"},
-            {InputKeyCode.HorizontalAxis, "Attack1"}
+            {InputKeyCode.Attack1, "Attack1"}
         };
 
         public static string GetKeyCodeName(InputKeyCode keyCode)

@@ -8,12 +8,12 @@ namespace Assets.Scripts.Utility.GameValue
         private float _value;
 
         public float Value {
-            get { return Value; }
+            get { return _value; }
             set
             {
                 if (Frozen)
                 {
-                    return;;
+                    return;
                 }
                 _value = value;
                 TrimValue();
@@ -41,26 +41,26 @@ namespace Assets.Scripts.Utility.GameValue
 
         public GameValue()
         {
-            Value = 0f;
+            Frozen = false;
             Min = float.MinValue;
             Max = float.MaxValue;
-            Frozen = false;
+            Value = 0f;
         }
 
         public GameValue(float value)
         {
-            Value = value;
+            Frozen = false;
             Min = float.MinValue;
             Max = float.MaxValue;
-            Frozen = false;
+            Value = value;
         }
 
         public GameValue(float value, float min, float max)
         {
-            Value = value;
+            Frozen = false;
             Min = min;
             Max = max;
-            Frozen = false;
+            Value = value;
             TrimValue();
         }
 
@@ -138,7 +138,7 @@ namespace Assets.Scripts.Utility.GameValue
 
         private void TrimValue()
         {
-            Value = Mathf.Clamp(Value, Min, Max);
+            _value = Mathf.Clamp(_value, Min, Max);
         }
     }
 }
