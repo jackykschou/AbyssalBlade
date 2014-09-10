@@ -1,0 +1,141 @@
+﻿using Assets.Scripts.Constants;
+using UnityEngine;
+using System.Collections;
+
+public class CameraMovement : MonoBehaviour {
+
+    public float speed = 10.0f;
+    public Animator a;
+    public Transform hero;
+    public Vector2 direction;
+
+	// Use this for initialization
+	void Start ()
+	{
+	    direction = Vector2.right;
+	}
+
+    void SetAttacksFalse()
+    {
+        a.SetBool("AttackRight", false);
+        a.SetBool("AttackLeft", false);
+        a.SetBool("AttackUp", false);
+        a.SetBool("AttackDown", false);
+    }
+	
+	// Update is called once per frame
+	void Update ()
+	{
+	    if (a.GetBool("AttackUp") || a.GetBool("AttackDown") ||
+	        a.GetBool("AttackLeft") || a.GetBool("AttackRight"))
+	    {
+	        return;
+	    }
+
+	    if (Input.GetButtonDown("Attack1") && !a.GetBool("AttackUp") && !a.GetBool("AttackDown") &&
+	        !a.GetBool("AttackLeft") && !a.GetBool("AttackRight"))
+	    {
+            if (direction == Vector2.right)
+	        {
+                a.SetBool("AttackRight", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+	        }
+	        if (direction == -Vector2.right)
+	        {
+                a.SetBool("AttackLeft", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+	        }
+	        if (direction == Vector2.up)
+	        {
+                a.SetBool("AttackUp", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+	        }
+	        if (direction == -Vector2.up)
+	        {
+                a.SetBool("AttackDown", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+	        }
+	    }
+
+	    else
+	    {
+	        float vert = Input.GetAxis("VerticalAxis")*speed;
+	        float horz = Input.GetAxis("HorizontalAxis")*speed;
+	        vert *= Time.deltaTime;
+	        horz *= Time.deltaTime;
+	        hero.Translate(horz, vert, 0);
+
+	        if (Mathf.Abs(horz) > Mathf.Abs(vert))
+	        {
+	            if (horz > 0.01)
+	            {
+	                direction = Vector2.right;
+
+	                a.SetBool("Right", true);
+	                a.SetBool("Left", false);
+	                a.SetBool("Up", false);
+	                a.SetBool("Down", false);
+                    a.SetBool("Idle", false);
+	            }
+                else if (horz < -0.01)
+	            {
+	                direction = -Vector2.right;
+
+	                a.SetBool("Left", true);
+	                a.SetBool("Up", false);
+	                a.SetBool("Down", false);
+	                a.SetBool("Right", false);
+                    a.SetBool("Idle", false);
+
+	            }
+	        }
+            else if (Mathf.Abs(vert) > Mathf.Abs(horz))
+	        {
+	            if (vert > 0.01)
+	            {
+	                direction = Vector2.up;
+
+	                a.SetBool("Right", false);
+	                a.SetBool("Left", false);
+	                a.SetBool("Up", true);
+	                a.SetBool("Down", false);
+                    a.SetBool("Idle", false);
+	            }
+                else if (vert < -0.01)
+	            {
+	                direction = -Vector2.up;
+
+	                a.SetBool("Left", false);
+	                a.SetBool("Up", false);
+	                a.SetBool("Down", true);
+	                a.SetBool("Right", false);
+                    a.SetBool("Idle", false);
+	            }
+	        }
+	        else
+	        {
+                a.SetBool("Idle", true);
+	            a.SetBool("Right", false);
+	            a.SetBool("Left", false);
+	            a.SetBool("Up", false);
+	            a.SetBool("Down", false);
+	        }
+	    }
+    }
+}
