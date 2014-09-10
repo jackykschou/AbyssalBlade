@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour {
     public float speed = 10.0f;
 
     public Animator a;
+    public Transform hero;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class CameraMovement : MonoBehaviour {
         float horz = Input.GetAxis("HorizontalAxis")*speed;
         vert *= Time.deltaTime;
         horz *= Time.deltaTime;
-        transform.Translate(horz, vert, 0);
+        hero.Translate(horz, vert, 0);
 
         if (Mathf.Abs(horz) > Mathf.Abs(vert))
         {
