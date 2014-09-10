@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Assets.Scripts.Attrubutes;
-using Assets.Scripts.Constants;
 using Assets.Scripts.Managers;
+using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
+using GameEvent = Assets.Scripts.Constants.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.Components
 {
@@ -16,17 +17,19 @@ namespace Assets.Scripts.GameScripts.Components
 
         public abstract void Deinitialize();
 
-        public void TriggerGameEvent(GameEventConstants.GameEvent gameEvent, params System.Object[] args)
+        public abstract void Update();
+
+        public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
             GameEventManager.Instance.TriggerGameEvent(gameEvent, args);
         }
 
-        public void TriggerComponentEvent(ComponentEventConstants.ComponentEvent componentEvent, params object[] args)
+        public void TriggerComponentEvent(ComponentEvent componentEvent, params object[] args)
         {
             GameScript.TriggerComponentEvent(componentEvent, args);
         }
 
-        public void TriggerComponentEvent<T>(ComponentEventConstants.ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
+        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
         {
             GameScript.TriggerComponentEvent<T>(componentEvent, args);
         }
@@ -37,9 +40,9 @@ namespace Assets.Scripts.GameScripts.Components
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEvent))
+                    if (attr.GetType() == typeof(GameEventAttribute))
                     {
-                        GameEvent gameEventSubscriberAttribute = attr as GameEvent;
+                        GameEventAttribute gameEventSubscriberAttribute = attr as GameEventAttribute;
                         GameEventManager.Instance.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, info);
                     }
                 }
@@ -52,9 +55,9 @@ namespace Assets.Scripts.GameScripts.Components
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEvent))
+                    if (attr.GetType() == typeof(GameEventAttribute))
                     {
-                        GameEvent gameEventSubscriberAttribute = attr as GameEvent;
+                        GameEventAttribute gameEventSubscriberAttribute = attr as GameEventAttribute;
                         GameEventManager.Instance.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event);
                     }
                 }

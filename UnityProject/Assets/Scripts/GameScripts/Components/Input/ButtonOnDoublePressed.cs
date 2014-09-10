@@ -1,46 +1,28 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.Utility;
-using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.Components.Input
 {
     [System.Serializable]
-    public class ButtonOnDoubleClicked : SerializableComponent, IInput
+    public class ButtonOnDoublePressed : PlayerInput
     {
-        [SerializeField]
-        private float _coolDown;
-        [SerializeField]
-        private InputConstants.InputKeyCode _keyCode;
-
         private FixTimeDispatcher _clickBufferTimeDispatcher;
-        private FixTimeDispatcher _coolDownTimeDispatcher;
 
         public override void Initialize()
         {
+            base.Initialize();
             _clickBufferTimeDispatcher = new FixTimeDispatcher(InputConstants.DoubleClickBufferTime);
-            _coolDownTimeDispatcher = new FixTimeDispatcher(_coolDown);
         }
 
-        public override void Deinitialize()
+        public override bool Detect()
         {
-        }
-
-        public bool Detect()
-        {
-            if (!IsInCooldown() && IsKeyDoubleClicked())
+            if (base.Detect() && IsKeyDoubleClicked())
             {
-                _coolDownTimeDispatcher.Dispatch();
+                CoolDownTimeDispatcher.Dispatch();
                 return true;
             }
-            else
-            {
-                return false;
-            }
-        }
 
-        private bool IsInCooldown()
-        {
-            return !_coolDownTimeDispatcher.CanDispatch();
+            return false;
         }
 
         private bool IsKeyDoubleClicked()
@@ -61,7 +43,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
 
         private bool IsKeyPressed()
         {
-            return UnityEngine.Input.GetButtonDown(InputConstants.GetKeyCodeName(_keyCode));
+            return UnityEngine.Input.GetButtonDown(InputConstants.GetKeyCodeName(KeyCode));
         }
 
         private bool HasClickedOnce()
