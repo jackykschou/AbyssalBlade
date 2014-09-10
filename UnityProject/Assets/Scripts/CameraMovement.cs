@@ -15,8 +15,8 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float vert = Input.GetAxis("Vertical")*speed;
-        float horz = Input.GetAxis("Horizontal")*speed;
+        float vert = Input.GetAxis("VerticalAxis")*speed;
+        float horz = Input.GetAxis("HorizontalAxis")*speed;
         vert *= Time.deltaTime;
         horz *= Time.deltaTime;
         transform.Translate(horz, vert, 0);
