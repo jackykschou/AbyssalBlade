@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Constants;
+using StateMachine.Action.Math;
 using UnityEngine;
 using System.Collections;
 
@@ -75,10 +76,21 @@ public class CameraMovement : MonoBehaviour {
 
 	    else
 	    {
-	        float vert = Input.GetAxis("VerticalAxis")*speed;
-	        float horz = Input.GetAxis("HorizontalAxis")*speed;
-	        vert *= Time.deltaTime;
-	        horz *= Time.deltaTime;
+            float vert = Mathf.Abs(Input.GetAxis("VerticalAxis")) > Mathf.Abs(Input.GetAxis("VerticalAxisJoystick")) ? Input.GetAxis("VerticalAxis") : Input.GetAxis("VerticalAxisJoystick");
+            float horz = Mathf.Abs(Input.GetAxis("HorizontalAxis")) > Mathf.Abs(Input.GetAxis("HorizontalAxisJoystick")) ? Input.GetAxis("HorizontalAxis") : Input.GetAxis("HorizontalAxisJoystick");
+
+            if (Mathf.Abs(vert) < 0.2f && Mathf.Abs(horz) < 0.2f)
+	        {
+                a.SetBool("Idle", true);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+	            return;
+	        }
+
+            vert *= Time.deltaTime * speed;
+            horz *= Time.deltaTime * speed;
 	        hero.Translate(horz, vert, 0);
 
 	        if (Mathf.Abs(horz) > Mathf.Abs(vert))

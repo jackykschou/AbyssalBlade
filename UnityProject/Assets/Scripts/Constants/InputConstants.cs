@@ -7,6 +7,8 @@ namespace Assets.Scripts.Constants
     {
         VerticalAxis,
         HorizontalAxis,
+        VerticalAxisJoystick,
+        HorizontalAxisJoystick,
         Attack1
     };
 
@@ -18,6 +20,8 @@ namespace Assets.Scripts.Constants
         {
             {InputKeyCode.VerticalAxis, "VerticalAxis"},
             {InputKeyCode.HorizontalAxis, "HorizontalAxis"},
+            {InputKeyCode.VerticalAxisJoystick, "VerticalAxisJoystick"},
+            {InputKeyCode.HorizontalAxisJoystick, "HorizontalAxisJoystick"},
             {InputKeyCode.Attack1, "Attack1"}
         };
 
