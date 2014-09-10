@@ -5,6 +5,7 @@ using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
 
+    public AudioClip attackSound;
     public float speed = 10.0f;
     public Animator a;
     public Transform hero;
@@ -36,6 +37,8 @@ public class CameraMovement : MonoBehaviour {
 	    if (Input.GetButtonDown("Attack1") && !a.GetBool("AttackUp") && !a.GetBool("AttackDown") &&
 	        !a.GetBool("AttackLeft") && !a.GetBool("AttackRight"))
 	    {
+         
+            if(attackSound)AudioSource.PlayClipAtPoint(attackSound, Vector3.zero, 1.0f);
             if (direction == Vector2.right)
 	        {
                 a.SetBool("AttackRight", true);
