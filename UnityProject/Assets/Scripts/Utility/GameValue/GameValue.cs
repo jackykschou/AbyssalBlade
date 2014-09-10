@@ -121,6 +121,11 @@ namespace Assets.Scripts.Utility.GameValue
             return v1.Value / v2; ;
         }
 
+        public static implicit operator float(GameValue v)
+        {
+            return v.Value;
+        }
+
         public static void ModifyByFixedValue(GameValue gameValue, float value)
         {
             gameValue.Value += gameValue.Value + value;

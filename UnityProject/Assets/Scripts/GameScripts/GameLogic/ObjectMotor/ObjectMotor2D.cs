@@ -1,7 +1,5 @@
-﻿using Assets.Scripts.Utility.GameValue;
-using UnityEngine;
+﻿using UnityEngine;
 
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
 using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic
