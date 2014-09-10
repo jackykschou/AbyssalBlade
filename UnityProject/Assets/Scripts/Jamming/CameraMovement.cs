@@ -93,7 +93,7 @@ public class CameraMovement : MonoBehaviour {
             horz *= Time.deltaTime * speed;
 	        hero.Translate(horz, vert, 0);
 
-	        if (Mathf.Abs(horz) > Mathf.Abs(vert))
+	        if (Mathf.Abs(horz) >= Mathf.Abs(vert))
 	        {
 	            if (horz > 0.01)
 	            {
