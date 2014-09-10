@@ -15,6 +15,12 @@ namespace Assets.Scripts.Utility.Editor
             OpenScene(TestSceneFolder + "GameLogicComponentEventTest");
         }
 
+        [MenuItem("Open Scene/Jamming/Sprint0")]
+        public static void OpenSprint0()
+        {
+            OpenScene("Sprint0");
+        }
+
         private static void OpenScene(string scenePath)
         {
             if (EditorApplication.SaveCurrentSceneIfUserWantsTo())
