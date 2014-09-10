@@ -23,7 +23,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
         [GameLogicEvent(GameLogicEvent.AxisMoved)]
         void MovePlayer(Vector2 direction)
         {
-            MoveTowardsSmooth(direction);
+            MoveTowardsSmooth(direction, Speed);
         }
     }
 }
