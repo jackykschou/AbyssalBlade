@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Assets.Scripts.Attrubutes;
-using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.Managers;
 using UnityEngine;
+
+using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
+using ComponentEventAttribute = Assets.Scripts.Attributes.ComponentEvent;
+using GameEvent = Assets.Scripts.Constants.GameEvent;
+using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts
 {
     public abstract class GameScript : MonoBehaviour
     {
-        private Dictionary<Type, Dictionary<ComponentEventConstants.ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>> _componentsEvents;
+        private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>> _componentsEvents;
+        private List<SerializableComponent> _components;
 
         protected abstract void Initialize();
 
         protected abstract void Deinitialize();
 
-        public void TriggerComponentEvent(ComponentEventConstants.ComponentEvent componentEvent, params object[] args)
+        public void TriggerComponentEvent(ComponentEvent componentEvent, params object[] args)
         {
             foreach (var value in _componentsEvents.Values)
             {
@@ -35,7 +39,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        public void TriggerComponentEvent<T>(ComponentEventConstants.ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
+        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
         {
             foreach (var typeDictPair in _componentsEvents)
             {
@@ -49,7 +53,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        public void TriggerComponentEvent(SerializableComponent component, ComponentEventConstants.ComponentEvent componentEvent, params object[] args)
+        public void TriggerComponentEvent(SerializableComponent component, ComponentEvent componentEvent, params object[] args)
         {
             if (ContainsComponentEvent(component, componentEvent))
             {
@@ -60,12 +64,12 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        private bool ContainsComponentEvent(SerializableComponent component, ComponentEventConstants.ComponentEvent componentEvent)
+        private bool ContainsComponentEvent(SerializableComponent component, ComponentEvent componentEvent)
         {
             return _componentsEvents.ContainsKey(component.GetType()) && _componentsEvents[component.GetType()].ContainsKey(componentEvent) && _componentsEvents[component.GetType()][componentEvent].ContainsKey(component);
         }
 
-        public void TriggerGameEvent(GameEventConstants.GameEvent gameEvent, params System.Object[] args)
+        public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
             GameEventManager.Instance.TriggerGameEvent(gameEvent, args);
         }
@@ -89,26 +93,32 @@ namespace Assets.Scripts.GameScripts
             Deinitialize();
         }
 
+        protected virtual void Update()
+        {
+            _components.ForEach(c => c.Update());
+        }
+
         private void InitializeFields()
         {
-            _componentsEvents = new Dictionary<Type, Dictionary<ComponentEventConstants.ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>>();
+            _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>>();
+            _components = new List<SerializableComponent>();
         }
 	
         private void InitializeComponents()
         {
-            var components =
+            _components =
                 GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
                             .Select(f => f.GetValue(this) as SerializableComponent)
                             .Where(c => c != null).ToList();
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.GameScript = this;
                 AddComponentEvents(component);
                 component.SubscribeGameEvents();
             }
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.Initialize();
             }
@@ -116,17 +126,13 @@ namespace Assets.Scripts.GameScripts
 
         private void DeinitializeComponents()
         {
-            var components =
-                GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
-                            .Select(f => f.GetValue(this) as SerializableComponent)
-                            .Where(c => c != null).ToList();
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.Deinitialize();
             }
 
-            foreach (var component in components)
+            foreach (var component in _components)
             {
                 component.UnsubscribeGameEvents();
             }
@@ -137,13 +143,13 @@ namespace Assets.Scripts.GameScripts
             component.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {
-                    ComponentEvent componentEvent = Attribute.GetCustomAttribute(m, typeof(ComponentEvent)) as ComponentEvent;
+                    ComponentEventAttribute componentEvent = Attribute.GetCustomAttribute(m, typeof(ComponentEventAttribute)) as ComponentEventAttribute;
                     if (componentEvent != null)
                     {
                         Type componentType = component.GetType();
                         if (!_componentsEvents.ContainsKey(componentType))
                         {
-                            _componentsEvents.Add(componentType, new Dictionary<ComponentEventConstants.ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>());
+                            _componentsEvents.Add(componentType, new Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>());
                         }
                         if (!_componentsEvents[componentType].ContainsKey(componentEvent.Event))
                         {
@@ -164,9 +170,9 @@ namespace Assets.Scripts.GameScripts
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEvent))
+                    if (attr.GetType() == typeof(GameEventtAttribute))
                     {
-                        GameEvent gameEventSubscriberAttribute = attr as GameEvent;
+                        GameEventtAttribute gameEventSubscriberAttribute = attr as GameEventtAttribute;
                         GameEventManager.Instance.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, info);
                     }
                 }
@@ -179,9 +185,9 @@ namespace Assets.Scripts.GameScripts
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEvent))
+                    if (attr.GetType() == typeof(GameEventtAttribute))
                     {
-                        GameEvent gameEventSubscriberAttribute = attr as GameEvent;
+                        GameEventtAttribute gameEventSubscriberAttribute = attr as GameEventtAttribute;
                         GameEventManager.Instance.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event);
                     }
                 }

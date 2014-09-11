@@ -17,17 +17,17 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         protected abstract override void Deinitialize();
 
-        public void TriggerGameLogicEvent(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
+        public void TriggerGameLogicEvent(GameLogicEvent gameLogicEvent, params object[] args)
         {
             GameLogicEventManager.TriggerGameLogicEvent(gameLogicEvent, args);
         }
 
-        public void TriggerGameLogicEvent<T>(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args) where T : GameLogic
+        public void TriggerGameLogicEvent<T>(GameLogicEvent gameLogicEvent, params object[] args) where T : GameLogic
         {
             GameLogicEventManager.TriggerGameLogicEvent<T>(gameLogicEvent, args);
         }
 
-        public void TriggerGameLogicEvent(GameLogic gameLogic, GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
+        public void TriggerGameLogicEvent(GameLogic gameLogic, GameLogicEvent gameLogicEvent, params object[] args)
         {
             GameLogicEventManager.TriggerGameLogicEvent(gameLogic, gameLogicEvent, args);
         }

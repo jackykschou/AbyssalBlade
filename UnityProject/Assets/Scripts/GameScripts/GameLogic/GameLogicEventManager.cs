@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Assets.Scripts.Attrubutes;
-using Assets.Scripts.Constants;
 using UnityEngine;
+
+using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
+using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic
 {
     public class GameLogicEventManager : MonoBehaviour 
     {
-        private Dictionary<Type, Dictionary<GameLogicEventConstants.GameLogicEvent, Dictionary<GameLogic, List<MethodInfo>>>> _gameLogicEvents;
+        private Dictionary<Type, Dictionary<GameLogicEvent, Dictionary<GameLogic, List<MethodInfo>>>> _gameLogicEvents;
 
         void Awake()
         {
@@ -18,7 +19,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
             InitializeGameLogicEvents();
         }
 
-        public void TriggerGameLogicEvnet(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
+        public void TriggerGameLogicEvent(GameLogicEvent gameLogicEvent, params object[] args)
         {
             foreach (var value in _gameLogicEvents.Values)
             {
@@ -32,7 +33,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
             }
         }
 
-        public void TriggerGameLogicEvent<T>(GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args) where T : GameLogic
+        public void TriggerGameLogicEvent<T>(GameLogicEvent gameLogicEvent, params object[] args) where T : GameLogic
         {
             foreach (var typeDictPair in _gameLogicEvents)
             {
@@ -46,7 +47,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
             }
         }
 
-        public void TriggerGameLogicEvent(GameLogic gameLogic, GameLogicEventConstants.GameLogicEvent gameLogicEvent, params object[] args)
+        public void TriggerGameLogicEvent(GameLogic gameLogic, GameLogicEvent gameLogicEvent, params object[] args)
         {
             if (ContainGameLogicEvent(gameLogic, gameLogicEvent))
             {
@@ -57,14 +58,14 @@ namespace Assets.Scripts.GameScripts.GameLogic
             }
         }
 
-        private bool ContainGameLogicEvent(GameLogic gameLogic, GameLogicEventConstants.GameLogicEvent gameLogicEvent)
+        private bool ContainGameLogicEvent(GameLogic gameLogic, GameLogicEvent gameLogicEvent)
         {
             return _gameLogicEvents.ContainsKey(gameLogic.GetType()) && _gameLogicEvents[gameLogic.GetType()].ContainsKey(gameLogicEvent) && _gameLogicEvents[gameLogic.GetType()][gameLogicEvent].ContainsKey(gameLogic);
         }
 
         private void InitializeFields()
         {
-            _gameLogicEvents = new Dictionary<Type, Dictionary<GameLogicEventConstants.GameLogicEvent, Dictionary<GameLogic, List<MethodInfo>>>>();
+            _gameLogicEvents = new Dictionary<Type, Dictionary<GameLogicEvent, Dictionary<GameLogic, List<MethodInfo>>>>();
         }
 
         private void InitializeGameLogicEvents()
@@ -81,13 +82,13 @@ namespace Assets.Scripts.GameScripts.GameLogic
             gameLogic.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {
-                    GameLogicEvent gameLogicEvent = Attribute.GetCustomAttribute(m, typeof(GameLogicEvent)) as GameLogicEvent;
+                    GameLogicEventAttribute gameLogicEvent = Attribute.GetCustomAttribute(m, typeof(GameLogicEventAttribute)) as GameLogicEventAttribute;
                     if (gameLogicEvent != null)
                     {
                         Type gameLogicType = gameLogic.GetType();
                         if (!_gameLogicEvents.ContainsKey(gameLogicType))
                         {
-                            _gameLogicEvents.Add(gameLogicType, new Dictionary<GameLogicEventConstants.GameLogicEvent, Dictionary<GameLogic, List<MethodInfo>>>());
+                            _gameLogicEvents.Add(gameLogicType, new Dictionary<GameLogicEvent, Dictionary<GameLogic, List<MethodInfo>>>());
                         }
                         if (!_gameLogicEvents[gameLogicType].ContainsKey(gameLogicEvent.Event))
                         {

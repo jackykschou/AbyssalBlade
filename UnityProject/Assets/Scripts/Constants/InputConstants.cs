@@ -3,24 +3,26 @@ using UnityEngine;
 
 namespace Assets.Scripts.Constants
 {
+    public enum InputKeyCode
+    {
+        VerticalAxis,
+        HorizontalAxis,
+        VerticalAxisJoystick,
+        HorizontalAxisJoystick,
+        Attack1
+    };
+
     public static class InputConstants
     {
         public const float DoubleClickBufferTime = 0.35f;
 
-        public enum InputKeyCode
-        {
-            MoveUp,
-            MoveDown,
-            MoveLeft,
-            MoveRight
-        };
-
         private static readonly Dictionary<InputKeyCode, string> KeyCodeMapping = new Dictionary<InputKeyCode, string>()
         {
-            {InputKeyCode.MoveUp, "Move Up"},
-            {InputKeyCode.MoveDown, "Move Down"},
-            {InputKeyCode.MoveLeft, "Move Left"},
-            {InputKeyCode.MoveRight, "Move Right"}
+            {InputKeyCode.VerticalAxis, "VerticalAxis"},
+            {InputKeyCode.HorizontalAxis, "HorizontalAxis"},
+            {InputKeyCode.VerticalAxisJoystick, "VerticalAxisJoystick"},
+            {InputKeyCode.HorizontalAxisJoystick, "HorizontalAxisJoystick"},
+            {InputKeyCode.Attack1, "Attack1"}
         };
 
         public static string GetKeyCodeName(InputKeyCode keyCode)
@@ -31,7 +33,7 @@ namespace Assets.Scripts.Constants
             }
             else  //no input matches
             {
-                return "";
+                throw new KeyNotFoundException();
             }
         }
 	
