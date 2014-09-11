@@ -17,6 +17,15 @@ namespace Assets.Scripts.GameScripts.GameLogic
         [SerializeField] 
         private ButtonOnPressed Attack1;
 
+        [SerializeField]
+        private ButtonOnPressed Attack2;
+
+        [SerializeField]
+        private ButtonOnPressed Attack3;
+
+        [SerializeField]
+        private ButtonOnPressed Attack4;
+
         protected override void Initialize()
         {
         }

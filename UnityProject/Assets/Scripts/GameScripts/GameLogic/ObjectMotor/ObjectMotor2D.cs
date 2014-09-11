@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Utility;
+using UnityEngine;
 
 using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 
@@ -19,12 +20,17 @@ namespace Assets.Scripts.GameScripts.GameLogic
         {
         }
 
-        public void MoveTowardsLinear(Vector2 direction, float speed)
+        public void TranslateLinearTowards(Vector2 direction, float speed)
         {
-            transform.Translate(new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime);
+            gameObject.transform.Translate(new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime);
         }
 
-        public void MoveTowardsSmooth(Vector2 direction, float speed)
+        public void TranslateLinearTowards(GameObject target, float speed)
+        {
+            TranslateLinearTowards(gameObject.GetDirection(target), speed);
+        }
+
+        public void TranslateSmoothTowards(Vector2 direction, float speed)
         {
             const float smoothDampSmoothness = 5.0f;
 
@@ -34,9 +40,14 @@ namespace Assets.Scripts.GameScripts.GameLogic
             float posY = Mathf.SmoothDamp(transform.position.y, destination.y, ref _velocityY, Time.deltaTime * smoothDampSmoothness);
 
             transform.position = new Vector3(posX, posY, transform.position.z);
-        } 
+        }
 
-        public void TeleportTo(Vector2 position)
+        public void TranslateSmoothTowards(GameObject target, float speed)
+        {
+            TranslateSmoothTowards(gameObject.GetDirection(target), speed);
+        }
+
+        public void InstantMoveTo(Vector2 position)
         {
             transform.position = new Vector3(position.x, position.y, transform.position.z);
         }

@@ -1,29 +1,14 @@
-﻿using Assets.Scripts.Utility.GameValue;
+﻿using Assets.Scripts.Attributes;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic
+namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
-    using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-    using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
-    using GameEvent = Assets.Scripts.Constants.GameEvent;
-    using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
-
-    public class PlayerCharacterMotor : ObjectMotor2D
+    public class PlayerCharacterMotor : CharacterMotor
     {
-        private float _initialSpeed;
-
-        public GameValue Speed;
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-            Speed = new GameValue(_initialSpeed);
-        }
-
-        [GameLogicEvent(GameLogicEvent.AxisMoved)]
+        [GameLogicEvent(Constants.GameLogicEvent.AxisMoved)]
         void MovePlayer(Vector2 direction)
         {
-            MoveTowardsSmooth(direction, Speed);
+            RigidMove(direction);
         }
     }
 }
