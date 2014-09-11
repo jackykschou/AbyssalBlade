@@ -2631,10 +2631,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1370003816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .121009946, y: -.438308716, z: -10}
+  m_LocalPosition: {x: .0359460004, y: .0113679999, z: -8.99800014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1820115207}
+  m_Father: {fileID: 2143984326}
   m_RootOrder: 0
 --- !u!1 &1408052187
 GameObject:
@@ -3375,8 +3375,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.16869009, y: -201.191696, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1370003821}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!95 &1820115208
@@ -3442,6 +3441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d05df78fb22e3c42888ac59951a06fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSound: {fileID: 8300000, guid: 8bfc480c6ebdb584382f39e0c550e251, type: 3}
   speed: 5
   a: {fileID: 1820115208}
   hero: {fileID: 1820115207}
@@ -3907,3 +3907,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1436689519}
   m_RootOrder: 5
+--- !u!1 &2143984324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2143984326}
+  - 114: {fileID: 2143984325}
+  m_Layer: 0
+  m_Name: CameraLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: -1003283189, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2143984325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2143984324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3552e36bdfff99c478d77c990c87f8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1820115207}
+  distance: 0
+  height: 0
+  damping: 5
+  followBehind: 1
+--- !u!4 &2143984326
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2143984324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2385, y: -201.630005, z: -1.00199997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1370003821}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if DEBUG
+using UnityEngine;
 
 namespace Assets.Scripts.Tests.SerializableComponent
 {
@@ -11,3 +12,4 @@ namespace Assets.Scripts.Tests.SerializableComponent
         }
     }
 }
+#endif
