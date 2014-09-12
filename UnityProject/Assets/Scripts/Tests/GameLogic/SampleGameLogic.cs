@@ -31,6 +31,7 @@ namespace Assets.Scripts.Tests.GameLogic
             TriggerGameLogicEvent(GameLogicEvent.Example);
 
             TriggerGameEvent(GameEvent.ExampleEvent);
+            TriggerGameEvent(this, GameEvent.ExampleEvent);
         }
 
         protected override void Deinitialize()

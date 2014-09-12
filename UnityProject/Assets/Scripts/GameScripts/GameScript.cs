@@ -69,6 +69,11 @@ namespace Assets.Scripts.GameScripts
             return _componentsEvents.ContainsKey(component.GetType()) && _componentsEvents[component.GetType()].ContainsKey(componentEvent) && _componentsEvents[component.GetType()][componentEvent].ContainsKey(component);
         }
 
+        public void TriggerGameEvent(System.Object obj, GameEvent gameEvent, params System.Object[] args)
+        {
+            GameEventManager.Instance.TriggerGameEvent(obj, gameEvent, args);
+        }
+
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
             GameEventManager.Instance.TriggerGameEvent(gameEvent, args);

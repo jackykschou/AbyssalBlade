@@ -17,6 +17,21 @@ namespace Assets.Scripts.Managers
             _gameEvents = new Dictionary<GameEvent, Dictionary<object, List<MethodInfo>>>();
         }
 
+        public void TriggerGameEvent(System.Object obj, GameEvent gameEvent, params System.Object[] args)
+        {
+            if (!_gameEvents.ContainsKey(gameEvent))
+            {
+                return;
+            }
+
+            if (!_gameEvents[gameEvent].ContainsKey(obj))
+            {
+                return;
+            }
+
+            _gameEvents[gameEvent][obj].ForEach(m => m.Invoke(obj, args));
+        }
+
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
             if (!_gameEvents.ContainsKey(gameEvent))
