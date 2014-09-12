@@ -9,6 +9,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
     using GameEvent = Assets.Scripts.Constants.GameEvent;
     using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
 
+    [AddComponentMenu("2DObjectMotor/CharacterMotor")]
     [RequireComponent(typeof(Rigidbody2D))]
     public class CharacterMotor : ObjectMotor2D
     {
@@ -29,6 +30,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 
         public void RigidMove(Vector2 direction)
         {
+            TriggerGameLogicEvent(GameLogicEvent.UpdateFacingDirection, direction.GetFacingDirection());
             rigidbody2D.AddForce(direction * Speed * Time.deltaTime);
         }
 

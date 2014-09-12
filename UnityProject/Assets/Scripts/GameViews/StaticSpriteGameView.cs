@@ -3,6 +3,7 @@ using Assets.Scripts.Constants;
 
 namespace Assets.Scripts.GameViews
 {
+    [AddComponentMenu("GameView/StaticSpriteGameView")]
     [RequireComponent(typeof(SpriteRenderer))]
     public class StaticSpriteGameView : GameView
     {
@@ -10,8 +11,9 @@ namespace Assets.Scripts.GameViews
 
         protected override void Initialize()
         {
-            _render = GetComponent<SpriteRenderer>();
+            base.Initialize();
 
+            _render = GetComponent<SpriteRenderer>();
             UpdateSortingOrder();
         }
 

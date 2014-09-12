@@ -13,9 +13,8 @@
         PlayerAttack3ButtonPressed, // void()
         PlayerAttack4ButtonPressed,  // void()
 
-        UpdateGameViewFacingDirection,  // void(FacingDirection)
+        UpdateFacingDirection,  // void(FacingDirection)
 
-        SkillCastInputReceived, // void(SkillCastInput)
         SkillCastTriggerSucceed, // void()
         SkillCastTriggerFailed, // void()
         SkillStarted, // void()

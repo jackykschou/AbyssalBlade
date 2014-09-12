@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using UnityEngine;
 using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
 using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills
 {
-    public class Skill : GameLogic
+    [AddComponentMenu("Skill/Skill")]
+    public sealed class Skill : GameLogic
     {
         [Range(0f, 1f)] 
-        public float CoolDownPercentage;
+        private float _coolDownPercentage;
 
-        protected List<SkillCastableCondition> CastableConditions;
+        private List<SkillCastableCondition> _castableConditions;
 
-        protected void SkillCastInputReceived(SkillCastInput input)
+        public void Activate()
         {
-            if (CastableConditions.All(c => c.CanCast()))
+            if (_castableConditions.All(c => c.CanCast()))
             {
                 TriggerGameLogicEvent(GameLogicEvent.SkillCastTriggerSucceed);
             }
@@ -29,20 +30,20 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         [GameLogicEventAttribute(GameLogicEvent.UpdateSkillCooldownPercentage)]
         public void UpdateCoolDownPercentage(float percentage)
         {
-            CoolDownPercentage = percentage;
+            _coolDownPercentage = percentage;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            CoolDownPercentage = 0f;
+            _coolDownPercentage = 0f;
             InitializeLists();
         }
 
         private void InitializeLists()
         {
-            CastableConditions = new List<SkillCastableCondition>();
+            _castableConditions = new List<SkillCastableCondition>();
         }
 
         protected override void Deinitialize()

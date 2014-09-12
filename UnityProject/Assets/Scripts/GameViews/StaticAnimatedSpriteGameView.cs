@@ -2,6 +2,7 @@
 
 namespace Assets.Scripts.GameViews
 {
+    [AddComponentMenu("GameView/StaticAnimatedSpriteGameView")]
     [RequireComponent(typeof(Animator))]
     public class StaticAnimatedSpriteGameView : StaticSpriteGameView
     {
@@ -10,7 +11,6 @@ namespace Assets.Scripts.GameViews
         protected override void Initialize()
         {
             base.Initialize();
-
             _animator = GetComponent<Animator>();
         }
     }

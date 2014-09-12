@@ -6,7 +6,15 @@ namespace Assets.Scripts.Utility
     public class FixTimeDispatcher
     {
         public event Action DispatchEventHander;
-        public float DispatchInterval {get; set; }
+        public float DispatchInterval { get; set; }
+        public float DispatchCoolDownPercentage {
+            get
+            {
+                return ((Time.fixedTime - _lastFrameTime) >= DispatchInterval)
+                    ? 1.0f
+                    : ((Time.fixedTime - _lastFrameTime)/DispatchInterval);
+            }
+        }
         public bool IsEnabled { get; set; }
 
         private float _lastFrameTime;
