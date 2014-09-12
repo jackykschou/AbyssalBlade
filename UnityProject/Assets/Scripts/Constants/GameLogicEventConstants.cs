@@ -6,6 +6,20 @@
 #if DEBUG
         Example, // void()
 #endif
-        AxisMoved // void(Vector2)
+        AxisMoved, // void(Vector2)
+
+        PlayerAttack1ButtonPressed, // void()
+        PlayerAttack2ButtonPressed, // void()
+        PlayerAttack3ButtonPressed, // void()
+        PlayerAttack4ButtonPressed,  // void()
+
+        UpdateGameViewFacingDirection,  // void(FacingDirection)
+
+        SkillCastInputReceived, // void(SkillCastInput)
+        SkillCastTriggerSucceed, // void()
+        SkillCastTriggerFailed, // void()
+        SkillStarted, // void()
+        SkillEnded, // void()
+        UpdateSkillCooldownPercentage // void(float)
     };
 }

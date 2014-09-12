@@ -13,7 +13,18 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         protected GameView GameView { get; set; }
 
-        protected abstract override void Initialize();
+        protected override void Initialize()
+        {
+            GameView = GetComponent<GameView>();
+            if (GameView == null)
+            {
+                GameView = GetComponentInParent<GameView>();
+            }
+            if (GameView == null)
+            {
+                GameView = GetComponentInChildren<GameView>();
+            }
+        }
 
         protected abstract override void Deinitialize();
 

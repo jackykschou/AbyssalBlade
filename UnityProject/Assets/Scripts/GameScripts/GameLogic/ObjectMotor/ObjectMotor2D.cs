@@ -1,9 +1,7 @@
 ﻿using Assets.Scripts.Utility;
 using UnityEngine;
 
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
-
-namespace Assets.Scripts.GameScripts.GameLogic
+namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
     public class ObjectMotor2D : GameLogic
     {
@@ -12,6 +10,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         protected override void Initialize()
         {
+            base.Initialize();
             _velocityY = 0f;
             _velocityY = 0f;
         }

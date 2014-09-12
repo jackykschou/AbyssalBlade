@@ -38,7 +38,23 @@ namespace Assets.Scripts.GameScripts.GameLogic
         {
             base.Update();
 
-            if (HorizontalAxis.Detect() || VerticalAxis.Detect())
+            if (Attack1.Detect())
+            {
+                TriggerGameLogicEvent(GameLogicEvent.PlayerAttack1ButtonPressed);
+            }
+            else if (Attack2.Detect())
+            {
+                TriggerGameLogicEvent(GameLogicEvent.PlayerAttack2ButtonPressed);
+            }
+            else if (Attack3.Detect())
+            {
+                TriggerGameLogicEvent(GameLogicEvent.PlayerAttack3ButtonPressed);
+            }
+            else if (Attack4.Detect())
+            {
+                TriggerGameLogicEvent(GameLogicEvent.PlayerAttack4ButtonPressed);
+            }
+            else if (HorizontalAxis.Detect() || VerticalAxis.Detect())
             {
                 TriggerGameLogicEvent(GameLogicEvent.AxisMoved, new Vector2(HorizontalAxis.GetAxisValue(), VerticalAxis.GetAxisValue()));
             }

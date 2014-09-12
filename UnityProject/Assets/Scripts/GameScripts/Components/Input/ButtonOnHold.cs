@@ -10,7 +10,6 @@ namespace Assets.Scripts.GameScripts.Components.Input
         public override void Initialize()
         {
             base.Initialize();
-
             IsHolding = false;
         }
 
