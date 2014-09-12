@@ -2,15 +2,14 @@
 using StateMachine.Action.Math;
 using UnityEngine;
 using System.Collections;
+using Assets.Scripts.Managers;
 
 public class CameraMovement : MonoBehaviour {
 
-    public AudioClip attackSound;
     public float speed = 10.0f;
     public Animator a;
     public Transform hero;
     public Vector2 direction;
-
 	// Use this for initialization
 	void Start ()
 	{
@@ -37,8 +36,8 @@ public class CameraMovement : MonoBehaviour {
 	    if (Input.GetButtonDown("Attack1") && !a.GetBool("AttackUp") && !a.GetBool("AttackDown") &&
 	        !a.GetBool("AttackLeft") && !a.GetBool("AttackRight"))
 	    {
-         
-            if(attackSound)AudioSource.PlayClipAtPoint(attackSound, Vector3.zero, 1.0f);
+            AudioManager.Instance.playCue("strike",gameObject);
+
             if (direction == Vector2.right)
 	        {
                 a.SetBool("AttackRight", true);
