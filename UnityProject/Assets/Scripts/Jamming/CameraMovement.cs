@@ -14,6 +14,8 @@ public class CameraMovement : MonoBehaviour {
 	void Start ()
 	{
 	    direction = Vector2.right;
+        AudioManager.Instance.playLoop("Hack and Slash");
+       
 	}
 
     void SetAttacksFalse()
@@ -27,6 +29,13 @@ public class CameraMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+        // sound system checking
+        if (Input.GetKeyDown(KeyCode.O))
+            AudioManager.Instance.playLoop("Hack and Slash");
+        if (Input.GetKeyDown(KeyCode.P))
+            AudioManager.Instance.stopLoop("Hack and Slash");
+        //
+
 	    if (a.GetBool("AttackUp") || a.GetBool("AttackDown") ||
 	        a.GetBool("AttackLeft") || a.GetBool("AttackRight"))
 	    {
