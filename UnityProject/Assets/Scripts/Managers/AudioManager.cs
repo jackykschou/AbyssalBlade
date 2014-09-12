@@ -58,7 +58,7 @@ namespace Assets.Scripts.Managers
                 return false;
             }
 
-            AudioSource.PlayClipAtPoint(_multiCueList[name][Random.Range(0,_multiCueList.Count], sourceObject.transform.position, volume);
+            AudioSource.PlayClipAtPoint(_multiCueList[name][Random.Range(0,_multiCueList.Count)], sourceObject.transform.position, volume);
 
             return true;
         }
@@ -134,7 +134,6 @@ namespace Assets.Scripts.Managers
                 return false;
             
             AudioSource s = customAudioManagerGO.AddComponent<AudioSource>();
-            s.name = "Loop_"+name;
             s.clip = clip;
             s.loop = true;
 
