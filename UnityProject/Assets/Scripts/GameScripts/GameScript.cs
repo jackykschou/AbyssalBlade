@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Assets.Scripts.GameScripts.Components;
+using Assets.Scripts.GameScripts.GameLogic.Skills;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
@@ -13,14 +14,19 @@ using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts
 {
+    [RequireComponent(typeof(GameScriptEditorUpdate))]
     public abstract class GameScript : MonoBehaviour
     {
-        private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>> _componentsEvents;
-        private List<SerializableComponent> _components;
+        private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
+        private List<GameScriptComponent> _components;
 
         protected abstract void Initialize();
 
         protected abstract void Deinitialize();
+
+        public virtual void EditorUpdate()
+        {
+        }
 
         public void TriggerComponentEvent(ComponentEvent componentEvent, params object[] args)
         {
@@ -39,7 +45,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
+        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : GameScriptComponent
         {
             foreach (var typeDictPair in _componentsEvents)
             {
@@ -53,7 +59,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        public void TriggerComponentEvent(SerializableComponent component, ComponentEvent componentEvent, params object[] args)
+        public void TriggerComponentEvent(GameScriptComponent component, ComponentEvent componentEvent, params object[] args)
         {
             if (ContainsComponentEvent(component, componentEvent))
             {
@@ -64,7 +70,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        private bool ContainsComponentEvent(SerializableComponent component, ComponentEvent componentEvent)
+        private bool ContainsComponentEvent(GameScriptComponent component, ComponentEvent componentEvent)
         {
             return _componentsEvents.ContainsKey(component.GetType()) && _componentsEvents[component.GetType()].ContainsKey(componentEvent) && _componentsEvents[component.GetType()][componentEvent].ContainsKey(component);
         }
@@ -105,15 +111,15 @@ namespace Assets.Scripts.GameScripts
 
         private void InitializeFields()
         {
-            _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>>();
-            _components = new List<SerializableComponent>();
+            _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>>();
+            _components = new List<GameScriptComponent>();
         }
 	
         private void InitializeComponents()
         {
             _components =
                 GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
-                            .Select(f => f.GetValue(this) as SerializableComponent)
+                            .Select(f => f.GetValue(this) as GameScriptComponent)
                             .Where(c => c != null).ToList();
 
             foreach (var component in _components)
@@ -143,7 +149,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        private void AddComponentEvents(SerializableComponent component)
+        private void AddComponentEvents(GameScriptComponent component)
         {
             component.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
@@ -154,11 +160,11 @@ namespace Assets.Scripts.GameScripts
                         Type componentType = component.GetType();
                         if (!_componentsEvents.ContainsKey(componentType))
                         {
-                            _componentsEvents.Add(componentType, new Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>());
+                            _componentsEvents.Add(componentType, new Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>());
                         }
                         if (!_componentsEvents[componentType].ContainsKey(componentEvent.Event))
                         {
-                            _componentsEvents[componentType].Add(componentEvent.Event, new Dictionary<SerializableComponent, List<MethodInfo>>());
+                            _componentsEvents[componentType].Add(componentEvent.Event, new Dictionary<GameScriptComponent, List<MethodInfo>>());
                         }
                         if (!_componentsEvents[componentType][componentEvent.Event].ContainsKey(component))
                         {

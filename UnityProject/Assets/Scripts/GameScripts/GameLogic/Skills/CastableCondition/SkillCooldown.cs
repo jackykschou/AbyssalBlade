@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.Utility;
+using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
@@ -7,16 +7,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
     [AddComponentMenu("Skill/CastableCondition/TimeCoolDown")]
     public class SkillCooldown : SkillCastableCondition
     {
-        [SerializeField] 
-        private float _initializeCoolDown;
-
-        private FixTimeDispatcher _coolDownDispatcher;
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-            _coolDownDispatcher = new FixTimeDispatcher(_initializeCoolDown);
-        }
+        public FixTimeDispatcher CoolDownDispatcher;
 
         protected override void Deinitialize()
         {
@@ -30,18 +21,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
 
         public override bool CanCast()
         {
-            return _coolDownDispatcher.CanDispatch();
+            return CoolDownDispatcher.CanDispatch();
         }
 
         public void UpdateSkillCooldown()
         {
-            TriggerGameLogicEvent(Constants.GameLogicEvent.UpdateSkillCooldownPercentage, _coolDownDispatcher.DispatchCoolDownPercentage);
+            TriggerGameLogicEvent(Constants.GameLogicEvent.UpdateSkillCooldownPercentage, CoolDownDispatcher.DispatchCoolDownPercentage);
         }
 
         [GameLogicEvent(Constants.GameLogicEvent.SkillCastTriggerSucceed)]
         public void ResetCooldown()
         {
-            _coolDownDispatcher.Dispatch();
+            CoolDownDispatcher.Dispatch();
         }
     }
 }

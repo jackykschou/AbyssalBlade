@@ -1,12 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility
+namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
 {
-    public class FixTimeDispatcher
+    [Serializable]
+    public class FixTimeDispatcher : GameScriptComponent
     {
+        public bool IsEnabled;
         public event Action DispatchEventHander;
-        public float DispatchInterval { get; set; }
+        public float DispatchInterval;
         public float DispatchCoolDownPercentage {
             get
             {
@@ -15,17 +17,8 @@ namespace Assets.Scripts.Utility
                     : ((Time.fixedTime - _lastFrameTime)/DispatchInterval);
             }
         }
-        public bool IsEnabled { get; set; }
 
         private float _lastFrameTime;
-
-        public FixTimeDispatcher(float dispatchInterval)
-        {
-            DispatchInterval = dispatchInterval;
-            _lastFrameTime = 0f;
-            IsEnabled = true;
-            ResetTime();
-        }
 
         public void ResetTime () 
         {
@@ -52,6 +45,20 @@ namespace Assets.Scripts.Utility
             {
                 return false;
             }
+        }
+
+        public override void Initialize()
+        {
+            _lastFrameTime = 0f;
+            ResetTime();
+        }
+
+        public override void Deinitialize()
+        {
+        }
+
+        public override void Update()
+        {
         }
     }
 }

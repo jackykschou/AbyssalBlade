@@ -1,10 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility.GameValue
+namespace Assets.Scripts.GameScripts.Components.GameValue
 {
-    public sealed class GameValue
+    [Serializable]
+    public sealed class GameValue : GameScriptComponent
     {
+        public float InitialMinValue;
+        public float InitialMaxValue;
+        public float InitialValue;
+
         private float _value;
 
         public float Value {
@@ -58,8 +63,7 @@ namespace Assets.Scripts.Utility.GameValue
         public GameValue(float value, float min, float max)
         {
             Frozen = false;
-            Min = min;
-            Max = max;
+            SetBound(min, max);
             Value = value;
             TrimValue();
         }
@@ -67,6 +71,10 @@ namespace Assets.Scripts.Utility.GameValue
         public void SetBound(float min, float max)
         {
             if (min > max)
+            {
+                throw new Exception("Lower bound cannot be larger than the upper bound");
+            }
+            else if (max < min)
             {
                 throw new Exception("Lower bound cannot be larger than the upper bound");
             }
@@ -144,6 +152,25 @@ namespace Assets.Scripts.Utility.GameValue
         private void TrimValue()
         {
             _value = Mathf.Clamp(_value, Min, Max);
+        }
+
+        public override void Initialize()
+        {
+        }
+
+        public override void Deinitialize()
+        {
+        }
+
+        public override void Update()
+        {
+        }
+
+        public override void EditorUpdate()
+        {
+            InitialMinValue = Mathf.Clamp(InitialMinValue, float.MinValue, InitialMaxValue);
+            InitialMaxValue = Mathf.Clamp(InitialMaxValue, InitialMinValue, float.MaxValue);
+            InitialValue = Mathf.Clamp(InitialValue, InitialMinValue, InitialMaxValue);
         }
     }
 }

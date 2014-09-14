@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Assets.Scripts.Tests.SerializableComponent
 {
     [System.Serializable]
-    public class SampleComponent : GameScripts.Components.SerializableComponent
+    public class SampleComponent : GameScripts.Components.GameScriptComponent
     {
         public override void Initialize()
         {

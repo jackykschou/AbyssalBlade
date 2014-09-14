@@ -1,10 +1,8 @@
-﻿using Assets.Scripts.GameScripts.Components.Input;
+﻿using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.Components.Input;
 using UnityEngine;
 
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
-
-namespace Assets.Scripts.GameScripts.GameLogic
+namespace Assets.Scripts.GameScripts.GameLogic.Controller
 {
     public class PlayerController : GameLogic
     {

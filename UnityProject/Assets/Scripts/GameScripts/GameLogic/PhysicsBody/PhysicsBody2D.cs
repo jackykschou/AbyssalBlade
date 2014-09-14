@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic
+namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]

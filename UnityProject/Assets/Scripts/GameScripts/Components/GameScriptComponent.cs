@@ -9,7 +9,7 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.Components
 {
-    public abstract class SerializableComponent
+    public abstract class GameScriptComponent
     {
         public GameScript GameScript { protected get; set; }
 
@@ -18,6 +18,10 @@ namespace Assets.Scripts.GameScripts.Components
         public abstract void Deinitialize();
 
         public abstract void Update();
+
+        public virtual void EditorUpdate()
+        {
+        }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
@@ -29,7 +33,7 @@ namespace Assets.Scripts.GameScripts.Components
             GameScript.TriggerComponentEvent(componentEvent, args);
         }
 
-        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
+        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : GameScriptComponent
         {
             GameScript.TriggerComponentEvent<T>(componentEvent, args);
         }
@@ -64,7 +68,7 @@ namespace Assets.Scripts.GameScripts.Components
             }
         }
 
-        protected List<T> GetComponents<T>() where T : SerializableComponent
+        protected List<T> GetGameScriptComponents<T>() where T : GameScriptComponent
         {
             List<T> components = ((GameScript.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
                 .Select(f => f.GetValue(GameScript))
@@ -77,7 +81,7 @@ namespace Assets.Scripts.GameScripts.Components
             return components;
         }
 
-        protected T GetComponent<T>() where T : SerializableComponent
+        protected T GetGameScriptComponent<T>() where T : GameScriptComponent
         {
             return (GameScript.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
                 .Select(f => f.GetValue(GameScript))
