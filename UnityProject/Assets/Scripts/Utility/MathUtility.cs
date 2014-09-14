@@ -10,6 +10,21 @@ namespace Assets.Scripts.Utility
             return (target.transform.position - obj.transform.position).normalized;
         }
 
+        public static Vector2 GetFacingDirectionVector(FacingDirection facingDirection)
+        {
+            switch (facingDirection)
+            {
+                case FacingDirection.Up:
+                    return Vector2.up;
+                case FacingDirection.Down:
+                    return -Vector2.up;
+                case FacingDirection.Left:
+                    return -Vector2.right;
+                default:
+                    return Vector2.right;
+            }
+        }
+
         public static FacingDirection GetFacingDirection(this Vector2 v)
         {
             if ((Vector2.Angle(Vector2.up, v) <= 45f) || (Vector2.Angle(v, Vector2.up) <= 45f))

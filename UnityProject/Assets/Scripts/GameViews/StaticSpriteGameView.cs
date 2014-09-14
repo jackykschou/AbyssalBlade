@@ -21,6 +21,83 @@ namespace Assets.Scripts.GameViews
         {
         }
 
+        protected override Vector2 CenterPosition
+        {
+            get { return _render.bounds.center; }
+        }
+
+        protected override Vector2 ForwardEdge
+        {
+            get
+            {
+                switch (FacingDirection)
+                {
+                    case FacingDirection.Up:
+                        return _render.bounds.center + new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                    case FacingDirection.Down:
+                        return _render.bounds.center - new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                    case FacingDirection.Left:
+                        return _render.bounds.center - new Vector3(Mathf.Abs(_render.bounds.extents.x), 0, 0);
+                    default:
+                        return _render.bounds.center + new Vector3(Mathf.Abs(_render.bounds.extents.x), 0, 0);
+                }
+            }
+        }
+
+        protected override Vector2 BackwardEdge
+        {
+            get
+            {
+                switch (FacingDirection)
+                {
+                    case FacingDirection.Up:
+                        return _render.bounds.center - new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                    case FacingDirection.Down:
+                        return _render.bounds.center + new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                    case FacingDirection.Left:
+                        return _render.bounds.center + new Vector3(Mathf.Abs(_render.bounds.extents.x), 0, 0);
+                    default:
+                        return _render.bounds.center - new Vector3(Mathf.Abs(_render.bounds.extents.x), 0, 0);
+                }
+            }
+        }
+
+        protected override Vector2 LeftwardEdge
+        {
+            get
+            {
+                switch (FacingDirection)
+                {
+                    case FacingDirection.Up:
+                        return _render.bounds.center - new Vector3(Mathf.Abs(_render.bounds.extents.x), 0, 0);
+                    case FacingDirection.Down:
+                        return _render.bounds.center + new Vector3(Mathf.Abs(_render.bounds.extents.y), 0, 0);
+                    case FacingDirection.Left:
+                        return _render.bounds.center - new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                    default:
+                        return _render.bounds.center + new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                }
+            }
+        }
+
+        protected override Vector2 RightwardEdge
+        {
+            get
+            {
+                switch (FacingDirection)
+                {
+                    case FacingDirection.Up:
+                        return _render.bounds.center + new Vector3(Mathf.Abs(_render.bounds.extents.x), 0, 0);
+                    case FacingDirection.Down:
+                        return _render.bounds.center - new Vector3(Mathf.Abs(_render.bounds.extents.y), 0, 0);
+                    case FacingDirection.Left:
+                        return _render.bounds.center + new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                    default:
+                        return _render.bounds.center - new Vector3(0, Mathf.Abs(_render.bounds.extents.y), 0);
+                }
+            }
+        }
+
         protected void UpdateSortingOrder()
         {
             _render.sortingOrder = (int)(transform.position.y * WorldScaleConstant.LayerSortingScale);
