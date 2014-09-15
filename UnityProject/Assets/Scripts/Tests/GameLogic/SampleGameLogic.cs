@@ -38,25 +38,25 @@ namespace Assets.Scripts.Tests.GameLogic
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.Example)]
-        public void GameLogicEventPublic()
+        public void GameScriptEventPublic()
         {
             Debug.Log("SampleGameLogic GameScriptEventPublic");
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.Example)]
-        private void GameLogicEventPrivate()
+        private void GameScriptEventPrivate()
         {
             Debug.Log("SampleGameLogic GameScriptEventPrivate");
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.Example)]
-        public static void GameLogicEventStaticPublic()
+        public static void GameScriptEventStaticPublic()
         {
             Debug.Log("SampleGameLogic GameScriptEventStaticPublic");
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.Example)]
-        private static void GameLogicEventStaticPrivate()
+        private static void GameScriptEventStaticPrivate()
         {
             Debug.Log("SampleGameLogic GameScriptEventStaticPrivate");
         }
