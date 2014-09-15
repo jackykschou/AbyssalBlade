@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Constants;
+using UnityEngine;
 using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
 using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -6,6 +7,7 @@ using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Animator
 {
+    [RequireComponent(typeof(UnityEngine.Animator))]
     public class ObjectAnimator : GameLogic
     {
         private const int BoolResetBufferFrame = 2;

@@ -10,14 +10,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
     public class Destroyable : GameLogic
     {
         public bool Invincible;
-        public bool Destroyed;
         public GameValue HitPoint;
         public GameValue DamageReduction;
 
         [GameLogicEventAttribute(GameLogicEvent.DamageTaked)]
         public void TakeDamage(float damage)
         {
-            if (Invincible || Destroyed)
+            if (Invincible)
             {
                 return;
             }
@@ -31,7 +30,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
 
             if (HitPoint <= 0f)
             {
-                Destroyed = true;
                 TriggerGameLogicEvent(GameLogicEvent.OnObjectHaveNoHealth);
             }
         }
