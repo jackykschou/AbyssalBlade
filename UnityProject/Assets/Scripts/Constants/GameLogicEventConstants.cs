@@ -8,19 +8,22 @@
 #endif
         AxisMoved, // void(Vector2)
 
-        PlayerAttack1ButtonPressed, // void()
-        PlayerAttack2ButtonPressed, // void()
-        PlayerAttack3ButtonPressed, // void()
-        PlayerAttack4ButtonPressed,  // void()
+        PlayerAttack1ButtonPressed,     // void()
+        PlayerAttack2ButtonPressed,     // void()
+        PlayerAttack3ButtonPressed,     // void()
+        PlayerAttack4ButtonPressed,     // void()
 
-        UpdateFacingDirection,  // void(FacingDirection)
+        UpdateFacingDirection,          // void(FacingDirection)
 
-        SkillCastTriggerSucceed, // void()
-        SkillCastTriggerFailed, // void()
-        SkillEnded, // void()
-        UpdateSkillCooldownPercentage, // void(float)
+        SkillCastTriggerSucceed,        // void()
+        SkillCastTriggerFailed,         // void()
+        SkillEnded,                     // void()
+        UpdateSkillCooldownPercentage,  // void(float)
 
-        ObjectDestroyed,  // void()
-        DamageTaked  // void(float)
+        OnObjectMove,                   // void()
+
+        OnObjectHaveNoHealth,           // void()
+        GameObjectDestroyed,            // void()
+        DamageTaked                     // void(float)
     };
 }

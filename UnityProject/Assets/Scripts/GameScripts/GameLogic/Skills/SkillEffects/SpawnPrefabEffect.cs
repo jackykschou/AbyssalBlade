@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.GameScripts.Components.PrefabLoader;
-using Assets.Scripts.GameViews;
 using UnityEngine;
 
 using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
@@ -9,7 +8,7 @@ using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
-    public class SpawnPrefabEffect : GameLogic
+    public class SpawnPrefabEffect : SkillEffect
     {
         public enum SpawnPosition
         {

@@ -32,7 +32,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
             if (HitPoint <= 0f)
             {
                 Destroyed = true;
-                TriggerGameLogicEvent(GameLogicEvent.ObjectDestroyed);
+                TriggerGameLogicEvent(GameLogicEvent.OnObjectHaveNoHealth);
             }
         }
 
