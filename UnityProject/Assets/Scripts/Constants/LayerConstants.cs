@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts.Constants
+﻿namespace Assets.Scripts.Constants
 {
     public class LayerConstants
     {

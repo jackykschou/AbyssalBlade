@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Constants;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.Constants;
 using UnityEngine;
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
+using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Animator
 {
@@ -23,13 +23,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             _animator = GetComponent<UnityEngine.Animator>();
         }
 
-        [GameLogicEventAttribute(GameLogicEvent.UpdateFacingDirection)]
+        [Attributes.GameScriptEvent(GameScriptEvent.UpdateFacingDirection)]
         public void UpdateFacingDirection(FacingDirection facingDirection)
         {
             _animator.SetInteger(AnimatorControllerConstants.AnimatorParameterName.FacingDirection, (int)facingDirection);
         }
 
-        [GameLogicEventAttribute(GameLogicEvent.OnObjectMove)]
+        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectMove)]
         public void OnObjectMove()
         {
             _animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Move, true);

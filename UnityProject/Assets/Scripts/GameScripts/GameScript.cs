@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
+using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Skills;
 using Assets.Scripts.Managers;
 using UnityEngine;
@@ -10,13 +12,16 @@ using UnityEngine;
 using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
 using ComponentEventAttribute = Assets.Scripts.Attributes.ComponentEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts
 {
     [RequireComponent(typeof(GameScriptEditorUpdate))]
+    [RequireComponent(typeof(GameScriptEventManager))]
     public abstract class GameScript : MonoBehaviour
     {
+        public GameScriptEventManager GameScriptEventManager { private get; set; }
+
         private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
         private List<GameScriptComponent> _components;
         private bool _initialized = false;
@@ -28,6 +33,21 @@ namespace Assets.Scripts.GameScripts
 
         public virtual void EditorUpdate()
         {
+        }
+
+        public void TriggerGameScriptEvent(GameScriptEvent gameScriptEvent, params object[] args)
+        {
+            GameScriptEventManager.TriggerGameScriptEvent(gameScriptEvent, args);
+        }
+
+        public void TriggerGameScriptEvent<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
+        {
+            GameScriptEventManager.TriggerGameScriptEvent<T>(gameScriptEvent, args);
+        }
+
+        public void TriggerGameScriptEvent(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
+        {
+            GameScriptEventManager.TriggerGameScriptEvent(gameScript, gameScriptEvent, args);
         }
 
         public void TriggerComponentEvent(ComponentEvent componentEvent, params object[] args)
@@ -167,6 +187,7 @@ namespace Assets.Scripts.GameScripts
         {
             _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>>();
             _components = new List<GameScriptComponent>();
+            GameScriptEventManager = GetComponent<GameScriptEventManager>();
         }
 	
         private void InitializeComponents()
@@ -235,9 +256,9 @@ namespace Assets.Scripts.GameScripts
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEventtAttribute))
+                    if (attr.GetType() == typeof(GameEventAttribute))
                     {
-                        GameEventtAttribute gameEventSubscriberAttribute = attr as GameEventtAttribute;
+                        GameEventAttribute gameEventSubscriberAttribute = attr as GameEventAttribute;
                         GameEventManager.Instance.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, info);
                     }
                 }
@@ -250,9 +271,9 @@ namespace Assets.Scripts.GameScripts
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEventtAttribute))
+                    if (attr.GetType() == typeof(GameEventAttribute))
                     {
-                        GameEventtAttribute gameEventSubscriberAttribute = attr as GameEventtAttribute;
+                        GameEventAttribute gameEventSubscriberAttribute = attr as GameEventAttribute;
                         GameEventManager.Instance.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event);
                     }
                 }

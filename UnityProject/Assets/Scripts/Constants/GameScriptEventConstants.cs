@@ -1,7 +1,7 @@
 ﻿namespace Assets.Scripts.Constants
 {
     //Add more events here, please specify the signiture of the event
-    public enum GameLogicEvent
+    public enum GameScriptEvent
     {
 #if DEBUG
         Example, // void()

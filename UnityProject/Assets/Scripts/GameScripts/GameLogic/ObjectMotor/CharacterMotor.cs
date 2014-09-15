@@ -1,11 +1,9 @@
-﻿using Assets.Scripts.GameScripts.Components.GameValue;
+﻿using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.Components.GameValue;
 using Assets.Scripts.Utility;
 using UnityEngine;
-
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
@@ -26,7 +24,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 
         public void RigidMove(Vector2 direction)
         {
-            TriggerGameLogicEvent(GameLogicEvent.UpdateFacingDirection, direction.GetFacingDirection());
+            TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, direction.GetFacingDirection());
             rigidbody2D.AddForce(direction * Speed * Time.deltaTime);
         }
 

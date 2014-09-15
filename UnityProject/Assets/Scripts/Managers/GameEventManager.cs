@@ -69,7 +69,6 @@ namespace Assets.Scripts.Managers
             {
                 return;
             }
-
             _gameEvents[gameEvent].Remove(subscriber);
         }
     }

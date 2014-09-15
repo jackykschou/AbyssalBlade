@@ -1,10 +1,8 @@
-﻿using Assets.Scripts.GameScripts.Components.PrefabLoader;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.GameScripts.Components.PrefabLoader;
 using UnityEngine;
-
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
@@ -23,7 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 
         public PrefabSpawner Spawner;
 
-        [GameLogicEventAttribute(GameLogicEvent.SkillCastTriggerSucceed)]
+        [GameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed)]
         public void Spawn()
         {
             Vector2 pos;

@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
+﻿using Assets.Scripts.Attributes;
+using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills
 {
@@ -24,25 +22,25 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         {
         }
 
-        [GameLogicEventAttribute(GameLogicEvent.PlayerAttack1ButtonPressed)]
+        [GameScriptEvent(Constants.GameScriptEvent.PlayerAttack1ButtonPressed)]
         public void ActivateSkillOne()
         {
             _skill1.Activate();
         }
 
-        [GameLogicEventAttribute(GameLogicEvent.PlayerAttack2ButtonPressed)]
+        [GameScriptEvent(Constants.GameScriptEvent.PlayerAttack2ButtonPressed)]
         public void ActivateSkillTwo()
         {
             _skill2.Activate();
         }
 
-        [GameLogicEventAttribute(GameLogicEvent.PlayerAttack3ButtonPressed)]
+        [GameScriptEvent(Constants.GameScriptEvent.PlayerAttack3ButtonPressed)]
         public void ActivateSkillThree()
         {
             _skill3.Activate();
         }
 
-        [GameLogicEventAttribute(GameLogicEvent.PlayerAttack4ButtonPressed)]
+        [GameScriptEvent(Constants.GameScriptEvent.PlayerAttack4ButtonPressed)]
         public void ActivateSkillFour()
         {
             _skill4.Activate();

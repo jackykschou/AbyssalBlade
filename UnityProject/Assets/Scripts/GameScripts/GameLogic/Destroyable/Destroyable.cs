@@ -1,9 +1,7 @@
-﻿using Assets.Scripts.GameScripts.Components.GameValue;
-
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.GameScripts.Components.GameValue;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
 {
@@ -13,7 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
         public GameValue HitPoint;
         public GameValue DamageReduction;
 
-        [GameLogicEventAttribute(GameLogicEvent.OnGameObjectTakeDamage)]
+        [GameScriptEvent(Constants.GameScriptEvent.OnGameObjectTakeDamage)]
         public void TakeDamage(float damage)
         {
             if (Invincible)
@@ -30,7 +28,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
 
             if (HitPoint <= 0f)
             {
-                TriggerGameLogicEvent(GameLogicEvent.OnObjectHaveNoHealth);
+                TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectHaveNoHealth);
             }
         }
 

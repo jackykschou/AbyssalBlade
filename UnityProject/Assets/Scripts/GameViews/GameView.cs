@@ -1,10 +1,9 @@
-﻿using Assets.Scripts.Constants;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts;
 using Assets.Scripts.Utility;
-using StateMachine.Action.Math;
 using UnityEngine;
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
+using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 
 namespace Assets.Scripts.GameViews
 {
@@ -53,7 +52,7 @@ namespace Assets.Scripts.GameViews
         public abstract Vector2 LeftwardEdge { get; }
         public abstract Vector2 RightwardEdge { get; }
 
-        [GameLogicEventAttribute(GameLogicEvent.UpdateFacingDirection)]
+        [Attributes.GameScriptEvent(GameScriptEvent.UpdateFacingDirection)]
         public void UpdateFacingDirection(FacingDirection facingDirection)
         {
             FacingDirection = facingDirection;

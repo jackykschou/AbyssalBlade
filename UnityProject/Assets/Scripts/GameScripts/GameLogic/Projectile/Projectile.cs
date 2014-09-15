@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Projectile
 {
-    public class Projectile : GameLogic 
+    public abstract class Projectile : GameLogic 
     {
-
-
         protected override void Initialize()
         {
             base.Initialize();

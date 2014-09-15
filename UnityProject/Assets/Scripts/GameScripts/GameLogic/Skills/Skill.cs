@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using UnityEngine;
-using GameLogicEvent = Assets.Scripts.Constants.GameLogicEvent;
-using GameLogicEventAttribute = Assets.Scripts.Attributes.GameLogicEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills
 {
@@ -19,15 +18,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         {
             if (_castableConditions.All(c => c.CanCast()))
             {
-                TriggerGameLogicEvent(GameLogicEvent.SkillCastTriggerSucceed);
+                TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed);
             }
             else
             {
-                TriggerGameLogicEvent(GameLogicEvent.SkillCastTriggerFailed);
+                TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerFailed);
             }
         }
 
-        [GameLogicEventAttribute(GameLogicEvent.UpdateSkillCooldownPercentage)]
+        [GameScriptEvent(Constants.GameScriptEvent.UpdateSkillCooldownPercentage)]
         public void UpdateCoolDownPercentage(float percentage)
         {
             _coolDownPercentage = percentage;
