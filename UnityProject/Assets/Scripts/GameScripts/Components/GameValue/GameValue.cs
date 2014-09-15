@@ -44,28 +44,12 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
             get { return Mathf.Approximately(Value, Max); }
         }
 
-        public GameValue()
-        {
-            Frozen = false;
-            Min = float.MinValue;
-            Max = float.MaxValue;
-            Value = 0f;
-        }
-
         public GameValue(float value)
         {
             Frozen = false;
             Min = float.MinValue;
             Max = float.MaxValue;
             Value = value;
-        }
-
-        public GameValue(float value, float min, float max)
-        {
-            Frozen = false;
-            SetBound(min, max);
-            Value = value;
-            TrimValue();
         }
 
         public void SetBound(float min, float max)

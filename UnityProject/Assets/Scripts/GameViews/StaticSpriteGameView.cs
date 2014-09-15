@@ -21,12 +21,12 @@ namespace Assets.Scripts.GameViews
         {
         }
 
-        protected override Vector2 CenterPosition
+        public override Vector2 CenterPosition
         {
             get { return _render.bounds.center; }
         }
 
-        protected override Vector2 ForwardEdge
+        public override Vector2 ForwardEdge
         {
             get
             {
@@ -44,7 +44,7 @@ namespace Assets.Scripts.GameViews
             }
         }
 
-        protected override Vector2 BackwardEdge
+        public override Vector2 BackwardEdge
         {
             get
             {
@@ -62,7 +62,7 @@ namespace Assets.Scripts.GameViews
             }
         }
 
-        protected override Vector2 LeftwardEdge
+        public override Vector2 LeftwardEdge
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Assets.Scripts.GameViews
             }
         }
 
-        protected override Vector2 RightwardEdge
+        public override Vector2 RightwardEdge
         {
             get
             {

@@ -17,8 +17,10 @@
 
         SkillCastTriggerSucceed, // void()
         SkillCastTriggerFailed, // void()
-        SkillStarted, // void()
         SkillEnded, // void()
-        UpdateSkillCooldownPercentage // void(float)
+        UpdateSkillCooldownPercentage, // void(float)
+
+        ObjectDestroyed,  // void()
+        DamageTaked  // void(float)
     };
 }

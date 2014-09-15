@@ -20,7 +20,7 @@ namespace Assets.Scripts.GameViews
 
         protected abstract override void Deinitialize();
 
-        protected abstract Vector2 CenterPosition { get; }
+        public abstract Vector2 CenterPosition { get; }
 
         protected Vector2 ForwardDirection 
         {
@@ -48,10 +48,10 @@ namespace Assets.Scripts.GameViews
             }
         }
 
-        protected abstract Vector2 ForwardEdge { get; }
-        protected abstract Vector2 BackwardEdge { get; }
-        protected abstract Vector2 LeftwardEdge { get; }
-        protected abstract Vector2 RightwardEdge { get; }
+        public abstract Vector2 ForwardEdge { get; }
+        public abstract Vector2 BackwardEdge { get; }
+        public abstract Vector2 LeftwardEdge { get; }
+        public abstract Vector2 RightwardEdge { get; }
 
         [GameLogicEventAttribute(GameLogicEvent.UpdateFacingDirection)]
         public void UpdateFacingDirection(FacingDirection facingDirection)

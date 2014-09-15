@@ -19,6 +19,7 @@ namespace Assets.Scripts.GameScripts
     {
         private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
         private List<GameScriptComponent> _components;
+        private bool _started = false;
 
         protected abstract void Initialize();
 
@@ -95,6 +96,15 @@ namespace Assets.Scripts.GameScripts
             SubscribeGameEvents();
             InitializeComponents();
             Initialize();
+            _started = true;
+        }
+
+        void OnSpawned()
+        {
+            if (_started)
+            {
+                
+            }
         }
 
         void OnDestroy()

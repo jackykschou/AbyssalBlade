@@ -8,6 +8,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
     [ExecuteInEditMode]
     public sealed class GameScriptEditorUpdate : MonoBehaviour 
     {
+#if UNITY_EDITOR
         void Update()
         {
             GetComponents<GameScript>().ToList().
@@ -19,5 +20,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
                             .Where(c => c != null).ToList().ForEach(c => c.EditorUpdate());
                 });
         }
+#endif
     }
 }
