@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
-    [AddComponentMenu("2DObjectMotor/ObjectMotor")]
-    public class ObjectMotor2D : GameLogic
+    public abstract class ObjectMotor2D : GameLogic
     {
         private float _velocityX;
         private float _velocityY;

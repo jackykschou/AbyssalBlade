@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
+    [AddComponentMenu("Manager/PrefabManager")]
     [ExecuteInEditMode]
     public class PrefabManager : MonoBehaviour
     {
@@ -17,12 +18,16 @@ namespace Assets.Scripts.Managers
 
         public static PrefabManager Instance;
         [SerializeField] 
-        private Dictionary<string, List<string>> _prefabNameMap;
+        private Dictionary<string, List<string>> _prefabNameMap; //This map is used later for random spawning of a certain group of prefab
+
         [SerializeField] 
         private Dictionary<string, SpawnPool> _prefabPoolMap;
 
+        private Dictionary<GameObject, SpawnPool> _spawnedPrefabsMap;
+
         void Awake()
         {
+            _spawnedPrefabsMap = new Dictionary<GameObject, SpawnPool>();
             Instance = FindObjectOfType<PrefabManager>();
         }
 
@@ -40,24 +45,25 @@ namespace Assets.Scripts.Managers
                 throw new Exception("Cannot load prefab " + prefabName);
             }
 
-            return _prefabPoolMap[prefabName].Spawn(o.transform, position, Quaternion.identity).gameObject;
+            GameObject spawned = _prefabPoolMap[prefabName].Spawn(o.transform, position, Quaternion.identity).gameObject;
+            _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[prefabName]);
+
+            return spawned;
         }
 
-        public void DespawnPrefab(Prefab prefab, GameObject prefabGameObject)
+        public void DespawnPrefab(GameObject prefabGameObject)
         {
-            string prefabName = PrefabConstants.GetPrefabName(prefab);
-            if (!_prefabPoolMap.ContainsKey(prefabName))
+            if (!IsSpawnedFromPrefab(prefabGameObject))
             {
-                throw new Exception("Prefab not found in _prefabPoolMap");
+                throw new Exception("object is not spawned by the manager");
             }
 
-            var o = Resources.Load(prefabName) as GameObject;
-            if (o == null)
-            {
-                throw new Exception("Cannot load prefab " + prefabName);
-            }
+            _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
+        }
 
-            _prefabPoolMap[prefabName].Despawn(prefabGameObject.transform);
+        public bool IsSpawnedFromPrefab(GameObject obj)
+        {
+            return _spawnedPrefabsMap.ContainsKey(obj);
         }
 
         public void UpdateManager()

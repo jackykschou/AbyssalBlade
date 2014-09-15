@@ -4,7 +4,7 @@ namespace Assets.Scripts.Constants
 {
     public class LayerConstants
     {
-        private static class LayerNames
+        public static class LayerNames
         {
             public const string StaticObstacle = "StaticObstacle";
             public const string Projectile = "Projectile";
@@ -15,43 +15,43 @@ namespace Assets.Scripts.Constants
             public const string DestroyableObstacle = "DestroyableObstacle";
         }
 
-        public static class Layer
+        public static class LayerMask
         {
             public static int StaticObstacle
             {
-                get { return LayerMask.NameToLayer(LayerNames.StaticObstacle); }
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.StaticObstacle); }
             }
             public static int Projectile
             {
-                get { return LayerMask.NameToLayer(LayerNames.Projectile); }
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.Projectile); }
             }
             public static int DamageArea
             {
-                get { return LayerMask.NameToLayer(LayerNames.DamageArea); }
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.DamageArea); }
             }
             public static int Enemy
             {
-                get { return LayerMask.NameToLayer(LayerNames.Enemy); }
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.Enemy); }
             }
             public static int PlayerCharacter
             {
-                get { return LayerMask.NameToLayer(LayerNames.PlayerCharacter); }
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.PlayerCharacter); }
             }
             public static int Destroyable
             {
-                get { return LayerMask.GetMask(LayerNames.Destroyable, LayerNames.PlayerCharacter, LayerNames.Enemy); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.Destroyable, LayerNames.PlayerCharacter, LayerNames.Enemy); }
             }
             public static int DestroyableObstacle
             {
-                get { return LayerMask.NameToLayer(LayerNames.DestroyableObstacle); }
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.DestroyableObstacle); }
             }
             public static int Obstacle
             {
-                get { return LayerMask.GetMask(LayerNames.StaticObstacle, LayerNames.DestroyableObstacle); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.StaticObstacle, LayerNames.DestroyableObstacle); }
             }
             public static int Character
             {
-                get { return LayerMask.GetMask(LayerNames.PlayerCharacter, LayerNames.Enemy); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.PlayerCharacter, LayerNames.Enemy); }
             }
         }
     }

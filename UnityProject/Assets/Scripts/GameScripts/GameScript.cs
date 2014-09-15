@@ -19,7 +19,8 @@ namespace Assets.Scripts.GameScripts
     {
         private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
         private List<GameScriptComponent> _components;
-        private bool _started = false;
+        private bool _initialized = false;
+        private bool _deinitialized = false;
 
         protected abstract void Initialize();
 
@@ -88,30 +89,73 @@ namespace Assets.Scripts.GameScripts
 
         void Awake ()
         {
-            InitializeFields();
+            InitializeHelper();
         }
 
         void Start()
         {
-            SubscribeGameEvents();
-            InitializeComponents();
-            Initialize();
-            _started = true;
+            InitializeHelper();
         }
 
         void OnSpawned()
         {
-            if (_started)
+            InitializeHelper();
+        }
+
+        void InitializeHelper()
+        {
+            if (_initialized)
             {
-                
+                return;
             }
+
+            InitializeFields();
+            SubscribeGameEvents();
+            InitializeComponents();
+            Initialize();
+            _initialized = true;
+            _deinitialized = false;
+        }
+
+        void DisableGameObject()
+        {
+            if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
+            {
+                PrefabManager.Instance.DespawnPrefab(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        void OnDespawned()
+        {
+            DeinitializeHelper();
+        }
+
+        void OnDisable()
+        {
+            DeinitializeHelper();
         }
 
         void OnDestroy()
         {
+            DeinitializeHelper();
+        }
+
+        void DeinitializeHelper()
+        {
+            if (_deinitialized)
+            {
+                return;
+            }
+            
             DeinitializeComponents();
             UnsubscribeGameEvents();
             Deinitialize();
+            _deinitialized = true;
+            _initialized = false;
         }
 
         protected virtual void Update()

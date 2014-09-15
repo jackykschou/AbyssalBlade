@@ -21,9 +21,8 @@
         UpdateSkillCooldownPercentage,  // void(float)
 
         OnObjectMove,                   // void()
-
         OnObjectHaveNoHealth,           // void()
-        GameObjectDestroyed,            // void()
-        DamageTaked                     // void(float)
+        OnObjectDestroyed,              // void()
+        OnGameObjectTakeDamage          // void(float)
     };
 }

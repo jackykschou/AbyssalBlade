@@ -7,22 +7,10 @@ namespace Assets.Scripts.GameScripts.Components.PrefabLoader
     public class PrefabSpawner : GameScriptComponent
     {
         public Prefab Prefab;
-        private GameObject _spawnedPrefab;
 
-        public PrefabSpawner(GameObject spawnedPrefab)
+        public void SpawnPrefab(Vector3 position)
         {
-            _spawnedPrefab = spawnedPrefab;
-        }
-
-        public GameObject SpawnPrefab(Vector3 position)
-        {
-            _spawnedPrefab = PrefabManager.Instance.SpawnPrefab(Prefab, position);
-            return _spawnedPrefab;
-        }
-
-        public void DespawnPrefab()
-        {
-            PrefabManager.Instance.DespawnPrefab(Prefab, _spawnedPrefab);
+            PrefabManager.Instance.SpawnPrefab(Prefab, position);
         }
 
         public override void Initialize()

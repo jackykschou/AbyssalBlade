@@ -7,18 +7,19 @@ using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Animator
 {
+    [AddComponentMenu("Animator/CharacterAnimator")]
     [RequireComponent(typeof(UnityEngine.Animator))]
-    public class ObjectAnimator : GameLogic
+    public class CharacterAnimator : GameLogic
     {
         private const int BoolResetBufferFrame = 2;
-        private int FrameSinceLastAnimation;
+        private int _frameSinceLastAnimation;
 
         private UnityEngine.Animator _animator;
 
         protected override void Initialize()
         {
             base.Initialize();
-            FrameSinceLastAnimation = 0;
+            _frameSinceLastAnimation = 0;
             _animator = GetComponent<UnityEngine.Animator>();
         }
 
@@ -48,10 +49,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         protected override void Update()
         {
             base.Update();
-            if (FrameSinceLastAnimation > 0)
+            if (_frameSinceLastAnimation > 0)
             {
-                FrameSinceLastAnimation--;
-                if (FrameSinceLastAnimation == 0)
+                _frameSinceLastAnimation--;
+                if (_frameSinceLastAnimation == 0)
                 {
                     ResetAllBool();
                 }
