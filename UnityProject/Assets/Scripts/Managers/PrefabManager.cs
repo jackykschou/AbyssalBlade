@@ -68,9 +68,9 @@ namespace Assets.Scripts.Managers
 
         public void UpdateManager()
         {
-            foreach (Transform c in transform)
+            foreach (Transform t in transform)
             {
-                DestroyImmediate(c.gameObject);
+                DestroyImmediate(t.gameObject);
             }
             _prefabNameMap = new Dictionary<string, List<string>>();
             _prefabPoolMap = new Dictionary<string, SpawnPool>();

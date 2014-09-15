@@ -38,16 +38,43 @@ namespace Assets.Scripts.GameScripts
         public void TriggerGameScriptEvent(GameScriptEvent gameScriptEvent, params object[] args)
         {
             GameScriptEventManager.TriggerGameScriptEvent(gameScriptEvent, args);
+
+            foreach (Transform t in transform)
+            {
+                foreach (var s in t.gameObject.GetComponents<GameScript>())
+                {
+                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
+                }
+            }
         }
 
         public void TriggerGameScriptEvent<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
         {
             GameScriptEventManager.TriggerGameScriptEvent<T>(gameScriptEvent, args);
+
+            foreach (Transform t in transform)
+            {
+                foreach (var s in t.gameObject.GetComponents<GameScript>())
+                {
+                    if (s is T)
+                    {
+                        s.TriggerGameScriptEvent(s, gameScriptEvent, args);
+                    }
+                }
+            }
         }
 
         public void TriggerGameScriptEvent(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
         {
             GameScriptEventManager.TriggerGameScriptEvent(gameScript, gameScriptEvent, args);
+
+            foreach (Transform t in transform)
+            {
+                foreach (var s in t.gameObject.GetComponents<GameScript>())
+                {
+                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
+                }
+            }
         }
 
         public void TriggerComponentEvent(ComponentEvent componentEvent, params object[] args)
