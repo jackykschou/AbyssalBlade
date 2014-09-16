@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.Components.GameValue;
+using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
@@ -28,7 +29,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
 
             if (HitPoint <= 0f)
             {
-                TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectHaveNoHealth);
+                TriggerGameScriptEvent(Constants.GameScriptEvent.OnDestroyableDestroyed);
             }
         }
 

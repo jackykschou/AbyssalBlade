@@ -27,11 +27,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         }
 
         [GameScriptEventAttribute(GameScriptEvent.SkillCastTriggerSucceed)]
-        public void ApplyDamages()
+        public void ApplyDamages(Skill skill)
         {
             foreach (var hit in Physics2D.CircleCastAll(Area.center, Area.radius, Vector2.zero, 0.1f, LayerConstants.LayerMask.Destroyable))
             {
-                if (!IsFriendly(hit.collider.gameObject))
+                if (TagConstants.IsEnemy(gameObject.tag, hit.collider.gameObject.tag))
                 {
                     if (hit.collider.gameObject.GetComponent<GameScript>() != null)
                     {
@@ -39,7 +39,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                     }
                 }
             }
-            TriggerCasterGameScriptEvent(GameScriptEvent.SkillEnded);    
+            TriggerCasterGameScriptEvent(GameScriptEvent.SkillEnded, SKill);    
         }
 
         [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]

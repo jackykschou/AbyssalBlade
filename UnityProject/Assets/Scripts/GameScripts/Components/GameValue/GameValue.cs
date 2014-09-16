@@ -140,11 +140,21 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
 
         public override void Initialize()
         {
-            Frozen = false;
-            Min = InitialMinValue;
-            Max = InitialMaxValue;
-            Value = InitialValue;
-            TrimValue();
+            if (Mathf.Approximately(InitialMaxValue, 0) && Mathf.Approximately(InitialMinValue, 0) &&
+                Mathf.Approximately(InitialValue, 0))
+            {
+                Min = float.MinValue;
+                Max = float.MaxValue;
+                Value = 0;
+            }
+            else
+            {
+                Frozen = false;
+                Min = InitialMinValue;
+                Max = InitialMaxValue;
+                Value = InitialValue;
+                TrimValue();
+            }
         }
 
         public override void Deinitialize()

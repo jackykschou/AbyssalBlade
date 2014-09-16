@@ -13,8 +13,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
     {
         private const float DecelerationRate = 0.95f;
 
-        public GameValue Speed;
-
         protected override void Initialize()
         {
             base.Initialize();

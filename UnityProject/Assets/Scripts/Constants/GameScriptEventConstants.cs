@@ -6,8 +6,7 @@
 #if DEBUG
         Example, // void()
 #endif
-        AxisMoved, // void(Vector2)
-
+        PlayerAxisMoved, // void(Vector2)
         PlayerAttack1ButtonPressed,     // void()
         PlayerAttack2ButtonPressed,     // void()
         PlayerAttack3ButtonPressed,     // void()
@@ -15,13 +14,13 @@
 
         UpdateFacingDirection,          // void(FacingDirection)
 
-        SkillCastTriggerSucceed,        // void()
-        SkillCastTriggerFailed,         // void()
-        SkillEnded,                     // void()
-        UpdateSkillCooldownPercentage,  // void(float)
+        SkillCastTriggerSucceed,        // void(Skill)
+        SkillCastTriggerFailed,         // void(Skill)
+        SkillEnded,                     // void(Skill)
+        UpdateSkillCooldownPercentage,  // void(Skill, float)
 
         OnObjectMove,                   // void()
-        OnObjectHaveNoHealth,           // void()
+        OnDestroyableDestroyed,         // void()
         OnObjectDestroyed,              // void()
         OnObjectTakeDamage              // void(float)
     };

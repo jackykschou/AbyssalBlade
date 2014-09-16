@@ -54,7 +54,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             }
             else if (HorizontalAxis.Detect() || VerticalAxis.Detect())
             {
-                TriggerGameScriptEvent(GameScriptEvent.AxisMoved, new Vector2(HorizontalAxis.GetAxisValue(), VerticalAxis.GetAxisValue()));
+                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(HorizontalAxis.GetAxisValue(), VerticalAxis.GetAxisValue()));
             }
         }
     }

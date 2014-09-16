@@ -10,6 +10,11 @@ namespace Assets.Scripts.Utility
             return (target.transform.position - obj.transform.position).normalized;
         }
 
+        public static Vector2 GetDirection(Vector3 from, Vector3 to)
+        {
+            return (to - from).normalized;
+        }
+
         public static Vector2 GetFacingDirectionVector(FacingDirection facingDirection)
         {
             switch (facingDirection)

@@ -1,9 +1,10 @@
 ﻿using Assets.Scripts.Constants;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Projectile
+namespace Assets.Scripts.GameScripts.GameLogic
 {
-    public abstract class Projectile : GameLogic
+    [AddComponentMenu("LifeTimeLimit")]
+    public class LifeTimeLimit : GameLogic 
     {
         [Range(0f, float.MaxValue)]
         public float LifeTime;
@@ -12,17 +13,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Projectile
         {
             base.Initialize();
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.Projectile);
-            if (LifeTime > 0)
-            {
-                Invoke("DisableGameObject", LifeTime);
-            }
+            Invoke("DisableGameObject", LifeTime);
         }
 
         protected override void Deinitialize()
         {
-        }
-
-        protected override void Update () {
         }
     }
 }

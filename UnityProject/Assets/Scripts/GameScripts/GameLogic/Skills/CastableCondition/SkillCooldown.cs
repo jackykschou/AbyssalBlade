@@ -26,11 +26,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
 
         public void UpdateSkillCooldown()
         {
-            TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateSkillCooldownPercentage, CoolDownDispatcher.DispatchCoolDownPercentage);
+            TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateSkillCooldownPercentage, Skill, CoolDownDispatcher.DispatchCoolDownPercentage);
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed)]
-        public void ResetCooldown()
+        public void ResetCooldown(Skill skill)
         {
             CoolDownDispatcher.Dispatch();
         }

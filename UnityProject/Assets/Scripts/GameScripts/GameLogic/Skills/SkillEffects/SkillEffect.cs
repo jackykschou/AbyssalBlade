@@ -18,14 +18,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         {
         }
 
-        public void TriggerCasterGameScriptEvent(GameScriptEvent Event)
+        public void TriggerCasterGameScriptEvent(GameScriptEvent Event, params object[] args)
         {
-            SKill.Caster.TriggerGameScriptEvent(Event);
-        }
-
-        public bool IsFriendly(GameObject o)
-        {
-            return o.layer == SKill.Caster.gameObject.layer;
+            SKill.Caster.TriggerGameScriptEvent(Event, args);
         }
     }
 }

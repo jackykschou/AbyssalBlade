@@ -6,7 +6,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
     [AddComponentMenu("2DObjectMotor/PlayerCharacterMotor")]
     public class PlayerCharacterMotor : CharacterMotor
     {
-        [GameScriptEvent(Constants.GameScriptEvent.AxisMoved)]
+        [GameScriptEvent(Constants.GameScriptEvent.PlayerAxisMoved)]
         void MovePlayer(Vector2 direction)
         {
             RigidMove(direction);
