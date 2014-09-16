@@ -8,56 +8,31 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Animator
 {
-    [AddComponentMenu("Animator/CharacterAnimator")]
     [RequireComponent(typeof(UnityEngine.Animator))]
-    public class CharacterAnimator : GameLogic
+    public abstract class CharacterAnimator : ObjectAnimator
     {
-        private const int BoolResetBufferFrame = 2;
-        private int _frameSinceLastAnimation;
-
-        private UnityEngine.Animator _animator;
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-            _frameSinceLastAnimation = 0;
-            _animator = GetComponent<UnityEngine.Animator>();
-        }
-
         [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
         public void UpdateFacingDirection(FacingDirection facingDirection)
         {
-            _animator.SetInteger(AnimatorControllerConstants.AnimatorParameterName.FacingDirection, (int)facingDirection);
+            Animator.SetInteger(AnimatorControllerConstants.AnimatorParameterName.FacingDirection, (int)facingDirection);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectMove)]
         public void OnObjectMove()
         {
-            _animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Move, true);
+            SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Move);
         }
 
-        public virtual void ResetAllBool()
+        public override void ResetAllBool()
         {
-            _animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Idle, false);
-            _animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Move, false);
-            _animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Death, false);
+            base.ResetAllBool();
+            Animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Move, false);
+            Animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Death, false);
         }
 
         protected override void Deinitialize()
         {
         }
 
-        protected override void Update()
-        {
-            base.Update();
-            if (_frameSinceLastAnimation > 0)
-            {
-                _frameSinceLastAnimation--;
-                if (_frameSinceLastAnimation == 0)
-                {
-                    ResetAllBool();
-                }
-            }
-        }
     }
 }

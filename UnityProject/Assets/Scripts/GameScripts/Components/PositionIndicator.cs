@@ -19,6 +19,15 @@ namespace Assets.Scripts.GameScripts.Components
 
         public override void Initialize()
         {
+            if (Follower == null)
+            {
+                Follower = GameScript.transform;
+            }
+            if (Position == null)
+            {
+                Position = GameScript.transform;
+            }
+
             _downPos = Position.position;
             Position.RotateAround (Follower.position, Vector3.forward, 90);
             _rightPos = Position.position;

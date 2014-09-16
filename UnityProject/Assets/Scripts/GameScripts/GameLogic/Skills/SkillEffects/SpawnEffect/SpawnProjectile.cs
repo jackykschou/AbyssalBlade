@@ -2,11 +2,14 @@
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile;
 using Assets.Scripts.Managers;
+using UnityEngine;
+
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 {
+    [AddComponentMenu("Skill/SkillEffect/SpawnProjectile")]
     public class SpawnProjectile : SkillEffect
     {
         public Prefab ProjectilePrefab;

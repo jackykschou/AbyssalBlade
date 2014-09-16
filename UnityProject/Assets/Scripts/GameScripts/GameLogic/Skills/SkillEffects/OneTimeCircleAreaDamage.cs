@@ -9,7 +9,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
     [AddComponentMenu("Skill/SkillEffect/OneTimeCircleAreaDamage")]
     [RequireComponent(typeof(CircleCollider2D))]
-    public abstract class OneTimeCircleAreaDamage : SkillEffect
+    public class OneTimeCircleAreaDamage : SkillEffect
     {
         public GameValue DamageAmount;
         public PositionIndicator Position;
