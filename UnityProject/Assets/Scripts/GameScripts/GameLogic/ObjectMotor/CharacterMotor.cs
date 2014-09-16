@@ -24,7 +24,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 
         public void RigidMove(Vector2 direction)
         {
-            TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, direction.GetFacingDirection());
+            FacingDirection newDirection = direction.GetFacingDirection();
+            if (newDirection != GameView.FacingDirection)
+            {
+                TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, direction.GetFacingDirection());
+            }
+            Debug.Log(Speed.Value);
             rigidbody2D.AddForce(direction * Speed * Time.deltaTime);
         }
 

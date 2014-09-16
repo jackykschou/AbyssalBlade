@@ -3,7 +3,7 @@ using System.Reflection;
 using Assets.Scripts.GameScripts.Components;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Skills
+namespace Assets.Scripts.GameScripts
 {
     [ExecuteInEditMode]
     public sealed class GameScriptEditorUpdate : MonoBehaviour 

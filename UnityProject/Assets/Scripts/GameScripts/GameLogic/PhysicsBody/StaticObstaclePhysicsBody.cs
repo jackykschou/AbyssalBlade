@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
 {
-    [AddComponentMenu("PhysicsBody/StaticObstaclePhysicsBody")]
-    public class StaticObstaclePhysicsBody : PhysicsBody2D
+    [AddComponentMenu("PhysicsBody/Obstacle/ObstaclePhysicsBody")]
+    public class StaticObstaclePhysicsBody : ObstaclePhysicsBody 
     {
         protected override void Initialize()
         {

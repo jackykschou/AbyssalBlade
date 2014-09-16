@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
+using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills
@@ -9,6 +11,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
     [AddComponentMenu("Skill/Skill")]
     public sealed class Skill : GameLogic
     {
+        public SkillCaster Caster { get; private set; }
+
         [Range(0f, 1f)] 
         private float _coolDownPercentage;
 
@@ -18,11 +22,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         {
             if (_castableConditions.All(c => c.CanCast()))
             {
-                TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed);
+                Caster.TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed);
             }
             else
             {
-                TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerFailed);
+                Caster.TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed);
             }
         }
 
@@ -34,6 +38,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
 
         protected override void Initialize()
         {
+            if (transform.parent == null || transform.parent.gameObject.GetComponent<SkillCaster>() == null)
+            {
+                throw new Exception("A Skill must have a parent that is the caster");
+            }
+
+            Caster = transform.parent.gameObject.GetComponent<SkillCaster>();
+
             base.Initialize();
 
             _coolDownPercentage = 0f;

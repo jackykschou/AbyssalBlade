@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
         public GameValue HitPoint;
         public GameValue DamageReduction;
 
-        [GameScriptEvent(Constants.GameScriptEvent.OnGameObjectTakeDamage)]
+        [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
         public void TakeDamage(float damage)
         {
             if (Invincible)

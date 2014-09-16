@@ -1,16 +1,31 @@
-﻿using UnityEngine;
+﻿ using Assets.Scripts.Constants;
+ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
-    public class SkillEffect : GameLogic 
+    [RequireComponent(typeof(Skill))]
+    public abstract class SkillEffect : GameLogic
     {
-        public GameObject ParentGameObject 
+        public Skill SKill;
+
+        protected override void Initialize()
         {
-            get { return transform.parent.gameObject; }
+            base.Initialize();
+            SKill = GetComponent<Skill>();
         }
 
         protected override void Deinitialize()
         {
+        }
+
+        public void TriggerCasterGameScriptEvent(GameScriptEvent Event)
+        {
+            SKill.Caster.TriggerGameScriptEvent(Event);
+        }
+
+        public bool IsFriendly(GameObject o)
+        {
+            return o.layer == SKill.Caster.gameObject.layer;
         }
     }
 }

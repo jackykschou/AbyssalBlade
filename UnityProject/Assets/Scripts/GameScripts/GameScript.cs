@@ -164,7 +164,7 @@ namespace Assets.Scripts.GameScripts
             _deinitialized = false;
         }
 
-        void DisableGameObject()
+        public void DisableGameObject()
         {
             if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
             {
@@ -234,6 +234,7 @@ namespace Assets.Scripts.GameScripts
             foreach (var component in _components)
             {
                 component.Initialize();
+                component.InitializeChildComponents();
             }
         }
 
@@ -242,6 +243,7 @@ namespace Assets.Scripts.GameScripts
 
             foreach (var component in _components)
             {
+                component.DeinitializeChildComponents();
                 component.Deinitialize();
             }
 

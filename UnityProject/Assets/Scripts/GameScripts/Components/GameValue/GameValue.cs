@@ -140,6 +140,11 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
 
         public override void Initialize()
         {
+            Frozen = false;
+            Min = InitialMinValue;
+            Max = InitialMaxValue;
+            Value = InitialValue;
+            TrimValue();
         }
 
         public override void Deinitialize()

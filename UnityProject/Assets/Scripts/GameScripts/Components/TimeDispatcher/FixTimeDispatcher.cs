@@ -49,6 +49,7 @@ namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
 
         public override void Initialize()
         {
+            IsEnabled = true;
             _lastFrameTime = 0f;
             ResetTime();
         }

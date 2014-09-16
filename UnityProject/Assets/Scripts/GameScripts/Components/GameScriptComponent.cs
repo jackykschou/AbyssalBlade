@@ -13,6 +13,34 @@ namespace Assets.Scripts.GameScripts.Components
     {
         public GameScript GameScript { protected get; set; }
 
+        private List<GameScriptComponent> _components;
+
+        public void InitializeChildComponents()
+        {
+            _components = new List<GameScriptComponent>();
+            _components =
+                GetType()
+                    .GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance |
+                               BindingFlags.Static)
+                    .Select(f => f.GetValue(this) as GameScriptComponent)
+                    .Where(c => c != null).ToList();
+
+            _components.ForEach(c =>
+            {
+                c.Initialize();
+                c.InitializeChildComponents();
+            });
+        }
+
+        public void DeinitializeChildComponents()
+        {
+            _components.ForEach(c =>
+            {
+                c.DeinitializeChildComponents();
+                c.Deinitialize();
+            });
+        }
+
         public abstract void Initialize();
 
         public abstract void Deinitialize();

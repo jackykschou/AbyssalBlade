@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.Attributes;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Skills
+namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 {
     [AddComponentMenu("Skill/Caster/PlayerCharacterCaster")]
-    public class PlayerCharacterSkillsCaster : GameLogic
+    public class PlayerCharacterSkillsCaster : SkillCaster
     {
         [SerializeField] 
         private Skill _skill1;

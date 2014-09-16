@@ -23,6 +23,6 @@
         OnObjectMove,                   // void()
         OnObjectHaveNoHealth,           // void()
         OnObjectDestroyed,              // void()
-        OnGameObjectTakeDamage          // void(float)
+        OnObjectTakeDamage              // void(float)
     };
 }
