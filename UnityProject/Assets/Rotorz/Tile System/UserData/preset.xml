@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<presets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<preset name="edw">
+		<SystemName>Untitled Tile System</SystemName>
+		<TileWidth>1</TileWidth>
+		<TileHeight>1</TileHeight>
+		<TileDepth>1</TileDepth>
+		<Rows>100</Rows>
+		<Columns>100</Columns>
+		<ChunkWidth>30</ChunkWidth>
+		<ChunkHeight>30</ChunkHeight>
+		<TilesFacing>Sideways</TilesFacing>
+		<Direction>Forward</Direction>
+		<StrippingPreset>StripRuntime</StrippingPreset>
+		<StrippingOptions>431</StrippingOptions>
+		<CombineMethod>ByChunk</CombineMethod>
+		<CombineChunkWidth>30</CombineChunkWidth>
+		<CombineChunkHeight>30</CombineChunkHeight>
+		<CombineIntoSubmeshes>true</CombineIntoSubmeshes>
+		<StaticVertexSnapping>true</StaticVertexSnapping>
+		<VertexSnapThreshold>0.001</VertexSnapThreshold>
+		<GenerateSecondUVs>false</GenerateSecondUVs>
+		<GenerateSecondUVsParams>
+			<angleError>0.08</angleError>
+			<areaError>0.15</areaError>
+			<hardAngle>88</hardAngle>
+			<packMargin>0.00390625</packMargin>
+		</GenerateSecondUVsParams>
+		<PregenerateProcedural>false</PregenerateProcedural>
+		<ReduceColliders>
+			<Active>true</Active>
+			<SnapThreshold>0.01</SnapThreshold>
+			<KeepSeparate>ByTag ByLayer</KeepSeparate>
+			<IncludeSolidTiles>false</IncludeSolidTiles>
+			<SolidTileColliderType>BoxCollider3D</SolidTileColliderType>
+		</ReduceColliders>
+		<HintEraseEmptyChunks>false</HintEraseEmptyChunks>
+		<ApplyRuntimeStripping>false</ApplyRuntimeStripping>
+		<UpdateProceduralAtStart>true</UpdateProceduralAtStart>
+		<MarkProceduralDynamic>true</MarkProceduralDynamic>
+		<AddProceduralNormals>false</AddProceduralNormals>
+	</preset>
+</presets>

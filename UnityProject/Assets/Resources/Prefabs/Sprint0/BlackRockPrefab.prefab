@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 212: {fileID: 21200000}
+  - 60: {fileID: 6000000}
+  m_Layer: 0
+  m_Name: BlackRockPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.6602135, y: -201.883972, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!60 &6000000
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Poly:
+    m_Paths:
+    - - {x: 1.8743751, y: -.908749521}
+      - {x: 1.8743751, y: -.721249521}
+      - {x: 1.81812501, y: -.53374958}
+      - {x: 1.70562506, y: -.383749574}
+      - {x: 1.51812506, y: -.102499574}
+      - {x: 1.44312513, y: .122500412}
+      - {x: 1.2181251, y: .291250408}
+      - {x: 1.19937515, y: .760000408}
+      - {x: 1.19937515, y: .928750396}
+      - {x: .936875105, y: 1.09750032}
+      - {x: .618125141, y: 1.13500035}
+      - {x: .280625135, y: 1.15375042}
+      - {x: .111875147, y: 1.07875037}
+      - {x: .0181251522, y: 1.0225004}
+      - {x: -.150624841, y: .741250396}
+      - {x: -.394374818, y: .535000384}
+      - {x: -.563124835, y: .366250396}
+      - {x: -.956874788, y: -.214999571}
+      - {x: -1.31312478, y: -.364999563}
+      - {x: -1.50062478, y: -.646249533}
+      - {x: -1.6318748, y: -.702499568}
+      - {x: -1.89437473, y: -.964999557}
+      - {x: -1.89437473, y: -1.05874956}
+      - {x: -1.8568747, y: -1.09624958}
+      - {x: -.469374835, y: -1.09624958}
+      - {x: .524375141, y: -1.02124953}
+      - {x: 1.85562503, y: -1.00249958}
+--- !u!212 &21200000
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300006, guid: eb7aaa07a4d01394a93a224959672f4d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
