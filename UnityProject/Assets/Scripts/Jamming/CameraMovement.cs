@@ -77,7 +77,7 @@ public class CameraMovement : MonoBehaviour {
             if (direction == Vector2.right)
 	        {
                 a.SetBool("AttackRight", true);
-                a.SetBool("SetAnimatorBool", false);
+                a.SetBool("Idle", false);
                 a.SetBool("Right", false);
                 a.SetBool("Left", false);
                 a.SetBool("Up", false);
@@ -86,7 +86,7 @@ public class CameraMovement : MonoBehaviour {
 	        if (direction == -Vector2.right)
 	        {
                 a.SetBool("AttackLeft", true);
-                a.SetBool("SetAnimatorBool", false);
+                a.SetBool("Idle", false);
                 a.SetBool("Right", false);
                 a.SetBool("Left", false);
                 a.SetBool("Up", false);
@@ -95,7 +95,7 @@ public class CameraMovement : MonoBehaviour {
 	        if (direction == Vector2.up)
 	        {
                 a.SetBool("AttackUp", true);
-                a.SetBool("SetAnimatorBool", false);
+                a.SetBool("Idle", false);
                 a.SetBool("Right", false);
                 a.SetBool("Left", false);
                 a.SetBool("Up", false);
@@ -104,7 +104,7 @@ public class CameraMovement : MonoBehaviour {
 	        if (direction == -Vector2.up)
 	        {
                 a.SetBool("AttackDown", true);
-                a.SetBool("SetAnimatorBool", false);
+                a.SetBool("Idle", false);
                 a.SetBool("Right", false);
                 a.SetBool("Left", false);
                 a.SetBool("Up", false);
@@ -164,7 +164,7 @@ public class CameraMovement : MonoBehaviour {
 
             if (Mathf.Abs(vert) < 0.2f && Mathf.Abs(horz) < 0.2f)
 	        {
-                a.SetBool("SetAnimatorBool", true);
+                a.SetBool("Idle", true);
                 a.SetBool("Right", false);
                 a.SetBool("Left", false);
                 a.SetBool("Up", false);
@@ -186,7 +186,7 @@ public class CameraMovement : MonoBehaviour {
 	                a.SetBool("Left", false);
 	                a.SetBool("Up", false);
 	                a.SetBool("Down", false);
-                    a.SetBool("SetAnimatorBool", false);
+                    a.SetBool("Idle", false);
 	            }
                 else if (horz < -0.01)
 	            {
@@ -196,7 +196,7 @@ public class CameraMovement : MonoBehaviour {
 	                a.SetBool("Up", false);
 	                a.SetBool("Down", false);
 	                a.SetBool("Right", false);
-                    a.SetBool("SetAnimatorBool", false);
+                    a.SetBool("Idle", false);
 
 	            }
 	        }
@@ -210,7 +210,7 @@ public class CameraMovement : MonoBehaviour {
 	                a.SetBool("Left", false);
 	                a.SetBool("Up", true);
 	                a.SetBool("Down", false);
-                    a.SetBool("SetAnimatorBool", false);
+                    a.SetBool("Idle", false);
 	            }
                 else if (vert < -0.01)
 	            {
@@ -220,12 +220,12 @@ public class CameraMovement : MonoBehaviour {
 	                a.SetBool("Up", false);
 	                a.SetBool("Down", true);
 	                a.SetBool("Right", false);
-                    a.SetBool("SetAnimatorBool", false);
+                    a.SetBool("Idle", false);
 	            }
 	        }
 	        else
 	        {
-                a.SetBool("SetAnimatorBool", true);
+                a.SetBool("Idle", true);
 	            a.SetBool("Right", false);
 	            a.SetBool("Left", false);
 	            a.SetBool("Up", false);
