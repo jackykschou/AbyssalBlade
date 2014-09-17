@@ -1,6 +1,10 @@
 ﻿using Assets.Scripts.Constants;
 using UnityEngine;
 
+using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
+using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
+
+
 namespace Assets.Scripts.GameScripts.GameLogic.Animator
 {
     [RequireComponent(typeof(UnityEngine.Animator))]
@@ -27,6 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             Animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Idle, false);
         }
 
+        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorState)]
         public void SetAnimatorBoolState(string state)
         {
             Animator.SetBool(state, true);

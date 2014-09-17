@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Assets.Scripts.Constants;
@@ -9,7 +10,6 @@ using UnityEngine;
 namespace Assets.Scripts.Managers
 {
     [AddComponentMenu("Manager/PrefabManager")]
-    [ExecuteInEditMode]
     public class PrefabManager : MonoBehaviour
     {
         public int DefaultPreloadAmount;
@@ -27,6 +27,11 @@ namespace Assets.Scripts.Managers
 
             _spawnedPrefabsMap = new Dictionary<GameObject, SpawnPool>();
             Instance = FindObjectOfType<PrefabManager>();
+        }
+
+        void OnDisable()
+        {
+            PoolManager.Pools.DestroyAll();
         }
 
         public GameObject SpawnPrefab(Prefab prefab, Vector3 position)
@@ -66,10 +71,6 @@ namespace Assets.Scripts.Managers
 
         public void UpdateManager()
         {
-            foreach (Transform t in transform)
-            {
-                DestroyImmediate(t.gameObject);
-            }
             _prefabPoolMap = new Dictionary<string, SpawnPool>();
             UpdateManagerHelper();
         }
@@ -93,18 +94,17 @@ namespace Assets.Scripts.Managers
             DirectoryInfo[] subDirectories = dir.GetDirectories();
             foreach (var d in subDirectories)
             {
-                UpdateManagerHelper(assetDirectoryPath + d.Name, resourcesPrefabPath + d.Name);
+                UpdateManagerHelper(assetDirectoryPath + d.Name + "/", resourcesPrefabPath + d.Name + "/");
             }
         }
 
         SpawnPool CreateSpawnPool(string name)
         {
-            SpawnPool spawnPool = PoolManager.Pools.Create(name + "SpawnPool");
+            SpawnPool spawnPool = PoolManager.Pools.Create(name);
 
             spawnPool.gameObject.transform.parent = transform;
             spawnPool.gameObject.transform.position = transform.position;
             spawnPool.gameObject.name = name + "SpawnPool";
-            spawnPool.poolName = name + "SpawnPool";
             spawnPool.dontDestroyOnLoad = true;
 
             return spawnPool;

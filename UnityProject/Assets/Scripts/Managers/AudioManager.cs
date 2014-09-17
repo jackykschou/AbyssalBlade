@@ -33,10 +33,6 @@ namespace Assets.Scripts.Managers
 
         void Awake()
         {
-
-        }
-        void Start()
-        {
             _soundCueList = new Dictionary<string, AudioClip>();
             _loopCueList = new Dictionary<string, AudioSource>();
             _multiCueList = new Dictionary<string, MultiCue>();

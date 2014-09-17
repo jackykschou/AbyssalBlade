@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.GameScripts.Components.GameValue;
+﻿using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.Components.GameValue;
 using Assets.Scripts.Utility;
 using UnityEngine;
 

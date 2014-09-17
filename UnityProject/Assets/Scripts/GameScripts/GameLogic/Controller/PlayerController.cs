@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Controller
@@ -30,8 +31,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField]
         private ButtonOnPressed Attack4;
 
+        public PlayerCharacterSkillsCaster Caster;
+
         protected override void Initialize()
         {
+            Caster = GetComponent<PlayerCharacterSkillsCaster>();
         }
 
         protected override void Deinitialize()
@@ -58,9 +62,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed);
             }
-            else if (HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect())
+            else if ((HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect()) && !Caster.Casting)
             {
-                const float axisThreshHold = 0.2f;
+                const float axisThreshHold = 0.1f;
 
                 float horizontalMagnitude = Mathf.Max(Mathf.Abs(HorizontalAxis.GetAxisValue()), Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue()));
                 float verticalMagnitude = Mathf.Max(Mathf.Abs(VerticalAxis.GetAxisValue()), Mathf.Abs(JoyStickVerticalAxis.GetAxisValue()));
@@ -74,8 +78,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
 
                     float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
                                         Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
-                    ? HorizontalAxis.GetAxisValue()
-                    : JoyStickHorizontalAxis.GetAxisValue();
+                    ? VerticalAxis.GetAxisValue()
+                    : JoyStickVerticalAxis.GetAxisValue();
 
                     TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(horizontalValue, verticalValue));
                 }

@@ -10,9 +10,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public string StateName;
 
         [GameScriptEventAttribute(GameScriptEvent.SkillCastTriggerSucceed)]
-        public void SetAnimatorState()
+        public void SetAnimatorState(Skill skill)
         {
+            if (skill != SKill)
+            {
+                return;
+            }
             TriggerCasterGameScriptEvent(GameScriptEvent.SetAnimatorState, StateName);
+            TriggerCasterGameScriptEvent(GameScriptEvent.SkillEnded, SKill);   
         }
     }
 }
