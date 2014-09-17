@@ -13,6 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
             Collider = GetComponent<Collider2D>();
             Rigidbody = GetComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0f;
+            Debug.Log("lool");   
             Rigidbody.fixedAngle = true;
         }
 

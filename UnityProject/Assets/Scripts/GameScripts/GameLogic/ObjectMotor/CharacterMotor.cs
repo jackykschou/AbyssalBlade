@@ -20,7 +20,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         {
             base.Initialize();
             rigidbody2D.isKinematic = false;
-            rigidbody2D.fixedAngle = false;
+            rigidbody2D.fixedAngle = true;
         }
 
         [GameScriptEvent(GameScriptEvent.PlayerAxisMoved)]

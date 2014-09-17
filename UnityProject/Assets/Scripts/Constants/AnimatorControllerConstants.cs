@@ -9,9 +9,9 @@ namespace Assets.Scripts.Constants
         public static class AnimatorParameterName
         {
             public const string FacingDirection = "FacingDirection";
-            public const string Idle = "SetAnimatorBool";
+            public const string Idle = "Idle";
             public const string Move = "Move";
-            public const string Death = "FacingDirection";
+            public const string Death = "Death";
             public const string PlayerCharacterSkill1 = "Skill1";
             public const string PlayerCharacterSkill2 = "Skill2";
             public const string PlayerCharacterSkill3 = "Skill3";
