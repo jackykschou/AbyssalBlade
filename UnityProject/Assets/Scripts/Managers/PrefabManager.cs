@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
+//using System.IO;
 using System.Linq;
 using Assets.Scripts.Constants;
 using PathologicalGames;
@@ -77,25 +77,25 @@ namespace Assets.Scripts.Managers
 
         void UpdateManagerHelper(string assetDirectoryPath = PrefabConstants.StartingAssetPrefabPath, string resourcesPrefabPath = PrefabConstants.StartingResourcesPrefabPath)
         {
-            DirectoryInfo dir = new DirectoryInfo(assetDirectoryPath);
+            //DirectoryInfo dir = new DirectoryInfo(assetDirectoryPath);
 
-            var files = dir.GetFiles("*.prefab").Where(f => (f.Extension == PrefabConstants.PrefabExtension)).ToList();
-            if (files.Any())
-            {
-                SpawnPool spawnPool = CreateSpawnPool(dir.Name);
-                List<string> prefabNames = new List<string>();
-                foreach (var f in files)
-                {
-                    prefabNames.Add(Path.GetFileNameWithoutExtension(f.Name));
-                    _prefabPoolMap.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name), spawnPool);
-                }
-            }
+            //var files = dir.GetFiles("*.prefab").Where(f => (f.Extension == PrefabConstants.PrefabExtension)).ToList();
+            //if (files.Any())
+            //{
+            //    SpawnPool spawnPool = CreateSpawnPool(dir.Name);
+            //    List<string> prefabNames = new List<string>();
+            //    foreach (var f in files)
+            //    {
+            //        prefabNames.Add(Path.GetFileNameWithoutExtension(f.Name));
+            //        _prefabPoolMap.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name), spawnPool);
+            //    }
+            //}
 
-            DirectoryInfo[] subDirectories = dir.GetDirectories();
-            foreach (var d in subDirectories)
-            {
-                UpdateManagerHelper(assetDirectoryPath + d.Name + "/", resourcesPrefabPath + d.Name + "/");
-            }
+            //DirectoryInfo[] subDirectories = dir.GetDirectories();
+            //foreach (var d in subDirectories)
+            //{
+            //    UpdateManagerHelper(assetDirectoryPath + d.Name + "/", resourcesPrefabPath + d.Name + "/");
+            //}
         }
 
         SpawnPool CreateSpawnPool(string name)
