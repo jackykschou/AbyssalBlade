@@ -9,8 +9,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField]
         private AxisOnHold HorizontalAxis;
 
-        [SerializeField]
+        [SerializeField] 
         private AxisOnHold VerticalAxis;
+
+        [SerializeField]
+        private AxisOnHold JoyStickVerticalAxis;
+
+        [SerializeField]
+        private AxisOnHold JoyStickHorizontalAxis;
 
         [SerializeField] 
         private ButtonOnPressed Attack1;
@@ -52,9 +58,27 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed);
             }
-            else if (HorizontalAxis.Detect() || VerticalAxis.Detect())
+            else if (HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect())
             {
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(HorizontalAxis.GetAxisValue(), VerticalAxis.GetAxisValue()));
+                const float axisThreshHold = 0.2f;
+
+                float horizontalMagnitude = Mathf.Max(Mathf.Abs(HorizontalAxis.GetAxisValue()), Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue()));
+                float verticalMagnitude = Mathf.Max(Mathf.Abs(VerticalAxis.GetAxisValue()), Mathf.Abs(JoyStickVerticalAxis.GetAxisValue()));
+
+                if (horizontalMagnitude > axisThreshHold || verticalMagnitude > axisThreshHold)
+                {
+                    float horizontalValue = Mathf.Abs(HorizontalAxis.GetAxisValue()) >
+                                        Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue())
+                    ? HorizontalAxis.GetAxisValue()
+                    : JoyStickHorizontalAxis.GetAxisValue();
+
+                    float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
+                                        Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
+                    ? HorizontalAxis.GetAxisValue()
+                    : JoyStickHorizontalAxis.GetAxisValue();
+
+                    TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(horizontalValue, verticalValue));
+                }
             }
         }
     }

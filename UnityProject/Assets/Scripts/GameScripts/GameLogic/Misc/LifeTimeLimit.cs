@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.Constants;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic
+namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
-    [AddComponentMenu("LifeTimeLimit")]
+    [AddComponentMenu("Misc/LifeTimeLimit")]
     public class LifeTimeLimit : GameLogic 
     {
         [Range(0f, float.MaxValue)]

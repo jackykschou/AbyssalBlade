@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         public SkillCaster Caster { get; private set; }
         public bool IsActivate;
         public bool OnceAtATime;
+        public bool Atomic;
 
         [Range(0f, 1f)] 
         private float _coolDownPercentage;
@@ -25,7 +25,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
 
         public bool CanActivate()
         {
-            return _castableConditions.All(c => c.CanCast()) && (!OnceAtATime || !IsActivate);
+            return _castableConditions.All(c => c.CanCast()) && (!OnceAtATime || !IsActivate) && (!Atomic || !Caster.Casting);
         }
 
         public void Activate()
@@ -33,11 +33,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             if (CanActivate())
             {
                 IsActivate = true;
-                Caster.TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed, this);
+                Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastTriggerSucceed, this);
             }
             else
             {
-                Caster.TriggerGameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerFailed, this);
+                Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastTriggerFailed, this);
             }
         }
 
@@ -66,13 +66,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             IsActivate = false;
             Caster = transform.parent.gameObject.GetComponent<SkillCaster>();
             _coolDownPercentage = 0f;
-            InitializeLists();
+            _castableConditions = GetComponents<SkillCastableCondition>().ToList();
             gameObject.tag = Caster.gameObject.tag;
-        }
-
-        private void InitializeLists()
-        {
-            _castableConditions = new List<SkillCastableCondition>();
         }
 
         protected override void Deinitialize()

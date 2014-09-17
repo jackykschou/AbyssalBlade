@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile;
+using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 {
+    [RequireComponent(typeof(TargetNotNull))]
     [AddComponentMenu("Skill/SkillEffect/SpawnProjectile")]
     public class SpawnProjectile : SkillEffect
     {
@@ -19,7 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
         public void Spawn()
         {
             ProjectileMotor motor = PrefabManager.Instance.SpawnPrefab(ProjectilePrefab, position.Position.position).GetComponent<ProjectileMotor>();
-            motor.tag = SKill.gameObject.tag;
+            motor.tag = SKill.Caster.gameObject.tag;
             motor.Target = SKill.Caster.Target.position;
             motor.Shoot();
         }

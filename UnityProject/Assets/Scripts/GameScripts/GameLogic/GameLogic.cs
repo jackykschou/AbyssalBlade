@@ -6,7 +6,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
 {
     public abstract class GameLogic : GameScript
     {
-        protected GameView GameView { get; set; }
+        public GameView GameView { get; set; }
 
         protected override void Initialize()
         {

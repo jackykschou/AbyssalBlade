@@ -2,6 +2,10 @@
 using Assets.Scripts.Utility;
 using UnityEngine;
 
+using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
+using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
+
+
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
     public abstract class ObjectMotor2D : GameLogic
@@ -25,6 +29,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         public void TranslateLinearTowards(Vector2 direction)
         {
             gameObject.transform.Translate(new Vector3(direction.x, direction.y, 0) * Speed * Time.deltaTime);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
         public void TranslateLinearTowards(GameObject target)
@@ -42,6 +47,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             float posY = Mathf.SmoothDamp(transform.position.y, destination.y, ref _velocityY, Time.deltaTime * smoothDampSmoothness);
 
             transform.position = new Vector3(posX, posY, transform.position.z);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
         public void TranslateSmoothTowards(GameObject target)
@@ -61,18 +67,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             Vector2 destination = new Vector2(transform.position.x, transform.position.y) + direction * moveAlongDistance;
             float moveDuration = moveAlongDistance / Speed;
             gameObject.MoveTo(new Vector3(destination.x, destination.y, 0), moveDuration, 0, style);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
         public void MoveToWithStyle(EaseType style, Vector2 position)
         {
             float moveDuration = Vector3.Distance(new Vector3(position.x, position.y, 0), transform.position) / Speed;
             gameObject.MoveTo(new Vector3(position.x, position.y, 0), moveDuration, 0, style);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
         public void MoveAddWithStyle(EaseType style, Vector2 amount)
         {
             float moveDuration = amount.magnitude / Speed;
             gameObject.MoveAdd(new Vector3(amount.x, amount.y, 0), moveDuration, 0, style);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
     }
 }

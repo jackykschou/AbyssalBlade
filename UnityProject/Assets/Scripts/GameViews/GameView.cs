@@ -21,15 +21,15 @@ namespace Assets.Scripts.GameViews
 
         public abstract Vector2 CenterPosition { get; }
 
-        protected Vector2 ForwardDirection 
+        public Vector2 ForwardDirection 
         {
             get { return MathUtility.GetFacingDirectionVector(FacingDirection); } 
         }
-        protected Vector2 BackwardDirection 
+        public Vector2 BackwardDirection 
         {
             get { return -MathUtility.GetFacingDirectionVector(FacingDirection); }
         }
-        protected Vector2 LeftwardDirection 
+        public Vector2 LeftwardDirection 
         {
             get
             {
@@ -38,7 +38,7 @@ namespace Assets.Scripts.GameViews
             }
         }
 
-        protected Vector2 RightwardDirection
+        public Vector2 RightwardDirection
         {
             get
             {

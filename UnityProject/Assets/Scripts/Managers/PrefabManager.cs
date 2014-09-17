@@ -17,16 +17,14 @@ namespace Assets.Scripts.Managers
         public int DefaultCullAbove;
 
         public static PrefabManager Instance;
-        [SerializeField] 
-        private Dictionary<string, List<string>> _prefabNameMap; //This map is used later for random spawning of a certain group of prefab
 
-        [SerializeField] 
         private Dictionary<string, SpawnPool> _prefabPoolMap;
-
         private Dictionary<GameObject, SpawnPool> _spawnedPrefabsMap;
 
         void Awake()
         {
+            UpdateManager();
+
             _spawnedPrefabsMap = new Dictionary<GameObject, SpawnPool>();
             Instance = FindObjectOfType<PrefabManager>();
         }
@@ -72,7 +70,6 @@ namespace Assets.Scripts.Managers
             {
                 DestroyImmediate(t.gameObject);
             }
-            _prefabNameMap = new Dictionary<string, List<string>>();
             _prefabPoolMap = new Dictionary<string, SpawnPool>();
             UpdateManagerHelper();
         }
@@ -91,7 +88,6 @@ namespace Assets.Scripts.Managers
                     prefabNames.Add(Path.GetFileNameWithoutExtension(f.Name));
                     _prefabPoolMap.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name), spawnPool);
                 }
-                _prefabNameMap.Add(resourcesPrefabPath, prefabNames);
             }
 
             DirectoryInfo[] subDirectories = dir.GetDirectories();
