@@ -5,34 +5,63 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Managers
 {
-    public class AudioManager
+    [AddComponentMenu("Manager/AudioManager")]
+    [ExecuteInEditMode]
+    public class AudioManager : MonoBehaviour
     {
+        [SerializeField]
+        private List<AudioClip> clips;
+
         private Dictionary<string, AudioClip> _soundCueList;
         private Dictionary<string, AudioSource> _loopCueList;
         private Dictionary<string, MultiCue> _multiCueList;
 
-        private static readonly AudioManager _instance = new AudioManager();
+        private static AudioManager _instance;
 
-        public static AudioManager Instance { get { return _instance; } }
-        
-        private GameObject customAudioManagerGO;
-        
-        // Constructor
-        AudioManager()
+        public static AudioManager Instance
         {
-            // Create lists to play from and manage
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = Object.FindObjectOfType<AudioManager>();
+                    DontDestroyOnLoad(_instance.gameObject);
+                }
+                return _instance;
+            }
+        }
+
+        void Awake()
+        {
+
+        }
+        void Start()
+        {
             _soundCueList = new Dictionary<string, AudioClip>();
             _loopCueList = new Dictionary<string, AudioSource>();
             _multiCueList = new Dictionary<string, MultiCue>();
 
+            foreach (AudioClip clip in clips)
+            {
+                _soundCueList[clip.name] = clip;
+            }
+        }
+
+        public void UpdateManager()
+        {
+            foreach(Transform c in transform)
+                DestroyImmediate(c.gameObject);
+
+            clips = new List<AudioClip>();
+
             // Load each clip into the list
             foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music"))
-            {
-              //  Debug.Log("AudioManager:ClipLoaded - " + clip.name);
-                _soundCueList.Add(clip.name, clip);
-            }
+                clips.Add(clip);
+        }
 
-            customAudioManagerGO = new GameObject("CustomAudioManager");
+        public void DeleteClips()
+        {
+            clips = new List<AudioClip>();
         }
 
 
@@ -49,7 +78,7 @@ namespace Assets.Scripts.Managers
             }
 
             // Play at desired location if given, else play at the AudioManager GameObjects' Location
-            Vector3 playAt = sourceObject ? sourceObject.transform.position : customAudioManagerGO.gameObject.transform.position;
+            Vector3 playAt = sourceObject ? sourceObject.transform.position : this.transform.position;
             
             AudioSource.PlayClipAtPoint(_soundCueList[name], playAt, volume);
 
@@ -63,12 +92,12 @@ namespace Assets.Scripts.Managers
                 Debug.Log("AudioManager::PlayCueDelayed - Unable to locate AudioClip >>" + name + "<<\n");
                 return false;
             }
-            AudioSource s = customAudioManagerGO.AddComponent<AudioSource>();
+            AudioSource s = this.gameObject.AddComponent<AudioSource>();
             s.clip = findClip(name);
             s.loop = false;
 
             s.PlayDelayed(delayTime);
-
+            
             return true;
         }
 
@@ -166,7 +195,7 @@ namespace Assets.Scripts.Managers
 
             _loopCueList[name].Stop();
             _loopCueList.Remove(name);
-            AudioSource[] sources = customAudioManagerGO.GetComponents<AudioSource>();
+            AudioSource[] sources = this.gameObject.GetComponents<AudioSource>();
             foreach (var source in sources)
                 if (source.clip == findClip(name))
                     Object.Destroy(source);
@@ -186,7 +215,7 @@ namespace Assets.Scripts.Managers
             if (!clip)
                 return false;
             
-            AudioSource s = customAudioManagerGO.AddComponent<AudioSource>();
+            AudioSource s = this.gameObject.AddComponent<AudioSource>();
             s.clip = clip;
             s.loop = true;
 
@@ -204,13 +233,10 @@ namespace Assets.Scripts.Managers
         // TODO: change to use enums
         public AudioClip findClip(string name)
         {
-
-            if (!_soundCueList.ContainsKey(name))
-            {
-                Debug.Log("AudioManager:findClip - Unable to find clip " + name + ".");
-                return null;
-            }
-            return _soundCueList[name];
+            if (_soundCueList != null)
+                if (_soundCueList.ContainsKey(name))
+                    return _soundCueList[name];
+            return null;
         }
 
 
@@ -219,8 +245,8 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // HELPER CLASSES
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         enum MultiCueType { Sequential, Parallel, Weighted };
+
 
         /// MultiCue Helper class
         public class MultiCue
@@ -271,8 +297,8 @@ namespace Assets.Scripts.Managers
             {
                 GameObject obj = sourceObj
                     ? sourceObj
-                    :  AudioManager.Instance.customAudioManagerGO;
-
+                    : AudioManager.Instance.gameObject;
+                
                 if (type == MultiCueType.Weighted)
                 {
                     if (cueWeightList.Count == 0)
@@ -282,14 +308,14 @@ namespace Assets.Scripts.Managers
 
                     for (int i = 0; i < cueWeightList.Count; i++)
                         if (weightToPlay < cueWeightList[i].Value)
-                            return AudioManager.Instance.playCue(cueWeightList[i].Key, obj, volume);
+                            return AudioManager.Instance.playCue(cueWeightList[i].Key, sourceObj, volume);
                 }
                 else if(type == MultiCueType.Parallel)
                 {
                     if (cueList.Count == 0)
                         return false;
                     foreach (var audioStr in cueList)
-                        AudioManager.Instance.playCue(audioStr, obj, volume);
+                        AudioManager.Instance.playCue(audioStr, sourceObj, volume);
                 }
                 else if(type == MultiCueType.Sequential)
                 {
@@ -300,7 +326,7 @@ namespace Assets.Scripts.Managers
                     int curSeq = 0;
                     while(curSeq != totalSequences)
                     {
-                        AudioManager.Instance.playCueDelayed(seqList[curSeq],totalTime,obj,volume);
+                        AudioManager.Instance.playCueDelayed(seqList[curSeq],totalTime,sourceObj,volume);
                         totalTime += AudioManager.Instance.findClip(seqList[curSeq]).length;
                         curSeq++;
                     }

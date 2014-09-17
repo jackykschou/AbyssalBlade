@@ -118,6 +118,65 @@ Prefab:
   m_RootGameObject: {fileID: 1341851314}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &11232143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 11232144}
+  - 114: {fileID: 11232145}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &11232144
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 11232143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.91562653, y: -201.970474, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+--- !u!114 &11232145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 11232143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbebb25599836ec4d8b63b00467384b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: c1e1eba1349a4d641bdbf71854db7f60, type: 3}
+  - {fileID: 8300000, guid: b1ae26e14914f8242b8aadae55bb8af1, type: 3}
+  - {fileID: 8300000, guid: ea5be3ca8fdecd848a1aff0538dd1339, type: 3}
+  - {fileID: 8300000, guid: 8506f4dfe14a723459179ce07ea47da6, type: 3}
+  - {fileID: 8300000, guid: 21575fbe60e46a4439933c328709790a, type: 3}
+  - {fileID: 8300000, guid: bb7173d6d1c4bd748b0e235cd398ca99, type: 3}
+  - {fileID: 8300000, guid: a3da3b9ad9f5a3c4b9afcc0269da3430, type: 3}
+  - {fileID: 8300000, guid: 83b0bcde853bede4a895d1fd56a2e176, type: 3}
+  - {fileID: 8300000, guid: 86bbd727e08dc9547b63e5368ac97b14, type: 3}
+  - {fileID: 8300000, guid: 31746a2dad11a2d489cff418567a632c, type: 3}
+  - {fileID: 8300000, guid: be89b823976e81d4b9daa0c7d01b2fb0, type: 3}
+  - {fileID: 8300000, guid: 5da6e91740b0087418da46296baf33c5, type: 3}
+  - {fileID: 8300000, guid: ee21a739d7705f24b836c9f85a2ae020, type: 3}
+  - {fileID: 8300000, guid: 6d74a414418e78f46bfcca62c2dc771d, type: 3}
+  - {fileID: 8300000, guid: 92e9ab0478a67f4499bc59a0115d979b, type: 3}
+  - {fileID: 8300000, guid: 6af3a96ccf45f4741b36e9cbb802a55d, type: 3}
+  - {fileID: 8300000, guid: 5ab26a76a71d3564d96b8bc9c6fc35ed, type: 3}
+  - {fileID: 8300000, guid: 8bfc480c6ebdb584382f39e0c550e251, type: 3}
+  - {fileID: 8300000, guid: 66dad00b5f79f114a983293283b2a1da, type: 3}
 --- !u!1 &52985966
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +425,7 @@ MonoBehaviour:
     stateNameHash: -1137586925
     events:
     - functionName: SetAttacksFalse
-      normalizedTime: .416767925
+      normalizedTime: .422843248
       paramType: 0
       intParam: 0
       floatParam: 0
@@ -382,7 +441,7 @@ MonoBehaviour:
     stateNameHash: -263707000
     events:
     - functionName: SetAttacksFalse
-      normalizedTime: .408262461
+      normalizedTime: .414337784
       paramType: 0
       intParam: 0
       floatParam: 0
@@ -398,7 +457,7 @@ MonoBehaviour:
     stateNameHash: -1764732453
     events:
     - functionName: SetAttacksFalse
-      normalizedTime: .400972068
+      normalizedTime: .40583232
       paramType: 0
       intParam: 0
       floatParam: 0
@@ -415,6 +474,70 @@ MonoBehaviour:
     events:
     - functionName: SetAttacksFalse
       normalizedTime: .40461725
+      paramType: 0
+      intParam: 0
+      floatParam: 0
+      stringParam: 
+      boolParam: 0
+      condition:
+        conditions: []
+      critical: 0
+      isEnable: 1
+  - animatorController: {fileID: 9100000, guid: 737d10fc5f533fd4083ec946fca49c88,
+      type: 2}
+    layer: 0
+    stateNameHash: 359162319
+    events:
+    - functionName: SetAttacksFalse
+      normalizedTime: .600243032
+      paramType: 0
+      intParam: 0
+      floatParam: 0
+      stringParam: 
+      boolParam: 0
+      condition:
+        conditions: []
+      critical: 0
+      isEnable: 1
+  - animatorController: {fileID: 9100000, guid: 737d10fc5f533fd4083ec946fca49c88,
+      type: 2}
+    layer: 0
+    stateNameHash: 165692105
+    events:
+    - functionName: SetAttacksFalse
+      normalizedTime: .597812891
+      paramType: 0
+      intParam: 0
+      floatParam: 0
+      stringParam: 
+      boolParam: 0
+      condition:
+        conditions: []
+      critical: 0
+      isEnable: 1
+  - animatorController: {fileID: 9100000, guid: 737d10fc5f533fd4083ec946fca49c88,
+      type: 2}
+    layer: 0
+    stateNameHash: 1870149018
+    events:
+    - functionName: SetAttacksFalse
+      normalizedTime: .600243032
+      paramType: 0
+      intParam: 0
+      floatParam: 0
+      stringParam: 
+      boolParam: 0
+      condition:
+        conditions: []
+      critical: 0
+      isEnable: 1
+  - animatorController: {fileID: 9100000, guid: 737d10fc5f533fd4083ec946fca49c88,
+      type: 2}
+    layer: 0
+    stateNameHash: 773354703
+    events:
+    - functionName: SetAttacksFalse
+      normalizedTime: .600243032
       paramType: 0
       intParam: 0
       floatParam: 0
@@ -2589,7 +2712,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2608,7 +2731,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1370003816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0359460004, y: .0113679999, z: -8.99800014}
+  m_LocalPosition: {x: .105120003, y: .0113679999, z: -8.99800014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2143984326}
@@ -3364,7 +3487,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300156, guid: 841d1b290e0db9541ad9dd93bd588ac5, type: 3}
+  m_Sprite: {fileID: 21300154, guid: 841d1b290e0db9541ad9dd93bd588ac5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1820115207
 Transform:

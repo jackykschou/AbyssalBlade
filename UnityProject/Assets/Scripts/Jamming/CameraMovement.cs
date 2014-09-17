@@ -17,6 +17,7 @@ public class CameraMovement : MonoBehaviour {
 	{
         direction = Vector2.right;
         
+        
         // Weighted Multi Cue
         List<KeyValuePair<string, int>> myMultiCueWeights = new List<KeyValuePair<string, int>>();
         myMultiCueWeights.Add(new KeyValuePair<string, int>("Laser", 30));
@@ -37,7 +38,7 @@ public class CameraMovement : MonoBehaviour {
         seqList[1] = "HackandSlash";
         seqList[2] = "HackandSlash";
         AudioManager.Instance.createMultiCueSequential("MySequential", seqList);
-
+        
 
        // AudioManager.Instance.playLoop("Hack and Slash");
 	}
@@ -48,21 +49,28 @@ public class CameraMovement : MonoBehaviour {
         a.SetBool("AttackLeft", false);
         a.SetBool("AttackUp", false);
         a.SetBool("AttackDown", false);
+        a.SetBool("ShootRight", false);
+        a.SetBool("ShootLeft", false);
+        a.SetBool("ShootUp", false);
+        a.SetBool("ShootDown", false);
     }
-	
+
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
         handleMusicTest();
 
 	    if (a.GetBool("AttackUp") || a.GetBool("AttackDown") ||
-	        a.GetBool("AttackLeft") || a.GetBool("AttackRight"))
+	        a.GetBool("AttackLeft") || a.GetBool("AttackRight") ||
+            a.GetBool("ShootUp") || a.GetBool("ShootDown") ||
+            a.GetBool("ShootLeft") || a.GetBool("ShootRight"))
 	    {
 	        return;
 	    }
 
-	    if (Input.GetButtonDown("Attack1") && !a.GetBool("AttackUp") && !a.GetBool("AttackDown") &&
-	        !a.GetBool("AttackLeft") && !a.GetBool("AttackRight"))
+	    if (Input.GetButtonDown("Attack1") && 
+            !a.GetBool("AttackUp") && !a.GetBool("AttackDown") && !a.GetBool("AttackLeft") && !a.GetBool("AttackRight") && 
+            !a.GetBool("ShootUp") && !a.GetBool("ShootDown") && !a.GetBool("ShootLeft") && !a.GetBool("ShootRight"))
 	    {
             AudioManager.Instance.playCue("strike",gameObject);
 
@@ -105,8 +113,51 @@ public class CameraMovement : MonoBehaviour {
             Vector3 dmgSpawnPoint = new Vector3(hero.transform.position.x +direction.x, hero.transform.position.y + direction.y, 0);
             Transform myInstance = PoolManager.Pools["DamageTextPool"].Spawn(guiTextPrefab);
             myInstance.Translate(dmgSpawnPoint);
+            return;
 	    }
-	    else
+        else if (Input.GetButtonDown("Attack2") &&
+            !a.GetBool("AttackUp") && !a.GetBool("AttackDown") && !a.GetBool("AttackLeft") && !a.GetBool("AttackRight") && 
+            !a.GetBool("ShootUp") && !a.GetBool("ShootDown") && !a.GetBool("ShootLeft") && !a.GetBool("ShootRight"))
+        {
+            if (direction == Vector2.right)
+            {
+                a.SetBool("ShootRight", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+            }
+            if (direction == -Vector2.right)
+            {
+                a.SetBool("ShootLeft", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+            }
+            if (direction == Vector2.up)
+            {
+                a.SetBool("ShootUp", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+            }
+            if (direction == -Vector2.up)
+            {
+                a.SetBool("ShootDown", true);
+                a.SetBool("Idle", false);
+                a.SetBool("Right", false);
+                a.SetBool("Left", false);
+                a.SetBool("Up", false);
+                a.SetBool("Down", false);
+            }
+            return;
+        }
+        else
 	    {
             float vert = Mathf.Abs(Input.GetAxis("VerticalAxis")) > Mathf.Abs(Input.GetAxis("VerticalAxisJoystick")) ? Input.GetAxis("VerticalAxis") : Input.GetAxis("VerticalAxisJoystick");
             float horz = Mathf.Abs(Input.GetAxis("HorizontalAxis")) > Mathf.Abs(Input.GetAxis("HorizontalAxisJoystick")) ? Input.GetAxis("HorizontalAxis") : Input.GetAxis("HorizontalAxisJoystick");
@@ -209,12 +260,12 @@ public class CameraMovement : MonoBehaviour {
         // WORKING 
         if (Input.GetKeyDown(KeyCode.Keypad5))
             AudioManager.Instance.playMultiCue("MyParallel");
-
+        
         /* WORKING */
         if (Input.GetKeyDown(KeyCode.Keypad6))
             AudioManager.Instance.playMultiCue("MySequential");
 
-
+        /* WORKING */
         if (Input.GetKeyDown(KeyCode.Keypad7))
             AudioManager.Instance.playLoop("strike");
 
