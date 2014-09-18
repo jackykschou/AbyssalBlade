@@ -5,7 +5,7 @@ using Assets.Scripts.Constants;
 using PathologicalGames;
 using UnityEngine;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !UNITY_WEBPLAYER
 using System.IO;
 #endif
 
@@ -91,6 +91,10 @@ namespace Assets.Scripts.Managers
 
         public void UpdateManager()
         {
+#if UNITY_WEBPLAYER
+            Debug.LogWarning("PrefabManager's Update is not functional in WebPlayer");
+            return;
+#endif
             _serializedPrefabPoolMapKeys = new List<string>();
             _serializedPrefabPoolMapValues = new List<string>();
             UpdateManagerHelper();
@@ -98,7 +102,7 @@ namespace Assets.Scripts.Managers
 
         void UpdateManagerHelper(string assetDirectoryPath = PrefabConstants.StartingAssetPrefabPath, string resourcesPrefabPath = PrefabConstants.StartingResourcesPrefabPath)
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !UNITY_WEBPLAYER
             DirectoryInfo dir = new DirectoryInfo(assetDirectoryPath);
 
             var files = dir.GetFiles("*.prefab").Where(f => (f.Extension == PrefabConstants.PrefabExtension)).ToList();
