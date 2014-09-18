@@ -26,6 +26,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         [GameScriptEvent(GameScriptEvent.PlayerAxisMoved)]
         public void RigidMove(Vector2 direction)
         {
+            direction = direction.normalized;
             FacingDirection newDirection = direction.GetFacingDirection();
             if (newDirection != GameView.FacingDirection)
             {
@@ -38,6 +39,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         [GameScriptEvent(GameScriptEvent.AIMove)]
         public void RigidMoveLol(Vector2 direction)
         {
+            direction = direction.normalized;
             FacingDirection newDirection = direction.GetFacingDirection();
             if (newDirection != GameView.FacingDirection)
             {
