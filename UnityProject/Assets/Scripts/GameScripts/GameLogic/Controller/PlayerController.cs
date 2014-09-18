@@ -31,13 +31,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField]
         private ButtonOnPressed Attack4;
 
-        public PlayerCharacterSkillsCaster Caster;
-
-        protected override void Initialize()
-        {
-            Caster = GetComponent<PlayerCharacterSkillsCaster>();
-        }
-
         protected override void Deinitialize()
         {
         }
@@ -62,27 +55,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed);
             }
-            else if ((HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect()) && !Caster.Casting)
+            else if ((HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect()))
             {
-                const float axisThreshHold = 0.1f;
+                float horizontalValue = Mathf.Abs(HorizontalAxis.GetAxisValue()) >
+                                    Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue())
+                ? HorizontalAxis.GetAxisValue()
+                : JoyStickHorizontalAxis.GetAxisValue();
 
-                float horizontalMagnitude = Mathf.Max(Mathf.Abs(HorizontalAxis.GetAxisValue()), Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue()));
-                float verticalMagnitude = Mathf.Max(Mathf.Abs(VerticalAxis.GetAxisValue()), Mathf.Abs(JoyStickVerticalAxis.GetAxisValue()));
+                float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
+                                    Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
+                ? VerticalAxis.GetAxisValue()
+                : JoyStickVerticalAxis.GetAxisValue();
 
-                if (horizontalMagnitude > axisThreshHold || verticalMagnitude > axisThreshHold)
-                {
-                    float horizontalValue = Mathf.Abs(HorizontalAxis.GetAxisValue()) >
-                                        Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue())
-                    ? HorizontalAxis.GetAxisValue()
-                    : JoyStickHorizontalAxis.GetAxisValue();
-
-                    float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
-                                        Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
-                    ? VerticalAxis.GetAxisValue()
-                    : JoyStickVerticalAxis.GetAxisValue();
-
-                    TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(horizontalValue, verticalValue));
-                }
+                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(horizontalValue, verticalValue));
             }
         }
     }
