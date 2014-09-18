@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Assets.Scripts.Constants;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -10,43 +12,51 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
     [RequireComponent(typeof(UnityEngine.Animator))]
     public abstract class ObjectAnimator : GameLogic
     {
+        private Dictionary<string, int> _animationBoolParametesrBufferMap;
+
         private const int BoolResetBufferFrame = 2;
-        private int _frameSinceLastAnimation;
 
         protected UnityEngine.Animator Animator;
 
         protected override void Initialize()
         {
             base.Initialize();
-            _frameSinceLastAnimation = 0;
             Animator = GetComponent<UnityEngine.Animator>();
+            _animationBoolParametesrBufferMap = new Dictionary<string, int>();
         }
 
         protected override void Deinitialize()
         {
         }
 
-        public virtual void ResetAllBool()
-        {
-            Animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Idle, false);
-        }
-
         [GameScriptEventAttribute(GameScriptEvent.SetAnimatorState)]
         public void SetAnimatorBoolState(string state)
         {
             Animator.SetBool(state, true);
-            _frameSinceLastAnimation = BoolResetBufferFrame;
+            if (_animationBoolParametesrBufferMap.ContainsKey(state))
+            {
+                _animationBoolParametesrBufferMap[state] = BoolResetBufferFrame;
+            }
+            else
+            {
+                _animationBoolParametesrBufferMap.Add(state, BoolResetBufferFrame);
+            }
         }
 
         protected override void Update()
         {
             base.Update();
-            if (_frameSinceLastAnimation > 0)
+            List<string> keys = _animationBoolParametesrBufferMap.Keys.ToList();
+            foreach (var k in keys)
             {
-                _frameSinceLastAnimation--;
-                if (_frameSinceLastAnimation == 0)
+                if (_animationBoolParametesrBufferMap[k] <= 0)
                 {
-                    ResetAllBool();
+                    _animationBoolParametesrBufferMap.Remove(k);
+                    Animator.SetBool(k, false);
+                }
+                else
+                {
+                    _animationBoolParametesrBufferMap[k]--;
                 }
             }
         }

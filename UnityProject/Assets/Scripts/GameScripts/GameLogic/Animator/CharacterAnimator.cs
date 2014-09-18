@@ -8,8 +8,9 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Animator
 {
+    [AddComponentMenu("ObjectAnimator/CharacterAnimator")]
     [RequireComponent(typeof(UnityEngine.Animator))]
-    public abstract class CharacterAnimator : ObjectAnimator
+    public class CharacterAnimator : ObjectAnimator
     {
         [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
         public void UpdateFacingDirection(FacingDirection facingDirection)
@@ -27,13 +28,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         public void PlayerDeathAnimation()
         {
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Death);
-        }
-
-        public override void ResetAllBool()
-        {
-            base.ResetAllBool();
-            Animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Move, false);
-            Animator.SetBool(AnimatorControllerConstants.AnimatorParameterName.Death, false);
         }
 
         protected override void Deinitialize()

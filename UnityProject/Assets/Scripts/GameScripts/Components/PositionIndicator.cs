@@ -25,18 +25,18 @@ namespace Assets.Scripts.GameScripts.Components
             }
             if (Position == null)
             {
-                Position = GameScript.transform;
+                throw new Exception("Position is null");
             }
 
-            _downPos = Position.position;
+            _downPos = Position.localPosition;
             Position.RotateAround (Follower.position, Vector3.forward, 90);
-            _rightPos = Position.position;
+            _rightPos = Position.localPosition;
             Position.RotateAround(Follower.position, Vector3.forward, 90);
-            _upPos = Position.position;
+            _upPos = Position.localPosition;
             Position.RotateAround(Follower.position, Vector3.forward, 90);
-            _leftPos = Position.position;
+            _leftPos = Position.localPosition;
 
-            Position.position = _downPos;
+            Position.localPosition = _downPos;
         }
 
         public override void Deinitialize()
@@ -52,16 +52,16 @@ namespace Assets.Scripts.GameScripts.Components
             switch (facingDirection)
             {
                 case FacingDirection.Up:
-                    Position.position = _upPos;
+                    Position.localPosition = _upPos;
                     break;
                 case FacingDirection.Down:
-                    Position.position = _downPos;
+                    Position.localPosition = _downPos;
                     break;
                 case FacingDirection.Left:
-                    Position.position = _leftPos;
+                    Position.localPosition = _leftPos;
                     break;
                 case FacingDirection.Right:
-                    Position.position = _rightPos;
+                    Position.localPosition = _rightPos;
                     break;
             }
         }
