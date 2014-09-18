@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEngine;
 
 namespace Assets.Scripts.Managers.Editor
 {
@@ -11,10 +12,10 @@ namespace Assets.Scripts.Managers.Editor
 
             DrawDefaultInspector();
 
-            //if (GUILayout.Button("Update"))
-            //{
-            //    manager.UpdateManager();
-            //}
+            if (GUILayout.Button("Update"))
+            {
+                manager.UpdateManager();
+            }
         }
     }
 }

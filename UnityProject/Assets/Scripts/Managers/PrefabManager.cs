@@ -1,37 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-//using System.IO;
 using System.Linq;
 using Assets.Scripts.Constants;
 using PathologicalGames;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using System.IO;
+#endif
+
 namespace Assets.Scripts.Managers
 {
-    [AddComponentMenu("Manager/PrefabManager")]
+    [AddComponentMenu("Manager/PrefabManager")] 
     public class PrefabManager : MonoBehaviour
     {
-        public int DefaultPreloadAmount;
-        public bool DefaultCullDespawned;
-        public int DefaultCullAbove;
-
         public static PrefabManager Instance;
+
+        [SerializeField]
+        private List<string> _serializedPrefabPoolMapKeys;
+        [SerializeField]
+        private List<string> _serializedPrefabPoolMapValues;
 
         private Dictionary<string, SpawnPool> _prefabPoolMap;
         private Dictionary<GameObject, SpawnPool> _spawnedPrefabsMap;
 
         void Awake()
         {
-            UpdateManager();
-
             _spawnedPrefabsMap = new Dictionary<GameObject, SpawnPool>();
+            _prefabPoolMap = new Dictionary<string, SpawnPool>();
             Instance = FindObjectOfType<PrefabManager>();
+            CreateSpawnPools();
         }
 
-        void OnDisable()
+        void CreateSpawnPools()
         {
-            PoolManager.Pools.DestroyAll();
+            for(int i = 0; i < _serializedPrefabPoolMapKeys.Count; ++i)
+            {
+                if (_prefabPoolMap.Values.All(s => s.poolName != _serializedPrefabPoolMapValues[i]))
+                {
+                    SpawnPool spawnPool = PoolManager.Pools.Create(_serializedPrefabPoolMapValues[i]);
+                    spawnPool.gameObject.transform.parent = transform;
+                    spawnPool.gameObject.transform.position = transform.position;
+                    spawnPool.gameObject.name = _serializedPrefabPoolMapValues[i];
+                    spawnPool.dontDestroyOnLoad = true;
+                    _prefabPoolMap.Add(_serializedPrefabPoolMapKeys[i], spawnPool);
+                }
+                else
+                {
+                    SpawnPool spawnPool =
+                        _prefabPoolMap.Values.First(s => s.poolName == _serializedPrefabPoolMapValues[i]);
+                    _prefabPoolMap.Add(_serializedPrefabPoolMapKeys[i], spawnPool);
+                }
+            }
         }
 
         public GameObject SpawnPrefab(Prefab prefab, Vector3 position)
@@ -71,43 +91,33 @@ namespace Assets.Scripts.Managers
 
         public void UpdateManager()
         {
-            _prefabPoolMap = new Dictionary<string, SpawnPool>();
+            _serializedPrefabPoolMapKeys = new List<string>();
+            _serializedPrefabPoolMapValues = new List<string>();
             UpdateManagerHelper();
         }
 
         void UpdateManagerHelper(string assetDirectoryPath = PrefabConstants.StartingAssetPrefabPath, string resourcesPrefabPath = PrefabConstants.StartingResourcesPrefabPath)
         {
-            //DirectoryInfo dir = new DirectoryInfo(assetDirectoryPath);
+#if UNITY_EDITOR
+            DirectoryInfo dir = new DirectoryInfo(assetDirectoryPath);
 
-            //var files = dir.GetFiles("*.prefab").Where(f => (f.Extension == PrefabConstants.PrefabExtension)).ToList();
-            //if (files.Any())
-            //{
-            //    SpawnPool spawnPool = CreateSpawnPool(dir.Name);
-            //    List<string> prefabNames = new List<string>();
-            //    foreach (var f in files)
-            //    {
-            //        prefabNames.Add(Path.GetFileNameWithoutExtension(f.Name));
-            //        _prefabPoolMap.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name), spawnPool);
-            //    }
-            //}
+            var files = dir.GetFiles("*.prefab").Where(f => (f.Extension == PrefabConstants.PrefabExtension)).ToList();
+            if (files.Any())
+            {
+                string poolName = dir.Name;
+                foreach (var f in files)
+                {
+                    _serializedPrefabPoolMapKeys.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name));
+                    _serializedPrefabPoolMapValues.Add(poolName);
+                }
+            }
 
-            //DirectoryInfo[] subDirectories = dir.GetDirectories();
-            //foreach (var d in subDirectories)
-            //{
-            //    UpdateManagerHelper(assetDirectoryPath + d.Name + "/", resourcesPrefabPath + d.Name + "/");
-            //}
-        }
-
-        SpawnPool CreateSpawnPool(string name)
-        {
-            SpawnPool spawnPool = PoolManager.Pools.Create(name);
-
-            spawnPool.gameObject.transform.parent = transform;
-            spawnPool.gameObject.transform.position = transform.position;
-            spawnPool.gameObject.name = name + "SpawnPool";
-            spawnPool.dontDestroyOnLoad = true;
-
-            return spawnPool;
+            DirectoryInfo[] subDirectories = dir.GetDirectories();
+            foreach (var d in subDirectories)
+            {
+                UpdateManagerHelper(assetDirectoryPath + d.Name + "/", resourcesPrefabPath + d.Name + "/");
+            }
+#endif
         }
     }
 }
