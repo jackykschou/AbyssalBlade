@@ -1,5 +1,6 @@
 using System;
-using Assets.Scripts.GameScripts.GameLogic.Animator;
+using Assets.Scripts.Constants;
+using Assets.Scripts.Utility;
 using StateMachine;
 using StateMachine.Action;
 
@@ -16,14 +17,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 
 		public override void OnEnter()
 		{
-		    ObjectAnimator animator = stateMachine.owner.GetComponent<ObjectAnimator>();
-
-		    if (animator == null)
-		    {
-		        throw new Exception("There is no Animator in the GameObject");
-		    }
-
-            animator.SetAnimatorBoolState(parameterName.Value);
+		    stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.SetAnimatorState, parameterName.Value);
 		}
 
 		public override void OnUpdate()

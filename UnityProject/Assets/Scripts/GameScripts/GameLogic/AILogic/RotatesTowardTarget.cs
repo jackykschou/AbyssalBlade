@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             Target = target.transform.position;
         }
 
+        [GameScriptEventAttribute(GameScriptEvent.AIRotateToTarget)]
         public void RotateTowardsTarget()
         {
             FacingDirection newDirection = MathUtility.GetDirection(transform.position, Target).GetFacingDirection();

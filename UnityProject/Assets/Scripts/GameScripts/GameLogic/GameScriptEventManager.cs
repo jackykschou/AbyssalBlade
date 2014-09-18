@@ -80,23 +80,26 @@ namespace Assets.Scripts.GameScripts.GameLogic
             gameScript.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {
-                    GameScriptEvent gameScriptEvent = Attribute.GetCustomAttribute(m, typeof(GameScriptEvent)) as GameScriptEvent;
-                    if (gameScriptEvent != null)
+                    foreach (var a in Attribute.GetCustomAttributes(m, typeof(GameScriptEvent)))
                     {
-                        Type gameScriptType = gameScript.GetType();
-                        if (!_gameScriptEvents.ContainsKey(gameScriptType))
+                        GameScriptEvent gameScriptEvent = a as GameScriptEvent;
+                        if (gameScriptEvent != null)
                         {
-                            _gameScriptEvents.Add(gameScriptType, new Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>());
+                            Type gameScriptType = gameScript.GetType();
+                            if (!_gameScriptEvents.ContainsKey(gameScriptType))
+                            {
+                                _gameScriptEvents.Add(gameScriptType, new Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>());
+                            }
+                            if (!_gameScriptEvents[gameScriptType].ContainsKey(gameScriptEvent.Event))
+                            {
+                                _gameScriptEvents[gameScriptType].Add(gameScriptEvent.Event, new Dictionary<GameScript, List<MethodInfo>>());
+                            }
+                            if (!_gameScriptEvents[gameScriptType][gameScriptEvent.Event].ContainsKey(gameScript))
+                            {
+                                _gameScriptEvents[gameScriptType][gameScriptEvent.Event].Add(gameScript, new List<MethodInfo>());
+                            }
+                            _gameScriptEvents[gameScriptType][gameScriptEvent.Event][gameScript].Add(m);
                         }
-                        if (!_gameScriptEvents[gameScriptType].ContainsKey(gameScriptEvent.Event))
-                        {
-                            _gameScriptEvents[gameScriptType].Add(gameScriptEvent.Event, new Dictionary<GameScript, List<MethodInfo>>());
-                        }
-                        if (!_gameScriptEvents[gameScriptType][gameScriptEvent.Event].ContainsKey(gameScript))
-                        {
-                            _gameScriptEvents[gameScriptType][gameScriptEvent.Event].Add(gameScript, new List<MethodInfo>());
-                        }
-                        _gameScriptEvents[gameScriptType][gameScriptEvent.Event][gameScript].Add(m);
                     }
                 });
         }

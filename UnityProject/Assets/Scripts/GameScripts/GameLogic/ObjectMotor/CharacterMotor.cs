@@ -23,21 +23,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             rigidbody2D.fixedAngle = true;
         }
 
+        [GameScriptEvent(GameScriptEvent.AIMove)]
         [GameScriptEvent(GameScriptEvent.PlayerAxisMoved)]
         public void RigidMove(Vector2 direction)
-        {
-            direction = direction.normalized;
-            FacingDirection newDirection = direction.GetFacingDirection();
-            if (newDirection != GameView.FacingDirection)
-            {
-                TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
-            }
-            rigidbody2D.AddForce(direction * Speed * WorldScaleConstant.SpeedScale * Time.deltaTime);
-            TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
-        }
-
-        [GameScriptEvent(GameScriptEvent.AIMove)]
-        public void RigidMoveLol(Vector2 direction)
         {
             direction = direction.normalized;
             FacingDirection newDirection = direction.GetFacingDirection();

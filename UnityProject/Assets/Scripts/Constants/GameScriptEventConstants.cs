@@ -15,7 +15,9 @@
         UpdateFacingDirection,          // void(FacingDirection)
 
         SetAnimatorState,               // void(string)
-
+        
+        AIRotateToTarget,               // void()
+        AICastSkill,                    // void()
         AIMove,                         // void(Vector2)
 
         SkillCastTriggerSucceed,        // void(Skill)

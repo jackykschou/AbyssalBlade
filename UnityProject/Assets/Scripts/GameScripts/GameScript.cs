@@ -258,23 +258,26 @@ namespace Assets.Scripts.GameScripts
             component.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {
-                    ComponentEventAttribute componentEvent = Attribute.GetCustomAttribute(m, typeof(ComponentEventAttribute)) as ComponentEventAttribute;
-                    if (componentEvent != null)
+                    foreach (var a in Attribute.GetCustomAttributes(m, typeof(ComponentEventAttribute)))
                     {
-                        Type componentType = component.GetType();
-                        if (!_componentsEvents.ContainsKey(componentType))
+                        ComponentEventAttribute componentEvent = a as ComponentEventAttribute;
+                        if (componentEvent != null)
                         {
-                            _componentsEvents.Add(componentType, new Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>());
+                            Type componentType = component.GetType();
+                            if (!_componentsEvents.ContainsKey(componentType))
+                            {
+                                _componentsEvents.Add(componentType, new Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>());
+                            }
+                            if (!_componentsEvents[componentType].ContainsKey(componentEvent.Event))
+                            {
+                                _componentsEvents[componentType].Add(componentEvent.Event, new Dictionary<GameScriptComponent, List<MethodInfo>>());
+                            }
+                            if (!_componentsEvents[componentType][componentEvent.Event].ContainsKey(component))
+                            {
+                                _componentsEvents[componentType][componentEvent.Event].Add(component, new List<MethodInfo>());
+                            }
+                            _componentsEvents[componentType][componentEvent.Event][component].Add(m);
                         }
-                        if (!_componentsEvents[componentType].ContainsKey(componentEvent.Event))
-                        {
-                            _componentsEvents[componentType].Add(componentEvent.Event, new Dictionary<GameScriptComponent, List<MethodInfo>>());
-                        }
-                        if (!_componentsEvents[componentType][componentEvent.Event].ContainsKey(component))
-                        {
-                            _componentsEvents[componentType][componentEvent.Event].Add(component, new List<MethodInfo>());
-                        }
-                        _componentsEvents[componentType][componentEvent.Event][component].Add(m);
                     }
                 });
         }

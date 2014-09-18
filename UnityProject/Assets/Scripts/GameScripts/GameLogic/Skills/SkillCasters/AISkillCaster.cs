@@ -2,6 +2,9 @@
 using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using UnityEngine;
 
+using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
+using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
+
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 {
     public class AISkillCaster : SkillCaster
@@ -13,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
             return Skills.Any(s => s.CanActivate()) && MinimumCoolDown.CanDispatch();
         }
 
+        [GameScriptEventAttribute(GameScriptEvent.AICastSkill)]
         public void CastSkill()
         {
             if (!CanCastAnySkill())

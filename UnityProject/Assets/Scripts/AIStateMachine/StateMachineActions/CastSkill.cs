@@ -1,4 +1,5 @@
-using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
+using Assets.Scripts.Constants;
+using Assets.Scripts.Utility;
 using StateMachine.Action;
 
 namespace Assets.Scripts.AIStateMachine.StateMachineActions{
@@ -13,7 +14,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
 
 		public override void OnUpdate()
 		{
-            stateMachine.owner.gameObject.GetComponent<AISkillCaster>().CastSkill();
+            stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AICastSkill);
 		}
 	}
 }

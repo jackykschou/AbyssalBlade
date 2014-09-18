@@ -1,3 +1,5 @@
+using Assets.Scripts.Constants;
+using Assets.Scripts.Utility;
 using StateMachine.Action;
 
 namespace Assets.Scripts.AIStateMachine.StateMachineActions
@@ -14,8 +16,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 
 		public override void OnUpdate()
 		{
-            GameScripts.GameLogic.AILogic.RotatesTowardTarget rotateLogic = stateMachine.owner.GetComponent<GameScripts.GameLogic.AILogic.RotatesTowardTarget>();
-            rotateLogic.RotateTowardsTarget();
+            stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AIRotateToTarget);
 		}
 	}
 }
