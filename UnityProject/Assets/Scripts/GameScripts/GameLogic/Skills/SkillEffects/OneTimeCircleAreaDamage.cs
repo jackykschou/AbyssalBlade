@@ -14,6 +14,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public PositionIndicator Position;
         public float Radius;
 
+        public override void Activate()
+        {
+            base.Activate();
+            ApplyDamages();
+            Activated = false;
+        }
+
         public void ApplyDamages()
         {
             foreach (var hit in Physics2D.CircleCastAll(Position.Position.position, Radius, Vector2.zero, 0f, LayerConstants.LayerMask.Destroyable))

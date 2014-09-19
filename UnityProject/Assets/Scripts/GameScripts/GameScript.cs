@@ -166,14 +166,7 @@ namespace Assets.Scripts.GameScripts
 
         public void DisableGameObject()
         {
-            if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
-            {
-                PrefabManager.Instance.DespawnPrefab(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
 
         void OnDespawned()

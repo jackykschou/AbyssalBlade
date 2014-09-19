@@ -65,7 +65,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         public void MoveAlongWithStyle(EaseType style, Vector2 direction)
         {
             direction = direction.normalized;
-            const float moveAlongDistance = 500;
+            const float moveAlongDistance = 50;
 
             Vector2 destination = new Vector2(transform.position.x, transform.position.y) + direction * moveAlongDistance;
             float moveDuration = moveAlongDistance / Speed;

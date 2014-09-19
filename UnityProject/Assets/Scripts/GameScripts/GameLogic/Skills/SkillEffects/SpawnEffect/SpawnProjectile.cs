@@ -15,21 +15,27 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
     public class SpawnProjectile : SkillEffect
     {
         public Prefab ProjectilePrefab;
-        public PositionIndicator position;
+        public PositionIndicator Position;
 
         public override void Activate()
         {
             base.Activate();
-            Spawn();
+            StartSpawnProjectile();
             Activated = false;
         }
 
-        public void Spawn()
+        public void StartSpawnProjectile()
         {
-            ProjectileMotor motor = PrefabManager.Instance.SpawnPrefab(ProjectilePrefab, position.Position.position).GetComponent<ProjectileMotor>();
+            ProjectileMotor motor = PrefabManager.Instance.SpawnPrefab(ProjectilePrefab, Position.Position.position).GetComponent<ProjectileMotor>();
             motor.tag = SKill.Caster.gameObject.tag;
             motor.Target = SKill.Caster.Target.position;
             motor.Shoot();
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
+        public void UpdateDamageAreaPosition(FacingDirection facingDirection)
+        {
+            Position.UpdatePosition(facingDirection);
         }
     }
 }
