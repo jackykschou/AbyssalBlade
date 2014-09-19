@@ -10,9 +10,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
     public abstract class SkillCaster : GameLogic
     {
         public List<Skill> Skills;
-        public bool Casting
+        public bool CastingActiveSkill
         {
-            get { return Skills.Any(s => s.IsActivate); }
+            get { return Skills.Any(s => s.IsActivate || s.IsPassive); }
         }
 
         public Transform Target;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         protected override void Initialize()
         {
             base.Initialize();
-            Skills = GetComponents<Skill>().ToList();
+            Skills = GetComponentsInChildren<Skill>().ToList();
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnNewTargetDiscovered)]

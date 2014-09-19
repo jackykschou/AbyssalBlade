@@ -12,9 +12,9 @@ namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
         public float DispatchCoolDownPercentage {
             get
             {
-                return ((Time.fixedTime - _lastFrameTime) >= DispatchInterval)
+                return ((Time.time - _lastFrameTime) >= DispatchInterval)
                     ? 1.0f
-                    : ((Time.fixedTime - _lastFrameTime)/DispatchInterval);
+                    : ((Time.time - _lastFrameTime) / DispatchInterval);
             }
         }
 
@@ -22,12 +22,17 @@ namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
 
         public void ResetTime () 
         {
-            _lastFrameTime = Time.fixedTime;
+            _lastFrameTime = Time.time;
         }
 
         public bool CanDispatch()
         {
-            return ((Time.fixedTime - _lastFrameTime) >= DispatchInterval) && IsEnabled;
+            if (DispatchInterval <= 0f)
+            {
+                return true;
+            }
+
+            return ((Time.time - _lastFrameTime) >= DispatchInterval) && IsEnabled;
         }
 
         public bool Dispatch()

@@ -7,6 +7,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
     public abstract class SkillEffect : GameLogic
     {
         public Skill SKill;
+        public bool Activated { get; protected set; }
+
+        public virtual void Activate()
+        {
+            Activated = true;
+        }
 
         protected override void Initialize()
         {

@@ -17,7 +17,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
         public Prefab ProjectilePrefab;
         public PositionIndicator position;
 
-        [GameScriptEventAttribute(GameScriptEvent.SkillCastTriggerSucceed)]
+        public override void Activate()
+        {
+            base.Activate();
+            Spawn();
+            Activated = false;
+        }
+
         public void Spawn()
         {
             ProjectileMotor motor = PrefabManager.Instance.SpawnPrefab(ProjectilePrefab, position.Position.position).GetComponent<ProjectileMotor>();

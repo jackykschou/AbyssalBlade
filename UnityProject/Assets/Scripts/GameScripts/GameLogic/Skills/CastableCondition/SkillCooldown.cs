@@ -32,7 +32,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
         [GameScriptEvent(Constants.GameScriptEvent.SkillCastTriggerSucceed)]
         public void ResetCooldown(Skill skill)
         {
-            CoolDownDispatcher.Dispatch();
+            if (skill == Skill)
+            {
+                CoolDownDispatcher.Dispatch();
+            }
         }
     }
 }

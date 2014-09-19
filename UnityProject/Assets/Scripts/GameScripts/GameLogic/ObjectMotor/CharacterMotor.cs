@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.GameValue;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -23,9 +22,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             rigidbody2D.fixedAngle = true;
         }
 
-        [GameScriptEvent(GameScriptEvent.AIMove)]
-        [GameScriptEvent(GameScriptEvent.PlayerAxisMoved)]
-        public void RigidMove(Vector2 direction)
+        [GameScriptEvent(GameScriptEvent.MoveCharacter)]
+        public void MoveCharacter(Vector2 direction)
         {
             direction = direction.normalized;
             FacingDirection newDirection = direction.GetFacingDirection();
@@ -33,6 +31,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             {
                 TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
             }
+            TriggerGameScriptEvent(GameScriptEvent.OnCharacterMove, direction);
+            RigidMove(direction);
+        }
+
+        public void RigidMove(Vector2 direction)
+        {
+            direction = direction.normalized;
             rigidbody2D.AddForce(direction * Speed * WorldScaleConstant.SpeedScale * Time.deltaTime);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }

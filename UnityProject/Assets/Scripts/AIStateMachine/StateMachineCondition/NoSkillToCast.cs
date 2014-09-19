@@ -14,7 +14,8 @@ namespace Assets.Scripts.AIStateMachine.StateMachineCondition{
 
 		public override bool Validate()
 		{
-            return !stateMachine.owner.gameObject.GetComponent<AISkillCaster>().CanCastAnySkill();
+            return !stateMachine.owner.gameObject.GetComponent<AISkillCaster>().CanCastAnySkill()
+                && !stateMachine.owner.gameObject.GetComponent<AISkillCaster>().CastingActiveSkill;
 		}
 	}
 }

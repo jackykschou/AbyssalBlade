@@ -18,8 +18,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             Animator.SetInteger(AnimatorControllerConstants.AnimatorParameterName.FacingDirection, (int)facingDirection);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnObjectMove)]
-        public void OnObjectMove()
+        [GameScriptEventAttribute(GameScriptEvent.OnCharacterMove)]
+        public void OnObjectMove(Vector2 direction)
         {
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Move);
         }

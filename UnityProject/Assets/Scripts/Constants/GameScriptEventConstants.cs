@@ -7,6 +7,7 @@
         Example, // void()
 #endif
         PlayerAxisMoved,                // void(Vector2)
+        UpdatePlayerAxis,               // void(Vector2)
         PlayerAttack1ButtonPressed,     // void()
         PlayerAttack2ButtonPressed,     // void()
         PlayerAttack3ButtonPressed,     // void()
@@ -20,9 +21,11 @@
         AICastSkill,                    // void()
         AIMove,                         // void(Vector2)
 
+        MoveCharacter,                  // void(Vector2)
+        OnCharacterMove,                // void(Vector2)
+
         SkillCastTriggerSucceed,        // void(Skill)
         SkillCastTriggerFailed,         // void(Skill)
-        SkillEnded,                     // void(Skill)
         UpdateSkillCooldownPercentage,  // void(Skill, float)
         OnNewTargetDiscovered,          // void(GameObject)
 

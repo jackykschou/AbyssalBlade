@@ -14,9 +14,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
     {
         private Dictionary<string, int> _animationBoolParametesrBufferMap;
 
-        private const int BoolResetBufferFrame = 2;
+        private const int BoolResetBufferFrame = 1;
 
-        protected UnityEngine.Animator Animator;
+        public UnityEngine.Animator Animator;
 
         protected override void Initialize()
         {

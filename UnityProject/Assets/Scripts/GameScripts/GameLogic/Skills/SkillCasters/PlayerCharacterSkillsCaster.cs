@@ -12,6 +12,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
     public class PlayerCharacterSkillsCaster : SkillCaster
     {
         [SerializeField] 
+        private Skill _movementSkill;
+
+        [SerializeField] 
         private Skill _skill1;
 
         [SerializeField]
@@ -40,6 +43,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         {
             TargetHolder.UpdatePosition(facingDirection);
             Target = TargetHolder.Position;
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.PlayerAxisMoved)]
+        public void ActivateMovement(Vector2 direction)
+        {
+            TriggerGameScriptEvent(GameScriptEvent.UpdatePlayerAxis, direction);
+            _movementSkill.Activate();
         }
 
         [GameScriptEvent(GameScriptEvent.PlayerAttack1ButtonPressed)]

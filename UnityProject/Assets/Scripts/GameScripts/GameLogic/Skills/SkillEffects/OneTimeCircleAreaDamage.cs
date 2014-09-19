@@ -8,28 +8,15 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
     [AddComponentMenu("Skill/SkillEffect/OneTimeCircleAreaDamage")]
-    [RequireComponent(typeof(CircleCollider2D))]
     public class OneTimeCircleAreaDamage : SkillEffect
     {
         public GameValue DamageAmount;
         public PositionIndicator Position;
-        public CircleCollider2D Area;
+        public float Radius;
 
-        protected override void Initialize()
+        public void ApplyDamages()
         {
-            base.Initialize();
-            if (Area == null)
-            {
-                Area = GetComponent<CircleCollider2D>();
-            }
-            Area.isTrigger = true;
-            Area.enabled = false;
-        }
-
-        [GameScriptEventAttribute(GameScriptEvent.SkillCastTriggerSucceed)]
-        public void ApplyDamages(Skill skill)
-        {
-            foreach (var hit in Physics2D.CircleCastAll(Area.center, Area.radius, Vector2.zero, 0.1f, LayerConstants.LayerMask.Destroyable))
+            foreach (var hit in Physics2D.CircleCastAll(Position.Position.position, Radius, Vector2.zero, 0f, LayerConstants.LayerMask.Destroyable))
             {
                 if (TagConstants.IsEnemy(gameObject.tag, hit.collider.gameObject.tag))
                 {
@@ -39,7 +26,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                     }
                 }
             }
-            TriggerCasterGameScriptEvent(GameScriptEvent.SkillEnded, SKill);    
         }
 
         [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
