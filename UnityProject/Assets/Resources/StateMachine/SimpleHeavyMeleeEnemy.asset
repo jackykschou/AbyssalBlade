@@ -1,0 +1,400 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1406037b2b7477e40b21b00979b14cbf, type: 3}
+  m_Name: SimpleHeavyMeleeEnemy
+  m_EditorClassIdentifier: 
+  sceneInstancePopups: 1
+  parameters: []
+  states:
+  - {fileID: 11400002}
+  - {fileID: 11400004}
+  - {fileID: 11400006}
+  - {fileID: 11400010}
+  description: 
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a55b71f5a71b94a8378054584ca02f, type: 3}
+  m_Name: Any State
+  m_EditorClassIdentifier: 
+  position:
+    serializedVersion: 2
+    x: 347.5
+    y: 233
+    width: 150
+    height: 30
+  id: 55a61b92-1e28-4ae3-9d61-7b5eb2122967
+  isDefaultState: 0
+  transitions: []
+  actions: []
+  description: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5132a9f7ee3f75943a7cfcc012490704, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  position:
+    serializedVersion: 2
+    x: 266
+    y: 430
+    width: 150
+    height: 30
+  id: d430f00e-18f7-4c8f-b79d-d80c410fb9b0
+  isDefaultState: 1
+  transitions:
+  - {fileID: 11400012}
+  actions: []
+  description: 
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5132a9f7ee3f75943a7cfcc012490704, type: 3}
+  m_Name: Follow
+  m_EditorClassIdentifier: 
+  position:
+    serializedVersion: 2
+    x: 473
+    y: 427
+    width: 150
+    height: 30
+  id: d02c76b1-4d4e-402c-b87e-8c34f6ae3211
+  isDefaultState: 0
+  transitions:
+  - {fileID: 11400014}
+  - {fileID: 11400018}
+  actions:
+  - {fileID: 11400020}
+  description: 
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5132a9f7ee3f75943a7cfcc012490704, type: 3}
+  m_Name: New State
+  m_EditorClassIdentifier: 
+  position:
+    serializedVersion: 2
+    x: 672
+    y: 239
+    width: 150
+    height: 30
+  id: e1ac9461-6226-4684-836c-899634ef63ba
+  isDefaultState: 0
+  transitions: []
+  actions: []
+  description: 
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5132a9f7ee3f75943a7cfcc012490704, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: 
+  position:
+    serializedVersion: 2
+    x: 649
+    y: 427
+    width: 150
+    height: 30
+  id: ecd74f1e-fe3d-43ce-9288-ab40082ae759
+  isDefaultState: 0
+  transitions:
+  - {fileID: 11400016}
+  actions:
+  - {fileID: 11400038}
+  - {fileID: 11400040}
+  description: 
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
+  m_Name: Idle -> Idle
+  m_EditorClassIdentifier: 
+  fromState: {fileID: 11400004}
+  toState: {fileID: 11400006}
+  mute: 0
+  conditions:
+  - {fileID: 11400030}
+  - {fileID: 11400046}
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
+  m_Name: Follow -> Follow
+  m_EditorClassIdentifier: 
+  fromState: {fileID: 11400006}
+  toState: {fileID: 11400010}
+  mute: 0
+  conditions:
+  - {fileID: 11400036}
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
+  m_Name: Attack -> Attack
+  m_EditorClassIdentifier: 
+  fromState: {fileID: 11400010}
+  toState: {fileID: 11400006}
+  mute: 0
+  conditions:
+  - {fileID: 11400028}
+  - {fileID: 11400042}
+  - {fileID: 11400044}
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
+  m_Name: Follow -> Follow
+  m_EditorClassIdentifier: 
+  fromState: {fileID: 11400006}
+  toState: {fileID: 11400004}
+  mute: 0
+  conditions:
+  - {fileID: 11400032}
+  - {fileID: 11400048}
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90e7dcc31af8d948a3d3920adcd8e05, type: 3}
+  m_Name: Custom.FollowTarget
+  m_EditorClassIdentifier: 
+  disabled: 0
+  MinimumDistance: {fileID: 11400034}
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ec49eb9edb9a14ba08a97a420479ef, type: 3}
+  m_Name: layer
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  reference: 
+  parameterName: 
+  value: 0
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb276c1b39c741469badf93104a8e95, type: 3}
+  m_Name: lol
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  reference: None
+  parameterName: 
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2602dc51dc941b4bab191afe0434aff, type: 3}
+  m_Name: afsd
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  reference: 
+  parameterName: 
+  fromSceneInstance: 0
+  sceneId: 0
+  value: {fileID: 0}
+--- !u!114 &11400028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5d1709ed53c9a40a6b5ded2b481ffa, type: 3}
+  m_Name: Custom.TargetIsNull
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17dcfe14ce00ac46940fff1e2c9ea6a, type: 3}
+  m_Name: Custom.EnemyDetected
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5d1709ed53c9a40a6b5ded2b481ffa, type: 3}
+  m_Name: Custom.TargetIsNull
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fadbd82c28c4004dbd5d23eb1a5578b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  reference: 
+  parameterName: 
+  value: 1
+--- !u!114 &11400036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0c58d7ab97845459533725c2ea4aa8, type: 3}
+  m_Name: Custom.CanCastSkill
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa96a09792721e47b28bd5e6717552f, type: 3}
+  m_Name: Custom.CastSkill
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7353016d730bc3a44bd65540650fe019, type: 3}
+  m_Name: Custom.RotateTowardsTarget
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5d1709ed53c9a40a6b5ded2b481ffa, type: 3}
+  m_Name: Custom.TargetIsNull
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52cef80fbf5821469b14c78817bdadb, type: 3}
+  m_Name: Custom.NoSkillToCast
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17dcfe14ce00ac46940fff1e2c9ea6a, type: 3}
+  m_Name: Custom.EnemyDetected
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5d1709ed53c9a40a6b5ded2b481ffa, type: 3}
+  m_Name: Custom.TargetIsNull
+  m_EditorClassIdentifier: 
+  disabled: 0

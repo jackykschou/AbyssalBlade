@@ -2,25 +2,80 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
+using Assets.Scripts.GameScripts.GameLogic;
+using Assets.Scripts.GameScripts.GameLogic.Skills;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
 using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
 using ComponentEventAttribute = Assets.Scripts.Attributes.ComponentEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventtAttribute = Assets.Scripts.Attributes.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts
 {
+    [RequireComponent(typeof(GameScriptEditorUpdate))]
+    [RequireComponent(typeof(GameScriptEventManager))]
     public abstract class GameScript : MonoBehaviour
     {
-        private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>> _componentsEvents;
-        private List<SerializableComponent> _components;
+        public GameScriptEventManager GameScriptEventManager { private get; set; }
+
+        private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
+        private List<GameScriptComponent> _components;
+        private bool _initialized = false;
+        private bool _deinitialized = false;
 
         protected abstract void Initialize();
 
         protected abstract void Deinitialize();
+
+        public virtual void EditorUpdate()
+        {
+        }
+
+        public void TriggerGameScriptEvent(GameScriptEvent gameScriptEvent, params object[] args)
+        {
+            GameScriptEventManager.TriggerGameScriptEvent(gameScriptEvent, args);
+
+            foreach (Transform t in transform)
+            {
+                foreach (var s in t.gameObject.GetComponents<GameScript>())
+                {
+                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
+                }
+            }
+        }
+
+        public void TriggerGameScriptEvent<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
+        {
+            GameScriptEventManager.TriggerGameScriptEvent<T>(gameScriptEvent, args);
+
+            foreach (Transform t in transform)
+            {
+                foreach (var s in t.gameObject.GetComponents<GameScript>())
+                {
+                    if (s is T)
+                    {
+                        s.TriggerGameScriptEvent(s, gameScriptEvent, args);
+                    }
+                }
+            }
+        }
+
+        public void TriggerGameScriptEvent(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
+        {
+            GameScriptEventManager.TriggerGameScriptEvent(gameScript, gameScriptEvent, args);
+
+            foreach (Transform t in transform)
+            {
+                foreach (var s in t.gameObject.GetComponents<GameScript>())
+                {
+                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
+                }
+            }
+        }
 
         public void TriggerComponentEvent(ComponentEvent componentEvent, params object[] args)
         {
@@ -39,7 +94,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : SerializableComponent
+        public void TriggerComponentEvent<T>(ComponentEvent componentEvent, params object[] args) where T : GameScriptComponent
         {
             foreach (var typeDictPair in _componentsEvents)
             {
@@ -53,7 +108,7 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        public void TriggerComponentEvent(SerializableComponent component, ComponentEvent componentEvent, params object[] args)
+        public void TriggerComponentEvent(GameScriptComponent component, ComponentEvent componentEvent, params object[] args)
         {
             if (ContainsComponentEvent(component, componentEvent))
             {
@@ -64,9 +119,14 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        private bool ContainsComponentEvent(SerializableComponent component, ComponentEvent componentEvent)
+        private bool ContainsComponentEvent(GameScriptComponent component, ComponentEvent componentEvent)
         {
             return _componentsEvents.ContainsKey(component.GetType()) && _componentsEvents[component.GetType()].ContainsKey(componentEvent) && _componentsEvents[component.GetType()][componentEvent].ContainsKey(component);
+        }
+
+        public void TriggerGameEvent(System.Object obj, GameEvent gameEvent, params System.Object[] args)
+        {
+            GameEventManager.Instance.TriggerGameEvent(obj, gameEvent, args);
         }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
@@ -76,21 +136,66 @@ namespace Assets.Scripts.GameScripts
 
         void Awake ()
         {
-            InitializeFields();
+            InitializeHelper();
         }
 
         void Start()
         {
+            InitializeHelper();
+        }
+
+        void OnSpawned()
+        {
+            InitializeHelper();
+        }
+
+        void InitializeHelper()
+        {
+            if (_initialized)
+            {
+                return;
+            }
+
+            InitializeFields();
             SubscribeGameEvents();
             InitializeComponents();
             Initialize();
+            _initialized = true;
+            _deinitialized = false;
+        }
+
+        public void DisableGameObject()
+        {
+            Destroy(gameObject);
+        }
+
+        void OnDespawned()
+        {
+            DeinitializeHelper();
+        }
+
+        void OnDisable()
+        {
+            DeinitializeHelper();
         }
 
         void OnDestroy()
         {
+            DeinitializeHelper();
+        }
+
+        void DeinitializeHelper()
+        {
+            if (_deinitialized)
+            {
+                return;
+            }
+            
             DeinitializeComponents();
             UnsubscribeGameEvents();
             Deinitialize();
+            _deinitialized = true;
+            _initialized = false;
         }
 
         protected virtual void Update()
@@ -100,15 +205,16 @@ namespace Assets.Scripts.GameScripts
 
         private void InitializeFields()
         {
-            _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>>();
-            _components = new List<SerializableComponent>();
+            _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>>();
+            _components = new List<GameScriptComponent>();
+            GameScriptEventManager = GetComponent<GameScriptEventManager>();
         }
 	
         private void InitializeComponents()
         {
             _components =
                 GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
-                            .Select(f => f.GetValue(this) as SerializableComponent)
+                            .Select(f => f.GetValue(this) as GameScriptComponent)
                             .Where(c => c != null).ToList();
 
             foreach (var component in _components)
@@ -121,6 +227,7 @@ namespace Assets.Scripts.GameScripts
             foreach (var component in _components)
             {
                 component.Initialize();
+                component.InitializeChildComponents();
             }
         }
 
@@ -129,6 +236,7 @@ namespace Assets.Scripts.GameScripts
 
             foreach (var component in _components)
             {
+                component.DeinitializeChildComponents();
                 component.Deinitialize();
             }
 
@@ -138,28 +246,31 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
-        private void AddComponentEvents(SerializableComponent component)
+        private void AddComponentEvents(GameScriptComponent component)
         {
             component.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {
-                    ComponentEventAttribute componentEvent = Attribute.GetCustomAttribute(m, typeof(ComponentEventAttribute)) as ComponentEventAttribute;
-                    if (componentEvent != null)
+                    foreach (var a in Attribute.GetCustomAttributes(m, typeof(ComponentEventAttribute)))
                     {
-                        Type componentType = component.GetType();
-                        if (!_componentsEvents.ContainsKey(componentType))
+                        ComponentEventAttribute componentEvent = a as ComponentEventAttribute;
+                        if (componentEvent != null)
                         {
-                            _componentsEvents.Add(componentType, new Dictionary<ComponentEvent, Dictionary<SerializableComponent, List<MethodInfo>>>());
+                            Type componentType = component.GetType();
+                            if (!_componentsEvents.ContainsKey(componentType))
+                            {
+                                _componentsEvents.Add(componentType, new Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>());
+                            }
+                            if (!_componentsEvents[componentType].ContainsKey(componentEvent.Event))
+                            {
+                                _componentsEvents[componentType].Add(componentEvent.Event, new Dictionary<GameScriptComponent, List<MethodInfo>>());
+                            }
+                            if (!_componentsEvents[componentType][componentEvent.Event].ContainsKey(component))
+                            {
+                                _componentsEvents[componentType][componentEvent.Event].Add(component, new List<MethodInfo>());
+                            }
+                            _componentsEvents[componentType][componentEvent.Event][component].Add(m);
                         }
-                        if (!_componentsEvents[componentType].ContainsKey(componentEvent.Event))
-                        {
-                            _componentsEvents[componentType].Add(componentEvent.Event, new Dictionary<SerializableComponent, List<MethodInfo>>());
-                        }
-                        if (!_componentsEvents[componentType][componentEvent.Event].ContainsKey(component))
-                        {
-                            _componentsEvents[componentType][componentEvent.Event].Add(component, new List<MethodInfo>());
-                        }
-                        _componentsEvents[componentType][componentEvent.Event][component].Add(m);
                     }
                 });
         }
@@ -170,9 +281,9 @@ namespace Assets.Scripts.GameScripts
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEventtAttribute))
+                    if (attr.GetType() == typeof(GameEventAttribute))
                     {
-                        GameEventtAttribute gameEventSubscriberAttribute = attr as GameEventtAttribute;
+                        GameEventAttribute gameEventSubscriberAttribute = attr as GameEventAttribute;
                         GameEventManager.Instance.SubscribeGameEvent(this, gameEventSubscriberAttribute.Event, info);
                     }
                 }
@@ -185,9 +296,9 @@ namespace Assets.Scripts.GameScripts
             {
                 foreach (var attr in Attribute.GetCustomAttributes(info))
                 {
-                    if (attr.GetType() == typeof(GameEventtAttribute))
+                    if (attr.GetType() == typeof(GameEventAttribute))
                     {
-                        GameEventtAttribute gameEventSubscriberAttribute = attr as GameEventtAttribute;
+                        GameEventAttribute gameEventSubscriberAttribute = attr as GameEventAttribute;
                         GameEventManager.Instance.UnsubscribeGameEvent(this, gameEventSubscriberAttribute.Event);
                     }
                 }

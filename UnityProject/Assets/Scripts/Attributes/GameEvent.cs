@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class GameEvent : Attribute
     {
         public Constants.GameEvent Event{get; private set;}

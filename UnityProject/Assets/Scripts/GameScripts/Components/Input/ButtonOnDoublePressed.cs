@@ -1,18 +1,12 @@
 ﻿using Assets.Scripts.Constants;
-using Assets.Scripts.Utility;
+using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 
 namespace Assets.Scripts.GameScripts.Components.Input
 {
     [System.Serializable]
     public class ButtonOnDoublePressed : PlayerInput
     {
-        private FixTimeDispatcher _clickBufferTimeDispatcher;
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            _clickBufferTimeDispatcher = new FixTimeDispatcher(InputConstants.DoubleClickBufferTime);
-        }
+        public FixTimeDispatcher ClickBufferTimeDispatcher;
 
         public override bool Detect()
         {
@@ -48,7 +42,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
 
         private bool HasClickedOnce()
         {
-            return !_clickBufferTimeDispatcher.Dispatch();
+            return !ClickBufferTimeDispatcher.Dispatch();
         }
     }
 }

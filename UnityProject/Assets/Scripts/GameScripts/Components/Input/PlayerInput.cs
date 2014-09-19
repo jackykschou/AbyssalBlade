@@ -1,17 +1,15 @@
 ﻿using Assets.Scripts.Constants;
-using Assets.Scripts.Utility;
+using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.Components.Input
 {
-    public class PlayerInput : SerializableComponent
+    public class PlayerInput : GameScriptComponent
     {
         [SerializeField]
         private InputKeyCode _keyCode;
-        [SerializeField]
-        protected float CoolDown;
 
-        protected FixTimeDispatcher CoolDownTimeDispatcher;
+        public FixTimeDispatcher CoolDownTimeDispatcher;
 
         public InputKeyCode KeyCode
         {
@@ -26,7 +24,6 @@ namespace Assets.Scripts.GameScripts.Components.Input
 
         public override void Initialize()
         {
-            CoolDownTimeDispatcher = new FixTimeDispatcher(CoolDown);
         }
 
         public override void Deinitialize()

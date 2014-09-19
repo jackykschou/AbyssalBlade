@@ -9,7 +9,10 @@ namespace Assets.Scripts.Constants
         HorizontalAxis,
         VerticalAxisJoystick,
         HorizontalAxisJoystick,
-        Attack1
+        Attack1,
+        Attack2,
+        Attack3,
+        Attack4
     };
 
     public static class InputConstants
@@ -22,7 +25,10 @@ namespace Assets.Scripts.Constants
             {InputKeyCode.HorizontalAxis, "HorizontalAxis"},
             {InputKeyCode.VerticalAxisJoystick, "VerticalAxisJoystick"},
             {InputKeyCode.HorizontalAxisJoystick, "HorizontalAxisJoystick"},
-            {InputKeyCode.Attack1, "Attack1"}
+            {InputKeyCode.Attack1, "Attack1"},
+            {InputKeyCode.Attack2, "Attack2"},
+            {InputKeyCode.Attack3, "Attack3"},
+            {InputKeyCode.Attack4, "Attack4"}
         };
 
         public static string GetKeyCodeName(InputKeyCode keyCode)
