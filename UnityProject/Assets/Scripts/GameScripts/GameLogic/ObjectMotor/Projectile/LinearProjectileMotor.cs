@@ -8,7 +8,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
     {
         public override void Shoot()
         {
-            MoveAlongWithStyle(EaseType.linear, MathUtility.GetDirection(transform.position, Target));
+            MoveAlongWithStyle(EaseType.linear, MathUtility.GetDirection(transform.position, Target), Speed);
         }
     }
 }

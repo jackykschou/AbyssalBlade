@@ -32,19 +32,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
                 TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
             }
             TriggerGameScriptEvent(GameScriptEvent.OnCharacterMove, direction);
-            RigidMove(direction);
+            RigidMove(direction, Speed);
         }
 
-        public void RigidMove(Vector2 direction)
+        public void RigidMove(Vector2 direction, float speed)
         {
             direction = direction.normalized;
-            rigidbody2D.AddForce(direction * Speed * WorldScaleConstant.SpeedScale * Time.deltaTime);
+            rigidbody2D.AddForce(direction * speed * WorldScaleConstant.SpeedScale * Time.deltaTime);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
-        public void RigidMove(GameObject target)
+        public void RigidMove(GameObject target, float speed)
         {
-            RigidMove(gameObject.GetDirection(target));
+            RigidMove(gameObject.GetDirection(target), speed);
         }
 
         protected override void Update()

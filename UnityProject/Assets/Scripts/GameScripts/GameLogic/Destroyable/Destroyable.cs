@@ -27,7 +27,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
         public void TakeDamage(float damage)
         {
-            Debug.Log("TakeDamageTakeDamage  " + gameObject.name);
             if (Invincible || Destroyed)
             {
                 return;
