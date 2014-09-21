@@ -14,7 +14,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
         protected override void Initialize()
         {
             base.Initialize();
-            Target = transform.parent;
+            //Target = transform.parent;
             if (Target == null)
             {
                 throw new Exception("Need a parent to follow");
@@ -35,7 +35,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
             }
 
             Vector3 wantedPosition = Vector3.Lerp(transform.position, Target.position, Time.deltaTime * Damping);
-            transform.position = new Vector3(wantedPosition.x, wantedPosition.y, transform.position.z);
+            this.gameObject.transform.position = new Vector3(wantedPosition.x, wantedPosition.y, transform.position.z);
         }
     }
 }

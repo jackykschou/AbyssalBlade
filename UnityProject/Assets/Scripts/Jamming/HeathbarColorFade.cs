@@ -12,7 +12,7 @@ public class HeathbarColorFade : MonoBehaviour {
         s = gameObject.GetComponent<Slider>();
         i = fillArea.gameObject.GetComponent<Image>();
 	}
-	
+
     public void fadeColor()
     {
         if(i != null && s != null)
