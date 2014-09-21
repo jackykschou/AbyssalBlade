@@ -12,9 +12,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
     [RequireComponent(typeof(UnityEngine.Animator))]
     public abstract class ObjectAnimator : GameLogic
     {
-        private Dictionary<string, int> _animationBoolParametesrBufferMap;
+        private Dictionary<string, float> _animationBoolParametesrAutoResetBufferMap;
+        private string _lastBoolParameter;
 
-        private const int BoolResetBufferFrame = 1;
+        private const float BoolResetBufferFrameTime = 0.1f;
 
         public UnityEngine.Animator Animator;
 
@@ -22,7 +23,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         {
             base.Initialize();
             Animator = GetComponent<UnityEngine.Animator>();
-            _animationBoolParametesrBufferMap = new Dictionary<string, int>();
+            _animationBoolParametesrAutoResetBufferMap = new Dictionary<string, float>();
+            _lastBoolParameter = string.Empty;
         }
 
         protected override void Deinitialize()
@@ -32,31 +34,36 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         [GameScriptEventAttribute(GameScriptEvent.SetAnimatorState)]
         public void SetAnimatorBoolState(string state)
         {
-            Animator.SetBool(state, true);
-            if (_animationBoolParametesrBufferMap.ContainsKey(state))
+            if (_lastBoolParameter != string.Empty)
             {
-                _animationBoolParametesrBufferMap[state] = BoolResetBufferFrame;
+                Animator.SetBool(_lastBoolParameter, false);
+            }
+            _lastBoolParameter = state;
+            Animator.SetBool(state, true);
+            if (_animationBoolParametesrAutoResetBufferMap.ContainsKey(state))
+            {
+                _animationBoolParametesrAutoResetBufferMap[state] = BoolResetBufferFrameTime;
             }
             else
             {
-                _animationBoolParametesrBufferMap.Add(state, BoolResetBufferFrame);
+                _animationBoolParametesrAutoResetBufferMap.Add(state, BoolResetBufferFrameTime);
             }
         }
 
         protected override void Update()
         {
             base.Update();
-            List<string> keys = _animationBoolParametesrBufferMap.Keys.ToList();
+            List<string> keys = _animationBoolParametesrAutoResetBufferMap.Keys.ToList();
             foreach (var k in keys)
             {
-                if (_animationBoolParametesrBufferMap[k] <= 0)
+                if (_animationBoolParametesrAutoResetBufferMap[k] <= 0)
                 {
-                    _animationBoolParametesrBufferMap.Remove(k);
+                    _animationBoolParametesrAutoResetBufferMap.Remove(k);
                     Animator.SetBool(k, false);
                 }
                 else
                 {
-                    _animationBoolParametesrBufferMap[k]--;
+                    _animationBoolParametesrAutoResetBufferMap[k] -= Time.deltaTime;
                 }
             }
         }
