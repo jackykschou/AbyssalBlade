@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Constants;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;

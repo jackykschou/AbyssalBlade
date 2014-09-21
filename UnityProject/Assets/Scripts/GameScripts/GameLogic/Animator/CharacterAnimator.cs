@@ -1,7 +1,5 @@
-﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.Constants;
+﻿using Assets.Scripts.Constants;
 using UnityEngine;
-using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
@@ -24,7 +22,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Move);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnDestroyableDestroyed)]
         public void PlayerDeathAnimation()
         {
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Death);

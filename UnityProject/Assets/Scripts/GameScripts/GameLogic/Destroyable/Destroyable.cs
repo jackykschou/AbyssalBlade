@@ -11,11 +11,24 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
         public bool Invincible;
         public GameValue HitPoint;
         public GameValue DamageReduction;
+        public bool Destroyed { get; private set; }
+
+        [Range(0f, float.MaxValue)] 
+        [SerializeField]
+        private float _delay = 1.5f;
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            Destroyed = false;
+            Invincible = false;
+        }
 
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
         public void TakeDamage(float damage)
         {
-            if (Invincible)
+            Debug.Log("TakeDamageTakeDamage  " + gameObject.name);
+            if (Invincible || Destroyed)
             {
                 return;
             }
@@ -25,11 +38,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
                 HitPoint -= 1.0f;
             }
 
-            HitPoint -= (DamageReduction * damage);
+            HitPoint -= ((1 - DamageReduction) * damage);
 
             if (HitPoint <= 0f)
             {
-                TriggerGameScriptEvent(Constants.GameScriptEvent.OnDestroyableDestroyed);
+                Destroyed = true;
+                TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectDestroyed);
+                DisableGameObject(_delay);
             }
         }
 

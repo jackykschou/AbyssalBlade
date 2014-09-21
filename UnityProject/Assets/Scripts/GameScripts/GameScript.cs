@@ -164,9 +164,9 @@ namespace Assets.Scripts.GameScripts
             _deinitialized = false;
         }
 
-        public void DisableGameObject()
+        public void DisableGameObject(float delay = 0f)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, delay);
         }
 
         void OnDespawned()
