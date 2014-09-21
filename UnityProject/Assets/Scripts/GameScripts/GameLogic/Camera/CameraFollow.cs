@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Camera
 {
@@ -10,16 +9,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
 
         [Range(0, float.MaxValue)]
         public float Damping = 5f;
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-            Target = transform.parent;
-            if (Target == null)
-            {
-                throw new Exception("Need a parent to follow");
-            }
-        }
 
         protected override void Deinitialize()
         {
