@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.Input;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Controller
@@ -38,6 +39,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         protected override void Update()
         {
             base.Update();
+            if (gameObject.IsDestroyed())
+            {
+                return;
+            }
 
             if (Attack1.Detect())
             {

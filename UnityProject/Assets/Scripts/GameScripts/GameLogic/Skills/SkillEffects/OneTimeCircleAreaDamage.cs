@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.Components.GameValue;
+using Assets.Scripts.Utility;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
@@ -23,14 +24,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 
         public void ApplyDamages()
         {
-            foreach (var hit in Physics2D.CircleCastAll(Position.Position.position, Radius, Vector2.zero, 0f, LayerConstants.LayerMask.Destroyable))
+            foreach (var col in Physics2D.OverlapCircleAll(Position.Position.position, Radius, LayerConstants.LayerMask.Destroyable))
             {
-                if (TagConstants.IsEnemy(gameObject.tag, hit.collider.gameObject.tag))
+                if (TagConstants.IsEnemy(gameObject.tag, col.gameObject.tag) && !col.gameObject.IsDestroyed())
                 {
-                    if (hit.collider.gameObject.GetComponent<GameScript>() != null)
-                    {
-                        hit.collider.gameObject.GetComponent<GameScript>().TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount);
-                    }
+                    col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount.Value);
                 }
             }
         }

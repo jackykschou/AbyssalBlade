@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -13,7 +14,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         public bool CanCastAnySkill()
         {
-            return Skills.Any(s => s.CanActivate()) && MinimumCoolDown.CanDispatch();
+            return Skills.Any(s => s.CanActivate()) && MinimumCoolDown.CanDispatch() && !gameObject.IsDestroyed();
         }
 
         [GameScriptEventAttribute(GameScriptEvent.AICastSkill)]

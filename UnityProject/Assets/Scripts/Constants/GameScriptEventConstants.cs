@@ -30,7 +30,6 @@
         OnNewTargetDiscovered,          // void(GameObject)
 
         OnObjectMove,                   // void()
-        OnDestroyableDestroyed,         // void()
         OnObjectDestroyed,              // void()
         OnObjectTakeDamage              // void(float)
     };

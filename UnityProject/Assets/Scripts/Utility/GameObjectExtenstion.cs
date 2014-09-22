@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts;
+using Assets.Scripts.GameScripts.GameLogic.Destroyable;
 using UnityEngine;
 
 namespace Assets.Scripts.Utility
@@ -16,6 +17,17 @@ namespace Assets.Scripts.Utility
             }
 
             s.TriggerGameScriptEvent(gameScriptEvent, args);
+        }
+
+        public static bool IsDestroyed(this GameObject o)
+        {
+            Destroyable destroyable = o.GetComponent<Destroyable>();
+            if (destroyable == null)
+            {
+                return false;
+            }
+
+            return destroyable.Destroyed;
         }
     }
 }
