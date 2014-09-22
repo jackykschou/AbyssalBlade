@@ -31,11 +31,5 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
             motor.Target = SKill.Caster.Target.position;
             motor.Shoot();
         }
-
-        [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
-        public void UpdateDamageAreaPosition(FacingDirection facingDirection)
-        {
-            Position.UpdatePosition(facingDirection);
-        }
     }
 }

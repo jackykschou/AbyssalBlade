@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.GameValue;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Damager
@@ -17,7 +18,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Damager
         protected override void OnTriggerEnter2D(Collider2D coll)
         {
             base.OnTriggerEnter2D(coll);
-            Debug.Log("OnTriggerEnter2DOnTriggerEnter2D");
+
             if (TagConstants.IsEnemy(gameObject.tag, coll.gameObject.tag))
             {
                 GameScript s = coll.gameObject.GetComponent<GameScript>();
@@ -26,7 +27,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Damager
                     s.TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount.Value);
                 }
             }
-            if (coll.gameObject.tag != gameObject.tag)
+            if (coll.gameObject.tag != gameObject.tag && !coll.gameObject.IsDestroyed())
             {
                 DisableGameObject();
             }
