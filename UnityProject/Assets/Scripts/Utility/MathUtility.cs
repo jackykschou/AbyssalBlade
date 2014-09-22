@@ -34,6 +34,10 @@ namespace Assets.Scripts.Utility
         public static FacingDirection GetFacingDirection(this Vector2 v)
         {
             v = v.normalized;
+            if (v == Vector2.zero)
+            {
+                return FacingDirection.Down;
+            }
             if (Mathf.Approximately(Vector2.Angle(Vector2.right, v), 45f))
             {
                 return FacingDirection.Right;

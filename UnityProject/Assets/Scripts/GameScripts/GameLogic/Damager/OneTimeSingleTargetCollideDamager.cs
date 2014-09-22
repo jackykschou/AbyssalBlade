@@ -14,16 +14,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.Damager
         {
         }
 
-        void OnCollisionEnter2D(Collision2D coll)
+        protected override void OnTriggerEnter2D(Collider2D coll)
         {
+            base.OnTriggerEnter2D(coll);
+            Debug.Log("OnTriggerEnter2DOnTriggerEnter2D");
             if (TagConstants.IsEnemy(gameObject.tag, coll.gameObject.tag))
             {
                 GameScript s = coll.gameObject.GetComponent<GameScript>();
                 if (s != null)
                 {
-                    s.TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount);
-                    DisableGameObject();
+                    s.TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount.Value);
                 }
+            }
+            if (coll.gameObject.tag != gameObject.tag)
+            {
+                DisableGameObject();
             }
         }
     }

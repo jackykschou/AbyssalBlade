@@ -18,7 +18,8 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400004}
-  m_Layer: 0
+  - 114: {fileID: 11400012}
+  m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,6 +117,7 @@ MonoBehaviour:
     InitialMaxValue: 100
     InitialValue: 10
   Target: {x: 0, y: 0, z: 0}
+  easeType: 21
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,6 +152,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LifeTime: 20
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31500aad3efce447807f5d42c7abf69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageAmount:
+    InitialMinValue: 0
+    InitialMaxValue: 100
+    InitialValue: 20
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
