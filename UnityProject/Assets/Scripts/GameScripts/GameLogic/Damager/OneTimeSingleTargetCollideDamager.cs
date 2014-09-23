@@ -25,6 +25,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Damager
                 if (s != null)
                 {
                     s.TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount.Value);
+                    DisableGameObject();
+                    return;
                 }
             }
             if (coll.gameObject.tag != gameObject.tag && !coll.gameObject.IsDestroyed())

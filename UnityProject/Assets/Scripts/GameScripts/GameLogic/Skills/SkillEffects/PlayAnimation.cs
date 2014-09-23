@@ -45,16 +45,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
             {
                 messagesSent.Add(false);
             }
-            UnityEngine.Animator casterAnimator = SKill.Caster.gameObject.GetComponent<ObjectAnimator>().Animator;
-            float timer = _animationDuration;
-            while (timer >= 0)
+            float timer = 0f;
+            while (timer < _animationDuration)
             {
                 yield return new WaitForSeconds(Time.deltaTime);
-                timer -= Time.deltaTime;
+                timer += Time.deltaTime;
                 for (int i = 0; i < _animationEventMessages.Count; ++i)
                 {
-                    if (!messagesSent[i] &&((casterAnimator.GetCurrentAnimatorStateInfo(0).length >= _animationEventMessagesSendTime[i]) ||
-                        (timer >= 0)))
+                    if (!messagesSent[i] && (timer >= _animationEventMessagesSendTime[i]))
                     {
                         messagesSent[i] = true;
                         gameObject.BroadcastMessage(_animationEventMessages[i], SendMessageOptions.DontRequireReceiver);

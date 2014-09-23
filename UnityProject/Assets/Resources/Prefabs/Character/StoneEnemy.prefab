@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.49460006, z: 0}
+  m_LocalPosition: {x: 0, y: -.41971001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  Distance: 2
+  Distance: 1.5
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,7 +232,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: 1
+    DispatchInterval: 3
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,7 +248,7 @@ MonoBehaviour:
   DamageAmount:
     InitialMinValue: 0
     InitialMaxValue: 100
-    InitialValue: 10
+    InitialValue: 30
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
@@ -266,11 +266,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SKill: {fileID: 0}
   BoolParameterName: Melee
-  _animationDuration: .300000012
+  _animationDuration: 1
   _animationEventMessages:
   - ApplyDamages
   _animationEventMessagesSendTime:
-  - .200000003
+  - .800000012
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

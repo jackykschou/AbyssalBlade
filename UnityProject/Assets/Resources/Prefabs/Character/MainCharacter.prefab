@@ -57,6 +57,7 @@ GameObject:
   - 114: {fileID: 11400030}
   - 114: {fileID: 11400036}
   - 114: {fileID: 11400034}
+  - 114: {fileID: 11400000}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -265,6 +266,27 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: facf3c84149cce448ac74f24387d782c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Invincible: 0
+  HitPoint:
+    InitialMinValue: 0
+    InitialMaxValue: 100
+    InitialValue: 100
+  DamageReduction:
+    InitialMinValue: 0
+    InitialMaxValue: 0
+    InitialValue: 0
+  _delay: 1.5
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +347,7 @@ MonoBehaviour:
   _animationEventMessages:
   - StartSpawnProjectile
   _animationEventMessagesSendTime:
-  - .200000003
+  - .100000001
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SKill: {fileID: 0}
   BoolParameterName: Skill1
-  _animationDuration: .300000012
+  _animationDuration: .400000006
   _animationEventMessages:
   - ApplyDamages
   _animationEventMessagesSendTime:
@@ -580,7 +602,7 @@ MonoBehaviour:
   DamageAmount:
     InitialMinValue: 0
     InitialMaxValue: 100
-    InitialValue: 10
+    InitialValue: 100
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400008}

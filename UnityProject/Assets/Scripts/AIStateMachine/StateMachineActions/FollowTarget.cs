@@ -1,3 +1,4 @@
+using Assets.Scripts.Utility;
 using StateMachine;
 using StateMachine.Action;
 using Assets.Scripts.GameScripts.GameLogic.AILogic;
@@ -24,7 +25,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 		{
             PathFinding pathfinding = stateMachine.owner.GetComponent<PathFinding>();
 
-            if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance))
+            if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) || pathfinding.gameObject.IsDestroyed())
             {
                 return;
             }
