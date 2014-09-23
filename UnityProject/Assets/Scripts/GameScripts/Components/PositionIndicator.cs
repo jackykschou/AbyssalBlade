@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameViews;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
@@ -43,7 +44,7 @@ namespace Assets.Scripts.GameScripts.Components
         {
         }
 
-        public override void Update () 
+        public override void Update()
         {
         }
 

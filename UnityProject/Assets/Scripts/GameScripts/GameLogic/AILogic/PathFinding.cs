@@ -74,6 +74,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             rvoController = GetComponent<RVOController>();
             if (rvoController != null) rvoController.enableRotation = false;
             rigid = rigidbody;
+
+            EnablePathFind();
         }
 
         protected override void Deinitialize()
@@ -364,17 +366,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
 
         public virtual Vector3 GetFeetPosition()
         {
-            if (rvoController != null)
-            {
-                return tr.position - Vector3.up * rvoController.height * 0.5f;
-            }
-            else
-                if (controller != null)
-                {
-                    return tr.position - Vector3.up * controller.height * 0.5F;
-                }
-
-            return tr.position;
+            return transform.position;
         }
 
         /** Point to where the AI is heading.
@@ -444,14 +436,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             }
 
             Vector3 dir = vPath[currentWaypointIndex] - vPath[currentWaypointIndex - 1];
+
+            return dir.normalized;
+
             Vector3 targetPosition = CalculateTargetPoint(currentPosition, vPath[currentWaypointIndex - 1], vPath[currentWaypointIndex]);
-            //vPath[currentWaypointIndex] + Vector3.ClampMagnitude (dir,forwardLook);
-
-
 
             dir = targetPosition - currentPosition;
-            dir.y = 0;
+            dir.z = 0;
             float targetDist = dir.magnitude;
+
+            return dir.normalized;
 
             float slowdown = Mathf.Clamp01(targetDist / slowdownDistance);
 
@@ -467,8 +461,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             }
 
             Vector3 forward = tr.forward;
-            float dot = Vector3.Dot(dir.normalized, forward);
-            float sp = speed * Mathf.Max(dot, minMoveScale) * slowdown;
 
 #if ASTARDEBUG
 		Debug.DrawLine (vPath[currentWaypointIndex-1] , vPath[currentWaypointIndex],Color.black);
@@ -478,11 +470,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
 		Debug.DrawRay (GetFeetPosition(),forward*sp,Color.cyan);
 #endif
 
-            if (Time.deltaTime > 0)
-            {
-                sp = Mathf.Clamp(sp, 0, targetDist / (Time.deltaTime * 2));
-            }
-            return forward * sp;
+            return forward.normalized;
         }
 
         /** Rotates in the specified direction.
@@ -516,8 +504,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
      */
         protected Vector3 CalculateTargetPoint(Vector3 p, Vector3 a, Vector3 b)
         {
-            a.y = p.y;
-            b.y = p.y;
+            a.z = p.z;
+            b.z = p.z;
 
             float magn = (a - b).magnitude;
             if (magn == 0) return a;

@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         {
             base.Initialize();
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.Projectile);
-            Invoke("DisableGameObject", LifeTime);
+            DisableGameObject(LifeTime);
         }
 
         protected override void Deinitialize()

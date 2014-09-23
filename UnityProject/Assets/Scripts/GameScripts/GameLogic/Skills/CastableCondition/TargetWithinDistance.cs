@@ -20,7 +20,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
                 return false;
             }
 
-            return Vector2.Distance(Skill.Caster.transform.position, Skill.Caster.GameView.CenterPosition) <= Distance;
+            return Vector2.Distance(Skill.Caster.Target.position, Skill.Caster.GameView.CenterPosition) <= Distance;
         }
     }
 }

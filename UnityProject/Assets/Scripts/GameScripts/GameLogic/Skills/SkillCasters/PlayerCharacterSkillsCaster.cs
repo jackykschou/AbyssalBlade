@@ -38,11 +38,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         {
         }
 
-        [GameScriptEvent(GameScriptEvent.UpdateFacingDirection)]
-        public void UpdateTargetPosition(FacingDirection facingDirection)
+        [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
+        public void UpdateDamageAreaPosition(FacingDirection facingDirection)
         {
             TargetHolder.UpdatePosition(facingDirection);
-            Target = TargetHolder.Position;
         }
 
         [GameScriptEventAttribute(GameScriptEvent.PlayerAxisMoved)]
