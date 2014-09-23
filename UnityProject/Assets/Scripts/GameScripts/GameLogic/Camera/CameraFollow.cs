@@ -47,26 +47,27 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
             // WORKING
             if (Input.GetKeyDown(KeyCode.Keypad0))
                 AudioManager.Instance.playCue("Parallel1");
-            
             // WORKING
             if (Input.GetKeyDown(KeyCode.Keypad1))
                 AudioManager.Instance.playCue("Random1");
-            /*
             // WORKING
             if (Input.GetKeyDown(KeyCode.Keypad2))
-
+                AudioManager.Instance.playCue("Sequential1");
             // WORKING
             if (Input.GetKeyDown(KeyCode.Keypad3))
-
+                AudioManager.Instance.playClipDelayed("strike", 2.0f);
+            
             // WORKING
             if (Input.GetKeyDown(KeyCode.Keypad4))
-
+                AudioManager.Instance.playLoop("TestLoop");
             // WORKING 
             if (Input.GetKeyDown(KeyCode.Keypad5))
-
+                AudioManager.Instance.swapLoopTrack("TestLoop");
             // WORKING 
             if (Input.GetKeyDown(KeyCode.Keypad6))
+                AudioManager.Instance.stopLoop("TestLoop");
 
+                /*
             // WORKING 
             if (Input.GetKeyDown(KeyCode.Keypad7))
 
@@ -76,8 +77,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
             // WORKING
             if (Input.GetKeyDown(KeyCode.Keypad9))
                 */
-
-
         }
     }
     

@@ -17,8 +17,11 @@ namespace Assets.Scripts.Managers
         private List<AudioClip> clips;
         [SerializeField]
         private List<MultiCue> cues;
+        [SerializeField]
+        private List<LoopingCue> loops;
         private Dictionary<string, AudioClip> _oneShotList;
         private Dictionary<string, MultiCue> _cueDict;
+        private Dictionary<string, LoopingCue> _loopDict;
 
         private static AudioManager _instance;
         public static AudioManager Instance
@@ -38,12 +41,23 @@ namespace Assets.Scripts.Managers
         {
             UpdateManager();
         }
+        void CreateCustomCues()
+        {
+            // for custom cues not in folders
+            LoopingCue lCue = new LoopingCue("TestLoop");
+            lCue.addTrack(findClip("Laser"));
+            lCue.addTrack(findClip("strike"));
+            _loopDict[lCue.name] = lCue;
+            loops.Add(lCue);
+        }
+
         public void UpdateManager()
         {
             clips = new List<AudioClip>();
             cues = new List<MultiCue>();
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<string, MultiCue>();
+            _loopDict = new Dictionary<string, LoopingCue>();
 
             foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music"))
             {
@@ -67,7 +81,7 @@ namespace Assets.Scripts.Managers
                             clipList.Add(clip);
                             cuenames += "(" + clip.name + ") ";
                         }
-                        Debug.Log("Creating Parallel MultiCue: " + cuenames);
+                        //Debug.Log("Created Parallel Cue -> " + sd.Name + ": " + cuenames);
                         createMultiCueParallel(sd.Name,clipList);
                     }
                 }
@@ -82,8 +96,25 @@ namespace Assets.Scripts.Managers
                             clipList.Add(clip);
                             cuenames += "(" + clip.name + ") ";
                         }
-                        Debug.Log("Creating Random MultiCue: " + cuenames);
+                        //Debug.Log("Created Random Cue -> " + sd.Name + ": " + cuenames);
                         createMultiCueRandom(sd.Name, clipList);
+                    }
+                }
+                else if (d.Name.Equals("Sequential"))
+                {
+                    foreach (var sd in d.GetDirectories())
+                    {
+                        List<AudioClip> clipList = new List<AudioClip>();
+                        string cuenames = "";
+                        int index = 0;
+                        foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music/Cues/Sequential/" + sd.Name))
+                        {
+                            clipList.Add(clip);
+                            cuenames += "[" + index + "](" + clip.name + ") ";
+                            index++;
+                        }
+                        //Debug.Log("Created Seq Cue -> " + sd.Name + ": " + cuenames);
+                        createMultiCueSequential(sd.Name, clipList);
                     }
                 }
             }
@@ -92,6 +123,9 @@ namespace Assets.Scripts.Managers
                 _oneShotList[clip.name] = clip;
             foreach (var cue in cues)
                 _cueDict[cue.name] = cue;
+
+
+            CreateCustomCues();
         }
         public void DeleteClips()
         {
@@ -117,21 +151,19 @@ namespace Assets.Scripts.Managers
         }
         public bool playClipDelayed(string name, float delayTime, GameObject sourceObject = null, float volume = 1.0f)
         {
-            /*
-            if (!_soundCueList.ContainsKey(name))
-            {
-                Debug.Log("AudioManager::PlayCueDelayed - Unable to locate AudioClip >>" + name + "<<\n");
+            if (!_oneShotList.ContainsKey(name))
                 return false;
-            }
-            AudioSource s = this.gameObject.AddComponent<AudioSource>();
+
+            GameObject obj = sourceObject ? sourceObject.gameObject : this.gameObject;
+
+            AudioSource s = obj.AddComponent<AudioSource>();
             s.clip = findClip(name);
             s.loop = false;
-
+            s.volume = volume;
             s.PlayDelayed(delayTime);
-            */
+            StartCoroutine(this.TimedDespawn(s,delayTime+s.clip.length));
             return true;
         }
-
         public bool playCue(string name, GameObject sourceObject = null, float volume = 1.0f)
         {
             if (!_cueDict.ContainsKey(name))
@@ -140,15 +172,15 @@ namespace Assets.Scripts.Managers
             return true;
         }
 
-        public bool createMultiCueRandom(string name, List<KeyValuePair<string,int>> cueWeightList)
+        /*
+        public bool createMultiCueWeighted(string name, List<KeyValuePair<string,int>> cueWeightList)
         {
             if (_cueDict.ContainsKey(name))
                 return false;
 
             cues.Add(new MultiCue(name, cueWeightList));
-
             return true;
-        }
+        }*/
         public bool createMultiCueRandom(string name, List<AudioClip> clipList)
         {
             if (_cueDict.ContainsKey(name))
@@ -171,14 +203,18 @@ namespace Assets.Scripts.Managers
             cues.Add(new MultiCue(name, clipList));
             return true;
         }
-        public bool createMultiCueSequential(string name, Dictionary<int, string> seqList)
+        public bool createMultiCueSequential(string name, List<AudioClip> clipList)
         {
-           // if (_multiCueList.ContainsKey(name))
+            if (_cueDict.ContainsKey(name))
                 return false;
 
-            //MultiCue mCue = new MultiCue(name, seqList);
-            //_multiCueList.Add(name, mCue);
-            //return true;
+            Dictionary<int,string> seqList = new Dictionary<int,string>();
+
+            for(int i = 0; i < clipList.Count; i++)
+                seqList[i] = clipList[i].name;
+
+            cues.Add(new MultiCue(name,seqList));
+            return true;
         }
 
         //////////////////////////////////////////////
@@ -186,189 +222,231 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////
         public bool playLoop(string name, float volume = 1.0f)
         {
-           //createLoop(name);
-
-            //if (!_loopCueList.ContainsKey(name))
-            //    return false;
-
-            //AudioSource loopSource = _loopCueList[name];
-           // loopSource.volume = volume;
-           // loopSource.Play();
-
+            if (!_loopDict.ContainsKey(name))
+                return false;
+            if (_loopDict[name].isPlaying)
+                return false;
+            _loopDict[name].volume = volume;
+            _loopDict[name].start();
             return true;
         }
-        public bool pauseLoop(string name)
+        public bool swapLoopTrack(string name)
         {
-            //if (!_loopCueList.ContainsKey(name))
-            //    return false;
-
-            //_loopCueList[name].Pause();
+            if (!_loopDict.ContainsKey(name))
+                return false;
+            _loopDict[name].switchTrack();
             return true;
-        }      
+        }
         public bool stopLoop(string name)
         {
-            //if (!_loopCueList.ContainsKey(name))
+            if (!_loopDict.ContainsKey(name))
                 return false;
-
-           // _loopCueList[name].Stop();
-           // _loopCueList.Remove(name);
-            //AudioSource[] sources = this.gameObject.GetComponents<AudioSource>();
-            //foreach (var source in sources)
-           //     if (source.clip == findClip(name))
-           //         UnityEngine.Object.Destroy(source);
-
-           // return true;
-        }
-
-        // Creates AudioSource that has the clip name attached to it set to loop.
-        // TODO: change to use enums
-        private bool createLoop(string name)
-        {
-            // See if a multi cue is already made with this name
-            //if (_loopCueList.ContainsKey(name))
-                return false;
-
-            //AudioClip clip = findClip(name);
-            //if (!clip)
-           //     return false;
-            
-          //  AudioSource s = this.gameObject.AddComponent<AudioSource>();
-          //  s.clip = clip;
-          //  s.loop = true;
-
-            //_loopCueList.Add(name, s);
-
-           // return true;
+            _loopDict[name].stop();
+            return true;
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // HELPER FUNCTIONS
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // returns audio clip associated to this string
-        // TODO: change to use enums
         public AudioClip findClip(string name)
         {
-            //foreach (AudioClip clip in clips)
-            //    if (clip.name.Equals(name))
-           //         return clip;
             if (_oneShotList.ContainsKey(name))
                 return _oneShotList[name];
             return null;
         }
-    }
-
-    [Serializable]
-    public class MultiCue
-    {
-        public string name;
-
-        [SerializeField]
-        private MultiCueType CueType;
-
-        [Range(0, 1.0f)]
-        public float volume;
-
-        [SerializeField]
-        List<AudioClip> clips;
-
-        public MultiCueType type
+        private void DestroySource(AudioSource _source)
         {
-            get
-            {
-                return CueType;
-            }
+            DestroyImmediate(_source);
+        }
+        private IEnumerator TimedDespawn(AudioSource s, float time)
+        {
+            yield return new WaitForSeconds(time);
+            DestroyImmediate(s);
         }
 
-        // for weighted
-        List<KeyValuePair<string, int>> cueWeightList;
-        int totalWeight;
-
-
-        // for sequential
-        Dictionary<int, string> seqList;
-        int totalSequences;
-        int currentSeq;
-
-
-        public MultiCue(string name, List<KeyValuePair<string, int>> inputList)
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // HELPER CLASSES
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        [Serializable]
+        public class LoopingCue
         {
-            this.name = name;
-            clips = new List<AudioClip>();
-            CueType = MultiCueType.Random;
-            volume = 1.0f;
-            cueWeightList = new List<KeyValuePair<string, int>>();
-            totalWeight = 0;
-            for (int i = 0; i < inputList.Count; i++)
+            [SerializeField]
+            public string name;
+            [SerializeField]
+            int _curTrack;
+            [SerializeField]
+            public bool isPlaying;
+            [Range(0, 1.0f)]
+            public float volume;
+            [SerializeField]
+            List<AudioClip> _trackList;
+            public AudioSource source;
+
+            public LoopingCue(string name)
             {
-                KeyValuePair<string, int> newPair = new KeyValuePair<string, int>(inputList[i].Key, inputList[i].Value + totalWeight);
-                cueWeightList.Add(newPair);
-                totalWeight += inputList[i].Value;
-                clips.Add(AudioManager.Instance.findClip(inputList[i].Key));
+                this.name = name;
+                _trackList = new List<AudioClip>();
+                _curTrack = 0;
+                volume = 0.75f;
+                isPlaying = false;
             }
-        }
-        public MultiCue(string name, List<AudioClip> clipList)
-        {
-            this.name = name;
-            clips = clipList;
-            CueType = MultiCueType.Parallel;
-            volume = 1.0f;
-        }
-        public MultiCue(string name, Dictionary<int, string> seqList)
-        {
-            this.name = name;
-            clips = new List<AudioClip>();
-            CueType = MultiCueType.Sequential;
-            this.seqList = seqList;
-            totalSequences = seqList.Count;
-            volume = 1.0f;
-        }
-        // plays this MultiCue at sourceObj's world position
-        public bool play(GameObject sourceObj = null)
-        {
-            GameObject obj = sourceObj
-                ? sourceObj
-                : AudioManager.Instance.gameObject;
 
-            if (CueType == MultiCueType.Random)
+            public void start(bool loop = true)
             {
-                int weightToPlay = UnityEngine.Random.Range(0, totalWeight);
-
-                for (int i = 0; i < cueWeightList.Count; i++)
-                    if (weightToPlay < cueWeightList[i].Value)
-                        return AudioManager.Instance.playClip(cueWeightList[i].Key, obj, volume);
+                if (_trackList.Count == 0)
+                    return; // nothing to play
+                if (source != null)
+                    return; // already playing
+                source = AudioManager.Instance.gameObject.AddComponent<AudioSource>();
+                source.clip = _trackList[_curTrack];
+                source.loop = false;
+                source.volume = volume;
+                playLoop();
+                isPlaying = true;
             }
-            else if (CueType == MultiCueType.Parallel)
+            public void playLoop()
             {
-                if (clips.Count == 0)
-                    return false;
-                foreach (var clip in clips)
-                    AudioManager.Instance.playClip(clip.name, obj, volume);
+                source.clip = _trackList[_curTrack];
+                source.Play();
+                AudioManager.Instance.StartCoroutine(this.PlayAgain(this));
             }
-            else if (CueType == MultiCueType.Sequential)
+            public void stop()
             {
-                if (seqList.Count == 0)
-                    return false;
-                float totalTime = 0.0f;
+                isPlaying = false;
+                if (source == null)
+                    return;
+                AudioManager.Instance.DestroySource(source);
+            }
+            public void switchTrack()
+            {
+                if (_curTrack == _trackList.Count - 1)
+                    _curTrack = 0; // go back to first track
+                else
+                    _curTrack++;
+            }
+            public bool addTrack(AudioClip clip)
+            {
+                foreach (var track in _trackList)
+                    if (track.name == clip.name)
+                        return false;
+                _trackList.Add(clip);
+                return true;
+            }
+            private IEnumerator PlayAgain(LoopingCue lewp)
+            {
+                yield return new WaitForSeconds(_trackList[_curTrack].length);
+                if(lewp.source != null)
+                    lewp.playLoop();
+            }
 
-                int curSeq = 0;
-                while (curSeq != totalSequences)
+        }
+        [Serializable]
+        public class MultiCue
+        {
+            public string name;
+            [SerializeField]
+            private MultiCueType CueType;
+            [Range(0, 1.0f)]
+            public float volume;
+            [SerializeField]
+            List<AudioClip> clips; // List of all Clips
+            List<KeyValuePair<string, int>> cueWeightList; // Weighted Cue List
+            int totalWeight;
+            Dictionary<int, string> seqList; // Sequential Cue List
+            int totalSequences;
+            int currentSeq;
+
+            public MultiCueType type
+            {
+                get
                 {
-                    AudioManager.Instance.playClipDelayed(seqList[curSeq], totalTime, obj, volume);
-                    totalTime += AudioManager.Instance.findClip(seqList[curSeq]).length;
-                    curSeq++;
+                    return CueType;
                 }
+            }
+
+            public MultiCue(string name, List<KeyValuePair<string, int>> inputList)
+            {
+                this.name = name;
+                clips = new List<AudioClip>();
+                CueType = MultiCueType.Random;
+                volume = 1.0f;
+                cueWeightList = new List<KeyValuePair<string, int>>();
+                totalWeight = 0;
+                for (int i = 0; i < inputList.Count; i++)
+                {
+                    KeyValuePair<string, int> newPair = new KeyValuePair<string, int>(inputList[i].Key, inputList[i].Value + totalWeight);
+                    cueWeightList.Add(newPair);
+                    totalWeight += inputList[i].Value;
+                    clips.Add(AudioManager.Instance.findClip(inputList[i].Key));
+                }
+            }
+            public MultiCue(string name, List<AudioClip> clipList)
+            {
+                this.name = name;
+                clips = clipList;
+                CueType = MultiCueType.Parallel;
+                volume = 1.0f;
+            }
+            public MultiCue(string name, Dictionary<int, string> seqList)
+            {
+                this.name = name;
+                clips = new List<AudioClip>();
+                CueType = MultiCueType.Sequential;
+                this.seqList = seqList;
+                totalSequences = seqList.Count;
+                volume = 1.0f;
+                foreach (var entry in seqList)
+                    clips.Add(AudioManager.Instance.findClip(entry.Value));
 
             }
-            return true;
-        }
+            // plays this MultiCue at sourceObj's world position
+            public bool play(GameObject sourceObj = null)
+            {
+                GameObject obj = sourceObj
+                    ? sourceObj
+                    : AudioManager.Instance.gameObject;
 
-        // sets the volume this multiCue will be played at
-        public bool setVolume(float f)
-        {
-            if (f < 0 || f > 1)
-                return false;
-            volume = f;
-            return true;
+                if (CueType == MultiCueType.Random)
+                {
+                    int weightToPlay = UnityEngine.Random.Range(0, totalWeight);
+
+                    for (int i = 0; i < cueWeightList.Count; i++)
+                        if (weightToPlay < cueWeightList[i].Value)
+                            return AudioManager.Instance.playClip(cueWeightList[i].Key, obj, volume);
+                }
+                else if (CueType == MultiCueType.Parallel)
+                {
+                    if (clips.Count == 0)
+                        return false;
+                    foreach (var clip in clips)
+                        AudioManager.Instance.playClip(clip.name, obj, volume);
+                }
+                else if (CueType == MultiCueType.Sequential)
+                {
+                    if (clips.Count == 0)
+                        return false;
+                    float totalTime = 0.0f;
+                    int curSeq = 0;
+
+                    while (curSeq != totalSequences)
+                    {
+                        AudioManager.Instance.playClipDelayed(seqList[curSeq], totalTime, obj, volume);
+                        totalTime += AudioManager.Instance.findClip(seqList[curSeq]).length;
+                        curSeq++;
+                    }
+
+                }
+                return true;
+            }
+
+            // sets the volume this multiCue will be played at
+            public bool setVolume(float f)
+            {
+                if (f < 0 || f > 1)
+                    return false;
+                volume = f;
+                return true;
+            }
         }
     }
 }
