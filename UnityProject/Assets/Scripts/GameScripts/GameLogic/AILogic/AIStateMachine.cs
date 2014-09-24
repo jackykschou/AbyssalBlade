@@ -1,5 +1,4 @@
 ﻿using StateMachine;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.AILogic
@@ -17,7 +16,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             stateMachine.name = stateMachineBehaviour.stateMachine.name + "(Bind)";
             StateMachine.StateMachine.Copy(stateMachineBehaviour.stateMachine, stateMachine, false);
             stateMachineBehaviour.stateMachine = stateMachine;
-            AssetDatabase.SaveAssets();
         }
 
         protected override void Deinitialize()
