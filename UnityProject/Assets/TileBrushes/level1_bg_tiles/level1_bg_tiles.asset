@@ -1,0 +1,1674 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1951790011, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: level1_bg_tiles
+  m_EditorClassIdentifier: 
+  _originalAtlasWidth: 768
+  _originalAtlasHeight: 3840
+  _rows: 15
+  _columns: 3
+  _tileIncrementX: 256
+  _tileIncrementY: 256
+  _tileIncrementU: .333333343
+  _tileIncrementV: .0666666701
+  _tileWidth: 256
+  _tileHeight: 256
+  _tileWidthUV: .333333343
+  _tileHeightUV: .0666666701
+  _borderSize: 0
+  _borderU: 0
+  _borderV: 0
+  _delta: .5
+  _deltaU: .000651041686
+  _deltaV: .00013020834
+  procedural: 1
+  _atlasMaterial: {fileID: 2100000, guid: 8cf7f154fe321cd408836f640eda3c8e, type: 2}
+  _atlasTexture: {fileID: 2800000, guid: 664cef6e0a9732141a95e4350ed08b06, type: 3}
+  _tileMeshAsset: {fileID: 0}
+  _tileMeshes: []
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch1top
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 0
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch1topcorner
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 1
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch3
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 2
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch1
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 3
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch1right
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 4
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: light
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 5
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch1bottom
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 6
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch1bottomcorner
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 7
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: grass
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 8
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch2top
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 9
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch2topcorner
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 10
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: fern
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 11
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch2
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 12
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch2right
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 13
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch2bottom
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 15
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch2bottomcorner
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 16
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch4topcorner
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 19
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch4top
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 20
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch4left
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 22
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch4
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 23
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch5top
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 24
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch4bottomcorner
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 25
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch4bottom
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 26
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch5
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 27
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch5right
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 28
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch5bottom
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 30
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treetopleft
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 33
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treetop
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 34
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treetopright
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 35
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treeleft
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 36
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: tree
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 37
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treeright
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 38
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treebottomleft
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 39
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treebottom
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 40
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: treebottomright
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 41
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: trunkleft
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 42
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: trunk
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 43
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: trunkright
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 44
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
+--- !u!114 &11400078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1359213750, guid: 533361e04fa896b4395cced4d33088c3, type: 3}
+  m_Name: patch5left
+  m_EditorClassIdentifier: 
+  _internalFlags: 0
+  disableImmediatePreview: 0
+  _previewAssetId: 
+  customPreviewImage: {fileID: 0}
+  customPreviewDesignTime: 1
+  _static: 0
+  _smooth: 0
+  visibility: 1
+  group: 0
+  overrideLayer: 0
+  layer: 0
+  overrideTag: 0
+  tag: Untagged
+  category: 0
+  coalesce: 1
+  coalesceBrushGroup: 0
+  coalesceWithRotated: 0
+  forceLegacySideways: 0
+  overrideTransforms: 0
+  scaleMode: 0
+  applyPrefabTransform: 0
+  transformScale: {x: 1, y: 1, z: 1}
+  _userFlags: 0
+  _userFlagLabels: 
+  _tileset: {fileID: 11400000}
+  tileIndex: 29
+  _procedural: 0
+  addCollider: 0
+  colliderType: 0
+  attachPrefab: {fileID: 0}
+  alwaysAddContainer: 0
