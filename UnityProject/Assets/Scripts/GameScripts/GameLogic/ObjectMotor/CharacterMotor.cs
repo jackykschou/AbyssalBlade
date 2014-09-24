@@ -47,9 +47,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             RigidMove(gameObject.GetDirection(target), speed);
         }
 
-        protected override void Update()
+        protected override void FixedUpdate()
         {
-            base.Update();
+            base.FixedUpdate();
             rigidbody2D.velocity *= DecelerationRate * Time.fixedDeltaTime;
         }
     }

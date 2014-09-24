@@ -49,9 +49,5 @@ namespace Assets.Scripts.GameScripts.Components.DamageApplier
         public override void Deinitialize()
         {
         }
-
-        public override void Update()
-        {
-        }
     }
 }

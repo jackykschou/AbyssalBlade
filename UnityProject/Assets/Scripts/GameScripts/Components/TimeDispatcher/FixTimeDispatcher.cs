@@ -62,9 +62,5 @@ namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
         public override void Deinitialize()
         {
         }
-
-        public override void Update()
-        {
-        }
     }
 }

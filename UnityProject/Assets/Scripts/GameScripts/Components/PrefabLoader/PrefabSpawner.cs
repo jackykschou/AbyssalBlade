@@ -20,9 +20,5 @@ namespace Assets.Scripts.GameScripts.Components.PrefabLoader
         public override void Deinitialize()
         {
         }
-
-        public override void Update()
-        {
-        }
     }
 }

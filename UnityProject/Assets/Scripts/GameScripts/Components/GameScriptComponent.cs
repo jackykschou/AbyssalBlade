@@ -45,7 +45,13 @@ namespace Assets.Scripts.GameScripts.Components
 
         public abstract void Deinitialize();
 
-        public abstract void Update();
+        public virtual void Update()
+        {
+        }
+
+        public virtual void FixedUpdate()
+        {
+        }
 
         public virtual void EditorUpdate()
         {

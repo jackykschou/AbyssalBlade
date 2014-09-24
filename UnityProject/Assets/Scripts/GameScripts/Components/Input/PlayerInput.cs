@@ -30,10 +30,6 @@ namespace Assets.Scripts.GameScripts.Components.Input
         {
         }
 
-        public override void Update()
-        {
-        }
-
         protected bool IsInCooldown()
         {
             return !CoolDownTimeDispatcher.CanDispatch();

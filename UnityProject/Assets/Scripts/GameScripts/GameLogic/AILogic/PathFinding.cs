@@ -438,39 +438,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             Vector3 dir = vPath[currentWaypointIndex] - vPath[currentWaypointIndex - 1];
 
             return dir.normalized;
-
-            Vector3 targetPosition = CalculateTargetPoint(currentPosition, vPath[currentWaypointIndex - 1], vPath[currentWaypointIndex]);
-
-            dir = targetPosition - currentPosition;
-            dir.z = 0;
-            float targetDist = dir.magnitude;
-
-            return dir.normalized;
-
-            float slowdown = Mathf.Clamp01(targetDist / slowdownDistance);
-
-            this.targetDirection = dir;
-            this.targetPoint = targetPosition;
-
-            if (currentWaypointIndex == vPath.Count - 1 && targetDist <= endReachedDistance)
-            {
-                if (!targetReached) { targetReached = true; OnTargetReached(); }
-
-                //Send a move request, this ensures gravity is applied
-                return Vector3.zero;
-            }
-
-            Vector3 forward = tr.forward;
-
-#if ASTARDEBUG
-		Debug.DrawLine (vPath[currentWaypointIndex-1] , vPath[currentWaypointIndex],Color.black);
-		Debug.DrawLine (GetFeetPosition(),targetPosition,Color.red);
-		Debug.DrawRay (targetPosition,Vector3.up, Color.red);
-		Debug.DrawRay (GetFeetPosition(),dir,Color.yellow);
-		Debug.DrawRay (GetFeetPosition(),forward*sp,Color.cyan);
-#endif
-
-            return forward.normalized;
         }
 
         /** Rotates in the specified direction.

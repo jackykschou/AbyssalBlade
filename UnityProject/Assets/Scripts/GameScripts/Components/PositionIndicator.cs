@@ -44,10 +44,6 @@ namespace Assets.Scripts.GameScripts.Components
         {
         }
 
-        public override void Update()
-        {
-        }
-
         public void UpdatePosition(FacingDirection facingDirection)
         {
             switch (facingDirection)

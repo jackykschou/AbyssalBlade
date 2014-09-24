@@ -21,8 +21,10 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 		
 		}
 
-		public override void OnUpdate()
-		{
+	    public override void OnFixedUpdate()
+	    {
+	        base.OnFixedUpdate();
+
             PathFinding pathfinding = stateMachine.owner.GetComponent<PathFinding>();
 
             if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) || pathfinding.gameObject.IsDestroyed())
@@ -30,6 +32,6 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
                 return;
             }
             pathfinding.TriggerGameScriptEvent(GameScriptEvent.MoveCharacter, (Vector2)pathfinding.GetMoveDirection());
-		}
+	    }
 	}
 }

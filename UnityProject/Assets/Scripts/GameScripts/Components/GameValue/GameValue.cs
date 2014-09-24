@@ -161,10 +161,6 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
         {
         }
 
-        public override void Update()
-        {
-        }
-
         public override void EditorUpdate()
         {
             InitialMinValue = Mathf.Clamp(InitialMinValue, float.MinValue, InitialMaxValue);
