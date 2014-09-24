@@ -16,31 +16,6 @@ public class CameraMovement : MonoBehaviour {
 	void Start ()
 	{
         direction = Vector2.right;
-        
-        
-        // Weighted Multi Cue
-        List<KeyValuePair<string, int>> myMultiCueWeights = new List<KeyValuePair<string, int>>();
-        myMultiCueWeights.Add(new KeyValuePair<string, int>("Laser", 30));
-        myMultiCueWeights.Add(new KeyValuePair<string, int>("Shot", 10));
-        myMultiCueWeights.Add(new KeyValuePair<string, int>("strike", 10));
-        AudioManager.Instance.createMultiCueRandom("MyMultiCue", myMultiCueWeights);
-
-        // Parallel Multi Cue
-        List<string> parallelCueList = new List<string>();
-        parallelCueList.Add("strike");
-        parallelCueList.Add("Laser");
-        parallelCueList.Add("Dash");
-        AudioManager.Instance.createMultiCueParallel("MyParallel", parallelCueList);
-
-        // Sequential Multi Cue
-        Dictionary<int, string> seqList = new Dictionary<int, string>();
-        seqList[0] = "HackandSlash";
-        seqList[1] = "HackandSlash";
-        seqList[2] = "HackandSlash";
-        AudioManager.Instance.createMultiCueSequential("MySequential", seqList);
-        
-
-       // AudioManager.Instance.playLoop("Hack and Slash");
 	}
 
     void SetAttacksFalse()
@@ -58,8 +33,6 @@ public class CameraMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-        handleMusicTest();
-
 	    if (a.GetBool("AttackUp") || a.GetBool("AttackDown") ||
 	        a.GetBool("AttackLeft") || a.GetBool("AttackRight") ||
             a.GetBool("ShootUp") || a.GetBool("ShootDown") ||
@@ -72,8 +45,6 @@ public class CameraMovement : MonoBehaviour {
             !a.GetBool("AttackUp") && !a.GetBool("AttackDown") && !a.GetBool("AttackLeft") && !a.GetBool("AttackRight") && 
             !a.GetBool("ShootUp") && !a.GetBool("ShootDown") && !a.GetBool("ShootLeft") && !a.GetBool("ShootRight"))
 	    {
-            AudioManager.Instance.playCue("strike",gameObject);
-
             if (direction == Vector2.right)
 	        {
                 a.SetBool("AttackRight", true);
@@ -232,50 +203,5 @@ public class CameraMovement : MonoBehaviour {
 	            a.SetBool("Down", false);
 	        }
 	    }
-    }
-
-    void handleMusicTest(){
-        
-        // sound system checking
-        // WORKING
-        if (Input.GetKeyDown(KeyCode.Keypad0))
-            AudioManager.Instance.playCueDelayed("HackandSlash", 2.0f);
-        
-        // WORKING
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-            AudioManager.Instance.playLoop("HackandSlash");
-
-        // WORKING
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-            AudioManager.Instance.pauseLoop("HackandSlash");
-
-        // WORKING
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-            AudioManager.Instance.stopLoop("HackandSlash");
-
-        // WORKING
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-            AudioManager.Instance.playMultiCue("MyMultiCue");
-        
-        // WORKING 
-        if (Input.GetKeyDown(KeyCode.Keypad5))
-            AudioManager.Instance.playMultiCue("MyParallel");
-        
-        /* WORKING */
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-            AudioManager.Instance.playMultiCue("MySequential");
-
-        /* WORKING */
-        if (Input.GetKeyDown(KeyCode.Keypad7))
-            AudioManager.Instance.playLoop("strike");
-
-        // WORKING
-        if (Input.GetKeyDown(KeyCode.Keypad8))
-            AudioManager.Instance.pauseLoop("strike");
-
-        // WORKING
-        if (Input.GetKeyDown(KeyCode.Keypad9))
-            AudioManager.Instance.stopLoop("strike");
-
     }
 }
