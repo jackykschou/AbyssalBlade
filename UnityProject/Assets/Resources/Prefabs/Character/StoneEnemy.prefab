@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400042}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -232,7 +233,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: 3
+    DispatchInterval: 1.20000005
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,14 +246,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SKill: {fileID: 0}
-  DamageAmount:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 30
+  DamagerApplier: {fileID: 0}
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
-  Radius: 1
+  Radius: 2
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,9 +266,9 @@ MonoBehaviour:
   BoolParameterName: Melee
   _animationDuration: 1
   _animationEventMessages:
-  - ApplyDamages
+  - ApplyAreaDamages
   _animationEventMessagesSendTime:
-  - .800000012
+  - .5
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,7 +338,7 @@ MonoBehaviour:
   Speed:
     InitialMinValue: 0
     InitialMaxValue: 100
-    InitialValue: 3
+    InitialValue: 5
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dde69336bbf6e244a66cc00ae459d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {x: 0, y: 0, z: 0}
+  Target: {fileID: 0}
 --- !u!114 &11400030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,6 +465,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ab5e889001bbf42bef92bf2925b7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneTimeOnlyPerTarget: 0
+  DamageType: 0
+  Stackable: 0
+  Amount:
+    InitialMinValue: 0
+    InitialMaxValue: 100
+    InitialValue: 10
+  Percentage: 1
+  Duration: 167
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

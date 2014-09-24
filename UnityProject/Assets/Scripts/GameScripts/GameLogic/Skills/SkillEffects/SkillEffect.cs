@@ -18,6 +18,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         {
             base.Initialize();
             SKill = GetComponent<Skill>();
+            gameObject.tag = SKill.tag;
         }
 
         protected override void Deinitialize()

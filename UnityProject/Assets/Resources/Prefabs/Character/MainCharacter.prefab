@@ -109,6 +109,7 @@ GameObject:
   - 114: {fileID: 11400040}
   - 114: {fileID: 11400046}
   - 114: {fileID: 11400048}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -287,6 +288,26 @@ MonoBehaviour:
     InitialMaxValue: 0
     InitialValue: 0
   _delay: 1.5
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ab5e889001bbf42bef92bf2925b7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OneTimeOnlyPerTarget: 0
+  DamageType: 0
+  Stackable: 0
+  Amount:
+    InitialMinValue: 0
+    InitialMaxValue: 100
+    InitialValue: 10
+  Percentage: 0
+  Duration: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -562,7 +583,7 @@ MonoBehaviour:
   BoolParameterName: Skill1
   _animationDuration: .400000006
   _animationEventMessages:
-  - ApplyDamages
+  - ApplyAreaDamages
   _animationEventMessagesSendTime:
   - .200000003
 --- !u!114 &11400042
@@ -599,14 +620,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SKill: {fileID: 0}
-  DamageAmount:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 100
+  DamagerApplier: {fileID: 0}
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400008}
-  Radius: 1
+  Radius: 1.5
 --- !u!114 &11400048
 MonoBehaviour:
   m_ObjectHideFlags: 1

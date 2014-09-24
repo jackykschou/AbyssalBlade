@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Attributes;
+﻿using System.Collections;
+using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.Components.GameValue;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -24,10 +25,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
             Invincible = false;
         }
 
-        [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
-        public void TakeDamage(float damage)
+        [GameScriptEvent(Constants.GameScriptEvent.ObjectTakeFixDamage)]
+        public void TakeDamageFixed(float damage)
         {
-            if (Invincible || Destroyed)
+            if (Invincible || Destroyed || damage <= 0f)
             {
                 return;
             }
@@ -38,12 +39,53 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
             }
 
             HitPoint -= ((1 - DamageReduction) * damage);
+            TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage);
 
             if (HitPoint <= 0f)
             {
                 Destroyed = true;
                 TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectDestroyed);
                 DisableGameObject(_delay);
+            }
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ObjectTakeCurrentPercentageDamage)]
+        public void TakeDamageCurrentPercentage(float percentage)
+        {
+            TakeDamageFixed(HitPoint.Value * percentage);
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ObjectTakeMaxPercentageDamage)]
+        public void TakeDamageMaxPercentage(float percentage)
+        {
+            TakeDamageFixed(HitPoint.Max * percentage);
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ObjectTakeFixDamagePerSec)]
+        public void TakeDamageFixedPerSecond(float amount, int duration)
+        {
+            StartCoroutine(TakeFixedDamagePerSecondIE(amount, duration));
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ObjectTakeCurrentPercentageDamagePerSec)]
+        public void TakeDamageCurrentPercentagePerSecond(float percentage, int duration)
+        {
+            StartCoroutine(TakeFixedDamagePerSecondIE(HitPoint.Value * percentage, duration));
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ObjectTakeMaxPercentageDamagePerSec)]
+        public void TakeDamageMaxPercentagePerSecond(float percentage, int duration)
+        {
+            StartCoroutine(TakeFixedDamagePerSecondIE(HitPoint.Max * percentage, duration));
+        }
+
+        public IEnumerator TakeFixedDamagePerSecondIE(float amount, int duration)
+        {
+            while (duration >= 0)
+            {
+                yield return new WaitForSeconds(1.0f);
+                TakeDamageFixed(amount);
+                duration -= 1;
             }
         }
 
