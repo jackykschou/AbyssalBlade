@@ -11,6 +11,7 @@
             public const string PlayerCharacter= "PlayerCharacter";
             public const string Destroyable = "Destroyable";
             public const string DestroyableObstacle = "DestroyableObstacle";
+            public const string InvisibleWall = "InvisibleWall";
         }
 
         public static class LayerMask
@@ -45,11 +46,16 @@
             }
             public static int Obstacle
             {
-                get { return UnityEngine.LayerMask.GetMask(LayerNames.StaticObstacle, LayerNames.DestroyableObstacle); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.StaticObstacle, LayerNames.DestroyableObstacle, LayerNames.InvisibleWall); }
             }
             public static int Character
             {
                 get { return UnityEngine.LayerMask.GetMask(LayerNames.PlayerCharacter, LayerNames.Enemy); }
+            }
+
+            public static int InvisibleWall
+            {
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.InvisibleWall); }
             }
         }
     }

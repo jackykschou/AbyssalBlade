@@ -69,7 +69,9 @@ namespace Assets.Scripts.Managers
             }
 
             GameObject spawned = _prefabPoolMap[prefabName].Spawn(o.transform, position, Quaternion.identity).gameObject;
-            _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[prefabName]);
+
+            if(!_spawnedPrefabsMap.ContainsKey(spawned))
+                _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[prefabName]);
 
             return spawned;
         }

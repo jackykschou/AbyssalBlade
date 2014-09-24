@@ -5,7 +5,6 @@ using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
-
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
     public abstract class ObjectMotor2D : GameLogic
@@ -29,7 +28,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         public void TranslateLinearTowards(Vector2 direction, float speed)
         {
             direction = direction.normalized;
-            gameObject.transform.Translate(new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime);
+            gameObject.transform.Translate(new Vector3(direction.x, direction.y, 0) * speed * Time.fixedDeltaTime);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
@@ -43,10 +42,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             direction = direction.normalized;
             const float smoothDampSmoothness = 5.0f;
 
-            Vector3 destination = transform.position + new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
+            Vector3 destination = transform.position + new Vector3(direction.x, direction.y, 0) * speed * Time.fixedDeltaTime;
 
-            float posX = Mathf.SmoothDamp(transform.position.x, destination.x, ref _velocityX, Time.deltaTime * smoothDampSmoothness);
-            float posY = Mathf.SmoothDamp(transform.position.y, destination.y, ref _velocityY, Time.deltaTime * smoothDampSmoothness);
+            float posX = Mathf.SmoothDamp(transform.position.x, destination.x, ref _velocityX, Time.fixedDeltaTime * smoothDampSmoothness);
+            float posY = Mathf.SmoothDamp(transform.position.y, destination.y, ref _velocityY, Time.fixedDeltaTime * smoothDampSmoothness);
 
             transform.position = new Vector3(posX, posY, transform.position.z);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);

@@ -9,18 +9,23 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
     [AddComponentMenu("AILogic/RotateTowardsTarget")]
     public class RotatesTowardTarget : GameLogic
     {
-        public Vector3 Target;
+        public Transform Target;
 
         [GameScriptEventAttribute(GameScriptEvent.OnNewTargetDiscovered)]
         public void UpdateTarget(GameObject target)
         {
-            Target = target.transform.position;
+            Target = target.transform;
         }
 
         [GameScriptEventAttribute(GameScriptEvent.AIRotateToTarget)]
         public void RotateTowardsTarget()
         {
-            FacingDirection newDirection = MathUtility.GetDirection(transform.position, Target).GetFacingDirection();
+            if (Target == null)
+            {
+                return;
+            }
+
+            FacingDirection newDirection = MathUtility.GetDirection(transform.position, Target.position).GetFacingDirection();
             if (newDirection != GameView.FacingDirection)
             {
                 TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);

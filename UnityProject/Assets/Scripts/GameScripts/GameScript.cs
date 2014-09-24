@@ -5,7 +5,6 @@ using System.Reflection;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.GameLogic;
-using Assets.Scripts.GameScripts.GameLogic.Skills;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
@@ -201,6 +200,11 @@ namespace Assets.Scripts.GameScripts
         protected virtual void Update()
         {
             _components.ForEach(c => c.Update());
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            _components.ForEach(c => c.FixedUpdate());
         }
 
         private void InitializeFields()

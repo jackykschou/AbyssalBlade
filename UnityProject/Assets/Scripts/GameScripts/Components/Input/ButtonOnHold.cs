@@ -13,8 +13,9 @@ namespace Assets.Scripts.GameScripts.Components.Input
             IsHolding = false;
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
+            base.FixedUpdate();
             if (IsHolding && IsKeyReleased())
             {
                 IsHolding = false;

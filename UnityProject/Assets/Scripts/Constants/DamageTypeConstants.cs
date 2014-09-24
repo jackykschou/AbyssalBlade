@@ -5,8 +5,8 @@
         Fixed,
         CurrentPercentage,
         MaxPercentage,
-        PerSecondFixed,
-        PerSecondCurrentPercentage,
-        PerSecondMaxPercentage
+        FixedPerSecond,
+        CurrentPercentagePerSecond,
+        MaxPercentagePerSecond
     }
 }

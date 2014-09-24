@@ -1,35 +1,41 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
-using Assets.Scripts.GameScripts.Components.GameValue;
-using Assets.Scripts.Utility;
+using Assets.Scripts.GameScripts.Components.DamageApplier;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
+    [RequireComponent(typeof(DamageApplier))]
     [AddComponentMenu("Skill/SkillEffect/OneTimeCircleAreaDamage")]
     public class OneTimeCircleAreaDamage : SkillEffect
     {
-        public GameValue DamageAmount;
+        public DamageApplier DamagerApplier;
         public PositionIndicator Position;
         public float Radius;
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            if (DamagerApplier == null)
+            {
+                DamagerApplier = GetComponent<DamageApplier>();
+            }
+        }
 
         public override void Activate()
         {
             base.Activate();
-            ApplyDamages();
+            ApplyAreaDamages();
             Activated = false;
         }
 
-        public void ApplyDamages()
+        public void ApplyAreaDamages()
         {
             foreach (var col in Physics2D.OverlapCircleAll(Position.Position.position, Radius, LayerConstants.LayerMask.Destroyable))
             {
-                if (TagConstants.IsEnemy(gameObject.tag, col.gameObject.tag) && !col.gameObject.IsDestroyed())
-                {
-                    col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount.Value);
-                }
+                DamagerApplier.ApplyDamage(col.gameObject);
             }
         }
 

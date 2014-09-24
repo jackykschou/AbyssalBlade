@@ -1,15 +1,23 @@
-﻿using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.GameValue;
-using Assets.Scripts.Utility;
+﻿using Assets.Scripts.GameScripts.Components.DamageApplier;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Damager
 {
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(DamageApplier))]
     [AddComponentMenu("Skill/Damager/CollideDamager/OneTimeSingleTargetCollideDamager")]
     public class OneTimeSingleTargetCollideDamager : GameLogic
     {
-        public GameValue DamageAmount;
+        public DamageApplier DamagerApplier;
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            if (DamagerApplier == null)
+            {
+                DamagerApplier = GetComponent<DamageApplier>();
+            }
+        }
 
         protected override void Deinitialize()
         {
@@ -19,15 +27,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Damager
         {
             base.OnTriggerEnter2D(coll);
 
-            if (TagConstants.IsEnemy(gameObject.tag, coll.gameObject.tag))
+            if (DamagerApplier.ApplyDamage(coll.gameObject))
             {
-                GameScript s = coll.gameObject.GetComponent<GameScript>();
-                if (s != null)
-                {
-                    s.TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, DamageAmount.Value);
-                }
+                DisableGameObject();
+                return;;
             }
-            if (coll.gameObject.tag != gameObject.tag && !coll.gameObject.IsDestroyed())
+
+            if (coll.gameObject.tag != gameObject.tag)
             {
                 DisableGameObject();
             }

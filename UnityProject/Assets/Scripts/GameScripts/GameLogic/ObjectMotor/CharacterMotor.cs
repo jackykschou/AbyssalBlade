@@ -38,7 +38,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         public void RigidMove(Vector2 direction, float speed)
         {
             direction = direction.normalized;
-            rigidbody2D.AddForce(direction * speed * WorldScaleConstant.SpeedScale * Time.deltaTime);
+            rigidbody2D.AddForce(direction * speed * WorldScaleConstant.SpeedScale * Time.fixedDeltaTime);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
@@ -47,10 +47,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             RigidMove(gameObject.GetDirection(target), speed);
         }
 
-        protected override void Update()
+        protected override void FixedUpdate()
         {
-            base.Update();
-            rigidbody2D.velocity *= DecelerationRate * Time.deltaTime;
+            base.FixedUpdate();
+            rigidbody2D.velocity *= DecelerationRate * Time.fixedDeltaTime;
         }
     }
 }
