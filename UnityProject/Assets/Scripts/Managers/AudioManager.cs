@@ -41,15 +41,6 @@ namespace Assets.Scripts.Managers
         {
             UpdateManager();
         }
-        void CreateCustomCues()
-        {
-            // for custom cues not in folders
-            LoopingCue lCue = new LoopingCue("TestLoop");
-            lCue.addTrack(findClip("Laser"));
-            lCue.addTrack(findClip("strike"));
-            _loopDict[lCue.name] = lCue;
-            loops.Add(lCue);
-        }
 
         public void UpdateManager()
         {
@@ -124,15 +115,15 @@ namespace Assets.Scripts.Managers
             foreach (var cue in cues)
                 _cueDict[cue.name] = cue;
 
-
-            CreateCustomCues();
         }
         public void DeleteClips()
         {
             clips = new List<AudioClip>();
             cues = new List<MultiCue>();
+            loops = new List<LoopingCue>();
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<string, MultiCue>();
+            _loopDict = new Dictionary<string, LoopingCue>();
         }
 
         public bool playClip(string name, GameObject sourceObject = null, float volume = 1.0f)
@@ -146,6 +137,21 @@ namespace Assets.Scripts.Managers
             Vector3 playAt = sourceObject ? sourceObject.transform.position : this.transform.position;
             
             AudioSource.PlayClipAtPoint(findClip(name), playAt, volume);
+
+            return true;
+        }
+        public bool playClip(ClipName name, GameObject sourceObject = null, float volume = 1.0f)
+        {
+            string clipName = AudioConstants.GetClipName(name);
+            if (!_oneShotList.ContainsKey(clipName))
+            {
+                Debug.Log("AudioManager:playCue - Unable to locate AudioClip >>" + name + "<<\n");
+                return false;
+            }
+
+            Vector3 playAt = sourceObject ? sourceObject.transform.position : this.transform.position;
+
+            AudioSource.PlayClipAtPoint(findClip(clipName), playAt, volume);
 
             return true;
         }
@@ -216,7 +222,14 @@ namespace Assets.Scripts.Managers
             cues.Add(new MultiCue(name,seqList));
             return true;
         }
-
+        public bool createLoop(LoopingCue cue)
+        {
+            if (_loopDict.ContainsKey(cue.name))
+                return false;
+            _loopDict[cue.name] = cue;
+            loops.Add(cue);
+            return true;
+        }
         //////////////////////////////////////////////
         // LOOPING AUDIOCLIPS
         //////////////////////////////////////////////
