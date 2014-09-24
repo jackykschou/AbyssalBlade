@@ -485,7 +485,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             Quaternion rot = tr.rotation;
             Quaternion toTarget = Quaternion.LookRotation(dir);
 
-            rot = Quaternion.Slerp(rot, toTarget, turningSpeed * Time.deltaTime);
+            rot = Quaternion.Slerp(rot, toTarget, turningSpeed * Time.fixedDeltaTime);
             Vector3 euler = rot.eulerAngles;
             euler.z = 0;
             euler.x = 0;
