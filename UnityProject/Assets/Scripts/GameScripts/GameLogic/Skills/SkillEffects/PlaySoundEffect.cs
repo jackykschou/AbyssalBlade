@@ -14,6 +14,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
     {
         public ClipName clip;
 
+        [Range(0.0f, 1.0f)]
+        public float volume = 5.0f;
+
         public override void EditorUpdate()
         {
         }
@@ -26,7 +29,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 
         public void PlaySound()
         {
-            AudioManager.Instance.playClip(clip);
+            AudioManager.Instance.playClip(clip,this.gameObject,volume);
         }
     }
 }

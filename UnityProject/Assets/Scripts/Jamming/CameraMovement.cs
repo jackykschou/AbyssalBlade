@@ -45,8 +45,6 @@ public class CameraMovement : MonoBehaviour {
             !a.GetBool("AttackUp") && !a.GetBool("AttackDown") && !a.GetBool("AttackLeft") && !a.GetBool("AttackRight") && 
             !a.GetBool("ShootUp") && !a.GetBool("ShootDown") && !a.GetBool("ShootLeft") && !a.GetBool("ShootRight"))
 	    {
-            AudioManager.Instance.playClip("strike",gameObject);
-
             if (direction == Vector2.right)
 	        {
                 a.SetBool("AttackRight", true);

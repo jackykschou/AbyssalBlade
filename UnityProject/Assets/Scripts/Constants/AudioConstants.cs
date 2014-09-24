@@ -1,28 +1,40 @@
 ﻿using System.Collections.Generic;
 using System;
 using Assets.Scripts.Managers;
+using UnityEngine;
 
 namespace Assets.Scripts.Constants
 {
     public enum CueName
     {
-        ExampleLoop,
-        Random1
+        Random1,
+        Parallel1
     };
 
     public enum ClipName
     {
-        Strike,
+        Dash,
+        Footstep,
+        HackandSlash,
         Laser,
-        Laser1
+        Laser2,
+        Laser3,
+        MenuSound,
+        MetalClang,
+        MetalClang2,
+        MissEnemy,
+        Random,
+        Shot,
+        Shot2,
+        Strike,
+        Swipe
     };
 
-    public enum MultiCueType 
-    { 
-        Sequential, 
-        Parallel, 
-        Random 
+    public enum LoopName
+    {
+        ExampleLoop
     };
+
 
     public class AudioConstants
     {
@@ -31,41 +43,77 @@ namespace Assets.Scripts.Constants
 
         private static readonly Dictionary<ClipName, string> AudioClipNames = new Dictionary<ClipName, string>()
         {
-            {ClipName.Strike, "strike"},
+            {ClipName.Dash, "Dash"},
+            {ClipName.Footstep, "Footstep"},
+            {ClipName.HackandSlash, "HackandSlash"},
             {ClipName.Laser, "Laser"},
-            {ClipName.Laser1, "Laser1"}
+            {ClipName.Laser2, "Laser2"},
+            {ClipName.Laser3, "Laser3"},
+            {ClipName.MenuSound, "MenuSound"},
+            {ClipName.MetalClang, "MetalClang"},
+            {ClipName.MetalClang2, "MetalClang2"},
+            {ClipName.MissEnemy, "MissEnemy"},
+            {ClipName.Random, "Random"},
+            {ClipName.Shot, "Shot"},
+            {ClipName.Shot2, "Shot2"},
+            {ClipName.Strike, "Strike"},
+            {ClipName.Swipe, "Swipe"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
         {
-            {CueName.ExampleLoop, "TestLoop"},
-            {CueName.Random1, "Random1"}
+            {CueName.Random1, "Random1"},
+            {CueName.Parallel1, "Parallel1"}
         };
 
-        public AudioConstants()
+
+        private static readonly Dictionary<LoopName, string> AudioLoopNames = new Dictionary<LoopName, string>()
         {
-            CreateCustomCues();
+            {LoopName.ExampleLoop, "ExampleLoop"}
+        };
+
+        public static void CreateCustomCues()
+        {
+            // Examples
+            List<ClipName> loopList = new List<ClipName>();
+            loopList.Add(ClipName.Strike);
+            loopList.Add(ClipName.Laser);
+            AudioManager.Instance.createLoop(LoopName.ExampleLoop, loopList);
+
+            List<ClipName> randList = new List<ClipName>();
+            randList.Add(ClipName.Shot);
+            randList.Add(ClipName.Strike);
+            randList.Add(ClipName.Swipe);
+            AudioManager.Instance.createMultiCueRandom(CueName.Random1,randList);
+
+
+            List<ClipName> parallelList = new List<ClipName>();
+            randList.Add(ClipName.Swipe);
+            randList.Add(ClipName.Strike);
+            AudioManager.Instance.createMultiCueParallel(CueName.Parallel1, parallelList);
+
+            return;
         }
-        void CreateCustomCues()
+
+        public static string GetClipName(ClipName name)
         {
-            AudioManager.LoopingCue loop = new AudioManager.LoopingCue(AudioCueNames[CueName.ExampleLoop]);
-            loop.addTrack(AudioManager.Instance.findClip(AudioClipNames[ClipName.Strike]));
-            loop.addTrack(AudioManager.Instance.findClip(AudioClipNames[ClipName.Laser]));
-            AudioManager.Instance.createLoop(loop);
+            if (!AudioClipNames.ContainsKey(name))
+                throw new Exception("Clip is not defined");
+            return AudioClipNames[name];
         }
 
         public static string GetCueName(CueName name)
         {
-            if(!AudioCueNames.ContainsKey(name))
-                throw new Exception("Prefab is not defined");
+            if (!AudioCueNames.ContainsKey(name))
+                throw new Exception("Cue is not defined");
             return AudioCueNames[name];
         }
-        public static string GetClipName(ClipName name)
-        {
-            if (!AudioClipNames.ContainsKey(name))
-                throw new Exception("Prefab is not defined");
-            return AudioClipNames[name];
-        }
 
+        public static string GetLoopName(LoopName name)
+        {
+            if (!AudioLoopNames.ContainsKey(name))
+                throw new Exception("Loop is not defined");
+            return AudioLoopNames[name];
+        }
     }
 }
