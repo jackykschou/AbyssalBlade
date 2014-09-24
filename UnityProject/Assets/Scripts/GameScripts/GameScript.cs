@@ -203,6 +203,10 @@ namespace Assets.Scripts.GameScripts
             _components.ForEach(c => c.Update());
         }
 
+        protected virtual void FixedUpdate()
+        {
+        }
+
         private void InitializeFields()
         {
             _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>>();
