@@ -10,6 +10,7 @@ namespace Assets.Scripts.GameScripts.Components.DamageApplier
         public bool OneTimeOnlyPerTarget;
         public DamageApplyType DamageType;
         public bool Stackable;
+        public DamageNonStackableLabel NonStackableLabel;
         public GameValue.GameValue Amount;
         [Range(0f, 1.0f)]
         public float Percentage;
@@ -55,7 +56,6 @@ namespace Assets.Scripts.GameScripts.Components.DamageApplier
             }
         }
 
-
         private void ApplyFixedDamage(GameObject target)
         {
             target.TriggerGameScriptEvent(GameScriptEvent.ObjectTakeFixDamage, Amount.Value);
@@ -73,17 +73,17 @@ namespace Assets.Scripts.GameScripts.Components.DamageApplier
 
         private void ApplyPerSecondFixedDamage(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectTakeFixDamagePerSec, Amount.Value, Duration);
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectTakeFixDamagePerSec, Amount.Value, Duration, Stackable, NonStackableLabel);
         }
 
         private void ApplyPerSecondCurrentPercentageDamage(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectTakeCurrentPercentageDamagePerSec, Percentage, Duration);
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectTakeCurrentPercentageDamagePerSec, Percentage, Duration, Stackable, NonStackableLabel);
         }
 
         private void ApplyPerSecondMaxPercentageDamage(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectTakeMaxPercentageDamagePerSec, Percentage, Duration);
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectTakeMaxPercentageDamagePerSec, Percentage, Duration, Stackable, NonStackableLabel);
         }
 
         protected override void Initialize()

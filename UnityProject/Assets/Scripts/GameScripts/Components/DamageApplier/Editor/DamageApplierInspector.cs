@@ -13,7 +13,6 @@ namespace Assets.Scripts.GameScripts.Components.DamageApplier.Editor
 
             damageApplier.DamageType = (DamageApplyType)EditorGUILayout.EnumPopup("DamageType", damageApplier.DamageType);
             damageApplier.OneTimeOnlyPerTarget = EditorGUILayout.Toggle("OneTimeOnlyPerTarget", damageApplier.OneTimeOnlyPerTarget);
-            damageApplier.Stackable = EditorGUILayout.Toggle("Stackable", damageApplier.Stackable);
 
             switch (damageApplier.DamageType)
             {
@@ -33,12 +32,22 @@ namespace Assets.Scripts.GameScripts.Components.DamageApplier.Editor
                     damageApplier.Amount.InitialValue = EditorGUILayout.FloatField("Amount Initial Value", damageApplier.Amount.InitialValue);
                     damageApplier.Duration = EditorGUILayout.IntField("Duration", damageApplier.Duration);
                     damageApplier.Duration = Mathf.Clamp(damageApplier.Duration, 0, int.MaxValue);
+                    damageApplier.Stackable = EditorGUILayout.Toggle("Stackable", damageApplier.Stackable);
+                    if (!damageApplier.Stackable)
+                    {
+                        damageApplier.NonStackableLabel = (DamageNonStackableLabel)EditorGUILayout.EnumPopup("Non Stackable Label", damageApplier.NonStackableLabel);
+                    }
                     break;
                 case DamageApplyType.CurrentPercentagePerSecond:
                 case DamageApplyType.MaxPercentagePerSecond:
                     damageApplier.Percentage = EditorGUILayout.FloatField("Percentage", damageApplier.Percentage);
                     damageApplier.Duration = EditorGUILayout.IntField("Duration", damageApplier.Duration);
                     damageApplier.Duration = Mathf.Clamp(damageApplier.Duration, 0, int.MaxValue);
+                    damageApplier.Stackable = EditorGUILayout.Toggle("Stackable", damageApplier.Stackable);
+                    if (!damageApplier.Stackable)
+                    {
+                        damageApplier.NonStackableLabel = (DamageNonStackableLabel)EditorGUILayout.EnumPopup("Non Stackable Label", damageApplier.NonStackableLabel);
+                    }
                     break;
             }
         }
