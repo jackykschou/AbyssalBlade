@@ -12,11 +12,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Damager
     {
         public Color textColor;
 
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
-        
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
         public void TakeDamage(float damage)
         {

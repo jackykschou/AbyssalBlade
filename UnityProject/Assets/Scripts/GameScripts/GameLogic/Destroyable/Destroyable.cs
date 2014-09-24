@@ -10,6 +10,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
 {
     public class Destroyable : GameLogic
     {
+        private const float DamageVariantPercentage = 0.05f;
+
         public bool Invincible;
         public GameValue HitPoint;
         public GameValue DamageReduction;
@@ -42,8 +44,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
                 HitPoint -= 1.0f;
             }
 
-            HitPoint -= ((1 - DamageReduction) * damage);
-            TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage);
+            float actualDamage = ((1 - DamageReduction) * damage);
+            HitPoint -= actualDamage;
+            actualDamage += Random.Range(-actualDamage*DamageVariantPercentage, actualDamage*DamageVariantPercentage);
+
+            TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage, actualDamage);
 
             if (HitPoint <= 0f)
             {

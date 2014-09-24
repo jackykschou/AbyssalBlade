@@ -45,6 +45,7 @@ namespace Assets.Scripts.Managers
 
         public void UpdateManager()
         {
+            DeleteClips();
             clips = new List<AudioClip>();
             cues = new List<MultiCue>();
             loops = new List<LoopingCue>();
@@ -54,61 +55,6 @@ namespace Assets.Scripts.Managers
 
             foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music"))
                 clips.Add(clip);
-            /*
-            DirectoryInfo dir = new DirectoryInfo(AudioConstants.StartingAssetAudioPath);
-            DirectoryInfo[] subDirectories = dir.GetDirectories();
-            foreach (var d in subDirectories)
-            {
-                if (d.Name.Equals("Parallel"))
-                {
-                    foreach (var sd in d.GetDirectories())
-                    {
-                        List<AudioClip> clipList = new List<AudioClip>();
-                        string cuenames = "";
-                        foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music/Cues/Parallel/" + sd.Name))
-                        {
-                            clipList.Add(clip);
-                            cuenames += "(" + clip.name + ") ";
-                        }
-                        //Debug.Log("Created Parallel Cue -> " + sd.Name + ": " + cuenames);
-                        createMultiCueParallel(sd.Name,clipList);
-                    }
-                }
-                else if (d.Name.Equals("Random"))
-                {
-                    foreach (var sd in d.GetDirectories())
-                    {
-                        List<AudioClip> clipList = new List<AudioClip>();
-                        string cuenames = "";
-                        foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music/Cues/Random/" + sd.Name))
-                        {
-                            clipList.Add(clip);
-                            cuenames += "(" + clip.name + ") ";
-                        }
-                        //Debug.Log("Created Random Cue -> " + sd.Name + ": " + cuenames);
-                        createMultiCueRandom(sd.Name, clipList);
-                    }
-                }
-                else if (d.Name.Equals("Sequential"))
-                {
-                    foreach (var sd in d.GetDirectories())
-                    {
-                        List<AudioClip> clipList = new List<AudioClip>();
-                        string cuenames = "";
-                        int index = 0;
-                        foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music/Cues/Sequential/" + sd.Name))
-                        {
-                            clipList.Add(clip);
-                            cuenames += "[" + index + "](" + clip.name + ") ";
-                            index++;
-                        }
-                        //Debug.Log("Created Seq Cue -> " + sd.Name + ": " + cuenames);
-                        createMultiCueSequential(sd.Name, clipList);
-                    }
-                }
-                foreach (var cue in cues)
-                    _cueDict[cue.name] = cue;
-            }*/
 
             foreach (AudioClip clip in clips)
                 _oneShotList[clip.name] = clip;
@@ -120,6 +66,8 @@ namespace Assets.Scripts.Managers
         }
         public void DeleteClips()
         {
+            //foreach (AudioSource s in _instance.gameObject.GetComponents<AudioSource>())
+            //    DestroyImmediate(s);
             clips = new List<AudioClip>();
             cues = new List<MultiCue>();
             loops = new List<LoopingCue>();
@@ -279,7 +227,7 @@ namespace Assets.Scripts.Managers
                 this.name = AudioConstants.GetLoopName(name);
                 _trackList = new List<AudioClip>();
                 _curTrack = 0;
-                volume = 0.75f;
+                volume = 0.5f;
                 isPlaying = false;
                 foreach (ClipName clip in clipNames)
                     addTrack(clip);

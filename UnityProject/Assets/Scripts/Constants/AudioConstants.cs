@@ -32,7 +32,7 @@ namespace Assets.Scripts.Constants
 
     public enum LoopName
     {
-        ExampleLoop
+        MainLoop
     };
 
 
@@ -69,16 +69,14 @@ namespace Assets.Scripts.Constants
 
         private static readonly Dictionary<LoopName, string> AudioLoopNames = new Dictionary<LoopName, string>()
         {
-            {LoopName.ExampleLoop, "ExampleLoop"}
+            {LoopName.MainLoop, "MainLoop"}
         };
 
         public static void CreateCustomCues()
         {
             // Examples
-            List<ClipName> loopList = new List<ClipName>();
-            loopList.Add(ClipName.Strike);
-            loopList.Add(ClipName.Laser);
-            AudioManager.Instance.createLoop(LoopName.ExampleLoop, loopList);
+            List<ClipName> loopList = new List<ClipName> { ClipName.HackandSlash };
+            AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
 
             List<ClipName> randList = new List<ClipName>();
             randList.Add(ClipName.Shot);
@@ -91,8 +89,6 @@ namespace Assets.Scripts.Constants
             randList.Add(ClipName.Swipe);
             randList.Add(ClipName.Strike);
             AudioManager.Instance.createMultiCueParallel(CueName.Parallel1, parallelList);
-
-            return;
         }
 
         public static string GetClipName(ClipName name)

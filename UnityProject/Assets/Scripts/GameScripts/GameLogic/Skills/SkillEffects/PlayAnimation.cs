@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.GameScripts.GameLogic.Animator;
 using Assets.Scripts.Utility;
 using UnityEngine;
@@ -46,7 +47,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                 messagesSent.Add(false);
             }
             float timer = 0f;
-            while (timer < _animationDuration)
+            while (timer < _animationDuration || messagesSent.Any(b => !b))
             {
                 yield return new WaitForSeconds(Time.deltaTime);
                 timer += Time.deltaTime;

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.Utility;
-using UnityEngine;
+﻿using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 using Assets.Scripts.Managers;
@@ -15,11 +12,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public ClipName clip;
 
         [Range(0.0f, 1.0f)]
-        public float volume = 5.0f;
-
-        public override void EditorUpdate()
-        {
-        }
+        public float volume = 1.0f;
 
         public override void Activate()
         {

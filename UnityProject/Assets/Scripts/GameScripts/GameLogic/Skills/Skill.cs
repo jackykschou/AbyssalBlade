@@ -28,7 +28,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         [SerializeField] 
         private List<int> _skillEffectsOrder;
 
-        private SortedDictionary<int, SkillEffect> _soretedSkillEffects;
+        private SortedDictionary<int, List<SkillEffect>> _soretedSkillEffects;
             
         [Range(0f, 1f)] 
         private float _coolDownPercentage;
@@ -69,20 +69,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
 
         IEnumerator ActivateSkillEffects()
         {
-            var skillEffects = _soretedSkillEffects.ToList();
-            for (int i = 0; i < skillEffects.Count; ++i)
+            foreach (var pair in _soretedSkillEffects)
             {
-                List<SkillEffect> activatedSkillEffect = new List<SkillEffect>();
-                int order = skillEffects[i].Key;
-                while ((i < skillEffects.Count) && skillEffects[i].Key == order)
-                {
-                    skillEffects[i].Value.Activate();
-                    activatedSkillEffect.Add(skillEffects[i].Value);
-                    i++;
-                }
-                i--;
+                pair.Value.ForEach(e => e.Activate());
 
-                while (activatedSkillEffect.Any(e => e.Activated))
+                while (pair.Value.Any(e => e.Activated))
                 {
                     yield return new WaitForSeconds(Time.deltaTime);
                 }
@@ -108,10 +99,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             _coolDownPercentage = 0f;
             _castableConditions = GetComponents<SkillCastableCondition>().ToList();
             gameObject.tag = Caster.gameObject.tag;
-            _soretedSkillEffects = new SortedDictionary<int, SkillEffect>();
+            _soretedSkillEffects = new SortedDictionary<int, List<SkillEffect>>();
             for (int i = 0; i < _skillEffects.Count; ++i)
             {
-                _soretedSkillEffects.Add(_skillEffectsOrder[i], _skillEffects[i]);
+                if (!_soretedSkillEffects.ContainsKey(_skillEffectsOrder[i]))
+                {
+                    _soretedSkillEffects.Add(_skillEffectsOrder[i], new List<SkillEffect>());
+                }
+                _soretedSkillEffects[_skillEffectsOrder[i]].Add(_skillEffects[i]);
             }
         }
 
