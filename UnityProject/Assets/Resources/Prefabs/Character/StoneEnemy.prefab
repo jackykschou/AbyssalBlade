@@ -68,6 +68,7 @@ GameObject:
   - 114: {fileID: 11400044}
   - 114: {fileID: 11400046}
   - 114: {fileID: 11400048}
+  - 114: {fileID: 11400052}
   m_Layer: 0
   m_Name: StoneEnemy
   m_TagString: Untagged
@@ -364,7 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a606312a8bc4144ca72b8db5bc4a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repathRate: .5
   Target: {fileID: 0}
   canSearch: 1
   canMove: 1
@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ee50d89328d2d439200d4a1db265be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PrefabSpawner: {fileID: 0}
   textColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &11400048
 MonoBehaviour:
@@ -542,6 +543,23 @@ MonoBehaviour:
   SKill: {fileID: 0}
   clip: 9
   volume: 1
+--- !u!114 &11400052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefabs: 01000000
+  SpawnPickWeights:
+  - 1
+  LimitNumberOfSpawn: 0
+  NumberOfSpawn: 100000
+  SpawnChance: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

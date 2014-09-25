@@ -10,7 +10,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
 
         public override void Shoot()
         {
-            MoveAlongWithStyle(easeType, MathUtility.GetDirection(transform.position, Target), Speed);
+            MoveAlongWithStyle(easeType, MathUtility.GetDirection(transform.position, Target.position), Speed);
         }
     }
 }
