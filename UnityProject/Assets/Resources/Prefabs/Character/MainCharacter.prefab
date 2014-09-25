@@ -61,6 +61,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400058}
+  - 114: {fileID: 11400062}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -172,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.5699997, y: -140.5, z: 0}
+  m_LocalPosition: {x: 29.4069996, y: -102.989998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -285,8 +286,8 @@ MonoBehaviour:
   Invincible: 0
   HitPoint:
     InitialMinValue: 0
-    InitialMaxValue: 500
-    InitialValue: 500
+    InitialMaxValue: 300
+    InitialValue: 250
   DamageReduction:
     InitialMinValue: 0
     InitialMaxValue: 0
@@ -614,7 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SKill: {fileID: 0}
   BoolParameterName: Skill1
-  _animationDuration: .400000006
+  _animationDuration: .300000012
   _animationEventMessages:
   - ApplyAreaDamages
   - PlaySound
@@ -674,7 +675,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: 1
+    DispatchInterval: .300000012
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -753,6 +754,19 @@ MonoBehaviour:
   SKill: {fileID: 0}
   clip: 13
   volume: 1
+--- !u!114 &11400062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557aa69913509d84799ae382b2ec5b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarSlider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -773,7 +787,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1833413749
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300154, guid: 841d1b290e0db9541ad9dd93bd588ac5, type: 3}
+  m_Sprite: {fileID: 21300024, guid: 5f0869d3d4b564b9ebc6d3685ccd0452, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
