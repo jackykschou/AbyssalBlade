@@ -15,7 +15,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Damager
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
         public void TakeDamage(float damage)
         {
-            GameObject obj = PrefabManager.Instance.SpawnPrefab(Constants.Prefab.DamageText, this.gameObject.transform.position);
+            GameObject obj = PrefabManager.Instance.SpawnPrefab(Constants.Prefab.DamageText, gameObject.transform.position);
             obj.GetComponent<TextMesh>().text = ((int)damage).ToString();
             obj.GetComponent<TextMesh>().color = textColor;
         }
