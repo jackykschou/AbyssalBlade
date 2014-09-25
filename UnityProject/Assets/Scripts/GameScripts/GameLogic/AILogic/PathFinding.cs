@@ -106,8 +106,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             {
                 //Make sure we receive callbacks when paths complete
                 seeker.pathCallback += OnPathComplete;
-
-                StartCoroutine(RepeatTrySearchPath());
             }
         }
 
@@ -126,15 +124,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
 
             //Make sure we receive callbacks when paths complete
             seeker.pathCallback -= OnPathComplete;
-
-            StopCoroutine(RepeatTrySearchPath());
         }
 
         /** Determines how often it will search for new paths. 
      * If you have fast moving targets or AIs, you might want to set it to a lower value.
      * The value is in seconds between path requests.
      */
-        public float repathRate = 0.5F;
+        public const float repathRate = 0.7f;
 
         /** Target to move towards.
      * The AI will try to follow/move towards this Target.

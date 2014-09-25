@@ -27,7 +27,10 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 
             PathFinding pathfinding = stateMachine.owner.GetComponent<PathFinding>();
 
-            if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) || pathfinding.gameObject.IsDestroyed())
+	        pathfinding.TrySearchPath();
+
+            if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
+                pathfinding.gameObject.IsDestroyed() || ((Vector2)pathfinding.GetMoveDirection() == Vector2.zero))
             {
                 return;
             }
