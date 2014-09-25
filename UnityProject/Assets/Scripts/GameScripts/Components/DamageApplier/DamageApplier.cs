@@ -21,7 +21,7 @@ namespace Assets.Scripts.GameScripts.Components.DamageApplier
 
         public bool ApplyDamage(GameObject target)
         {
-            if (TagConstants.IsEnemy(gameObject.tag, target.tag) && !target.IsDestroyed() &&
+            if ((TagConstants.IsEnemy(gameObject.tag, target.tag) || TagConstants.IsNeutral(target.tag)) && !target.IsDestroyed() &&
                 (!_damagedCache.Contains(target) || !OneTimeOnlyPerTarget))
             {
                 ApplyDamageHelper(target);

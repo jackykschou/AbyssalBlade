@@ -10,10 +10,15 @@
         {
             if (tag1 == NeutralTag)
             {
-                return true;
+                return false;
             }
 
             return tag1 != tag2;
+        }
+
+        public static bool IsNeutral(string tag)
+        {
+            return tag == NeutralTag;
         }
     }
 }
