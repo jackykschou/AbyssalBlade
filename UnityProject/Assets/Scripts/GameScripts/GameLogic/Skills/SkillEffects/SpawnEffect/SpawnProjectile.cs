@@ -1,9 +1,7 @@
-﻿using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components;
+﻿using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
-using Assets.Scripts.Managers;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;

@@ -10,6 +10,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
         [Range(0, float.MaxValue)]
         public float Damping = 5f;
 
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
+
         protected override void Deinitialize()
         {
         }
