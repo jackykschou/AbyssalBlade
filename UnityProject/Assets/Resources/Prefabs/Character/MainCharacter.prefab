@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400066}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -326,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ee50d89328d2d439200d4a1db265be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PrefabSpawner: {fileID: 11400064}
   textColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &11400006
 MonoBehaviour:
@@ -368,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SKill: {fileID: 0}
-  ProjectilePrefab: 0
+  PrefabSpawner: {fileID: 0}
   Position:
     Follower: {fileID: 400006}
     Position: {fileID: 400010}
@@ -537,22 +539,22 @@ MonoBehaviour:
     _keyCode: 4
     CoolDownTimeDispatcher:
       IsEnabled: 0
-      DispatchInterval: .200000003
+      DispatchInterval: .100000001
   Attack2:
     _keyCode: 5
     CoolDownTimeDispatcher:
       IsEnabled: 0
-      DispatchInterval: .200000003
+      DispatchInterval: .100000001
   Attack3:
     _keyCode: 6
     CoolDownTimeDispatcher:
       IsEnabled: 0
-      DispatchInterval: .200000003
+      DispatchInterval: .100000001
   Attack4:
     _keyCode: 7
     CoolDownTimeDispatcher:
       IsEnabled: 0
-      DispatchInterval: .200000003
+      DispatchInterval: .100000001
 --- !u!114 &11400034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,7 +618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SKill: {fileID: 0}
   BoolParameterName: Skill1
-  _animationDuration: .300000012
+  _animationDuration: .200000003
   _animationEventMessages:
   - ApplyAreaDamages
   - PlaySound
@@ -661,7 +663,7 @@ MonoBehaviour:
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400008}
-  Radius: 1.5
+  Radius: 1.20000005
 --- !u!114 &11400048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -676,7 +678,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: .300000012
+    DispatchInterval: .25
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -776,13 +778,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47020e3c87756f4c85aa07fb7f7bd72, type: 3}
+  m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pCaster: {fileID: 0}
-  CooldownBars:
-  - {fileID: 0}
-  - {fileID: 0}
+  Prefabs: 01000000
+  SpawnPickWeights:
+  - 1
+  LimitNumberOfSpawn: 0
+  NumberOfSpawn: 100000
+  SpawnChance: 1
+--- !u!114 &11400066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefabs: 00000000
+  SpawnPickWeights:
+  - 1
+  LimitNumberOfSpawn: 0
+  NumberOfSpawn: 100000
+  SpawnChance: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
