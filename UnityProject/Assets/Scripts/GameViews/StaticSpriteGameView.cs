@@ -14,6 +14,7 @@ namespace Assets.Scripts.GameViews
             base.Initialize();
 
             _render = GetComponent<SpriteRenderer>();
+            _render.sortingLayerName = SortingLayerConstants.SortingLayerNames.CharacterLayer;
             UpdateSortingOrder();
         }
 

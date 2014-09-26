@@ -4,6 +4,6 @@
     {
         public const float SpeedScale = 1000f;
         public const int PixelToUnit = 100;
-        public const float LayerSortingScale = -1f;
+        public const float LayerSortingScale = -5f;
     }
 }
