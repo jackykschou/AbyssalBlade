@@ -31,7 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
             Invincible = false;
         }
 
-        [Attributes.GameScriptEvent(Constants.GameScriptEvent.ObjectTakeFixDamage)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeFixDamage)]
         public void TakeDamageFixed(float damage)
         {
             if (Invincible || Destroyed || damage <= 0f)
@@ -48,29 +48,29 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
             HitPoint -= actualDamage;
             actualDamage += Random.Range(-actualDamage*DamageVariantPercentage, actualDamage*DamageVariantPercentage);
 
-            TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage, actualDamage);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, actualDamage);
 
             if (HitPoint <= 0f)
             {
                 Destroyed = true;
-                TriggerGameScriptEvent(Constants.GameScriptEvent.OnObjectDestroyed);
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
                 DisableGameObject(_delay);
             }
         }
 
-        [Attributes.GameScriptEvent(Constants.GameScriptEvent.ObjectTakeCurrentPercentageDamage)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeCurrentPercentageDamage)]
         public void TakeDamageCurrentPercentage(float percentage)
         {
             TakeDamageFixed(HitPoint.Value * percentage);
         }
 
-        [Attributes.GameScriptEvent(Constants.GameScriptEvent.ObjectTakeMaxPercentageDamage)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeMaxPercentageDamage)]
         public void TakeDamageMaxPercentage(float percentage)
         {
             TakeDamageFixed(HitPoint.Max * percentage);
         }
 
-        [Attributes.GameScriptEvent(Constants.GameScriptEvent.ObjectTakeFixDamagePerSec)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeFixDamagePerSec)]
         public void TakeDamageFixedPerSecond(float amount, int duration, bool stackable, DamageNonStackableLabel nonStackableLabel)
         {
             if (stackable || _currentDamageNonStackableLabelMap.ContainsKey(nonStackableLabel))
@@ -91,13 +91,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
             }
         }
 
-        [Attributes.GameScriptEvent(Constants.GameScriptEvent.ObjectTakeCurrentPercentageDamagePerSec)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeCurrentPercentageDamagePerSec)]
         public void TakeDamageCurrentPercentagePerSecond(float percentage, int duration, bool stackable, DamageNonStackableLabel nonStackableLabel)
         {
             TakeDamageFixedPerSecond(HitPoint.Value * percentage, duration, stackable, nonStackableLabel);
         }
 
-        [Attributes.GameScriptEvent(Constants.GameScriptEvent.ObjectTakeMaxPercentageDamagePerSec)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeMaxPercentageDamagePerSec)]
         public void TakeDamageMaxPercentagePerSecond(float percentage, int duration, bool stackable, DamageNonStackableLabel nonStackableLabel)
         {
             TakeDamageFixedPerSecond(HitPoint.Max * percentage, duration, stackable, nonStackableLabel);

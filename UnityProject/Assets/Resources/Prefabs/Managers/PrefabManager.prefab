@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: PrefabManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 55.497921, y: -100.190582, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4718b38db72769a40bb6afc5113f674d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedPrefabPoolMapKeys:
+  - Prefabs/AudioManager
+  - Prefabs/Main Camera
+  - Prefabs/Character/MainCharacter
+  - Prefabs/Character/StoneEnemy
+  - Prefabs/DamageText/DamageTextMesh
+  - Prefabs/ForestLevel/ForestLevel 1
+  - Prefabs/ForestLevel/ForestTiles/ForestBlueTree
+  - Prefabs/ForestLevel/ForestTiles/ForestBrownRock
+  - Prefabs/ForestLevel/ForestTiles/ForestGreenBrush
+  - Prefabs/ForestLevel/ForestTiles/ForestPurpleSpawnPoint
+  - Prefabs/ForestLevel/ForestTiles/ForestRedSpawnPoint
+  - Prefabs/ForestLevel/ForestTiles/InvisibleWall 1
+  - Prefabs/Level1/Level1
+  - Prefabs/Level1/Level1Tiles/InvisibleWall
+  - Prefabs/Level1/Level1Tiles/Level1Robot1
+  - Prefabs/Level1/Level1Tiles/Level1Robot2
+  - Prefabs/Level1/Level1Tiles/Level1Robot3
+  - Prefabs/Skills/Projectile
+  - Prefabs/Sprint0/BlackRockPrefab
+  - Prefabs/Sprint0/BushPrefab
+  - Prefabs/Sprint0/GreenGrassThingPrefab
+  - Prefabs/Sprint0/OrangeRockPrefab
+  - Prefabs/Sprint0/TreePrefab
+  _serializedPrefabPoolMapValues:
+  - Prefabs
+  - Prefabs
+  - Character
+  - Character
+  - DamageText
+  - ForestLevel
+  - ForestTiles
+  - ForestTiles
+  - ForestTiles
+  - ForestTiles
+  - ForestTiles
+  - ForestTiles
+  - Level1
+  - Level1Tiles
+  - Level1Tiles
+  - Level1Tiles
+  - Level1Tiles
+  - Skills
+  - Sprint0
+  - Sprint0
+  - Sprint0
+  - Sprint0
+  - Sprint0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

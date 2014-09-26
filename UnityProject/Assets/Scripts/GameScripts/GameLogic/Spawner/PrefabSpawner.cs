@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         public List<float> SpawnPickWeights;
         public bool LimitNumberOfSpawn = false;
         [Range(0, 100000)]
-        public int NumberOfSpawn = 100000;
+        public int NumberOfSpawn = 1;
         [Range(0f, 1.0f)] 
         public float SpawnChance = 1.0f;
 
@@ -43,6 +43,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         public override void EditorUpdate()
         {
             base.EditorUpdate();
+            if (Prefabs == null)
+            {
+                return;
+            }
+
             if (Prefabs.Count != SpawnPickWeights.Count)
             {
                 SpawnPickWeights.Resize(Prefabs.Count);
@@ -51,7 +56,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
         public GameObject SpawnPrefab(Vector3 position)
         {
-            if (_spawnCount > NumberOfSpawn && LimitNumberOfSpawn)
+            if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
             {
                 return null;
             }
@@ -62,10 +67,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             {
                 return PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position);
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         protected override void Deinitialize()

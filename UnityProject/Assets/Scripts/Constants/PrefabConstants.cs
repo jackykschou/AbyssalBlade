@@ -6,7 +6,8 @@ namespace Assets.Scripts.Constants
     public enum Prefab
     {
         Projectile,
-        DamageText
+        DamageText,
+        StoneEnemy
     };
 
     public class PrefabConstants
@@ -18,7 +19,8 @@ namespace Assets.Scripts.Constants
         private static readonly Dictionary<Prefab, string> PrefabPathMap = new Dictionary<Prefab, string>()
         {
             {Prefab.Projectile, "Prefabs/Skills/Projectile"},
-            {Prefab.DamageText, "Prefabs/DamageText/DamageTextMesh"}
+            {Prefab.DamageText, "Prefabs/DamageText/DamageTextMesh"},
+            {Prefab.StoneEnemy, "Prefabs/Character/StoneEnemy"}
         };
 
         public static string GetPrefabName(Prefab prefab)
