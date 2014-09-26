@@ -117,7 +117,7 @@ MonoBehaviour:
     InitialMinValue: 0
     InitialMaxValue: 100
     InitialValue: 10
-  Target: {x: 0, y: 0, z: 0}
+  Target: {fileID: 0}
   easeType: 21
 --- !u!114 &11400006
 MonoBehaviour:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4054f0d4bdb6ba74ca63728e407b0cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 20
+  LifeTime: 5
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,6 +179,7 @@ MonoBehaviour:
   OneTimeOnlyPerTarget: 1
   DamageType: 0
   Stackable: 0
+  NonStackableLabel: 0
   Amount:
     InitialMinValue: 0
     InitialMaxValue: 100
