@@ -87,6 +87,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             _coolDownPercentage = percentage;
         }
 
+        public float getCooldownPercentage()
+        {
+            return _coolDownPercentage;
+        }
+
         protected override void Initialize()
         {
             base.Initialize();

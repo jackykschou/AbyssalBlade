@@ -64,6 +64,7 @@ GameObject:
   - 114: {fileID: 11400058}
   - 114: {fileID: 11400062}
   - 114: {fileID: 11400064}
+  - 114: {fileID: 11400068}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -678,7 +679,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: .25
+    DispatchInterval: .200000003
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,6 +805,21 @@ MonoBehaviour:
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 100000
   SpawnChance: 1
+--- !u!114 &11400068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47020e3c87756f4c85aa07fb7f7bd72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pCaster: {fileID: 0}
+  CooldownBars:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
