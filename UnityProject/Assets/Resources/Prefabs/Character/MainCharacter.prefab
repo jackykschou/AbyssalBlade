@@ -581,11 +581,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skills: []
   Target: {fileID: 0}
-  _movementSkill: {fileID: 11400052}
-  _skill1: {fileID: 11400038}
-  _skill2: {fileID: 11400016}
-  _skill3: {fileID: 11400038}
-  _skill4: {fileID: 11400016}
+  MovementSkill: {fileID: 11400052}
+  Skill1: {fileID: 11400038}
+  Skill2: {fileID: 11400016}
+  Skill3: {fileID: 11400038}
+  Skill4: {fileID: 11400016}
   TargetHolder:
     Follower: {fileID: 0}
     Position: {fileID: 400004}
@@ -813,13 +813,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47020e3c87756f4c85aa07fb7f7bd72, type: 3}
+  m_Script: {fileID: 11500000, guid: cfeba117ff96b1648a891dbb9dabcd84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pCaster: {fileID: 0}
-  CooldownBars:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

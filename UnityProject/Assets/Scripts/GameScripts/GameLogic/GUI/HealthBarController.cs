@@ -1,12 +1,9 @@
 ﻿using Assets.Scripts.Attributes;
-using UnityEngine;
-using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
-using UnityEngine.UI;
 using Assets.Scripts.GameScripts.Components.GameValue;
+using UnityEngine;
+using UnityEngine.UI;
 
-
-namespace Assets.Scripts.GameScripts.GameLogic
+namespace Assets.Scripts.GameScripts.GameLogic.GUI
 {
     public class HealthBarController : GameLogic
     {

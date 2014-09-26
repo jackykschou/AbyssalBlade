@@ -11,20 +11,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
     [AddComponentMenu("Skill/Caster/PlayerCharacterCaster")]
     public class PlayerCharacterSkillsCaster : SkillCaster
     {
-        [SerializeField] 
-        private Skill _movementSkill;
+        public Skill MovementSkill;
 
-        [SerializeField] 
-        private Skill _skill1;
+        public Skill Skill1;
 
-        [SerializeField]
-        private Skill _skill2;
+        public Skill Skill2;
 
-        [SerializeField]
-        private Skill _skill3;
+        public Skill Skill3;
 
-        [SerializeField]
-        private Skill _skill4;
+        public Skill Skill4;
 
         public PositionIndicator TargetHolder;
 
@@ -48,31 +43,31 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         public void ActivateMovement(Vector2 direction)
         {
             TriggerGameScriptEvent(GameScriptEvent.UpdatePlayerAxis, direction);
-            _movementSkill.Activate();
+            MovementSkill.Activate();
         }
 
         [GameScriptEvent(GameScriptEvent.PlayerAttack1ButtonPressed)]
         public void ActivateSkillOne()
         {
-            _skill1.Activate();
+            Skill1.Activate();
         }
 
         [GameScriptEvent(GameScriptEvent.PlayerAttack2ButtonPressed)]
         public void ActivateSkillTwo()
         {
-            _skill2.Activate();
+            Skill2.Activate();
         }
 
         [GameScriptEvent(GameScriptEvent.PlayerAttack3ButtonPressed)]
         public void ActivateSkillThree()
         {
-            _skill3.Activate();
+            Skill3.Activate();
         }
 
         [GameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed)]
         public void ActivateSkillFour()
         {
-            _skill4.Activate();
+            Skill4.Activate();
         }
     }
 }
