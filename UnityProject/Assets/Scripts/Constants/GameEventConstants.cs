@@ -6,6 +6,7 @@
 #if DEBUG
         ExampleEvent,                 // void()
 #endif
-        OnPlayerSkillCoolDownUpdate   // void(int, float)
+        OnPlayerSkillCoolDownUpdate,   // void(int, float)
+        PlayerHealthUpdate             // void(float)
      };
 }
