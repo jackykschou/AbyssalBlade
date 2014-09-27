@@ -9,7 +9,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
     [RequireComponent(typeof(Slider))]
     public class SkillCoolDownSlider : GameLogic
     {
-        [Range(0, 3)] 
+        [Range(0, 4)] // 0 is movement skill
         public int SkillId;
         public Slider CooldownBar;
 
