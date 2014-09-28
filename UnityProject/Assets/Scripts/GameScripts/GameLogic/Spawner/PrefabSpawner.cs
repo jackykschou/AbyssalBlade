@@ -54,6 +54,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             }
         }
 
+        public bool CanSpawn()
+        {
+            return !(_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn);
+        }
+
         public GameObject SpawnPrefab(Vector3 position)
         {
             if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
