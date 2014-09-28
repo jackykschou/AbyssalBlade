@@ -18,9 +18,9 @@ namespace Assets.Scripts.Constants
 
         private static readonly Dictionary<Prefab, string> PrefabPathMap = new Dictionary<Prefab, string>()
         {
-            {Prefab.Projectile, "Prefabs/Skills/Projectile"},
-            {Prefab.DamageText, "Prefabs/DamageText/DamageTextMesh"},
-            {Prefab.StoneEnemy, "Prefabs/Character/StoneEnemy"}
+            {Prefab.Projectile, "Prefabs/PreloadedPrefab/Projectile/Projectile"},
+            {Prefab.DamageText, "Prefabs/PreloadedPrefab/DamageText/DamageTextMesh"},
+            {Prefab.StoneEnemy, "Prefabs/PreloadedPrefab/Character/StoneEnemy"}
         };
 
         public static string GetPrefabName(Prefab prefab)

@@ -14,6 +14,8 @@ namespace Assets.Scripts.Managers
     [AddComponentMenu("Manager/PrefabManager")] 
     public class PrefabManager : MonoBehaviour
     {
+        public const string PreloadedPrefabFolderName = "PreloadedPrefab";
+
         public static PrefabManager Instance;
 
         [SerializeField]
@@ -28,7 +30,7 @@ namespace Assets.Scripts.Managers
         {
             _spawnedPrefabsMap = new Dictionary<GameObject, SpawnPool>();
             _prefabPoolMap = new Dictionary<string, SpawnPool>();
-            Instance = FindObjectOfType<PrefabManager>();
+            Instance = GetComponent<PrefabManager>();
             CreateSpawnPools();
         }
 
@@ -36,20 +38,35 @@ namespace Assets.Scripts.Managers
         {
             for(int i = 0; i < _serializedPrefabPoolMapKeys.Count; ++i)
             {
+                SpawnPool spawnPool;
                 if (_prefabPoolMap.Values.All(s => s.poolName != _serializedPrefabPoolMapValues[i]))
                 {
-                    SpawnPool spawnPool = PoolManager.Pools.Create(_serializedPrefabPoolMapValues[i]);
+                    spawnPool = PoolManager.Pools.Create(_serializedPrefabPoolMapValues[i]);
                     spawnPool.gameObject.transform.parent = transform;
                     spawnPool.gameObject.transform.position = transform.position;
                     spawnPool.gameObject.name = _serializedPrefabPoolMapValues[i];
                     spawnPool.dontDestroyOnLoad = true;
+
                     _prefabPoolMap.Add(_serializedPrefabPoolMapKeys[i], spawnPool);
                 }
                 else
                 {
-                    SpawnPool spawnPool =
+                    spawnPool =
                         _prefabPoolMap.Values.First(s => s.poolName == _serializedPrefabPoolMapValues[i]);
                     _prefabPoolMap.Add(_serializedPrefabPoolMapKeys[i], spawnPool);
+                }
+
+                if (_serializedPrefabPoolMapKeys[i].Contains(PreloadedPrefabFolderName))
+                {
+                    var o = Resources.Load(_serializedPrefabPoolMapKeys[i]) as GameObject;
+                    PrefabPool prefabPool = new PrefabPool(o.transform);
+                    prefabPool.preloadAmount = 30;
+
+                    prefabPool.cullDespawned = true;
+                    prefabPool.cullAbove = 40;
+                    prefabPool.cullDelay = 5;
+
+                    spawnPool.CreatePrefabPool(prefabPool);
                 }
             }
         }

@@ -3,7 +3,6 @@ using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
-using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Damager
 {

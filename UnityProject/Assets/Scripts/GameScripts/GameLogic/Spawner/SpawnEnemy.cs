@@ -1,9 +1,11 @@
-﻿using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+﻿using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 {
+    [RequireComponent(typeof(CircleCollider2D))]
     [RequireComponent(typeof(PrefabSpawner))]
     public class SpawnEnemy : GameLogic 
     {
@@ -17,15 +19,20 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
         public FixTimeDispatcher SpawnCoolDown;
 
-        protected override void Update()
+        public CircleCollider2D Collider;
+
+        protected override void OnTriggerStay2D(Collider2D coll)
         {
-            base.Update();
-            if (LevelManager.Instance.PlayerMainCharacter != null && 
-                (Vector2.Distance(LevelManager.Instance.PlayerMainCharacter.transform.position, transform.position) <= ActivateDistance) &&
-                SpawnCoolDown.CanDispatch())
+            if (!PrefabSpawner.CanSpawn())
+            {
+                Collider.enabled = false;
+            }
+
+            if (SpawnCoolDown.CanDispatch() &&
+                LevelManager.Instance.PlayerMainCharacter != null)
             {
                 SpawnCoolDown.Dispatch();
-                Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius), 
+                Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                     Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
                 PrefabSpawner.SpawnPrefab(spawnPosition);
             }
@@ -38,6 +45,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
+            Collider = GetComponent<CircleCollider2D>();
+            Collider.isTrigger = true;
+            Collider.radius = ActivateDistance;
+            gameObject.layer = LayerConstants.LayerMask.SpawnArea;
         }
 
         protected override void Deinitialize()

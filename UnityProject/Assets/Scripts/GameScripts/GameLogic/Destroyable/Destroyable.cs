@@ -32,7 +32,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeFixDamage)]
-        public void TakeDamageFixed(float damage)
+        public virtual void TakeDamageFixed(float damage)
         {
             if (Invincible || Destroyed || damage <= 0f)
             {
@@ -53,9 +53,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Destroyable
             if (HitPoint <= 0f)
             {
                 Destroyed = true;
+                HitPoint = 0f;
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
-                DisableGameObject(_delay);
             }
+        }
+
+        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectDestroyed)]
+        public virtual void OnObjectDestroyed()
+        {
+            DisableGameObject(_delay);
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectTakeCurrentPercentageDamage)]

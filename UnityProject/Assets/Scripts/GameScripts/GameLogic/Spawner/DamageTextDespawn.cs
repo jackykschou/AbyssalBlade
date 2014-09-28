@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
         private float timeAlive;
         private TextMesh mesh;
 
-        void Update()
+        protected override void Update()
         {
             mesh.transform.Translate(new Vector3(0, scrollingVelocity * Time.deltaTime, 0));
             timeAlive += Time.deltaTime;

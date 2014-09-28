@@ -4,7 +4,9 @@
     public enum GameEvent
     {
 #if DEBUG
-        ExampleEvent    // void()
+        ExampleEvent,                 // void()
 #endif
+        OnPlayerSkillCoolDownUpdate,   // void(int, float)
+        PlayerHealthUpdate             // void(float)
      };
 }

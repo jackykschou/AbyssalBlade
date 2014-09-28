@@ -311,5 +311,8 @@ namespace Assets.Scripts.GameScripts
 
         protected virtual void OnTriggerEnter2D(Collider2D coll)
         { }
+
+        protected virtual void OnTriggerStay2D(Collider2D coll)
+        { }
     }
 }
