@@ -230,18 +230,19 @@ namespace Assets.Scripts.Managers
                 playLoop();
                 isPlaying = true;
             }
-            public void playLoop()
-            {
-                source.clip = _trackList[_curTrack];
-                source.Play();
-                AudioManager.Instance.StartCoroutine(this.PlayAgain(this));
-            }
             public void stop()
             {
                 isPlaying = false;
                 if (source == null)
                     return;
                 AudioManager.Instance.DestroySource(source);
+            }
+            private void playLoop()
+            {
+                source.Stop();
+                source.clip = _trackList[_curTrack];
+                source.Play();
+                AudioManager.Instance.StartCoroutine(this.PlayAgain(this));
             }
             public void switchTrack()
             {
@@ -260,9 +261,14 @@ namespace Assets.Scripts.Managers
             }
             private IEnumerator PlayAgain(LoopingCue lewp)
             {
-                yield return new WaitForSeconds(_trackList[_curTrack].length);
+                yield return new WaitForSeconds(lewp.getCurTrackLength());
                 if(lewp.source != null)
                     lewp.playLoop();
+            }
+
+            private float getCurTrackLength()
+            {
+                return _trackList[_curTrack].length;
             }
 
         }
