@@ -133,11 +133,6 @@ namespace Assets.Scripts.GameScripts
             GameEventManager.Instance.TriggerGameEvent(gameEvent, args);
         }
 
-        void Awake ()
-        {
-            InitializeHelper();
-        }
-
         void Start()
         {
             InitializeHelper();
@@ -185,7 +180,7 @@ namespace Assets.Scripts.GameScripts
 
         void DeinitializeHelper()
         {
-            if (_deinitialized)
+            if (_deinitialized || !_initialized)
             {
                 return;
             }
