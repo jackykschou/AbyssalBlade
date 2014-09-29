@@ -14,11 +14,11 @@ namespace Assets.Scripts.Managers
     public class AudioManager : MonoBehaviour
     {
         [SerializeField]
-        private List<AudioClip> clips;
+        private List<AudioClip> _clips;
         [SerializeField]
-        private List<MultiCue> cues;
+        private List<MultiCue> _cues;
         [SerializeField]
-        private List<LoopingCue> loops;
+        private List<LoopingCue> _loops;
 
         private Dictionary<string, AudioClip> _oneShotList;
         private Dictionary<CueName, MultiCue> _cueDict;
@@ -44,29 +44,33 @@ namespace Assets.Scripts.Managers
         public void UpdateManager()
         {
             DeleteClips();
-            clips = new List<AudioClip>();
-            cues = new List<MultiCue>();
-            loops = new List<LoopingCue>();
+            _clips = new List<AudioClip>();
+            _cues = new List<MultiCue>();
+            _loops = new List<LoopingCue>();
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<CueName, MultiCue>();
             _loopDict = new Dictionary<LoopName, LoopingCue>();
 
             foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music"))
-                clips.Add(clip);
+                _clips.Add(clip);
 
-            foreach (AudioClip clip in clips)
+            foreach (AudioClip clip in _clips)
                 _oneShotList[clip.name] = clip;
 
             AudioConstants.CreateCustomCues();
 
-            foreach (MultiCue cue in cues)
+            foreach (MultiCue cue in _cues)
                 _cueDict[cue.cueName] = cue;
         }
         public void DeleteClips()
         {
-            clips = new List<AudioClip>();
-            cues = new List<MultiCue>();
-            loops = new List<LoopingCue>();
+
+            foreach (var loop in _loops)
+                DestroyImmediate(loop);
+
+            _clips = new List<AudioClip>();
+            _cues = new List<MultiCue>();
+            _loops = new List<LoopingCue>();
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<CueName, MultiCue>();
             _loopDict = new Dictionary<LoopName, LoopingCue>();
@@ -146,12 +150,12 @@ namespace Assets.Scripts.Managers
             List<ProportionValue<ClipName>> list = new List<ProportionValue<ClipName>>();
             foreach( var clip in clipList)
                 list.Add(ProportionValue.Create(1.0f / clipList.Count, clip));
-            cues.Add(new MultiCue(name, list));
+            _cues.Add(new MultiCue(name, list));
             return true;
         }
         public bool createMultiCueParallel(CueName name, List<ClipName> clipList)
         {
-            cues.Add(new MultiCue(name, clipList));
+            _cues.Add(new MultiCue(name, clipList));
             return true;
         }
         public bool createLoop(LoopName name, List<ClipName> clipList)
@@ -165,7 +169,7 @@ namespace Assets.Scripts.Managers
                 cue.clips = clipList;
                 cue.name = AudioConstants.GetLoopName(name);
                 _loopDict[name] = cue;
-                loops.Add(cue);
+                _loops.Add(cue);
             }
             return true;
         }
@@ -195,17 +199,17 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         public class LoopingCue : MonoBehaviour
         {
+            [HideInInspector]
             public string name;
             public LoopName loopName;
+            public bool running = false;
+            public int _curTrack;
+            [Range(0.0f, 1.0f)]
+            public float volume = 1.0f;
             public List<ClipName> clips;
             List<AudioSource> audioSources;
-            public float volume = 1.0f;
-
             private double nextEventTime;
 
-            public bool running = false;
-            int _curTrack;
-            int _nextTrack;
 
             GameObject loopObj;
 
@@ -243,6 +247,7 @@ namespace Assets.Scripts.Managers
                 if (!running)
                     return;
 
+                // Perfectly In Sync with Unity Audio System
                 double time = AudioSettings.dspTime;
 
                 if (time > nextEventTime)
