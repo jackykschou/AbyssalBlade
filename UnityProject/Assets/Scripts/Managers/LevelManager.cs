@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
+using GameEvent = Assets.Scripts.Constants.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
+
 namespace Assets.Scripts.Managers
 {
     public class LevelManager : MonoBehaviour
     {
-        public const string MainCharacterGameObjectName = "MainCharacter";
-
         public static LevelManager Instance;
 
         public static bool LevelStarted 
@@ -19,13 +20,20 @@ namespace Assets.Scripts.Managers
 
         void Awake()
         {
+            _levelStarted = false;
             Instance = FindObjectOfType<LevelManager>();
-            PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
+            PlayerMainCharacter = GameManager.Instance.PlayerMainCharacter;
         }
 
         void OnDestroy()
         {
             Instance = null;
+        }
+
+        [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
+        public void OnLevelFinishedLoading()
+        {
+            _levelStarted = true;
         }
     }
 }

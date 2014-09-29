@@ -1,19 +1,77 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic;
+using UnityEngine;
+
+using GameEvent = Assets.Scripts.Constants.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.Managers
 {
-
-    public class GameManager : MonoBehaviour 
+    public class GameManager : GameLogic 
     {
+        public const string MainCharacterGameObjectName = "MainCharacter";
+
         public static GameManager Instance;
+
+        public Prefab StartingLevelPrefab;
+
+        public GameObject CurrentLevel;
+
+        private Prefab _currentLevelPrefab;
+
+        public GameObject LoadingScene;
+
+        public GameObject HUD;
+
+        public GameObject PlayerMainCharacter;
 
         [Range(0, 10)]
         public int Difficulity;
 
-        void Awake()
+        public void ChangeLevel(Prefab levelPrefab)
         {
+            StartCoroutine(ChangeLevelIE(levelPrefab));
+        }
+
+        private IEnumerator ChangeLevelIE(Prefab levelPrefab)
+        {
+            LoadingScene.SetActive(true);
+            HUD.SetActive(false);
+            yield return new WaitForSeconds(2f);
+            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
+            if (CurrentLevel != null)
+            {
+                DestroyImmediate(CurrentLevel);
+            }
+            CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab, Vector3.zero);
+            _currentLevelPrefab = levelPrefab;
+            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+        }
+
+        public void ReloadLevel()
+        {
+            ChangeLevel(_currentLevelPrefab);
+        }
+
+        [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
+        public void OnLevelFinishedLoading()
+        {
+            LoadingScene.SetActive(false);
+            HUD.SetActive(true);
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
             Instance = FindObjectOfType<GameManager>();
             DontDestroyOnLoad(Instance);
+            PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
+            ChangeLevel(StartingLevelPrefab);
+        }
+
+        protected override void Deinitialize()
+        {
         }
     }
 }
