@@ -75,19 +75,26 @@ namespace Assets.Scripts.Constants
         public static void CreateCustomCues()
         {
             // Examples
-            List<ClipName> loopList = new List<ClipName> { ClipName.HackandSlash };
+            List<ClipName> loopList = new List<ClipName> 
+            { 
+                ClipName.HackandSlash 
+            };
             AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
 
-            List<ClipName> randList = new List<ClipName>();
-            randList.Add(ClipName.Shot);
-            randList.Add(ClipName.Strike);
-            randList.Add(ClipName.Swipe);
+            List<ClipName> randList = new List<ClipName>
+            {
+                ClipName.Shot,
+                ClipName.Strike,
+                ClipName.Swipe
+            };
             AudioManager.Instance.createMultiCueRandom(CueName.Random1,randList);
 
 
-            List<ClipName> parallelList = new List<ClipName>();
-            randList.Add(ClipName.Swipe);
-            randList.Add(ClipName.Strike);
+            List<ClipName> parallelList = new List<ClipName>
+            {
+                ClipName.Swipe,
+                ClipName.Strike
+            }; 
             AudioManager.Instance.createMultiCueParallel(CueName.Parallel1, parallelList);
         }
 
