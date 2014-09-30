@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public override void Activate()
         {
             base.Activate();
-            SKill.Caster.TriggerGameScriptEvent(GameScriptEvent.MoveCharacter, _direction);
+            Skill.Caster.TriggerGameScriptEvent(GameScriptEvent.MoveCharacter, _direction);
             Activated = false;
         }
 

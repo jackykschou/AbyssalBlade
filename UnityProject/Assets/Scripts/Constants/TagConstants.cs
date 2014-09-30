@@ -20,5 +20,10 @@
         {
             return tag == NeutralTag;
         }
+
+        public static bool IsFriend(string tag1, string tag2)
+        {
+            return tag1 == tag2;
+        }
     }
 }

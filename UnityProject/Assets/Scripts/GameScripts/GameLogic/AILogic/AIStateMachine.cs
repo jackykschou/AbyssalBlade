@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             stateMachine.name = stateMachineBehaviour.stateMachine.name + "(Bind)";
             StateMachine.StateMachine.Copy(stateMachineBehaviour.stateMachine, stateMachine, false);
             stateMachineBehaviour.stateMachine = stateMachine;
+            stateMachineBehaviour.SetDefaultState();
         }
 
         protected override void Deinitialize()

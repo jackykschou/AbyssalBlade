@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using PathologicalGames;
 using UnityEngine;
 
@@ -69,6 +70,11 @@ namespace Assets.Scripts.Managers
 
                 if (_serializedPrefabPoolMapKeys[i].Contains(PreloadedPrefabFolderName))
                 {
+                    if (obj.GetComponent<DestroyOnLevelEnded>() == null)
+                    {
+                        obj.AddComponent<DestroyOnLevelEnded>();
+                    }
+
                     PrefabPool prefabPool = new PrefabPool(obj.transform)
                     {
                         preloadAmount = 30,
@@ -85,12 +91,9 @@ namespace Assets.Scripts.Managers
         public GameObject SpawnPrefab(Prefab prefab, Vector3 position)
         {
             string prefabName = PrefabConstants.GetPrefabName(prefab);
-            if (!_prefabNameMap.ContainsKey(prefabName))
-            {
-                throw new Exception("Prefab not found in _prefabNameMap");
-            }
+            GameObject prefabGameObject = _prefabNameMap[prefabName];
 
-            GameObject spawned = _prefabPoolMap[_prefabNameMap[prefabName]].Spawn(_prefabNameMap[prefabName].transform, position, Quaternion.identity).gameObject;
+            GameObject spawned = _prefabPoolMap[prefabGameObject].Spawn(prefabGameObject.transform, position, Quaternion.identity).gameObject;
 
             if (!_spawnedPrefabsMap.ContainsKey(spawned))
             {

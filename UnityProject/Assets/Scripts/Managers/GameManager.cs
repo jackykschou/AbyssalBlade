@@ -36,17 +36,29 @@ namespace Assets.Scripts.Managers
 
         private IEnumerator ChangeLevelIE(Prefab levelPrefab)
         {
+            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelEnded);
             LoadingScene.SetActive(true);
             HUD.SetActive(false);
-            yield return new WaitForSeconds(2f);
-            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
+            PlayerMainCharacter.SetActive(false);
             if (CurrentLevel != null)
             {
-                DestroyImmediate(CurrentLevel);
+                PrefabManager.Instance.DespawnPrefab(CurrentLevel);
             }
+            yield return new WaitForSeconds(2f);
+            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
             CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab, Vector3.zero);
             _currentLevelPrefab = levelPrefab;
+            LevelManager.Instance.PlayerMainCharacter = PlayerMainCharacter;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+        }
+
+        public void DestroyScene(GameObject sceneGameObject)
+        {
+            foreach (Transform t in sceneGameObject.transform)
+            {
+                DestroyScene(t.gameObject);
+            }
+            Destroy(sceneGameObject);
         }
 
         public void ReloadLevel()
@@ -57,6 +69,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
+            PlayerMainCharacter.SetActive(true);
             LoadingScene.SetActive(false);
             HUD.SetActive(true);
         }

@@ -52,6 +52,15 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
             Value = value;
         }
 
+        public GameValue(float value, float min, float max)
+        {
+            Frozen = false;
+            Min = float.MinValue;
+            Max = float.MaxValue;
+            Value = value;
+            SetBound(min, max);
+        }
+
         public void SetBound(float min, float max)
         {
             if (min > max)
@@ -68,49 +77,49 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
             TrimValue();
         }
 
-        public static implicit operator GameValue(float value)
+        public static explicit operator GameValue(float value)
         {
             return new GameValue(value);
         }
 
         public static GameValue operator +(GameValue v1, GameValue v2)
         {
-            return v1.Value + v2.Value;
+            return new GameValue(v1.Value + v2.Value, v1.Min, v1.Max);
         }
 
         public static float operator +(GameValue v1, float v2)
         {
-            return v1.Value + v2;
+            return new GameValue(v1.Value + v2, v1.Min, v1.Max);
         }
 
         public static GameValue operator -(GameValue v1, GameValue v2)
         {
-            return v1.Value - v2.Value;
+            return new GameValue(v1.Value - v2.Value, v1.Min, v1.Max);
         }
 
         public static float operator -(GameValue v1, float v2)
         {
-            return v1.Value - v2;
+            return new GameValue(v1.Value - v2, v1.Min, v1.Max);
         }
 
         public static GameValue operator *(GameValue v1, GameValue v2)
         {
-            return v1.Value * v2.Value;
+            return new GameValue(v1.Value * v2.Value, v1.Min, v1.Max);
         }
 
         public static float operator *(GameValue v1, float v2)
         {
-            return v1.Value * v2;
+            return new GameValue(v1.Value * v2, v1.Min, v1.Max);
         }
 
         public static GameValue operator /(GameValue v1, GameValue v2)
         {
-            return v1.Value/v2.Value;
+            return new GameValue(v1.Value / v2.Value, v1.Min, v1.Max);
         }
 
         public static float operator /(GameValue v1, float v2)
         {
-            return v1.Value / v2; ;
+            return new GameValue(v1.Value / v2, v1.Min, v1.Max);
         }
 
         public static implicit operator float(GameValue v)

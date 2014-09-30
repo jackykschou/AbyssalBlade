@@ -18,15 +18,16 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400012}
   - 114: {fileID: 11400014}
+  - 114: {fileID: 11400012}
+  - 114: {fileID: 11400016}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4054f0d4bdb6ba74ca63728e407b0cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 5
+  LifeTime: 100
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,10 +162,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31500aad3efce447807f5d42c7abf69, type: 3}
+  m_Script: {fileID: 11500000, guid: 84208b005df1fe44bb86ae1d61b3dc05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamagerApplier: {fileID: 0}
+  HealthChanger: {fileID: 0}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,19 +174,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ab5e889001bbf42bef92bf2925b7cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OneTimeOnlyPerTarget: 1
-  DamageType: 0
+  TargetTags:
+  - Enemy
+  OneTimeOnlyPerTarget: 0
+  HealthChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
   Amount:
     InitialMinValue: 0
     InitialMaxValue: 100
-    InitialValue: 20
+    InitialValue: 15
   Percentage: 0
   Duration: 0
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -138,6 +138,11 @@ namespace Assets.Scripts.GameScripts
             InitializeHelper();
         }
 
+        void OnEnable()
+        {
+            InitializeHelper();
+        }
+
         void OnSpawned()
         {
             InitializeHelper();
@@ -160,7 +165,19 @@ namespace Assets.Scripts.GameScripts
 
         public void DisableGameObject(float delay = 0f)
         {
-            Destroy(gameObject, delay);
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
+
+            if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
+            {
+                PrefabManager.Instance.DespawnPrefab(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject, delay);
+            }
         }
 
         void OnDespawned()
@@ -184,7 +201,7 @@ namespace Assets.Scripts.GameScripts
             {
                 return;
             }
-            
+
             DeinitializeComponents();
             UnsubscribeGameEvents();
             Deinitialize();
@@ -232,7 +249,6 @@ namespace Assets.Scripts.GameScripts
 
         private void DeinitializeComponents()
         {
-
             foreach (var component in _components)
             {
                 component.DeinitializeChildComponents();

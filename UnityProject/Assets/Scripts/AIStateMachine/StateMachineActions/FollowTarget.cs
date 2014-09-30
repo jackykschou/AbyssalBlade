@@ -30,10 +30,11 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 	        pathfinding.TrySearchPath();
 
             if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
-                pathfinding.gameObject.IsDestroyed() || ((Vector2)pathfinding.GetMoveDirection() == Vector2.zero))
+                pathfinding.gameObject.HitPointAtZero() || ((Vector2)pathfinding.GetMoveDirection() == Vector2.zero))
             {
                 return;
             }
+
             pathfinding.TriggerGameScriptEvent(GameScriptEvent.MoveCharacter, (Vector2)pathfinding.GetMoveDirection());
 	    }
 	}

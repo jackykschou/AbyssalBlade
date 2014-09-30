@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Assets.Scripts.Constants;
 
@@ -8,13 +9,13 @@ namespace Assets.Scripts.Managers
     {
         public static GameEventManager Instance { get { return _instance; } }
 
-        private Dictionary<GameEvent, Dictionary<System.Object, List<MethodInfo>>> _gameEvents;
+        private Dictionary<GameEvent, Dictionary<System.Object, System.Collections.Generic.List<MethodInfo>>> _gameEvents;
 
         private static readonly GameEventManager _instance = new GameEventManager();
 
         GameEventManager()
         {
-            _gameEvents = new Dictionary<GameEvent, Dictionary<object, List<MethodInfo>>>();
+            _gameEvents = new Dictionary<GameEvent, Dictionary<object, System.Collections.Generic.List<MethodInfo>>>();
         }
 
         public void TriggerGameEvent(System.Object obj, GameEvent gameEvent, params System.Object[] args)
@@ -39,9 +40,17 @@ namespace Assets.Scripts.Managers
                 return;
             }
 
-            foreach (var pair in _gameEvents[gameEvent])
+            var dict = _gameEvents[gameEvent];
+            int originalCount = dict.Count;
+            for (int i = 0; i < dict.Count; ++i)
             {
-                pair.Value.ForEach(m => m.Invoke(pair.Key, args));
+                var key = dict.Keys.ElementAt(i);
+                dict[key].ForEach(m => m.Invoke(key, args));
+                if (dict.Count != originalCount)
+                {
+                    originalCount = dict.Count;
+                    --i;
+                }
             }
         }
 
@@ -49,11 +58,11 @@ namespace Assets.Scripts.Managers
         {
             if (!_gameEvents.ContainsKey(gameEvent))
             {
-                _gameEvents.Add(gameEvent, new Dictionary<object, List<MethodInfo>>());
+                _gameEvents.Add(gameEvent, new Dictionary<object, System.Collections.Generic.List<MethodInfo>>());
             }
             if (!_gameEvents[gameEvent].ContainsKey(subscriber))
             {
-                _gameEvents[gameEvent].Add(subscriber, new List<MethodInfo>());
+                _gameEvents[gameEvent].Add(subscriber, new System.Collections.Generic.List<MethodInfo>());
             }
             _gameEvents[gameEvent][subscriber].Add(info);
         }

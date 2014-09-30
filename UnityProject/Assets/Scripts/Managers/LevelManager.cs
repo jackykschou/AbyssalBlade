@@ -22,7 +22,6 @@ namespace Assets.Scripts.Managers
         {
             _levelStarted = false;
             Instance = FindObjectOfType<LevelManager>();
-            PlayerMainCharacter = GameManager.Instance.PlayerMainCharacter;
         }
 
         void OnDestroy()

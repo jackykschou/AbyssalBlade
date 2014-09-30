@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts;
-using Assets.Scripts.GameScripts.GameLogic.Destroyable;
+using Assets.Scripts.GameScripts.GameLogic.Health;
 using UnityEngine;
 
 namespace Assets.Scripts.Utility
@@ -19,15 +19,15 @@ namespace Assets.Scripts.Utility
             s.TriggerGameScriptEvent(gameScriptEvent, args);
         }
 
-        public static bool IsDestroyed(this GameObject o)
+        public static bool HitPointAtZero(this GameObject o)
         {
-            Destroyable destroyable = o.GetComponent<Destroyable>();
-            if (destroyable == null)
+            Health health = o.GetComponent<Health>();
+            if (health == null)
             {
                 return false;
             }
 
-            return destroyable.Destroyed;
+            return health.HitPointAtZero;
         }
     }
 }

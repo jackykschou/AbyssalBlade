@@ -30,13 +30,15 @@
         OnNewTargetDiscovered,                  // void(GameObject)
 
         OnObjectMove,                           // void()
+        OnOjectHasNoHitPoint,                   // void()
         OnObjectDestroyed,                      // void()
-        ObjectTakeFixDamage,                    // void(float)
-        ObjectTakeCurrentPercentageDamage,      // void(float)
-        ObjectTakeMaxPercentageDamage,          // void(float)
-        ObjectTakeFixDamagePerSec,              // void(float, int)
-        ObjectTakeCurrentPercentageDamagePerSec,// void(float, int)
-        ObjectTakeMaxPercentageDamagePerSec,    // void(float, int)
-        OnObjectTakeDamage                      // void(float)
+        ObjectChangeHealthFix,                    // void(float)
+        ObjectChangeCurrentPercentageHealth,      // void(float)
+        ObjectChangeMaxPercentageHealth,          // void(float)
+        ObjectChangeFixHealthPerSec,              // void(float, int)
+        ObjectChangeCurrentPercentageHealthPerSec,// void(float, int)
+        ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
+        OnObjectTakeDamage,                       // void(float)
+        OnObjectTakeHeal                          // void(float)
     };
 }
