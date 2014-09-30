@@ -18,6 +18,7 @@ namespace Assets.Scripts.Constants
             public const string PlayerCharacterSkill4 = "Skill4";
             public const string EnemyBasicMelee = "Melee";
             public const string EnemyBasicRangeAttack = "RangeAttack";
+            public const string PlayerCharacterBasicMeleeCombo = "ComboNumber";
         }
 
         private const string AnimatorsPath = "AnimatorController/";

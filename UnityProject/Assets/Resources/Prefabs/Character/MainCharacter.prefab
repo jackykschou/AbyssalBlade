@@ -119,6 +119,7 @@ GameObject:
   - 114: {fileID: 11400060}
   - 114: {fileID: 11400070}
   - 114: {fileID: 11400046}
+  - 114: {fileID: 11400072}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -287,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa14106244205c74f945a818f191a105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Delay: 4
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c6dca0b83211c84abd049490bec63aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Invincible: 0
+  Invincible: 1
   HitPoint:
     InitialMinValue: 0
     InitialMaxValue: 200
@@ -593,7 +595,8 @@ MonoBehaviour:
   IsPassive: 0
   _skillEffects:
   - {fileID: 11400040}
-  _skillEffectsOrder: 00000000
+  - {fileID: 11400072}
+  _skillEffectsOrder: 0000000000000000
 --- !u!114 &11400040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -607,7 +610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
   BoolParameterName: Skill1
-  _animationDuration: .200000003
+  _animationDuration: .25
   _animationEventMessages:
   - ApplyAreaHealthChange
   - PlaySound
@@ -825,6 +828,23 @@ MonoBehaviour:
     InitialValue: -15
   Percentage: 0
   Duration: 0
+--- !u!114 &11400072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091fd7e0e7c475b4da1bf9c39bd39559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ComboIntParameterName: ComboNumber
+  MaxComboValue: 4
+  ComboResetTime:
+    IsEnabled: 0
+    DispatchInterval: .699999988
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

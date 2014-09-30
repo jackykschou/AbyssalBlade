@@ -15,7 +15,8 @@
 
         UpdateFacingDirection,                  // void(FacingDirection)
 
-        SetAnimatorState,                       // void(string)
+        SetAnimatorBoolState,                   // void(string)
+        SetAnimatorIntState,                    // void(string, int)
         
         AIRotateToTarget,                       // void()
         AICastSkill,                            // void()

@@ -32,7 +32,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         {
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorState)]
+        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorBoolState)]
         public void SetAnimatorBoolState(string state)
         {
             if (_lastBoolParameter != string.Empty)
@@ -49,6 +49,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             {
                 _animationBoolParametesrAutoResetBufferMap.Add(state, BoolResetBufferFrameTime);
             }
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorIntState)]
+        public void SetAnimatorIntState(string state, int value)
+        {
+            Animator.SetInteger(state, value);
         }
 
         protected override void Update()

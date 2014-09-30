@@ -35,7 +35,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public override void Activate()
         {
             base.Activate();
-            TriggerCasterGameScriptEvent(GameScriptEvent.SetAnimatorState, BoolParameterName);
+            TriggerCasterGameScriptEvent(GameScriptEvent.SetAnimatorBoolState, BoolParameterName);
             StartCoroutine(WaitForAnimationFinish());
         }
 

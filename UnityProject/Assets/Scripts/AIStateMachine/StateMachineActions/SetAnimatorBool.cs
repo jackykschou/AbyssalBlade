@@ -17,7 +17,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 
 		public override void OnEnter()
 		{
-		    stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.SetAnimatorState, parameterName.Value);
+		    stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.SetAnimatorBoolState, parameterName.Value);
 		}
 
 		public override void OnUpdate()
