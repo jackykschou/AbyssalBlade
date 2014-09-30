@@ -7,7 +7,7 @@ public class MouseFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         light = this.gameObject.GetComponent<Light>();
-        distance = -3.0f;
+        distance = -5.0f;
 	}
 	
 	// Update is called once per frame
