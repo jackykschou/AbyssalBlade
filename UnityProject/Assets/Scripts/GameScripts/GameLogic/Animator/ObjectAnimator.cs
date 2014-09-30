@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Constants;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -24,6 +25,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             Animator = GetComponent<UnityEngine.Animator>();
             _animationBoolParametesrAutoResetBufferMap = new Dictionary<string, float>();
             _lastBoolParameter = string.Empty;
+            SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Idle);
         }
 
         protected override void Deinitialize()

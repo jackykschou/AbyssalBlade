@@ -22,8 +22,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Move);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnObjectDestroyed)]
-        public void PlayerDeathAnimation()
+        [GameScriptEventAttribute(GameScriptEvent.OnOjectHasNoHitPoint)]
+        public void PlayDeathAnimation()
         {
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Death);
         }

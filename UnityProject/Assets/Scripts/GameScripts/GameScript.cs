@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -170,6 +171,12 @@ namespace Assets.Scripts.GameScripts
                 return;
             }
 
+            StartCoroutine(DisableGameObjectIE(delay));
+        }
+
+        IEnumerator DisableGameObjectIE(float delay)
+        {
+            yield return new WaitForSeconds(delay);
             if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
             {
                 PrefabManager.Instance.DespawnPrefab(gameObject);

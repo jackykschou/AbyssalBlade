@@ -54,9 +54,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (HitPoint <= 0f)
             {
+                TriggerGameScriptEvent(GameScriptEvent.OnOjectHasNoHitPoint);
                 HitPointAtZero = true;
                 HitPoint.Value = 0f;
-                TriggerGameScriptEvent(GameScriptEvent.OnOjectHasNoHitPoint);
             }
         }
 

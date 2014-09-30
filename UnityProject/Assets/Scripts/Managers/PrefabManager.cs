@@ -105,11 +105,6 @@ namespace Assets.Scripts.Managers
 
         public void DespawnPrefab(GameObject prefabGameObject)
         {
-            if (!IsSpawnedFromPrefab(prefabGameObject))
-            {
-                throw new Exception("object is not spawned by the manager");
-            }
-
             _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
         }
 
