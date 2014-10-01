@@ -45,6 +45,8 @@
 
         MenuStartButtonPressed,                          // void()
         MenuOptionsButtonPressed,                          // void()
-        MenuQuitButtonPressed                          // void()
+        MenuQuitButtonPressed,                          // void()
+        OnButtonMouseOver,                           // void(GameObject, int)
+        OnButtonMouseLeave                          // void(int)
     };
 }
