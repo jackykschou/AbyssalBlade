@@ -42,6 +42,7 @@ namespace Assets.Scripts.GameScripts.Components
 
         public override void Deinitialize()
         {
+            Position.localPosition = _downPos;
         }
 
         public void UpdatePosition(FacingDirection facingDirection)

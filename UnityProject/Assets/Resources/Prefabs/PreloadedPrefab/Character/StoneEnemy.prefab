@@ -12,12 +12,13 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400014}
-  - 114: {fileID: 11400000}
   - 114: {fileID: 11400050}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400060}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -64,14 +65,18 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400038}
   - 114: {fileID: 11400040}
-  - 114: {fileID: 11400042}
   - 114: {fileID: 11400044}
   - 114: {fileID: 11400046}
   - 114: {fileID: 11400048}
   - 114: {fileID: 11400052}
+  - 114: {fileID: 11400054}
+  - 114: {fileID: 11400042}
+  - 114: {fileID: 11400056}
+  - 114: {fileID: 11400058}
+  - 114: {fileID: 11400062}
   m_Layer: 0
   m_Name: StoneEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.6618881, y: -90.245018, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -163,19 +168,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ab5e889001bbf42bef92bf2925b7cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b1da8c11f2a7564c89629c4a276fbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OneTimeOnlyPerTarget: 0
-  DamageType: 0
-  Stackable: 0
-  NonStackableLabel: 0
-  Amount:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 10
-  Percentage: 1
-  Duration: 167
+  Skill: {fileID: 0}
+  HealthChanger: {fileID: 0}
+  Position:
+    Follower: {fileID: 0}
+    Position: {fileID: 400002}
+  Radius: 1.5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,15 +200,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4619f4931c929246a80426a28c77493, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SKill: {fileID: 0}
-  DamagerApplier: {fileID: 0}
-  Position:
-    Follower: {fileID: 0}
-    Position: {fileID: 400002}
-  Radius: 1.5
+  TargetTags:
+  - Player
+  OneTimeOnlyPerTarget: 0
+  HealthChangeType: 0
+  Stackable: 0
+  NonStackableLabel: 0
+  Amount:
+    InitialMinValue: -100
+    InitialMaxValue: 0
+    InitialValue: -10
+  Percentage: 0
+  Duration: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,11 +226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbcdbb4f3226bc4b9e578f303426e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SKill: {fileID: 0}
+  Skill: {fileID: 0}
   BoolParameterName: Melee
   _animationDuration: 1
   _animationEventMessages:
-  - ApplyAreaDamages
+  - ApplyAreaHealthChange
   - PlaySound
   _animationEventMessagesSendTime:
   - .349999994
@@ -479,19 +486,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: facf3c84149cce448ac74f24387d782c, type: 3}
+  m_Script: {fileID: 11500000, guid: 930872488ea7afd49b121c3402383255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Invincible: 0
-  HitPoint:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 30
-  DamageReduction:
-    InitialMinValue: 0
-    InitialMaxValue: 0
-    InitialValue: 0
-  _delay: 1.5
+  Delay: 1
 --- !u!114 &11400044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b16d40545ede74dab4395fb43132c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: 7
+  clip: 22
   volume: 1
 --- !u!114 &11400050
 MonoBehaviour:
@@ -540,8 +538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SKill: {fileID: 0}
-  clip: 9
+  Skill: {fileID: 0}
+  clip: 24
   volume: 1
 --- !u!114 &11400052
 MonoBehaviour:
@@ -560,6 +558,79 @@ MonoBehaviour:
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 100000
   SpawnChance: 1
+--- !u!114 &11400054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6dca0b83211c84abd049490bec63aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Invincible: 0
+  HitPoint:
+    InitialMinValue: 0
+    InitialMaxValue: 50
+    InitialValue: 50
+  HealingEmphasizePercentage: 0
+  DamageEmphasizePercentage: 0
+--- !u!114 &11400056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebeccbb94ca74b4da9dfd2cbc35416c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitDamageThreshold: 10
+  InterruptionDuration: .5
+  HitDamageThresholdResetTime:
+    IsEnabled: 0
+    DispatchInterval: 1
+  InterruptCoolDown:
+    IsEnabled: 0
+    DispatchInterval: .699999988
+--- !u!114 &11400060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3177d51aea71549861030bbda84145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+--- !u!114 &11400062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6830ca6c8ff524244b98b5169eb640de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: 14
+  volume: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

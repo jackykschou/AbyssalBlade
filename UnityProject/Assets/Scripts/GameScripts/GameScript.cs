@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,6 +7,7 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
@@ -138,6 +140,11 @@ namespace Assets.Scripts.GameScripts
             InitializeHelper();
         }
 
+        void OnEnable()
+        {
+            InitializeHelper();
+        }
+
         void OnSpawned()
         {
             InitializeHelper();
@@ -154,13 +161,32 @@ namespace Assets.Scripts.GameScripts
             SubscribeGameEvents();
             InitializeComponents();
             Initialize();
-            _initialized = true;
+            gameObject.CacheGameObject();
             _deinitialized = false;
+            _initialized = true;
         }
 
         public void DisableGameObject(float delay = 0f)
         {
-            Destroy(gameObject, delay);
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
+
+            StartCoroutine(DisableGameObjectIE(delay));
+        }
+
+        IEnumerator DisableGameObjectIE(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
+            {
+                PrefabManager.Instance.DespawnPrefab(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         void OnDespawned()
@@ -184,12 +210,13 @@ namespace Assets.Scripts.GameScripts
             {
                 return;
             }
-            
+
             DeinitializeComponents();
             UnsubscribeGameEvents();
             Deinitialize();
-            _deinitialized = true;
+            gameObject.UncacheGameObject();
             _initialized = false;
+            _deinitialized = true;
         }
 
         protected virtual void Update()
@@ -232,7 +259,6 @@ namespace Assets.Scripts.GameScripts
 
         private void DeinitializeComponents()
         {
-
             foreach (var component in _components)
             {
                 component.DeinitializeChildComponents();

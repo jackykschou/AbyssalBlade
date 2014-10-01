@@ -5,23 +5,21 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.GUI
 {
-    [RequireComponent(typeof(Destroyable.Destroyable))]
+    [RequireComponent(typeof(Health.Health))]
     public class HealthBarUpdate : GameLogic
     {
-        Destroyable.Destroyable _HitPointDestroyer;
-        float _initialHealth;
+        Health.Health _health;
 
         protected override void Initialize()
         {
             base.Initialize();
-            _HitPointDestroyer = gameObject.GetComponent<Destroyable.Destroyable>();
-            _initialHealth = _HitPointDestroyer.HitPoint.InitialValue;
+            _health = gameObject.GetComponent<Health.Health>();
         }
 
         protected override void Update()
         {
             base.Update();
-            TriggerGameEvent(GameEvent.PlayerHealthUpdate, _HitPointDestroyer.HitPoint.Value/_initialHealth);
+            TriggerGameEvent(GameEvent.PlayerHealthUpdate, (_health.HitPoint.Value / _health.HitPoint.Max));
         }
 
         protected override void Deinitialize()

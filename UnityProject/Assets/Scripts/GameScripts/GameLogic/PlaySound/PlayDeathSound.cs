@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
         [Range(0.0f, 1.0f)]
         public float volume = 1.0f;
 
-        [GameScriptEventAttribute(GameScriptEvent.OnObjectDestroyed)]
+        [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void StartPlayDeathSound()
         {
             AudioManager.Instance.playClip(clip, gameObject, volume);

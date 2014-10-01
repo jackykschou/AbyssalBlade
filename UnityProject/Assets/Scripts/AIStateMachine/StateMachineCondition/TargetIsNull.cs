@@ -1,4 +1,5 @@
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
+using Assets.Scripts.Utility;
 using StateMachine.Condition;
 
 namespace Assets.Scripts.AIStateMachine.StateMachineCondition
@@ -15,7 +16,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineCondition
 
 		public override bool Validate()
 		{
-		    return stateMachine.owner.gameObject.GetComponent<SkillCaster>().Target == null;
+            return stateMachine.owner.gameObject.GetComponent<SkillCaster>().Target == null || stateMachine.owner.gameObject.GetComponent<SkillCaster>().Target.gameObject.HitPointAtZero();
 		}
 	}
 }

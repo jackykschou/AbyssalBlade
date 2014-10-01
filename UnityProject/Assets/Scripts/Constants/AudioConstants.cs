@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
 using Assets.Scripts.Managers;
-using UnityEngine;
 
 namespace Assets.Scripts.Constants
 {
@@ -13,8 +12,15 @@ namespace Assets.Scripts.Constants
 
     public enum ClipName
     {
-        Dash,
+        Char_Take_Damage,
+		Dash,
+		Death_Rattle_Char_1,
+		Death_Sound_1,
+		Death_Sound_2,
+		Death_Sound_3,
         Footstep,
+		Forest_Level_2_Full,
+		Forest_Level_2_Main_Loop,
         HackandSlash,
         Laser,
         Laser2,
@@ -26,13 +32,22 @@ namespace Assets.Scripts.Constants
         Random,
         Shot,
         Shot2,
-        Strike,
-        Swipe
+		Stone_Enemy_Death_Rattle,
+		Stone_Enemy_Death_Rattle_2,
+		Stone_Enemy_Death_Rattle_3,
+		Strike,
+		Swipe,
+		Warp_In,
+		Warp_In_2,
+		Warp_In_3,
+		Warp_In_4,
+		Warp_In_5
     };
 
     public enum LoopName
     {
-        MainLoop
+        MainLoop,
+        Forest_Level_Loop
     };
 
 
@@ -43,8 +58,15 @@ namespace Assets.Scripts.Constants
 
         private static readonly Dictionary<ClipName, string> AudioClipNames = new Dictionary<ClipName, string>()
         {
-            {ClipName.Dash, "Dash"},
+			{ClipName.Char_Take_Damage, "Char_Take_Damage"},
+			{ClipName.Dash, "Dash"},
+			{ClipName.Death_Rattle_Char_1, "Death_Rattle_Char_1"},
+			{ClipName.Death_Sound_1, "Death_Sound_1"},
+			{ClipName.Death_Sound_2, "Death_Sound_2"},
+			{ClipName.Death_Sound_3, "Death_Sound_3"},
             {ClipName.Footstep, "Footstep"},
+			{ClipName.Forest_Level_2_Full, "Forest_Level_2_Full"},
+			{ClipName.Forest_Level_2_Main_Loop, "Forest_Level_2_Main_Loop"},
             {ClipName.HackandSlash, "HackandSlash"},
             {ClipName.Laser, "Laser"},
             {ClipName.Laser2, "Laser2"},
@@ -56,8 +78,16 @@ namespace Assets.Scripts.Constants
             {ClipName.Random, "Random"},
             {ClipName.Shot, "Shot"},
             {ClipName.Shot2, "Shot2"},
-            {ClipName.Strike, "Strike"},
-            {ClipName.Swipe, "Swipe"}
+			{ClipName.Stone_Enemy_Death_Rattle, "Stone_Enemy_Death_Rattle"},
+			{ClipName.Stone_Enemy_Death_Rattle_2, "Stone_Enemy_Death_Rattle_2"},
+			{ClipName.Stone_Enemy_Death_Rattle_3, "Stone_Enemy_Death_Rattle_3"},
+			{ClipName.Strike, "Strike"},
+            {ClipName.Swipe, "Swipe"},
+			{ClipName.Warp_In, "Warp_In"},
+			{ClipName.Warp_In_2, "Warp_In_2"},
+			{ClipName.Warp_In_3, "Warp_In_3"},
+			{ClipName.Warp_In_4, "Warp_In_4"},
+			{ClipName.Warp_In_5, "Warp_In_5"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
@@ -69,26 +99,42 @@ namespace Assets.Scripts.Constants
 
         private static readonly Dictionary<LoopName, string> AudioLoopNames = new Dictionary<LoopName, string>()
         {
-            {LoopName.MainLoop, "MainLoop"}
+            {LoopName.MainLoop, "MainLoop"},
+            {LoopName.Forest_Level_Loop, "Forest_Level_Loop"}
         };
 
         public static void CreateCustomCues()
         {
             // Examples
-            List<ClipName> loopList = new List<ClipName> { ClipName.HackandSlash };
+            List<ClipName> loopList = new List<ClipName> 
+            { 
+                ClipName.HackandSlash 
+            };
             AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
+            List<ClipName> forestList = new List<ClipName> 
+            { 
+                ClipName.Forest_Level_2_Full,
+                ClipName.Forest_Level_2_Main_Loop
+            };
+            AudioManager.Instance.createLoop(LoopName.Forest_Level_Loop, forestList, 0.5f);
 
-            List<ClipName> randList = new List<ClipName>();
-            randList.Add(ClipName.Shot);
-            randList.Add(ClipName.Strike);
-            randList.Add(ClipName.Swipe);
+            /*
+            List<ClipName> randList = new List<ClipName>
+            {
+                ClipName.Shot,
+                ClipName.Strike,
+                ClipName.Swipe
+            };
             AudioManager.Instance.createMultiCueRandom(CueName.Random1,randList);
 
 
-            List<ClipName> parallelList = new List<ClipName>();
-            randList.Add(ClipName.Swipe);
-            randList.Add(ClipName.Strike);
+            List<ClipName> parallelList = new List<ClipName>
+            {
+                ClipName.Swipe,
+                ClipName.Strike
+            }; 
             AudioManager.Instance.createMultiCueParallel(CueName.Parallel1, parallelList);
+             */
         }
 
         public static string GetClipName(ClipName name)

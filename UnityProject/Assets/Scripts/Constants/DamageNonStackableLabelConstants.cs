@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Constants
 {
-    public enum DamageNonStackableLabel
+    public enum HealthModifierNonStackableLabel
     {
         Label1
     }

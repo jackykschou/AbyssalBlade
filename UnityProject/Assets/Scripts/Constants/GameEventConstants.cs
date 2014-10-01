@@ -7,6 +7,9 @@
         ExampleEvent,                 // void()
 #endif
         OnPlayerSkillCoolDownUpdate,   // void(int, float)
-        PlayerHealthUpdate             // void(float)
+        PlayerHealthUpdate,            // void(float)
+        OnLevelStartLoading,           // void()
+        OnLevelFinishedLoading,        // void()
+        OnLevelEnded                   // void()
      };
 }

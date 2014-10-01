@@ -9,7 +9,7 @@
             public const string DamageArea = "DamageArea";
             public const string Enemy = "Enemy";
             public const string PlayerCharacter= "PlayerCharacter";
-            public const string Destroyable = "Destroyable";
+            public const string Destroyable = "Health";
             public const string DestroyableObstacle = "DestroyableObstacle";
             public const string InvisibleWall = "InvisibleWall";
             public const string SpawnArea = "SpawnArea";
