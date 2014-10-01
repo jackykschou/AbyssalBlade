@@ -1,10 +1,8 @@
-﻿#define TESTING
-using System;
+﻿using System;
 using System.Collections;
 using Assets.Scripts.Constants;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 using Assets.Scripts.Utility;
 
 namespace Assets.Scripts.Managers
