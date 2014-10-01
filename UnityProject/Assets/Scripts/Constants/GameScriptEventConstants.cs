@@ -47,6 +47,7 @@
         MenuOptionsButtonPressed,                          // void()
         MenuQuitButtonPressed,                          // void()
         OnButtonMouseOver,                           // void(GameObject, int)
-        OnButtonMouseLeave                          // void(int)
+        OnButtonMouseLeave,                          // void(int)
+        CameraFollowTarget                           // void(Transform)
     };
 }

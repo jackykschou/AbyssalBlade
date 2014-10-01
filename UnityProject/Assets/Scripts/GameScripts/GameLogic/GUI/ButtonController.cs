@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Constants;
+using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         Vector3 popoutAmount;
         List<bool> popped;
 
+        public Prefab StartLevelPrefab;
 
         private float rotateAmount = 30.0f;
         
@@ -93,19 +95,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [GameScriptEventAttribute(GameScriptEvent.MenuStartButtonPressed)]
         public void onStartPressed()
         {
-            Debug.Log("Start Pressed");
+            GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuOptionsButtonPressed)]
         public void onOptionsPressed()
         {
-            Debug.Log("Options Pressed");
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
         public void onQuitPressed()
         {
-            Debug.Log("Quit Pressed");
+            Application.Quit();
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnButtonMouseOver)]

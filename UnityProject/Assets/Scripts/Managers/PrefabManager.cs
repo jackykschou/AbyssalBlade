@@ -118,6 +118,21 @@ namespace Assets.Scripts.Managers
             return spawned;
         }
 
+        public GameObject SpawnPrefab(Prefab prefab)
+        {
+            string prefabName = PrefabConstants.GetPrefabName(prefab);
+            GameObject prefabGameObject = _prefabNameMap[prefabName];
+
+            GameObject spawned = _prefabPoolMap[prefabGameObject].Spawn(prefabGameObject.transform, prefabGameObject.transform.position, Quaternion.identity).gameObject;
+
+            if (!_spawnedPrefabsMap.ContainsKey(spawned))
+            {
+                _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
+            }
+
+            return spawned;
+        }
+
         public void DespawnPrefab(GameObject prefabGameObject)
         {
             _despawnQueue.Add(prefabGameObject);
