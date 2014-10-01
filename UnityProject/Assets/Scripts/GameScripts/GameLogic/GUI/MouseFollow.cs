@@ -1,0 +1,28 @@
+﻿using UnityEngine;
+using System.Collections;
+
+using GameEvent = Assets.Scripts.Constants.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
+
+namespace Assets.Scripts.GameScripts.GameLogic.GUI
+{
+    [RequireComponent(typeof(Light))]
+    public class MouseFollow : GameLogic
+    {
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        protected override void Update()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+                light.transform.LookAt(hit.point);
+        }
+        protected override void Deinitialize()
+        {
+        }
+
+    }
+}

@@ -22,6 +22,11 @@ namespace Assets.Scripts.Managers
         private Dictionary<CueName, MultiCue> _cueDict;
         private Dictionary<LoopName, LoopingCue> _loopDict;
 
+        // HACK
+        public double HACKtimeinterval;
+        double nextEventTime;
+        bool canPlay = true;
+
         private static AudioManager _instance;
         public static AudioManager Instance
         {
@@ -38,12 +43,22 @@ namespace Assets.Scripts.Managers
         void Awake()
         {
             UpdateManager();
+            nextEventTime = .2f;
         }
         void Update()
         {
             if(_loops != null)
                 foreach (var loop in _loops)
                     loop.Update();
+            
+
+            double time = AudioSettings.dspTime;
+
+            if (time > nextEventTime && !canPlay)
+            {
+                canPlay = true;
+                nextEventTime += HACKtimeinterval;
+            }
 
         }
         public void UpdateManager()
@@ -69,8 +84,6 @@ namespace Assets.Scripts.Managers
         }
         public void DeleteClips()
         {
-
-
             _clips = new List<AudioClip>();
             _cues = new List<MultiCue>();
             _loops = new List<LoopingCue>();
@@ -89,8 +102,13 @@ namespace Assets.Scripts.Managers
                 Debug.Log("AudioManager:playCue - Unable to locate AudioClip >>" + name + "<<\n");
                 return false;
             }
+
             Vector3 playAt = sourceObject ? sourceObject.transform.position : this.transform.position;
-            AudioSource.PlayClipAtPoint(findClip(name), playAt, volume);
+            if (canPlay)
+            {
+                AudioSource.PlayClipAtPoint(findClip(name), playAt, volume);
+                canPlay = false;
+            }
             return true;
         }
         public bool playClipDelayed(ClipName name, float delayTime, GameObject sourceObject = null, float volume = 1.0f)
@@ -121,7 +139,6 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////
         public bool playLoop(LoopName name, float volume = 1.0f)
         {
-
             if (!_loopDict.ContainsKey(name))
                 return false;
             if (_loopDict[name].running)
@@ -161,7 +178,7 @@ namespace Assets.Scripts.Managers
             _cues.Add(new MultiCue(name, clipList));
             return true;
         }
-        public bool createLoop(LoopName name, List<ClipName> clipList)
+        public bool createLoop(LoopName name, List<ClipName> clipList, float volume = 1.0f)
         {
             if (_loopDict.ContainsKey(name))
                 return false;
@@ -170,6 +187,7 @@ namespace Assets.Scripts.Managers
             {
                 LoopingCue cue = new LoopingCue(name);
                 cue.clips = clipList;
+                cue.volume = volume;
                 cue.name = AudioConstants.GetLoopName(name);
                 _loopDict[name] = cue;
                 _loops.Add(cue);
@@ -228,6 +246,8 @@ namespace Assets.Scripts.Managers
             public void Stop()
             {
                 running = false;
+                foreach (var source in audioSources)
+                    source.Stop();
             }
             public void switchTrack()
             {

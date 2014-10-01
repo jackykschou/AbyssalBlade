@@ -41,6 +41,13 @@
         ObjectChangeCurrentPercentageHealthPerSec,// void(float, int)
         ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
         OnObjectTakeDamage,                       // void(float)
-        OnObjectTakeHeal                          // void(float)
+        OnObjectTakeHeal,                          // void(float)
+
+        MenuStartButtonPressed,                          // void()
+        MenuOptionsButtonPressed,                          // void()
+        MenuQuitButtonPressed,                          // void()
+        OnButtonMouseOver,                           // void(GameObject, int)
+        OnButtonMouseLeave,                          // void(int)
+        CameraFollowTarget                           // void(Transform)
     };
 }

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -9,6 +10,8 @@ namespace Assets.Scripts.Managers
 {
     public class LevelManager : GameLogic
     {
+        public bool IsPlayLevel;
+
         public static LevelManager Instance;
 
         public LoopName BackGroundMusicLoop;
@@ -19,6 +22,8 @@ namespace Assets.Scripts.Managers
         }
 
         public GameObject PlayerMainCharacter;
+
+        public Transform CameraInitialFollowTransform;
 
         private bool _levelStarted;
 
@@ -48,8 +53,18 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
+            if (CameraInitialFollowTransform == null)
+            {
+                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, GameManager.Instance.PlayerMainCharacter.transform);
+            }
+            else
+            {
+                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, CameraInitialFollowTransform);
+            }
             AudioManager.Instance.playLoop(BackGroundMusicLoop);
             _levelStarted = true;
+            GameManager.Instance.HUD.SetActive(IsPlayLevel);
+            GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
         }
     }
 }

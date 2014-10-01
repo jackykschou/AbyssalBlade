@@ -44,9 +44,9 @@ namespace Assets.Scripts.Managers
             {
                 PrefabManager.Instance.DespawnPrefab(CurrentLevel);
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(3.0f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
-            CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab, Vector3.zero);
+            CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab);
             _currentLevelPrefab = levelPrefab;
             LevelManager.Instance.PlayerMainCharacter = PlayerMainCharacter;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
@@ -69,9 +69,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
-            PlayerMainCharacter.SetActive(true);
             LoadingScene.SetActive(false);
-            HUD.SetActive(true);
         }
 
         protected override void Initialize()

@@ -8,7 +8,8 @@ namespace Assets.Scripts.Constants
         Projectile,
         DamageText,
         StoneEnemy,
-        TutorialLevel
+        TutorialLevel,
+        MainMenu
     };
 
     public class PrefabConstants
@@ -22,7 +23,8 @@ namespace Assets.Scripts.Constants
             {Prefab.Projectile, "Prefabs/PreloadedPrefab/Projectile/Projectile"},
             {Prefab.DamageText, "Prefabs/PreloadedPrefab/DamageText/DamageTextMesh"},
             {Prefab.StoneEnemy, "Prefabs/PreloadedPrefab/Character/StoneEnemy"},
-            {Prefab.TutorialLevel, "Prefabs/TutorialLevel"}
+            {Prefab.TutorialLevel, "Prefabs/TutorialLevel"},
+            {Prefab.MainMenu, "Prefabs/Menu/MainMenu"}
         };
 
         public static string GetPrefabName(Prefab prefab)

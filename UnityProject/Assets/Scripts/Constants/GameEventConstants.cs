@@ -8,8 +8,8 @@
 #endif
         OnPlayerSkillCoolDownUpdate,   // void(int, float)
         PlayerHealthUpdate,            // void(float)
-        OnLevelStartLoading,
-        OnLevelFinishedLoading,
-        OnLevelEnded
+        OnLevelStartLoading,           // void()
+        OnLevelFinishedLoading,        // void()
+        OnLevelEnded                   // void()
      };
 }
