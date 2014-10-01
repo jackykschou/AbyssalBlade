@@ -142,6 +142,7 @@ namespace Assets.Scripts.Managers
         {
             if (!_loopDict.ContainsKey(name))
                 return false;
+            Debug.Log("STOPPING");
             _loopDict[name].Stop();
             return true;
         }
@@ -161,7 +162,7 @@ namespace Assets.Scripts.Managers
             _cues.Add(new MultiCue(name, clipList));
             return true;
         }
-        public bool createLoop(LoopName name, List<ClipName> clipList)
+        public bool createLoop(LoopName name, List<ClipName> clipList, float volume = 1.0f)
         {
             if (_loopDict.ContainsKey(name))
                 return false;
@@ -170,6 +171,7 @@ namespace Assets.Scripts.Managers
             {
                 LoopingCue cue = new LoopingCue(name);
                 cue.clips = clipList;
+                cue.volume = volume;
                 cue.name = AudioConstants.GetLoopName(name);
                 _loopDict[name] = cue;
                 _loops.Add(cue);
@@ -228,6 +230,8 @@ namespace Assets.Scripts.Managers
             public void Stop()
             {
                 running = false;
+                foreach (var source in audioSources)
+                    source.Stop();
             }
             public void switchTrack()
             {

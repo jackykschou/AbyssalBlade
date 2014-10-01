@@ -27,6 +27,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         public Prefab StartLevelPrefab;
 
+        public ClipName ButtonPressClip;
+
         private float rotateAmount = 30.0f;
         
 
@@ -96,16 +98,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         public void onStartPressed()
         {
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
+            AudioManager.Instance.playClip(ButtonPressClip);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuOptionsButtonPressed)]
         public void onOptionsPressed()
         {
+            AudioManager.Instance.playClip(ButtonPressClip);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
         public void onQuitPressed()
         {
+            AudioManager.Instance.playClip(ButtonPressClip);
             Application.Quit();
         }
 

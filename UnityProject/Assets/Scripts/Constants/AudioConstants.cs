@@ -46,7 +46,8 @@ namespace Assets.Scripts.Constants
 
     public enum LoopName
     {
-        MainLoop
+        MainLoop,
+        Forest_Level_Loop
     };
 
 
@@ -98,7 +99,8 @@ namespace Assets.Scripts.Constants
 
         private static readonly Dictionary<LoopName, string> AudioLoopNames = new Dictionary<LoopName, string>()
         {
-            {LoopName.MainLoop, "MainLoop"}
+            {LoopName.MainLoop, "MainLoop"},
+            {LoopName.Forest_Level_Loop, "Forest_Level_Loop"}
         };
 
         public static void CreateCustomCues()
@@ -109,7 +111,14 @@ namespace Assets.Scripts.Constants
                 ClipName.HackandSlash 
             };
             AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
+            List<ClipName> forestList = new List<ClipName> 
+            { 
+                ClipName.Forest_Level_2_Full,
+                ClipName.Forest_Level_2_Main_Loop
+            };
+            AudioManager.Instance.createLoop(LoopName.Forest_Level_Loop, forestList, 0.5f);
 
+            /*
             List<ClipName> randList = new List<ClipName>
             {
                 ClipName.Shot,
@@ -125,6 +134,7 @@ namespace Assets.Scripts.Constants
                 ClipName.Strike
             }; 
             AudioManager.Instance.createMultiCueParallel(CueName.Parallel1, parallelList);
+             */
         }
 
         public static string GetClipName(ClipName name)

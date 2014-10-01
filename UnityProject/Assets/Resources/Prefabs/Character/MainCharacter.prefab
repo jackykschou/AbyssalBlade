@@ -81,6 +81,8 @@ GameObject:
   - 114: {fileID: 11400062}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400090}
+  - 114: {fileID: 11400092}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -176,6 +178,7 @@ GameObject:
   - 114: {fileID: 11400078}
   - 114: {fileID: 11400076}
   - 114: {fileID: 11400074}
+  - 114: {fileID: 11400088}
   m_Layer: 0
   m_Name: StrongMelee
   m_TagString: Untagged
@@ -796,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b2b6eca9f87db4c8aab0e2af509083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: 1
+  clip: 6
   volume: .680999994
 --- !u!114 &11400060
 MonoBehaviour:
@@ -810,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  clip: 13
+  clip: 23
   volume: 1
 --- !u!114 &11400062
 MonoBehaviour:
@@ -924,8 +927,10 @@ MonoBehaviour:
   _animationDuration: 1
   _animationEventMessages:
   - ApplyAreaHealthChange
+  - PlaySound
   _animationEventMessagesSendTime:
   - .5
+  - .100000001
 --- !u!114 &11400076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1020,6 +1025,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  clip: 24
+  volume: 1
+--- !u!114 &11400090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b16d40545ede74dab4395fb43132c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: 3
+  volume: 1
+--- !u!114 &11400092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6830ca6c8ff524244b98b5169eb640de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: 0
+  volume: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
