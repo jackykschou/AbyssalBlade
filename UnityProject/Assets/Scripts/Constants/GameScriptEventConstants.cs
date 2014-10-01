@@ -41,6 +41,10 @@
         ObjectChangeCurrentPercentageHealthPerSec,// void(float, int)
         ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
         OnObjectTakeDamage,                       // void(float)
-        OnObjectTakeHeal                          // void(float)
+        OnObjectTakeHeal,                          // void(float)
+
+        MenuStartButtonPressed,                          // void()
+        MenuOptionsButtonPressed,                          // void()
+        MenuQuitButtonPressed                          // void()
     };
 }
