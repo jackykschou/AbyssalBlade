@@ -7,6 +7,7 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 using ComponentEvent = Assets.Scripts.Constants.ComponentEvent;
@@ -160,8 +161,9 @@ namespace Assets.Scripts.GameScripts
             SubscribeGameEvents();
             InitializeComponents();
             Initialize();
-            _initialized = true;
+            gameObject.CacheGameObject();
             _deinitialized = false;
+            _initialized = true;
         }
 
         public void DisableGameObject(float delay = 0f)
@@ -183,7 +185,7 @@ namespace Assets.Scripts.GameScripts
             }
             else
             {
-                Destroy(gameObject, delay);
+                Destroy(gameObject);
             }
         }
 
@@ -212,8 +214,9 @@ namespace Assets.Scripts.GameScripts
             DeinitializeComponents();
             UnsubscribeGameEvents();
             Deinitialize();
-            _deinitialized = true;
+            gameObject.UncacheGameObject();
             _initialized = false;
+            _deinitialized = true;
         }
 
         protected virtual void Update()

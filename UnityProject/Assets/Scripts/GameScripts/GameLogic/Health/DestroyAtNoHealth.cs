@@ -14,7 +14,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         {
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnOjectHasNoHitPoint)]
+        [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void DestroyGameObject()
         {
             DisableGameObject(Delay);

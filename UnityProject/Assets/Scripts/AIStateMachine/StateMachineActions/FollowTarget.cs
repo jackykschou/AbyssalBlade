@@ -25,6 +25,11 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 	    {
 	        base.OnFixedUpdate();
 
+            if (stateMachine.owner.HitPointAtZero() || stateMachine.owner.IsInterrupted())
+            {
+                return;
+            }
+
             PathFinding pathfinding = stateMachine.owner.GetComponent<PathFinding>();
 
 	        pathfinding.TrySearchPath();

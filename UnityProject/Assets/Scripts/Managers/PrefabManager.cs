@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.GameLogic.Misc;
+using Assets.Scripts.GameScripts.GameLogic.Health;
 using PathologicalGames;
 using UnityEngine;
 
@@ -28,13 +28,28 @@ namespace Assets.Scripts.Managers
         private Dictionary<GameObject, SpawnPool> _prefabPoolMap;
         private Dictionary<GameObject, SpawnPool> _spawnedPrefabsMap;
 
+        private List<GameObject> _despawnQueue;
+
         void Awake()
         {
             _spawnedPrefabsMap = new Dictionary<GameObject, SpawnPool>();
             _prefabPoolMap = new Dictionary<GameObject, SpawnPool>();
             _prefabNameMap = new Dictionary<string, GameObject>();
+            _despawnQueue = new List<GameObject>();
             Instance = GetComponent<PrefabManager>();
             CreateSpawnPools();
+        }
+
+        void Update()
+        {
+            if (_despawnQueue.Count > 0)
+            {
+                GameObject o = _despawnQueue.First();
+                _despawnQueue.RemoveAt(0);
+                SpawnPool pool = _spawnedPrefabsMap[o];
+                _spawnedPrefabsMap.Remove(o);
+                pool.Despawn(o.transform);
+            }
         }
 
         void CreateSpawnPools()
@@ -105,7 +120,7 @@ namespace Assets.Scripts.Managers
 
         public void DespawnPrefab(GameObject prefabGameObject)
         {
-            _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
+            _despawnQueue.Add(prefabGameObject);
         }
 
         public bool IsSpawnedFromPrefab(GameObject obj)

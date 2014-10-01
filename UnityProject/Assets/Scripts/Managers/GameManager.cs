@@ -44,7 +44,7 @@ namespace Assets.Scripts.Managers
             {
                 PrefabManager.Instance.DespawnPrefab(CurrentLevel);
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
             CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab, Vector3.zero);
             _currentLevelPrefab = levelPrefab;

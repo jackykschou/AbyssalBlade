@@ -8,6 +8,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
     public class OneTimeSingleTargetCollideHealthChange : GameLogic
     {
         public HealthChanger HealthChanger;
+        public Collider2D Collider;
 
         protected override void Initialize()
         {
@@ -16,6 +17,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             {
                 HealthChanger = GetComponent<HealthChanger>();
             }
+            Collider = GetComponent<Collider2D>();
+            Collider.enabled = true;
         }
 
         protected override void Deinitialize()
@@ -29,12 +32,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             if (HealthChanger.ApplyHealthChange(coll.gameObject))
             {
                 DisableGameObject();
-                return;;
+                Collider.enabled = false;
             }
-
-            if (coll.gameObject.tag != gameObject.tag)
+            else if (coll.gameObject.tag != gameObject.tag)
             {
                 DisableGameObject();
+                Collider.enabled = false;
             }
         }
     }

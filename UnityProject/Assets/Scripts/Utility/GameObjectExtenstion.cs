@@ -1,33 +1,73 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts;
 using Assets.Scripts.GameScripts.GameLogic.Health;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using UnityEngine;
 
 namespace Assets.Scripts.Utility
 {
-    public static class GameObjectExtenstion 
+    public static class GameObjectExtenstion
     {
+        private static readonly Dictionary<GameObject, GameScript> GameScriptsCache = new Dictionary<GameObject, GameScript>();
+        private static readonly Dictionary<GameObject, Health> HealthCache = new Dictionary<GameObject, Health>();
+        private static readonly Dictionary<GameObject, CharacterOnHitInterrupt> OnHitInterruptCache = new Dictionary<GameObject, CharacterOnHitInterrupt>();
+
+        public static void CacheGameObject(this GameObject o)
+        {
+            GameScript gameScript = o.GetComponent<GameScript>();
+            Health health = o.GetComponent<Health>();
+            CharacterOnHitInterrupt characterOnHitInterrupt = o.GetComponent<CharacterOnHitInterrupt>();
+
+            if (gameScript != null && !GameScriptsCache.ContainsKey(o))
+            {
+                GameScriptsCache.Add(o, gameScript);
+            }
+            if (health != null && !HealthCache.ContainsKey(o))
+            {
+                HealthCache.Add(o, health);
+            }
+            if (characterOnHitInterrupt != null && !OnHitInterruptCache.ContainsKey(o))
+            {
+                OnHitInterruptCache.Add(o, characterOnHitInterrupt);
+            }
+        }
+
+        public static void UncacheGameObject(this GameObject o)
+        {
+            GameScriptsCache.Remove(o);
+            HealthCache.Remove(o);
+            OnHitInterruptCache.Remove(o);
+        }
+
         public static void TriggerGameScriptEvent(this GameObject o, GameScriptEvent gameScriptEvent, params object[] args)
         {
-            GameScript s = o.GetComponent<GameScript>();
-            if (s == null)
+            if (!GameScriptsCache.ContainsKey(o))
             {
-                Debug.LogWarning("GameObject " + o.name + "does not contains any GameScript to trigger the event " + gameScriptEvent);
                 return;
             }
 
-            s.TriggerGameScriptEvent(gameScriptEvent, args);
+            GameScriptsCache[o].TriggerGameScriptEvent(gameScriptEvent, args);
         }
 
-        public static bool HitPointAtZero(this GameObject o)
+        public static bool IsInterrupted(this GameObject o)
         {
-            Health health = o.GetComponent<Health>();
-            if (health == null)
+            if (!OnHitInterruptCache.ContainsKey(o))
             {
                 return false;
             }
 
-            return health.HitPointAtZero;
+            return OnHitInterruptCache[o].Interrupted;
+        }
+
+        public static bool HitPointAtZero(this GameObject o)
+        {
+            if (!HealthCache.ContainsKey(o))
+            {
+                return false;
+            }
+
+            return HealthCache[o].HitPointAtZero;
         }
     }
 }

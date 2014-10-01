@@ -1,7 +1,6 @@
-﻿using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
+﻿using Assets.Scripts.Constants;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Misc
+namespace Assets.Scripts.GameScripts.GameLogic.Health
 {
     public class DestroyOnLevelEnded : GameLogic
     {
@@ -9,9 +8,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         {
         }
 
-        [GameEventAttribute(GameEvent.OnLevelEnded)]
+        [Attributes.GameEvent(GameEvent.OnLevelEnded)]
         public void DisableGameObjectOnLevelEnded()
         {
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
             DisableGameObject();
         }
     }

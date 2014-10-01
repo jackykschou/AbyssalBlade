@@ -17,6 +17,11 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 
 		public override void OnEnter()
 		{
+            if (stateMachine.owner.HitPointAtZero() || stateMachine.owner.IsInterrupted())
+            {
+                return;
+            }
+
 		    stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.SetAnimatorBoolState, parameterName.Value);
 		}
 

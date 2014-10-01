@@ -16,6 +16,11 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 
 		public override void OnUpdate()
 		{
+		    if (stateMachine.owner.HitPointAtZero() || stateMachine.owner.IsInterrupted())
+		    {
+		        return;
+		    }
+
             stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AIRotateToTarget);
 		}
 	}

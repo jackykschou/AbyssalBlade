@@ -22,10 +22,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Move);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnOjectHasNoHitPoint)]
+        [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void PlayDeathAnimation()
         {
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Death);
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.OnCharacterInterrupted)]
+        public void InterruptCharacter()
+        {
+            SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Interrupt);
         }
 
         protected override void Deinitialize()

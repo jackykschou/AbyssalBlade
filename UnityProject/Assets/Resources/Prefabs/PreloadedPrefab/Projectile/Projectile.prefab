@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4054f0d4bdb6ba74ca63728e407b0cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 100
+  LifeTime: 5
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthChanger: {fileID: 0}
+  Collider: {fileID: 0}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,9 +185,9 @@ MonoBehaviour:
   Stackable: 0
   NonStackableLabel: 0
   Amount:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 15
+    InitialMinValue: -100
+    InitialMaxValue: 0
+    InitialValue: -15
   Percentage: 0
   Duration: 0
 --- !u!114 &11400016

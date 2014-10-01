@@ -42,19 +42,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             if (actualAmount <= 0f)
             {
                 actualAmount += actualAmount * DamageEmphasizePercentage;
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, actualAmount);
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(actualAmount));
             }
             else
             {
                 actualAmount += actualAmount * HealingEmphasizePercentage;
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, actualAmount);
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(actualAmount));
             }
 
             HitPoint.Value += actualAmount;
 
             if (HitPoint <= 0f)
             {
-                TriggerGameScriptEvent(GameScriptEvent.OnOjectHasNoHitPoint);
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint);
                 HitPointAtZero = true;
                 HitPoint.Value = 0f;
             }

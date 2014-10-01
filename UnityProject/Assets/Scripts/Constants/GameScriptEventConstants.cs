@@ -31,8 +31,9 @@
         OnNewTargetDiscovered,                  // void(GameObject)
 
         OnObjectMove,                           // void()
-        OnOjectHasNoHitPoint,                   // void()
+        OnObjectHasNoHitPoint,                   // void()
         OnObjectDestroyed,                      // void()
+        OnCharacterInterrupted,                 // void()
         ObjectChangeHealthFix,                    // void(float)
         ObjectChangeCurrentPercentageHealth,      // void(float)
         ObjectChangeMaxPercentageHealth,          // void(float)
