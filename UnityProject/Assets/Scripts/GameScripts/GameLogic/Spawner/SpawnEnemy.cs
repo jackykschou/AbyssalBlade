@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Spawner
@@ -29,7 +30,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             }
 
             if (SpawnCoolDown.CanDispatch() &&
-                LevelManager.Instance.PlayerMainCharacter != null)
+                LevelManager.Instance.PlayerMainCharacter != null &&
+                !LevelManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
                 SpawnCoolDown.Dispatch();
                 Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
@@ -48,6 +50,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             Collider = GetComponent<CircleCollider2D>();
             Collider.isTrigger = true;
             Collider.radius = ActivateDistance;
+            Collider.enabled = true;
             gameObject.layer = LayerConstants.LayerMask.SpawnArea;
         }
 

@@ -9,6 +9,12 @@ namespace Assets.Scripts.Utility.Editor
 
         private const string TestSceneFolder = "Tests/";
 
+        [MenuItem("Open Scene/GameStart")]
+        public static void OpenGGameStart()
+        {
+            OpenScene("GameStart");
+        }
+
         [MenuItem("Open Scene/Testing/GameLogicComponentEventTest")]
         public static void OpenGameLogicComponentEventTest()
         {

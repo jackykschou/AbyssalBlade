@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Utility;
+using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
 {
@@ -12,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
 
         public override bool CanCast()
         {
-            return Skill.Caster.Target != null;
+            return Skill.Caster.Target != null && !Skill.Caster.Target.gameObject.HitPointAtZero();
         }
     }
 }

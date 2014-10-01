@@ -40,11 +40,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedPrefabPoolMapKeys:
-  - Prefabs/AudioManager
+  - Prefabs/EnemySpawner
+  - Prefabs/HUD
   - Prefabs/Main Camera
+  - Prefabs/TutorialLevel
   - Prefabs/Character/MainCharacter
-  - Prefabs/Character/StoneEnemy
-  - Prefabs/DamageText/DamageTextMesh
   - Prefabs/ForestLevel/ForestLevel 1
   - Prefabs/ForestLevel/ForestTiles/ForestBlueTree
   - Prefabs/ForestLevel/ForestTiles/ForestBrownRock
@@ -57,18 +57,17 @@ MonoBehaviour:
   - Prefabs/Level1/Level1Tiles/Level1Robot1
   - Prefabs/Level1/Level1Tiles/Level1Robot2
   - Prefabs/Level1/Level1Tiles/Level1Robot3
-  - Prefabs/Skills/Projectile
-  - Prefabs/Sprint0/BlackRockPrefab
-  - Prefabs/Sprint0/BushPrefab
-  - Prefabs/Sprint0/GreenGrassThingPrefab
-  - Prefabs/Sprint0/OrangeRockPrefab
-  - Prefabs/Sprint0/TreePrefab
+  - Prefabs/Managers/AudioManager
+  - Prefabs/Managers/PrefabManager
+  - Prefabs/PreloadedPrefab/Character/StoneEnemy
+  - Prefabs/PreloadedPrefab/DamageText/DamageTextMesh
+  - Prefabs/PreloadedPrefab/Projectile/Projectile
   _serializedPrefabPoolMapValues:
   - Prefabs
   - Prefabs
+  - Prefabs
+  - Prefabs
   - Character
-  - Character
-  - DamageText
   - ForestLevel
   - ForestTiles
   - ForestTiles
@@ -81,12 +80,11 @@ MonoBehaviour:
   - Level1Tiles
   - Level1Tiles
   - Level1Tiles
-  - Skills
-  - Sprint0
-  - Sprint0
-  - Sprint0
-  - Sprint0
-  - Sprint0
+  - Managers
+  - Managers
+  - Character
+  - DamageText
+  - Projectile
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

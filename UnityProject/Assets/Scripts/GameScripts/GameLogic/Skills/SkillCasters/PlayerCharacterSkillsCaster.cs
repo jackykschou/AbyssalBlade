@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.Constants;
+﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using UnityEngine;
 
