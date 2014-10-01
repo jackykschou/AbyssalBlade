@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbebb25599836ec4d8b63b00467384b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
+  _clips:
   - {fileID: 8300000, guid: a3da3b9ad9f5a3c4b9afcc0269da3430, type: 3}
   - {fileID: 8300000, guid: 83b0bcde853bede4a895d1fd56a2e176, type: 3}
   - {fileID: 8300000, guid: c1e1eba1349a4d641bdbf71854db7f60, type: 3}
@@ -55,7 +55,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5ab26a76a71d3564d96b8bc9c6fc35ed, type: 3}
   - {fileID: 8300000, guid: 8bfc480c6ebdb584382f39e0c550e251, type: 3}
   - {fileID: 8300000, guid: 66dad00b5f79f114a983293283b2a1da, type: 3}
-  cues:
+  _cues:
   - name: Random1
     cueName: 0
     volume: 1
@@ -63,15 +63,7 @@ MonoBehaviour:
   - name: Parallel1
     cueName: 1
     volume: 1
-    clips: 
-  loops:
-  - name: MainLoop
-    loopName: 0
-    _curTrack: 0
-    isPlaying: 0
-    volume: .5
-    _trackList:
-    - {fileID: 8300000, guid: c1e1eba1349a4d641bdbf71854db7f60, type: 3}
+    clips: 0e0000000d000000
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

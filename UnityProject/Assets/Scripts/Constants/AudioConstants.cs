@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
 using Assets.Scripts.Managers;
-using UnityEngine;
 
 namespace Assets.Scripts.Constants
 {
