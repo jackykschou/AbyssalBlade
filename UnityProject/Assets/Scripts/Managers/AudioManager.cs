@@ -220,17 +220,13 @@ namespace Assets.Scripts.Managers
             }
             public void Play()
             {
-                foreach(var clip in clips)
-                {
+                for (int i = 0; i < clips.Count; i++)
                     audioSources.Add(AudioManager.Instance.gameObject.AddComponent("AudioSource") as AudioSource);
-                }
                 nextEventTime = AudioSettings.dspTime;
                 running = true;
             }
             public void Stop()
             {
-                foreach(var source in audioSources)
-                    DestroyImmediate(source);
                 running = false;
             }
             public void switchTrack()
