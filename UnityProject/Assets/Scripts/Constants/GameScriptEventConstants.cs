@@ -15,7 +15,8 @@
 
         UpdateFacingDirection,                  // void(FacingDirection)
 
-        SetAnimatorState,                       // void(string)
+        SetAnimatorBoolState,                   // void(string)
+        SetAnimatorIntState,                    // void(string, int)
         
         AIRotateToTarget,                       // void()
         AICastSkill,                            // void()
@@ -30,13 +31,16 @@
         OnNewTargetDiscovered,                  // void(GameObject)
 
         OnObjectMove,                           // void()
+        OnObjectHasNoHitPoint,                   // void()
         OnObjectDestroyed,                      // void()
-        ObjectTakeFixDamage,                    // void(float)
-        ObjectTakeCurrentPercentageDamage,      // void(float)
-        ObjectTakeMaxPercentageDamage,          // void(float)
-        ObjectTakeFixDamagePerSec,              // void(float, int)
-        ObjectTakeCurrentPercentageDamagePerSec,// void(float, int)
-        ObjectTakeMaxPercentageDamagePerSec,    // void(float, int)
-        OnObjectTakeDamage                      // void(float)
+        OnCharacterInterrupted,                 // void()
+        ObjectChangeHealthFix,                    // void(float)
+        ObjectChangeCurrentPercentageHealth,      // void(float)
+        ObjectChangeMaxPercentageHealth,          // void(float)
+        ObjectChangeFixHealthPerSec,              // void(float, int)
+        ObjectChangeCurrentPercentageHealthPerSec,// void(float, int)
+        ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
+        OnObjectTakeDamage,                       // void(float)
+        OnObjectTakeHeal                          // void(float)
     };
 }

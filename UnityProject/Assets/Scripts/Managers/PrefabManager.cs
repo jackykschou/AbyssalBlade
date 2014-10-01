@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.Health;
 using PathologicalGames;
 using UnityEngine;
 
@@ -23,15 +24,32 @@ namespace Assets.Scripts.Managers
         [SerializeField]
         private List<string> _serializedPrefabPoolMapValues;
 
-        private Dictionary<string, SpawnPool> _prefabPoolMap;
+        private Dictionary<string, GameObject> _prefabNameMap;
+        private Dictionary<GameObject, SpawnPool> _prefabPoolMap;
         private Dictionary<GameObject, SpawnPool> _spawnedPrefabsMap;
+
+        private List<GameObject> _despawnQueue;
 
         void Awake()
         {
             _spawnedPrefabsMap = new Dictionary<GameObject, SpawnPool>();
-            _prefabPoolMap = new Dictionary<string, SpawnPool>();
+            _prefabPoolMap = new Dictionary<GameObject, SpawnPool>();
+            _prefabNameMap = new Dictionary<string, GameObject>();
+            _despawnQueue = new List<GameObject>();
             Instance = GetComponent<PrefabManager>();
             CreateSpawnPools();
+        }
+
+        void Update()
+        {
+            if (_despawnQueue.Count > 0)
+            {
+                GameObject o = _despawnQueue.First();
+                _despawnQueue.RemoveAt(0);
+                SpawnPool pool = _spawnedPrefabsMap[o];
+                _spawnedPrefabsMap.Remove(o);
+                pool.Despawn(o.transform);
+            }
         }
 
         void CreateSpawnPools()
@@ -39,6 +57,13 @@ namespace Assets.Scripts.Managers
             for(int i = 0; i < _serializedPrefabPoolMapKeys.Count; ++i)
             {
                 SpawnPool spawnPool;
+                GameObject obj = Resources.Load(_serializedPrefabPoolMapKeys[i]) as GameObject;
+
+                if (obj == null)
+                {
+                    throw new Exception("Object is not a prefab");
+                }
+
                 if (_prefabPoolMap.Values.All(s => s.poolName != _serializedPrefabPoolMapValues[i]))
                 {
                     spawnPool = PoolManager.Pools.Create(_serializedPrefabPoolMapValues[i]);
@@ -47,24 +72,31 @@ namespace Assets.Scripts.Managers
                     spawnPool.gameObject.name = _serializedPrefabPoolMapValues[i];
                     spawnPool.dontDestroyOnLoad = true;
 
-                    _prefabPoolMap.Add(_serializedPrefabPoolMapKeys[i], spawnPool);
+                    _prefabPoolMap.Add(obj, spawnPool);
                 }
                 else
                 {
                     spawnPool =
                         _prefabPoolMap.Values.First(s => s.poolName == _serializedPrefabPoolMapValues[i]);
-                    _prefabPoolMap.Add(_serializedPrefabPoolMapKeys[i], spawnPool);
+                    _prefabPoolMap.Add(obj, spawnPool);
                 }
+
+                _prefabNameMap.Add(_serializedPrefabPoolMapKeys[i], obj);
 
                 if (_serializedPrefabPoolMapKeys[i].Contains(PreloadedPrefabFolderName))
                 {
-                    var o = Resources.Load(_serializedPrefabPoolMapKeys[i]) as GameObject;
-                    PrefabPool prefabPool = new PrefabPool(o.transform);
-                    prefabPool.preloadAmount = 30;
+                    if (obj.GetComponent<DestroyOnLevelEnded>() == null)
+                    {
+                        obj.AddComponent<DestroyOnLevelEnded>();
+                    }
 
-                    prefabPool.cullDespawned = true;
-                    prefabPool.cullAbove = 40;
-                    prefabPool.cullDelay = 5;
+                    PrefabPool prefabPool = new PrefabPool(obj.transform)
+                    {
+                        preloadAmount = 30,
+                        cullDespawned = true,
+                        cullAbove = 40,
+                        cullDelay = 5
+                    };
 
                     spawnPool.CreatePrefabPool(prefabPool);
                 }
@@ -74,33 +106,21 @@ namespace Assets.Scripts.Managers
         public GameObject SpawnPrefab(Prefab prefab, Vector3 position)
         {
             string prefabName = PrefabConstants.GetPrefabName(prefab);
-            if (!_prefabPoolMap.ContainsKey(prefabName))
+            GameObject prefabGameObject = _prefabNameMap[prefabName];
+
+            GameObject spawned = _prefabPoolMap[prefabGameObject].Spawn(prefabGameObject.transform, position, Quaternion.identity).gameObject;
+
+            if (!_spawnedPrefabsMap.ContainsKey(spawned))
             {
-                throw new Exception("Prefab not found in _prefabPoolMap");
+                _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
             }
-
-            var o = Resources.Load(prefabName) as GameObject;
-            if (o == null)
-            {
-                throw new Exception("Cannot load prefab " + prefabName);
-            }
-
-            GameObject spawned = _prefabPoolMap[prefabName].Spawn(o.transform, position, Quaternion.identity).gameObject;
-
-            if(!_spawnedPrefabsMap.ContainsKey(spawned))
-                _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[prefabName]);
 
             return spawned;
         }
 
         public void DespawnPrefab(GameObject prefabGameObject)
         {
-            if (!IsSpawnedFromPrefab(prefabGameObject))
-            {
-                throw new Exception("object is not spawned by the manager");
-            }
-
-            _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
+            _despawnQueue.Add(prefabGameObject);
         }
 
         public bool IsSpawnedFromPrefab(GameObject obj)

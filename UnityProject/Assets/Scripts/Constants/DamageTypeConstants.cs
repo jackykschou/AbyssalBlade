@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Constants
 {
-    public enum DamageApplyType
+    public enum HealthChangeType
     {
         Fixed,
         CurrentPercentage,

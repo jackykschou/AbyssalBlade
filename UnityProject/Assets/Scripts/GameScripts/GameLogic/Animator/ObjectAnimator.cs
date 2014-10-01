@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Constants;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -24,13 +25,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             Animator = GetComponent<UnityEngine.Animator>();
             _animationBoolParametesrAutoResetBufferMap = new Dictionary<string, float>();
             _lastBoolParameter = string.Empty;
+            SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Idle);
         }
 
         protected override void Deinitialize()
         {
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorState)]
+        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorBoolState)]
         public void SetAnimatorBoolState(string state)
         {
             if (_lastBoolParameter != string.Empty)
@@ -47,6 +49,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             {
                 _animationBoolParametesrAutoResetBufferMap.Add(state, BoolResetBufferFrameTime);
             }
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorIntState)]
+        public void SetAnimatorIntState(string state, int value)
+        {
+            Animator.SetInteger(state, value);
         }
 
         protected override void Update()

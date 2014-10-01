@@ -38,7 +38,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (gameObject.IsDestroyed())
+            if (gameObject.HitPointAtZero())
             {
                 return;
             }
