@@ -2499,6 +2499,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110208180
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_heavyAttack_right
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 2c893845c709b4ba182b54498bf987b9, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -769, y: 77, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110208730
 State:
   m_ObjectHideFlags: 3
@@ -2679,6 +2694,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110230755
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_death_right
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 72fbe2dee9763431ab10a1dcbc711266, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -559, y: 467, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110231788
 State:
   m_ObjectHideFlags: 3
@@ -2706,6 +2736,21 @@ State:
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -552, y: 168, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110235392
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: down
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 0}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -524, y: 532, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2739,6 +2784,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110243353
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_heavyAttack_up
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 4d4e8d9adfc3045dfbc8895152339dd7, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -664, y: 272, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110249469
 State:
   m_ObjectHideFlags: 3
@@ -2751,6 +2811,21 @@ State:
   - {fileID: 7400000, guid: 0a57098ddd520458ebcc79ef4baee67d, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -324, y: -312, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110249945
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_death_left
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 64b3a95c19cdf46a298db585a5426eaa, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -629, y: 337, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2826,6 +2901,21 @@ State:
   - {fileID: 7400000, guid: 6627ef0d27bc14e3d8d3c05956e916fc, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 252, y: -144, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110264058
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_heavyAttack_down
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 5ed431b95d67f4046bf036a4fee7d84c, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -699, y: 207, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2916,6 +3006,21 @@ State:
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -552, y: 468, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110277082
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_heavyAttack_left
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: c9beda385b9c1424cad686dfb4e29cf6, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -734, y: 142, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -3069,6 +3174,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110291697
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_death_down
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 5e0c269d7b1574bd09e03d8eb1c1abc8, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -489, y: 597, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110294517
 State:
   m_ObjectHideFlags: 3
@@ -3159,6 +3279,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110299938
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero_death_up
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 4c173132f5a1445d495cf8e07a5c7f40, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -594, y: 402, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1107 &110700000
 StateMachine:
   serializedVersion: 2
@@ -3219,6 +3354,15 @@ StateMachine:
   - {fileID: 110287982}
   - {fileID: 110286250}
   - {fileID: 110284928}
+  - {fileID: 110208180}
+  - {fileID: 110277082}
+  - {fileID: 110264058}
+  - {fileID: 110243353}
+  - {fileID: 110249945}
+  - {fileID: 110299938}
+  - {fileID: 110230755}
+  - {fileID: 110235392}
+  - {fileID: 110291697}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
