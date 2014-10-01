@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: GreenButtonMaterial
-  m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
+  m_Shader: {fileID: 4800000, guid: 054a31a99d11e49d110086ba44295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -18,6 +18,13 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: a1a63950a8098d740941956da78df788, type: 3}
+          m_Scale: {x: 5, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 185e89458eaddd543a106cefa2cfb060, type: 3}
           m_Scale: {x: 5, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -38,13 +45,21 @@ Material:
       data:
         first:
           name: _Outline
-        second: .00499999989
+        second: .00699999975
+      data:
+        first:
+          name: _Shininess
+        second: .078125
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 0, g: 1, b: .129411772, a: 1}
+        second: {r: .683823526, g: .0402249098, b: .0402249098, a: 1}
       data:
         first:
           name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0, g: 0, b: 0, a: .709803939}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}

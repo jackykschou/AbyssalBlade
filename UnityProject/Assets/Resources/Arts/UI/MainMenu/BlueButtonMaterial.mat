@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: RedButtonMaterial
-  m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
+  m_Name: BlueButtonMaterial
+  m_Shader: {fileID: 4800000, guid: 054a31a99d11e49d110086ba44295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -34,9 +34,17 @@ Material:
           m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _Outline
+        second: .0054999995
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 0, b: 0, a: 1}
+        second: {r: .0145977652, g: .304807186, b: .661764741, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: 0, b: 0, a: .694117665}
