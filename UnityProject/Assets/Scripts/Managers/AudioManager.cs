@@ -41,6 +41,13 @@ namespace Assets.Scripts.Managers
         {
             UpdateManager();
         }
+        void Update()
+        {
+            if(_loops != null)
+                foreach (var loop in _loops)
+                    loop.Update();
+
+        }
         public void UpdateManager()
         {
             DeleteClips();
@@ -65,8 +72,6 @@ namespace Assets.Scripts.Managers
         public void DeleteClips()
         {
 
-            foreach (var loop in _loops)
-                DestroyImmediate(loop);
 
             _clips = new List<AudioClip>();
             _cues = new List<MultiCue>();
@@ -165,7 +170,7 @@ namespace Assets.Scripts.Managers
 
             if (_instance != null)
             {
-                LoopingCue cue = this.gameObject.AddComponent<LoopingCue>();
+                LoopingCue cue = new LoopingCue(name);
                 cue.clips = clipList;
                 cue.name = AudioConstants.GetLoopName(name);
                 _loopDict[name] = cue;
@@ -197,7 +202,7 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // HELPER CLASSES
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public class LoopingCue : MonoBehaviour
+        public class LoopingCue
         {
             [HideInInspector]
             public string name;
@@ -210,20 +215,16 @@ namespace Assets.Scripts.Managers
             List<AudioSource> audioSources;
             private double nextEventTime;
 
-
-            GameObject loopObj;
-
+            public LoopingCue(LoopName name1)
+            {
+                this.name = AudioConstants.GetLoopName(name1);
+                audioSources = new List<AudioSource>();
+            }
             public void Play()
             {
-                audioSources = new List<AudioSource>();
-                loopObj = new GameObject(name); 
-                loopObj.transform.parent = gameObject.transform;
-                GameObject sourceObj;
                 foreach(var clip in clips)
                 {
-                    sourceObj = new GameObject(AudioConstants.GetClipName(clip));
-                    sourceObj.transform.parent = loopObj.transform;
-                    audioSources.Add(loopObj.gameObject.AddComponent("AudioSource") as AudioSource);
+                    audioSources.Add(AudioManager.Instance.gameObject.AddComponent("AudioSource") as AudioSource);
                 }
                 nextEventTime = AudioSettings.dspTime;
                 running = true;
@@ -232,7 +233,6 @@ namespace Assets.Scripts.Managers
             {
                 foreach(var source in audioSources)
                     DestroyImmediate(source);
-                DestroyImmediate(loopObj);
                 running = false;
             }
             public void switchTrack()
@@ -242,7 +242,7 @@ namespace Assets.Scripts.Managers
                 else
                     _curTrack++;
             }
-            void Update()
+            public void Update()
             {
                 if (!running)
                     return;
