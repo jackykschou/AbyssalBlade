@@ -26,6 +26,9 @@ namespace Assets.Scripts.Managers
         private List<AudioSource> _sources;
         GameObject sourceHolder;
 
+        Dictionary<string, int> _queuedClipDict;
+        List<string> keys;
+
         int NextSourceIndex;
 
         private static AudioManager _instance;
@@ -50,24 +53,40 @@ namespace Assets.Scripts.Managers
             if(_loops != null)
                 foreach (var loop in _loops)
                     loop.Update();
+
+            if (_queuedClipDict == null)
+                return;
+
+            foreach (var key in keys)
+            {
+                if (_queuedClipDict[key] > 0)
+                {
+                    AudioSource s = getNextAvailableSource();
+                    if (s == null)
+                    {
+                        Debug.Log("Cannot find an AudioSource for " + name);
+                        return;
+                    }
+                    s.volume = 1.0f;
+                    s.clip = _oneShotList[key];
+                    s.Play();
+                    _queuedClipDict[key] = 0;
+                }
+            }
         }
         public void UpdateManager()
         {
             DeleteClips();
             NextSourceIndex = 0;
-            _sources = new List<AudioSource>();
-            _clips = new List<AudioClip>();
-            _cues = new List<MultiCue>();
-            _loops = new List<LoopingCue>();
-            _oneShotList = new Dictionary<string, AudioClip>();
-            _cueDict = new Dictionary<CueName, MultiCue>();
-            _loopDict = new Dictionary<LoopName, LoopingCue>();
 
             foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music"))
                 _clips.Add(clip);
 
             foreach (AudioClip clip in _clips)
+            {
                 _oneShotList[clip.name] = clip;
+                _queuedClipDict.Add(clip.name, 0);
+            }
 
             AudioConstants.CreateCustomCues();
 
@@ -79,7 +98,9 @@ namespace Assets.Scripts.Managers
 
             for (int i = 0; i < NumAudioSources; i++)
                 _sources.Add(sourceHolder.AddComponent<AudioSource>());
-                
+
+            keys = new List<string>(_queuedClipDict.Keys);
+                        
         }
         public void DeleteClips()
         {
@@ -90,6 +111,7 @@ namespace Assets.Scripts.Managers
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<CueName, MultiCue>();
             _loopDict = new Dictionary<LoopName, LoopingCue>();
+            _queuedClipDict = new Dictionary<string, int>();
             DestroyImmediate(GameObject.Find("SourceHolder"));
         }
         //////////////////////////////////////////////
@@ -104,15 +126,7 @@ namespace Assets.Scripts.Managers
                 return false;
             }
 
-            AudioSource s = getNextAvailableSource();
-            if(s == null)
-            {
-                Debug.Log("Cannot find an AudioSource for " + name);
-                return false;
-            }
-            s.volume = volume;
-            s.clip = findClip(name);
-            s.Play();
+            _queuedClipDict[clipName]++;
 
             return true;
         }
