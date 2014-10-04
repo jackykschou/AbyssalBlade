@@ -11,6 +11,7 @@ namespace Assets.Scripts.Managers
     [ExecuteInEditMode]
     public class AudioManager : MonoBehaviour
     {
+        public int NumAudioSources;
         [SerializeField]
         private List<AudioClip> _clips;
         [SerializeField]
@@ -22,10 +23,10 @@ namespace Assets.Scripts.Managers
         private Dictionary<CueName, MultiCue> _cueDict;
         private Dictionary<LoopName, LoopingCue> _loopDict;
 
-        // HACK
-        public double HACKtimeinterval;
-        double nextEventTime;
-        bool canPlay = true;
+        private List<AudioSource> _sources;
+        GameObject sourceHolder;
+
+        int NextSourceIndex;
 
         private static AudioManager _instance;
         public static AudioManager Instance
@@ -43,27 +44,18 @@ namespace Assets.Scripts.Managers
         void Awake()
         {
             UpdateManager();
-            nextEventTime = .2f;
         }
         void Update()
         {
             if(_loops != null)
                 foreach (var loop in _loops)
                     loop.Update();
-            
-
-            double time = AudioSettings.dspTime;
-
-            if (time > nextEventTime && !canPlay)
-            {
-                canPlay = true;
-                nextEventTime += HACKtimeinterval;
-            }
-
         }
         public void UpdateManager()
         {
             DeleteClips();
+            NextSourceIndex = 0;
+            _sources = new List<AudioSource>();
             _clips = new List<AudioClip>();
             _cues = new List<MultiCue>();
             _loops = new List<LoopingCue>();
@@ -81,15 +73,24 @@ namespace Assets.Scripts.Managers
 
             foreach (MultiCue cue in _cues)
                 _cueDict[cue.cueName] = cue;
+
+            sourceHolder = new GameObject("SourceHolder");
+            sourceHolder.transform.parent = this.gameObject.transform;
+
+            for (int i = 0; i < NumAudioSources; i++)
+                _sources.Add(sourceHolder.AddComponent<AudioSource>());
+                
         }
         public void DeleteClips()
         {
+            _sources = new List<AudioSource>();
             _clips = new List<AudioClip>();
             _cues = new List<MultiCue>();
             _loops = new List<LoopingCue>();
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<CueName, MultiCue>();
             _loopDict = new Dictionary<LoopName, LoopingCue>();
+            DestroyImmediate(GameObject.Find("SourceHolder"));
         }
         //////////////////////////////////////////////
         // SINGLE AUDIOCLIPS
@@ -99,18 +100,23 @@ namespace Assets.Scripts.Managers
             string clipName = AudioConstants.GetClipName(name);
             if (!_oneShotList.ContainsKey(clipName))
             {
-                Debug.Log("AudioManager:playCue - Unable to locate AudioClip >>" + name + "<<\n");
+                Debug.Log("Cannot find the Clip >>" + name + "<<\n");
                 return false;
             }
 
-            Vector3 playAt = sourceObject ? sourceObject.transform.position : this.transform.position;
-            if (canPlay)
+            AudioSource s = getNextAvailableSource();
+            if(s == null)
             {
-                AudioSource.PlayClipAtPoint(findClip(name), playAt, volume);
-                canPlay = false;
+                Debug.Log("Cannot find an AudioSource for " + name);
+                return false;
             }
+            s.volume = volume;
+            s.clip = findClip(name);
+            s.Play();
+
             return true;
         }
+
         public bool playClipDelayed(ClipName name, float delayTime, GameObject sourceObject = null, float volume = 1.0f)
         {
             string clipName = AudioConstants.GetClipName(name);
@@ -214,6 +220,15 @@ namespace Assets.Scripts.Managers
             yield return new WaitForSeconds(time);
             DestroyImmediate(s);
         }
+        private AudioSource getNextAvailableSource()
+        {
+            if (NextSourceIndex >= NumAudioSources)
+                NextSourceIndex = 0;
+            if (_sources[NextSourceIndex].isPlaying)
+                _sources[NextSourceIndex].Stop();
+            return _sources[NextSourceIndex++];
+        }
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // HELPER CLASSES
