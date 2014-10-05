@@ -64,6 +64,7 @@ namespace Assets.Scripts.Managers
             AudioManager.Instance.playLoop(BackGroundMusicLoop);
             _levelStarted = true;
             GameManager.Instance.HUD.SetActive(IsPlayLevel);
+            //Camera.main.orthographic = IsPlayLevel; // MAKES MENU 3D
             GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
         }
     }

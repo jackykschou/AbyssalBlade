@@ -15,17 +15,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
         public float scrollingVelocity = 0.5f;
         private float timeAlive;
         private TextMesh mesh;
+        private Vector3 Direction;
 
         protected override void Update()
         {
-            mesh.transform.Translate(new Vector3(0, scrollingVelocity * Time.deltaTime, 0));
+            mesh.transform.Translate(scrollingVelocity * Time.deltaTime * Direction);
             timeAlive += Time.deltaTime;
         }
 
         public void OnSpawned()
         {
-            mesh = this.gameObject.GetComponent<TextMesh>();
-            mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
             timeAlive = 0.0f;
             this.StartCoroutine(this.TimedDespawn());
         }
@@ -43,6 +42,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
         protected override void Initialize()
         {
             base.Initialize();
+            Direction = new Vector3(Random.Range(-.75f, .75f), Random.Range(0f, 1f), 0);
+            mesh = this.gameObject.GetComponent<TextMesh>();
+            mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
         }
         protected override void Deinitialize()
         {
