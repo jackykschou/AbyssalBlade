@@ -40,15 +40,19 @@ namespace Assets.Scripts.Managers
             CreateSpawnPools();
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (_despawnQueue.Count > 0)
             {
+
                 GameObject o = _despawnQueue.First();
                 _despawnQueue.RemoveAt(0);
-                SpawnPool pool = _spawnedPrefabsMap[o];
-                _spawnedPrefabsMap.Remove(o);
-                pool.Despawn(o.transform);
+                if (o != null)
+                {
+                    SpawnPool pool = _spawnedPrefabsMap[o];
+                    _spawnedPrefabsMap.Remove(o);
+                    pool.Despawn(o.transform);
+                }
             }
         }
 
@@ -136,6 +140,16 @@ namespace Assets.Scripts.Managers
         public void DespawnPrefab(GameObject prefabGameObject)
         {
             _despawnQueue.Add(prefabGameObject);
+        }
+
+        public void ImmediateDespawnPrefab(GameObject prefabGameObject)
+        {
+            if (_spawnedPrefabsMap[prefabGameObject] == null)
+            {
+                return;
+            }
+
+            _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
         }
 
         public bool IsSpawnedFromPrefab(GameObject obj)

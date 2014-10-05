@@ -31,12 +31,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (HealthChanger.ApplyHealthChange(coll.gameObject))
             {
-                DisableGameObject();
+                ImmediateDisableGameObject();
                 Collider.enabled = false;
             }
             else if (coll.gameObject.tag != gameObject.tag)
             {
-                DisableGameObject();
+                ImmediateDisableGameObject();
                 Collider.enabled = false;
             }
         }
