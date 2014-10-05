@@ -15,18 +15,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         [Range(0f, float.MaxValue)] 
         public float SpawnRadius = 0f;
 
-        [Range(0f, float.MaxValue)] 
-        public float ActivateDistance = 15f;
-
         public FixTimeDispatcher SpawnCoolDown;
 
-        public CircleCollider2D Collider;
+        public CircleCollider2D TriggerArea;
 
         protected override void OnTriggerStay2D(Collider2D coll)
         {
             if (!PrefabSpawner.CanSpawn())
             {
-                Collider.enabled = false;
+                TriggerArea.enabled = false;
             }
 
             if (SpawnCoolDown.CanDispatch() &&
@@ -47,10 +44,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
-            Collider = GetComponent<CircleCollider2D>();
-            Collider.isTrigger = true;
-            Collider.radius = ActivateDistance;
-            Collider.enabled = true;
+            TriggerArea = GetComponent<CircleCollider2D>();
+            TriggerArea.isTrigger = true;
+            TriggerArea.enabled = true;
             gameObject.layer = LayerConstants.LayerMask.SpawnArea;
         }
 

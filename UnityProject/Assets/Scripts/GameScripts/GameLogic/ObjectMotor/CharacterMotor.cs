@@ -6,7 +6,6 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
-
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
     [AddComponentMenu("2DObjectMotor/CharacterMotor")]
@@ -35,6 +34,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             RigidMove(direction, Speed);
         }
 
+        [GameScriptEvent(GameScriptEvent.OnCharacterKnockBacked)]
         public void RigidMove(Vector2 direction, float speed)
         {
             direction = direction.normalized;

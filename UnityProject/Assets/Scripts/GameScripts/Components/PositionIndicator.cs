@@ -1,6 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameViews;
+using Assets.Scripts.Utility;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
@@ -17,6 +17,13 @@ namespace Assets.Scripts.GameScripts.Components
         private Vector3 _upPos;
         private Vector3 _leftPos;
         private Vector3 _rightPos;
+
+        public Vector2 Direction 
+        {
+            get { return MathUtility.GetFacingDirectionVector(_currentFacingDirection); }
+        }
+
+        private FacingDirection _currentFacingDirection;
 
         public override void Initialize()
         {
@@ -38,15 +45,18 @@ namespace Assets.Scripts.GameScripts.Components
             _leftPos = Position.localPosition;
 
             Position.localPosition = _downPos;
+            _currentFacingDirection = FacingDirection.Down;
         }
 
         public override void Deinitialize()
         {
             Position.localPosition = _downPos;
+            _currentFacingDirection = FacingDirection.Down;
         }
 
         public void UpdatePosition(FacingDirection facingDirection)
         {
+            _currentFacingDirection = facingDirection;
             switch (facingDirection)
             {
                 case FacingDirection.Up:
