@@ -31,9 +31,10 @@
         OnNewTargetDiscovered,                  // void(GameObject)
 
         OnObjectMove,                           // void()
-        OnObjectHasNoHitPoint,                   // void()
+        OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()
         OnCharacterInterrupted,                 // void()
+        OnCharacterKnockBacked,                 // void(Vector2, float)
         ObjectChangeHealthFix,                    // void(float)
         ObjectChangeCurrentPercentageHealth,      // void(float)
         ObjectChangeMaxPercentageHealth,          // void(float)
@@ -42,6 +43,8 @@
         ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
         OnObjectTakeDamage,                       // void(float)
         OnObjectTakeHeal,                          // void(float)
+
+        OnObjectCollideWithCollideTrigger,          // void(GameObject)
 
         MenuStartButtonPressed,                          // void()
         MenuOptionsButtonPressed,                          // void()
