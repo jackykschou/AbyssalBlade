@@ -15,6 +15,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health.Editor
 
             healthChanger.HealthChangeType = (HealthChangeType)EditorGUILayout.EnumPopup("HealthChangeType", healthChanger.HealthChangeType);
             healthChanger.OneTimeOnlyPerTarget = EditorGUILayout.Toggle("OneTimeOnlyPerTarget", healthChanger.OneTimeOnlyPerTarget);
+            healthChanger.CriticalChance = EditorGUILayout.FloatField("Critical Chance", healthChanger.CriticalChance);
+            healthChanger.CriticalDamagePercentage = EditorGUILayout.FloatField("Critical Damage Percentage", healthChanger.CriticalDamagePercentage);
+            healthChanger.CriticalChance = Mathf.Clamp(healthChanger.CriticalChance, 0f, 1f);
+            healthChanger.CriticalDamagePercentage = Mathf.Clamp(healthChanger.CriticalDamagePercentage, 0f, 10f);
 
             if (healthChanger.TargetTags == null)
             {
