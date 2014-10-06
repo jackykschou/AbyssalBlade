@@ -33,6 +33,7 @@
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()
+        InterruptCharacter,                     // void()
         OnCharacterInterrupted,                 // void()
         OnCharacterKnockBacked,                 // void(Vector2, float)
         ObjectChangeHealthFix,                    // void(float)
@@ -44,7 +45,7 @@
         OnObjectTakeDamage,                       // void(float)
         OnObjectTakeHeal,                          // void(float)
 
-        OnObjectCollideWithCollideTrigger,          // void(GameObject)
+        OnCollideTriggerTriggered,          // void(GameObject)
 
         MenuStartButtonPressed,                          // void()
         MenuOptionsButtonPressed,                          // void()

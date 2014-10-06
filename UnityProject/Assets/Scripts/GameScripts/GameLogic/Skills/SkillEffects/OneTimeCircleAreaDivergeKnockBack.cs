@@ -7,8 +7,8 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
-    [AddComponentMenu("Skill/SkillEffect/OneTimeCircleAreaKnockBack")]
-    public class OneTimeCircleAreaKnockBack : SkillEffect 
+    [AddComponentMenu("Skill/SkillEffect/OneTimeCircleAreaDivergeKnockBack")]
+    public class OneTimeCircleAreaDivergeKnockBack : SkillEffect 
     {
         public PositionIndicator Position;
         [Range(0f, 100)]
@@ -31,7 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         {
             foreach (var col in Physics2D.OverlapCircleAll(Position.Position.position, Radius, LayerConstants.LayerMask.Destroyable))
             {
-                col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, -MathUtility.GetDirection(Position.Position.position, col.gameObject.transform.position), KnockBackSpeed);
+                col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, MathUtility.GetDirection(Position.Position.position, col.gameObject.transform.position), KnockBackSpeed);
             }
         }
 

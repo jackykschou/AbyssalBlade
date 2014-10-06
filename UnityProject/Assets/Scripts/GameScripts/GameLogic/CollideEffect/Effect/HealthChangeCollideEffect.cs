@@ -1,12 +1,10 @@
 ﻿using Assets.Scripts.GameScripts.GameLogic.Health;
 using UnityEngine;
-using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
-using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
-namespace Assets.Scripts.GameScripts.GameLogic.CollideEffect
+namespace Assets.Scripts.GameScripts.GameLogic.CollideEffect.Effect
 {
     [RequireComponent(typeof(HealthChanger))]
-    public class HealthChangeCollideEffect : GameLogic 
+    public class HealthChangeCollideEffect : CollideTriggerEffect 
     {
         public HealthChanger HealthChanger;
 
@@ -23,8 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.CollideEffect
         {
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnObjectCollideWithCollideTrigger)]
-        public void ApplyHealthChange(GameObject target)
+        public override void OnCollideTriggerTriggered(GameObject target)
         {
             HealthChanger.ApplyHealthChange(target);
         }

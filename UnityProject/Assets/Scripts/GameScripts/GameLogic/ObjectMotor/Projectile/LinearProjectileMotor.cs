@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Constants;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
@@ -6,11 +7,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
     [AddComponentMenu("2DObjectMotor/ProjectileMotor/LinearProjectileMotor")]
     public class LinearProjectileMotor : ProjectileMotor
     {
-        public EaseType easeType;
+        public EaseType EaseType;
 
         public override void Shoot()
         {
-            MoveAlongWithStyle(easeType, MathUtility.GetDirection(transform.position, Target.position), Speed);
+            Vector2 direction = MathUtility.GetDirection(transform.position, Target.position);
+            TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, direction.GetFacingDirection());
+            MoveAlongWithStyle(EaseType, direction, Speed);
         }
     }
 }
