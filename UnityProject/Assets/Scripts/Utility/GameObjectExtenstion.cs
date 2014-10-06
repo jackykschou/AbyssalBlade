@@ -11,13 +11,13 @@ namespace Assets.Scripts.Utility
     {
         private static readonly Dictionary<GameObject, GameScript> GameScriptsCache = new Dictionary<GameObject, GameScript>();
         private static readonly Dictionary<GameObject, Health> HealthCache = new Dictionary<GameObject, Health>();
-        private static readonly Dictionary<GameObject, CharacterOnHitInterrupt> OnHitInterruptCache = new Dictionary<GameObject, CharacterOnHitInterrupt>();
+        private static readonly Dictionary<GameObject, CharacterInterrupt> OnHitInterruptCache = new Dictionary<GameObject, CharacterInterrupt>();
 
         public static void CacheGameObject(this GameObject o)
         {
             GameScript gameScript = o.GetComponent<GameScript>();
             Health health = o.GetComponent<Health>();
-            CharacterOnHitInterrupt characterOnHitInterrupt = o.GetComponent<CharacterOnHitInterrupt>();
+            CharacterInterrupt characterInterrupt = o.GetComponent<CharacterInterrupt>();
 
             if (gameScript != null && !GameScriptsCache.ContainsKey(o))
             {
@@ -27,9 +27,9 @@ namespace Assets.Scripts.Utility
             {
                 HealthCache.Add(o, health);
             }
-            if (characterOnHitInterrupt != null && !OnHitInterruptCache.ContainsKey(o))
+            if (characterInterrupt != null && !OnHitInterruptCache.ContainsKey(o))
             {
-                OnHitInterruptCache.Add(o, characterOnHitInterrupt);
+                OnHitInterruptCache.Add(o, characterInterrupt);
             }
         }
 

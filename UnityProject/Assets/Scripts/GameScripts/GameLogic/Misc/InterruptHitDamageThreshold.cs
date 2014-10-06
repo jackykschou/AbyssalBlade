@@ -1,44 +1,18 @@
-﻿using System.Collections;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+﻿using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
-    public class CharacterOnHitInterrupt : GameLogic
+    public class InterruptHitDamageThreshold : GameLogic 
     {
-        public bool Interrupted { get; private set; }
-
         [Range(0f, float.MaxValue)]
         public float HitDamageThreshold;
-        [Range(0f, float.MaxValue)]
-        public float InterruptionDuration;
 
         public FixTimeDispatcher HitDamageThresholdResetTime;
-        public FixTimeDispatcher InterruptCoolDown;
 
         private float _accumulatedHitDamage;
-
-        [GameScriptEventAttribute(GameScriptEvent.InterruptCharacter)]
-        public void InterruptCharacter()
-        {
-            if (!InterruptCoolDown.CanDispatch())
-            {
-                return;
-            }
-            _accumulatedHitDamage = 0f;
-            InterruptCoolDown.Dispatch();
-            TriggerGameScriptEvent(GameScriptEvent.OnCharacterInterrupted);
-            StartCoroutine(CountDownInterruption());
-        }
-
-        IEnumerator CountDownInterruption()
-        {
-            Interrupted = true;
-            yield return new WaitForSeconds(InterruptionDuration);
-            Interrupted = false;
-        }
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectTakeDamage)]
         public void UpdateDamageThreshold(float damage)
@@ -47,7 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             {
                 if (damage >= HitDamageThreshold)
                 {
-                    InterruptCharacter();
+                    TriggerGameScriptEvent(GameScriptEvent.InterruptCharacter);
                 }
                 else
                 {
@@ -59,10 +33,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
                 _accumulatedHitDamage += damage;
                 if (_accumulatedHitDamage >= HitDamageThreshold)
                 {
-                    InterruptCharacter();
+                    TriggerGameScriptEvent(GameScriptEvent.InterruptCharacter);
                 }
             }
             HitDamageThresholdResetTime.ResetTime();
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.OnCharacterInterrupted)]
+        public void ResetAccumulatedHitDamage()
+        {
+            _accumulatedHitDamage = 0f;
         }
 
         protected override void Initialize()
@@ -74,5 +54,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         protected override void Deinitialize()
         {
         }
+        
     }
 }
