@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Assets.Scripts.Constants;
+﻿using Assets.Scripts.Constants;
+using UnityEngine;
 
-namespace Assets.Scripts.GameViews
+namespace Assets.Scripts.GameScripts.GameViews
 {
     [AddComponentMenu("GameView/StaticSpriteGameView")]
     [RequireComponent(typeof(SpriteRenderer))]
@@ -15,6 +15,7 @@ namespace Assets.Scripts.GameViews
 
             _render = GetComponent<SpriteRenderer>();
             _render.sortingLayerName = SortingLayerConstants.SortingLayerNames.CharacterLayer;
+            renderer.enabled = true;
             UpdateSortingOrder();
         }
 
@@ -102,6 +103,12 @@ namespace Assets.Scripts.GameViews
         protected void UpdateSortingOrder()
         {
             _render.sortingOrder = (int)(transform.position.y * WorldScaleConstant.LayerSortingScale);
+        }
+
+        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectDestroyed)]
+        public void DisableRender()
+        {
+            renderer.enabled = false;
         }
     }
 }

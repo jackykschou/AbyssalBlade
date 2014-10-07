@@ -13,6 +13,7 @@
             public const string DestroyableObstacle = "DestroyableObstacle";
             public const string InvisibleWall = "InvisibleWall";
             public const string SpawnArea = "SpawnArea";
+            public const string SectionActivateArea = "SectionActivateArea";
         }
 
         public static class LayerMask
@@ -62,6 +63,11 @@
             public static int SpawnArea
             {
                 get { return UnityEngine.LayerMask.NameToLayer(LayerNames.SpawnArea); }
+            }
+
+            public static int SectionActivateArea
+            {
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.SectionActivateArea); }
             }
         }
     }

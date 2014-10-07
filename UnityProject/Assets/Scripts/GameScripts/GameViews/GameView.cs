@@ -1,11 +1,8 @@
-﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts;
+﻿using Assets.Scripts.Constants;
 using Assets.Scripts.Utility;
 using UnityEngine;
-using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 
-namespace Assets.Scripts.GameViews
+namespace Assets.Scripts.GameScripts.GameViews
 {
     [AddComponentMenu("GameView/GameView")]
     public abstract class GameView : GameScript

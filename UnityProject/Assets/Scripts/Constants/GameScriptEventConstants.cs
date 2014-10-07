@@ -47,6 +47,8 @@
 
         OnCollideTriggerTriggered,          // void(GameObject)
 
+        UpdateSectionId,                    // void(int)
+
         MenuStartButtonPressed,                          // void()
         MenuOptionsButtonPressed,                          // void()
         MenuQuitButtonPressed,                          // void()

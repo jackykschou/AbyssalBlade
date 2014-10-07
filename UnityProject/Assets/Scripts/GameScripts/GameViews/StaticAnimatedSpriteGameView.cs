@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.GameViews
+namespace Assets.Scripts.GameScripts.GameViews
 {
     [AddComponentMenu("GameView/StaticAnimatedSpriteGameView")]
     [RequireComponent(typeof(Animator))]
