@@ -31,18 +31,22 @@ namespace Assets.Scripts.Constants
         MissEnemy,
         Random,
         Shot,
-        Shot2,
-		Stone_Enemy_Death_Rattle,
-		Stone_Enemy_Death_Rattle_2,
-		Stone_Enemy_Death_Rattle_3,
 		Strike,
 		Swipe,
 		Warp_In,
 		Warp_In_2,
 		Warp_In_3,
 		Warp_In_4,
-		Warp_In_5
-    };
+		Warp_In_5,
+		Stone_Enemy_Death_Rattle,
+		Stone_Enemy_Death_Rattle_2,
+		Stone_Enemy_Take_Damage,
+		Stone_Enemy_Take_Damage_2,
+		Heavy_Attack,
+		Heavy_Attack_2,
+		Heavy_Attack_3,
+		Shot_2
+	};
 
     public enum LoopName
     {
@@ -77,17 +81,21 @@ namespace Assets.Scripts.Constants
             {ClipName.MissEnemy, "MissEnemy"},
             {ClipName.Random, "Random"},
             {ClipName.Shot, "Shot"},
-            {ClipName.Shot2, "Shot2"},
-			{ClipName.Stone_Enemy_Death_Rattle, "Stone_Enemy_Death_Rattle"},
-			{ClipName.Stone_Enemy_Death_Rattle_2, "Stone_Enemy_Death_Rattle_2"},
-			{ClipName.Stone_Enemy_Death_Rattle_3, "Stone_Enemy_Death_Rattle_3"},
 			{ClipName.Strike, "Strike"},
             {ClipName.Swipe, "Swipe"},
 			{ClipName.Warp_In, "Warp_In"},
 			{ClipName.Warp_In_2, "Warp_In_2"},
 			{ClipName.Warp_In_3, "Warp_In_3"},
 			{ClipName.Warp_In_4, "Warp_In_4"},
-			{ClipName.Warp_In_5, "Warp_In_5"}
+			{ClipName.Warp_In_5, "Warp_In_5"},
+			{ClipName.Stone_Enemy_Death_Rattle, "Stone_Enemy_Death_Rattle"},
+			{ClipName.Stone_Enemy_Death_Rattle_2, "Stone_Enemy_Death_Rattle_2"},
+			{ClipName.Stone_Enemy_Take_Damage, "Stone_Enemy_Take_Damage"},
+			{ClipName.Stone_Enemy_Take_Damage_2, "Stone_Enemy_Take_Damage_2"},
+			{ClipName.Heavy_Attack, "Heavy_Attack"},
+			{ClipName.Heavy_Attack_2, "Heavy_Attack_2"},
+			{ClipName.Heavy_Attack_3, "Heavy_Attack_3"},
+			{ClipName.Shot_2, "Shot_2"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
