@@ -27,7 +27,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             if (SectionId == sectionId)
             {
                 foreach (int skillID in DisabledSkills)
-                    TriggerGameEvent(GameEvent.DisableAbilityUI, skillID);
+                    TriggerGameEvent(GameEvent.DisableAbility, skillID);
             }
         }
 
@@ -37,7 +37,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             if (SectionId == sectionId)
             {
                 foreach (int skillID in DisabledSkills)
-                    TriggerGameEvent(GameEvent.EnableAbilityUI, skillID);
+                    TriggerGameEvent(GameEvent.EnableAbility, skillID);
             }
         }
 

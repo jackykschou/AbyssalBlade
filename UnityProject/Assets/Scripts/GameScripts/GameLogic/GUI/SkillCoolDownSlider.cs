@@ -78,7 +78,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             }
         }
 
-        [GameEventAttribute(GameEvent.DisableAbilityUI)]
+        [GameEventAttribute(GameEvent.DisableAbility)]
         public void DisableAbility(int id)
         {
             if (id == SkillId)
@@ -90,7 +90,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             }
         }
 
-        [GameEventAttribute(GameEvent.EnableAbilityUI)]
+        [GameEventAttribute(GameEvent.EnableAbility)]
         public void EnableAbility(int id)
         {
             if (id == SkillId)

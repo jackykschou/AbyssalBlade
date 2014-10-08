@@ -22,8 +22,8 @@
 
         OnGameEventSent,                 // void(GameEvent)
         
-        DisableAbilityUI,                // void(int)
-        EnableAbilityUI,                 // void(int)
+        DisableAbility,                // void(int)
+        EnableAbility,                 // void(int)
         EnableHighlightSkill,            // void(int,float)
         DisableHighlightSkill            // void(int)
      };
