@@ -6,6 +6,11 @@ namespace Assets.Scripts.Utility
 {
     public static class MathUtility
     {
+        public static bool RollChance(float chance)
+        {
+            return UnityEngine.Random.value < chance;
+        }
+
         public static Vector2 GetDirection(this GameObject obj, GameObject target)
         {
             return (target.transform.position - obj.transform.position).normalized;

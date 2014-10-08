@@ -20,6 +20,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         public Skill Skill4;
 
+        public Skill Dash;
+
         public PositionIndicator TargetHolder;
 
         protected override void Initialize()
@@ -67,6 +69,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         public void ActivateSkillFour()
         {
             Skill4.Activate();
+        }
+
+        [GameScriptEvent(GameScriptEvent.PlayerDashButtonPressed)]
+        public void ActivateDash()
+        {
+            Dash.Activate();
         }
     }
 }

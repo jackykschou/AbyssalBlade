@@ -5,7 +5,7 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
-    [AddComponentMenu("Skill/SkillEffect/MoveCharacter")]
+    [AddComponentMenu("Skill/SkillEffect/CharacterMove")]
     public class MoveCharacter : SkillEffect
     {
         private Vector2 _direction;
@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public override void Activate()
         {
             base.Activate();
-            Skill.Caster.TriggerGameScriptEvent(GameScriptEvent.MoveCharacter, _direction);
+            Skill.Caster.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, _direction);
             Activated = false;
         }
 
