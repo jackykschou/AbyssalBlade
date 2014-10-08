@@ -20,7 +20,9 @@
         OnLevelFinishedLoading,        // void()
         OnLevelEnded,                  // void()
         
-        DisableAbility,                // void(int)
-        EnableAbility                  // void(int)
+        DisableAbilityUI,                // void(int)
+        EnableAbilityUI,                 // void(int)
+        EnableHighlightSkill,            // void(int,float)
+        DisableHighlightSkill            // void(int)
      };
 }
