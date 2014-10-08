@@ -59,7 +59,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                 if (fillImage != null)
                     fillImage.color = new Color(fillImage.color.r, fillImage.color.g, fillImage.color.b, 1.0f);
                 if (iconImage != null)
-                    iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 1.0f);
+                    iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.5f);
             }
         }
     }
