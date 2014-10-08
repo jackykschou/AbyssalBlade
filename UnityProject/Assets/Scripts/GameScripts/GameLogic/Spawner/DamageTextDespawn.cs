@@ -15,18 +15,24 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
     {
         public float origDespawnTime = 1.0f;
         public float scrollingVelocity = 0.5f;
-        private float timeAlive;
         private TextMesh mesh;
         private Vector3 Direction;
         private float Speed;
         private float Distance;
+        private float TimeLeft;
+
+        protected override void Update()
+        {
+            mesh.color = new Color(mesh.color.r, mesh.color.g, mesh.color.b, TimeLeft / origDespawnTime);
+            TimeLeft -= Time.deltaTime;
+        }
 
         public void OnSpawned()
         {
-            timeAlive = 0.0f;
             this.StartCoroutine(this.TimedDespawn());
             TextMotor motor = gameObject.GetComponent<TextMotor>();
             motor.Shoot(Direction,Speed,Distance);
+            TimeLeft = origDespawnTime;
         }
 
         private IEnumerator TimedDespawn()
@@ -42,9 +48,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
         protected override void Initialize()
         {
             base.Initialize();
-            Direction = new Vector3(Random.Range(-.75f, .75f), Random.Range(0f, 1f), 0);
-            Speed = Random.Range(3.0f, 6.0f);
-            Distance = Random.Range(3.0f, 6.0f);
+            Direction = new Vector3(Random.Range(-.45f, .45f), Random.Range(0f, 1f), 0);
+            Speed = Random.Range(5.0f, 10.0f);
+            Distance = Random.Range(1.5f, 2f);
             mesh = this.gameObject.GetComponent<TextMesh>();
             mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
         }
