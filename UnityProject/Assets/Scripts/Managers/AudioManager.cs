@@ -11,6 +11,7 @@ namespace Assets.Scripts.Managers
     [ExecuteInEditMode]
     public class AudioManager : MonoBehaviour
     {
+        public int NumAudioSources;
         [SerializeField]
         private List<AudioClip> _clips;
         [SerializeField]
@@ -22,10 +23,13 @@ namespace Assets.Scripts.Managers
         private Dictionary<CueName, MultiCue> _cueDict;
         private Dictionary<LoopName, LoopingCue> _loopDict;
 
-        // HACK
-        public double HACKtimeinterval;
-        double nextEventTime;
-        bool canPlay = true;
+        private List<AudioSource> _sources;
+        GameObject sourceHolder;
+
+        Dictionary<string, int> _queuedClipDict;
+        List<string> keys;
+
+        int NextSourceIndex;
 
         private static AudioManager _instance;
         public static AudioManager Instance
@@ -43,53 +47,72 @@ namespace Assets.Scripts.Managers
         void Awake()
         {
             UpdateManager();
-            nextEventTime = .2f;
         }
         void Update()
         {
             if(_loops != null)
                 foreach (var loop in _loops)
                     loop.Update();
-            
 
-            double time = AudioSettings.dspTime;
+            if (_queuedClipDict == null)
+                return;
 
-            if (time > nextEventTime && !canPlay)
+            foreach (var key in keys)
             {
-                canPlay = true;
-                nextEventTime += HACKtimeinterval;
+                if (_queuedClipDict[key] > 0)
+                {
+                    AudioSource s = getNextAvailableSource();
+                    if (s == null)
+                    {
+                        Debug.Log("Cannot find an AudioSource for " + name);
+                        return;
+                    }
+                    s.volume = 1.0f;
+                    s.clip = _oneShotList[key];
+                    s.Play();
+                    _queuedClipDict[key] = 0;
+                }
             }
-
         }
         public void UpdateManager()
         {
             DeleteClips();
-            _clips = new List<AudioClip>();
-            _cues = new List<MultiCue>();
-            _loops = new List<LoopingCue>();
-            _oneShotList = new Dictionary<string, AudioClip>();
-            _cueDict = new Dictionary<CueName, MultiCue>();
-            _loopDict = new Dictionary<LoopName, LoopingCue>();
+            NextSourceIndex = 0;
 
             foreach (var clip in Resources.LoadAll<AudioClip>("Arts/Music"))
                 _clips.Add(clip);
 
             foreach (AudioClip clip in _clips)
+            {
                 _oneShotList[clip.name] = clip;
+                _queuedClipDict.Add(clip.name, 0);
+            }
 
             AudioConstants.CreateCustomCues();
 
             foreach (MultiCue cue in _cues)
                 _cueDict[cue.cueName] = cue;
+
+            sourceHolder = new GameObject("SourceHolder");
+            sourceHolder.transform.parent = this.gameObject.transform;
+
+            for (int i = 0; i < NumAudioSources; i++)
+                _sources.Add(sourceHolder.AddComponent<AudioSource>());
+
+            keys = new List<string>(_queuedClipDict.Keys);
+                        
         }
         public void DeleteClips()
         {
+            _sources = new List<AudioSource>();
             _clips = new List<AudioClip>();
             _cues = new List<MultiCue>();
             _loops = new List<LoopingCue>();
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<CueName, MultiCue>();
             _loopDict = new Dictionary<LoopName, LoopingCue>();
+            _queuedClipDict = new Dictionary<string, int>();
+            DestroyImmediate(GameObject.Find("SourceHolder"));
         }
         //////////////////////////////////////////////
         // SINGLE AUDIOCLIPS
@@ -99,18 +122,15 @@ namespace Assets.Scripts.Managers
             string clipName = AudioConstants.GetClipName(name);
             if (!_oneShotList.ContainsKey(clipName))
             {
-                Debug.Log("AudioManager:playCue - Unable to locate AudioClip >>" + name + "<<\n");
+                Debug.Log("Cannot find the Clip >>" + name + "<<\n");
                 return false;
             }
 
-            Vector3 playAt = sourceObject ? sourceObject.transform.position : this.transform.position;
-            if (canPlay)
-            {
-                AudioSource.PlayClipAtPoint(findClip(name), playAt, volume);
-                canPlay = false;
-            }
+            _queuedClipDict[clipName]++;
+
             return true;
         }
+
         public bool playClipDelayed(ClipName name, float delayTime, GameObject sourceObject = null, float volume = 1.0f)
         {
             string clipName = AudioConstants.GetClipName(name);
@@ -214,6 +234,15 @@ namespace Assets.Scripts.Managers
             yield return new WaitForSeconds(time);
             DestroyImmediate(s);
         }
+        private AudioSource getNextAvailableSource()
+        {
+            if (NextSourceIndex >= NumAudioSources)
+                NextSourceIndex = 0;
+            if (_sources[NextSourceIndex].isPlaying)
+                _sources[NextSourceIndex].Stop();
+            return _sources[NextSourceIndex++];
+        }
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // HELPER CLASSES

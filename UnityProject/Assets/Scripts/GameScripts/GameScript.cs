@@ -189,6 +189,16 @@ namespace Assets.Scripts.GameScripts
             }
         }
 
+        public void ImmediateDisableGameObject()
+        {
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
+
+            PrefabManager.Instance.DespawnPrefab(gameObject);
+        }
+
         void OnDespawned()
         {
             DeinitializeHelper();

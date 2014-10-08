@@ -43,6 +43,25 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
                 return;
             }
 
+            if ((HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect()))
+            {
+                float horizontalValue = Mathf.Abs(HorizontalAxis.GetAxisValue()) >
+                                    Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue())
+                ? HorizontalAxis.GetAxisValue()
+                : JoyStickHorizontalAxis.GetAxisValue();
+
+                float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
+                                    Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
+                ? VerticalAxis.GetAxisValue()
+                : JoyStickVerticalAxis.GetAxisValue();
+
+                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(horizontalValue, verticalValue));
+            }
+        }
+
+        protected override void Update()
+        {
+            base.Update();
             if (Attack1.Detect())
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack1ButtonPressed);
@@ -58,20 +77,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             else if (Attack4.Detect())
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed);
-            }
-            else if ((HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect()))
-            {
-                float horizontalValue = Mathf.Abs(HorizontalAxis.GetAxisValue()) >
-                                    Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue())
-                ? HorizontalAxis.GetAxisValue()
-                : JoyStickHorizontalAxis.GetAxisValue();
-
-                float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
-                                    Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
-                ? VerticalAxis.GetAxisValue()
-                : JoyStickVerticalAxis.GetAxisValue();
-
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(horizontalValue, verticalValue));
             }
         }
     }
