@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Collections;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Managers;
@@ -52,25 +53,33 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                 LevelManager.Instance.PlayerMainCharacter != null &&
                 !LevelManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
-                SpawnEnemy();
+                StartCoroutine(SpawnEnemy());
             }
         }
 
-        public void SpawnEnemy()
+        public IEnumerator SpawnEnemy()
         {
             SpawnCoolDown.Dispatch();
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
             GameObject spawnedEnemy = PrefabSpawner.SpawnPrefab(spawnPosition);
+            while (spawnedEnemy == null || !spawnedEnemy.activeSelf)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
             spawnedEnemy.tag = TagConstants.EnemyTag;
-            if (spawnedEnemy.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>() == null)
+            var despawnedOnNoHitPoint = spawnedEnemy.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
+            var noHitPointOnSectionDeactivated = spawnedEnemy.GetComponent<TriggerNoHitPointOnSectionDeactivated>();
+            if (despawnedOnNoHitPoint == null)
             {
-                spawnedEnemy.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
+                despawnedOnNoHitPoint = spawnedEnemy.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
             }
-            if (spawnedEnemy.GetComponent<TriggerNoHitPointOnSectionDeactivated>() == null)
+            if (noHitPointOnSectionDeactivated == null)
             {
-                spawnedEnemy.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
+                noHitPointOnSectionDeactivated = spawnedEnemy.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
             }
+            despawnedOnNoHitPoint.SectionId = SectionId;
+            noHitPointOnSectionDeactivated.SectionId = SectionId;
             TriggerGameEvent(GameEvent.OnSectionEnemySpawned, spawnedEnemy, SectionId);
         }
 
