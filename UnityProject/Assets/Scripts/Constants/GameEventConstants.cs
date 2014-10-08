@@ -18,6 +18,9 @@
         PlayerHealthUpdate,            // void(float)
         OnLevelStartLoading,           // void()
         OnLevelFinishedLoading,        // void()
-        OnLevelEnded                   // void()
+        OnLevelEnded,                  // void()
+        
+        DisableAbility,                // void(int)
+        EnableAbility                  // void(int)
      };
 }

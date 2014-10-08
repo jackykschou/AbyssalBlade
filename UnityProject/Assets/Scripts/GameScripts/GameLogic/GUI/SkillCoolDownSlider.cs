@@ -12,11 +12,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [Range(0, 4)] // 0 is movement skill
         public int SkillId;
         public Slider CooldownBar;
+        public Transform Fill;
+        public Transform Icon;
+
+        private Image fillImage;
+        private Image iconImage;
 
         protected override void Initialize()
         {
             base.Initialize();
+            fillImage = Fill.GetComponent<Image>();
             CooldownBar = GetComponent<Slider>();
+            iconImage = Icon.GetComponent<Image>();
         }
 
         protected override void Deinitialize()
@@ -29,6 +36,30 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             if (id == SkillId)
             {
                 CooldownBar.value = percentage;
+            }
+        }
+
+        [GameEventAttribute(GameEvent.DisableAbility)]
+        public void DisableAbility(int id)
+        {
+            if (id == SkillId)
+            {
+                if (fillImage != null)
+                    fillImage.color = new Color(fillImage.color.r, fillImage.color.g, fillImage.color.b, 0.0f);
+                if (iconImage != null)
+                    iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
+            }
+        }
+
+        [GameEventAttribute(GameEvent.EnableAbility)]
+        public void EnableAbility(int id)
+        {
+            if (id == SkillId)
+            {
+                if (fillImage != null)
+                    fillImage.color = new Color(fillImage.color.r, fillImage.color.g, fillImage.color.b, 1.0f);
+                if (iconImage != null)
+                    iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 1.0f);
             }
         }
     }

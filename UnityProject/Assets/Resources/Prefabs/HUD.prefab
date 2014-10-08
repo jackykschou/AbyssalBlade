@@ -30,7 +30,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22400002}
   m_Layer: 5
-  m_Name: Fill Area
+  m_Name: Skill4FillArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22400012}
   m_Layer: 5
-  m_Name: Fill Area
+  m_Name: Skill1FillArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,7 +271,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22400030}
   m_Layer: 5
-  m_Name: Fill Area
+  m_Name: Skill3FillArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22400046}
   m_Layer: 5
-  m_Name: Fill Area
+  m_Name: Skill2FillArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1008,6 +1008,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillId: 4
   CooldownBar: {fileID: 11400004}
+  Fill: {fileID: 22400004}
+  Icon: {fileID: 22400050}
 --- !u!114 &11400036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1043,6 +1045,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillId: 1
   CooldownBar: {fileID: 11400010}
+  Fill: {fileID: 22400010}
+  Icon: {fileID: 22400052}
 --- !u!114 &11400042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1180,6 +1184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillId: 3
   CooldownBar: {fileID: 11400064}
+  Fill: {fileID: 22400032}
+  Icon: {fileID: 22400048}
 --- !u!114 &11400062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1352,6 +1358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillId: 2
   CooldownBar: {fileID: 11400068}
+  Fill: {fileID: 22400044}
+  Icon: {fileID: 22400054}
 --- !u!114 &11400074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2149,7 +2157,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -27.5, y: -1.1921e-07}
+  m_AnchoredPosition: {x: -27.5, y: 0}
   m_SizeDelta: {x: -175, y: -10}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22400042
