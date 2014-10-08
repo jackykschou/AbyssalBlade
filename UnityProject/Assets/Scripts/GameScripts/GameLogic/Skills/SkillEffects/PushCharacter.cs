@@ -1,19 +1,20 @@
-﻿using UnityEngine;
-
+﻿using Assets.Scripts.Constants;
+using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
-    [AddComponentMenu("Skill/SkillEffect/CharacterMove")]
-    public class MoveCharacter : SkillEffect
+    public class PushCharacter : SkillEffect 
     {
         private Vector2 _direction;
+        [Range(0f, 10000f)]
+        public float Speed;
 
         public override void Activate()
         {
             base.Activate();
-            Skill.Caster.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, _direction);
+            Skill.Caster.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, _direction, Speed);
             Activated = false;
         }
 

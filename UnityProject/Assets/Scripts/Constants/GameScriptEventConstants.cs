@@ -22,8 +22,9 @@
         AICastSkill,                            // void()
         AIMove,                                 // void(Vector2)
 
-        MoveCharacter,                          // void(Vector2)
+        CharacterMove,                          // void(Vector2)
         OnCharacterMove,                        // void(Vector2)
+        PushCharacter,                          // void(vector2, float)
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)

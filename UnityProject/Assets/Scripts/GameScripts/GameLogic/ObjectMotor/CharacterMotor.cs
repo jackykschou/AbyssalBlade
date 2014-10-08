@@ -21,7 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             rigidbody2D.fixedAngle = true;
         }
 
-        [GameScriptEvent(GameScriptEvent.MoveCharacter)]
+        [GameScriptEvent(GameScriptEvent.CharacterMove)]
         public void MoveCharacter(Vector2 direction)
         {
             direction = direction.normalized;
