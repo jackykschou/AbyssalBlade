@@ -20,6 +20,11 @@
         OnLevelFinishedLoading,        // void()
         OnLevelEnded,                  // void()
 
-        OnGameEventSent                // void(GameEvent)
+        OnGameEventSent,                 // void(GameEvent)
+        
+        DisableAbilityUI,                // void(int)
+        EnableAbilityUI,                 // void(int)
+        EnableHighlightSkill,            // void(int,float)
+        DisableHighlightSkill            // void(int)
      };
 }
