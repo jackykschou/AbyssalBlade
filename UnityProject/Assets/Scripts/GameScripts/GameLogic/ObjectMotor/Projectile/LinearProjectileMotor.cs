@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
         {
             Vector2 direction = MathUtility.GetDirection(transform.position, Target.position);
             TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, direction.GetFacingDirection());
-            MoveAlongWithStyle(EaseType, direction, Speed);
+            MoveAlongWithStyle(EaseType, direction, Speed, 50f);
         }
     }
 }

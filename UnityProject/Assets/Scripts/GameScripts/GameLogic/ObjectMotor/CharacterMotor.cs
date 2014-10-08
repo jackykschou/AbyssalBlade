@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Collections;
+using Assets.Scripts.Constants;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -34,12 +35,31 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             RigidMove(direction, Speed);
         }
 
-        [GameScriptEvent(GameScriptEvent.OnCharacterKnockBacked)]
         public void RigidMove(Vector2 direction, float speed)
         {
             direction = direction.normalized;
             rigidbody2D.AddForce(direction * speed * WorldScaleConstant.SpeedScale * Time.fixedDeltaTime);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
+        }
+
+        [GameScriptEvent(GameScriptEvent.OnCharacterKnockBacked)]
+        [GameScriptEvent(GameScriptEvent.PushCharacter)]
+        public void OneTimePush(Vector2 direction, float speed, float time)
+        {
+            direction = direction.normalized;
+            StartCoroutine(OneTimePushIE(direction, speed, time));
+        }
+
+        IEnumerator OneTimePushIE(Vector2 direction, float speed, float time)
+        {
+            float timer = time;
+            while (timer > 0f)
+            {
+                RigidMove(direction, speed);
+                yield return new WaitForSeconds(Time.fixedDeltaTime);
+                speed *= timer/time;
+                timer -= Time.fixedDeltaTime;
+            }
         }
 
         public void RigidMove(GameObject target, float speed)

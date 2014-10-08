@@ -13,10 +13,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.CollideEffect.Effect
         public float Radius;
         [Range(0f, 1000f)]
         public float KnockBackSpeed;
+        [Range(0f, 10f)]
+        public float Time;
 
         public override void OnCollideTriggerTriggered(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, Position.Direction, KnockBackSpeed);
+            target.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, Position.Direction, KnockBackSpeed, Time);
         }
     }
 }

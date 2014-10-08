@@ -12,6 +12,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.CollideEffect.Effect
         public float KnockBackSpeed;
         [Range(0f, 100f)]
         public float Radius;
+        [Range(0f, 10f)]
+        public float Time;
 
         protected override void Deinitialize()
         {
@@ -21,7 +23,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.CollideEffect.Effect
         {
             foreach (var col in Physics2D.OverlapCircleAll(transform.position, Radius, LayerConstants.LayerMask.Destroyable))
             {
-                col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, MathUtility.GetDirection(transform.position, col.gameObject.transform.position), KnockBackSpeed);
+                col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, MathUtility.GetDirection(transform.position, col.gameObject.transform.position), KnockBackSpeed, Time);
             }
         }
     }

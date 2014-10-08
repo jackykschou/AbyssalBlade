@@ -12,6 +12,7 @@
         PlayerAttack2ButtonPressed,             // void()
         PlayerAttack3ButtonPressed,             // void()
         PlayerAttack4ButtonPressed,             // void()
+        PlayerDashButtonPressed,                // void()
 
         UpdateFacingDirection,                  // void(FacingDirection)
 

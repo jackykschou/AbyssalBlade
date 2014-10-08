@@ -31,6 +31,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField]
         private ButtonOnPressed Attack4;
 
+        [SerializeField] 
+        private ButtonOnPressed Dash;
+
         protected override void Deinitialize()
         {
         }
@@ -77,6 +80,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             else if (Attack4.Detect())
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed);
+            }
+            else if (Dash.Detect())
+            {
+                TriggerGameScriptEvent(GameScriptEvent.PlayerDashButtonPressed);
             }
         }
     }

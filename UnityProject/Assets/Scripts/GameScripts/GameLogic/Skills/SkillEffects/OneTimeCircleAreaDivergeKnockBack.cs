@@ -15,6 +15,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public float Radius;
         [Range(0f, 1000f)]
         public float KnockBackSpeed;
+        [Range(0f, 10f)]
+        public float Time;
 
         protected override void Initialize()
         {
@@ -31,7 +33,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         {
             foreach (var col in Physics2D.OverlapCircleAll(Position.Position.position, Radius, LayerConstants.LayerMask.Destroyable))
             {
-                col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, MathUtility.GetDirection(Position.Position.position, col.gameObject.transform.position), KnockBackSpeed);
+                col.gameObject.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, MathUtility.GetDirection(Position.Position.position, col.gameObject.transform.position), KnockBackSpeed, Time);
             }
         }
 

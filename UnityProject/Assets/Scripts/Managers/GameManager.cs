@@ -8,8 +8,10 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.Managers
 {
-    public class GameManager : GameLogic 
+    public class GameManager : GameLogic
     {
+        public bool LoadLevelOnStart = true;
+
         public const string MainCharacterGameObjectName = "MainCharacter";
 
         public static GameManager Instance;
@@ -48,7 +50,6 @@ namespace Assets.Scripts.Managers
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
             CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab);
             _currentLevelPrefab = levelPrefab;
-            LevelManager.Instance.PlayerMainCharacter = PlayerMainCharacter;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
         }
 
@@ -78,7 +79,10 @@ namespace Assets.Scripts.Managers
             Instance = FindObjectOfType<GameManager>();
             DontDestroyOnLoad(Instance);
             PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
-            ChangeLevel(StartingLevelPrefab);
+            if (LoadLevelOnStart)
+            {
+                ChangeLevel(StartingLevelPrefab);
+            }
         }
 
         protected override void Deinitialize()

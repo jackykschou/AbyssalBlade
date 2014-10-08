@@ -10,13 +10,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
     public class SectionObjectiveTracker : SectionLogic
     {
         public List<SectionObjective> Objectives;
-        private const float StartTrackObjectivesDelay = 3.0f;
+        private const float StartTrackObjectivesDelay = 2.0f;
         private const float TrackObjectivesInterval = 1.0f;
 
         public override void OnSectionActivated(int sectionId)
         {
             base.OnSectionActivated(sectionId);
-            InvokeRepeating("TrackObjective", StartTrackObjectivesDelay, TrackObjectivesInterval);
+            if (sectionId == SectionId)
+            {
+                InvokeRepeating("TrackObjective", StartTrackObjectivesDelay, TrackObjectivesInterval);
+            }
         }
 
         public void TrackObjective()
