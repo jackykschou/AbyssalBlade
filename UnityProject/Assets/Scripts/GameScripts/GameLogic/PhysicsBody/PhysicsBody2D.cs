@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
+using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
 {
@@ -14,10 +16,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
             Rigidbody = GetComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0f;
             Rigidbody.fixedAngle = true;
+            Collider.enabled = true;
         }
 
         protected override void Deinitialize()
         {
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.OnObjectDestroyed)]
+        [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
+        public void DisableCollider()
+        {
+            Collider.enabled = false;
         }
     }
 }

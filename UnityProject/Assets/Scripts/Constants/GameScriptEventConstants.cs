@@ -22,8 +22,9 @@
         AICastSkill,                            // void()
         AIMove,                                 // void(Vector2)
 
-        MoveCharacter,                          // void(Vector2)
+        CharacterMove,                          // void(Vector2)
         OnCharacterMove,                        // void(Vector2)
+        PushCharacter,                          // void(vector2, float)
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)
@@ -33,6 +34,7 @@
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()
+        InterruptCharacter,                     // void()
         OnCharacterInterrupted,                 // void()
         OnCharacterKnockBacked,                 // void(Vector2, float)
         ObjectChangeHealthFix,                    // void(float)
@@ -44,7 +46,9 @@
         OnObjectTakeDamage,                       // void(float)
         OnObjectTakeHeal,                          // void(float)
 
-        OnObjectCollideWithCollideTrigger,          // void(GameObject)
+        OnCollideTriggerTriggered,          // void(GameObject)
+
+        UpdateSectionId,                    // void(int)
 
         MenuStartButtonPressed,                          // void()
         MenuOptionsButtonPressed,                          // void()

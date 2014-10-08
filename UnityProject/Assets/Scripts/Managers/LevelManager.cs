@@ -10,6 +10,8 @@ namespace Assets.Scripts.Managers
 {
     public class LevelManager : GameLogic
     {
+        public bool WithoutGameManager;
+
         public bool IsPlayLevel;
 
         public static LevelManager Instance;
@@ -32,6 +34,11 @@ namespace Assets.Scripts.Managers
             base.Initialize();
             _levelStarted = false;
             Instance = FindObjectOfType<LevelManager>();
+
+            if (WithoutGameManager)
+            {
+                TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+            }
         }
 
         protected override void Deinitialize()

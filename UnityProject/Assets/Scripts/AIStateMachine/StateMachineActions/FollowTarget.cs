@@ -40,7 +40,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
                 return;
             }
 
-            pathfinding.TriggerGameScriptEvent(GameScriptEvent.MoveCharacter, (Vector2)pathfinding.GetMoveDirection());
+            pathfinding.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, (Vector2)pathfinding.GetMoveDirection());
 	    }
 	}
 }

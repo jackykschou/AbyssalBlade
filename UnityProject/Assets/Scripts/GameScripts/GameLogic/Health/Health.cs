@@ -55,11 +55,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             if (HitPoint <= 0f)
             {
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint);
-                HitPointAtZero = true;
-                HitPoint.Value = 0f;
             }
         }
 
+        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint)]
+        public void OnObjectHasNoHitPoint()
+        {
+            HitPointAtZero = true;
+            HitPoint.Value = 0f;
+        }
     
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectChangeCurrentPercentageHealth)]
         public void ChangeHealthCurrentPercentage(float percentage)

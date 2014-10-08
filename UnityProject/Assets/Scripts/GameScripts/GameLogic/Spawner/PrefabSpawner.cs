@@ -68,7 +68,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             _spawnCount++;
 
-            if (SpawnChance >= Random.value)
+            if (MathUtility.RollChance(SpawnChance))
             {
                 return PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position);
             }
