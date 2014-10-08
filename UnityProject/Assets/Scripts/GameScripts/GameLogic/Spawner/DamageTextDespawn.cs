@@ -6,6 +6,8 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.Attributes;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
+using Assets.Scripts.Utility;
+using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
 
 namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
 {
@@ -13,21 +15,24 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
     {
         public float origDespawnTime = 1.0f;
         public float scrollingVelocity = 0.5f;
-        private float timeAlive;
         private TextMesh mesh;
+        private Vector3 Direction;
+        private float Speed;
+        private float Distance;
+        private float TimeLeft;
 
         protected override void Update()
         {
-            mesh.transform.Translate(new Vector3(0, scrollingVelocity * Time.deltaTime, 0));
-            timeAlive += Time.deltaTime;
+            mesh.color = new Color(mesh.color.r, mesh.color.g, mesh.color.b, TimeLeft / origDespawnTime);
+            TimeLeft -= Time.deltaTime;
         }
 
         public void OnSpawned()
         {
-            mesh = this.gameObject.GetComponent<TextMesh>();
-            mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
-            timeAlive = 0.0f;
             this.StartCoroutine(this.TimedDespawn());
+            TextMotor motor = gameObject.GetComponent<TextMotor>();
+            motor.Shoot(Direction,Speed,Distance);
+            TimeLeft = origDespawnTime;
         }
 
         private IEnumerator TimedDespawn()
@@ -43,6 +48,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
         protected override void Initialize()
         {
             base.Initialize();
+            Direction = new Vector3(Random.Range(-.45f, .45f), Random.Range(0f, 1f), 0);
+            Speed = Random.Range(5.0f, 10.0f);
+            Distance = Random.Range(1.5f, 2f);
+            mesh = this.gameObject.GetComponent<TextMesh>();
+            mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
         }
         protected override void Deinitialize()
         {

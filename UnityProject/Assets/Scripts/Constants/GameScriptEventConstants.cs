@@ -12,6 +12,7 @@
         PlayerAttack2ButtonPressed,             // void()
         PlayerAttack3ButtonPressed,             // void()
         PlayerAttack4ButtonPressed,             // void()
+        PlayerDashButtonPressed,                // void()
 
         UpdateFacingDirection,                  // void(FacingDirection)
 
@@ -22,8 +23,9 @@
         AICastSkill,                            // void()
         AIMove,                                 // void(Vector2)
 
-        MoveCharacter,                          // void(Vector2)
+        CharacterMove,                          // void(Vector2)
         OnCharacterMove,                        // void(Vector2)
+        PushCharacter,                          // void(vector2, float)
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)
@@ -31,9 +33,11 @@
         OnNewTargetDiscovered,                  // void(GameObject)
 
         OnObjectMove,                           // void()
-        OnObjectHasNoHitPoint,                   // void()
+        OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()
+        InterruptCharacter,                     // void()
         OnCharacterInterrupted,                 // void()
+        OnCharacterKnockBacked,                 // void(Vector2, float)
         ObjectChangeHealthFix,                    // void(float)
         ObjectChangeCurrentPercentageHealth,      // void(float)
         ObjectChangeMaxPercentageHealth,          // void(float)
@@ -42,6 +46,10 @@
         ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
         OnObjectTakeDamage,                       // void(float)
         OnObjectTakeHeal,                          // void(float)
+
+        OnCollideTriggerTriggered,          // void(GameObject)
+
+        UpdateSectionId,                    // void(int)
 
         MenuStartButtonPressed,                          // void()
         MenuOptionsButtonPressed,                          // void()

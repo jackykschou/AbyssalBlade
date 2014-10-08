@@ -10,6 +10,10 @@ namespace Assets.Scripts.Managers
 {
     public class LevelManager : GameLogic
     {
+        public bool Debug;
+
+        public const string MainCharacterGameObjectName = "MainCharacter";
+
         public bool IsPlayLevel;
 
         public static LevelManager Instance;
@@ -32,6 +36,12 @@ namespace Assets.Scripts.Managers
             base.Initialize();
             _levelStarted = false;
             Instance = FindObjectOfType<LevelManager>();
+            PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
+
+            if (Debug)
+            {
+                TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+            }
         }
 
         protected override void Deinitialize()
@@ -55,7 +65,7 @@ namespace Assets.Scripts.Managers
         {
             if (CameraInitialFollowTransform == null)
             {
-                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, GameManager.Instance.PlayerMainCharacter.transform);
+                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, PlayerMainCharacter.transform);
             }
             else
             {

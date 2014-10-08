@@ -25,6 +25,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public override void EditorUpdate()
         {
             base.EditorUpdate();
+            if (_animationEventMessages == null)
+            {
+                return;
+            }
+
             if (_animationEventMessages.Count != _animationEventMessagesSendTime.Count)
             {
                 _animationEventMessagesSendTime.Resize(_animationEventMessages.Count);

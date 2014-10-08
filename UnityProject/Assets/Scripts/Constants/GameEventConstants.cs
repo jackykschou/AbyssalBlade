@@ -6,10 +6,27 @@
 #if DEBUG
         ExampleEvent,                 // void()
 #endif
+        OnSectionActivated,                     // void(int)
+        OnSectionDeactivated,                   // void(int)
+        OnSectionObjectivesCompleted,           // void(int)
+        OnSectionEnemySpawnPointActivated,      // void(GameObject, int)
+        OnSectionEnemySpawnPointDeactivated,    // void(GameObject, int)
+        OnSectionEnemySpawned,                  // void(GameObject, int)
+        OnSectionEnemyDespawned,                // void(GameObject, int)
+
         OnPlayerSkillCoolDownUpdate,   // void(int, float)
         PlayerHealthUpdate,            // void(float)
         OnLevelStartLoading,           // void()
         OnLevelFinishedLoading,        // void()
-        OnLevelEnded                   // void()
+        OnLevelEnded,                  // void()
+
+        OnGameEventSent,                 // void(GameEvent)
+        
+        DisableAbility,                // void(int)
+        EnableAbility,                 // void(int)
+        EnableHighlightSkill,          // void(int,float)
+        DisableHighlightSkill,         // void(int)
+
+        OnPlayerDashButtonPressed    // void()
      };
 }

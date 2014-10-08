@@ -12,7 +12,8 @@ namespace Assets.Scripts.Constants
         Attack1,
         Attack2,
         Attack3,
-        Attack4
+        Attack4,
+        Dash
     };
 
     public static class InputConstants
@@ -28,7 +29,8 @@ namespace Assets.Scripts.Constants
             {InputKeyCode.Attack1, "Attack1"},
             {InputKeyCode.Attack2, "Attack2"},
             {InputKeyCode.Attack3, "Attack3"},
-            {InputKeyCode.Attack4, "Attack4"}
+            {InputKeyCode.Attack4, "Attack4"},
+            {InputKeyCode.Dash, "Dash"}
         };
 
         public static string GetKeyCodeName(InputKeyCode keyCode)

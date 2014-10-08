@@ -11,7 +11,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         [Attributes.GameEvent(GameEvent.OnLevelEnded)]
         public void DisableGameObjectOnLevelEnded()
         {
-            TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
             DisableGameObject();
         }
     }

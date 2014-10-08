@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.GameViews;
+using Assets.Scripts.GameScripts.GameViews;
 
 namespace Assets.Scripts.GameScripts.GameLogic
 {

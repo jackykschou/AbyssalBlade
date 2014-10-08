@@ -72,8 +72,9 @@ GameObject:
   - 114: {fileID: 11400054}
   - 114: {fileID: 11400042}
   - 114: {fileID: 11400056}
-  - 114: {fileID: 11400058}
   - 114: {fileID: 11400062}
+  - 114: {fileID: 11400058}
+  - 114: {fileID: 11400064}
   m_Layer: 0
   m_Name: StoneEnemy
   m_TagString: Enemy
@@ -215,6 +216,8 @@ MonoBehaviour:
     InitialValue: -5
   Percentage: 0
   Duration: 0
+  CriticalChance: 0
+  CriticalDamagePercentage: 2
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -572,8 +575,8 @@ MonoBehaviour:
   Invincible: 0
   HitPoint:
     InitialMinValue: 0
-    InitialMaxValue: 50
-    InitialValue: 50
+    InitialMaxValue: 80
+    InitialValue: 80
   HealingEmphasizePercentage: 0
   DamageEmphasizePercentage: 0
 --- !u!114 &11400056
@@ -595,17 +598,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ebeccbb94ca74b4da9dfd2cbc35416c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2abebd14585553649b50328476e1bdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitDamageThreshold: 10
-  InterruptionDuration: .5
+  HitDamageThreshold: 45
   HitDamageThresholdResetTime:
     IsEnabled: 0
     DispatchInterval: 1
-  InterruptCoolDown:
-    IsEnabled: 0
-    DispatchInterval: .699999988
 --- !u!114 &11400060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -631,6 +630,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: 14
   volume: 1
+--- !u!114 &11400064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecb47d838bd976499bee73e1203f9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InterruptionDuration: .5
+  InterruptCoolDown:
+    IsEnabled: 0
+    DispatchInterval: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

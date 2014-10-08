@@ -22,6 +22,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 2, _playerCharacterSkillsCaster.Skill2.getCooldownPercentage());
             TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 3, _playerCharacterSkillsCaster.Skill3.getCooldownPercentage());
             TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 4, _playerCharacterSkillsCaster.Skill4.getCooldownPercentage());
+            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 5, _playerCharacterSkillsCaster.Dash.getCooldownPercentage());
         }
 
         protected override void Deinitialize()

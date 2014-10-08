@@ -41,8 +41,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serializedPrefabPoolMapKeys:
   - Prefabs/EnemySpawner
-  - Prefabs/HUD
+  - Prefabs/LevelSetupPrefabs
   - Prefabs/Main Camera
+  - Prefabs/MainHUD
   - Prefabs/TutorialLevel
   - Prefabs/Character/MainCharacter
   - Prefabs/ForestLevel/ForestLevel 1
@@ -54,15 +55,23 @@ MonoBehaviour:
   - Prefabs/ForestLevel/ForestTiles/InvisibleWall 1
   - Prefabs/Level1/Level1
   - Prefabs/Level1/Level1Tiles/InvisibleWall
+  - Prefabs/Level1/Level1Tiles/level1prop1
+  - Prefabs/Level1/Level1Tiles/level1prop2
+  - Prefabs/Level1/Level1Tiles/level1prop3
+  - Prefabs/Level1/Level1Tiles/level1prop4
+  - Prefabs/Level1/Level1Tiles/level1prop5
   - Prefabs/Level1/Level1Tiles/Level1Robot1
   - Prefabs/Level1/Level1Tiles/Level1Robot2
   - Prefabs/Level1/Level1Tiles/Level1Robot3
   - Prefabs/Managers/AudioManager
   - Prefabs/Managers/PrefabManager
+  - Prefabs/Menu/MainMenu
   - Prefabs/PreloadedPrefab/Character/StoneEnemy
   - Prefabs/PreloadedPrefab/DamageText/DamageTextMesh
   - Prefabs/PreloadedPrefab/Projectile/Projectile
+  - Prefabs/PreloadedPrefab/Projectile/Projectile2
   _serializedPrefabPoolMapValues:
+  - Prefabs
   - Prefabs
   - Prefabs
   - Prefabs
@@ -80,10 +89,17 @@ MonoBehaviour:
   - Level1Tiles
   - Level1Tiles
   - Level1Tiles
+  - Level1Tiles
+  - Level1Tiles
+  - Level1Tiles
+  - Level1Tiles
+  - Level1Tiles
   - Managers
   - Managers
+  - Menu
   - Character
   - DamageText
+  - Projectile
   - Projectile
 --- !u!1001 &100100000
 Prefab:
