@@ -4,6 +4,7 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObjectives
 {
+    [AddComponentMenu("LevelMechanics/Section/SectionObjective/EnemyKillCountGoal")]
     public class EnemyKillCountGoal : SectionObjective
     {
         [Range(0, 1000)]
@@ -35,7 +36,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
         }
 
         [GameEventAttribute(GameEvent.OnSectionEnemyDespawned)]
-        public void OnSectionEnemyDespawned(int sectionId, GameObject enemy)
+        public void OnSectionEnemyDespawned(GameObject enemy, int sectionId)
         {
             if (sectionId == SectionId)
             {

@@ -10,12 +10,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
     public class GameScriptEventManager : MonoBehaviour 
     {
         private Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>> _gameScriptEvents;
-
-        void Awake()
-        {
-            InitializeFields();
-            InitializeGameScriptEvents();
-        }
+        private List<GameScript> _gameScripts;
 
         public void TriggerGameScriptEvent(Constants.GameScriptEvent gameScriptEvent, params object[] args)
         {
@@ -63,20 +58,30 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         private void InitializeFields()
         {
-            _gameScriptEvents = new Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>>();
+            if (_gameScriptEvents == null)
+            {
+                _gameScriptEvents = new Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>>();
+            }
+            if (_gameScripts == null)
+            {
+                _gameScripts = new List<GameScript>();
+            }
         }
 
-        private void InitializeGameScriptEvents()
+        public void UpdateGameScriptEvents(GameScript gameScript)
         {
-            foreach (var gameScript in GetComponents<GameScript>())
-            {
-                gameScript.GameScriptEventManager = this;
-                AddGameScriptEvents(gameScript);
-            }
+            InitializeFields();
+            AddGameScriptEvents(gameScript);
         }
 
         private void AddGameScriptEvents(GameScript gameScript)
         {
+            if (_gameScripts.Contains(gameScript))
+            {
+                return;;
+            }
+            _gameScripts.Add(gameScript);
+
             gameScript.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {

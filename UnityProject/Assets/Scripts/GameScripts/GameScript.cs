@@ -21,7 +21,7 @@ namespace Assets.Scripts.GameScripts
     [RequireComponent(typeof(GameScriptEventManager))]
     public abstract class GameScript : MonoBehaviour
     {
-        public GameScriptEventManager GameScriptEventManager { private get; set; }
+        public GameScriptEventManager GameScriptEventManager { get; private set; }
 
         private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
         private List<GameScriptComponent> _components;
@@ -245,6 +245,7 @@ namespace Assets.Scripts.GameScripts
             _componentsEvents = new Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>>();
             _components = new List<GameScriptComponent>();
             GameScriptEventManager = GetComponent<GameScriptEventManager>();
+            GameScriptEventManager.UpdateGameScriptEvents(this);
         }
 	
         private void InitializeComponents()

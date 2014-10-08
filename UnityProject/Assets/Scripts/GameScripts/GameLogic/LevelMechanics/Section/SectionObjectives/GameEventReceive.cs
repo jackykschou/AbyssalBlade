@@ -4,6 +4,7 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObjectives
 {
+    [AddComponentMenu("LevelMechanics/Section/SectionObjective/GameEventReceive")]
     public class GameEventReceive : SectionObjective
     {
         public GameEvent Event;
