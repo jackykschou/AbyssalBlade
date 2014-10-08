@@ -120,7 +120,7 @@ MonoBehaviour:
     InitialMaxValue: 100
     InitialValue: 10
   Target: {fileID: 0}
-  easeType: 21
+  EaseType: 21
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,9 +187,11 @@ MonoBehaviour:
   Amount:
     InitialMinValue: -100
     InitialMaxValue: 0
-    InitialValue: -15
+    InitialValue: -30
   Percentage: 0
   Duration: 0
+  CriticalChance: 0
+  CriticalDamagePercentage: 2
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

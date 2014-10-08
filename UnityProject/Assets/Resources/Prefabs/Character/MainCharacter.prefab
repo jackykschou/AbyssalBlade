@@ -163,6 +163,7 @@ GameObject:
   - 114: {fileID: 11400060}
   - 114: {fileID: 11400056}
   - 114: {fileID: 11400058}
+  - 114: {fileID: 11400122}
   m_Layer: 0
   m_Name: StrongMelee
   m_TagString: Untagged
@@ -911,7 +912,7 @@ MonoBehaviour:
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
-  Radius: 2
+  Radius: 3
 --- !u!114 &11400062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -932,7 +933,7 @@ MonoBehaviour:
   Amount:
     InitialMinValue: -100
     InitialMaxValue: 0
-    InitialValue: -50
+    InitialValue: -100
   Percentage: 0
   Duration: 0
   CriticalChance: 0
@@ -1377,6 +1378,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c738c8474a66448a9e3c7c57d43e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  Position:
+    Follower: {fileID: 0}
+    Position: {fileID: 400002}
+  Radius: 3
+  KnockBackSpeed: 10
+  Time: .5
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

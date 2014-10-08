@@ -32,7 +32,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
 
         public override bool ObjectiveCompleted()
         {
-            Debug.Log("_killCount >= GoalCount " + (_killCount >= GoalCount));
             return _killCount >= GoalCount;
         }
 
