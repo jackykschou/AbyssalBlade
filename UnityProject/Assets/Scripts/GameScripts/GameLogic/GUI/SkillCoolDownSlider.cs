@@ -45,7 +45,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             highlight = false;
             highlightDuration = 0.0f;
             highlightedSkill = -1;
-            highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 0.0f);
+            if(highlightImage != null)
+                highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 0.0f);
+            if (iconImage != null)
+                iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
         }
 
         protected override void Update()
@@ -63,9 +66,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                     if (highlightImage != null)
                     {
                         if (ON)
+                        {
                             highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 0.0f);
+                            iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
+                        }
                         else
+                        {
                             highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 1.0f);
+                            iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 1.0f);
+                        }
                     }
                     highlightDuration -= Time.deltaTime;
                 }
@@ -88,8 +97,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             {
                 if (fillImage != null)
                     fillImage.color = new Color(fillImage.color.r, fillImage.color.g, fillImage.color.b, 0.0f);
-                if (iconImage != null)
-                    iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
             }
         }
 
@@ -100,8 +107,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             {
                 if (fillImage != null)
                     fillImage.color = new Color(fillImage.color.r, fillImage.color.g, fillImage.color.b, 1.0f);
-                if (iconImage != null)
-                    iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.5f);
             }
         }
 
@@ -120,8 +125,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             highlight = false;
             highlightDuration = 0.0f;
             highlightedSkill = -1;
-            if(highlightImage != null)
+            if (highlightImage != null)
+            {
                 highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 0.0f);
+                iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
+            }
         }
     }
 }
