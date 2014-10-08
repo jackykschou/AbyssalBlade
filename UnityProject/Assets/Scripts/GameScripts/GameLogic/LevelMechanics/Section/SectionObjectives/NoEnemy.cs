@@ -15,7 +15,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
 
         public override bool ObjectiveCompleted()
         {
-            return _enemyCount == 0;
+            return _enemyCount <= 0;
         }
 
         protected override void Initialize()

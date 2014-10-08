@@ -38,9 +38,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
         }
 
         [GameEventAttribute(GameEvent.OnGameEventSent)]
-        public void OnGameEventSent(GameEvent gameEvent)
+        public void OnGameEventSent(string gameEventName)
         {
-            if (gameEvent == Event)
+            if (gameEventName == Event.ToString() && SectionActivated)
             {
                 _receiveCount++;
             }

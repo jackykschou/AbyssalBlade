@@ -11,11 +11,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         public bool Interrupted { get; private set; }
 
         [Range(0f, float.MaxValue)]
-        public float HitDamageThreshold;
-        [Range(0f, float.MaxValue)]
         public float InterruptionDuration;
 
-        public FixTimeDispatcher HitDamageThresholdResetTime;
         public FixTimeDispatcher InterruptCoolDown;
 
         [GameScriptEventAttribute(GameScriptEvent.InterruptCharacter)]

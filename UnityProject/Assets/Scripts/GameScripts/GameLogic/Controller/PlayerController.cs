@@ -99,6 +99,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             }
             else if (Dash.Detect())
             {
+                TriggerGameEvent(GameEvent.OnPlayerDashButtonPressed);
                 TriggerGameScriptEvent(GameScriptEvent.PlayerDashButtonPressed);
             }
         }

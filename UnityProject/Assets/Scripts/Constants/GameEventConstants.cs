@@ -24,7 +24,9 @@
         
         DisableAbility,                // void(int)
         EnableAbility,                 // void(int)
-        EnableHighlightSkill,            // void(int,float)
-        DisableHighlightSkill            // void(int)
+        EnableHighlightSkill,          // void(int,float)
+        DisableHighlightSkill,         // void(int)
+
+        OnPlayerDashButtonPressed    // void()
      };
 }
