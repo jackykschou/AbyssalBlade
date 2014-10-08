@@ -67,6 +67,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             {
                 spawnedEnemy.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
             }
+            if (spawnedEnemy.GetComponent<TriggerNoHitPointOnSectionDeactivated>() == null)
+            {
+                spawnedEnemy.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
+            }
             TriggerGameEvent(GameEvent.OnSectionEnemySpawned, spawnedEnemy, SectionId);
         }
 
