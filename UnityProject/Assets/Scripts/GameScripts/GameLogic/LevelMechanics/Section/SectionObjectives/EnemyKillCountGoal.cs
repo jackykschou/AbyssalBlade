@@ -4,24 +4,20 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObjectives
 {
-    [AddComponentMenu("LevelMechanics/Section/SectionObjective/NoEnemy")]
-    public class NoEnemy : SectionObjective
+    public class EnemyKillCountGoal : SectionObjective
     {
-        private int _enemyCount;
-
-        protected override void Deinitialize()
-        {
-        }
-
-        public override bool ObjectiveCompleted()
-        {
-            return _enemyCount == 0;
-        }
+        [Range(0, 1000)]
+        public int GoalCount;
+        private int _killCount;
 
         protected override void Initialize()
         {
             base.Initialize();
-            _enemyCount = 0;
+            _killCount = 0;
+        }
+
+        protected override void Deinitialize()
+        {
         }
 
         public override void OnSectionActivated(int sectionId)
@@ -29,17 +25,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
             base.OnSectionActivated(sectionId);
             if (sectionId == SectionId)
             {
-                _enemyCount = 0;
+                _killCount = 0;
             }
         }
 
-        [GameEventAttribute(GameEvent.OnSectionEnemySpawned)]
-        public void OnSectionEnemySpawned(int sectionId, GameObject enemy)
+        public override bool ObjectiveCompleted()
         {
-            if (sectionId == SectionId)
-            {
-                _enemyCount++;
-            }
+            return _killCount >= GoalCount;
         }
 
         [GameEventAttribute(GameEvent.OnSectionEnemyDespawned)]
@@ -47,7 +39,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
         {
             if (sectionId == SectionId)
             {
-                _enemyCount--;
+                _killCount++;
             }
         }
     }

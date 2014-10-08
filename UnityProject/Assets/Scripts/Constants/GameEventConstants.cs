@@ -18,6 +18,8 @@
         PlayerHealthUpdate,            // void(float)
         OnLevelStartLoading,           // void()
         OnLevelFinishedLoading,        // void()
-        OnLevelEnded                   // void()
+        OnLevelEnded,                  // void()
+
+        OnGameEventSent                // void(GameEvent)
      };
 }

@@ -31,6 +31,11 @@ namespace Assets.Scripts.Managers
             }
 
             _gameEvents[gameEvent][obj].ForEach(m => m.Invoke(obj, args));
+
+            if (gameEvent != GameEvent.OnGameEventSent)
+            {
+                TriggerGameEventSent(GameEvent.OnGameEventSent, gameEvent);
+            }
         }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
@@ -52,7 +57,33 @@ namespace Assets.Scripts.Managers
                     --i;
                 }
             }
+
+            if (gameEvent != GameEvent.OnGameEventSent)
+            {
+                TriggerGameEventSent(GameEvent.OnGameEventSent, gameEvent);
+            }
         }
+
+        private void TriggerGameEventSent(GameEvent gameEvent, params System.Object[] args)
+        {
+            if (!_gameEvents.ContainsKey(gameEvent))
+            {
+                return;
+            }
+
+            var dict = _gameEvents[gameEvent];
+            int originalCount = dict.Count;
+            for (int i = 0; i < dict.Count; ++i)
+            {
+                var key = dict.Keys.ElementAt(i);
+                dict[key].ForEach(m => m.Invoke(key, args));
+                if (dict.Count != originalCount)
+                {
+                    originalCount = dict.Count;
+                    --i;
+                }
+            }
+        } 
 
         public void SubscribeGameEvent(System.Object subscriber, GameEvent gameEvent, MethodInfo info)
         {
