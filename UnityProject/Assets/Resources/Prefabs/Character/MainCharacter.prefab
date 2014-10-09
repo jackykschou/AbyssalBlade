@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  Speed: 60
+  Speed: 40
   Time: .300000012
 --- !u!114 &11400028
 MonoBehaviour:
@@ -674,7 +674,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: 2
+    DispatchInterval: .5
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1394,7 +1394,7 @@ MonoBehaviour:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
   Radius: 3
-  KnockBackSpeed: 10
+  KnockBackSpeed: 30
   Time: .5
 --- !u!212 &21200000
 SpriteRenderer:
