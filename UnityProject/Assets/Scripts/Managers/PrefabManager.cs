@@ -112,8 +112,8 @@ namespace Assets.Scripts.Managers
             string prefabName = PrefabConstants.GetPrefabName(prefab);
             GameObject prefabGameObject = _prefabNameMap[prefabName];
 
-            GameObject spawned = _prefabPoolMap[prefabGameObject].Spawn(prefabGameObject.transform, position, Quaternion.identity).gameObject;
-
+            GameObject spawned = _prefabPoolMap[prefabGameObject].Spawn(prefabGameObject.transform, new Vector3(position.x, position.y, prefabGameObject.transform.position.z), Quaternion.identity).gameObject;
+            
             if (!_spawnedPrefabsMap.ContainsKey(spawned))
             {
                 _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
