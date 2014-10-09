@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  Speed: 50
+  Speed: 60
   Time: .300000012
 --- !u!114 &11400028
 MonoBehaviour:
@@ -732,7 +732,7 @@ MonoBehaviour:
   MaxComboValue: 3
   ComboResetTime:
     IsEnabled: 0
-    DispatchInterval: .800000012
+    DispatchInterval: 1
 --- !u!114 &11400040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -823,7 +823,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: .300000012
+    DispatchInterval: .25
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -880,9 +880,11 @@ MonoBehaviour:
   _animationEventMessages:
   - ApplyAreaHealthChange
   - PlaySound
+  - ApplyAreaKnockBack
   _animationEventMessagesSendTime:
   - .5
   - .100000001
+  - .5
 --- !u!114 &11400058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1028,8 +1030,8 @@ MonoBehaviour:
   Invincible: 1
   HitPoint:
     InitialMinValue: 0
-    InitialMaxValue: 200
-    InitialValue: 200
+    InitialMaxValue: 250
+    InitialValue: 250
   HealingEmphasizePercentage: 0
   DamageEmphasizePercentage: 0
 --- !u!114 &11400078
@@ -1395,8 +1397,8 @@ MonoBehaviour:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
   Radius: 3
-  KnockBackSpeed: 30
-  Time: .5
+  KnockBackSpeed: 35
+  Time: .200000003
 --- !u!114 &11400124
 MonoBehaviour:
   m_ObjectHideFlags: 1
