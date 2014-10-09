@@ -601,13 +601,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110200000}
   m_DstState: {fileID: 110279282}
-  m_TransitionDuration: .25
+  m_TransitionDuration: .000902295113
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: ComboNumber
+  - m_ConditionMode: 2
+    m_ConditionEvent: Move
     m_EventTreshold: 0
-    m_ExitTime: .75
+    m_ExitTime: .999097705
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -621,8 +621,8 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 0}
   m_DstState: {fileID: 110249527}
-  m_TransitionDuration: .100000001
-  m_TransitionOffset: 0
+  m_TransitionDuration: .0179484114
+  m_TransitionOffset: .0140259741
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Skill3
@@ -681,7 +681,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 0}
   m_DstState: {fileID: 110288667}
-  m_TransitionDuration: .100000001
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -801,13 +801,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110210916}
   m_DstState: {fileID: 110279282}
-  m_TransitionDuration: .625
-  m_TransitionOffset: 0
+  m_TransitionDuration: 0
+  m_TransitionOffset: .0119658159
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .375
+    m_ExitTime: 1.00320506
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -841,13 +841,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110288667}
   m_DstState: {fileID: 110279282}
-  m_TransitionDuration: .625
+  m_TransitionDuration: .0167380255
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .375
+    m_ExitTime: .983262002
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -861,7 +861,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 0}
   m_DstState: {fileID: 110286331}
-  m_TransitionDuration: .100000001
+  m_TransitionDuration: .0127635943
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -871,7 +871,7 @@ Transition:
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
-  m_CanTransitionToSelf: 0
+  m_CanTransitionToSelf: 1
 --- !u!1101 &110169214
 Transition:
   serializedVersion: 2
@@ -961,13 +961,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110286331}
   m_DstState: {fileID: 110279282}
-  m_TransitionDuration: .37500003
+  m_TransitionDuration: .0117520988
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .625
+    m_ExitTime: .988247931
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -1001,13 +1001,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110249527}
   m_DstState: {fileID: 110279282}
-  m_TransitionDuration: .230769217
-  m_TransitionOffset: 0
+  m_TransitionDuration: .00433939975
+  m_TransitionOffset: .0239316449
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .769230783
+    m_ExitTime: .995660603
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -1041,7 +1041,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110279282}
   m_DstState: {fileID: 110200000}
-  m_TransitionDuration: .255319148
+  m_TransitionDuration: .0100664496
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -1121,8 +1121,8 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 0}
   m_DstState: {fileID: 110210916}
-  m_TransitionDuration: .100000001
-  m_TransitionOffset: 0
+  m_TransitionDuration: .00883183442
+  m_TransitionOffset: .0142449085
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Skill4
@@ -1268,7 +1268,7 @@ State:
   m_Motions:
   - {fileID: 20669574}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -156, y: 48, z: 0}
+  m_Position: {x: -168, y: 36, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -1298,7 +1298,7 @@ State:
   m_Motions:
   - {fileID: 20686331}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -408, y: -120, z: 0}
+  m_Position: {x: -408, y: -132, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -1313,7 +1313,7 @@ State:
   m_Motions:
   - {fileID: 20688667}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -408, y: -72, z: 0}
+  m_Position: {x: -408, y: -84, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
