@@ -40,8 +40,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedPrefabPoolMapKeys:
+  - Prefabs/AStar
   - Prefabs/EnemySpawner
-  - Prefabs/LevelSetupPrefabs
+  - Prefabs/LoadingScreen
   - Prefabs/Main Camera
   - Prefabs/MainHUD
   - Prefabs/TutorialLevel
@@ -67,10 +68,12 @@ MonoBehaviour:
   - Prefabs/Managers/PrefabManager
   - Prefabs/Menu/MainMenu
   - Prefabs/PreloadedPrefab/Character/StoneEnemy
-  - Prefabs/PreloadedPrefab/DamageText/DamageTextMesh
   - Prefabs/PreloadedPrefab/Projectile/Projectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile2
+  - Prefabs/PreloadedPrefab/TextMeshes/DamageTextMesh
+  - Prefabs/PreloadedPrefab/TextMeshes/MessageTextMesh
   _serializedPrefabPoolMapValues:
+  - Prefabs
   - Prefabs
   - Prefabs
   - Prefabs
@@ -98,9 +101,10 @@ MonoBehaviour:
   - Managers
   - Menu
   - Character
-  - DamageText
   - Projectile
   - Projectile
+  - TextMeshes
+  - TextMeshes
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

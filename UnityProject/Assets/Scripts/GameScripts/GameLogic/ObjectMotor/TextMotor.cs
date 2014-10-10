@@ -17,5 +17,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             rigidbody2D.isKinematic = false;
             rigidbody2D.fixedAngle = true;
         }
+
+        public void Shoot(EaseType type, Vector3 dir, float speed, float distance)
+        {
+            MoveAlongWithStyle(type, dir, speed, distance);
+            rigidbody2D.gravityScale = 0.0f;
+            rigidbody2D.isKinematic = false;
+            rigidbody2D.fixedAngle = true;
+        }
     }
 }
