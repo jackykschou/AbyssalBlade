@@ -22,7 +22,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
         public void TakeDamage(float damage)
         {
-            TextMesh textMesh = PrefabSpawner.SpawnPrefab(transform.position).GetComponent<TextMesh>();
+            TextMesh textMesh = PrefabSpawner.SpawnPrefabImmediate(transform.position).GetComponent<TextMesh>();
             textMesh.text = ((int)damage).ToString();
             textMesh.color = textColor;
         }

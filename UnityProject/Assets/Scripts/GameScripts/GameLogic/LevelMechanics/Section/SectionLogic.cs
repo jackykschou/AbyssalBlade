@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             SectionActivated = false;
         }
 
+        [GameEvent(GameEvent.UpdateCurrentSectionId)]
         [GameScriptEventAttribute(GameScriptEvent.UpdateSectionId)]
         public void UpdateSectionId(int id)
         {

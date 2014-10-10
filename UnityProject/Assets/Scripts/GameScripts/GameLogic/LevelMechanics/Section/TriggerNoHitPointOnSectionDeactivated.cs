@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Managers;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
@@ -27,6 +26,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
             base.Initialize();
             _triggered = false;
+            SectionId = LevelManager.Instance.CurrentSectionId;
         }
 
         protected override void Deinitialize()

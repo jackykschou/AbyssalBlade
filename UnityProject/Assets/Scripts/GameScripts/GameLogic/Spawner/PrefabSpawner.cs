@@ -59,7 +59,37 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             return !(_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn);
         }
 
-        public GameObject SpawnPrefab(Vector3 position)
+        public void SpawnPrefab()
+        {
+            if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
+            {
+                return;
+            }
+
+            _spawnCount++;
+
+            if (MathUtility.RollChance(SpawnChance))
+            {
+                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom());
+            }
+        }
+
+        public void SpawnPrefab(Vector3 position)
+        {
+            if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
+            {
+                return;
+            }
+
+            _spawnCount++;
+
+            if (MathUtility.RollChance(SpawnChance))
+            {
+                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position);
+            }
+        }
+
+        public GameObject SpawnPrefabImmediate()
         {
             if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
             {
@@ -70,7 +100,24 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             if (MathUtility.RollChance(SpawnChance))
             {
-                return PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position);
+                return PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom());
+            }
+
+            return null;
+        }
+
+        public GameObject SpawnPrefabImmediate(Vector3 position)
+        {
+            if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
+            {
+                return null;
+            }
+
+            _spawnCount++;
+
+            if (MathUtility.RollChance(SpawnChance))
+            {
+                return PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom(), position);
             }
 
             return null;

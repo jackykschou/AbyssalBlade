@@ -9,6 +9,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     [AddComponentMenu("LevelMechanics/Section/Section")]
     public class Section : SectionLogic
     {
+        public override void OnSectionActivated(int sectionId)
+        {
+            base.OnSectionActivated(sectionId);
+            TriggerGameEvent(GameEvent.UpdateCurrentSectionId, sectionId);
+        }
+
         [GameEventAttribute(GameEvent.OnSectionObjectivesCompleted)]
         public void OnSectionObjectivesCompleted(int sectionId)
         {

@@ -56,7 +56,7 @@ namespace Assets.Scripts.Managers
             }
             yield return new WaitForSeconds(1.0f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
-            CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab);
+            CurrentLevel = PrefabManager.Instance.SpawnPrefabImmediate(levelPrefab);
             _currentLevelPrefab = levelPrefab;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
             yield return new WaitForSeconds(1.0f);

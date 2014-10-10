@@ -53,34 +53,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                 GameManager.Instance.PlayerMainCharacter != null &&
                 !GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
-                StartCoroutine(SpawnEnemy());
+                SpawnEnemy();
             }
         }
 
-        public IEnumerator SpawnEnemy()
+        public void SpawnEnemy()
         {
+            if (!PrefabSpawner.CanSpawn() || !Activated || !SectionActivated)
+            {
+                TriggerArea.enabled = false;
+            }
             SpawnCoolDown.Dispatch();
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
-            GameObject spawnedEnemy = PrefabSpawner.SpawnPrefab(spawnPosition);
-            while (spawnedEnemy == null || !spawnedEnemy.activeSelf)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-            spawnedEnemy.tag = TagConstants.EnemyTag;
-            var despawnedOnNoHitPoint = spawnedEnemy.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
-            var noHitPointOnSectionDeactivated = spawnedEnemy.GetComponent<TriggerNoHitPointOnSectionDeactivated>();
-            if (despawnedOnNoHitPoint == null)
-            {
-                despawnedOnNoHitPoint = spawnedEnemy.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
-            }
-            if (noHitPointOnSectionDeactivated == null)
-            {
-                noHitPointOnSectionDeactivated = spawnedEnemy.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
-            }
-            despawnedOnNoHitPoint.SectionId = SectionId;
-            noHitPointOnSectionDeactivated.SectionId = SectionId;
-            TriggerGameEvent(GameEvent.OnSectionEnemySpawned, spawnedEnemy, SectionId);
+            PrefabSpawner.SpawnPrefab(spawnPosition);
+            TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
         }
 
         protected override void Update()
