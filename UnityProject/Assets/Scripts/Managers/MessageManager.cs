@@ -42,7 +42,7 @@ namespace Assets.Scripts.Managers
 
             prefab.transform.parent = MainCamera.gameObject.transform;
             mesh.text = message;
-            motor.Shoot(preferredEaseType, direction, 1.0f, 1.5f);
+            motor.Shoot(preferredEaseType, direction, 5.0f, 1.5f);
         }
 
         public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly, float WhenToFly)
@@ -53,7 +53,7 @@ namespace Assets.Scripts.Managers
 
             prefab.transform.parent = MainCamera.gameObject.transform;
             mesh.text = message;
-            motor.Shoot(preferredEaseType, direction, 1.0f, 1.5f);
+            motor.Shoot(preferredEaseType, direction, 5.0f, 1.5f);
             StartCoroutine(this.DelayedMove(motor, directionToFly, WhenToFly));
         }
 
@@ -69,15 +69,15 @@ namespace Assets.Scripts.Managers
         }
         Vector3 TopMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 2.0f, MainCamera.pixelHeight*3.0f / 4.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 2.0f, MainCamera.pixelHeight*3.0f / 5.0f, 0.0f));
         }
         Vector3 TopRightMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth*3.0f / 4.0f, MainCamera.pixelHeight * 3.0f / 4.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth*3.0f / 4.0f, MainCamera.pixelHeight * 3.0f / 5.0f, 0.0f));
         }
         Vector3 TopLeftMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 4.0f, MainCamera.pixelHeight * 3.0f / 4.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 4.0f, MainCamera.pixelHeight * 3.0f / 5.0f, 0.0f));
         }
 
 
