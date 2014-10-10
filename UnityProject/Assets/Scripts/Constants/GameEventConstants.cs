@@ -18,6 +18,7 @@
         PlayerHealthUpdate,            // void(float)
         OnLevelStartLoading,           // void()
         OnLevelFinishedLoading,        // void()
+        OnLevelStarted,                // void()
         OnLevelEnded,                  // void()
 
         OnGameEventSent,                 // void(GameEvent)
