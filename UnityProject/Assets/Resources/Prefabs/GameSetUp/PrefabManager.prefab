@@ -56,6 +56,7 @@ MonoBehaviour:
   - Prefabs/GameSetUp/Main Camera
   - Prefabs/GameSetUp/MainCharacter
   - Prefabs/GameSetUp/MainHUD
+  - Prefabs/GameSetUp/MessageManager
   - Prefabs/GameSetUp/PrefabManager
   - Prefabs/Level1/Level1
   - Prefabs/Level1/Level1Tiles/InvisibleWall
@@ -69,9 +70,10 @@ MonoBehaviour:
   - Prefabs/Level1/Level1Tiles/Level1Robot3
   - Prefabs/Menu/MainMenu
   - Prefabs/PreloadedPrefab/Character/StoneEnemy
-  - Prefabs/PreloadedPrefab/DamageText/DamageTextMesh
   - Prefabs/PreloadedPrefab/Projectile/Projectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile2
+  - Prefabs/PreloadedPrefab/TextMeshes/DamageTextMesh
+  - Prefabs/PreloadedPrefab/TextMeshes/MessageTextMesh
   _serializedPrefabPoolMapValues:
   - Prefabs
   - Character
@@ -82,6 +84,7 @@ MonoBehaviour:
   - ForestTiles
   - ForestTiles
   - ForestTiles
+  - GameSetUp
   - GameSetUp
   - GameSetUp
   - GameSetUp
@@ -102,9 +105,10 @@ MonoBehaviour:
   - Level1Tiles
   - Menu
   - Character
-  - DamageText
   - Projectile
   - Projectile
+  - TextMeshes
+  - TextMeshes
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
