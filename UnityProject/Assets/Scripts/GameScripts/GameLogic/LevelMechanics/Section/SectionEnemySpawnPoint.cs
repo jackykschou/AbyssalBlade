@@ -50,8 +50,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         protected override void OnTriggerStay2D(Collider2D coll)
         {
             if (SpawnCoolDown.CanDispatch() &&
-                LevelManager.Instance.PlayerMainCharacter != null &&
-                !LevelManager.Instance.PlayerMainCharacter.HitPointAtZero())
+                GameManager.Instance.PlayerMainCharacter != null &&
+                !GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
                 StartCoroutine(SpawnEnemy());
             }

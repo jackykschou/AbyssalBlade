@@ -1,7 +1,7 @@
 Capstone2D2014Fall
 ==================
 
-Current Version of Unity 4.6.0.b17
+Current Version of Unity 4.6.0.b20
 =====
 
 Team Members:

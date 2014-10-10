@@ -2,7 +2,6 @@
 using System.Linq;
 using Assets.Scripts.Constants;
 using Assets.Scripts.Utility;
-using StateMachine.Action.Math;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Health
