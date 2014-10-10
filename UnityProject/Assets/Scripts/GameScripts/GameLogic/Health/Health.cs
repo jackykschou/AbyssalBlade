@@ -20,7 +20,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         public bool HitPointAtZero { get; private set; }
 
         private Dictionary<HealthModifierNonStackableLabel, int> _currentHealthModifierNonStackableLabelMap;
-
         protected override void Initialize()
         {
             base.Initialize();

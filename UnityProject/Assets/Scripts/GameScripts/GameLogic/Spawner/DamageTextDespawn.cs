@@ -11,6 +11,8 @@ using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
 
 namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
 {
+    [RequireComponent(typeof(TextMotor))]
+    [RequireComponent(typeof(TextMesh))]
     public class DamageTextDespawn : GameLogic
     {
         public float origDespawnTime = 1.0f;
