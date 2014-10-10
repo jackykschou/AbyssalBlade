@@ -10,10 +10,6 @@ namespace Assets.Scripts.Managers
 {
     public class LevelManager : GameLogic
     {
-        public bool Debug;
-
-        public const string MainCharacterGameObjectName = "MainCharacter";
-
         public bool IsPlayLevel;
 
         public static LevelManager Instance;
@@ -25,8 +21,6 @@ namespace Assets.Scripts.Managers
             get { return Instance != null && Instance._levelStarted; }
         }
 
-        public GameObject PlayerMainCharacter;
-
         public Transform CameraInitialFollowTransform;
 
         private bool _levelStarted;
@@ -36,9 +30,8 @@ namespace Assets.Scripts.Managers
             base.Initialize();
             _levelStarted = false;
             Instance = FindObjectOfType<LevelManager>();
-            PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
 
-            if (Debug)
+            if (!GameManager.Instance.LoadLevelOnStart)
             {
                 TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
             }
@@ -65,11 +58,11 @@ namespace Assets.Scripts.Managers
         {
             if (CameraInitialFollowTransform == null)
             {
-                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, PlayerMainCharacter.transform);
+                GameManager.Instance.MainCamera.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, GameManager.Instance.PlayerMainCharacter.transform);
             }
             else
             {
-                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, CameraInitialFollowTransform);
+                GameManager.Instance.MainCamera.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, CameraInitialFollowTransform);
             }
             AudioManager.Instance.playLoop(BackGroundMusicLoop);
             _levelStarted = true;

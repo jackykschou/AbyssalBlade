@@ -32,7 +32,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
         protected override void OnTriggerEnter2D(Collider2D coll)
         {
             base.OnTriggerEnter2D(coll);
-            if (!LevelManager.Instance.PlayerMainCharacter.HitPointAtZero() && !_changed)
+            if (!GameManager.Instance.PlayerMainCharacter.HitPointAtZero() && !_changed)
             {
                 _changed = true;
                 AreaCollider.enabled = false;

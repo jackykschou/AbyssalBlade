@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400006}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: AStar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50.7849998, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f16a0cea3a9d57488bcba4b5cfdf2f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  astarData:
+    hasBeenReverted: 0
+    data: 504b03041400000808004da94945171263f365020000960400000b0024006772617068302e6a736f6e0a00200000000000010018000f5e465b2fe4cf010f5e465b2fe4cf010f5e465b2fe4cf015d545d6f9b3014fd2b939f2102c72490b7ae69b3495d5b359bf630f5c1814bb0626c64cc9ab4ca7fefb521344990209cfbe173cebdc907d976a2208b0ff29fcb0ec882c4318b22c8324ee709a5190d8b946de2b82c6939e3e97c5392634078db406e5fb8159a2ce280186ddd77e51aedc922a4f3282007b2c0fb3bdeb1220765c10cf1789a4d9274caa689cf0af1c8098b188b339fcf122ce8542e79dd40b116ef30d44da3be2d3e3143e902fa6034c146b99652b403097b689c9875538101129042f01a3c01645b81d856962ce859d15359b6603d63c30f4b61509fef45be6b5b61879ab7bb339fa6349d47ec786af6eb321ac618298dae7f0c47c58eb9ad44be7be1879cb708955cb670092ecf5976cda0bad79c4cb259c4668ca5776194f6be4eb2fee3788c4a6e2bc8918b351d9cd85d409d7ae372c73712fe56a01ef5cae84e1563b405baec5f8e4ef4fe568a7ae3ce625faf377bd17afb10584bedacce9025189cc84fe4ef77a1f5cc1173a4feb4f09b6fdb51f500df0bd35a0c78c1bcb3fa41a8ddca88e22bf3842e456b1f442dbc99387c276ca33b8399e4ce9b8c1e74f6561b050eece534a0b8b487673ccd5e4ef92a329e7785dff3dcea7e2043e4466d255ca77b70ccf5c386bded0c2cb9e56e8e98868e17635d8bd4736ca33a2971557c25b2fe170578bda2948a2b05d241e4512bb7c3e78f571c8e50c890cbe79e811785a35027e90a7709bd716e7e5b19deb8252e0c7f5b89f75a8f060955ea756e00d493af1de8d5dc1ab11f37da33c31f59345c57cbf8b5883e1ae2b2f4eff3804eb234a2534a599f19843146e35932635980ff025992cc69c058df81b2207e3d1e3f01504b03041400000808004da94945287e18aa4300000048000000120024006772617068305f656469746f722e6a736f6e0a00200000000000010018008485465b2fe4cf018485465b2fe4cf018485465b2fe4cf01ab56cac94fce4e4d51b22a292a4dd5512acec82f77ad28294a54b24a4bcc29068a94a456949416a58665166726e5a4c2d4156496e59728592939a7e695a41629d50200504b03041400000808004da94945c584a1f37600000083000000090024006d6574612e6a736f6e0a00200000000000010018008485465b2fe4cf018485465b2fe4cf018485465b2fe4cf011d8cb10e82301040ffe5666c7a1584b23ab01977c370e45ab8c1969462628cff2e757bc37bef032f973689017a38ab46215430275a970d7a3c70173ee80188b5d6ce5a326d638c3527eeea09d17be32fd4b59387b182fc5edd8d9eee5fdc292f5e024b98d5908487722d5688ecae710fb9687afcfe00504b01022d001400000808004da94945171263f365020000960400000b00240000000000000000000000000000006772617068302e6a736f6e0a00200000000000010018000f5e465b2fe4cf010f5e465b2fe4cf010f5e465b2fe4cf01504b01022d001400000808004da94945287e18aa43000000480000001200240000000000000000000000b20200006772617068305f656469746f722e6a736f6e0a00200000000000010018008485465b2fe4cf018485465b2fe4cf018485465b2fe4cf01504b01022d001400000808004da94945c584a1f376000000830000000900240000000000000000000000490300006d6574612e6a736f6e0a00200000000000010018008485465b2fe4cf018485465b2fe4cf018485465b2fe4cf01504b050600000000030003001c0100000a0400000000
+    data_backup: 
+    data_cachedStartup: 
+    revertData: 
+    cacheStartup: 0
+    compress: 0
+  showNavGraphs: 0
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 20000
+  showSearchTree: 0
+  unwalkableNodeDebugSize: .300000012
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _NodeConnection: {r: 1, g: 1, b: 1, a: .899999976}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: .5}
+    _BoundsHandles: {r: .289999992, g: .453999996, b: .740999997, a: .899999976}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: .5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: .5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: .5}
+    _MeshColor: {r: .125, g: .68599999, b: 0, a: .189999998}
+    _AreaColors: []
+  tagNames: []
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 0
+  maxFrameTime: 1
+  minAreaSize: 10
+  limitGraphUpdates: 1
+  maxGraphUpdateFreq: .200000003
+  lastScanTime: .678582907
+  inGameDebugPath: 
+  isScanning: 0
+  showGraphs: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

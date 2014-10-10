@@ -10,9 +10,14 @@ namespace Assets.Scripts.Managers
 {
     public class GameManager : GameLogic
     {
+        public GameObject MainCamera;
+
         public bool LoadLevelOnStart = true;
 
         public const string MainCharacterGameObjectName = "MainCharacter";
+        public const string HUDGameObjectName = "MainHUD";
+        public const string MainCameraGameObjectName = "Main Camera";
+        public const string LoadingSceneGameObjectName = "LoadingScreen";
 
         public static GameManager Instance;
 
@@ -44,13 +49,14 @@ namespace Assets.Scripts.Managers
             PlayerMainCharacter.SetActive(false);
             if (CurrentLevel != null)
             {
-                PrefabManager.Instance.DespawnPrefab(CurrentLevel);
+                PrefabManager.Instance.ImmediateDespawnPrefab(CurrentLevel);
             }
             yield return new WaitForSeconds(3.0f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
             CurrentLevel = PrefabManager.Instance.SpawnPrefab(levelPrefab);
             _currentLevelPrefab = levelPrefab;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+            LoadingScene.SetActive(false);
         }
 
         public void DestroyScene(GameObject sceneGameObject)
@@ -67,18 +73,19 @@ namespace Assets.Scripts.Managers
             ChangeLevel(_currentLevelPrefab);
         }
 
-        [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
-        public void OnLevelFinishedLoading()
-        {
-            LoadingScene.SetActive(false);
-        }
-
         protected override void Initialize()
         {
             base.Initialize();
             Instance = FindObjectOfType<GameManager>();
             DontDestroyOnLoad(Instance);
             PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
+            PlayerMainCharacter.SetActive(false);
+            HUD = GameObject.Find(HUDGameObjectName);
+            HUD.SetActive(false);
+            HUD.transform.position = Vector3.zero;
+            MainCamera = GameObject.Find(MainCameraGameObjectName);
+            LoadingScene = GameObject.Find(LoadingSceneGameObjectName);
+            LoadingScene.SetActive(true);
             if (LoadLevelOnStart)
             {
                 ChangeLevel(StartingLevelPrefab);
