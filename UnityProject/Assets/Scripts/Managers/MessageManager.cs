@@ -90,7 +90,7 @@ namespace Assets.Scripts.Managers
             if (Input.GetKeyDown(KeyCode.Keypad1))
                 DisplayMessage("Regular Message", Vector3.up);
             if (Input.GetKeyDown(KeyCode.Keypad2))
-                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right, 2.0f);
+                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right*10.0f, 2.0f);
         }
 
         protected override void Initialize()

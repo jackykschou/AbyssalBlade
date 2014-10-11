@@ -33,7 +33,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
                 textMesh.transform.localScale *= 1.5f;
                 textMesh.fontStyle = FontStyle.Italic;
                 WasCrit = false;
-                MessageManager.Instance.DisplayMessage("CRIT!",Vector3.up);
+                //MessageManager.Instance.DisplayMessage("CRIT!",Vector3.up);
             }
         }
 
