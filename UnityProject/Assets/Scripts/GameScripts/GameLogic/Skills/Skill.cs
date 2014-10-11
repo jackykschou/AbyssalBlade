@@ -77,6 +77,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
                     yield return new WaitForSeconds(Time.deltaTime);
                 }
             }
+            Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastFinished, this);
             IsActivate = false;
         }
         
@@ -100,7 +101,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             }
             IsActivate = false;
             Caster = transform.parent.gameObject.GetComponent<SkillCaster>();
-            _coolDownPercentage = 0f;
+            _coolDownPercentage = 1f;
             _castableConditions = GetComponents<SkillCastableCondition>().ToList();
             gameObject.tag = Caster.gameObject.tag;
             _soretedSkillEffects = new SortedDictionary<int, List<SkillEffect>>();

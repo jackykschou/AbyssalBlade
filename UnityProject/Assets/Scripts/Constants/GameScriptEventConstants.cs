@@ -17,7 +17,7 @@
         UpdateFacingDirection,                  // void(FacingDirection)
 
         SetAnimatorBoolState,                   // void(string)
-        SetAnimatorFloatState,                    // void(string, int)
+        SetAnimatorFloatState,                  // void(string, int)
         
         AIRotateToTarget,                       // void()
         AICastSkill,                            // void()
@@ -29,8 +29,10 @@
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)
+        SkillCastFinished,                      // void(Skill)
         UpdateSkillCooldownPercentage,          // void(Skill, float)
         OnNewTargetDiscovered,                  // void(GameObject)
+        UpdateSkillButtonHoldEffectTime,        // void(float)
 
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Constants;
+using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.Components.Input
 {
@@ -7,19 +8,28 @@ namespace Assets.Scripts.GameScripts.Components.Input
     {
         protected bool IsHolding;
 
+        public float LastHoldTime {
+            get { return _lastReleaseTime - _lastHoldStartTime; }
+        }
+        private float _lastHoldStartTime;
+        private float _lastReleaseTime;
+
         public override void Initialize()
         {
             base.Initialize();
             IsHolding = false;
+            _lastHoldStartTime = 0f;
+            _lastReleaseTime = 0f;
         }
 
-        public override void FixedUpdate()
+        public override void Update()
         {
-            base.FixedUpdate();
+            base.Update();
             if (IsHolding && IsKeyReleased())
             {
                 IsHolding = false;
                 CoolDownTimeDispatcher.Dispatch();
+                _lastReleaseTime = Time.fixedTime;
             }
         }
 
@@ -27,10 +37,13 @@ namespace Assets.Scripts.GameScripts.Components.Input
         {
             if ((base.Detect() || IsHolding) && IsKeyOnHold())
             {
+                if (!IsHolding)
+                {
+                    _lastHoldStartTime = Time.fixedTime;
+                }
                 IsHolding = true;
                 return true;
             }
-
             return false;
         }
 
