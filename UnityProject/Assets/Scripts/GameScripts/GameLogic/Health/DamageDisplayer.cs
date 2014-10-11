@@ -10,7 +10,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
     {
         public PrefabSpawner PrefabSpawner;
         public Color textColor;
-        private bool WasCrit = false;
 
         protected override void Initialize()
         {
@@ -22,18 +21,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, bool crit)
         {
             PrefabSpawner.SpawnPrefabImmediate(transform.position, o =>
             {
                 TextMesh textMesh = o.GetComponent<TextMesh>();
                 textMesh.text = ((int)damage).ToString();
                 textMesh.color = textColor;
-                if (WasCrit)
+                if (crit)
                 {
                     textMesh.transform.localScale *= 1.5f;
                     textMesh.fontStyle = FontStyle.Italic;
-                    WasCrit = false;
                     //MessageManager.Instance.DisplayMessage("CRIT!",Vector3.up);
                 }
                 else
@@ -41,12 +39,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
                     textMesh.fontStyle = FontStyle.Normal;
                 }
             });
-        }
-
-        [GameScriptEvent(Constants.GameScriptEvent.OnObjectWasCrit)]
-        public void SetWasCrit()
-        {
-            WasCrit = true;
         }
 
         protected override void Deinitialize()
