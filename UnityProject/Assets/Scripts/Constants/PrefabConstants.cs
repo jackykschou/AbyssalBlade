@@ -10,7 +10,8 @@ namespace Assets.Scripts.Constants
         StoneEnemy,
         TutorialLevel,
         MainMenu,
-        Projectile2
+        Projectile2,
+        MessageText
     };
 
     public class PrefabConstants
@@ -22,11 +23,12 @@ namespace Assets.Scripts.Constants
         private static readonly Dictionary<Prefab, string> PrefabPathMap = new Dictionary<Prefab, string>()
         {
             {Prefab.Projectile, "Prefabs/PreloadedPrefab/Projectile/Projectile"},
-            {Prefab.DamageText, "Prefabs/PreloadedPrefab/DamageText/DamageTextMesh"},
+            {Prefab.DamageText, "Prefabs/PreloadedPrefab/TextMeshes/DamageTextMesh"},
             {Prefab.StoneEnemy, "Prefabs/PreloadedPrefab/Character/StoneEnemy"},
             {Prefab.TutorialLevel, "Prefabs/TutorialLevel"},
             {Prefab.MainMenu, "Prefabs/Menu/MainMenu"},
-            {Prefab.Projectile2, "Prefabs/PreloadedPrefab/Projectile/Projectile2"}
+            {Prefab.Projectile2, "Prefabs/PreloadedPrefab/Projectile/Projectile2"},
+            {Prefab.MessageText, "Prefabs/PreloadedPrefab/TextMeshes/MessageTextMesh"}
         };
 
         public static string GetPrefabName(Prefab prefab)

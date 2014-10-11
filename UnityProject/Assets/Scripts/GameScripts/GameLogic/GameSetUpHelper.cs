@@ -14,6 +14,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
         private const string LoadingScreenPrefabName = "Prefabs/GameSetUp/LoadingScreen";
         private const string PrefabManagerPrefabName = "Prefabs/GameSetUp/PrefabManager";
         private const string AStarPrefabName = "Prefabs/GameSetUp/AStar";
+        private const string MessageManagerPrefabName = "Prefabs/GameSetUp/MessageManager";
 
         [SerializeField]
         private GameObject _hud;
@@ -31,6 +32,8 @@ namespace Assets.Scripts.GameScripts.GameLogic
         private GameObject _prefabManager;
         [SerializeField]
         private GameObject _aStar;
+        [SerializeField]
+        private GameObject _messageManager;
 
 
         protected override void Initialize()
@@ -89,7 +92,12 @@ namespace Assets.Scripts.GameScripts.GameLogic
             if (_aStar == null)
             {
                 _aStar = CreateGameObject(AStarPrefabName);
-            } 
+            }
+            if (_messageManager == null)
+            {
+                _messageManager = CreateGameObject(MessageManagerPrefabName);
+            }
+
         }
 
         public override void EditorUpdate()
