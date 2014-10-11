@@ -47,7 +47,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
         [GameScriptEvent(Constants.GameScriptEvent.UpdatePlayerAxis)]
         void UpdateMoveDirection(Vector2 direction)
         {
-            _direction = direction;
+            if (!Skill.IsActivate)
+            {
+                _direction = direction;
+            }
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.UpdateSkillButtonHoldEffectTime)]

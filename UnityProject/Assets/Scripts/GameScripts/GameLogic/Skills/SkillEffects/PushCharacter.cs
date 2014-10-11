@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using UnityEngine;
+﻿using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 

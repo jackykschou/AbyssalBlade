@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects;
@@ -33,6 +34,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         private float _coolDownPercentage;
 
         private List<SkillCastableCondition> _castableConditions;
+        private Vector2 _direction;
 
         public override void EditorUpdate()
         {
@@ -56,6 +58,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         {
             if (CanActivate())
             {
+                UpdateFacingDirection();
                 IsActivate = true;
                 Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastTriggerSucceed, this);
                 StartCoroutine(ActivateSkillEffects());
@@ -64,6 +67,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             {
                 Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastTriggerFailed, this);
             }
+        }
+
+        public void UpdateFacingDirection()
+        {
+            _direction = _direction.normalized;
+            FacingDirection newDirection = _direction.GetFacingDirection();
+            Caster.TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
         }
 
         IEnumerator ActivateSkillEffects()
@@ -90,6 +100,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         public float getCooldownPercentage()
         {
             return _coolDownPercentage;
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.UpdatePlayerAxis)]
+        void UpdateMoveDirection(Vector2 direction)
+        {
+            _direction = direction;
         }
 
         protected override void Initialize()

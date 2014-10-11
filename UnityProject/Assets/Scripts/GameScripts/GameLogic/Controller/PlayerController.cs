@@ -77,13 +77,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
                 Vector2 direction = new Vector2(horizontalValue, verticalValue);
 
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, direction);
-
-                direction = direction.normalized;
-                FacingDirection newDirection = direction.GetFacingDirection();
-                if (newDirection != GameView.FacingDirection)
-                {
-                    TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
-                }
             }
         }
 

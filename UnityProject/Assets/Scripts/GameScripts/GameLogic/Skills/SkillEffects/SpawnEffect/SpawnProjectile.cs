@@ -3,7 +3,6 @@ using Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using UnityEngine;
-
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
@@ -48,7 +47,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
         [GameScriptEventAttribute(GameScriptEvent.UpdatePlayerAxis)]
         void UpdateMoveDirection(Vector2 direction)
         {
-            _direction = direction;
+            if (!Skill.IsActivate)
+            {
+                _direction = direction;
+            }
         }
     }
 }
