@@ -17,7 +17,7 @@ GameObject:
   - 114: {fileID: 11400008}
   - 50: {fileID: 5000000}
   m_Layer: 0
-  m_Name: DamageTextMesh
+  m_Name: MessageTextMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 490.247223, y: 37.2835464, z: 0}
-  m_LocalScale: {x: .00499999989, y: .00499999989, z: .00499999989}
+  m_LocalPosition: {x: -8.58835316, y: -88.7741547, z: 0}
+  m_LocalScale: {x: .00999999978, y: .00999999978, z: .00999999978}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -77,20 +77,20 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Text: 999
+  m_Text: MESSAGE TEXT
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 2000
+  m_FontSize: 1000
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 059534e6fb8422040918290e3077af11, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278255379
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff9feb77862efd46b694c09cd3de3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origDespawnTime: 1
+  origDespawnTime: 4
   scrollingVelocity: 1
 --- !u!114 &11400002
 MonoBehaviour:

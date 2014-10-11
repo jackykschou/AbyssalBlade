@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
     {
         public PrefabSpawner PrefabSpawner;
         public PositionIndicator Position;
+        private Vector3 _direction;
 
         protected override void Initialize()
         {
@@ -40,8 +41,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
                 ProjectileMotor motor = o.GetComponent<ProjectileMotor>();
                 motor.tag = Skill.Caster.gameObject.tag;
                 motor.Target = Skill.Caster.Target;
-                motor.Shoot();
+                motor.Shoot(_direction);
             });
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.UpdatePlayerAxis)]
+        void UpdateMoveDirection(Vector2 direction)
+        {
+            _direction = direction;
         }
     }
 }

@@ -38,6 +38,7 @@
         InterruptCharacter,                     // void()
         OnCharacterInterrupted,                 // void()
         OnCharacterKnockBacked,                 // void(Vector2, float)
+        OnObjectWasCrit,                        // void()
         ObjectChangeHealthFix,                    // void(float)
         ObjectChangeCurrentPercentageHealth,      // void(float)
         ObjectChangeMaxPercentageHealth,          // void(float)
