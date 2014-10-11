@@ -13,7 +13,6 @@
         OnSectionEnemySpawnPointDeactivated,    // void(GameObject, int)
         OnSectionEnemySpawned,                  // void(int)
         OnSectionEnemyDespawned,                // void(GameObject, int)
-        UpdateCurrentSectionId,                 // void(int)
 
         OnPlayerSkillCoolDownUpdate,   // void(int, float)
         PlayerHealthUpdate,            // void(float)

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Managers;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic
@@ -44,8 +45,13 @@ namespace Assets.Scripts.GameScripts.GameLogic
 
         private GameObject CreateGameObject(string gameObjectname)
         {
+#if UNITY_EDITOR
+            GameObject o = AssetDatabase.LoadAssetAtPath("Assets/Resources/" + gameObjectname + ".prefab", typeof(GameObject)) as GameObject;
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(o); 
+#else
             GameObject o = Resources.Load(gameObjectname) as GameObject;
             GameObject instance = Instantiate(o, o.transform.position, Quaternion.identity) as GameObject;
+#endif
             instance.name = o.name;
             return instance;
         }

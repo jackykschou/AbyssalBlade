@@ -29,7 +29,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
 
         public void OnSpawned()
         {
-            this.StartCoroutine(this.TimedDespawn());
+            StartCoroutine(TimedDespawn());
             TextMotor motor = gameObject.GetComponent<TextMotor>();
             motor.Shoot(Direction,Speed,Distance);
             TimeLeft = origDespawnTime;
@@ -37,8 +37,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
 
         private IEnumerator TimedDespawn()
         {
-            yield return new WaitForSeconds(this.origDespawnTime);
-            PrefabManager.Instance.DespawnPrefab(this.gameObject);
+            yield return new WaitForSeconds(origDespawnTime);
+            PrefabManager.Instance.DespawnPrefab(gameObject);
         }
 
         public void OnDespawned()
@@ -51,7 +51,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
             Direction = new Vector3(Random.Range(-.45f, .45f), Random.Range(0f, 1f), 0);
             Speed = Random.Range(5.0f, 10.0f);
             Distance = Random.Range(1.5f, 2f);
-            mesh = this.gameObject.GetComponent<TextMesh>();
+            mesh = gameObject.GetComponent<TextMesh>();
             mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
         }
         protected override void Deinitialize()

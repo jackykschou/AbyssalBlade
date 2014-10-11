@@ -56,7 +56,7 @@ namespace Assets.Scripts.Managers
             }
             yield return new WaitForSeconds(1.0f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
-            CurrentLevel = PrefabManager.Instance.SpawnPrefabImmediate(levelPrefab);
+            PrefabManager.Instance.SpawnPrefabImmediate(levelPrefab, o => { CurrentLevel = o; });
             _currentLevelPrefab = levelPrefab;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
             yield return new WaitForSeconds(1.0f);
@@ -86,12 +86,10 @@ namespace Assets.Scripts.Managers
             {
                 PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
             }
-            PlayerMainCharacter.SetActive(false);
             if (HUD == null)
             {
                 HUD = GameObject.Find(HUDGameObjectName);
             }
-            HUD.SetActive(false);
             HUD.transform.position = Vector3.zero;
             if (MainCamera == null)
             {
@@ -101,7 +99,6 @@ namespace Assets.Scripts.Managers
             {
                 LoadingScene = GameObject.Find(LoadingSceneGameObjectName);
             }
-            LoadingScene.SetActive(true);
             if (LoadLevelOnStart)
             {
                 ChangeLevel(StartingLevelPrefab);

@@ -27,8 +27,6 @@ namespace Assets.Scripts.Managers
 
         public Transform CameraInitialFollowTransform;
 
-        public int CurrentSectionId;
-
         private bool _levelStarted;
 
         protected override void Initialize()
@@ -78,12 +76,6 @@ namespace Assets.Scripts.Managers
         {
             AudioManager.Instance.playLoop(BackGroundMusicLoop);
             GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
-        }
-
-        [GameEventAttribute(GameEvent.UpdateCurrentSectionId)]
-        public void UpdateCurrentSectionId(int sectionId)
-        {
-            CurrentSectionId = sectionId;
         }
     }
 }

@@ -35,10 +35,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 
         public void StartSpawnProjectile()
         {
-            ProjectileMotor motor = PrefabSpawner.SpawnPrefabImmediate(Position.Position.position).GetComponent<ProjectileMotor>();
-            motor.tag = Skill.Caster.gameObject.tag;
-            motor.Target = Skill.Caster.Target;
-            motor.Shoot();
+            PrefabSpawner.SpawnPrefabImmediate(Position.Position.position, o =>
+            {
+                ProjectileMotor motor = o.GetComponent<ProjectileMotor>();
+                motor.tag = Skill.Caster.gameObject.tag;
+                motor.Target = Skill.Caster.Target;
+                motor.Shoot();
+            });
         }
     }
 }

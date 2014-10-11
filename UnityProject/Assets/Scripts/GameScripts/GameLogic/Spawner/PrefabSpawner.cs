@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
 using UnityEngine;
@@ -59,7 +61,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             return !(_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn);
         }
 
-        public void SpawnPrefab()
+        public void SpawnPrefab(Action<GameObject> onPrefabSpawned = null)
         {
             if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
             {
@@ -70,11 +72,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             if (MathUtility.RollChance(SpawnChance))
             {
-                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom());
+                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), onPrefabSpawned);
             }
         }
 
-        public void SpawnPrefab(Vector3 position)
+        public void SpawnPrefab(Vector3 position, Action<GameObject> onPrefabSpawned = null)
         {
             if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
             {
@@ -85,42 +87,38 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             if (MathUtility.RollChance(SpawnChance))
             {
-                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position);
+                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position, onPrefabSpawned);
             }
         }
 
-        public GameObject SpawnPrefabImmediate()
+        public void SpawnPrefabImmediate(Action<GameObject> onPrefabSpawned = null)
         {
             if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
             {
-                return null;
+                return;
             }
 
             _spawnCount++;
 
             if (MathUtility.RollChance(SpawnChance))
             {
-                return PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom());
+                PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom(), onPrefabSpawned);
             }
-
-            return null;
         }
 
-        public GameObject SpawnPrefabImmediate(Vector3 position)
+        public void SpawnPrefabImmediate(Vector3 position, Action<GameObject> onPrefabSpawned = null)
         {
             if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
             {
-                return null;
+                return;
             }
 
             _spawnCount++;
 
             if (MathUtility.RollChance(SpawnChance))
             {
-                return PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom(), position);
+                PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom(), position, onPrefabSpawned);
             }
-
-            return null;
         }
 
         protected override void Deinitialize()

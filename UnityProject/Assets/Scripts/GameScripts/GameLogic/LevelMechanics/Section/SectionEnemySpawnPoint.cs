@@ -15,7 +15,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     {
         public PrefabSpawner PrefabSpawner;
 
-        [Range(0f, float.MaxValue)] 
+        [Range(0f, 100f)] 
         public float SpawnRadius = 0f;
 
         public FixTimeDispatcher SpawnCoolDown;
@@ -61,12 +61,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
             if (!PrefabSpawner.CanSpawn() || !Activated || !SectionActivated)
             {
-                TriggerArea.enabled = false;
+                //TriggerArea.enabled = false;
+                //return;
             }
             SpawnCoolDown.Dispatch();
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
-            PrefabSpawner.SpawnPrefab(spawnPosition);
+            PrefabSpawner.SpawnPrefab(spawnPosition, o =>
+            {
+                var triggerNoHitPointOnSectionDeactivated = o.GetComponent<TriggerNoHitPointOnSectionDeactivated>() ??
+                                                            o.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
+                var triggerOnSectionEnemyDespawnedOnNoHitPoint = o.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>() ??
+                                                                 o.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
+                triggerNoHitPointOnSectionDeactivated.SectionId = SectionId;
+                triggerOnSectionEnemyDespawnedOnNoHitPoint.SectionId = SectionId;
+            });
             TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
         }
 
@@ -76,10 +85,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             if (SectionActivated && PrefabSpawner.CanSpawn() && Activated)
             {
                 TriggerArea.enabled = true;
-            }
-            else if (!PrefabSpawner.CanSpawn() || !Activated || !SectionActivated)
-            {
-                TriggerArea.enabled = false;
             }
         }
 
