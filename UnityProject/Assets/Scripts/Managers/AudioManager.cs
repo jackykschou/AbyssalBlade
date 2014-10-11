@@ -18,10 +18,13 @@ namespace Assets.Scripts.Managers
         private List<MultiCue> _cues;
         [SerializeField]
         private List<LoopingCue> _loops;
+        [SerializeField]
+        private List<LevelLoopingCue> _levelLoops;
 
         private Dictionary<string, AudioClip> _oneShotList;
         private Dictionary<CueName, MultiCue> _cueDict;
         private Dictionary<LoopName, LoopingCue> _loopDict;
+        private Dictionary<LoopName, LevelLoopingCue> _levelLoopDict; 
 
         private List<AudioSource> _sources;
         GameObject sourceHolder;
@@ -38,7 +41,7 @@ namespace Assets.Scripts.Managers
             {
                 if(_instance == null)
                 {
-                    _instance = (AudioManager)UnityEngine.Object.FindObjectOfType<AudioManager>();
+                    _instance = FindObjectOfType<AudioManager>();
                     DontDestroyOnLoad(_instance.gameObject);
                 }
                 return _instance;
@@ -50,6 +53,15 @@ namespace Assets.Scripts.Managers
         }
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Keypad5))
+                Instance.playLevelLoop(LoopName.TestMultiLoop);
+            if (Input.GetKeyDown(KeyCode.Keypad7))
+                Instance.setLightIntensity(LoopName.TestMultiLoop);
+            if (Input.GetKeyDown(KeyCode.Keypad8))
+                Instance.setMediumIntensity(LoopName.TestMultiLoop);
+            if (Input.GetKeyDown(KeyCode.Keypad9))
+                Instance.setHeavyIntensity(LoopName.TestMultiLoop);
+
             if(_loops != null)
                 foreach (var loop in _loops)
                     loop.Update();
@@ -59,6 +71,8 @@ namespace Assets.Scripts.Managers
 
             foreach (var key in keys)
             {
+                if (!_queuedClipDict.ContainsKey(key))
+                    continue;
                 if (_queuedClipDict[key] > 0)
                 {
                     AudioSource s = getNextAvailableSource();
@@ -91,7 +105,7 @@ namespace Assets.Scripts.Managers
             AudioConstants.CreateCustomCues();
 
             foreach (MultiCue cue in _cues)
-                _cueDict[cue.cueName] = cue;
+                _cueDict[cue.CueName] = cue;
 
             sourceHolder = new GameObject("SourceHolder");
             sourceHolder.transform.parent = this.gameObject.transform;
@@ -108,9 +122,11 @@ namespace Assets.Scripts.Managers
             _clips = new List<AudioClip>();
             _cues = new List<MultiCue>();
             _loops = new List<LoopingCue>();
+            _levelLoops = new List<LevelLoopingCue>();
             _oneShotList = new Dictionary<string, AudioClip>();
             _cueDict = new Dictionary<CueName, MultiCue>();
             _loopDict = new Dictionary<LoopName, LoopingCue>();
+            _levelLoopDict = new Dictionary<LoopName, LevelLoopingCue>();
             _queuedClipDict = new Dictionary<string, int>();
             DestroyImmediate(GameObject.Find("SourceHolder"));
         }
@@ -127,6 +143,22 @@ namespace Assets.Scripts.Managers
             }
 
             _queuedClipDict[clipName]++;
+
+            return true;
+        }//////////////////////////////////////////////
+        // SINGLE AUDIOCLIPS
+        //////////////////////////////////////////////
+        public bool playClip(ClipName name, AudioSource s)
+        {
+            string clipName = AudioConstants.GetClipName(name);
+            if (!_oneShotList.ContainsKey(clipName))
+            {
+                Debug.Log("Cannot find the Clip >>" + name + "<<\n");
+                return false;
+            }
+            s.clip = findClip(name);
+            s.volume = 1.0f;
+            s.Play();
 
             return true;
         }
@@ -154,6 +186,12 @@ namespace Assets.Scripts.Managers
                 _cueDict[name].play();
             return true;
         }
+        public bool playCue(CueName name, AudioSource source)
+        {
+            if (_cueDict.ContainsKey(name))
+                _cueDict[name].play(source);
+            return true;
+        }
         //////////////////////////////////////////////
         // LOOPING CUES
         //////////////////////////////////////////////
@@ -167,13 +205,24 @@ namespace Assets.Scripts.Managers
             _loopDict[name].Play();
             return true;
         }
+        public bool playLevelLoop(LoopName name, float volume = 1.0f)
+        {
+            if (!_levelLoopDict.ContainsKey(name))
+                return false;
+            if (_levelLoopDict[name].running)
+                return false;
+            _levelLoopDict[name].volume = volume;
+            _levelLoopDict[name].Play();
+            return true;
+        }
         public bool swapLoopTrack(LoopName name)
         {
-            if (!_loopDict.ContainsKey(name))
-                return false;
-            _loopDict[name].switchTrack();
-
-            return true;
+            if (_loopDict.ContainsKey(name))
+            {
+                _loopDict[name].switchTrack();
+                return true;
+            }
+            return false;
         }
         public bool stopLoop(LoopName name)
         {
@@ -214,6 +263,45 @@ namespace Assets.Scripts.Managers
             }
             return true;
         }
+        public bool createLevelLoop(LoopName name, List<ClipName> clipList, float volume = 1.0f)
+        {
+            if (_levelLoopDict.ContainsKey(name))
+                return false;
+
+            if (_instance != null)
+            {
+                LevelLoopingCue cue = new LevelLoopingCue(name,clipList);
+                cue.volume = volume;
+                cue.name = AudioConstants.GetLoopName(name);
+                _levelLoopDict[name] = cue;
+                _levelLoops.Add(cue);
+            }
+            return true;
+        }
+
+        public void setMediumIntensity(LoopName name)
+        {
+            if (!_levelLoopDict.ContainsKey(name))
+                return;
+
+            _levelLoopDict[name].enableMedium();
+        }
+        public void setHeavyIntensity(LoopName name)
+        {
+            if (!_levelLoopDict.ContainsKey(name))
+                return;
+
+            _levelLoopDict[name].enableHeavy();
+        }
+
+        public void setLightIntensity(LoopName name)
+        {
+            if (!_levelLoopDict.ContainsKey(name))
+                return;
+            _levelLoopDict[name].enableLight();
+        }
+
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // HELPER FUNCTIONS
@@ -225,10 +313,14 @@ namespace Assets.Scripts.Managers
                 return _oneShotList[clipName];
             return null;
         }
-        private void DestroySource(AudioSource _source)
+
+        public MultiCue findCue(CueName name)
         {
-            DestroyImmediate(_source);
+            if (_cueDict.ContainsKey(name))
+                return _cueDict[name];
+            return null;
         }
+
         private IEnumerator TimedDespawn(AudioSource s, float time)
         {
             yield return new WaitForSeconds(time);
@@ -260,15 +352,15 @@ namespace Assets.Scripts.Managers
             List<AudioSource> audioSources;
             private double nextEventTime;
 
-            public LoopingCue(LoopName name1)
+            public LoopingCue(LoopName name)
             {
-                this.name = AudioConstants.GetLoopName(name1);
+                this.name = AudioConstants.GetLoopName(name);
                 audioSources = new List<AudioSource>();
             }
             public void Play()
             {
                 for (int i = 0; i < clips.Count; i++)
-                    audioSources.Add(AudioManager.Instance.gameObject.AddComponent("AudioSource") as AudioSource);
+                    audioSources.Add(Instance.gameObject.AddComponent("AudioSource") as AudioSource);
                 nextEventTime = AudioSettings.dspTime;
                 running = true;
             }
@@ -295,61 +387,181 @@ namespace Assets.Scripts.Managers
 
                 if (time > nextEventTime)
                 {
-                    audioSources[_curTrack].clip = AudioManager.Instance.findClip(clips[_curTrack]);
+                    audioSources[_curTrack].clip = Instance.findClip(clips[_curTrack]);
                     audioSources[_curTrack].volume = volume;
                     audioSources[_curTrack].Play();
                     nextEventTime += audioSources[_curTrack].clip.length;
                 }
             }
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // HELPER CLASSES
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public class LevelLoopingCue
+        {
+            [HideInInspector]
+            public string name;
+            public LoopName loopName;
+            public bool running = false;
+            public int _curTrack;
+
+            [Range(0.0f, 1.0f)]
+            public float volume = 1.0f;
+
+            private List<AudioSource> sources; 
+
+            private AudioSource lightSource;
+            public ClipName lightClip;
+            private AudioSource mediumSource;
+            public ClipName mediumClip;
+            private AudioSource heavySource;
+            public ClipName heavyClip;
+
+            private bool mediumEnabled = false;
+            private bool heavyEnabled = false;
+
+            private double nextEventTime;
+
+            public LevelLoopingCue(LoopName name, List<ClipName> clips)
+            {
+                this.name = AudioConstants.GetLoopName(name);
+                lightClip = clips[0];
+                mediumClip = clips[1];
+                heavyClip = clips[2];
+                sources = new List<AudioSource>();
+            }
+            public void Play()
+            {
+                lightSource = Instance.gameObject.AddComponent("AudioSource") as AudioSource;
+                lightSource.clip = Instance.findClip(lightClip);
+                lightSource.loop = true;
+                lightSource.volume = 1.0f;
+                sources.Add(lightSource);
+
+                mediumSource = Instance.gameObject.AddComponent("AudioSource") as AudioSource;
+                mediumSource.clip = Instance.findClip(mediumClip);
+                mediumSource.volume = 0.0f;
+                mediumSource.loop = true;
+                sources.Add(mediumSource);
+
+                heavySource = Instance.gameObject.AddComponent("AudioSource") as AudioSource;
+                heavySource.clip = Instance.findClip(heavyClip);
+                heavySource.volume = 0.0f;
+                heavySource.loop = true;
+                sources.Add(heavySource);
+
+                foreach(var source in sources)
+                    source.Play();
+
+                running = true;
+            }
+            public void Stop()
+            {
+                running = false;
+                foreach (var source in sources)
+                    source.Stop();
+            }
+
+            public void enableLight()
+            {
+                if (mediumSource.volume > .99f)
+                    Instance.StartCoroutine(this.fadeOut(mediumSource));
+                if (heavySource.volume > .99f)
+                    Instance.StartCoroutine(this.fadeOut(heavySource));
+            }
+            public void enableMedium()
+            {
+                if (mediumSource.volume < .01f)
+                    Instance.StartCoroutine(this.fadeIn(mediumSource));
+                if (heavySource.volume > .99f)
+                    Instance.StartCoroutine(this.fadeOut(heavySource));
+            }
+            public void enableHeavy()
+            {
+                if(mediumSource.volume > .99f)
+                    Instance.StartCoroutine(this.fadeOut(mediumSource));
+                if(heavySource.volume < .01f)
+                    Instance.StartCoroutine(this.fadeIn(heavySource));
+            }
+
+            public IEnumerator fadeIn(AudioSource s)
+            {
+                float fadeInTime = 2.0f;
+                float fadingVolume = 0.0f;
+                while (fadeInTime > 0)
+                {
+                    yield return new WaitForSeconds(.01f);
+                    fadingVolume += .01f/fadeInTime;
+                    s.volume = fadingVolume;
+                    fadeInTime -= Time.deltaTime;
+                }
+                s.volume = 1.0f;
+            }
+            public IEnumerator fadeOut(AudioSource s)
+            {
+                float fadeOutTime = 2.0f;
+                float fadingVolume = 1.0f;
+                while (fadeOutTime > 0)
+                {
+                    yield return new WaitForSeconds(.01f);
+                    fadingVolume -= .01f/fadeOutTime;
+                    s.volume = fadingVolume;
+                    fadeOutTime -= Time.deltaTime;
+                }
+                s.volume = 0.0f;
+            }
+        }
+
         public enum MultiCueType
         {
             Parallel,
             Random
         };
+
         [Serializable]
         public class MultiCue
         {
             [HideInInspector]
-            public string name;
+            public string Name;
             [HideInInspector]
-            public CueName cueName;
-            private MultiCueType CueType;
+            public CueName CueName;
+            private readonly MultiCueType _cueType;
             [Range(0, 1.0f)]
-            public float volume;
-            [SerializeField]
+            public float Volume;
+            [SerializeField] 
             List<ClipName> clips; // List of all Clips
-            ProportionValue<ClipName>[] cueWeightProportions; // Percentage based Cue List
-            int totalWeight;
+            ProportionValue<ClipName>[] _cueWeightProportions; // Percentage based Cue List
+            private AudioSource source;
 
             public MultiCueType type
             {
                 get
                 {
-                    return CueType;
+                    return _cueType;
                 }
             }
 
             // Random MultiCue
             public MultiCue(CueName name, List<ProportionValue<ClipName>> list)
             {
-                this.cueName = name;
-                this.name = AudioConstants.GetCueName(name);
+                this.CueName = name;
+                this.Name = AudioConstants.GetCueName(name);
                 clips = new List<ClipName>();
                 foreach (var pv in list)
                     clips.Add(pv.Value);
-                CueType = MultiCueType.Random;
-                volume = 1.0f;
-                cueWeightProportions = list.ToArray();
+                _cueType = MultiCueType.Random;
+                Volume = 1.0f;
+                _cueWeightProportions = list.ToArray();
             }
             // Parallel MultiCue
             public MultiCue(CueName name, List<ClipName> clipNameList)
             {
-                this.cueName = name;
-                this.name = AudioConstants.GetCueName(name);
+                this.CueName = name;
+                this.Name = AudioConstants.GetCueName(name);
                 clips = clipNameList;
-                CueType = MultiCueType.Parallel;
-                volume = 1.0f;
+                _cueType = MultiCueType.Parallel;
+                Volume = 1.0f;
             }
 
             // plays this MultiCue at sourceObj's world position
@@ -357,20 +569,39 @@ namespace Assets.Scripts.Managers
             {
                 GameObject obj = sourceObj
                     ? sourceObj
-                    : AudioManager.Instance.gameObject;
+                    : Instance.gameObject;
 
-                if (CueType == MultiCueType.Random)
+                switch (_cueType)
                 {
-                    ClipName c = ProportionValue.ChooseByRandom<ClipName>(cueWeightProportions);
-                    return AudioManager.Instance.playClip(c, obj, volume);
+                    case MultiCueType.Random:
+                    {
+                        ClipName c = _cueWeightProportions.ChooseByRandom();
+                        return Instance.playClip(c, obj, Volume);
+                    }
+                    case MultiCueType.Parallel:
+                        if (clips.Count == 0)
+                            return false;
+                        foreach (var clip in clips)
+                            Instance.playClip(clip, obj, Volume);
+                        return true;
                 }
-                else if (CueType == MultiCueType.Parallel)
+                return false;
+            }
+            public bool play(AudioSource s)
+            {
+                switch (_cueType)
                 {
-                    if (clips.Count == 0)
-                        return false;
-                    foreach (var clip in clips)
-                        AudioManager.Instance.playClip(clip, obj, volume);
-                    return true;
+                    case MultiCueType.Random:
+                        {
+                            ClipName c = _cueWeightProportions.ChooseByRandom();
+                            return Instance.playClip(c, s);
+                        }
+                    case MultiCueType.Parallel:
+                        if (clips.Count == 0)
+                            return false;
+                        foreach (var clip in clips)
+                            Instance.playClip(clip, s);
+                        return true;
                 }
                 return false;
             }
@@ -380,8 +611,19 @@ namespace Assets.Scripts.Managers
             {
                 if (f < 0 || f > 1)
                     return false;
-                volume = f;
+                Volume = f;
                 return true;
+            }
+
+            public float getCurrentTrackLength()
+            {
+                if (_cueType != MultiCueType.Parallel)
+                    return 0.0f;
+                float maxTime = 0.0f;
+                foreach(var clip in clips)
+                    if (Instance.findClip(clip).length > maxTime)
+                        maxTime = Instance.findClip(clip).length;
+                return maxTime;
             }
         }
     }

@@ -7,7 +7,10 @@ namespace Assets.Scripts.Constants
     public enum CueName
     {
         Random1,
-        Parallel1
+        Parallel1,
+        Forest_Loop_Light,
+        Forest_Loop_Medium,
+        Forest_Loop_Heavy
     };
 
     public enum ClipName
@@ -41,13 +44,20 @@ namespace Assets.Scripts.Constants
 		Warp_In_2,
 		Warp_In_3,
 		Warp_In_4,
-		Warp_In_5
+		Warp_In_5,
+        Forest_Level_Basic,
+        Forest_Level_Hard_Full,
+        Forest_Level_Hard_Loop2,
+        Forest_Level_Medium,
+        Forest_Level_Medium_2MLoop,
+        Forest_Level_Resolution
     };
 
     public enum LoopName
     {
         MainLoop,
-        Forest_Level_Loop
+        Forest_Level_Loop,
+        TestMultiLoop
     };
 
 
@@ -87,20 +97,30 @@ namespace Assets.Scripts.Constants
 			{ClipName.Warp_In_2, "Warp_In_2"},
 			{ClipName.Warp_In_3, "Warp_In_3"},
 			{ClipName.Warp_In_4, "Warp_In_4"},
-			{ClipName.Warp_In_5, "Warp_In_5"}
+			{ClipName.Warp_In_5, "Warp_In_5"},
+			{ClipName.Forest_Level_Basic, "Forest_Level_Basic"},
+			{ClipName.Forest_Level_Hard_Full, "Forest_Level_Hard_Full"},
+			{ClipName.Forest_Level_Hard_Loop2, "Forest_Level_Hard_Loop2"},
+			{ClipName.Forest_Level_Medium, "Forest_Level_Medium"},
+			{ClipName.Forest_Level_Medium_2MLoop, "Forest_Level_Medium_2MLoop"},
+			{ClipName.Forest_Level_Resolution, "Forest_Level_Resolution"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
         {
             {CueName.Random1, "Random1"},
-            {CueName.Parallel1, "Parallel1"}
+            {CueName.Parallel1, "Parallel1"},
+            {CueName.Forest_Loop_Light, "Forest_Loop_Light"},
+            {CueName.Forest_Loop_Medium, "Forest_Loop_Medium"},
+            {CueName.Forest_Loop_Heavy, "Forest_Loop_Heavy"}
         };
 
 
         private static readonly Dictionary<LoopName, string> AudioLoopNames = new Dictionary<LoopName, string>()
         {
             {LoopName.MainLoop, "MainLoop"},
-            {LoopName.Forest_Level_Loop, "Forest_Level_Loop"}
+            {LoopName.Forest_Level_Loop, "Forest_Level_Loop"},
+            {LoopName.TestMultiLoop, "TestMultiLoop"}
         };
 
         public static void CreateCustomCues()
@@ -111,30 +131,48 @@ namespace Assets.Scripts.Constants
                 ClipName.HackandSlash 
             };
             AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
+            /*
             List<ClipName> forestList = new List<ClipName> 
             { 
                 ClipName.Forest_Level_2_Full,
                 ClipName.Forest_Level_2_Main_Loop
             };
             AudioManager.Instance.createLoop(LoopName.Forest_Level_Loop, forestList, 0.5f);
+            */
+
 
             /*
-            List<ClipName> randList = new List<ClipName>
+            List<ClipName> lightLoop = new List<ClipName>
             {
-                ClipName.Shot,
-                ClipName.Strike,
-                ClipName.Swipe
+                ClipName.Forest_Level_Basic
             };
-            AudioManager.Instance.createMultiCueRandom(CueName.Random1,randList);
-
-
-            List<ClipName> parallelList = new List<ClipName>
+            List<ClipName> mediumLoop = new List<ClipName>
             {
-                ClipName.Swipe,
-                ClipName.Strike
-            }; 
-            AudioManager.Instance.createMultiCueParallel(CueName.Parallel1, parallelList);
-             */
+                ClipName.Forest_Level_Basic,
+                ClipName.Forest_Level_Medium
+            };
+            List<ClipName> heavyLoop = new List<ClipName>
+            {
+                ClipName.Forest_Level_Basic,
+                ClipName.Forest_Level_Hard_Full
+            };
+            AudioManager.Instance.createMultiCueParallel(CueName.Forest_Loop_Light, lightLoop);
+            AudioManager.Instance.createMultiCueParallel(CueName.Forest_Loop_Medium, mediumLoop);
+            AudioManager.Instance.createMultiCueParallel(CueName.Forest_Loop_Heavy, heavyLoop);
+            AudioManager.Instance.createMultiLoop(LoopName.TestMultiLoop, new List<CueName>
+            {
+                CueName.Forest_Loop_Light,
+                CueName.Forest_Loop_Medium,
+                CueName.Forest_Loop_Heavy
+            });*/
+            List<ClipName> levelLoopIntensities = new List<ClipName>
+            {
+                ClipName.Forest_Level_Basic,
+                ClipName.Forest_Level_Medium,
+                ClipName.Forest_Level_Hard_Full
+            };
+            AudioManager.Instance.createLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
+
         }
 
         public static string GetClipName(ClipName name)
@@ -147,7 +185,7 @@ namespace Assets.Scripts.Constants
         public static string GetCueName(CueName name)
         {
             if (!AudioCueNames.ContainsKey(name))
-                throw new Exception("Cue is not defined");
+                throw new Exception("Cue is not defined " + name);
             return AudioCueNames[name];
         }
 
