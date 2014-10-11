@@ -34,10 +34,6 @@ namespace Assets.Scripts.Constants
         MissEnemy,
         Random,
         Shot,
-        Shot2,
-		Stone_Enemy_Death_Rattle,
-		Stone_Enemy_Death_Rattle_2,
-		Stone_Enemy_Death_Rattle_3,
 		Strike,
 		Swipe,
 		Warp_In,
@@ -50,7 +46,15 @@ namespace Assets.Scripts.Constants
         Forest_Level_Hard_Loop2,
         Forest_Level_Medium,
         Forest_Level_Medium_2MLoop,
-        Forest_Level_Resolution
+        Forest_Level_Resolution,
+		Heavy_Attack,
+		Heavy_Attack_2,
+		Heavy_Attack_3,
+		Shot_2,
+		Stone_Enemy_Death_Rattle,
+		Stone_Enemy_Death_Rattle_2,
+		Stone_Enemy_Take_Damage,
+		Stone_Enemy_Take_Damage_2
     };
 
     public enum LoopName
@@ -87,10 +91,6 @@ namespace Assets.Scripts.Constants
             {ClipName.MissEnemy, "MissEnemy"},
             {ClipName.Random, "Random"},
             {ClipName.Shot, "Shot"},
-            {ClipName.Shot2, "Shot2"},
-			{ClipName.Stone_Enemy_Death_Rattle, "Stone_Enemy_Death_Rattle"},
-			{ClipName.Stone_Enemy_Death_Rattle_2, "Stone_Enemy_Death_Rattle_2"},
-			{ClipName.Stone_Enemy_Death_Rattle_3, "Stone_Enemy_Death_Rattle_3"},
 			{ClipName.Strike, "Strike"},
             {ClipName.Swipe, "Swipe"},
 			{ClipName.Warp_In, "Warp_In"},
@@ -103,7 +103,15 @@ namespace Assets.Scripts.Constants
 			{ClipName.Forest_Level_Hard_Loop2, "Forest_Level_Hard_Loop2"},
 			{ClipName.Forest_Level_Medium, "Forest_Level_Medium"},
 			{ClipName.Forest_Level_Medium_2MLoop, "Forest_Level_Medium_2MLoop"},
-			{ClipName.Forest_Level_Resolution, "Forest_Level_Resolution"}
+			{ClipName.Forest_Level_Resolution, "Forest_Level_Resolution"},
+			{ClipName.Heavy_Attack, "Heavy_Attack"},
+			{ClipName.Heavy_Attack_2, "Heavy_Attack_2"},
+			{ClipName.Heavy_Attack_3, "Heavy_Attack_3"},
+			{ClipName.Shot_2, "Shot_2"},
+			{ClipName.Stone_Enemy_Death_Rattle, "Stone_Enemy_Death_Rattle"},
+			{ClipName.Stone_Enemy_Death_Rattle_2, "Stone_Enemy_Death_Rattle_2"},
+			{ClipName.Stone_Enemy_Take_Damage, "Stone_Enemy_Take_Damage"},
+			{ClipName.Stone_Enemy_Take_Damage_2, "Stone_Enemy_Take_Damage_2"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
