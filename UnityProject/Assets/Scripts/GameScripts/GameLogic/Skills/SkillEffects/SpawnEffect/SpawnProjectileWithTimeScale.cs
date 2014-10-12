@@ -12,7 +12,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
     {
         public PrefabSpawner PrefabSpawner;
         public PositionIndicator Position;
-        private Vector3 _direction;
         private float _time;
 
         protected override void Initialize()
@@ -40,17 +39,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
                 ProjectileMotor motor = o.GetComponent<ProjectileMotor>();
                 motor.tag = Skill.Caster.gameObject.tag;
                 motor.Target = Skill.Caster.Target;
-                motor.Shoot(_direction);
+                motor.Shoot(Skill.Caster.PointingDirection);
             });
-        }
-
-        [GameScriptEvent(Constants.GameScriptEvent.UpdatePlayerAxis)]
-        void UpdateMoveDirection(Vector2 direction)
-        {
-            if (!Skill.IsActivate)
-            {
-                _direction = direction;
-            }
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.UpdateSkillButtonHoldEffectTime)]

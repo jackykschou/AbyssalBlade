@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         }
 
         public Transform Target;
+        public Vector2 PointingDirection;
 
         protected override void Initialize()
         {
