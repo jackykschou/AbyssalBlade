@@ -2,9 +2,9 @@
 using UnityEngine;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
-using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
+
 
 namespace Assets.Scripts.Managers
 {
@@ -14,18 +14,17 @@ namespace Assets.Scripts.Managers
     {
         public PrefabSpawner PrefabSpawner;
         public Camera MainCamera;
-        public EaseType preferredEaseType;
+        public EaseType PreferredEaseType;
 
         private static MessageManager _instance;
         public static MessageManager Instance
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<MessageManager>();
-                    DontDestroyOnLoad(_instance.gameObject);
-                }
+                if (_instance != null) 
+                    return _instance;
+                _instance = FindObjectOfType<MessageManager>();
+                DontDestroyOnLoad(_instance.gameObject);
                 return _instance;
             }
         }
@@ -39,7 +38,7 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(preferredEaseType, direction, 5.0f, 1.5f);
+                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
             });
         }
 
@@ -52,7 +51,7 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(preferredEaseType, direction, 5.0f, 1.5f);
+                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
                 StartCoroutine(DelayedMove(motor, directionToFly, WhenToFly));
             });
         }
@@ -60,7 +59,7 @@ namespace Assets.Scripts.Managers
         public IEnumerator DelayedMove(TextMotor motor, Vector3 direction, float whenToMove)
         {
             yield return new WaitForSeconds(whenToMove);
-            motor.Shoot(preferredEaseType, direction, 5.0f, 20.0f);
+            motor.Shoot(PreferredEaseType, direction, 5.0f, 20.0f);
         }
 
         Vector3 MiddleOfScreen()
