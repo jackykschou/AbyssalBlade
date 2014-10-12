@@ -45,15 +45,10 @@ namespace Assets.Scripts.Managers
             _instance = null;
         }
 
-        public void SwitchLoopClip(int clipNumber)
-        {
-            AudioManager.Instance.swapLoopTrack(BackGroundMusicLoop);
-        }
-
         [GameEventAttribute(GameEvent.OnLevelEnded)]
         public void OnLevelEnded()
         {
-            AudioManager.Instance.stopLoop(BackGroundMusicLoop);
+            AudioManager.Instance.stopLevelLoop(BackGroundMusicLoop);
         }
 
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
@@ -74,7 +69,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelStarted()
         {
-            AudioManager.Instance.playLoop(BackGroundMusicLoop);
+            AudioManager.Instance.playLevelLoop(BackGroundMusicLoop);
             GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
         }
     }

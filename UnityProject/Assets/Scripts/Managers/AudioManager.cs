@@ -231,6 +231,13 @@ namespace Assets.Scripts.Managers
             _loopDict[name].Stop();
             return true;
         }
+        public bool stopLevelLoop(LoopName name)
+        {
+            if (!_levelLoopDict.ContainsKey(name))
+                return false;
+            _levelLoopDict[name].Stop();
+            return true;
+        }
         //////////////////////////////////////////////
         // Creation Methods
         //////////////////////////////////////////////

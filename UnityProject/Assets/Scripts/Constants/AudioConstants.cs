@@ -4,6 +4,13 @@ using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.Constants
 {
+    public enum Intensity
+    {
+        Light,
+        Medium,
+        Heavy
+    };
+
     public enum CueName
     {
         Random1,
@@ -139,40 +146,7 @@ namespace Assets.Scripts.Constants
                 ClipName.HackandSlash 
             };
             AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
-            /*
-            List<ClipName> forestList = new List<ClipName> 
-            { 
-                ClipName.Forest_Level_2_Full,
-                ClipName.Forest_Level_2_Main_Loop
-            };
-            AudioManager.Instance.createLoop(LoopName.Forest_Level_Loop, forestList, 0.5f);
-            */
 
-
-            /*
-            List<ClipName> lightLoop = new List<ClipName>
-            {
-                ClipName.Forest_Level_Basic
-            };
-            List<ClipName> mediumLoop = new List<ClipName>
-            {
-                ClipName.Forest_Level_Basic,
-                ClipName.Forest_Level_Medium
-            };
-            List<ClipName> heavyLoop = new List<ClipName>
-            {
-                ClipName.Forest_Level_Basic,
-                ClipName.Forest_Level_Hard_Full
-            };
-            AudioManager.Instance.createMultiCueParallel(CueName.Forest_Loop_Light, lightLoop);
-            AudioManager.Instance.createMultiCueParallel(CueName.Forest_Loop_Medium, mediumLoop);
-            AudioManager.Instance.createMultiCueParallel(CueName.Forest_Loop_Heavy, heavyLoop);
-            AudioManager.Instance.createMultiLoop(LoopName.TestMultiLoop, new List<CueName>
-            {
-                CueName.Forest_Loop_Light,
-                CueName.Forest_Loop_Medium,
-                CueName.Forest_Loop_Heavy
-            });*/
             List<ClipName> levelLoopIntensities = new List<ClipName>
             {
                 ClipName.Forest_Level_Basic,
@@ -180,7 +154,6 @@ namespace Assets.Scripts.Constants
                 ClipName.Forest_Level_Hard_Full
             };
             AudioManager.Instance.createLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
-
         }
 
         public static string GetClipName(ClipName name)
