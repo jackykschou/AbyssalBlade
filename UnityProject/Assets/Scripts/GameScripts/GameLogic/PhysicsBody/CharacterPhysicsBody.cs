@@ -1,4 +1,7 @@
-﻿namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
+﻿using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
+using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
+
+namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
 {
     public abstract class CharacterPhysicsBody : PhysicsBody2D
     {
@@ -7,6 +10,12 @@
             base.Initialize();
             Rigidbody.isKinematic = false;
             Collider.isTrigger = false;
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
+        public void DisableCharacterCollider()
+        {
+            Collider.enabled = false;
         }
     }
 }

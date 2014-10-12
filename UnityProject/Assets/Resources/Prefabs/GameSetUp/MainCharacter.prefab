@@ -48,10 +48,11 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400020}
-  - 114: {fileID: 11400018}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400126}
+  - 114: {fileID: 11400050}
+  - 114: {fileID: 11400018}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -122,7 +123,6 @@ GameObject:
   - 114: {fileID: 11400052}
   - 114: {fileID: 11400038}
   - 114: {fileID: 11400042}
-  - 114: {fileID: 11400050}
   - 114: {fileID: 11400048}
   - 114: {fileID: 11400046}
   - 114: {fileID: 11400044}
@@ -525,8 +525,9 @@ MonoBehaviour:
   OnceAtATime: 1
   IsPassive: 0
   _skillEffects:
+  - {fileID: 11400050}
   - {fileID: 11400012}
-  _skillEffectsOrder: 00000000
+  _skillEffectsOrder: 0000000001000000
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -587,13 +588,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a6724143802ca54b92d97a8266c65d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 75c8d90af3c3b4344ae88afdfc8638c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
   PrefabSpawner: {fileID: 0}
   Position:
-    Follower: {fileID: 400018}
+    Follower: {fileID: 0}
     Position: {fileID: 400020}
 --- !u!114 &11400020
 MonoBehaviour:
@@ -799,6 +800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetTags:
   - Enemy
+  - Neutral
   OneTimeOnlyPerTarget: 0
   HealthChangeType: 0
   Stackable: 0
@@ -830,16 +832,19 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
+  m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b2014cc0ccbef4f924020a9731f163, type: 3}
+  m_Script: {fileID: 11500000, guid: 77094f8027071bb4eb2abf3e5249f42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  CoolDownDispatcher:
-    IsEnabled: 0
-    DispatchInterval: .25
+  _button:
+    _keyCode: 7
+    CoolDownTimeDispatcher:
+      IsEnabled: 0
+      DispatchInterval: 0
+  _onHoldFinishEventMessages: []
 --- !u!114 &11400052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -945,6 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetTags:
   - Enemy
+  - Neutral
   OneTimeOnlyPerTarget: 0
   HealthChangeType: 0
   Stackable: 0
@@ -1023,8 +1029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6830ca6c8ff524244b98b5169eb640de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: 0
-  volume: 1
+  Clip: 0
+  Volume: 1
 --- !u!114 &11400076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1158,6 +1164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skills: []
   Target: {fileID: 0}
+  PointingDirection: {x: 0, y: 0}
   MovementSkill: {fileID: 11400000}
   Skill1: {fileID: 11400038}
   Skill2: {fileID: 11400108}
