@@ -74,7 +74,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
                 ? VerticalAxis.GetAxisValue()
                 : JoyStickVerticalAxis.GetAxisValue();
 
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, new Vector2(horizontalValue, verticalValue));
+                Vector2 direction = new Vector2(horizontalValue, verticalValue);
+
+                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, direction);
             }
         }
 

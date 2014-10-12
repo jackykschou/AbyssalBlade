@@ -17,7 +17,7 @@
         UpdateFacingDirection,                  // void(FacingDirection)
 
         SetAnimatorBoolState,                   // void(string)
-        SetAnimatorFloatState,                    // void(string, int)
+        SetAnimatorFloatState,                  // void(string, int)
         
         AIRotateToTarget,                       // void()
         AICastSkill,                            // void()
@@ -29,8 +29,10 @@
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)
+        SkillCastFinished,                      // void(Skill)
         UpdateSkillCooldownPercentage,          // void(Skill, float)
         OnNewTargetDiscovered,                  // void(GameObject)
+        UpdateSkillButtonHoldEffectTime,        // void(float)
 
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
@@ -38,14 +40,13 @@
         InterruptCharacter,                     // void()
         OnCharacterInterrupted,                 // void()
         OnCharacterKnockBacked,                 // void(Vector2, float)
-        OnObjectWasCrit,                        // void()
         ObjectChangeHealthFix,                    // void(float)
         ObjectChangeCurrentPercentageHealth,      // void(float)
         ObjectChangeMaxPercentageHealth,          // void(float)
         ObjectChangeFixHealthPerSec,              // void(float, int)
         ObjectChangeCurrentPercentageHealthPerSec,// void(float, int)
         ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
-        OnObjectTakeDamage,                       // void(float)
+        OnObjectTakeDamage,                       // void(float, bool)
         OnObjectTakeHeal,                          // void(float)
 
         OnCollideTriggerTriggered,          // void(GameObject)

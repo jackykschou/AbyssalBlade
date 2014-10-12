@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Linq;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
 using UnityEngine;
 
@@ -32,6 +33,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         protected override void Deinitialize()
         {
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.UpdatePlayerAxis)]
+        void UpdatePointingDirection(Vector2 direction)
+        {
+            if (Skills.All(s => s.IsPassive || !s.IsActivate))
+            {
+                PointingDirection = direction.normalized;
+            }
         }
 
         [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]

@@ -16,11 +16,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         [SerializeField] 
         private float _animationDuration;
 
-        [SerializeField] 
-        List<string> _animationEventMessages;
+        [SerializeField]
+        private List<string> _animationEventMessages;
 
         [SerializeField]
-        List<float> _animationEventMessagesSendTime;
+        private List<float> _animationEventMessagesSendTime;
 
         public override void EditorUpdate()
         {

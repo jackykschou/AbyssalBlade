@@ -45,8 +45,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         {
             _changedCache.Add(target);
             bool crit = MathUtility.RollChance(CriticalChance);
-            if (crit)
-                target.GetComponent<DamageDisplayer>().TriggerGameScriptEvent(GameScriptEvent.OnObjectWasCrit);
             switch (HealthChangeType)
             {
                 case HealthChangeType.Fixed:
@@ -59,45 +57,45 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
                     ApplyMaxPercentageChange(target, crit);
                     break;
                 case HealthChangeType.FixedPerSecond:
-                    ApplyPerSecondFixedChange(target, crit);
+                    ApplyPerSecondFixedChange(target);
                     break;
                 case HealthChangeType.CurrentPercentagePerSecond:
-                    ApplyPerSecondCurrentPercentageChange(target, crit);
+                    ApplyPerSecondCurrentPercentageChange(target);
                     break;
                 case HealthChangeType.MaxPercentagePerSecond:
-                    ApplyPerSecondMaxPercentageChange(target, crit);
+                    ApplyPerSecondMaxPercentageChange(target);
                     break;
             }
         }
 
         private void ApplyFixedChange(GameObject target, bool isCrit)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeHealthFix, Amount.Value * GetCriticalMultipler(isCrit));
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeHealthFix, Amount.Value * GetCriticalMultipler(isCrit), isCrit);
         }
 
         private void ApplyCurrentPercentageChange(GameObject target, bool isCrit)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeCurrentPercentageHealth, Percentage * GetCriticalMultipler(isCrit));
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeCurrentPercentageHealth, Percentage * GetCriticalMultipler(isCrit), isCrit);
         }
 
         private void ApplyMaxPercentageChange(GameObject target, bool isCrit)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeMaxPercentageHealth, Percentage * GetCriticalMultipler(isCrit));
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeMaxPercentageHealth, Percentage * GetCriticalMultipler(isCrit), isCrit);
         }
 
-        private void ApplyPerSecondFixedChange(GameObject target, bool isCrit)
+        private void ApplyPerSecondFixedChange(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeFixHealthPerSec, Amount.Value * GetCriticalMultipler(isCrit), Duration, Stackable, NonStackableLabel);
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeFixHealthPerSec, Amount.Value, Duration, Stackable, NonStackableLabel);
         }
 
-        private void ApplyPerSecondCurrentPercentageChange(GameObject target, bool isCrit)
+        private void ApplyPerSecondCurrentPercentageChange(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeCurrentPercentageHealthPerSec, Percentage * GetCriticalMultipler(isCrit), Duration, Stackable, NonStackableLabel);
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeCurrentPercentageHealthPerSec, Percentage, Duration, Stackable, NonStackableLabel);
         }
 
-        private void ApplyPerSecondMaxPercentageChange(GameObject target, bool isCrit)
+        private void ApplyPerSecondMaxPercentageChange(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeMaxPercentageHealthPerSec, Percentage * GetCriticalMultipler(isCrit), Duration, Stackable, NonStackableLabel);
+            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeMaxPercentageHealthPerSec, Percentage, Duration, Stackable, NonStackableLabel);
         }
 
         private float GetCriticalMultipler(bool isCrit)

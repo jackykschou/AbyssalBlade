@@ -1,20 +1,18 @@
-﻿using Assets.Scripts.GameScripts.Components;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.GameScripts.Components;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile;
-using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
+using Assets.Scripts.Utility;
 using UnityEngine;
-using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
-using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 {
-    [RequireComponent(typeof(PrefabSpawner))]
-    [RequireComponent(typeof(TargetNotNull))]
-    [AddComponentMenu("Skill/SkillEffect/SpawnProjectile")]
-    public class SpawnProjectile : SkillEffect
+    [AddComponentMenu("Skill/SkillEffect/SpawnProjectileWithTimeScale")]
+    public class SpawnProjectileWithTimeScale : SkillEffect
     {
         public PrefabSpawner PrefabSpawner;
         public PositionIndicator Position;
+        private float _time;
 
         protected override void Initialize()
         {
@@ -23,6 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
+            _time = 0f;
         }
 
         public override void Activate()
@@ -36,11 +35,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
         {
             PrefabSpawner.SpawnPrefabImmediate(Position.Position.position, o =>
             {
+                o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateSkillButtonHoldEffectTime, _time);
                 ProjectileMotor motor = o.GetComponent<ProjectileMotor>();
                 motor.tag = Skill.Caster.gameObject.tag;
                 motor.Target = Skill.Caster.Target;
                 motor.Shoot(Skill.Caster.PointingDirection);
             });
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.UpdateSkillButtonHoldEffectTime)]
+        void UpdateSkillHoldEffectTime(float time)
+        {
+            _time = time;
         }
     }
 }

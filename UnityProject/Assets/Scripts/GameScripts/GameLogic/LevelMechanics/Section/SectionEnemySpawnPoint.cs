@@ -61,8 +61,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
             if (!PrefabSpawner.CanSpawn() || !Activated || !SectionActivated)
             {
-                //TriggerArea.enabled = false;
-                //return;
+                TriggerArea.enabled = false;
+                return;
             }
             SpawnCoolDown.Dispatch();
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
