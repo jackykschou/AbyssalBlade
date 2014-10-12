@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Attributes;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Misc
+namespace Assets.Scripts.GameScripts.GameLogic.Misc.ScaleWithTime
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class ParticleStartSizeScaleWithTime : GameLogic
