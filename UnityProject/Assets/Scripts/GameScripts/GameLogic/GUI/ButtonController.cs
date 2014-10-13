@@ -98,19 +98,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         public void onStartPressed()
         {
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
-            AudioManager.Instance.playClip(ButtonPressClip);
+            AudioManager.Instance.PlayClip(ButtonPressClip);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuOptionsButtonPressed)]
         public void onOptionsPressed()
         {
-            AudioManager.Instance.playClip(ButtonPressClip);
+            AudioManager.Instance.PlayClip(ButtonPressClip);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
         public void onQuitPressed()
         {
-            AudioManager.Instance.playClip(ButtonPressClip);
+            AudioManager.Instance.PlayClip(ButtonPressClip);
             Application.Quit();
         }
 

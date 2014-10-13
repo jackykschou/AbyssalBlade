@@ -49,7 +49,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelEnded)]
         public void OnLevelEnded()
         {
-            AudioManager.Instance.stopLevelLoop(BackGroundMusicLoop);
+            AudioManager.Instance.StopLevelLoop(BackGroundMusicLoop);
         }
 
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
@@ -70,7 +70,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelStarted()
         {
-            AudioManager.Instance.playLevelLoop(BackGroundMusicLoop);
+            AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
             GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
         }
     }

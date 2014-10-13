@@ -18,7 +18,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
         [GameScriptEventAttribute(GameScriptEvent.OnObjectTakeDamage)]
         public void StartPlayDamageSound(float f, bool crit)
         {
-            AudioManager.Instance.playClip(Clip, gameObject, Volume);
+            AudioManager.Instance.PlayClip(Clip, gameObject, Volume);
         }
 
         protected override void Deinitialize()

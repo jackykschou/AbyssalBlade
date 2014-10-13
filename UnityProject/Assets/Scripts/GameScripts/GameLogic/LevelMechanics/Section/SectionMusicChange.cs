@@ -22,13 +22,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                 switch (OnActivate)
                 {
                     case Intensity.Light:
-                        AudioManager.Instance.setLightIntensity(LevelManager.Instance.BackGroundMusicLoop);
+                        AudioManager.Instance.SetLightIntensity(LevelManager.Instance.BackGroundMusicLoop);
                         break;
                     case Intensity.Medium:
-                        AudioManager.Instance.setMediumIntensity(LevelManager.Instance.BackGroundMusicLoop);
+                        AudioManager.Instance.SetMediumIntensity(LevelManager.Instance.BackGroundMusicLoop);
                         break;
                     case Intensity.Heavy:
-                        AudioManager.Instance.setHeavyIntensity(LevelManager.Instance.BackGroundMusicLoop);
+                        AudioManager.Instance.SetHeavyIntensity(LevelManager.Instance.BackGroundMusicLoop);
                         break;
                 }
             }
@@ -42,13 +42,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                 switch (OnDeactivate)
                 {
                     case Intensity.Light:
-                        AudioManager.Instance.setLightIntensity(LevelManager.Instance.BackGroundMusicLoop);
+                        AudioManager.Instance.SetLightIntensity(LevelManager.Instance.BackGroundMusicLoop);
                         break;
                     case Intensity.Medium:
-                        AudioManager.Instance.setMediumIntensity(LevelManager.Instance.BackGroundMusicLoop);
+                        AudioManager.Instance.SetMediumIntensity(LevelManager.Instance.BackGroundMusicLoop);
                         break;
                     case Intensity.Heavy:
-                        AudioManager.Instance.setHeavyIntensity(LevelManager.Instance.BackGroundMusicLoop);
+                        AudioManager.Instance.SetHeavyIntensity(LevelManager.Instance.BackGroundMusicLoop);
                         break;
                 }
             }

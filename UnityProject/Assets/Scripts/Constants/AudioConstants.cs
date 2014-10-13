@@ -145,7 +145,7 @@ namespace Assets.Scripts.Constants
             { 
                 ClipName.HackandSlash 
             };
-            AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
+            AudioManager.Instance.CreateLoop(LoopName.MainLoop, loopList);
 
             List<ClipName> levelLoopIntensities = new List<ClipName>
             {
@@ -153,7 +153,7 @@ namespace Assets.Scripts.Constants
                 ClipName.Forest_Level_Medium,
                 ClipName.Forest_Level_Hard_Full
             };
-            AudioManager.Instance.createLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
+            AudioManager.Instance.CreateLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
         }
 
         public static string GetClipName(ClipName name)
