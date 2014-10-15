@@ -42,7 +42,7 @@ namespace Assets.Scripts.Managers
             });
         }
 
-        public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly, float WhenToFly)
+        public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly, float whenToFly)
         {
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
             {
@@ -51,9 +51,10 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
-                StartCoroutine(DelayedMove(motor, directionToFly, WhenToFly));
+                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.0f);
+                motor.ShootAdd(PreferredEaseType,Vector3.right,10.0f,10.0f);
             });
+            
         }
 
         public IEnumerator DelayedMove(TextMotor motor, Vector3 direction, float whenToMove)
@@ -84,7 +85,7 @@ namespace Assets.Scripts.Managers
             if (Input.GetKeyDown(KeyCode.Keypad1))
                 DisplayMessage("Regular Message", Vector3.up);
             if (Input.GetKeyDown(KeyCode.Keypad2))
-                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right*10.0f, 2.0f);
+                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right, 2.0f);
         }
 
         protected override void Initialize()
