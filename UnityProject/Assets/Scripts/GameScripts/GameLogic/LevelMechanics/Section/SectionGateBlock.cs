@@ -46,6 +46,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 
         public void UnLockGate()
         {
+            TriggerGameScriptEvent(GameScriptEvent.GateDeactivated);
             BlockCollider.enabled = false;
         }
     }
