@@ -14,7 +14,8 @@ namespace Assets.Scripts.Constants
         MessageText,
         SimpleLightMeleeEnemy,
         SimpleRangeEnemy,
-        EnemyProjectile
+        EnemyProjectile,
+        MainLevelArea1
     };
 
     public class PrefabConstants
@@ -34,7 +35,8 @@ namespace Assets.Scripts.Constants
             {Prefab.MessageText, "Prefabs/PreloadedPrefab/TextMeshes/MessageTextMesh"},
             {Prefab.SimpleLightMeleeEnemy, "Prefabs/PreloadedPrefab/Character/SmallMeleeEnemy"},
             {Prefab.SimpleRangeEnemy, "Prefabs/PreloadedPrefab/Character/SmallRangeEnemy"},
-            {Prefab.EnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/EnemyProjectile"}
+            {Prefab.EnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/EnemyProjectile"},
+            {Prefab.MainLevelArea1, "Prefabs/MainLevelArea1"}
         };
 
         public static string GetPrefabName(Prefab prefab)
