@@ -51,10 +51,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             }
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorIntState)]
-        public void SetAnimatorIntState(string state, int value)
+        [GameScriptEventAttribute(GameScriptEvent.SetAnimatorFloatState)]
+        public void SetAnimatorIntState(string state, float value)
         {
-            Animator.SetInteger(state, value);
+            Animator.SetFloat(state, value);
         }
 
         protected override void Update()

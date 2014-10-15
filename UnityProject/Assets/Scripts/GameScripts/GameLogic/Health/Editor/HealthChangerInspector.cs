@@ -38,9 +38,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health.Editor
                     healthChanger.Amount.InitialMinValue = EditorGUILayout.FloatField("Amount Min Value", healthChanger.Amount.InitialMinValue);
                     healthChanger.Amount.InitialMaxValue = EditorGUILayout.FloatField("Amount Max Value", healthChanger.Amount.InitialMaxValue);
                     healthChanger.Amount.InitialValue = EditorGUILayout.FloatField("Amount Initial Value", healthChanger.Amount.InitialValue);
-                    healthChanger.Amount.InitialMinValue = Mathf.Clamp(healthChanger.Amount.InitialMinValue, float.MinValue, healthChanger.Amount.InitialMaxValue);
-                    healthChanger.Amount.InitialMaxValue = Mathf.Clamp(healthChanger.Amount.InitialMaxValue, healthChanger.Amount.InitialMinValue, float.MaxValue);
-                    healthChanger.Amount.InitialValue = Mathf.Clamp(healthChanger.Amount.InitialValue, healthChanger.Amount.InitialMinValue, healthChanger.Amount.InitialMaxValue);
+                    //healthChanger.Amount.InitialMinValue = Mathf.Clamp(healthChanger.Amount.InitialMinValue, float.MinValue, healthChanger.Amount.InitialMaxValue);
+                    //healthChanger.Amount.InitialMaxValue = Mathf.Clamp(healthChanger.Amount.InitialMaxValue, healthChanger.Amount.InitialMinValue, float.MaxValue);
+                    //healthChanger.Amount.InitialValue = Mathf.Clamp(healthChanger.Amount.InitialValue, healthChanger.Amount.InitialMinValue, healthChanger.Amount.InitialMaxValue);
                     break;
                 case HealthChangeType.CurrentPercentage:
                 case HealthChangeType.MaxPercentage:

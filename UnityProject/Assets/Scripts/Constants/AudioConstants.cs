@@ -4,10 +4,20 @@ using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.Constants
 {
+    public enum Intensity
+    {
+        Light,
+        Medium,
+        Heavy
+    };
+
     public enum CueName
     {
         Random1,
-        Parallel1
+        Parallel1,
+        Forest_Loop_Light,
+        Forest_Loop_Medium,
+        Forest_Loop_Heavy
     };
 
     public enum ClipName
@@ -31,23 +41,34 @@ namespace Assets.Scripts.Constants
         MissEnemy,
         Random,
         Shot,
-        Shot2,
-		Stone_Enemy_Death_Rattle,
-		Stone_Enemy_Death_Rattle_2,
-		Stone_Enemy_Death_Rattle_3,
 		Strike,
 		Swipe,
 		Warp_In,
 		Warp_In_2,
 		Warp_In_3,
 		Warp_In_4,
-		Warp_In_5
+		Warp_In_5,
+        Forest_Level_Basic,
+        Forest_Level_Hard_Full,
+        Forest_Level_Hard_Loop2,
+        Forest_Level_Medium,
+        Forest_Level_Medium_2MLoop,
+        Forest_Level_Resolution,
+		Heavy_Attack,
+		Heavy_Attack_2,
+		Heavy_Attack_3,
+		Shot_2,
+		Stone_Enemy_Death_Rattle,
+		Stone_Enemy_Death_Rattle_2,
+		Stone_Enemy_Take_Damage,
+		Stone_Enemy_Take_Damage_2
     };
 
     public enum LoopName
     {
         MainLoop,
-        Forest_Level_Loop
+        Forest_Level_Loop,
+        TestMultiLoop
     };
 
 
@@ -77,30 +98,44 @@ namespace Assets.Scripts.Constants
             {ClipName.MissEnemy, "MissEnemy"},
             {ClipName.Random, "Random"},
             {ClipName.Shot, "Shot"},
-            {ClipName.Shot2, "Shot2"},
-			{ClipName.Stone_Enemy_Death_Rattle, "Stone_Enemy_Death_Rattle"},
-			{ClipName.Stone_Enemy_Death_Rattle_2, "Stone_Enemy_Death_Rattle_2"},
-			{ClipName.Stone_Enemy_Death_Rattle_3, "Stone_Enemy_Death_Rattle_3"},
 			{ClipName.Strike, "Strike"},
             {ClipName.Swipe, "Swipe"},
 			{ClipName.Warp_In, "Warp_In"},
 			{ClipName.Warp_In_2, "Warp_In_2"},
 			{ClipName.Warp_In_3, "Warp_In_3"},
 			{ClipName.Warp_In_4, "Warp_In_4"},
-			{ClipName.Warp_In_5, "Warp_In_5"}
+			{ClipName.Warp_In_5, "Warp_In_5"},
+			{ClipName.Forest_Level_Basic, "Forest_Level_Basic"},
+			{ClipName.Forest_Level_Hard_Full, "Forest_Level_Hard_Full"},
+			{ClipName.Forest_Level_Hard_Loop2, "Forest_Level_Hard_Loop2"},
+			{ClipName.Forest_Level_Medium, "Forest_Level_Medium"},
+			{ClipName.Forest_Level_Medium_2MLoop, "Forest_Level_Medium_2MLoop"},
+			{ClipName.Forest_Level_Resolution, "Forest_Level_Resolution"},
+			{ClipName.Heavy_Attack, "Heavy_Attack"},
+			{ClipName.Heavy_Attack_2, "Heavy_Attack_2"},
+			{ClipName.Heavy_Attack_3, "Heavy_Attack_3"},
+			{ClipName.Shot_2, "Shot_2"},
+			{ClipName.Stone_Enemy_Death_Rattle, "Stone_Enemy_Death_Rattle"},
+			{ClipName.Stone_Enemy_Death_Rattle_2, "Stone_Enemy_Death_Rattle_2"},
+			{ClipName.Stone_Enemy_Take_Damage, "Stone_Enemy_Take_Damage"},
+			{ClipName.Stone_Enemy_Take_Damage_2, "Stone_Enemy_Take_Damage_2"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
         {
             {CueName.Random1, "Random1"},
-            {CueName.Parallel1, "Parallel1"}
+            {CueName.Parallel1, "Parallel1"},
+            {CueName.Forest_Loop_Light, "Forest_Loop_Light"},
+            {CueName.Forest_Loop_Medium, "Forest_Loop_Medium"},
+            {CueName.Forest_Loop_Heavy, "Forest_Loop_Heavy"}
         };
 
 
         private static readonly Dictionary<LoopName, string> AudioLoopNames = new Dictionary<LoopName, string>()
         {
             {LoopName.MainLoop, "MainLoop"},
-            {LoopName.Forest_Level_Loop, "Forest_Level_Loop"}
+            {LoopName.Forest_Level_Loop, "Forest_Level_Loop"},
+            {LoopName.TestMultiLoop, "TestMultiLoop"}
         };
 
         public static void CreateCustomCues()
@@ -110,31 +145,15 @@ namespace Assets.Scripts.Constants
             { 
                 ClipName.HackandSlash 
             };
-            AudioManager.Instance.createLoop(LoopName.MainLoop, loopList);
-            List<ClipName> forestList = new List<ClipName> 
-            { 
-                ClipName.Forest_Level_2_Full,
-                ClipName.Forest_Level_2_Main_Loop
-            };
-            AudioManager.Instance.createLoop(LoopName.Forest_Level_Loop, forestList, 0.5f);
+            AudioManager.Instance.CreateLoop(LoopName.MainLoop, loopList);
 
-            /*
-            List<ClipName> randList = new List<ClipName>
+            List<ClipName> levelLoopIntensities = new List<ClipName>
             {
-                ClipName.Shot,
-                ClipName.Strike,
-                ClipName.Swipe
+                ClipName.Forest_Level_Basic,
+                ClipName.Forest_Level_Medium,
+                ClipName.Forest_Level_Hard_Full
             };
-            AudioManager.Instance.createMultiCueRandom(CueName.Random1,randList);
-
-
-            List<ClipName> parallelList = new List<ClipName>
-            {
-                ClipName.Swipe,
-                ClipName.Strike
-            }; 
-            AudioManager.Instance.createMultiCueParallel(CueName.Parallel1, parallelList);
-             */
+            AudioManager.Instance.CreateLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
         }
 
         public static string GetClipName(ClipName name)
@@ -147,7 +166,7 @@ namespace Assets.Scripts.Constants
         public static string GetCueName(CueName name)
         {
             if (!AudioCueNames.ContainsKey(name))
-                throw new Exception("Cue is not defined");
+                throw new Exception("Cue is not defined " + name);
             return AudioCueNames[name];
         }
 

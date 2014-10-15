@@ -23,10 +23,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
 
             if (Target == null)
             {
-                return;;
+                return;
             }
 
-            Vector3 wantedPosition = Vector3.Lerp(transform.position, Target.position, Time.deltaTime * Damping);
+
+            float distance = Vector2.Distance(transform.position,Target.position);
+
+            Vector3 wantedPosition = Vector3.Lerp(transform.position, Target.position, Time.deltaTime * Damping * distance);
             transform.position = new Vector3(wantedPosition.x, wantedPosition.y, transform.position.z);
         }
 

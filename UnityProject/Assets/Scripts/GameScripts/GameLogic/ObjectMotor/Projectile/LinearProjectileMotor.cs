@@ -15,5 +15,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
             TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, direction.GetFacingDirection());
             MoveAlongWithStyle(EaseType, direction, Speed, 50f);
         }
+        public override void Shoot(Vector3 direction)
+        {
+            MoveAlongWithStyle(EaseType, direction, Speed, 50f);
+        }
     }
 }

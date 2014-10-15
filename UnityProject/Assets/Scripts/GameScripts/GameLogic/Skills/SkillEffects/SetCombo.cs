@@ -33,7 +33,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
             {
                 _currentComboValue = (_currentComboValue + 1) % MaxComboValue;
             }
-            TriggerCasterGameScriptEvent(GameScriptEvent.SetAnimatorIntState, ComboIntParameterName, _currentComboValue);
+            TriggerCasterGameScriptEvent(GameScriptEvent.SetAnimatorFloatState, ComboIntParameterName, _currentComboValue);
             ComboResetTime.ResetTime();
             Activated = false;
         }

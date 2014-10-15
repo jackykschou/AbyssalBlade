@@ -12,17 +12,30 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         [Range(0f, float.MaxValue)]
         public float Delay = 1.0f;
 
+        private bool _reset = false;
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            _reset = false;
+        }
+
         protected override void Deinitialize()
         {
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
-        public void DestroyGameObject()
+        public void ResetLevel()
         {
-            StartCoroutine(DestroyGameObjectIE());
+            if (_reset)
+            {
+                return;
+            }
+            _reset = true;
+            StartCoroutine(ResetLevelIE());
         }
 
-        IEnumerator DestroyGameObjectIE()
+        IEnumerator ResetLevelIE()
         {
             yield return new WaitForSeconds(Delay);
             GameManager.Instance.ReloadLevel();

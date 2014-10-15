@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
 
         public void PlayFootStepSound()
         {
-            AudioManager.Instance.playClip(clip, gameObject, volume);
+            AudioManager.Instance.PlayClip(clip, gameObject, volume);
         }
 
         protected override void Deinitialize()

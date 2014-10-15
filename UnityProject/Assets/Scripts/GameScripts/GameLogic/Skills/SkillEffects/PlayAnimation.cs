@@ -16,11 +16,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         [SerializeField] 
         private float _animationDuration;
 
-        [SerializeField] 
-        List<string> _animationEventMessages;
+        [SerializeField]
+        private List<string> _animationEventMessages;
 
         [SerializeField]
-        List<float> _animationEventMessagesSendTime;
+        private List<float> _animationEventMessagesSendTime;
 
         public override void EditorUpdate()
         {
@@ -53,6 +53,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
             float timer = 0f;
             while ((timer < _animationDuration || messagesSent.Any(b => !b)) && !Skill.Caster.gameObject.IsInterrupted())
             {
+                if (timer >= _animationDuration)
+                {
+                    Activated = false;
+                }
                 yield return new WaitForSeconds(Time.deltaTime);
                 timer += Time.deltaTime;
                 for (int i = 0; i < _animationEventMessages.Count; ++i)

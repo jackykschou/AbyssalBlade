@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.GameValue;
 using UnityEngine;
@@ -20,7 +21,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         public bool HitPointAtZero { get; private set; }
 
         private Dictionary<HealthModifierNonStackableLabel, int> _currentHealthModifierNonStackableLabelMap;
-
         protected override void Initialize()
         {
             base.Initialize();
@@ -30,7 +30,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectChangeHealthFix)]
-        public virtual void ChangeHealthFixed(float amount)
+        public virtual void ChangeHealthFixed(float amount, bool crit)
         {
             if (Invincible || HitPointAtZero || Mathf.Approximately(0f, amount))
             {
@@ -42,7 +42,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             if (actualAmount <= 0f)
             {
                 actualAmount += actualAmount * DamageEmphasizePercentage;
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(actualAmount));
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(actualAmount), crit);
             }
             else
             {
@@ -66,15 +66,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
     
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectChangeCurrentPercentageHealth)]
-        public void ChangeHealthCurrentPercentage(float percentage)
+        public void ChangeHealthCurrentPercentage(float percentage, bool crit)
         {
-            ChangeHealthFixed(HitPoint.Value * percentage);
+            ChangeHealthFixed(HitPoint.Value * percentage, crit);
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectChangeMaxPercentageHealth)]
-        public void ChangeHealthMaxPercentage(float percentage)
+        public void ChangeHealthMaxPercentage(float percentage, bool crit)
         {
-            ChangeHealthFixed(HitPoint.Max * percentage);
+            ChangeHealthFixed(HitPoint.Max * percentage, crit);
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectChangeFixHealthPerSec)]
@@ -115,7 +115,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             while (duration >= 0)
             {
                 yield return new WaitForSeconds(1.0f);
-                ChangeHealthFixed(amount);
+                ChangeHealthFixed(amount, false);
                 duration -= 1;
             }
         }
@@ -125,7 +125,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             while (_currentHealthModifierNonStackableLabelMap.ContainsKey(nonStackableLabel) && _currentHealthModifierNonStackableLabelMap[nonStackableLabel] >= 0)
             {
                 yield return new WaitForSeconds(1.0f);
-                ChangeHealthFixed(amount);
+                ChangeHealthFixed(amount, false);
                 _currentHealthModifierNonStackableLabelMap[nonStackableLabel] =  _currentHealthModifierNonStackableLabelMap[nonStackableLabel] - 1;
             }
             _currentHealthModifierNonStackableLabelMap.Remove(nonStackableLabel);

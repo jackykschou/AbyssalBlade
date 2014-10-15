@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void DecrementSectionEnemy()
         {
-            TriggerGameEvent(GameEvent.OnSectionEnemyDespawned, gameObject, SectionId);
+            TriggerGameEvent(GameEvent.OnSectionEnemyDespawned, SectionId);
         }
 
         protected override void Deinitialize()

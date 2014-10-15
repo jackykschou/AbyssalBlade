@@ -10,13 +10,13 @@ namespace Assets.Scripts.Managers
 {
     public class LevelManager : GameLogic
     {
-        public bool Debug;
-
-        public const string MainCharacterGameObjectName = "MainCharacter";
-
         public bool IsPlayLevel;
 
-        public static LevelManager Instance;
+        public static LevelManager Instance
+        {
+            get { return _instance ?? (_instance = FindObjectOfType<LevelManager>()); }
+        }
+        private static LevelManager _instance;
 
         public LoopName BackGroundMusicLoop;
 
@@ -24,8 +24,6 @@ namespace Assets.Scripts.Managers
         {
             get { return Instance != null && Instance._levelStarted; }
         }
-
-        public GameObject PlayerMainCharacter;
 
         public Transform CameraInitialFollowTransform;
 
@@ -35,45 +33,44 @@ namespace Assets.Scripts.Managers
         {
             base.Initialize();
             _levelStarted = false;
-            Instance = FindObjectOfType<LevelManager>();
-            PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
 
-            if (Debug)
+            if (!GameManager.Instance.LoadLevelOnStart)
             {
                 TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+                TriggerGameEvent(GameEvent.OnLevelStarted);
             }
         }
 
         protected override void Deinitialize()
         {
-            Instance = null;
-        }
-
-        public void SwitchLoopClip(int clipNumber)
-        {
-            AudioManager.Instance.swapLoopTrack(BackGroundMusicLoop);
+            _instance = null;
         }
 
         [GameEventAttribute(GameEvent.OnLevelEnded)]
         public void OnLevelEnded()
         {
-            AudioManager.Instance.stopLoop(BackGroundMusicLoop);
+            AudioManager.Instance.StopLevelLoop(BackGroundMusicLoop);
         }
 
-        [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
+        [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelFinishedLoading()
         {
             if (CameraInitialFollowTransform == null)
             {
-                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, PlayerMainCharacter.transform);
+                GameManager.Instance.MainCamera.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, GameManager.Instance.PlayerMainCharacter.transform);
             }
             else
             {
-                Camera.main.gameObject.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, CameraInitialFollowTransform);
+                GameManager.Instance.MainCamera.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, CameraInitialFollowTransform);
             }
-            AudioManager.Instance.playLoop(BackGroundMusicLoop);
             _levelStarted = true;
             GameManager.Instance.HUD.SetActive(IsPlayLevel);
+        }
+
+        [GameEventAttribute(GameEvent.OnLevelStarted)]
+        public void OnLevelStarted()
+        {
+            AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
             GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
         }
     }

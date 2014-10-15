@@ -8,7 +8,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
     [AddComponentMenu("LevelMechanics/Section/SectionObjective/EnemySpawnPointsInactive")]
     public class EnemySpawnPointsInactive : SectionObjective
     {
-        public List<GameObject> ActiveSpawnPoints;
+        private List<GameObject> ActiveSpawnPoints;
 
         [GameEventAttribute(GameEvent.OnSectionEnemySpawnPointActivated)]
         public void OnSectionEnemySpawnerActivated(GameObject spawnPoint, int sectionId)

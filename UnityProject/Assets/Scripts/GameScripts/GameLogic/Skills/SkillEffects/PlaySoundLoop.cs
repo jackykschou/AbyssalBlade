@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Constants;
@@ -9,10 +8,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
     [AddComponentMenu("Skill/SkillEffect/PlaySoundLoop")]
     public class PlaySoundLoop : SkillEffect
     {
-        public LoopName loop;
+        public LoopName LoopName;
 
         [Range(0.0f, 1.0f)]
-        public float volume = 5.0f;
+        public float Volume = 5.0f;
 
         public override void Activate()
         {
@@ -22,12 +21,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 
         public void PlaySound()
         {
-            AudioManager.Instance.playLoop(loop,volume);
+            AudioManager.Instance.PlayLoop(LoopName, Volume);
         }
 
         public void StopSound()
         {
-            AudioManager.Instance.stopLoop(loop);
+            AudioManager.Instance.StopLoop(LoopName);
         }
     }
 }

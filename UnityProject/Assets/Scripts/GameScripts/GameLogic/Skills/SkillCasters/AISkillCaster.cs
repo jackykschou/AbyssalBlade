@@ -12,9 +12,27 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
     {
         public FixTimeDispatcher MinimumCoolDown;
 
+        protected override void Update()
+        {
+            base.Update();
+            UpdatePointingDirection();
+        }
+
         public bool CanCastAnySkill()
         {
             return Skills.Any(s => s.CanActivate()) && MinimumCoolDown.CanDispatch() && !gameObject.HitPointAtZero();
+        }
+
+        void UpdatePointingDirection()
+        {
+            if (Target == null)
+            {
+                PointingDirection = MathUtility.GetFacingDirectionVector(GameView.FacingDirection);
+            }
+            else if (Skills.All(s => s.IsPassive || !s.IsActivate))
+            {
+                PointingDirection = MathUtility.GetDirection(transform.position, Target.position).normalized;
+            }
         }
 
         [GameScriptEventAttribute(GameScriptEvent.AICastSkill)]

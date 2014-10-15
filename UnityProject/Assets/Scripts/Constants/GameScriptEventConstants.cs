@@ -17,7 +17,7 @@
         UpdateFacingDirection,                  // void(FacingDirection)
 
         SetAnimatorBoolState,                   // void(string)
-        SetAnimatorIntState,                    // void(string, int)
+        SetAnimatorFloatState,                  // void(string, int)
         
         AIRotateToTarget,                       // void()
         AICastSkill,                            // void()
@@ -29,8 +29,10 @@
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)
+        SkillCastFinished,                      // void(Skill)
         UpdateSkillCooldownPercentage,          // void(Skill, float)
         OnNewTargetDiscovered,                  // void(GameObject)
+        UpdateSkillButtonHoldEffectTime,        // void(float)
 
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
@@ -44,7 +46,7 @@
         ObjectChangeFixHealthPerSec,              // void(float, int)
         ObjectChangeCurrentPercentageHealthPerSec,// void(float, int)
         ObjectChangeMaxPercentageHealthPerSec,    // void(float, int)
-        OnObjectTakeDamage,                       // void(float)
+        OnObjectTakeDamage,                       // void(float, bool)
         OnObjectTakeHeal,                          // void(float)
 
         OnCollideTriggerTriggered,          // void(GameObject)
@@ -56,6 +58,8 @@
         MenuQuitButtonPressed,                          // void()
         OnButtonMouseOver,                           // void(GameObject, int)
         OnButtonMouseLeave,                          // void(int)
-        CameraFollowTarget                           // void(Transform)
+        CameraFollowTarget,                           // void(Transform)
+        GateDeactivated,                         // void()
+        GateActivated                               // void()
     };
 }

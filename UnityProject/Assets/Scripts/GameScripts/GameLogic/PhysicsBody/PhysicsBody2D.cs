@@ -24,7 +24,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectDestroyed)]
-        [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void DisableCollider()
         {
             Collider.enabled = false;

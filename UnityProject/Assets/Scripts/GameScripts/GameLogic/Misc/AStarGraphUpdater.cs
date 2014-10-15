@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using GameEvent = Assets.Scripts.Constants.GameEvent;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
@@ -19,6 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             AstarPath.active.UpdateGraphs(bounds);
         }
 
+        [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void RescanGraph()
         {
             AstarPath.active.Scan();

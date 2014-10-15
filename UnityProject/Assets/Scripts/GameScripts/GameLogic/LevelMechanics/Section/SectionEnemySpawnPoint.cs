@@ -15,7 +15,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     {
         public PrefabSpawner PrefabSpawner;
 
-        [Range(0f, float.MaxValue)] 
+        [Range(0f, 100f)] 
         public float SpawnRadius = 0f;
 
         public FixTimeDispatcher SpawnCoolDown;
@@ -24,9 +24,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 
         public bool Activated = true;
 
-        public bool IsActive 
+        private bool _triggered;
+        private bool _deactivated;
+
+        public bool CanSpawn 
         {
-            get { return PrefabSpawner.CanSpawn() && Activated && SectionActivated; }
+            get { return _triggered && PrefabSpawner.CanSpawn() && SpawnCoolDown.CanDispatch() && Activated && SectionActivated && GameManager.Instance.PlayerMainCharacter != null && !GameManager.Instance.PlayerMainCharacter.HitPointAtZero(); }
         }
 
         public override void OnSectionActivated(int sectionId)
@@ -35,65 +38,65 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             if (sectionId == SectionId)
             {
                 TriggerGameEvent(GameEvent.OnSectionEnemySpawnPointActivated, gameObject, SectionId);
+                TriggerArea.enabled = true;
             }
         }
 
         public override void OnSectionDeactivated(int sectionId)
         {
             base.OnSectionDeactivated(sectionId);
-            if (sectionId == SectionId)
+            if (sectionId == SectionId && !_deactivated)
             {
                 TriggerGameEvent(GameEvent.OnSectionEnemySpawnPointDeactivated, gameObject, SectionId);
+                TriggerArea.enabled = false;
+                _deactivated = true;
             }
         }
 
         protected override void OnTriggerStay2D(Collider2D coll)
         {
-            if (SpawnCoolDown.CanDispatch() &&
-                LevelManager.Instance.PlayerMainCharacter != null &&
-                !LevelManager.Instance.PlayerMainCharacter.HitPointAtZero())
-            {
-                StartCoroutine(SpawnEnemy());
-            }
-        }
-
-        public IEnumerator SpawnEnemy()
-        {
-            SpawnCoolDown.Dispatch();
-            Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
-                Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
-            GameObject spawnedEnemy = PrefabSpawner.SpawnPrefab(spawnPosition);
-            while (spawnedEnemy == null || !spawnedEnemy.activeSelf)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-            spawnedEnemy.tag = TagConstants.EnemyTag;
-            var despawnedOnNoHitPoint = spawnedEnemy.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
-            var noHitPointOnSectionDeactivated = spawnedEnemy.GetComponent<TriggerNoHitPointOnSectionDeactivated>();
-            if (despawnedOnNoHitPoint == null)
-            {
-                despawnedOnNoHitPoint = spawnedEnemy.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
-            }
-            if (noHitPointOnSectionDeactivated == null)
-            {
-                noHitPointOnSectionDeactivated = spawnedEnemy.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
-            }
-            despawnedOnNoHitPoint.SectionId = SectionId;
-            noHitPointOnSectionDeactivated.SectionId = SectionId;
-            TriggerGameEvent(GameEvent.OnSectionEnemySpawned, spawnedEnemy, SectionId);
+            _triggered = true;
         }
 
         protected override void Update()
         {
             base.Update();
-            if (SectionActivated && PrefabSpawner.CanSpawn() && Activated)
+            if (_deactivated)
             {
-                TriggerArea.enabled = true;
+                return;
             }
-            else if (!PrefabSpawner.CanSpawn() || !Activated || !SectionActivated)
+            if (SectionActivated && (!Activated || !PrefabSpawner.CanSpawn()))
             {
+                TriggerGameEvent(GameEvent.OnSectionEnemySpawnPointDeactivated, gameObject, SectionId);
                 TriggerArea.enabled = false;
+                _deactivated = true;
+                return;
             }
+            if (_triggered)
+            {
+                SpawnEnemy();
+            }
+        }
+
+        public void SpawnEnemy()
+        {
+            if (!CanSpawn)
+            {
+                return;
+            }
+            SpawnCoolDown.Dispatch();
+            Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
+                Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
+            PrefabSpawner.SpawnPrefab(spawnPosition, o =>
+            {
+                var triggerNoHitPointOnSectionDeactivated = o.GetComponent<TriggerNoHitPointOnSectionDeactivated>() ??
+                                                            o.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
+                var triggerOnSectionEnemyDespawnedOnNoHitPoint = o.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>() ??
+                                                                 o.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
+                triggerNoHitPointOnSectionDeactivated.SectionId = SectionId;
+                triggerOnSectionEnemyDespawnedOnNoHitPoint.SectionId = SectionId;
+            });
+            TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
         }
 
         protected override void Initialize()
@@ -108,6 +111,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             TriggerArea.enabled = false;
             gameObject.layer = LayerConstants.LayerMask.SpawnArea;
             Activated = true;
+            _triggered = false;
+            _deactivated = false;
         }
 
         protected override void Deinitialize()

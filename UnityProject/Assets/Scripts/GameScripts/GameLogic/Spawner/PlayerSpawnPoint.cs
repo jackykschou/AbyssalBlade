@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void SpawnPlayer()
         {
-            LevelManager.Instance.PlayerMainCharacter.transform.position = transform.position;
+            GameManager.Instance.PlayerMainCharacter.transform.position = transform.position;
         }
     }
 }

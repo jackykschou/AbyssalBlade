@@ -11,13 +11,14 @@
         OnSectionObjectivesCompleted,           // void(int)
         OnSectionEnemySpawnPointActivated,      // void(GameObject, int)
         OnSectionEnemySpawnPointDeactivated,    // void(GameObject, int)
-        OnSectionEnemySpawned,                  // void(GameObject, int)
+        OnSectionEnemySpawned,                  // void(int)
         OnSectionEnemyDespawned,                // void(GameObject, int)
 
         OnPlayerSkillCoolDownUpdate,   // void(int, float)
         PlayerHealthUpdate,            // void(float)
         OnLevelStartLoading,           // void()
         OnLevelFinishedLoading,        // void()
+        OnLevelStarted,                // void()
         OnLevelEnded,                  // void()
 
         OnGameEventSent,                 // void(GameEvent)

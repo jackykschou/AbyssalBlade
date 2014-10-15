@@ -84,5 +84,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             gameObject.MoveAdd(new Vector3(amount.x, amount.y, 0), moveDuration, 0, style);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
+
+        public void MoveByWithStyle(EaseType style, Vector2 amount, float speed)
+        {
+            float moveDuration = amount.magnitude / speed;
+            gameObject.MoveBy(amount, moveDuration, 0, style);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
+        }
     }
 }

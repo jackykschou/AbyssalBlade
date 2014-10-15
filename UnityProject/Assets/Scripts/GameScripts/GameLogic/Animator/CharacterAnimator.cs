@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
         public void UpdateFacingDirection(FacingDirection facingDirection)
         {
-            Animator.SetInteger(AnimatorControllerConstants.AnimatorParameterName.FacingDirection, (int)facingDirection);
+            Animator.SetFloat(AnimatorControllerConstants.AnimatorParameterName.FacingDirection, (int)facingDirection);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnCharacterMove)]
