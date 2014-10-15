@@ -23,7 +23,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
 
             if (Target == null)
             {
-                return;;
+                return;
             }
 
 
