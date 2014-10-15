@@ -11,6 +11,24 @@ namespace Assets.Scripts.GameScripts.GameLogic
     {
         private Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>> _gameScriptEvents;
         private List<GameScript> _gameScripts;
+        public bool Initialized 
+        {
+            get { return _initialized && _gameScriptsInitialized; }
+        }
+
+        public bool Disabled
+        {
+            get { return _gameScripts.Any(s => s.Disabled); }
+        }
+
+        private bool _gameScriptsInitialized;
+        private bool _initialized = false;
+        private bool _deinitialized = false;
+
+        public void UpdateInitialized()
+        {
+            _gameScriptsInitialized = _gameScripts.All(s => s.Initialized);
+        }
 
         public void TriggerGameScriptEvent(Constants.GameScriptEvent gameScriptEvent, params object[] args)
         {
@@ -56,32 +74,68 @@ namespace Assets.Scripts.GameScripts.GameLogic
             return _gameScriptEvents.ContainsKey(gameScript.GetType()) && _gameScriptEvents[gameScript.GetType()].ContainsKey(gameScriptEvent) && _gameScriptEvents[gameScript.GetType()][gameScriptEvent].ContainsKey(gameScript);
         }
 
-        private void InitializeFields()
+        void Start()
         {
-            if (_gameScriptEvents == null)
+            InitializeHelper();
+        }
+
+        void OnEnable()
+        {
+            InitializeHelper();
+        }
+
+        void OnSpawned()
+        {
+            InitializeHelper();
+        }
+
+        private void InitializeHelper()
+        {
+            if (_initialized)
             {
-                _gameScriptEvents = new Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>>();
+                return;
             }
-            if (_gameScripts == null)
+
+            _gameScriptEvents = new Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>>();
+            _gameScripts = GetComponents<GameScript>().ToList();
+            _initialized = true;
+            _deinitialized = false;
+        }
+
+        void OnDespawned()
+        {
+            DeinitializeHelper();
+        }
+
+        void OnDisable()
+        {
+            DeinitializeHelper();
+        }
+
+        void OnDestroy()
+        {
+            DeinitializeHelper();
+        }
+
+        private void DeinitializeHelper()
+        {
+            if (_deinitialized || !_initialized)
             {
-                _gameScripts = new List<GameScript>();
+                return;
             }
+
+            _initialized = false;
+            _deinitialized = true;
         }
 
         public void UpdateGameScriptEvents(GameScript gameScript)
         {
-            InitializeFields();
+            InitializeHelper();
             AddGameScriptEvents(gameScript);
         }
 
         private void AddGameScriptEvents(GameScript gameScript)
         {
-            if (_gameScripts.Contains(gameScript))
-            {
-                return;;
-            }
-            _gameScripts.Add(gameScript);
-
             gameScript.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance).ToList()
                 .ForEach(m =>
                 {

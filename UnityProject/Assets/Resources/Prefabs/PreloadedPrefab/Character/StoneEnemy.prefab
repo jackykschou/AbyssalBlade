@@ -315,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skills: []
   Target: {fileID: 0}
+  PointingDirection: {x: 0, y: 0}
   MinimumCoolDown:
     IsEnabled: 0
     DispatchInterval: 0
@@ -424,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479e81ffffaa1754aadb477f2eb10a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectionRadius: 8
+  DetectionRadius: 10
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -628,8 +629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6830ca6c8ff524244b98b5169eb640de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: 39
-  volume: 1
+  Clip: 0
+  Volume: 1
 --- !u!114 &11400064
 MonoBehaviour:
   m_ObjectHideFlags: 1

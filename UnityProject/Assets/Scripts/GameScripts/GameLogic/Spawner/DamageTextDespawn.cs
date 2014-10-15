@@ -21,14 +21,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             _timeLeft -= Time.deltaTime;
         }
 
-        public void OnSpawned()
-        {
-            TextMotor motor = gameObject.GetComponent<TextMotor>();
-            motor.Shoot(_direction,_speed,_distance);
-            _timeLeft = OrigDespawnTime;
-            DisableGameObject(OrigDespawnTime);
-        }
-
         public void OnDespawned()
         {
         }
@@ -41,6 +33,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             _distance = Random.Range(1.5f, 2f);
             _mesh = gameObject.GetComponent<TextMesh>();
             _mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
+            TextMotor motor = gameObject.GetComponent<TextMotor>();
+            motor.Shoot(_direction, _speed, _distance);
+            _timeLeft = OrigDespawnTime;
+            DisableGameObject(OrigDespawnTime);
+
         }
         protected override void Deinitialize()
         {
