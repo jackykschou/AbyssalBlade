@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using UnityEngine;
-using System.Collections.Generic;
-
+﻿using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
@@ -11,13 +8,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     public class SectionSkillHighlight : SectionLogic
     {
         public int SkillToHighlight;
-        [Range(0.0f,5.0f)]
-        public float duration;
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
+        private const float Duration = .5f;
 
         protected override void Deinitialize()
         {
@@ -28,7 +19,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             base.OnSectionActivated(sectionId);
             if (SectionId == sectionId)
             {
-                TriggerGameEvent(GameEvent.EnableHighlightSkill, SkillToHighlight, duration);
+                TriggerGameEvent(GameEvent.EnableHighlightSkill, SkillToHighlight, Duration);
             }
         }
 

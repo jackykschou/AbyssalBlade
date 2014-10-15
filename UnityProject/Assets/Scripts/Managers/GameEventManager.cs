@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Assets.Scripts.Constants;
-using Debug = UnityEngine.Debug;
+using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
@@ -11,17 +10,22 @@ namespace Assets.Scripts.Managers
     {
         public static GameEventManager Instance { get { return _instance; } }
 
-        private Dictionary<GameEvent, Dictionary<System.Object, System.Collections.Generic.List<MethodInfo>>> _gameEvents;
+        private Dictionary<GameEvent, Dictionary<System.Object, List<MethodInfo>>> _gameEvents;
 
         private static readonly GameEventManager _instance = new GameEventManager();
 
         GameEventManager()
         {
-            _gameEvents = new Dictionary<GameEvent, Dictionary<object, System.Collections.Generic.List<MethodInfo>>>();
+            _gameEvents = new Dictionary<GameEvent, Dictionary<object, List<MethodInfo>>>();
         }
 
         public void TriggerGameEvent(System.Object obj, GameEvent gameEvent, params System.Object[] args)
         {
+            if (gameEvent != GameEvent.OnGameEventSent)
+            {
+                TriggerGameEventSent(GameEvent.OnGameEventSent, gameEvent);
+            }
+
             if (!_gameEvents.ContainsKey(gameEvent))
             {
                 return;
@@ -33,15 +37,15 @@ namespace Assets.Scripts.Managers
             }
 
             _gameEvents[gameEvent][obj].ForEach(m => m.Invoke(obj, args));
-
-            if (gameEvent != GameEvent.OnGameEventSent)
-            {
-                TriggerGameEventSent(GameEvent.OnGameEventSent, gameEvent);
-            }
         }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
+            if (gameEvent != GameEvent.OnGameEventSent)
+            {
+                TriggerGameEventSent(GameEvent.OnGameEventSent, gameEvent);
+            }
+
             if (!_gameEvents.ContainsKey(gameEvent))
             {
                 return;
@@ -58,11 +62,6 @@ namespace Assets.Scripts.Managers
                     originalCount = dict.Count;
                     --i;
                 }
-            }
-
-            if (gameEvent != GameEvent.OnGameEventSent)
-            {
-                TriggerGameEventSent(GameEvent.OnGameEventSent, gameEvent.ToString());
             }
         }
 

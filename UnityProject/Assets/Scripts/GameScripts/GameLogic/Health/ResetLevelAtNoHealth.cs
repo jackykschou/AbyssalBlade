@@ -12,6 +12,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         [Range(0f, float.MaxValue)]
         public float Delay = 1.0f;
 
+        private bool _reset = false;
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            _reset = false;
+        }
+
         protected override void Deinitialize()
         {
         }
@@ -19,6 +27,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void DestroyGameObject()
         {
+            if (_reset)
+            {
+                return;
+            }
+            _reset = true;
             StartCoroutine(DestroyGameObjectIE());
         }
 

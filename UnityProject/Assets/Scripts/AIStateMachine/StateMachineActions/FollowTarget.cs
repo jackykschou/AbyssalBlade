@@ -37,6 +37,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
             if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
                 pathfinding.gameObject.HitPointAtZero() || ((Vector2)pathfinding.GetMoveDirection() == Vector2.zero))
             {
+                stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AIRotateToTarget);
                 return;
             }
 

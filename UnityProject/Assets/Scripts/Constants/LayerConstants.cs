@@ -41,7 +41,7 @@
             }
             public static int Destroyable
             {
-                get { return UnityEngine.LayerMask.GetMask(LayerNames.Destroyable, LayerNames.PlayerCharacter, LayerNames.Enemy); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.Destroyable, LayerNames.PlayerCharacter, LayerNames.Enemy, LayerNames.DestroyableObstacle); }
             }
             public static int DestroyableObstacle
             {

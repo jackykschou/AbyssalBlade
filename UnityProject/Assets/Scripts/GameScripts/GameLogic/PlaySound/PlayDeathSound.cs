@@ -19,7 +19,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
         [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void StartPlayDeathSound()
         {
-            AudioManager.Instance.playClip(clip, gameObject, volume);
+            AudioManager.Instance.PlayClip(clip, gameObject, volume);
         }
 
         protected override void Deinitialize()

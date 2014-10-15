@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using UnityEngine;
+using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Health
 {
@@ -20,12 +21,26 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, bool crit)
         {
-            TextMesh textMesh = PrefabSpawner.SpawnPrefab(transform.position).GetComponent<TextMesh>();
-            textMesh.text = ((int)damage).ToString();
-            textMesh.color = textColor;
+            PrefabSpawner.SpawnPrefabImmediate(transform.position, o =>
+            {
+                TextMesh textMesh = o.GetComponent<TextMesh>();
+                textMesh.text = ((int)damage).ToString();
+                textMesh.color = textColor;
+                if (crit)
+                {
+                    textMesh.transform.localScale *= 1.5f;
+                    textMesh.fontStyle = FontStyle.Italic;
+                    //MessageManager.Instance.DisplayMessage("CRIT!",Vector3.up);
+                }
+                else
+                {
+                    textMesh.fontStyle = FontStyle.Normal;
+                }
+            });
         }
+
         protected override void Deinitialize()
         {
         }

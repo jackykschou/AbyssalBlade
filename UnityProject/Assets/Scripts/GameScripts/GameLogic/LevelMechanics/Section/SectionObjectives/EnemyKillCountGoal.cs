@@ -36,7 +36,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
         }
 
         [GameEventAttribute(GameEvent.OnSectionEnemyDespawned)]
-        public void OnSectionEnemyDespawned(GameObject enemy, int sectionId)
+        public void OnSectionEnemyDespawned(int sectionId)
         {
             if (sectionId == SectionId)
             {

@@ -55,8 +55,7 @@ namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
         public override void Initialize()
         {
             IsEnabled = true;
-            _lastFrameTime = 0f;
-            ResetTime();
+            _lastFrameTime = -100;
         }
 
         public override void Deinitialize()

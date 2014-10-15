@@ -1,44 +1,24 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-using Assets.Scripts.Managers;
-using Assets.Scripts.Constants;
-using Assets.Scripts.Attributes;
-using GameEvent = Assets.Scripts.Constants.GameEvent;
-using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
-using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
+using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
+namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 {
+    [RequireComponent(typeof(TextMotor))]
+    [RequireComponent(typeof(TextMesh))]
     public class DamageTextDespawn : GameLogic
     {
-        public float origDespawnTime = 1.0f;
-        public float scrollingVelocity = 0.5f;
-        private TextMesh mesh;
-        private Vector3 Direction;
-        private float Speed;
-        private float Distance;
-        private float TimeLeft;
+        public float OrigDespawnTime = 1.0f;
+        private TextMesh _mesh;
+        private Vector3 _direction;
+        private float _speed;
+        private float _distance;
+        private float _timeLeft;
 
         protected override void Update()
         {
-            mesh.color = new Color(mesh.color.r, mesh.color.g, mesh.color.b, TimeLeft / origDespawnTime);
-            TimeLeft -= Time.deltaTime;
-        }
-
-        public void OnSpawned()
-        {
-            this.StartCoroutine(this.TimedDespawn());
-            TextMotor motor = gameObject.GetComponent<TextMotor>();
-            motor.Shoot(Direction,Speed,Distance);
-            TimeLeft = origDespawnTime;
-        }
-
-        private IEnumerator TimedDespawn()
-        {
-            yield return new WaitForSeconds(this.origDespawnTime);
-            PrefabManager.Instance.DespawnPrefab(this.gameObject);
+            _mesh.color = new Color(_mesh.color.r, _mesh.color.g, _mesh.color.b, _timeLeft / OrigDespawnTime);
+            _timeLeft -= Time.deltaTime;
         }
 
         public void OnDespawned()
@@ -48,11 +28,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.DamageTextDespawn
         protected override void Initialize()
         {
             base.Initialize();
-            Direction = new Vector3(Random.Range(-.45f, .45f), Random.Range(0f, 1f), 0);
-            Speed = Random.Range(5.0f, 10.0f);
-            Distance = Random.Range(1.5f, 2f);
-            mesh = this.gameObject.GetComponent<TextMesh>();
-            mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
+            _direction = new Vector3(Random.Range(-.45f, .45f), Random.Range(0f, 1f), 0);
+            _speed = Random.Range(5.0f, 10.0f);
+            _distance = Random.Range(1.5f, 2f);
+            _mesh = gameObject.GetComponent<TextMesh>();
+            _mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
+            TextMotor motor = gameObject.GetComponent<TextMotor>();
+            motor.Shoot(_direction, _speed, _distance);
+            _timeLeft = OrigDespawnTime;
+            DisableGameObject(OrigDespawnTime);
+
         }
         protected override void Deinitialize()
         {

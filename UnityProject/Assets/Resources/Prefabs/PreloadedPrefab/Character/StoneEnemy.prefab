@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skills: []
   Target: {fileID: 0}
+  PointingDirection: {x: 0, y: 0}
   MinimumCoolDown:
     IsEnabled: 0
     DispatchInterval: 0
@@ -424,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479e81ffffaa1754aadb477f2eb10a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectionRadius: 8
+  DetectionRadius: 10
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -528,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b16d40545ede74dab4395fb43132c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: 22
+  clip: 37
   volume: 1
 --- !u!114 &11400050
 MonoBehaviour:
@@ -542,7 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  clip: 24
+  clip: 6
   volume: 1
 --- !u!114 &11400052
 MonoBehaviour:
@@ -628,8 +629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6830ca6c8ff524244b98b5169eb640de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: 14
-  volume: 1
+  Clip: 0
+  Volume: 1
 --- !u!114 &11400064
 MonoBehaviour:
   m_ObjectHideFlags: 1

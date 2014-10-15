@@ -22,7 +22,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 
         public void PlaySound()
         {
-            AudioManager.Instance.playClip(clip,this.gameObject,volume);
+            AudioManager.Instance.PlayClip(clip,this.gameObject,volume);
         }
     }
 }
