@@ -6,9 +6,9 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Animator
 {
-    [AddComponentMenu("ObjectAnimator/SceneObjectAnimator")]
+    [AddComponentMenu("ObjectAnimator/PropAnimator")]
     [RequireComponent(typeof(UnityEngine.Animator))]
-    public class SceneObjectAnimator : ObjectAnimator
+    public class PropAnimator : ObjectAnimator
     {
         protected override void Deinitialize()
         {
