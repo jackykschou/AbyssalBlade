@@ -130,7 +130,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
      * If you have fast moving targets or AIs, you might want to set it to a lower value.
      * The value is in seconds between path requests.
      */
-        public const float repathRate = 0.7f;
+        public float repathRate = 0.7f;
 
         /** Target to move towards.
      * The AI will try to follow/move towards this Target.
