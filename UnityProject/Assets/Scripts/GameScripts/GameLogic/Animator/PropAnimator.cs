@@ -26,5 +26,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         {
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Death);
         }
+
+        [GameScriptEventAttribute(GameScriptEvent.GateActivated)]
+        public void PlayActivateAnimation()
+        {
+            SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Idle);
+        }
     }
 }

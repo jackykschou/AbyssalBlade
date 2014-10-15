@@ -59,6 +59,7 @@
         OnButtonMouseOver,                           // void(GameObject, int)
         OnButtonMouseLeave,                          // void(int)
         CameraFollowTarget,                           // void(Transform)
-        GateDeactivated                         // void()
+        GateDeactivated,                         // void()
+        GateActivated                               // void()
     };
 }
