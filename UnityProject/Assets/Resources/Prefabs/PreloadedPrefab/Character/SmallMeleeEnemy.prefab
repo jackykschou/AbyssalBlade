@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.218999997, z: 0}
+  m_LocalPosition: {x: 0, y: -.335610002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.22920001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -155,7 +155,7 @@ Animator:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fcdeb087749d44f4580b650950e66ad3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2d54d9d799da61f44a09290c8cffe846, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -177,7 +177,7 @@ MonoBehaviour:
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
-  Radius: .800000012
+  Radius: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,7 +213,7 @@ MonoBehaviour:
   Amount:
     InitialMinValue: -100
     InitialMaxValue: 0
-    InitialValue: -5
+    InitialValue: -3
   Percentage: 0
   Duration: 0
   CriticalChance: 0
@@ -231,13 +231,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
   BoolParameterName: Melee
-  _animationDuration: 1
+  _animationDuration: .5
   _animationEventMessages:
   - ApplyAreaHealthChange
   - PlaySound
   _animationEventMessagesSendTime:
-  - .349999994
-  - .349999994
+  - .200000003
+  - .200000003
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,7 +333,7 @@ MonoBehaviour:
   Speed:
     InitialMinValue: 0
     InitialMaxValue: 15
-    InitialValue: 15
+    InitialValue: 12
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a606312a8bc4144ca72b8db5bc4a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repathRate: .400000006
   Target: {fileID: 0}
   canSearch: 1
   canMove: 1
@@ -666,7 +667,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: fd89a8c93eb9f48578893f7a5d3dfee0, type: 3}
+  m_Sprite: {fileID: 21300070, guid: c074dccf18c42492bae2803ce7adf7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
