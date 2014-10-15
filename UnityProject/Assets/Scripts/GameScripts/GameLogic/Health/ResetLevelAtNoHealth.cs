@@ -25,17 +25,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
-        public void DestroyGameObject()
+        public void ResetLevel()
         {
             if (_reset)
             {
                 return;
             }
             _reset = true;
-            StartCoroutine(DestroyGameObjectIE());
+            StartCoroutine(ResetLevelIE());
         }
 
-        IEnumerator DestroyGameObjectIE()
+        IEnumerator ResetLevelIE()
         {
             yield return new WaitForSeconds(Delay);
             GameManager.Instance.ReloadLevel();

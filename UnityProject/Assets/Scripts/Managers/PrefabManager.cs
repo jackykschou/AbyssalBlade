@@ -82,7 +82,7 @@ namespace Assets.Scripts.Managers
 
                     PrefabPool prefabPool = new PrefabPool(obj.transform)
                     {
-                        preloadAmount = 100,
+                        preloadAmount = 50,
                         cullDespawned = true,
                         cullAbove = 200,
                         cullDelay = 5,
@@ -169,7 +169,7 @@ namespace Assets.Scripts.Managers
 
                 _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
         }
 
@@ -229,7 +229,7 @@ namespace Assets.Scripts.Managers
                 _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
                 _spawnedPrefabsMap.Remove(prefabGameObject);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
         }
 

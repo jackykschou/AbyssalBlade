@@ -13,6 +13,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
         private const float StartTrackObjectivesDelay = 1.5f;
         private const float TrackObjectivesInterval = 1.0f;
 
+        [GameEventAttribute(GameEvent.OnLevelEnded)]
+        public void OnLevelEnded()
+        {
+            TriggerGameEvent(GameEvent.OnSectionObjectivesCompleted, SectionId);
+        }
+
         public override void OnSectionActivated(int sectionId)
         {
             base.OnSectionActivated(sectionId);

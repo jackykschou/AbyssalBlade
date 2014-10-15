@@ -213,7 +213,7 @@ MonoBehaviour:
   Amount:
     InitialMinValue: -100
     InitialMaxValue: 0
-    InitialValue: -5
+    InitialValue: -30
   Percentage: 0
   Duration: 0
   CriticalChance: 0
@@ -236,8 +236,8 @@ MonoBehaviour:
   - ApplyAreaHealthChange
   - PlaySound
   _animationEventMessagesSendTime:
-  - .349999994
-  - .349999994
+  - .5
+  - .5
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a606312a8bc4144ca72b8db5bc4a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repathRate: .699999988
   Target: {fileID: 0}
   canSearch: 1
   canMove: 1
@@ -576,8 +577,8 @@ MonoBehaviour:
   Invincible: 0
   HitPoint:
     InitialMinValue: 0
-    InitialMaxValue: 80
-    InitialValue: 80
+    InitialMaxValue: 150
+    InitialValue: 150
   HealingEmphasizePercentage: 0
   DamageEmphasizePercentage: 0
 --- !u!114 &11400056
@@ -602,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abebd14585553649b50328476e1bdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitDamageThreshold: 45
+  HitDamageThreshold: 50
   HitDamageThresholdResetTime:
     IsEnabled: 0
     DispatchInterval: 1

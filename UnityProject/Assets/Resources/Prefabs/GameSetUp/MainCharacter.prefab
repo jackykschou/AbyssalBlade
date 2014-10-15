@@ -958,7 +958,7 @@ MonoBehaviour:
   Amount:
     InitialMinValue: -100
     InitialMaxValue: 0
-    InitialValue: -50
+    InitialValue: -70
   Percentage: 0
   Duration: 0
   CriticalChance: 0
@@ -977,7 +977,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: 8
+    DispatchInterval: 15
 --- !u!114 &11400068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1070,8 +1070,8 @@ MonoBehaviour:
   Invincible: 1
   HitPoint:
     InitialMinValue: 0
-    InitialMaxValue: 250
-    InitialValue: 250
+    InitialMaxValue: 500
+    InitialValue: 500
   HealingEmphasizePercentage: 0
   DamageEmphasizePercentage: 0
 --- !u!114 &11400082
@@ -1324,8 +1324,8 @@ MonoBehaviour:
   - StartSpawnProjectile
   - PlaySound
   _animationEventMessagesSendTime:
-  - .100000001
-  - .100000001
+  - .150000006
+  - .150000006
 --- !u!114 &11400112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   CoolDownDispatcher:
     IsEnabled: 0
-    DispatchInterval: 1
+    DispatchInterval: .75
 --- !u!114 &11400118
 MonoBehaviour:
   m_ObjectHideFlags: 1

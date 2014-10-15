@@ -18,12 +18,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
         }
 
-        [GameEventAttribute(GameEvent.OnLevelEnded)]
-        public void OnLevelEnded()
-        {
-            TriggerGameEvent(GameEvent.OnSectionDeactivated, SectionId);
-        }
-
         protected override void Initialize()
         {
             base.Initialize();
