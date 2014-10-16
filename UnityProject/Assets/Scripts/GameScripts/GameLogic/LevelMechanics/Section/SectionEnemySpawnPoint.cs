@@ -39,6 +39,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             {
                 TriggerGameEvent(GameEvent.OnSectionEnemySpawnPointActivated, gameObject, SectionId);
                 TriggerArea.enabled = true;
+                _deactivated = false;
             }
         }
 
