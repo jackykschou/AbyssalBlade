@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -35,13 +36,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         {
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.UpdatePlayerAxis)]
-        void UpdatePointingDirection(Vector2 direction)
+        [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
+        void UpdatePointingDirection(FacingDirection facingDirection)
         {
-            if (Skills.All(s => s.IsPassive || !s.IsActivate))
-            {
-                PointingDirection = direction.normalized;
-            }
+            PointingDirection = MathUtility.GetFacingDirectionVector(facingDirection);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]

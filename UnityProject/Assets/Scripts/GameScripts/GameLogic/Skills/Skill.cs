@@ -21,6 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         public bool IsActivate;
         public bool OnceAtATime;
         public bool IsPassive;
+        public bool Movable;
 
         [SerializeField] 
         private List<SkillEffect> _skillEffects;
@@ -51,7 +52,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
 
         public bool CanActivate()
         {
-            return _castableConditions.All(c => c.CanCast()) && (!OnceAtATime || !IsActivate) && (IsPassive || !Caster.CastingActiveSkill);
+            return _castableConditions.All(c => c.CanCast()) && (!OnceAtATime || !IsActivate) && (IsPassive || !Caster.CastingActiveSkill) && (Movable || !Caster.Moving);
         }
 
         public void Activate()

@@ -458,6 +458,7 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 1
   _skillEffects:
   - {fileID: 11400002}
   _skillEffectsOrder: 00000000
@@ -508,8 +509,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
   States:
-  - Idle
   - Move
+  - Idle
+  - Dash
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -524,6 +526,7 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 1
   _skillEffects:
   - {fileID: 11400050}
   - {fileID: 11400012}
@@ -644,6 +647,7 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 1
   _skillEffects:
   - {fileID: 11400030}
   - {fileID: 11400028}
@@ -660,8 +664,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  Speed: 60
-  Time: .300000012
+  Speed: 70
+  Time: .200000003
 --- !u!114 &11400030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,7 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
   BoolParameterName: Dash
-  _animationDuration: .25
+  _animationDuration: .200000003
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
 --- !u!114 &11400032
@@ -729,6 +733,7 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 0
   _skillEffects:
   - {fileID: 11400042}
   - {fileID: 11400040}
@@ -881,6 +886,7 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 0
   _skillEffects:
   - {fileID: 11400058}
   _skillEffectsOrder: 00000000
@@ -1163,6 +1169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills: []
+  Moving: 0
   Target: {fileID: 0}
   PointingDirection: {x: 0, y: 0}
   MovementSkill: {fileID: 11400000}
@@ -1303,6 +1310,7 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 0
   _skillEffects:
   - {fileID: 11400110}
   _skillEffectsOrder: 00000000
