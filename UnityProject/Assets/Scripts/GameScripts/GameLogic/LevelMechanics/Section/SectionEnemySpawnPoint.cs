@@ -18,6 +18,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         [Range(0f, 100f)] 
         public float SpawnRadius = 0f;
 
+        public bool FadeInEnemy = false;
+
+        [Range(0f, 5f)]
+        public float FadeInTime = 0f;
+
+
         public FixTimeDispatcher SpawnCoolDown;
 
         public CircleCollider2D TriggerArea;
@@ -96,8 +102,24 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                                                                  o.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
                 triggerNoHitPointOnSectionDeactivated.SectionId = SectionId;
                 triggerOnSectionEnemyDespawnedOnNoHitPoint.SectionId = SectionId;
+                if(FadeInEnemy)
+                    StartCoroutine(FadeInEnemyIE(o, FadeInTime));
             });
             TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
+        }
+
+        public IEnumerator FadeInEnemyIE(GameObject o, float time)
+        {
+            float timePass = 0.0f;
+            SpriteRenderer render = o.GetComponent<SpriteRenderer>();
+            render.color = new Color(render.color.r,render.color.g,render.color.b, 0.0f);
+            while (timePass < time)
+            {
+                render.color = new Color(render.color.r, render.color.g, render.color.b, timePass/time);
+                yield return new WaitForSeconds(Time.deltaTime);
+                timePass += Time.deltaTime;
+            }
+            render.color = new Color(render.color.r, render.color.g, render.color.b, 1.0f);
         }
 
         protected override void Initialize()
