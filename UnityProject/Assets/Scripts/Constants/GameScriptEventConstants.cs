@@ -34,6 +34,9 @@
         OnNewTargetDiscovered,                  // void(GameObject)
         UpdateSkillButtonHoldEffectTime,        // void(float)
 
+        OnSkillComboChanged,                    // void(float)
+        RefreshSkillCoolDown,                   // void()
+
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()

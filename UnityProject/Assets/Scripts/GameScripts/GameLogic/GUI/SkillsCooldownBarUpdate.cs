@@ -18,11 +18,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         protected override void Update()
         {
-            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 1, _playerCharacterSkillsCaster.Skill1.getCooldownPercentage());
-            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 2, _playerCharacterSkillsCaster.Skill2.getCooldownPercentage());
-            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 3, _playerCharacterSkillsCaster.Skill3.getCooldownPercentage());
-            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 4, _playerCharacterSkillsCaster.Skill4.getCooldownPercentage());
-            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 5, _playerCharacterSkillsCaster.Dash.getCooldownPercentage());
+            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 1, _playerCharacterSkillsCaster.Skill1.GetCooldownPercentage());
+            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 2, _playerCharacterSkillsCaster.Skill2.GetCooldownPercentage());
+            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 3, _playerCharacterSkillsCaster.Skill3.GetCooldownPercentage());
+            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 4, _playerCharacterSkillsCaster.Skill4.GetCooldownPercentage());
+            TriggerGameEvent(GameEvent.OnPlayerSkillCoolDownUpdate, 5, _playerCharacterSkillsCaster.Dash.GetCooldownPercentage());
         }
 
         protected override void Deinitialize()

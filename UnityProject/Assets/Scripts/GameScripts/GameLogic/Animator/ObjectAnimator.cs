@@ -13,7 +13,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
     public abstract class ObjectAnimator : GameLogic
     {
         private Dictionary<string, float> _animationBoolParametesrAutoResetBufferMap;
-        private string _lastBoolParameter;
 
         private const float BoolResetBufferFrameTime = 0.1f;
 
@@ -24,7 +23,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
             base.Initialize();
             Animator = GetComponent<UnityEngine.Animator>();
             _animationBoolParametesrAutoResetBufferMap = new Dictionary<string, float>();
-            _lastBoolParameter = string.Empty;
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Idle);
         }
 
@@ -35,11 +33,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
         [GameScriptEventAttribute(GameScriptEvent.SetAnimatorBoolState)]
         public void SetAnimatorBoolState(string state)
         {
-            if (_lastBoolParameter != string.Empty)
-            {
-                Animator.SetBool(_lastBoolParameter, false);
-            }
-            _lastBoolParameter = state;
             Animator.SetBool(state, true);
             if (_animationBoolParametesrAutoResetBufferMap.ContainsKey(state))
             {

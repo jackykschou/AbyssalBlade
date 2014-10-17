@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.GameScripts.Components.Input;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;

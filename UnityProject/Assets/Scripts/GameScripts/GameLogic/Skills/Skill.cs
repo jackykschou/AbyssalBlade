@@ -25,11 +25,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
 
         [SerializeField] 
         private List<SkillEffect> _skillEffects;
-
+        [SerializeField] 
+        private List<SkillEffect> _proSkillEffects;
         [SerializeField] 
         private List<int> _skillEffectsOrder;
+        [SerializeField]
+        private List<int> _proSkillEffectsOrder;
 
         private SortedDictionary<int, List<SkillEffect>> _soretedSkillEffects;
+        private SortedDictionary<int, List<SkillEffect>> _soretedProSkillEffects;
             
         [Range(0f, 1f)] 
         private float _coolDownPercentage;
@@ -81,7 +85,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         {
             foreach (var pair in _soretedSkillEffects)
             {
-                pair.Value.ForEach(e => e.Activate());
+                pair.Value.ForEach(
+                    e =>
+                    {
+                        if (e.CanActivate())
+                        {
+                            e.Activate();
+                        }
+                    });
 
                 while (pair.Value.Any(e => e.Activated))
                 {
@@ -98,7 +109,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             _coolDownPercentage = percentage;
         }
 
-        public float getCooldownPercentage()
+        public float GetCooldownPercentage()
         {
             return _coolDownPercentage;
         }

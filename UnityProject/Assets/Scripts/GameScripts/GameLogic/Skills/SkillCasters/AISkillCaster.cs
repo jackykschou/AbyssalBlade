@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.GameScripts.Components.Input;
 using Assets.Scripts.Utility;
 using UnityEngine;
 

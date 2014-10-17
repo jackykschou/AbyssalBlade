@@ -1,7 +1,8 @@
 ﻿using System;
+using Pathfinding;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
+namespace Assets.Scripts.GameScripts.Components.Input
 {
     [Serializable]
     public class FixTimeDispatcher : GameScriptComponent
@@ -52,10 +53,15 @@ namespace Assets.Scripts.GameScripts.Components.TimeDispatcher
             }
         }
 
+        public void TurnDispatchable()
+        {
+            _lastFrameTime = -100;
+        }
+
         public override void Initialize()
         {
             IsEnabled = true;
-            _lastFrameTime = -100;
+            TurnDispatchable();
         }
 
         public override void Deinitialize()

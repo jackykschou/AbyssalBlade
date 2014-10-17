@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.GameScripts.Components.Input;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Health;
 using PathologicalGames;

@@ -1,4 +1,7 @@
-﻿ using Assets.Scripts.Constants;
+﻿ using System.Collections.Generic;
+ using System.Linq;
+ using Assets.Scripts.Constants;
+ using Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.ActivateCondition;
  using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
@@ -8,6 +11,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
     {
         public Skill Skill;
         public bool Activated { get; protected set; }
+        public List<SkillEffectActivateCondition> ActivateConditions;
+
+        public bool CanActivate()
+        {
+            return ActivateConditions.All(c => c.CanActivate());
+        }
 
         public virtual void Activate()
         {
@@ -19,6 +28,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
             base.Initialize();
             Skill = GetComponent<Skill>();
             gameObject.tag = Skill.tag;
+            if (ActivateConditions == null)
+            {
+                ActivateConditions = new List<SkillEffectActivateCondition>();
+            }
+            ActivateConditions.ForEach(c => c.SkillEffect = this);
         }
 
         protected override void Deinitialize()

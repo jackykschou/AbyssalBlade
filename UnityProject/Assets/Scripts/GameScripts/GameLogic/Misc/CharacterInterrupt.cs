@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.GameScripts.Components.Input;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;

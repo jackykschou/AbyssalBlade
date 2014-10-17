@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.GameScripts.Components.Input;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
@@ -34,6 +34,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                 _currentComboValue = (_currentComboValue + 1) % MaxComboValue;
             }
             TriggerCasterGameScriptEvent(GameScriptEvent.SetAnimatorFloatState, ComboIntParameterName, _currentComboValue);
+            TriggerCasterGameScriptEvent(GameScriptEvent.OnSkillComboChanged, _currentComboValue);
             ComboResetTime.ResetTime();
             Activated = false;
         }

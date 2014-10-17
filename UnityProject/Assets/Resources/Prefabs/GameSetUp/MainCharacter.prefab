@@ -53,6 +53,11 @@ GameObject:
   - 114: {fileID: 11400126}
   - 114: {fileID: 11400050}
   - 114: {fileID: 11400018}
+  - 114: {fileID: 11400134}
+  - 114: {fileID: 11400132}
+  - 114: {fileID: 11400130}
+  - 114: {fileID: 11400128}
+  - 114: {fileID: 11400136}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -457,11 +462,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActivate: 0
   OnceAtATime: 1
-  IsPassive: 0
+  IsPassive: 1
   Movable: 1
   _skillEffects:
   - {fileID: 11400002}
+  _proSkillEffects: []
   _skillEffectsOrder: 00000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -474,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -512,6 +520,8 @@ MonoBehaviour:
   - Move
   - Idle
   - Dash
+  - Charge
+  - ChargeMove
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -528,9 +538,14 @@ MonoBehaviour:
   IsPassive: 0
   Movable: 1
   _skillEffects:
+  - {fileID: 11400128}
   - {fileID: 11400050}
+  - {fileID: 11400130}
   - {fileID: 11400012}
-  _skillEffectsOrder: 0000000001000000
+  - {fileID: 11400136}
+  _proSkillEffects: []
+  _skillEffectsOrder: 0000000001000000020000000200000002000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,6 +558,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions:
+  - {fileID: 11400134}
   BoolParameterName: Skill2
   _animationDuration: .400000006
   _animationEventMessages:
@@ -595,7 +612,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  PrefabSpawner: {fileID: 0}
+  ActivateConditions:
+  - {fileID: 11400134}
+  PrefabSpawner: {fileID: 11400014}
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400020}
@@ -651,7 +670,9 @@ MonoBehaviour:
   _skillEffects:
   - {fileID: 11400030}
   - {fileID: 11400028}
+  _proSkillEffects: []
   _skillEffectsOrder: 0000000000000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -664,6 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   Speed: 70
   Time: .200000003
 --- !u!114 &11400030
@@ -678,6 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   BoolParameterName: Dash
   _animationDuration: .200000003
   _animationEventMessages: []
@@ -737,7 +760,9 @@ MonoBehaviour:
   _skillEffects:
   - {fileID: 11400042}
   - {fileID: 11400040}
+  _proSkillEffects: []
   _skillEffectsOrder: 0000000000000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -750,6 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   ComboIntParameterName: ComboNumber
   MaxComboValue: 3
   ComboResetTime:
@@ -767,6 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   BoolParameterName: Skill1
   _animationDuration: .300000012
   _animationEventMessages:
@@ -787,6 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   HealthChanger: {fileID: 0}
   Position:
     Follower: {fileID: 0}
@@ -830,6 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   clip: 20
   volume: 1
 --- !u!114 &11400050
@@ -844,12 +873,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   _button:
     _keyCode: 7
     CoolDownTimeDispatcher:
       IsEnabled: 0
       DispatchInterval: 0
   _onHoldFinishEventMessages: []
+  _loopEventMessages: []
+  _loopEventMessagesSendTime: []
+  TimePerLoop: .25
 --- !u!114 &11400052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -889,7 +922,9 @@ MonoBehaviour:
   Movable: 0
   _skillEffects:
   - {fileID: 11400058}
+  _proSkillEffects: []
   _skillEffectsOrder: 00000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -902,6 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   BoolParameterName: Skill3
   _animationDuration: 1
   _animationEventMessages:
@@ -924,6 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   clip: 34
   volume: 1
 --- !u!114 &11400062
@@ -938,6 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   HealthChanger: {fileID: 0}
   Position:
     Follower: {fileID: 0}
@@ -1018,6 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   Position:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
@@ -1313,7 +1352,9 @@ MonoBehaviour:
   Movable: 0
   _skillEffects:
   - {fileID: 11400110}
+  _proSkillEffects: []
   _skillEffectsOrder: 00000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1326,6 +1367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   BoolParameterName: Skill2
   _animationDuration: .400000006
   _animationEventMessages:
@@ -1363,6 +1405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   clip: 12
   volume: .200000003
 --- !u!114 &11400116
@@ -1392,6 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   PrefabSpawner: {fileID: 0}
   Position:
     Follower: {fileID: 400018}
@@ -1442,8 +1486,80 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   clip: 10
   volume: 1
+--- !u!114 &11400128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  BoolParameterName: Charge
+--- !u!114 &11400130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72457b39cd979374090d003b81b7b026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions:
+  - {fileID: 11400132}
+  Skills:
+  - {fileID: 11400010}
+--- !u!114 &11400132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dbd4586f94252448d33dc102cd3692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillEffect: {fileID: 0}
+  TimeBelow: .5
+--- !u!114 &11400134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d8d501392174646b61990124f844d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillEffect: {fileID: 0}
+  TimeAbove: .5
+--- !u!114 &11400136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions:
+  - {fileID: 11400132}
+  BoolParameterName: ChargeFail
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
