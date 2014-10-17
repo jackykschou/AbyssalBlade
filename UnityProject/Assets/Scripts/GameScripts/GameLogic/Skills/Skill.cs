@@ -44,13 +44,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         public override void EditorUpdate()
         {
             base.EditorUpdate();
-            if (_skillEffects == null)
-            {
-                return;
-            }
-            if (_skillEffects.Count != _skillEffectsOrder.Count)
+            if (_skillEffects != null && _skillEffects.Count != _skillEffectsOrder.Count)
             {
                 _skillEffectsOrder.Resize(_skillEffects.Count);
+            }
+            if (_proSkillEffects != null && _proSkillEffects.Count != _proSkillEffectsOrder.Count)
+            {
+                _proSkillEffectsOrder.Resize(_proSkillEffects.Count);
             }
         }
 
@@ -101,6 +101,27 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             }
             Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastFinished, this);
             IsActivate = false;
+            StartCoroutine(ActivateProSkillEffects());
+        }
+
+        IEnumerator ActivateProSkillEffects()
+        {
+            foreach (var pair in _soretedProSkillEffects)
+            {
+                pair.Value.ForEach(
+                    e =>
+                    {
+                        if (e.CanActivate())
+                        {
+                            e.Activate();
+                        }
+                    });
+
+                while (pair.Value.Any(e => e.Activated))
+                {
+                    yield return new WaitForSeconds(Time.deltaTime);
+                }
+            }
         }
         
         [GameScriptEventAttribute(GameScriptEvent.UpdateSkillCooldownPercentage)]
@@ -132,14 +153,39 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             _coolDownPercentage = 1f;
             _castableConditions = GetComponents<SkillCastableCondition>().ToList();
             gameObject.tag = Caster.gameObject.tag;
+
             _soretedSkillEffects = new SortedDictionary<int, List<SkillEffect>>();
-            for (int i = 0; i < _skillEffects.Count; ++i)
+            if (_skillEffects == null || _skillEffects.Count == 0)
             {
-                if (!_soretedSkillEffects.ContainsKey(_skillEffectsOrder[i]))
+                _skillEffects = new List<SkillEffect>();
+            }
+            else
+            {
+                for (int i = 0; i < _skillEffects.Count; ++i)
                 {
-                    _soretedSkillEffects.Add(_skillEffectsOrder[i], new List<SkillEffect>());
+                    if (!_soretedSkillEffects.ContainsKey(_skillEffectsOrder[i]))
+                    {
+                        _soretedSkillEffects.Add(_skillEffectsOrder[i], new List<SkillEffect>());
+                    }
+                    _soretedSkillEffects[_skillEffectsOrder[i]].Add(_skillEffects[i]);
                 }
-                _soretedSkillEffects[_skillEffectsOrder[i]].Add(_skillEffects[i]);
+            }
+
+            _soretedProSkillEffects = new SortedDictionary<int, List<SkillEffect>>();
+            if (_proSkillEffects == null || _proSkillEffects.Count == 0)
+            {
+                _proSkillEffects = new List<SkillEffect>();
+            }
+            else
+            {
+                for (int i = 0; i < _proSkillEffects.Count; ++i)
+                {
+                    if (!_soretedProSkillEffects.ContainsKey(_proSkillEffectsOrder[i]))
+                    {
+                        _soretedProSkillEffects.Add(_proSkillEffectsOrder[i], new List<SkillEffect>());
+                    }
+                    _soretedProSkillEffects[_proSkillEffectsOrder[i]].Add(_proSkillEffects[i]);
+                }
             }
         }
 

@@ -1350,11 +1350,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: ChargeFail
+    m_ConditionEvent: Move
     m_EventTreshold: 0
     m_ExitTime: .75
   - m_ConditionMode: 2
-    m_ConditionEvent: Move
+    m_ConditionEvent: ChargeFail
     m_EventTreshold: 0
     m_ExitTime: .75
   m_Atomic: 1
