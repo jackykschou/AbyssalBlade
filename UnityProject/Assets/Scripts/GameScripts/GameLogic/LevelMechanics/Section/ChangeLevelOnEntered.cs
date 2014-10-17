@@ -40,9 +40,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
         }
 
-        protected override void OnTriggerEnter2D(Collider2D coll)
+        protected override void OnTriggerStay2D(Collider2D coll)
         {
-            base.OnTriggerEnter2D(coll);
+            base.OnTriggerStay2D(coll);
             if (!GameManager.Instance.PlayerMainCharacter.HitPointAtZero() && !_changed && _activated)
             {
                 _changed = true;
