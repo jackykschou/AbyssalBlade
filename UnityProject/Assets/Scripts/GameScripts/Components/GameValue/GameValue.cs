@@ -129,7 +129,7 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
 
         public static void ModifyByFixedValue(GameValue gameValue, float value)
         {
-            gameValue.Value += gameValue.Value + value;
+            gameValue.Value += value;
         }
 
         public static void ModifyByCurrentPercentage(GameValue gameValue, float percentage)
@@ -139,7 +139,7 @@ namespace Assets.Scripts.GameScripts.Components.GameValue
 
         public static void ModifyByMaxPercentage(GameValue gameValue, float percentage)
         {
-            gameValue.Value += gameValue.Value * percentage;
+            gameValue.Value += gameValue.Max * percentage;
         }
 
         private void TrimValue()

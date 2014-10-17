@@ -58,6 +58,9 @@ GameObject:
   - 114: {fileID: 11400130}
   - 114: {fileID: 11400128}
   - 114: {fileID: 11400136}
+  - 114: {fileID: 11400142}
+  - 114: {fileID: 11400140}
+  - 114: {fileID: 11400138}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -539,12 +542,14 @@ MonoBehaviour:
   Movable: 1
   _skillEffects:
   - {fileID: 11400128}
+  - {fileID: 11400142}
   - {fileID: 11400050}
   - {fileID: 11400012}
   - {fileID: 11400136}
+  - {fileID: 11400140}
   _proSkillEffects:
   - {fileID: 11400130}
-  _skillEffectsOrder: 00000000010000000200000003000000
+  _skillEffectsOrder: 000000000100000002000000030000000300000004000000
   _proSkillEffectsOrder: 01000000
 --- !u!114 &11400012
 MonoBehaviour:
@@ -1560,6 +1565,46 @@ MonoBehaviour:
   ActivateConditions:
   - {fileID: 11400132}
   BoolParameterName: ChargeFail
+--- !u!114 &11400138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218aaed04c89b5c4490d61fea96b82ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModifyPercentage: -.5
+--- !u!114 &11400140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2c6762ae2b51f41b86fff92579fd24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Modifier: {fileID: 11400138}
+--- !u!114 &11400142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fc8074e212445499d0a175f1d3ed29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Modifier: {fileID: 11400138}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

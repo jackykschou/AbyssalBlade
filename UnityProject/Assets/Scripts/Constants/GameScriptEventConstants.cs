@@ -63,6 +63,12 @@
         OnButtonMouseLeave,                          // void(int)
         CameraFollowTarget,                           // void(Transform)
         GateDeactivated,                         // void()
-        GateActivated                               // void()
+        GateActivated,                               // void()
+
+        ChangeObjectMotorSpeedFixAmount,                    // void(GameValueTemporaryModifier)
+        ChangeObjectMotorSpeedByCurrentPercentage,          // void(GameValueTemporaryModifier)
+        ChangeObjectMotorSpeedByMaxPercentage,              // void(GameValueTemporaryModifier)
+        TempChangeObjectMotorSpeed,                         // void(GameValueTemporaryModifier)
+        UnchangeObjectMotorSpeed,                           // void(GameValueTemporaryModifier)
     };
 }
