@@ -44,6 +44,9 @@ namespace Assets.Scripts.Managers
 
         public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly, float whenToFly)
         {
+            float speed = 5.0f;
+            float distance = 1.0f;
+
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
             {
                 TextMesh mesh = o.GetComponent<TextMesh>();
@@ -51,8 +54,9 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.0f);
-                motor.ShootAdd(PreferredEaseType,Vector3.right,10.0f,10.0f);
+                motor.Shoot(PreferredEaseType, direction, speed, distance);
+                float time = (direction*distance/speed).magnitude;
+                motor.Shoot(PreferredEaseType, Vector2.right, 30.0f,distance*10.0f, time);
             });
             
         }
