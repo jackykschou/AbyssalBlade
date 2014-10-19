@@ -85,10 +85,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
-        public void MoveByWithStyle(EaseType style, Vector2 amount, float speed)
+        public void MoveByWithStyle(EaseType style, Vector2 amount, float speed, float delay = 0.0f)
         {
             float moveDuration = amount.magnitude / speed;
-            gameObject.MoveBy(amount, moveDuration, 0, style);
+            Debug.Log("DELAY: " + delay);
+            gameObject.MoveBy(amount, moveDuration, delay, style);
+            //gameObject.MoveAdd(amount, moveDuration, delay, style);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 

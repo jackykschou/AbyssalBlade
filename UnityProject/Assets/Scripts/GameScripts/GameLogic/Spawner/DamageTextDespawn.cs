@@ -34,7 +34,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             _mesh = gameObject.GetComponent<TextMesh>();
             _mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
             TextMotor motor = gameObject.GetComponent<TextMotor>();
-            motor.Shoot(_direction, _speed, _distance);
             _timeLeft = OrigDespawnTime;
             DisableGameObject(OrigDespawnTime);
 
