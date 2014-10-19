@@ -17,7 +17,8 @@ namespace Assets.Scripts.Constants
         Parallel1,
         Forest_Loop_Light,
         Forest_Loop_Medium,
-        Forest_Loop_Heavy
+        Forest_Loop_Heavy,
+        Warp_In_Random
     };
 
     public enum ClipName
@@ -127,7 +128,8 @@ namespace Assets.Scripts.Constants
             {CueName.Parallel1, "Parallel1"},
             {CueName.Forest_Loop_Light, "Forest_Loop_Light"},
             {CueName.Forest_Loop_Medium, "Forest_Loop_Medium"},
-            {CueName.Forest_Loop_Heavy, "Forest_Loop_Heavy"}
+            {CueName.Forest_Loop_Heavy, "Forest_Loop_Heavy"},
+            {CueName.Warp_In_Random, "Warp_In_Random"}
         };
 
 
@@ -141,11 +143,15 @@ namespace Assets.Scripts.Constants
         public static void CreateCustomCues()
         {
             // Examples
-            List<ClipName> loopList = new List<ClipName> 
+            List<ClipName> warpInClipsClipNames = new List<ClipName> 
             { 
-                ClipName.HackandSlash 
+                ClipName.Warp_In,
+                ClipName.Warp_In_2,
+                ClipName.Warp_In_3,
+                ClipName.Warp_In_4,
+                ClipName.Warp_In_5
             };
-            AudioManager.Instance.CreateLoop(LoopName.MainLoop, loopList);
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Warp_In_Random, warpInClipsClipNames);
 
             List<ClipName> levelLoopIntensities = new List<ClipName>
             {
