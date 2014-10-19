@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 {
-    [AddComponentMenu("Skill/SkillEffect/TargetEffectApplier/DivergeKnockBack")]
+    [AddComponentMenu("TargetEffectApplier/DivergeKnockBack")]
     public class DivergeKnockBack : TargetEffectApplier 
     {
         public float KnockBackSpeed;

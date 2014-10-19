@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 {
-    [AddComponentMenu("Skill/SkillEffect/TargetEffectApplier/HealthChanger")]
+    [AddComponentMenu("TargetEffectApplier/HealthChanger")]
     public class HealthChanger : TargetEffectApplier
     {
         public HealthChangeType HealthChangeType;

@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
 {
-    [AddComponentMenu("Skill/SkillEffect/TargetFinder/CollideWithTriggerFinder")]
+    [AddComponentMenu("TargetFinder/CollideWithTriggerFinder")]
     public class CollideWithTriggerFinder : TargetFinder
     {
         protected override void FindTargets()

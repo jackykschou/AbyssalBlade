@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 {
-    [AddComponentMenu("Skill/SkillEffect/TargetEffectApplier/DirectionalKnockBack")]
+    [AddComponentMenu("TargetEffectApplier/DirectionalKnockBack")]
     public class DirectionalKnockBack : TargetEffectApplier 
     {
         public float Radius;

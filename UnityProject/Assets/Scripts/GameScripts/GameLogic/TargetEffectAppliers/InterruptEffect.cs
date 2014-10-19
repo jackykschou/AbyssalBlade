@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 {
-    [AddComponentMenu("Skill/SkillEffect/TargetEffectApplier/InterruptEffect")]
+    [AddComponentMenu("TargetEffectApplier/InterruptEffect")]
     public class InterruptEffect : TargetEffectApplier
     {
         protected override void ApplyEffect(GameObject target)

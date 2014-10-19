@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
 {
-    [AddComponentMenu("Skill/SkillEffect/TargetFinder/SelfFinder")]
+    [AddComponentMenu("TargetFinder/SelfFinder")]
     public class SelfFinder : TargetFinder 
     {
         protected override void Initialize()
