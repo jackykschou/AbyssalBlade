@@ -9,6 +9,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
     public class DamageTextDespawn : GameLogic
     {
         public float OrigDespawnTime = 1.0f;
+        public float MinSpeed = 5.0f;
+        public float MaxSpeed = 10.0f;
+        public float MinDistance = 1.5f;
+        public float MaxDistance = 2.0f;
+
         private TextMesh _mesh;
         private Vector3 _direction;
         private float _speed;
@@ -29,8 +34,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         {
             base.Initialize();
             _direction = new Vector3(Random.Range(-.45f, .45f), Random.Range(0f, 1f), 0);
-            _speed = Random.Range(5.0f, 10.0f);
-            _distance = Random.Range(1.5f, 2f);
+            _speed = Random.Range(MinSpeed, MaxSpeed);
+            _distance = Random.Range(MinDistance, MaxDistance);
             _mesh = gameObject.GetComponent<TextMesh>();
             _mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
             TextMotor motor = gameObject.GetComponent<TextMotor>();
