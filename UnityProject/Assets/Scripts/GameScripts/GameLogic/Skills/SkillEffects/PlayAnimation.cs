@@ -87,7 +87,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                     if (!skillEffectActivated[i] && (timer >= _animationSkillEffectsActivateTime[i]))
                     {
                         skillEffectActivated[i] = true;
-                        _animationSkillEffects[i].Activate();
+                        if (_animationSkillEffects[i].CanActivate())
+                        {
+                            _animationSkillEffects[i].Activate();
+                        }
                     }
                 }
             }

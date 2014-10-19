@@ -83,7 +83,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                     if (!skillEffectActivated[i] && (loopTimer >= _loopSkillEffectsActivateTime[i]))
                     {
                         skillEffectActivated[i] = true;
-                        _loopSkillEffects[i].Activate();
+                        if (_loopSkillEffects[i].CanActivate())
+                        {
+                            _loopSkillEffects[i].Activate();
+                        }
                     }
                 }
 
