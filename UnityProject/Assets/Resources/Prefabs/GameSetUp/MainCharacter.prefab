@@ -253,6 +253,7 @@ GameObject:
   - 114: {fileID: 11400148}
   - 114: {fileID: 11400118}
   - 114: {fileID: 11400112}
+  - 114: {fileID: 11400152}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -1704,8 +1705,27 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   SkillEffect: {fileID: 11400118}
-  RepeatTime: 16
+  RepeatTime: 8
   RepeatCooldown: 0
+--- !u!114 &11400152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c9f6fb4c0bc814fb6ad8c8466f4e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d0000000f00000010000000
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  KnockBackSpeed: 5
+  Time: .100000001
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
