@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Delay: 0
+  TargetPhysicalLayers: 
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,7 +183,7 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0f000000100000000d000000
-  OneTimeOnlyPerTarget: 0
+  OneTimeOnlyPerTarget: 1
   TargetFinder: {fileID: 0}
   HealthChangeType: 0
   Stackable: 0
