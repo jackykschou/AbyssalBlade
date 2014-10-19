@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11400030}
   - 114: {fileID: 11400028}
   - 114: {fileID: 11400026}
+  - 114: {fileID: 11400020}
   m_Layer: 11
   m_Name: Projectile2
   m_TagString: Untagged
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4054f0d4bdb6ba74ca63728e407b0cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 5
+  LifeTime: 3
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,6 +251,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthChanger: {fileID: 0}
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cceacee09b8e973488821a45787a044a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,8 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcf3a70e87b2284796adf7d6904930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinTime: .300000012
-  MaxTime: 1.5
+  MinTime: .5
+  MaxTime: 1
 --- !u!114 &11400036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefdb76cb5bab29489af201d0f54f341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinTime: .300000012
-  MaxTime: 1.5
+  MinTime: .5
+  MaxTime: 1
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

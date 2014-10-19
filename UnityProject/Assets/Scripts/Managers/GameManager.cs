@@ -54,12 +54,11 @@ namespace Assets.Scripts.Managers
             {
                 PrefabManager.Instance.ImmediateDespawnPrefab(CurrentLevel);
             }
-            yield return new WaitForSeconds(1.0f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
             PrefabManager.Instance.SpawnPrefabImmediate(levelPrefab, o => { CurrentLevel = o; });
             _currentLevelPrefab = levelPrefab;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.2f);
             LoadingScene.SetActive(false);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
         }

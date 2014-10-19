@@ -52,7 +52,7 @@ namespace Assets.Scripts.Managers
             AudioManager.Instance.StopLevelLoop(BackGroundMusicLoop);
         }
 
-        [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
+        [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelFinishedLoading()
         {
             if (CameraInitialFollowTransform == null)

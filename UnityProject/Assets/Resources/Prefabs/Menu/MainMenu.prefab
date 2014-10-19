@@ -361,6 +361,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400042}
   - 108: {fileID: 10800004}
+  - 114: {fileID: 11400016}
+  - 114: {fileID: 11400014}
   - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: FollowLight
@@ -1284,7 +1286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPlayLevel: 0
   BackGroundMusicLoop: 0
-  PlayerMainCharacter: {fileID: 0}
   CameraInitialFollowTransform: {fileID: 400046}
 --- !u!114 &11400010
 MonoBehaviour:
@@ -1306,6 +1307,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!198 &19800000

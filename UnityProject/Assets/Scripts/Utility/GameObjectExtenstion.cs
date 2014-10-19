@@ -44,6 +44,11 @@ namespace Assets.Scripts.Utility
         {
             if (!GameScriptsCache.ContainsKey(o))
             {
+                GameScript gameScript = o.GetComponent<GameScript>();
+                if (gameScript != null)
+                {
+                    gameScript.TriggerGameScriptEvent(gameScriptEvent, args);
+                }
                 return;
             }
 
@@ -54,6 +59,11 @@ namespace Assets.Scripts.Utility
         {
             if (!OnHitInterruptCache.ContainsKey(o))
             {
+                CharacterInterrupt characterInterrupt = o.GetComponent<CharacterInterrupt>();
+                if (characterInterrupt != null)
+                {
+                    return characterInterrupt.Interrupted;
+                }
                 return false;
             }
 
@@ -64,6 +74,11 @@ namespace Assets.Scripts.Utility
         {
             if (!HealthCache.ContainsKey(o))
             {
+                Health health = o.GetComponent<Health>();
+                if (health != null)
+                {
+                    return health.HitPointAtZero;
+                }
                 return false;
             }
 

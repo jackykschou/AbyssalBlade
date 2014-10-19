@@ -21,12 +21,24 @@ namespace Assets.Scripts.GameScripts
     [RequireComponent(typeof(GameScriptEventManager))]
     public abstract class GameScript : MonoBehaviour
     {
-        public GameScriptEventManager GameScriptEventManager { get; private set; }
+        public GameScriptEventManager GameScriptEventManager { get; set; }
 
         private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
         private List<GameScriptComponent> _components;
+        public bool Initialized {
+            get { return _initialized; }
+        }
         private bool _initialized = false;
+        public bool Deinitialized
+        {
+            get { return _deinitialized; }
+        }
         private bool _deinitialized = false;
+        public bool Disabled
+        {
+            get { return _disabled; }
+        }
+        private bool _disabled = false;
 
         protected abstract void Initialize();
 
@@ -38,6 +50,16 @@ namespace Assets.Scripts.GameScripts
 
         public void TriggerGameScriptEvent(GameScriptEvent gameScriptEvent, params object[] args)
         {
+            StartCoroutine(TriggerGameScriptEventIE(gameScriptEvent, args));
+        }
+
+        IEnumerator TriggerGameScriptEventIE(GameScriptEvent gameScriptEvent, params object[] args)
+        {
+            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+
             GameScriptEventManager.TriggerGameScriptEvent(gameScriptEvent, args);
 
             foreach (Transform t in transform)
@@ -51,6 +73,16 @@ namespace Assets.Scripts.GameScripts
 
         public void TriggerGameScriptEvent<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
         {
+            StartCoroutine(TriggerGameScriptEventIE(gameScriptEvent, args));
+        }
+
+        public IEnumerator TriggerGameScriptEventIE<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
+        {
+            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+
             GameScriptEventManager.TriggerGameScriptEvent<T>(gameScriptEvent, args);
 
             foreach (Transform t in transform)
@@ -67,6 +99,16 @@ namespace Assets.Scripts.GameScripts
 
         public void TriggerGameScriptEvent(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
         {
+            StartCoroutine(TriggerGameScriptEventIE(gameScript, gameScriptEvent, args));
+        }
+
+        public IEnumerator TriggerGameScriptEventIE(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
+        {
+            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+
             GameScriptEventManager.TriggerGameScriptEvent(gameScript, gameScriptEvent, args);
 
             foreach (Transform t in transform)
@@ -164,15 +206,18 @@ namespace Assets.Scripts.GameScripts
             gameObject.CacheGameObject();
             _deinitialized = false;
             _initialized = true;
+            _disabled = false;
+            GameScriptEventManager.UpdateInitialized();
         }
 
         public void DisableGameObject(float delay = 0f)
         {
-            if (!gameObject.activeSelf)
+            if (!gameObject.activeSelf || _disabled || GameScriptEventManager.Disabled)
             {
                 return;
             }
 
+            _disabled = true;
             StartCoroutine(DisableGameObjectIE(delay));
         }
 
@@ -192,11 +237,12 @@ namespace Assets.Scripts.GameScripts
 
         public void ImmediateDisableGameObject()
         {
-            if (!gameObject.activeSelf)
+            if (!gameObject.activeSelf || _disabled || GameScriptEventManager.Disabled)
             {
                 return;
             }
 
+            _disabled = true;
             PrefabManager.Instance.DespawnPrefab(gameObject);
         }
 

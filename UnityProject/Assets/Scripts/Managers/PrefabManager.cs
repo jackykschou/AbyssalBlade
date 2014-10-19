@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Constants;
@@ -81,10 +82,12 @@ namespace Assets.Scripts.Managers
 
                     PrefabPool prefabPool = new PrefabPool(obj.transform)
                     {
-                        preloadAmount = 30,
+                        preloadAmount = 50,
                         cullDespawned = true,
-                        cullAbove = 40,
-                        cullDelay = 5
+                        cullAbove = 200,
+                        cullDelay = 5,
+                        limitInstances = false,
+                        limitFIFO = true
                     };
 
                     spawnPool.CreatePrefabPool(prefabPool);
@@ -111,50 +114,6 @@ namespace Assets.Scripts.Managers
         {
         }
 
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-            DespawnFromQueue();
-            SpawnFromQueue();
-        }
-
-        private void DespawnFromQueue()
-        {
-            if (_despawnQueue.Count > 0 && _despawnCoolDown.CanDispatch())
-            {
-                _despawnCoolDown.Dispatch();
-                GameObject o = _despawnQueue.First();
-                _despawnQueue.RemoveAt(0);
-                if (o != null)
-                {
-                    SpawnPool pool = _spawnedPrefabsMap[o];
-                    _spawnedPrefabsMap.Remove(o);
-                    Action<GameObject> onPrefabDespawn = _despawnDelegateQueue.First();
-                    _despawnDelegateQueue.RemoveAt(0);
-                    if (onPrefabDespawn != null)
-                    {
-                        onPrefabDespawn(o);
-                    }
-                    pool.Despawn(o.transform);
-                }
-            } 
-        }
-
-        private void SpawnFromQueue()
-        {
-            if (_spawnQueue.Count > 0 && _spawnCoolDown.CanDispatch())
-            {
-                _spawnCoolDown.Dispatch();
-                Prefab prefab = _spawnQueue.First();
-                _spawnQueue.RemoveAt(0);
-                Vector3 position = _spawnPositionQueue.First();
-                _spawnPositionQueue.RemoveAt(0);
-                Action<GameObject> onPrefabSpawn = _spawnDelegateQueue.First();
-                _spawnDelegateQueue.RemoveAt(0);
-                SpawnHelper(prefab, position, onPrefabSpawn);
-            }
-        }
-
         private void SpawnHelper(Prefab prefab, Vector2 position, Action<GameObject> onPrefabSpawned = null)
         {
             string prefabName = PrefabConstants.GetPrefabName(prefab);
@@ -172,9 +131,46 @@ namespace Assets.Scripts.Managers
 
         public void SpawnPrefab(Prefab prefab, Vector2 position, Action<GameObject> onPrefabSpawned = null)
         {
-            _spawnQueue.Add(prefab);
-            _spawnPositionQueue.Add(position);
-            _spawnDelegateQueue.Add(onPrefabSpawned);
+            if (_spawnQueue.Count == 0)
+            {
+                _spawnQueue.Add(prefab);
+                _spawnPositionQueue.Add(position);
+                _spawnDelegateQueue.Add(onPrefabSpawned);
+                StartCoroutine(SpawnPrefabIE());
+            }
+            else
+            {
+                _spawnQueue.Add(prefab);
+                _spawnPositionQueue.Add(position);
+                _spawnDelegateQueue.Add(onPrefabSpawned);
+            }
+        }
+
+        public IEnumerator SpawnPrefabIE()
+        {
+            while (_spawnQueue.Count > 0)
+            {
+                Prefab prefab = _spawnQueue.First();
+                _spawnQueue.RemoveAt(0);
+                Vector2 position = _spawnPositionQueue.First();
+                _spawnPositionQueue.RemoveAt(0);
+                Action<GameObject> onPrefabSpawned = _spawnDelegateQueue.First();
+                _spawnDelegateQueue.RemoveAt(0);
+
+                string prefabName = PrefabConstants.GetPrefabName(prefab);
+                GameObject prefabGameObject = _prefabNameMap[prefabName];
+
+                GameObject spawned = _prefabPoolMap[prefabGameObject].Spawn(prefabGameObject.transform, new Vector3(position.x, position.y, prefabGameObject.transform.position.z), Quaternion.identity).gameObject;
+
+                if (onPrefabSpawned != null)
+                {
+                    onPrefabSpawned(spawned);
+                }
+
+                _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
+
+                yield return new WaitForSeconds(0.05f);
+            }
         }
 
         public void SpawnPrefab(Prefab prefab, Action<GameObject> onPrefabSpawned = null)
@@ -199,16 +195,56 @@ namespace Assets.Scripts.Managers
 
         public void DespawnPrefab(GameObject prefabGameObject, Action<GameObject> onPrefabDespawned = null)
         {
-            _despawnQueue.Add(prefabGameObject);
-            _despawnDelegateQueue.Add(onPrefabDespawned);
+            if (_despawnQueue.Count == 0)
+            {
+                _despawnQueue.Add(prefabGameObject);
+                _despawnDelegateQueue.Add(onPrefabDespawned);
+                StartCoroutine(DespawnPrefabIE());
+            }
+            else
+            {
+                _despawnQueue.Add(prefabGameObject);
+                _despawnDelegateQueue.Add(onPrefabDespawned);
+            }
+        }
+
+        public IEnumerator DespawnPrefabIE()
+        {
+            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+
+            while (_despawnQueue.Count > 0)
+            {
+                GameObject prefabGameObject = _despawnQueue.First();
+                _despawnQueue.RemoveAt(0);
+                Action<GameObject> onPrefabDespawned = _despawnDelegateQueue.First();
+                _despawnDelegateQueue.RemoveAt(0);
+
+                if (onPrefabDespawned != null)
+                {
+                    onPrefabDespawned(prefabGameObject);
+                }
+                _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
+                _spawnedPrefabsMap.Remove(prefabGameObject);
+
+                yield return new WaitForSeconds(0.05f);
+            }
         }
 
         public void ImmediateDespawnPrefab(GameObject prefabGameObject, Action<GameObject> onPrefabDespawned = null)
         {
-            if (_spawnedPrefabsMap[prefabGameObject] == null)
+            StartCoroutine(ImmediateDespawnPrefabIE(prefabGameObject, onPrefabDespawned));
+        }
+
+        public IEnumerator ImmediateDespawnPrefabIE(GameObject prefabGameObject, Action<GameObject> onPrefabDespawned = null)
+        {
+            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
             {
-                return;
+                yield return new WaitForSeconds(Time.deltaTime);
             }
+
             if (onPrefabDespawned != null)
             {
                 onPrefabDespawned(prefabGameObject);

@@ -42,6 +42,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedPrefabPoolMapKeys:
+  - Prefabs/EmptySection
+  - Prefabs/MainLevelArea1
   - Prefabs/TutorialLevel
   - Prefabs/ForestLevel/ForestLevel 1
   - Prefabs/ForestLevel/ForestTiles/ForestBlueTree
@@ -70,12 +72,21 @@ MonoBehaviour:
   - Prefabs/Level1/Level1Tiles/Level1Robot2
   - Prefabs/Level1/Level1Tiles/Level1Robot3
   - Prefabs/Menu/MainMenu
+  - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemy
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemy
   - Prefabs/PreloadedPrefab/Character/StoneEnemy
+  - Prefabs/PreloadedPrefab/Projectile/EnemyProjectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile2
   - Prefabs/PreloadedPrefab/TextMeshes/DamageTextMesh
   - Prefabs/PreloadedPrefab/TextMeshes/MessageTextMesh
+  - Prefabs/PropsPrefab/General/Teleporter
+  - Prefabs/PropsPrefab/Tutorial/OrangeRock
+  - Prefabs/PropsPrefab/Tutorial/PinkStatue
+  - Prefabs/PropsPrefab/Tutorial/PurpleLightpole
   _serializedPrefabPoolMapValues:
+  - Prefabs
+  - Prefabs
   - Prefabs
   - ForestLevel
   - ForestTiles
@@ -105,10 +116,17 @@ MonoBehaviour:
   - Level1Tiles
   - Menu
   - Character
+  - Character
+  - Character
+  - Projectile
   - Projectile
   - Projectile
   - TextMeshes
   - TextMeshes
+  - General
+  - Tutorial
+  - Tutorial
+  - Tutorial
   _spawnCoolDown:
     IsEnabled: 0
     DispatchInterval: .200000003
