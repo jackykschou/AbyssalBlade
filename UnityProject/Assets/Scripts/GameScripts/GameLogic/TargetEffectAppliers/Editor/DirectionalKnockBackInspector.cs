@@ -11,8 +11,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers.Editor
             base.OnInspectorGUI();
 
             DirectionalKnockBack directionalKnockBack = (DirectionalKnockBack)target;
-            directionalKnockBack.Radius = EditorGUILayout.FloatField("Radius", directionalKnockBack.Radius);
-            directionalKnockBack.Radius = Mathf.Clamp(directionalKnockBack.Radius, 0f, float.MaxValue);
             directionalKnockBack.KnockBackSpeed = EditorGUILayout.FloatField("Speed", directionalKnockBack.KnockBackSpeed);
             directionalKnockBack.Time = EditorGUILayout.FloatField("Time", directionalKnockBack.Time);
             directionalKnockBack.Time = Mathf.Clamp(directionalKnockBack.Time, 0f, float.MaxValue);

@@ -7,7 +7,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
     [AddComponentMenu("TargetEffectApplier/DirectionalKnockBack")]
     public class DirectionalKnockBack : TargetEffectApplier 
     {
-        public float Radius;
         public float KnockBackSpeed;
         public float Time;
 

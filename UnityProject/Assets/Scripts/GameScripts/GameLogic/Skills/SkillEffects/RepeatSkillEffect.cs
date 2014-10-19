@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
+    [AddComponentMenu("Skill/SkillEffect/RepeatSkillEffect")]
     public class RepeatSkillEffect : SkillEffect
     {
         public SkillEffect SkillEffect;
@@ -27,7 +28,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                     SkillEffect.Activate();
                 }
                 repeatCounter++;
-                yield return new WaitForSeconds(RepeatCooldown);
+                if (RepeatCooldown > 0f)
+                {
+                     yield return new WaitForSeconds(RepeatCooldown);
+                }
             }
         }
     }

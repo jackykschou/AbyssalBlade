@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
         protected override void FindTargets()
         {
             ClearTargets();
-            Vector2 castDirecation = Quaternion.AngleAxis(Random.Range(-Range, Range), Vector3.up) * FinderPosition.Direction;
+            Vector2 castDirecation = Quaternion.AngleAxis(Random.Range(-Range, Range), Vector3.forward) * FinderPosition.Direction;
             string[] layers = TargetPhysicalLayers.Select(l => LayerMask.LayerToName(l)).ToArray();
             int mask = LayerMask.GetMask(layers);
             RaycastHit2D raycast = Physics2D.Raycast(FinderPosition.Position.position, castDirecation, Range, mask);

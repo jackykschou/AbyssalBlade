@@ -247,9 +247,11 @@ GameObject:
   - 114: {fileID: 11400108}
   - 114: {fileID: 11400110}
   - 114: {fileID: 11400120}
-  - 114: {fileID: 11400118}
   - 114: {fileID: 11400116}
   - 114: {fileID: 11400114}
+  - 114: {fileID: 11400150}
+  - 114: {fileID: 11400148}
+  - 114: {fileID: 11400118}
   - 114: {fileID: 11400112}
   m_Layer: 0
   m_Name: BasicRange
@@ -1400,7 +1402,7 @@ MonoBehaviour:
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
-  - {fileID: 11400118}
+  - {fileID: 11400150}
   - {fileID: 11400114}
   _animationSkillEffectsActivateTime:
   - .150000006
@@ -1413,15 +1415,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 100022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefabs: 00000000
-  SpawnPickWeights:
-  - 1
-  LimitNumberOfSpawn: 0
-  NumberOfSpawn: 100000
-  SpawnChance: 1
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d0000000f00000010000000
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  HealthChangeType: 0
+  Stackable: 0
+  NonStackableLabel: 0
+  Amount:
+    InitialMinValue: -100
+    InitialMaxValue: 0
+    InitialValue: -5
+  Percentage: 0
+  Duration: 0
+  CriticalChance: 0
+  CriticalDamagePercentage: 2
 --- !u!114 &11400114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1460,15 +1473,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a6724143802ca54b92d97a8266c65d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  PrefabSpawner: {fileID: 0}
-  Position:
-    Follower: {fileID: 400018}
-    Position: {fileID: 400014}
+  TargetFinder: {fileID: 11400148}
 --- !u!114 &11400120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1657,6 +1667,45 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   TargetFinder: {fileID: 11400072}
+--- !u!114 &11400148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83848d5ec849eab4a8b8513f5ccca6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d0000000f000000100000000a000000
+  FinderPosition:
+    Follower: {fileID: 0}
+    Position: {fileID: 400014}
+  TargetEffectAppliers:
+  - {fileID: 11400112}
+  Targets: []
+  Range: 20
+  RayAngleRandomness: 40
+--- !u!114 &11400150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e057bbec07dacd644a1cf0b3203c6b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  SkillEffect: {fileID: 11400118}
+  RepeatTime: 16
+  RepeatCooldown: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
