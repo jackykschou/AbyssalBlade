@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   PrefabSpawner: {fileID: 0}
   Position:
     Follower: {fileID: 0}
@@ -284,12 +285,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   BoolParameterName: Range
   _animationDuration: 1
-  _animationEventMessages:
-  - StartSpawnProjectile
-  - PlaySound
-  _animationEventMessagesSendTime:
+  _animationEventMessages: []
+  _animationEventMessagesSendTime: []
+  _animationSkillEffects:
+  - {fileID: 11400000}
+  - {fileID: 11400050}
+  _animationSkillEffectsActivateTime:
   - .349999994
   - .349999994
 --- !u!114 &11400008
@@ -306,9 +310,12 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 0
   _skillEffects:
   - {fileID: 11400006}
+  _proSkillEffects: []
   _skillEffectsOrder: 00000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills: []
+  Moving: 0
   Target: {fileID: 0}
   PointingDirection: {x: 0, y: 0}
   MinimumCoolDown:
@@ -598,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   clip: 6
   volume: 1
 --- !u!114 &11400052

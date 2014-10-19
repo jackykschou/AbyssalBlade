@@ -113,14 +113,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         [GameScriptEventAttribute(GameScriptEvent.TempChangeObjectMotorSpeed)]
         public void TempChangeSpeed(GameValueTemporaryModifier modifier)
         {
-            Debug.Log("TempChangeSpeed");
             modifier.Modify(Speed);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.UnchangeObjectMotorSpeed)]
         public void UnchangeSpeed(GameValueTemporaryModifier modifier)
         {
-            Debug.Log("UnchangeSpeed");
             modifier.Unmodify(Speed);
         }
     }

@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.GameScripts.GameLogic.Health;
+using Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc.ScaleWithTime

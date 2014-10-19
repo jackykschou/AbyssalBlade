@@ -20,8 +20,8 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400016}
-  - 114: {fileID: 11400012}
   - 114: {fileID: 11400018}
+  - 114: {fileID: 11400012}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
@@ -163,10 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ebb46007df52c41927551fa563d22e, type: 3}
+  m_Script: {fileID: 11500000, guid: 94c8a95624907b14aaa0e25a9a18b0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Collider: {fileID: 0}
+  Delay: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +180,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetTags:
   - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0f000000100000000d000000
   OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   HealthChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
@@ -211,10 +214,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b34448fa4ea3f4784f00cb9c5421a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 893e7b57a412362468d178415e36c369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthChanger: {fileID: 0}
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0f000000100000000d000000
+  FinderPosition:
+    Follower: {fileID: 0}
+    Position: {fileID: 400000}
+  TargetEffectAppliers:
+  - {fileID: 11400014}
+  Targets: []
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

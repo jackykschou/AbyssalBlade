@@ -132,9 +132,10 @@ GameObject:
   - 114: {fileID: 11400038}
   - 114: {fileID: 11400042}
   - 114: {fileID: 11400048}
-  - 114: {fileID: 11400046}
-  - 114: {fileID: 11400044}
   - 114: {fileID: 11400040}
+  - 114: {fileID: 11400072}
+  - 114: {fileID: 11400064}
+  - 114: {fileID: 11400146}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -169,11 +170,12 @@ GameObject:
   - 114: {fileID: 11400068}
   - 114: {fileID: 11400056}
   - 114: {fileID: 11400066}
-  - 114: {fileID: 11400064}
-  - 114: {fileID: 11400062}
   - 114: {fileID: 11400058}
   - 114: {fileID: 11400060}
-  - 114: {fileID: 11400072}
+  - 114: {fileID: 11400062}
+  - 114: {fileID: 11400046}
+  - 114: {fileID: 11400044}
+  - 114: {fileID: 11400144}
   m_Layer: 0
   m_Name: StrongMelee
   m_TagString: Untagged
@@ -567,10 +569,12 @@ MonoBehaviour:
   - {fileID: 11400134}
   BoolParameterName: Skill2
   _animationDuration: .400000006
-  _animationEventMessages:
-  - StartSpawnProjectile
-  - PlaySound
-  _animationEventMessagesSendTime:
+  _animationEventMessages: []
+  _animationEventMessagesSendTime: []
+  _animationSkillEffects:
+  - {fileID: 11400018}
+  - {fileID: 11400126}
+  _animationSkillEffectsActivateTime:
   - 0
   - 0
 --- !u!114 &11400014
@@ -710,6 +714,8 @@ MonoBehaviour:
   _animationDuration: .200000003
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
+  _animationSkillEffects: []
+  _animationSkillEffectsActivateTime: []
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -801,36 +807,38 @@ MonoBehaviour:
   ActivateConditions: []
   BoolParameterName: Skill1
   _animationDuration: .300000012
-  _animationEventMessages:
-  - ApplyAreaHealthChange
-  - PlaySound
-  _animationEventMessagesSendTime:
+  _animationEventMessages: []
+  _animationEventMessagesSendTime: []
+  _animationSkillEffects:
+  - {fileID: 11400146}
+  - {fileID: 11400048}
+  _animationSkillEffectsActivateTime:
   - .200000003
-  - .100000001
+  - 0
 --- !u!114 &11400044
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
+  m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1da8c11f2a7564c89629c4a276fbd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 74a6f2f51544072408e7b429508fc98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  HealthChanger: {fileID: 0}
-  Position:
-    Follower: {fileID: 0}
-    Position: {fileID: 400008}
-  Radius: 1.20000005
+  TargetTags:
+  - Enemy
+  TargetPhysicalLayers: 0d000000
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  KnockBackSpeed: 10
+  Time: .200000003
 --- !u!114 &11400046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
+  m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
@@ -839,18 +847,20 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   - Neutral
+  TargetPhysicalLayers: 0d000000100000000f000000
   OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   HealthChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
   Amount:
     InitialMinValue: -100
     InitialMaxValue: 0
-    InitialValue: -15
+    InitialValue: -50
   Percentage: 0
   Duration: 0
-  CriticalChance: .100000001
-  CriticalDamagePercentage: 1.5
+  CriticalChance: 0
+  CriticalDamagePercentage: 2
 --- !u!114 &11400048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -887,6 +897,8 @@ MonoBehaviour:
   _onHoldFinishEventMessages: []
   _loopEventMessages: []
   _loopEventMessagesSendTime: []
+  _loopSkillEffects: []
+  _loopSkillEffectsActivateTime: []
   TimePerLoop: .25
 --- !u!114 &11400052
 MonoBehaviour:
@@ -945,12 +957,12 @@ MonoBehaviour:
   ActivateConditions: []
   BoolParameterName: Skill3
   _animationDuration: 1
-  _animationEventMessages:
-  - ApplyAreaHealthChange
-  - PlaySound
-  - ApplyAreaKnockBack
-  _animationEventMessagesSendTime:
-  - .5
+  _animationEventMessages: []
+  _animationEventMessagesSendTime: []
+  _animationSkillEffects:
+  - {fileID: 11400060}
+  - {fileID: 11400144}
+  _animationSkillEffectsActivateTime:
   - 0
   - .5
 --- !u!114 &11400060
@@ -976,22 +988,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1da8c11f2a7564c89629c4a276fbd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 031f7a85e7361504d9ef702406f011c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  HealthChanger: {fileID: 0}
-  Position:
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d000000100000000f000000
+  FinderPosition:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
-  Radius: 3
+  TargetEffectAppliers:
+  - {fileID: 11400046}
+  - {fileID: 11400044}
+  Targets: []
+  Radius: 4
 --- !u!114 &11400064
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
+  m_GameObject: {fileID: 100012}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
@@ -1000,14 +1017,16 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   - Neutral
+  TargetPhysicalLayers: 0d0000000f00000010000000
   OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   HealthChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
   Amount:
     InitialMinValue: -100
     InitialMaxValue: 0
-    InitialValue: -70
+    InitialValue: -15
   Percentage: 0
   Duration: 0
   CriticalChance: 0
@@ -1054,20 +1073,23 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
+  m_GameObject: {fileID: 100012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c738c8474a66448a9e3c7c57d43e23, type: 3}
+  m_Script: {fileID: 11500000, guid: 031f7a85e7361504d9ef702406f011c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  Position:
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d0000000f00000010000000
+  FinderPosition:
     Follower: {fileID: 0}
-    Position: {fileID: 400002}
-  Radius: 3
-  KnockBackSpeed: 35
-  Time: .200000003
+    Position: {fileID: 400008}
+  TargetEffectAppliers:
+  - {fileID: 11400064}
+  Targets: []
+  Radius: 1.5
 --- !u!114 &11400074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1375,10 +1397,12 @@ MonoBehaviour:
   ActivateConditions: []
   BoolParameterName: Skill2
   _animationDuration: .400000006
-  _animationEventMessages:
-  - StartSpawnProjectile
-  - PlaySound
-  _animationEventMessagesSendTime:
+  _animationEventMessages: []
+  _animationEventMessagesSendTime: []
+  _animationSkillEffects:
+  - {fileID: 11400118}
+  - {fileID: 11400114}
+  _animationSkillEffectsActivateTime:
   - .150000006
   - .150000006
 --- !u!114 &11400112
@@ -1605,6 +1629,34 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   Modifier: {fileID: 11400138}
+--- !u!114 &11400144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400062}
+--- !u!114 &11400146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400072}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

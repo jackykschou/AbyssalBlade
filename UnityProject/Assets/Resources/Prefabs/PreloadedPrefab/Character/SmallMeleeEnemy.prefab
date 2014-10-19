@@ -17,8 +17,9 @@ GameObject:
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400050}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400000}
   - 114: {fileID: 11400060}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400072}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -232,14 +233,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1da8c11f2a7564c89629c4a276fbd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 031f7a85e7361504d9ef702406f011c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill: {fileID: 0}
-  HealthChanger: {fileID: 0}
-  Position:
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition:
     Follower: {fileID: 0}
     Position: {fileID: 400002}
+  TargetEffectAppliers:
+  - {fileID: 11400004}
+  Targets: []
   Radius: .5
 --- !u!114 &11400002
 MonoBehaviour:
@@ -269,7 +274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetTags:
   - Player
+  TargetPhysicalLayers: 0e000000
   OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   HealthChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
@@ -293,12 +300,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
+  ActivateConditions: []
   BoolParameterName: Melee
   _animationDuration: .5
-  _animationEventMessages:
-  - ApplyAreaHealthChange
-  - PlaySound
-  _animationEventMessagesSendTime:
+  _animationEventMessages: []
+  _animationEventMessagesSendTime: []
+  _animationSkillEffects:
+  - {fileID: 11400072}
+  - {fileID: 11400050}
+  _animationSkillEffectsActivateTime:
   - .200000003
   - .200000003
 --- !u!114 &11400008
@@ -315,9 +325,12 @@ MonoBehaviour:
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
+  Movable: 0
   _skillEffects:
   - {fileID: 11400006}
+  _proSkillEffects: []
   _skillEffectsOrder: 00000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,6 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills: []
+  Moving: 0
   Target: {fileID: 0}
   PointingDirection: {x: 0, y: 0}
   MinimumCoolDown:
@@ -607,7 +621,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill: {fileID: 0}
-  clip: 6
+  ActivateConditions: []
+  clip: 19
   volume: 1
 --- !u!114 &11400052
 MonoBehaviour:
@@ -743,6 +758,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cceacee09b8e973488821a45787a044a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400000}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

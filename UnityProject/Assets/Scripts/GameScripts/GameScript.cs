@@ -223,6 +223,7 @@ namespace Assets.Scripts.GameScripts
 
         IEnumerator DisableGameObjectIE(float delay)
         {
+            yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(delay);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
             if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
