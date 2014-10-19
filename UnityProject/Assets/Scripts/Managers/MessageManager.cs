@@ -38,12 +38,15 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
+                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f,2.0f);
             });
         }
 
-        public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly, float WhenToFly)
+        public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly)
         {
+            float speed = 5.0f;
+            float distance = 1.5f;
+
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
             {
                 TextMesh mesh = o.GetComponent<TextMesh>();
@@ -51,9 +54,11 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
-                StartCoroutine(DelayedMove(motor, directionToFly, WhenToFly));
+                motor.Shoot(PreferredEaseType, direction, speed, distance, 5.0f);
+                //float time = (direction*distance/speed).magnitude;
+                motor.Shoot(PreferredEaseType, directionToFly, 30.0f, 20.0f, 2.0f);
             });
+            
         }
 
         public IEnumerator DelayedMove(TextMotor motor, Vector3 direction, float whenToMove)
@@ -64,19 +69,19 @@ namespace Assets.Scripts.Managers
 
         Vector3 MiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 2.0f, MainCamera.pixelHeight / 2.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f));
         }
         Vector3 TopMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 2.0f, MainCamera.pixelHeight*3.0f / 5.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
         Vector3 TopRightMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth*3.0f / 4.0f, MainCamera.pixelHeight * 3.0f / 5.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width * 3.0f / 4.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
         Vector3 TopLeftMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 4.0f, MainCamera.pixelHeight * 3.0f / 5.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 4.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
 
         protected override void Update()
@@ -84,7 +89,7 @@ namespace Assets.Scripts.Managers
             if (Input.GetKeyDown(KeyCode.Keypad1))
                 DisplayMessage("Regular Message", Vector3.up);
             if (Input.GetKeyDown(KeyCode.Keypad2))
-                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right*10.0f, 2.0f);
+                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right);
         }
 
         protected override void Initialize()
