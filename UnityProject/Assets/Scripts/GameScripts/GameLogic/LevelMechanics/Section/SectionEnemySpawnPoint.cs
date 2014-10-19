@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 {
-    [RequireComponent(typeof(CircleCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(PrefabSpawner))]
     [AddComponentMenu("LevelMechanics/Section/SectionEnemySpawnPoint")]
     public class SectionEnemySpawnPoint : SectionLogic 
@@ -26,7 +26,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 
         public FixTimeDispatcher SpawnCoolDown;
 
-        public CircleCollider2D TriggerArea;
+        public Collider2D TriggerArea;
 
         public bool Activated = true;
 
@@ -129,7 +129,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
-            TriggerArea = GetComponent<CircleCollider2D>();
+            TriggerArea = GetComponent<Collider2D>();
             TriggerArea.isTrigger = true;
             TriggerArea.enabled = false;
             gameObject.layer = LayerConstants.LayerMask.SpawnArea;
