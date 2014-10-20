@@ -88,7 +88,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         public void MoveByWithStyle(EaseType style, Vector2 amount, float speed, float delay = 0.0f)
         {
             float moveDuration = amount.magnitude / speed;
-            Debug.Log("DELAY: " + delay);
             gameObject.MoveBy(amount, moveDuration, delay, style);
             //gameObject.MoveAdd(amount, moveDuration, delay, style);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);

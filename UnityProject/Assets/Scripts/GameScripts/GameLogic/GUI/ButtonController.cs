@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.Components.Input;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,21 +16,32 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 {
     public class ButtonController : GameLogic
     {
-        public Color highlightColor;
+        public Color HighlightColor;
 
-        public float btnScaleAmount;
+        public float BtnScaleAmount;
         public Transform StartButton;
         public Transform OptionsButton;
         public Transform QuitButton;
         List<Transform> _buttonObjs;
-        Vector3 popoutAmount;
-        List<bool> popped;
+        Vector3 _popoutAmount;
+        List<bool> _popped;
 
         public Prefab StartLevelPrefab;
 
         public ClipName ButtonPressClip;
 
-        private float rotateAmount = 30.0f;
+        private const float RotateAmount = 30.0f;
+        private int _numButtons = 0;
+        private int _curButton = 0;
+        
+        [SerializeField]
+        private AxisOnHold VerticalAxis;
+
+        [SerializeField]
+        private AxisOnHold JoyStickVerticalAxis;
+        
+        [SerializeField]
+        private ButtonOnPressed Attack1;
         
 
         protected override void Initialize()
@@ -41,97 +53,118 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                 OptionsButton,
                 QuitButton
             };
-            popped = new List<bool>()
+            _popped = new List<bool>()
             {
                 false,
                 false,
                 false
             };
-            popoutAmount = new Vector3(0, 0, -.75f);
+            _popoutAmount = new Vector3(0, 0, -.75f);
+            _numButtons = _buttonObjs.Count;
+            TriggerGameScriptEvent(GameScriptEvent.ButtonChange, _curButton);
         }
 
-        protected override void Update()
+        protected override void FixedUpdate()
         {
-            base.Update();
-
-            RaycastHit hit;
-            bool clicked = Input.GetMouseButtonDown(0) || Input.GetButtonDown(InputConstants.GetKeyCodeName(InputKeyCode.Attack1));
-
-            
-            if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            base.FixedUpdate(); 
+            if (JoyStickVerticalAxis.Detect() || VerticalAxis.Detect())
             {
-                GameObject hitObj = hit.collider.gameObject;
+                float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
+                                    Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
+                ? VerticalAxis.GetAxisValue()
+                : JoyStickVerticalAxis.GetAxisValue();
 
-                for (int index = 0; index < _buttonObjs.Count; index++)
-                {
-                    if (hitObj == _buttonObjs[index].gameObject)
-                    {
-                        if (clicked)
-                        {
-                            switch (index)
-                            {
-                                case 0:
-                                    TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
-                                    break;
-                                case 1:
-                                    TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
-                                    break;
-                                case 2:
-                                    TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
-                                    break;
-                            }
-                        }
-                        if (!popped[index])
-                            TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, hitObj, index);
-                        return;
-                    }
-                }
-                for (int index = 0; index < _buttonObjs.Count; index++)
-                    if (popped[index])
-                        TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, index);
+                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(verticalValue > 0));
             }
 
-            return;
+            if (!Attack1.Detect() && !Input.GetMouseButtonDown(0)) 
+                return;
+
+            switch (_curButton)
+            {
+                case 0:
+                    TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
+                    break;
+                case 1:
+                    TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
+                    break;
+                case 2:
+                    TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
+                    break;
+            }
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.MenuStartButtonPressed)]
-        public void onStartPressed()
+        private int GetNextButton(bool up)
         {
-            GameManager.Instance.ChangeLevel(StartLevelPrefab);
+            return up ? _curButton == _numButtons - 1 ? 0 : _curButton++ : _curButton == 0 ? _numButtons - 1 : _curButton--;
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.ButtonChange)]
+        public void ButtonChange(int buttonId)
+        {
+            switch (buttonId)
+            {
+                case 0:
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, StartButton.gameObject, 0);
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 1);
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 2);
+                    break;
+                case 1:
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, OptionsButton.gameObject, 1);
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 0);
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 2);
+                    break;
+                case 2:
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, QuitButton.gameObject, 2);
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 0);
+                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 1);
+                    break;
+            }
+        }
+        [GameScriptEventAttribute(GameScriptEvent.MenuStartButtonPressed)]
+        public void OnStartPressed()
+        {
             AudioManager.Instance.PlayClip(ButtonPressClip);
+            GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuOptionsButtonPressed)]
-        public void onOptionsPressed()
+        public void OnOptionsPressed()
         {
             AudioManager.Instance.PlayClip(ButtonPressClip);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
-        public void onQuitPressed()
+        public void OnQuitPressed()
         {
             AudioManager.Instance.PlayClip(ButtonPressClip);
             Application.Quit();
         }
 
         [GameScriptEventAttribute(GameScriptEvent.OnButtonMouseOver)]
-        public void onButtonMouseOver(GameObject hitObj, int index)
+        public void OnButtonMouseOver(GameObject hitObj, int index)
         {
-            popped[index] = true;
+            Debug.Log("OnButtonMouseOverOnButtonMouseOver");
+            if (_popped[index])
+                return;
+            _popped[index] = true;
             hitObj.GetComponentInChildren<ParticleSystem>().Play();
-            hitObj.transform.Rotate(Vector3.up, rotateAmount);
-            hitObj.transform.localScale *= btnScaleAmount;
-            hitObj.transform.Translate(popoutAmount);
-            hitObj.renderer.material.SetColor("_OutlineColor", highlightColor);
+            hitObj.transform.Rotate(Vector3.up, RotateAmount);
+            hitObj.transform.localScale *= BtnScaleAmount;
+            hitObj.transform.Translate(_popoutAmount);
+            hitObj.renderer.material.SetColor("_OutlineColor", HighlightColor);
         }
+
         [GameScriptEventAttribute(GameScriptEvent.OnButtonMouseLeave)]
-        public void onButtonMouseLeave(int index)
+        public void OnButtonMouseLeave(int index)
         {
-            popped[index] = false;
+            if (!_popped[index])
+                return;
+            _popped[index] = false;
             _buttonObjs[index].GetComponentInChildren<ParticleSystem>().Stop();
-            _buttonObjs[index].Translate(-popoutAmount);
-            _buttonObjs[index].localScale /= btnScaleAmount;
-            _buttonObjs[index].Rotate(Vector3.up, -rotateAmount);
+            _buttonObjs[index].Translate(-_popoutAmount);
+            _buttonObjs[index].localScale /= BtnScaleAmount;
+            _buttonObjs[index].Rotate(Vector3.up, -RotateAmount);
             _buttonObjs[index].renderer.material.SetColor("_OutlineColor", Color.black);
         }
         protected override void Deinitialize()

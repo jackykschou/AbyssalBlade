@@ -16,18 +16,27 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
         private TextMesh _mesh;
         private Vector3 _direction;
+        private TextMotor _motor;
         private float _speed;
         private float _distance;
         private float _timeLeft;
+        private bool _shot;
 
         protected override void Update()
         {
+            if (!_shot) 
+                return;
+
             _mesh.color = new Color(_mesh.color.r, _mesh.color.g, _mesh.color.b, _timeLeft / OrigDespawnTime);
             _timeLeft -= Time.deltaTime;
         }
 
-        public void OnDespawned()
+        public void OnSpawned()
         {
+            _motor.Shoot(_direction,_speed,_distance);
+            _timeLeft = OrigDespawnTime;
+            DisableGameObject(OrigDespawnTime);
+            _shot = true;
         }
 
         protected override void Initialize()
@@ -38,10 +47,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             _distance = Random.Range(MinDistance, MaxDistance);
             _mesh = gameObject.GetComponent<TextMesh>();
             _mesh.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.HighestLayer;
-            TextMotor motor = gameObject.GetComponent<TextMotor>();
-            _timeLeft = OrigDespawnTime;
-            DisableGameObject(OrigDespawnTime);
-
+            _motor = gameObject.GetComponent<TextMotor>();
+            _shot = false;
         }
         protected override void Deinitialize()
         {

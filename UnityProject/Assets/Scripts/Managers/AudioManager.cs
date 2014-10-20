@@ -417,8 +417,6 @@ namespace Assets.Scripts.Managers
             private AudioSource heavySource;
             public ClipName heavyClip;
 
-            private bool heavyEnabled = false;
-
             private double nextEventTime;
 
             public LevelLoopingCue(LoopName name, List<ClipName> clips)

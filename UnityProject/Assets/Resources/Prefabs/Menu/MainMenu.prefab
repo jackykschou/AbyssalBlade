@@ -430,7 +430,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: .553613067, y: .439900756, z: -.439900637, w: .553613007}
-  m_LocalPosition: {x: 10.5491543, y: 3.70476341, z: -26.9917088}
+  m_LocalPosition: {x: 10.5489998, y: 3.70479989, z: -26.3279991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -1240,6 +1240,21 @@ MonoBehaviour:
   QuitButton: {fileID: 400006}
   StartLevelPrefab: 3
   ButtonPressClip: 13
+  VerticalAxis:
+    _keyCode: 0
+    CoolDownTimeDispatcher:
+      IsEnabled: 0
+      DispatchInterval: .5
+  JoyStickVerticalAxis:
+    _keyCode: 2
+    CoolDownTimeDispatcher:
+      IsEnabled: 0
+      DispatchInterval: .5
+  Attack1:
+    _keyCode: 4
+    CoolDownTimeDispatcher:
+      IsEnabled: 0
+      DispatchInterval: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

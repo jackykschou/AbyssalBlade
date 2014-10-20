@@ -70,5 +70,6 @@
         ChangeObjectMotorSpeedByMaxPercentage,              // void(GameValueTemporaryModifier)
         TempChangeObjectMotorSpeed,                         // void(GameValueTemporaryModifier)
         UnchangeObjectMotorSpeed,                           // void(GameValueTemporaryModifier)
+        ButtonChange                             // void(int buttonID)
     };
 }
