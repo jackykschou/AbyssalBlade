@@ -5,6 +5,7 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
+    [AddComponentMenu("Misc/OnPlayerDeathReset")]
     public class OnPlayerDeathReset : GameLogic
     {
         [GameEventAttribute(GameEvent.OnPlayerDeath)]

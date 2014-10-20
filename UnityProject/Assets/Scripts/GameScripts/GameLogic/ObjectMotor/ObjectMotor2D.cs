@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.GameScripts.Components.GameValue;
-using Assets.Scripts.GameScripts.GameLogic.GameValueTemporaryModifiers;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -89,38 +88,37 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
         {
             float moveDuration = amount.magnitude / speed;
             gameObject.MoveBy(amount, moveDuration, delay, style);
-            //gameObject.MoveAdd(amount, moveDuration, delay, style);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeedFixAmount)]
         public void ChangeSpeedFixAmount(float amount)
         {
-            GameValue.ModifyByFixedValue(Speed, amount);
+            Speed.Value += amount;
         }
 
         [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeedByCurrentPercentage)]
         public void ChangeSpeedByCurrentPercentage(float percentage)
         {
-            GameValue.ModifyByCurrentPercentage(Speed, percentage);
+            Speed.Value += (Speed.Value * percentage);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeedByMaxPercentage)]
         public void ChangeSpeedByMaxPercentage(float percentage)
         {
-            GameValue.ModifyByMaxPercentage(Speed, percentage);
+            Speed.Value += (Speed.Max * percentage);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.TempChangeObjectMotorSpeed)]
-        public void TempChangeSpeed(GameValueTemporaryModifier modifier)
+        public void TempChangeSpeed()
         {
-            modifier.Modify(Speed);
+
         }
 
         [GameScriptEventAttribute(GameScriptEvent.UnchangeObjectMotorSpeed)]
-        public void UnchangeSpeed(GameValueTemporaryModifier modifier)
+        public void UnchangeSpeed()
         {
-            modifier.Unmodify(Speed);
+
         }
     }
 }

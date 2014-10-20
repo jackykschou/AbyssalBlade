@@ -1,10 +1,11 @@
 ﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
 {
     [AddComponentMenu("Skill/CastableCondition/TimeCoolDown")]
+    [RequireComponent(typeof(FixTimeDispatcher))]
     public class SkillCooldown : SkillCastableCondition
     {
         public FixTimeDispatcher CoolDownDispatcher;

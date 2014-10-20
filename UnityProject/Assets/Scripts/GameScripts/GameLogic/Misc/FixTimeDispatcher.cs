@@ -1,13 +1,11 @@
 ﻿using System;
-using Pathfinding;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.Components.Input
+namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
-    [Serializable]
-    public class FixTimeDispatcher : GameScriptComponent
+    [AddComponentMenu("Misc/FixTimeDispatcher")]
+    public class FixTimeDispatcher : GameLogic
     {
-        public bool IsEnabled;
         public event Action DispatchEventHander;
         public float DispatchInterval;
         public float DispatchCoolDownPercentage {
@@ -33,7 +31,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
                 return true;
             }
 
-            return ((Time.fixedTime - _lastFrameTime) >= DispatchInterval) && IsEnabled;
+            return ((Time.fixedTime - _lastFrameTime) >= DispatchInterval);
         }
 
         public bool Dispatch()
@@ -58,13 +56,13 @@ namespace Assets.Scripts.GameScripts.Components.Input
             _lastFrameTime = -100;
         }
 
-        public override void Initialize()
+        protected override void Initialize()
         {
-            IsEnabled = true;
+            base.Initialize();
             TurnDispatchable();
         }
 
-        public override void Deinitialize()
+        protected override void Deinitialize()
         {
         }
     }

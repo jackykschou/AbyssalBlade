@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.Utility;
 using UnityEngine;
 

@@ -4,6 +4,7 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
+    [AddComponentMenu("Misc/AStarGraphUpdater")]
     public class AStarGraphUpdater : GameLogic 
     {
         protected override void Initialize()

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Managers;
@@ -11,6 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(PrefabSpawner))]
+    [RequireComponent(typeof(FixTimeDispatcher))]
     [AddComponentMenu("LevelMechanics/Section/SectionEnemySpawnPoint")]
     public class SectionEnemySpawnPoint : SectionLogic 
     {

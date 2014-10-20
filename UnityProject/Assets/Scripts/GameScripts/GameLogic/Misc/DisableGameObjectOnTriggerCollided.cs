@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
+    [AddComponentMenu("Misc/DisableGameObjectOnTriggerCollided")]
     [RequireComponent(typeof(Collider2D))]
     public class DisableGameObjectOnTriggerCollided : GameLogic
     {

@@ -20,6 +20,7 @@ GameObject:
   - 114: {fileID: 11400060}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400072}
+  - 114: {fileID: 11400076}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -77,6 +78,9 @@ GameObject:
   - 114: {fileID: 11400058}
   - 114: {fileID: 11400064}
   - 114: {fileID: 11400074}
+  - 114: {fileID: 11400082}
+  - 114: {fileID: 11400080}
+  - 114: {fileID: 11400078}
   m_Layer: 0
   m_Name: SmallMeleeEnemy
   m_TagString: Enemy
@@ -237,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031f7a85e7361504d9ef702406f011c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
@@ -258,10 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b2014cc0ccbef4f924020a9731f163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skill: {fileID: 0}
-  CoolDownDispatcher:
-    IsEnabled: 0
-    DispatchInterval: 1
+  CoolDownDispatcher: {fileID: 11400076}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
@@ -300,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbcdbb4f3226bc4b9e578f303426e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: Melee
@@ -323,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc55d2431988f5b4da02b682bdc83f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   IsActivate: 0
   OnceAtATime: 1
   IsPassive: 0
@@ -365,6 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3366e462cf8e804a96d6c2560c3c9b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skill: {fileID: 0}
   Distance: 1.5
 --- !u!114 &11400016
@@ -378,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc8a6fbe0f47ae46ac9c68e7c4eebcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skill: {fileID: 0}
 --- !u!114 &11400018
 MonoBehaviour:
@@ -390,13 +399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da47ab0035e12444ad83df49936bd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skills: []
   Moving: 0
   Target: {fileID: 0}
   PointingDirection: {x: 0, y: 0}
-  MinimumCoolDown:
-    IsEnabled: 0
-    DispatchInterval: 0
+  MinimumCoolDown: {fileID: 11400078}
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -408,6 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df01e8056b561ed458d6d8e3dbe52b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Speed:
     InitialMinValue: 0
     InitialMaxValue: 15
@@ -442,6 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dde69336bbf6e244a66cc00ae459d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Target: {fileID: 0}
 --- !u!114 &11400026
 MonoBehaviour:
@@ -454,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a606312a8bc4144ca72b8db5bc4a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   repathRate: .400000006
   Target: {fileID: 0}
   canSearch: 1
@@ -504,6 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479e81ffffaa1754aadb477f2eb10a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   DetectionRadius: 20
 --- !u!114 &11400032
 MonoBehaviour:
@@ -516,6 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361c29655a2681a42bdca56e664730c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de54841944f2be44aa0c02d113809d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -560,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1639bd510c7ee4da035f45f6b43f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Animator: {fileID: 0}
 --- !u!114 &11400042
 MonoBehaviour:
@@ -572,6 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930872488ea7afd49b121c3402383255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Delay: 1
 --- !u!114 &11400044
 MonoBehaviour:
@@ -584,6 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7b2450b994a714a899df7a03ffd4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -595,6 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ee50d89328d2d439200d4a1db265be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   PrefabSpawner: {fileID: 0}
   textColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &11400048
@@ -608,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b16d40545ede74dab4395fb43132c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   clip: 37
   volume: 1
 --- !u!114 &11400050
@@ -621,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
   clip: 19
@@ -636,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Prefabs: 01000000
   SpawnPickWeights:
   - 1
@@ -653,6 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c6dca0b83211c84abd049490bec63aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Invincible: 0
   HitPoint:
     InitialMinValue: 0
@@ -671,6 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -682,10 +705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abebd14585553649b50328476e1bdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   HitDamageThreshold: 1
-  HitDamageThresholdResetTime:
-    IsEnabled: 0
-    DispatchInterval: .5
+  HitDamageThresholdResetTime: {fileID: 11400082}
 --- !u!114 &11400060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,6 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3177d51aea71549861030bbda84145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skill: {fileID: 0}
 --- !u!114 &11400062
 MonoBehaviour:
@@ -709,6 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6830ca6c8ff524244b98b5169eb640de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Clip: 0
   Volume: 1
 --- !u!114 &11400064
@@ -722,10 +746,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecb47d838bd976499bee73e1203f9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   InterruptionDuration: .5
-  InterruptCoolDown:
-    IsEnabled: 0
-    DispatchInterval: 0
+  InterruptCoolDown: {fileID: 11400080}
 --- !u!114 &11400066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,6 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cceacee09b8e973488821a45787a044a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -770,6 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
   TargetFinder: {fileID: 11400000}
@@ -784,8 +809,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b196a1827a7c5d49ae4de971fe7112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   cue: 5
   volume: 1
+--- !u!114 &11400076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  DispatchInterval: 1.5
+--- !u!114 &11400078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: AISkillCasterCooldown
+  DispatchInterval: .5
+--- !u!114 &11400080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: CharacterInterruptCooldown
+  DispatchInterval: .5
+--- !u!114 &11400082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: InterruptHitDamageThreshodResetTime
+  DispatchInterval: 1
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

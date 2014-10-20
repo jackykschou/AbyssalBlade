@@ -21,6 +21,7 @@ namespace Assets.Scripts.GameScripts
     [RequireComponent(typeof(GameScriptEventManager))]
     public abstract class GameScript : MonoBehaviour
     {
+        public string LabelName;
         public GameScriptEventManager GameScriptEventManager { get; set; }
 
         private Dictionary<Type, Dictionary<ComponentEvent, Dictionary<GameScriptComponent, List<MethodInfo>>>> _componentsEvents;
@@ -224,7 +225,10 @@ namespace Assets.Scripts.GameScripts
         IEnumerator DisableGameObjectIE(float delay)
         {
             yield return new WaitForEndOfFrame();
-            yield return new WaitForSeconds(delay);
+            if (delay > 0f)
+            {
+                yield return new WaitForSeconds(delay);
+            }
             TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
             if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
             {
