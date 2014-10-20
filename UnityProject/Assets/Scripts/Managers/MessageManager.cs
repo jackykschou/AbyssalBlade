@@ -1,6 +1,9 @@
 ﻿using System.Collections;
+using System.Net.Mime;
+using Assets.Scripts.Attributes;
+using Assets.Scripts.GameScripts;
+using Assets.Scripts.Utility;
 using UnityEngine;
-using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
@@ -10,8 +13,9 @@ namespace Assets.Scripts.Managers
 {
     [AddComponentMenu("Manager/MessageManager")]
     [ExecuteInEditMode]
-    public class MessageManager : GameLogic
+    public class MessageManager : MonoBehaviour
     {
+        public GameObject DeathMessageText;
         public PrefabSpawner PrefabSpawner;
         public Camera MainCamera;
         public EaseType PreferredEaseType;
@@ -29,6 +33,22 @@ namespace Assets.Scripts.Managers
             }
         }
 
+        public void DisplayDeathMessage()
+        {
+            DeathMessageText.SetActive(true);
+            StartCoroutine(DeactivateObjectIE(2.0f));
+        }
+
+        IEnumerator DeactivateObjectIE(float time)
+        {
+            while (time > 0)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+                time -= Time.deltaTime;
+            }
+            DeathMessageText.SetActive(false);
+        }
+
         public void DisplayMessage(string message,Vector3 direction)
         {
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
@@ -38,7 +58,7 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f,2.0f);
+                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
             });
         }
 
@@ -56,7 +76,7 @@ namespace Assets.Scripts.Managers
                 mesh.text = message;
                 motor.Shoot(PreferredEaseType, direction, speed, distance, 5.0f);
                 //float time = (direction*distance/speed).magnitude;
-                motor.Shoot(PreferredEaseType, directionToFly, 30.0f, 20.0f, 2.0f);
+                //motor.Shoot(PreferredEaseType, directionToFly, 30.0f, 20.0f, 2.0f);
             });
             
         }
@@ -84,7 +104,7 @@ namespace Assets.Scripts.Managers
             return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 4.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
 
-        protected override void Update()
+        void Update()
         {
             if (Input.GetKeyDown(KeyCode.Keypad1))
                 DisplayMessage("Regular Message", Vector3.up);
@@ -92,21 +112,20 @@ namespace Assets.Scripts.Managers
                 DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right);
         }
 
-        protected override void Initialize()
+        void Awake()
         {
             if (PrefabSpawner == null)
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
-            if(MainCamera == null)
+            if (MainCamera == null)
             {
                 MainCamera = Camera.main;
             }
+            if (DeathMessageText == null)
+            {
+                DeathMessageText = GameObject.Find("DeathMessage");
+            }
         }
-
-        protected override void Deinitialize()
-        {
-        }
-
     }
 }

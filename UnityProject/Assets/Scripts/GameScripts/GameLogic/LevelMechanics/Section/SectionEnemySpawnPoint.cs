@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
@@ -102,8 +103,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                                                                  o.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
                 triggerNoHitPointOnSectionDeactivated.SectionId = SectionId;
                 triggerOnSectionEnemyDespawnedOnNoHitPoint.SectionId = SectionId;
-                if(FadeInEnemy)
+                if (FadeInEnemy)
+                {
                     StartCoroutine(FadeInEnemyIE(o, FadeInTime));
+
+                }
             });
             TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
         }
@@ -112,14 +116,30 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
             float timePass = 0.0f;
             SpriteRenderer render = o.GetComponent<SpriteRenderer>();
-            render.color = new Color(render.color.r,render.color.g,render.color.b, 0.0f);
+            if (render != null)
+            {
+                render.color = new Color(render.color.r, render.color.g, render.color.b, 0.0f);
+            }
+            var motor = o.GetComponent<ObjectMotor2D>();
+            float originalSpeed = motor.Speed.Value;
+            motor.Speed.Value = 0f;
             while (timePass < time)
             {
-                render.color = new Color(render.color.r, render.color.g, render.color.b, timePass/time);
+                if (render != null)
+                {
+                    render.color = new Color(render.color.r, render.color.g, render.color.b, timePass / time);
+                }
                 yield return new WaitForSeconds(Time.deltaTime);
                 timePass += Time.deltaTime;
             }
-            render.color = new Color(render.color.r, render.color.g, render.color.b, 1.0f);
+            if (render != null)
+            {
+                render.color = new Color(render.color.r, render.color.g, render.color.b, 1.0f);
+            }
+            if (motor != null)
+            {
+                motor.Speed.Value = originalSpeed;
+            }
         }
 
         protected override void Initialize()
