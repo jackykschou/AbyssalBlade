@@ -29,12 +29,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         public void UpdateHealth(float percentage)
         {
             _HealthBar.value = percentage;
-            int PercentageInt = (int)(percentage * 100);
-            if(_HealthText != null)
-                _HealthText.text = PercentageInt.ToString() + "%";
+            int percentageInt = (int)(Mathf.Ceil(percentage * 100f));
+            if (_HealthText != null)
+            {
+                _HealthText.text = percentageInt + "%";
+            }
 
             if (_HealthColorImage != null)
+            {
                 _HealthColorImage.color = Color.Lerp(Color.red, Color.green, _HealthBar.value);
+            }
         }
     }
 }

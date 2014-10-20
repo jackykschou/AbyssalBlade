@@ -83,6 +83,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         protected override void Update()
         {
             base.Update();
+            if (gameObject.HitPointAtZero())
+            {
+                return;
+            }
+
             if (Attack1.Detect() && _skill1Enabled)
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack1ButtonPressed);
