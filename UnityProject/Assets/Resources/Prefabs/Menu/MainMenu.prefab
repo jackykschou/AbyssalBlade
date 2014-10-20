@@ -1233,23 +1233,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7d8cc050d240d4fb8c08a2417e0a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightColor: {r: 1, g: 1, b: 1, a: 1}
-  btnScaleAmount: 1.20000005
+  HighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  BtnScaleAmount: 1.5
   StartButton: {fileID: 400018}
   OptionsButton: {fileID: 400028}
   QuitButton: {fileID: 400006}
   StartLevelPrefab: 3
   ButtonPressClip: 13
   VerticalAxis:
-    _keyCode: 0
+    _keyCode: 9
     CoolDownTimeDispatcher:
       IsEnabled: 0
-      DispatchInterval: .5
-  JoyStickVerticalAxis:
+      DispatchInterval: 1.5
+  JoystickVerticalAxis:
     _keyCode: 2
     CoolDownTimeDispatcher:
       IsEnabled: 0
-      DispatchInterval: .5
+      DispatchInterval: 1.5
   Attack1:
     _keyCode: 4
     CoolDownTimeDispatcher:

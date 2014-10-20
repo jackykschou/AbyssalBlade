@@ -27,8 +27,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private int _curButton = 0;
         [SerializeField]
         private AxisOnHold VerticalAxis;
-        [SerializeField]
-        private AxisOnHold JoyStickVerticalAxis;
+        [SerializeField] 
+        private AxisOnHold JoystickVerticalAxis;
         [SerializeField]
         private ButtonOnPressed Attack1;
         
@@ -50,44 +50,56 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             };
             _popoutAmount = new Vector3(0, 0, -.75f);
             _numButtons = _buttonObjs.Count;
-            TriggerGameScriptEvent(GameScriptEvent.ButtonChange, _curButton);
+            _curButton = -1;
         }
 
         protected override void FixedUpdate()
         {
-            base.FixedUpdate(); 
-            if (Mathf.Abs(Input.GetAxis("VerticalAxis")) > 0)
+            base.FixedUpdate();
+            if (VerticalAxis.Detect() || JoystickVerticalAxis.Detect())
             {
-                float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
-                                    Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
-                ? VerticalAxis.GetAxisValue()
-                : JoyStickVerticalAxis.GetAxisValue();
+                bool up = 
+                    Mathf.Abs(VerticalAxis.GetAxisValue()) > Mathf.Abs(JoystickVerticalAxis.GetAxisValue()) 
+                    ?
+                    VerticalAxis.GetAxisValue() > 0 
+                    :
+                    JoystickVerticalAxis.GetAxisValue() > 0;
 
-                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(verticalValue > 0));
+                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(up));
             }
 
-           // Debug.Log(Mathf.Abs(Input.GetAxis("VerticalAxis")));
-
-            if (!Attack1.Detect() && !Input.GetMouseButtonDown(0)) 
-                return;
-
-            switch (_curButton)
+            if (Attack1.Detect() || Input.GetMouseButtonDown(0))
             {
-                case 0:
-                    TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
-                    break;
-                case 1:
-                    TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
-                    break;
-                case 2:
-                    TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
-                    break;
+                switch (_curButton)
+                {
+                    case 0:
+                        TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
+                        break;
+                    case 1:
+                        TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
+                        break;
+                    case 2:
+                        TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
+                        break;
+                }
             }
         }
 
         private int GetNextButton(bool up)
         {
-            return up ? _curButton == _numButtons - 1 ? 0 : _curButton++ : _curButton == 0 ? _numButtons - 1 : _curButton--;
+            if (up)
+            {
+                _curButton--;
+                if (_curButton == -1)
+                    _curButton = _numButtons - 1;
+            }
+            else
+            {
+                _curButton++;
+                if (_curButton == _numButtons)
+                    _curButton = 0;
+            }
+            return _curButton;
         }
 
         [GameScriptEventAttribute(GameScriptEvent.ButtonChange)]
@@ -128,7 +140,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
         public void OnQuitPressed()
         {
-            AudioManager.Instance.PlayClip(ButtonPressClip);
             Application.Quit();
         }
 
