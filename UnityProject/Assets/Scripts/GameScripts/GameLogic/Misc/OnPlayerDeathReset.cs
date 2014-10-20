@@ -7,26 +7,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
     public class OnPlayerDeathReset : GameLogic
     {
-        [GameEventAttribute(GameEvent.OnLevelEnded)]
+        [GameEventAttribute(GameEvent.OnPlayerDeath)]
         public void ShowDeathMessage()
         {
-            if (LevelManager.Instance.IsPlayLevel)
-            {
-                MessageManager.Instance.DisplayMessage("You have Died.", Vector2.up);
-                AudioManager.Instance.Mute();
-                
-            }
+            MessageManager.Instance.DisplayDeathMessage();
+            AudioManager.Instance.Mute();
         }
-        [GameEventAttribute(GameEvent.OnLevelStarted)]
-        public void LevelStart()
-        {
-            if (LevelManager.Instance.IsPlayLevel)
-            {
-                AudioManager.Instance.UnMute();
 
-            }
+        [GameEventAttribute(GameEvent.OnLevelStarted)]
+        public void UnMuteAudio()
+        {
+            AudioManager.Instance.UnMute();
         }
-        // Use this for initialization
+
+
+        // Use this for deinitialization
         protected override void Deinitialize()
         {
         }

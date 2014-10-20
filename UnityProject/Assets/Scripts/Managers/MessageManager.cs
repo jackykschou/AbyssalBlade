@@ -1,4 +1,8 @@
 ﻿using System.Collections;
+using System.Net.Mime;
+using Assets.Scripts.Attributes;
+using Assets.Scripts.GameScripts;
+using Assets.Scripts.Utility;
 using UnityEngine;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
@@ -11,6 +15,7 @@ namespace Assets.Scripts.Managers
     [ExecuteInEditMode]
     public class MessageManager : MonoBehaviour
     {
+        public GameObject DeathMessageText;
         public PrefabSpawner PrefabSpawner;
         public Camera MainCamera;
         public EaseType PreferredEaseType;
@@ -26,6 +31,22 @@ namespace Assets.Scripts.Managers
                 DontDestroyOnLoad(_instance.gameObject);
                 return _instance;
             }
+        }
+
+        public void DisplayDeathMessage()
+        {
+            DeathMessageText.SetActive(true);
+            StartCoroutine(DeactivateObjectIE(2.0f));
+        }
+
+        IEnumerator DeactivateObjectIE(float time)
+        {
+            while (time > 0)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+                time -= Time.deltaTime;
+            }
+            DeathMessageText.SetActive(false);
         }
 
         public void DisplayMessage(string message,Vector3 direction)
@@ -100,6 +121,10 @@ namespace Assets.Scripts.Managers
             if (MainCamera == null)
             {
                 MainCamera = Camera.main;
+            }
+            if (DeathMessageText == null)
+            {
+                DeathMessageText = GameObject.Find("DeathMessage");
             }
         }
     }
