@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.Components.Input;
 using Assets.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.UI;
-
-using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
-
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
@@ -17,29 +12,23 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
     public class ButtonController : GameLogic
     {
         public Color HighlightColor;
-
         public float BtnScaleAmount;
         public Transform StartButton;
         public Transform OptionsButton;
         public Transform QuitButton;
-        List<Transform> _buttonObjs;
-        Vector3 _popoutAmount;
-        List<bool> _popped;
-
         public Prefab StartLevelPrefab;
-
         public ClipName ButtonPressClip;
 
+        private List<Transform> _buttonObjs;
+        private Vector3 _popoutAmount;
+        private List<bool> _popped;
         private const float RotateAmount = 30.0f;
         private int _numButtons = 0;
         private int _curButton = 0;
-        
         [SerializeField]
         private AxisOnHold VerticalAxis;
-
         [SerializeField]
         private AxisOnHold JoyStickVerticalAxis;
-        
         [SerializeField]
         private ButtonOnPressed Attack1;
         
@@ -67,7 +56,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void FixedUpdate()
         {
             base.FixedUpdate(); 
-            if (JoyStickVerticalAxis.Detect() || VerticalAxis.Detect())
+            if (Mathf.Abs(Input.GetAxis("VerticalAxis")) > 0)
             {
                 float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
                                     Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
@@ -76,6 +65,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
                 TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(verticalValue > 0));
             }
+
+           // Debug.Log(Mathf.Abs(Input.GetAxis("VerticalAxis")));
 
             if (!Attack1.Detect() && !Input.GetMouseButtonDown(0)) 
                 return;
@@ -144,7 +135,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [GameScriptEventAttribute(GameScriptEvent.OnButtonMouseOver)]
         public void OnButtonMouseOver(GameObject hitObj, int index)
         {
-            Debug.Log("OnButtonMouseOverOnButtonMouseOver");
             if (_popped[index])
                 return;
             _popped[index] = true;
