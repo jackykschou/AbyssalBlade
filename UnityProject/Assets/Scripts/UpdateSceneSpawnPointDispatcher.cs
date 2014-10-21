@@ -19,7 +19,7 @@ namespace Assets.Scripts
 
         void Updataaaa(GameObject obj)
         {
-            if (obj.name.Contains("EnemySpawner"))
+            if (obj.name.Contains("EnemySpawnPoint"))
             {
                 obj.GetComponent<SectionEnemySpawnPoint>().SpawnCoolDown = obj.GetComponent<FixTimeDispatcher>();
             }

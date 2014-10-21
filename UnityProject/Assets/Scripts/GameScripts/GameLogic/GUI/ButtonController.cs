@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
@@ -27,8 +27,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private int _curButton = 0;
         [SerializeField]
         private AxisOnHold VerticalAxis;
-        [SerializeField] 
-        private AxisOnHold JoystickVerticalAxis;
         [SerializeField]
         private ButtonOnPressed Attack1;
         
@@ -56,20 +54,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (JoystickVerticalAxis.Detect())
+            if (VerticalAxis.Detect())
             {
-                bool up =
-                    Mathf.Abs(VerticalAxis.GetAxisValue()) > Mathf.Abs(JoystickVerticalAxis.GetAxisValue())
-                        ? VerticalAxis.GetAxisValue() > 0
-                        : JoystickVerticalAxis.GetAxisValue() > 0;
-
-                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(up));
+                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(VerticalAxis.GetAxisValue() > 0.1));
             }
             else
             {
                 RaycastHit hit;
-                bool clicked = Input.GetMouseButtonDown(0);
-                if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+                bool clicked = UnityEngine.Input.GetMouseButtonDown(0);
+                if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit))
                 {
                     GameObject hitObj = hit.collider.gameObject;
                     for (int index = 0; index < _buttonObjs.Count; index++)
