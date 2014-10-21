@@ -56,19 +56,54 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (VerticalAxis.Detect() || JoystickVerticalAxis.Detect())
+            if (JoystickVerticalAxis.Detect())
             {
-                bool up = 
-                    Mathf.Abs(VerticalAxis.GetAxisValue()) > Mathf.Abs(JoystickVerticalAxis.GetAxisValue()) 
-                    ?
-                    VerticalAxis.GetAxisValue() > 0 
-                    :
-                    JoystickVerticalAxis.GetAxisValue() > 0;
+                bool up =
+                    Mathf.Abs(VerticalAxis.GetAxisValue()) > Mathf.Abs(JoystickVerticalAxis.GetAxisValue())
+                        ? VerticalAxis.GetAxisValue() > 0
+                        : JoystickVerticalAxis.GetAxisValue() > 0;
 
                 TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(up));
             }
+            else
+            {
+                RaycastHit hit;
+                bool clicked = Input.GetMouseButtonDown(0);
+                if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    GameObject hitObj = hit.collider.gameObject;
+                    for (int index = 0; index < _buttonObjs.Count; index++)
+                    {
+                        if (hitObj == _buttonObjs[index].gameObject)
+                        {
+                            if (clicked)
+                            {
+                                switch (index)
+                                {
+                                    case 0:
+                                        TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
+                                        break;
+                                    case 1:
+                                        TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
+                                        break;
+                                    case 2:
+                                        TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
+                                        break;
+                                }
+                            }
+                            if (!_popped[index])
+                                TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, hitObj, index);
+                            return;
+                        }
+                    }
+                    for (int index = 0; index < _buttonObjs.Count; index++)
+                        if (_popped[index])
+                            TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, index);
+                }
+                return;
+            }
 
-            if (Attack1.Detect() || Input.GetMouseButtonDown(0))
+            if (Attack1.Detect())
             {
                 switch (_curButton)
                 {
@@ -127,19 +162,20 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [GameScriptEventAttribute(GameScriptEvent.MenuStartButtonPressed)]
         public void OnStartPressed()
         {
-            AudioManager.Instance.PlayClip(ButtonPressClip);
+            AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuOptionsButtonPressed)]
         public void OnOptionsPressed()
         {
-            AudioManager.Instance.PlayClip(ButtonPressClip);
+            AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
         public void OnQuitPressed()
         {
+            AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             Application.Quit();
         }
 

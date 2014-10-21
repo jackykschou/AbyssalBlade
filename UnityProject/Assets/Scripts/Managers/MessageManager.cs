@@ -36,7 +36,8 @@ namespace Assets.Scripts.Managers
         public void DisplayDeathMessage()
         {
             DeathMessageText.SetActive(true);
-            StartCoroutine(DeactivateObjectIE(2.0f));
+            StartCoroutine(DeactivateObjectIE(3.0f));
+            StartCoroutine(FadeInDeathScreenIE(3.0f));
         }
 
         IEnumerator DeactivateObjectIE(float time)
@@ -47,6 +48,19 @@ namespace Assets.Scripts.Managers
                 time -= Time.deltaTime;
             }
             DeathMessageText.SetActive(false);
+        }
+        IEnumerator FadeInDeathScreenIE(float time)
+        {
+            float passedTime = 0.0f;
+            UnityEngine.UI.Image image = DeathMessageText.GetComponent<UnityEngine.UI.Image>();
+            while (time > 0)
+            {
+                image.color = new Color(image.color.r,image.color.g,image.color.b,passedTime/time); 
+                yield return new WaitForSeconds(Time.deltaTime);
+                time -= Time.deltaTime;
+                passedTime += Time.deltaTime;
+            }
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1.0f); 
         }
 
         public void DisplayMessage(string message,Vector3 direction)

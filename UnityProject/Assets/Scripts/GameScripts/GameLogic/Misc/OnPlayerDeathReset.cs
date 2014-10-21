@@ -11,13 +11,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         public void ShowDeathMessage()
         {
             MessageManager.Instance.DisplayDeathMessage();
-            AudioManager.Instance.Mute();
-        }
-
-        [GameEventAttribute(GameEvent.OnLevelStarted)]
-        public void UnMuteAudio()
-        {
-            AudioManager.Instance.UnMute();
         }
 
 
