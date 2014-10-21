@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
-    [RequireComponent(typeof(FixTimeDispatcher))]
+    [AddComponentMenu("Input/ButtonOnDoublePressed")]
     public class ButtonOnDoublePressed : PlayerInput
     {
         public FixTimeDispatcher ClickBufferTimeDispatcher;

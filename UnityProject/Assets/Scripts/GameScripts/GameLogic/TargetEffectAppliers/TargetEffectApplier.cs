@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 {
+    [RequireComponent(typeof(TargetFinder))]
     public abstract class TargetEffectApplier : GameLogic
     {
         public List<string> TargetTags = new List<string>();
@@ -30,6 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
         {
             base.Initialize();
             _changedCache = new List<GameObject>();
+            TargetFinder = GetComponent<TargetFinder>();
         }
 
         protected override void Deinitialize()

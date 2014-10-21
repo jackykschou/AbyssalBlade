@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         }
         public bool Moving;
         public Transform Target;
-        public Vector2 PointingDirection;
+        public abstract Vector2 PointingDirection { get; }
 
         private float _movingTimer;
 

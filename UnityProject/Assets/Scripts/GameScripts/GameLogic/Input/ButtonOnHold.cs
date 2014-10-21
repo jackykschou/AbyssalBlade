@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
+    [AddComponentMenu("Input/ButtonOnHold")]
     public class ButtonOnHold : PlayerInput
     {
         protected bool IsHolding;

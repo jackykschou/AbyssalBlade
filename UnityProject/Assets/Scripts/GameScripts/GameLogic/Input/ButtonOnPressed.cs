@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using Assets.Scripts.Constants;
+using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
-    [System.Serializable]
+    [AddComponentMenu("Input/ButtonOnPressed")]
     public class ButtonOnPressed : PlayerInput
     {
         public override bool Detect()

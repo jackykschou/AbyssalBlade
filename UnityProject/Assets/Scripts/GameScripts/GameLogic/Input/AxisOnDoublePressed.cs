@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
+    [AddComponentMenu("Input/AxisOnDoublePressed")]
     public class AxisOnDoublePressed : ButtonOnDoublePressed 
     {
         public float GetAxisValue()

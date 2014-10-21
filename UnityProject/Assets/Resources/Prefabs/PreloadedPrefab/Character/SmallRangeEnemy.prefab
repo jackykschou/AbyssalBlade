@@ -20,6 +20,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400080}
+  - 114: {fileID: 11400082}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -244,9 +245,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   PrefabSpawner: {fileID: 0}
-  Position:
-    Follower: {fileID: 0}
-    Position: {fileID: 400002}
+  Position: {fileID: 11400082}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -388,7 +387,6 @@ MonoBehaviour:
   Skills: []
   Moving: 0
   Target: {fileID: 0}
-  PointingDirection: {x: 0, y: 0}
   MinimumCoolDown: {fileID: 11400074}
 --- !u!114 &11400020
 MonoBehaviour:
@@ -834,6 +832,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   DispatchInterval: 3
+--- !u!114 &11400082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Follower: {fileID: 0}
+  Position: {fileID: 400002}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

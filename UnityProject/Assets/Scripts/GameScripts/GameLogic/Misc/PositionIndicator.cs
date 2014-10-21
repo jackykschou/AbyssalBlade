@@ -5,10 +5,10 @@ using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
-namespace Assets.Scripts.GameScripts.Components
+namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
-    [Serializable]
-    public class PositionIndicator : GameScriptComponent
+    [AddComponentMenu("Misc/PositionIndicator")]
+    public class PositionIndicator : GameLogic
     {
         public Transform Follower;
         public Transform Position;
@@ -25,11 +25,12 @@ namespace Assets.Scripts.GameScripts.Components
 
         private FacingDirection _currentFacingDirection;
 
-        public override void Initialize()
+        protected override void Initialize()
         {
+            base.Initialize();
             if (Follower == null)
             {
-                Follower = GameScript.transform;
+                Follower = transform;
             }
             if (Position == null)
             {
@@ -48,12 +49,13 @@ namespace Assets.Scripts.GameScripts.Components
             _currentFacingDirection = FacingDirection.Down;
         }
 
-        public override void Deinitialize()
+        protected override void Deinitialize()
         {
             Position.localPosition = _downPos;
             _currentFacingDirection = FacingDirection.Down;
         }
 
+        [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
         public void UpdatePosition(FacingDirection facingDirection)
         {
             _currentFacingDirection = facingDirection;

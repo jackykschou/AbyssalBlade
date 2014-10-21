@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.GameScripts.Components;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Utility;
@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 {
+    [RequireComponent(typeof(PositionIndicator))]
     [AddComponentMenu("Skill/SkillEffect/SpawnProjectileWithTimeScale")]
     public class SpawnProjectileWithTimeScale : SkillEffect
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
-    [System.Serializable]
+    [AddComponentMenu("Input/AxisOnPressed")]
     public class AxisOnPressed : ButtonOnPressed 
     {
         public float GetAxisValue()

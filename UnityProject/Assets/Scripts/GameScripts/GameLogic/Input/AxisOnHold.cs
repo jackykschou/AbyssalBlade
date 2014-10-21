@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
+    [AddComponentMenu("Input/AxisOnHold")]
     public class AxisOnHold : PlayerInput
     {
         private const float AxisValueThreshold = 0.1f;

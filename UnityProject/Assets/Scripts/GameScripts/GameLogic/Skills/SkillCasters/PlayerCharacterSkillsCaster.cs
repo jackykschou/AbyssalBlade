@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components;
-using Assets.Scripts.Utility;
+﻿using Assets.Scripts.GameScripts.GameLogic.Misc;
 using UnityEngine;
 
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -10,6 +7,7 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 {
     [AddComponentMenu("Skill/Caster/PlayerCharacterCaster")]
+    [RequireComponent(typeof(PositionIndicator))]
     public class PlayerCharacterSkillsCaster : SkillCaster
     {
         public Skill MovementSkill;
@@ -26,6 +24,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         public PositionIndicator TargetHolder;
 
+        public override Vector2 PointingDirection
+        {
+            get { return TargetHolder.Direction; }
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -34,18 +37,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         protected override void Deinitialize()
         {
-        }
-
-        [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
-        void UpdatePointingDirection(FacingDirection facingDirection)
-        {
-            PointingDirection = MathUtility.GetFacingDirectionVector(facingDirection);
-        }
-
-        [GameScriptEventAttribute(GameScriptEvent.UpdateFacingDirection)]
-        public void UpdateDamageAreaPosition(FacingDirection facingDirection)
-        {
-            TargetHolder.UpdatePosition(facingDirection);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.PlayerAxisMoved)]

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers;
 using Assets.Scripts.Utility;
 using UnityEditor;
@@ -44,19 +45,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders.Editor
 
             finder.TargetEffectAppliers.Resize(EditorGUILayout.IntField("Target effect applier list size", finder.TargetEffectAppliers.Count));
 
-
+#pragma warning disable 618
             for (int i = 0; i < finder.TargetEffectAppliers.Count; ++i)
             {
-#pragma warning disable 618
                 finder.TargetEffectAppliers[i] = EditorGUILayout.ObjectField("Applier" + i, finder.TargetEffectAppliers[i], typeof(TargetEffectApplier)) as TargetEffectApplier;
             }
 
-            if (finder.FinderPosition != null)
-            {
-                finder.FinderPosition.Position = EditorGUILayout.ObjectField("Finder Position", finder.FinderPosition.Position, typeof(Transform)) as Transform;
-                finder.FinderPosition.Follower = EditorGUILayout.ObjectField("FinderPosition Follower", finder.FinderPosition.Follower, typeof(Transform)) as Transform;
+            finder.FinderPosition = EditorGUILayout.ObjectField("Finder Position", finder.FinderPosition, typeof(PositionIndicator)) as PositionIndicator;
 #pragma warning restore 618
-            }
         }
     }
 }
