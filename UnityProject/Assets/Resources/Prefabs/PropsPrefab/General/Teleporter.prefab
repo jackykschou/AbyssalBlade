@@ -20,6 +20,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400016}
   m_Layer: 13
   m_Name: Teleporter
   m_TagString: Enemy
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ea39b5ffdc35c4ba4b6210e7fa9c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Animator: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -103,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f89c72082050b42ae3078291053f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   SectionId: 0
   SectionActivated: 0
   SpawnPoints: []
@@ -117,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ee50d89328d2d439200d4a1db265be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   PrefabSpawner: {fileID: 0}
   textColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &11400006
@@ -130,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Prefabs: 01000000
   SpawnPickWeights:
   - 1
@@ -147,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bee1595fd010f49b1b998f4e94fc7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,13 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c6dca0b83211c84abd049490bec63aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   Invincible: 0
-  HitPoint:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 100
-  HealingEmphasizePercentage: 0
-  DamageEmphasizePercentage: 0
+  HitPoint: {fileID: 11400016}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +189,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  InitialMinValue: 0
+  InitialMaxValue: 0
+  InitialValue: 100
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

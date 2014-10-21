@@ -64,6 +64,7 @@ GameObject:
   - 114: {fileID: 11400182}
   - 114: {fileID: 11400180}
   - 114: {fileID: 11400184}
+  - 114: {fileID: 11400194}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -142,6 +143,7 @@ GameObject:
   - 114: {fileID: 11400146}
   - 114: {fileID: 11400164}
   - 114: {fileID: 11400188}
+  - 114: {fileID: 11400200}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -184,6 +186,7 @@ GameObject:
   - 114: {fileID: 11400144}
   - 114: {fileID: 11400156}
   - 114: {fileID: 11400190}
+  - 114: {fileID: 11400202}
   m_Layer: 0
   m_Name: StrongMelee
   m_TagString: Untagged
@@ -230,6 +233,8 @@ GameObject:
   - 114: {fileID: 11400168}
   - 114: {fileID: 11400166}
   - 114: {fileID: 11400192}
+  - 114: {fileID: 11400196}
+  - 114: {fileID: 11400204}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -274,6 +279,7 @@ GameObject:
   - 114: {fileID: 11400152}
   - 114: {fileID: 11400154}
   - 114: {fileID: 11400186}
+  - 114: {fileID: 11400198}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -883,17 +889,7 @@ MonoBehaviour:
   TargetPhysicalLayers: 0d000000100000000f000000
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
-  HealthChangeType: 0
-  Stackable: 0
-  NonStackableLabel: 0
-  Amount:
-    InitialMinValue: -100
-    InitialMaxValue: 0
-    InitialValue: -50
-  Percentage: 0
-  Duration: 0
-  CriticalChance: 0
-  CriticalDamagePercentage: 2
+  GameValueChanger: {fileID: 11400202}
 --- !u!114 &11400048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1054,17 +1050,7 @@ MonoBehaviour:
   TargetPhysicalLayers: 0d0000000f00000010000000
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
-  HealthChangeType: 0
-  Stackable: 0
-  NonStackableLabel: 0
-  Amount:
-    InitialMinValue: -100
-    InitialMaxValue: 0
-    InitialValue: -15
-  Percentage: 0
-  Duration: 0
-  CriticalChance: 0
-  CriticalDamagePercentage: 2
+  GameValueChanger: {fileID: 11400200}
 --- !u!114 &11400066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1176,12 +1162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Invincible: 1
-  HitPoint:
-    InitialMinValue: 0
-    InitialMaxValue: 500
-    InitialValue: 500
-  HealingEmphasizePercentage: 0
-  DamageEmphasizePercentage: 0
+  HitPoint: {fileID: 11400196}
 --- !u!114 &11400082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1299,10 +1280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Speed:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 10
+  Speed: {fileID: 11400204}
 --- !u!114 &11400098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1431,17 +1409,7 @@ MonoBehaviour:
   TargetPhysicalLayers: 0d0000000f00000010000000
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
-  HealthChangeType: 0
-  Stackable: 0
-  NonStackableLabel: 0
-  Amount:
-    InitialMinValue: -100
-    InitialMaxValue: 0
-    InitialValue: -5
-  Percentage: 0
-  Duration: 0
-  CriticalChance: 0
-  CriticalDamagePercentage: 2
+  GameValueChanger: {fileID: 11400198}
 --- !u!114 &11400114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1641,6 +1609,7 @@ MonoBehaviour:
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
+  SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1655,6 +1624,7 @@ MonoBehaviour:
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
+  SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2018,6 +1988,136 @@ MonoBehaviour:
   LabelName: 
   Follower: {fileID: 0}
   Position: {fileID: 400010}
+--- !u!114 &11400194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SpeedChanger
+  TargetValueType: 0
+  OneTimeDurationType: 2
+  IntervalDurationType: 0
+  ChangeType: 1
+  Stackable: 0
+  NonStackableLabel: 0
+  _amount: -.5
+  AmountVariantPercentage: 0
+  ChangeDuration: 0
+  ChangeInterval: 1
+  CriticalChance: 0
+  CriticalPercentage: 2
+--- !u!114 &11400196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  InitialMinValue: 0
+  InitialMaxValue: 500
+  InitialValue: 500
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
+--- !u!114 &11400198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetValueType: 0
+  OneTimeDurationType: 0
+  IntervalDurationType: 0
+  ChangeType: 0
+  Stackable: 0
+  NonStackableLabel: 0
+  _amount: -5
+  AmountVariantPercentage: 0
+  ChangeDuration: 0
+  ChangeInterval: 1
+  CriticalChance: 0
+  CriticalPercentage: 2
+--- !u!114 &11400200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetValueType: 0
+  OneTimeDurationType: 0
+  IntervalDurationType: 0
+  ChangeType: 0
+  Stackable: 0
+  NonStackableLabel: 0
+  _amount: -12
+  AmountVariantPercentage: 0
+  ChangeDuration: 0
+  ChangeInterval: 1
+  CriticalChance: .100000001
+  CriticalPercentage: 2
+--- !u!114 &11400202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetValueType: 0
+  OneTimeDurationType: 0
+  IntervalDurationType: 0
+  ChangeType: 0
+  Stackable: 0
+  NonStackableLabel: 0
+  _amount: -50
+  AmountVariantPercentage: 0
+  ChangeDuration: 0
+  ChangeInterval: 1
+  CriticalChance: 0
+  CriticalPercentage: 2
+--- !u!114 &11400204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: MotorSpeed
+  InitialMinValue: 0
+  InitialMaxValue: 10
+  InitialValue: 10
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

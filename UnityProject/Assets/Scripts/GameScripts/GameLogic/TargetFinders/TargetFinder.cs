@@ -28,6 +28,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
         {
             base.Initialize();
             ClearTargets();
+            TargetEffectAppliers.ForEach(a => a.TargetFinder = this);
         }
 
         public void ClearTargets()

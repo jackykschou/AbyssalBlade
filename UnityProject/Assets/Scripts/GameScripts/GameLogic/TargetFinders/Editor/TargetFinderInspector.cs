@@ -3,7 +3,6 @@ using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers;
 using Assets.Scripts.Utility;
 using UnityEditor;
-using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders.Editor
 {

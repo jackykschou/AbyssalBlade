@@ -31,7 +31,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
         {
             base.Initialize();
             _changedCache = new List<GameObject>();
-            TargetFinder = GetComponent<TargetFinder>();
         }
 
         protected override void Deinitialize()

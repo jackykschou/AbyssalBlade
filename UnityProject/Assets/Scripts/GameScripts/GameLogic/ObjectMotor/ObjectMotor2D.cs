@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.GameScripts.Components.GameValue;
+﻿using Assets.Scripts.GameScripts.GameLogic.GameValue;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -6,9 +6,10 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
+    [RequireComponent(typeof(GameValue.GameValue))]
     public abstract class ObjectMotor2D : GameLogic
     {
-        public GameValue Speed;
+        public GameValue.GameValue Speed;
 
         private float _velocityX;
         private float _velocityY;
@@ -91,34 +92,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeedFixAmount)]
-        public void ChangeSpeedFixAmount(float amount)
+        [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeed)]
+        public void ChangeSpeed(GameValueChanger speedChanger)
         {
-            Speed.Value += amount;
-        }
-
-        [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeedByCurrentPercentage)]
-        public void ChangeSpeedByCurrentPercentage(float percentage)
-        {
-            Speed.Value += (Speed.Value * percentage);
-        }
-
-        [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeedByMaxPercentage)]
-        public void ChangeSpeedByMaxPercentage(float percentage)
-        {
-            Speed.Value += (Speed.Max * percentage);
-        }
-
-        [GameScriptEventAttribute(GameScriptEvent.TempChangeObjectMotorSpeed)]
-        public void TempChangeSpeed()
-        {
-
+            Speed.ChangeGameValue(speedChanger);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.UnchangeObjectMotorSpeed)]
-        public void UnchangeSpeed()
+        public void UnchangeSpeed(GameValueChanger speedChanger)
         {
-
+            Speed.UnchangeGameValue(speedChanger);
         }
     }
 }

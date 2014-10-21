@@ -22,6 +22,7 @@ GameObject:
   - 114: {fileID: 11400072}
   - 114: {fileID: 11400078}
   - 114: {fileID: 11400084}
+  - 114: {fileID: 11400090}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -82,6 +83,8 @@ GameObject:
   - 114: {fileID: 11400082}
   - 114: {fileID: 11400080}
   - 114: {fileID: 11400076}
+  - 114: {fileID: 11400086}
+  - 114: {fileID: 11400088}
   m_Layer: 0
   m_Name: StoneEnemy
   m_TagString: Enemy
@@ -282,17 +285,7 @@ MonoBehaviour:
   TargetPhysicalLayers: 0e000000
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
-  HealthChangeType: 0
-  Stackable: 0
-  NonStackableLabel: 0
-  Amount:
-    InitialMinValue: -100
-    InitialMaxValue: 0
-    InitialValue: -30
-  Percentage: 0
-  Duration: 0
-  CriticalChance: 0
-  CriticalDamagePercentage: 2
+  GameValueChanger: {fileID: 11400090}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -415,10 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Speed:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 5
+  Speed: {fileID: 11400088}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -674,12 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Invincible: 0
-  HitPoint:
-    InitialMinValue: 0
-    InitialMaxValue: 150
-    InitialValue: 150
-  HealingEmphasizePercentage: 0
-  DamageEmphasizePercentage: 0
+  HitPoint: {fileID: 11400086}
 --- !u!114 &11400056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -876,6 +861,64 @@ MonoBehaviour:
   LabelName: 
   Follower: {fileID: 0}
   Position: {fileID: 400002}
+--- !u!114 &11400086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Health
+  InitialMinValue: 0
+  InitialMaxValue: 300
+  InitialValue: 150
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
+--- !u!114 &11400088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: MovementSpeed
+  InitialMinValue: 0
+  InitialMaxValue: 10
+  InitialValue: 3
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
+--- !u!114 &11400090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetValueType: 0
+  OneTimeDurationType: 0
+  IntervalDurationType: 0
+  ChangeType: 0
+  Stackable: 0
+  NonStackableLabel: 0
+  _amount: -40
+  AmountVariantPercentage: 0
+  ChangeDuration: 0
+  ChangeInterval: 1
+  CriticalChance: 0
+  CriticalPercentage: 2
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

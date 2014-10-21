@@ -13,14 +13,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc.ScaleWithTime
         public float MaxTime;
 
         private HealthChanger _healthChanger;
+        private float _originalAmount;
 
         [GameScriptEvent(Constants.GameScriptEvent.UpdateSkillButtonHoldEffectTime)]
         void UpdateSkillHoldEffectTime(float time)
         {
             if (time < MinTime)
             {
-                _healthChanger.Amount.Value = 0f;
-                _healthChanger.Percentage = 0f;
+                _healthChanger.GameValueChanger.RawAmount = 0f;
             }
             else if (time >= MaxTime)
             {
@@ -29,8 +29,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc.ScaleWithTime
             else
             {
                 float scale = time / MaxTime;
-                _healthChanger.Amount.Value = scale * _healthChanger.Amount.Value;
-                _healthChanger.Percentage = scale * _healthChanger.Percentage;
+                _healthChanger.GameValueChanger.RawAmount = scale * _originalAmount;
             }
         }
 
@@ -38,6 +37,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc.ScaleWithTime
         {
             base.Initialize();
             _healthChanger = GetComponent<HealthChanger>();
+            _originalAmount = _healthChanger.GameValueChanger.RawAmount;
         }
 
         protected override void Deinitialize()

@@ -45,6 +45,8 @@ GameObject:
   - 114: {fileID: 11400036}
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400022}
+  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400014}
   m_Layer: 11
   m_Name: Projectile2
   m_TagString: Untagged
@@ -151,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9519c47f04535ff4db0d32596a1b655a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b8be9b29ac9b64a9aeaac1c0882d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4054f0d4bdb6ba74ca63728e407b0cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   LifeTime: 3
 --- !u!114 &11400010
 MonoBehaviour:
@@ -185,10 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb3986804f41b4c81f5809cfd7983f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed:
-    InitialMinValue: 0
-    InitialMaxValue: 100
-    InitialValue: 15
+  LabelName: 
+  Speed: {fileID: 11400024}
   Target: {fileID: 0}
   EaseType: 0
 --- !u!114 &11400012
@@ -202,22 +205,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   TargetTags:
   - Enemy
   TargetPhysicalLayers: 
   OneTimeOnlyPerTarget: 1
   TargetFinder: {fileID: 0}
-  HealthChangeType: 0
+  GameValueChanger: {fileID: 11400014}
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetValueType: 0
+  OneTimeDurationType: 0
+  IntervalDurationType: 0
+  ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  Amount:
-    InitialMinValue: -100
-    InitialMaxValue: 0
-    InitialValue: -75
-  Percentage: 0
-  Duration: 0
+  _amount: -35
+  AmountVariantPercentage: 0
+  ChangeDuration: 0
+  ChangeInterval: 1
   CriticalChance: 0
-  CriticalDamagePercentage: 2
+  CriticalPercentage: 2
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,13 +259,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893e7b57a412362468d178415e36c369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   TargetTags:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
-  FinderPosition:
-    Follower: {fileID: 0}
-    Position: {fileID: 400004}
+  FinderPosition: {fileID: 0}
   TargetEffectAppliers:
   - {fileID: 11400022}
   Targets: []
@@ -261,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cceacee09b8e973488821a45787a044a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,23 +291,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   TargetTags:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
   OneTimeOnlyPerTarget: 1
   TargetFinder: {fileID: 0}
-  HealthChangeType: 0
-  Stackable: 0
-  NonStackableLabel: 0
-  Amount:
-    InitialMinValue: -100
-    InitialMaxValue: 0
-    InitialValue: -40
-  Percentage: 0
-  Duration: 0
-  CriticalChance: 0
-  CriticalDamagePercentage: 2
+  GameValueChanger: {fileID: 11400014}
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: MotorSpeed
+  InitialMinValue: 0
+  InitialMaxValue: 30
+  InitialValue: 12
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9be8f40ac1d904abd3f660b02ee672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   MinTime: .300000012
   MaxTime: 1.5
   ParticleSystem: {fileID: 0}
@@ -336,6 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcf3a70e87b2284796adf7d6904930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   MinTime: .5
   MaxTime: 1
 --- !u!114 &11400036
@@ -349,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefdb76cb5bab29489af201d0f54f341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   MinTime: .5
   MaxTime: 1
 --- !u!198 &19800000

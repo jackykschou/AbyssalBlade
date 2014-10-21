@@ -81,6 +81,8 @@ GameObject:
   - 114: {fileID: 11400078}
   - 114: {fileID: 11400076}
   - 114: {fileID: 11400074}
+  - 114: {fileID: 11400084}
+  - 114: {fileID: 11400086}
   m_Layer: 0
   m_Name: SmallRangeEnemy
   m_TagString: Enemy
@@ -400,10 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Speed:
-    InitialMinValue: 0
-    InitialMaxValue: 10
-    InitialValue: 10
+  Speed: {fileID: 11400086}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -659,12 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Invincible: 0
-  HitPoint:
-    InitialMinValue: 0
-    InitialMaxValue: 20
-    InitialValue: 20
-  HealingEmphasizePercentage: 0
-  DamageEmphasizePercentage: 0
+  HitPoint: {fileID: 11400084}
 --- !u!114 &11400056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -846,6 +840,40 @@ MonoBehaviour:
   LabelName: 
   Follower: {fileID: 0}
   Position: {fileID: 400002}
+--- !u!114 &11400084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Health
+  InitialMinValue: 0
+  InitialMaxValue: 100
+  InitialValue: 30
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
+--- !u!114 &11400086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a6d3cfb501204bbfad1788ffab6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: MovementSpeed
+  InitialMinValue: 0
+  InitialMaxValue: 10
+  InitialValue: 3
+  PositiveChangeEmphasizePercentage: 0
+  NegativeChangeEmphasizePercentage: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
