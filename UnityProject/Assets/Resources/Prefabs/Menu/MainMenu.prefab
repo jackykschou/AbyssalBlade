@@ -281,9 +281,6 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400022}
-  - 114: {fileID: 11400020}
-  - 114: {fileID: 11400018}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -1236,16 +1233,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7d8cc050d240d4fb8c08a2417e0a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
   HighlightColor: {r: 0, g: 0, b: 0, a: 0}
-  BtnScaleAmount: .200000003
+  BtnScaleAmount: 1.5
   StartButton: {fileID: 400018}
   OptionsButton: {fileID: 400028}
   QuitButton: {fileID: 400006}
   StartLevelPrefab: 3
-  ButtonPressClip: 35
-  VerticalAxis: {fileID: 11400020}
-  Attack1: {fileID: 11400018}
+  ButtonPressClip: 13
+  VerticalAxis:
+    _keyCode: 9
+    CoolDownTimeDispatcher:
+      IsEnabled: 0
+      DispatchInterval: 1.5
+  JoystickVerticalAxis:
+    _keyCode: 2
+    CoolDownTimeDispatcher:
+      IsEnabled: 0
+      DispatchInterval: 1.5
+  Attack1:
+    _keyCode: 4
+    CoolDownTimeDispatcher:
+      IsEnabled: 0
+      DispatchInterval: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1279,7 +1288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a739667cd5b12498fff933a3167488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1291,7 +1299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4dc7ce84ab36974eb5fb90939689fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
   IsPlayLevel: 0
   BackGroundMusicLoop: 0
   CameraInitialFollowTransform: {fileID: 400046}
@@ -1339,47 +1346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  KeyCodes: 04000000050000000600000008000000
-  CoolDownTimeDispatcher: {fileID: 11400022}
---- !u!114 &11400020
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414f09ae9da674541b56879ae5bf7604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  KeyCodes: 0000000002000000
-  CoolDownTimeDispatcher: {fileID: 11400022}
---- !u!114 &11400022
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  DispatchInterval: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
