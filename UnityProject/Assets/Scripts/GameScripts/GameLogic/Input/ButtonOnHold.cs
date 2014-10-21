@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Linq;
+using Assets.Scripts.Constants;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.Components.Input
+namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
-    [System.Serializable]
     public class ButtonOnHold : PlayerInput
     {
         protected bool IsHolding;
@@ -14,7 +14,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
         private float _lastHoldStartTime;
         private float _lastReleaseTime;
 
-        public override void Initialize()
+        protected override void Initialize()
         {
             base.Initialize();
             IsHolding = false;
@@ -22,7 +22,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
             _lastReleaseTime = 0f;
         }
 
-        public override void Update()
+        protected override void Update()
         {
             base.Update();
             if (IsHolding && IsKeyReleased())
@@ -49,12 +49,12 @@ namespace Assets.Scripts.GameScripts.Components.Input
 
         private bool IsKeyOnHold()
         {
-            return UnityEngine.Input.GetButton(InputConstants.GetKeyCodeName(KeyCode));
+            return KeyCodes.Any(c => UnityEngine.Input.GetButton(InputConstants.GetKeyCodeName(c)));
         }
 
         private bool IsKeyReleased()
         {
-            return UnityEngine.Input.GetButtonUp(InputConstants.GetKeyCodeName(KeyCode));
+            return KeyCodes.Any(c => UnityEngine.Input.GetButtonUp(InputConstants.GetKeyCodeName(c)));
         }
     }
 }

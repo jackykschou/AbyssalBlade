@@ -61,6 +61,8 @@ GameObject:
   - 114: {fileID: 11400142}
   - 114: {fileID: 11400140}
   - 114: {fileID: 11400138}
+  - 114: {fileID: 11400182}
+  - 114: {fileID: 11400180}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -137,6 +139,7 @@ GameObject:
   - 114: {fileID: 11400072}
   - 114: {fileID: 11400064}
   - 114: {fileID: 11400146}
+  - 114: {fileID: 11400164}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -216,6 +219,13 @@ GameObject:
   - 114: {fileID: 11400074}
   - 114: {fileID: 11400162}
   - 114: {fileID: 11400160}
+  - 114: {fileID: 11400178}
+  - 114: {fileID: 11400176}
+  - 114: {fileID: 11400174}
+  - 114: {fileID: 11400172}
+  - 114: {fileID: 11400170}
+  - 114: {fileID: 11400168}
+  - 114: {fileID: 11400166}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -808,7 +818,7 @@ MonoBehaviour:
   ActivateConditions: []
   ComboIntParameterName: ComboNumber
   MaxComboValue: 3
-  ComboResetTime: {fileID: 0}
+  ComboResetTime: {fileID: 11400164}
 --- !u!114 &11400042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -911,9 +921,7 @@ MonoBehaviour:
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  _button:
-    _keyCode: 7
-    CoolDownTimeDispatcher: {fileID: 0}
+  _button: {fileID: 0}
   _onHoldFinishEventMessages: []
   _loopEventMessages: []
   _loopEventMessagesSendTime: []
@@ -1311,33 +1319,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  HorizontalAxis:
-    _keyCode: 1
-    CoolDownTimeDispatcher: {fileID: 11400160}
-  VerticalAxis:
-    _keyCode: 0
-    CoolDownTimeDispatcher: {fileID: 11400160}
-  JoyStickVerticalAxis:
-    _keyCode: 2
-    CoolDownTimeDispatcher: {fileID: 11400160}
-  JoyStickHorizontalAxis:
-    _keyCode: 3
-    CoolDownTimeDispatcher: {fileID: 11400160}
-  Attack1:
-    _keyCode: 4
-    CoolDownTimeDispatcher: {fileID: 11400162}
-  Attack2:
-    _keyCode: 5
-    CoolDownTimeDispatcher: {fileID: 11400162}
-  Attack3:
-    _keyCode: 6
-    CoolDownTimeDispatcher: {fileID: 11400162}
-  Attack4:
-    _keyCode: 7
-    CoolDownTimeDispatcher: {fileID: 11400162}
-  Dash:
-    _keyCode: 8
-    CoolDownTimeDispatcher: {fileID: 11400162}
+  HorizontalAxis: {fileID: 11400178}
+  VerticalAxis: {fileID: 11400176}
+  Attack1: {fileID: 11400174}
+  Attack2: {fileID: 11400172}
+  Attack3: {fileID: 11400170}
+  Attack4: {fileID: 11400168}
+  Dash: {fileID: 11400166}
 --- !u!114 &11400100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1641,7 +1629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
+  LabelName: SkillCoolDown
   DispatchInterval: 5
 --- !u!114 &11400140
 MonoBehaviour:
@@ -1722,6 +1710,7 @@ MonoBehaviour:
     Position: {fileID: 400014}
   TargetEffectAppliers:
   - {fileID: 11400112}
+  - {fileID: 11400152}
   Targets: []
   Range: 20
   RayAngleRandomness: 40
@@ -1827,6 +1816,144 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: PlayerControllerSkillButtonDispatcher
   DispatchInterval: .100000001
+--- !u!114 &11400164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  DispatchInterval: .800000012
+--- !u!114 &11400166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Dash
+  KeyCodes: 08000000
+  CoolDownTimeDispatcher: {fileID: 11400162}
+--- !u!114 &11400168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Skill4
+  KeyCodes: 07000000
+  CoolDownTimeDispatcher: {fileID: 11400162}
+--- !u!114 &11400170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Skill3
+  KeyCodes: 06000000
+  CoolDownTimeDispatcher: {fileID: 11400162}
+--- !u!114 &11400172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Skill2
+  KeyCodes: 05000000
+  CoolDownTimeDispatcher: {fileID: 11400162}
+--- !u!114 &11400174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Skill1
+  KeyCodes: 04000000
+  CoolDownTimeDispatcher: {fileID: 11400162}
+--- !u!114 &11400176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414f09ae9da674541b56879ae5bf7604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: VecticalAxis
+  KeyCodes: 0000000002000000
+  CoolDownTimeDispatcher: {fileID: 11400160}
+--- !u!114 &11400178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414f09ae9da674541b56879ae5bf7604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: HorizontalAxis
+  KeyCodes: 0100000003000000
+  CoolDownTimeDispatcher: {fileID: 11400160}
+--- !u!114 &11400180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: ButtonCooldown
+  DispatchInterval: 0
+--- !u!114 &11400182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44271527e711b1843a3489003b3e5570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  KeyCodes: 07000000
+  CoolDownTimeDispatcher: {fileID: 11400180}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

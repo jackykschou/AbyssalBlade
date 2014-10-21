@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Linq;
+using Assets.Scripts.Constants;
 
-namespace Assets.Scripts.GameScripts.Components.Input
+namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
-    [System.Serializable]
     public class ButtonOnReleased : PlayerInput
     {
         public override bool Detect()
@@ -18,7 +18,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
 
         private bool IsKeyReleased()
         {
-            return UnityEngine.Input.GetButtonUp(InputConstants.GetKeyCodeName(KeyCode));
+            return KeyCodes.Any(c => UnityEngine.Input.GetButtonUp(InputConstants.GetKeyCodeName(c)));
         }
     }
 }

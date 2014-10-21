@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Utility;
 using UnityEngine;
 

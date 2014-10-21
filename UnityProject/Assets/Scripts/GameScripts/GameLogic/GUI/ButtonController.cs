@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
@@ -56,7 +56,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void FixedUpdate()
         {
             base.FixedUpdate(); 
-            if (Mathf.Abs(Input.GetAxis("VerticalAxis")) > 0)
+            if (Mathf.Abs(UnityEngine.Input.GetAxis("VerticalAxis")) > 0)
             {
                 float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
                                     Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
@@ -68,7 +68,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
            // Debug.Log(Mathf.Abs(Input.GetAxis("VerticalAxis")));
 
-            if (!Attack1.Detect() && !Input.GetMouseButtonDown(0)) 
+            if (!Attack1.Detect() && !UnityEngine.Input.GetMouseButtonDown(0)) 
                 return;
 
             switch (_curButton)

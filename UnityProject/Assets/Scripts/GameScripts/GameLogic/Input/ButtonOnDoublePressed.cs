@@ -1,9 +1,11 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Linq;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Misc;
+using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.Components.Input
+namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
-    [System.Serializable]
+    [RequireComponent(typeof(FixTimeDispatcher))]
     public class ButtonOnDoublePressed : PlayerInput
     {
         public FixTimeDispatcher ClickBufferTimeDispatcher;
@@ -37,7 +39,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
 
         private bool IsKeyPressed()
         {
-            return UnityEngine.Input.GetButtonDown(InputConstants.GetKeyCodeName(KeyCode));
+            return KeyCodes.Any(c => UnityEngine.Input.GetButtonDown(InputConstants.GetKeyCodeName(c)));
         }
 
         private bool HasClickedOnce()

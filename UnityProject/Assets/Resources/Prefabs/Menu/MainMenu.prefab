@@ -283,6 +283,9 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400020}
   - 114: {fileID: 11400018}
+  - 114: {fileID: 11400026}
+  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400022}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -1243,15 +1246,9 @@ MonoBehaviour:
   QuitButton: {fileID: 400006}
   StartLevelPrefab: 3
   ButtonPressClip: 13
-  VerticalAxis:
-    _keyCode: 0
-    CoolDownTimeDispatcher: {fileID: 11400020}
-  JoyStickVerticalAxis:
-    _keyCode: 2
-    CoolDownTimeDispatcher: {fileID: 11400020}
-  Attack1:
-    _keyCode: 4
-    CoolDownTimeDispatcher: {fileID: 11400018}
+  VerticalAxis: {fileID: 11400026}
+  JoyStickVerticalAxis: {fileID: 11400024}
+  Attack1: {fileID: 11400022}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1371,6 +1368,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: AxisCooldown
   DispatchInterval: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  KeyCodes: 04000000
+  CoolDownTimeDispatcher: {fileID: 11400018}
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414f09ae9da674541b56879ae5bf7604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  KeyCodes: 00000000
+  CoolDownTimeDispatcher: {fileID: 11400020}
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414f09ae9da674541b56879ae5bf7604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  KeyCodes: 01000000
+  CoolDownTimeDispatcher: {fileID: 11400020}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

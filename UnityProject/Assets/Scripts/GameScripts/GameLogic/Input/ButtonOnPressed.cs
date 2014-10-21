@@ -1,6 +1,7 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Linq;
+using Assets.Scripts.Constants;
 
-namespace Assets.Scripts.GameScripts.Components.Input
+namespace Assets.Scripts.GameScripts.GameLogic.Input
 {
     [System.Serializable]
     public class ButtonOnPressed : PlayerInput
@@ -18,7 +19,7 @@ namespace Assets.Scripts.GameScripts.Components.Input
 
         private bool IsKeyPressed()
         {
-            return UnityEngine.Input.GetButtonDown(InputConstants.GetKeyCodeName(KeyCode));
+            return KeyCodes.Any(c => UnityEngine.Input.GetButtonDown(InputConstants.GetKeyCodeName(c)));
         }
     }
 }

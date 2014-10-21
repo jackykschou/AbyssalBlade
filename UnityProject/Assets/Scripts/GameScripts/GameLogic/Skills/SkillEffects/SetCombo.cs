@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
+    [RequireComponent(typeof(FixTimeDispatcher))]
     [AddComponentMenu("Skill/SkillEffect/SetCombo")]
     public class SetCombo : SkillEffect
     {
