@@ -55,10 +55,17 @@ namespace Assets.Scripts.Managers
             UpdateManager();
         }
         
-        protected void Update()
+        protected void FixedUpdate()
         {
             if (muted)
+            {
+                foreach (var key in _keys)
+                {
+                    _queuedClipDict[key] = 0;
+                }
                 return;
+            }
+
             if(_loops != null)
                 foreach (var loop in _loops)
                     loop.Update();
@@ -151,6 +158,19 @@ namespace Assets.Scripts.Managers
                 return false;
             }
             _queuedClipDict[clipName]++;
+            return true;
+        }
+        public bool PlayClipImmediate(ClipName name, GameObject sourceObject = null, float volume = 1.0f)
+        {
+            if (muted)
+                return false;
+            string clipName = AudioConstants.GetClipName(name);
+            if (!_oneShotList.ContainsKey(clipName))
+            {
+                Debug.Log("Cannot find the Clip >>" + name + "<<\n");
+                return false;
+            }
+            AudioSource.PlayClipAtPoint(findClip(name),transform.position);
             return true;
         }
         //////////////////////////////////////////////

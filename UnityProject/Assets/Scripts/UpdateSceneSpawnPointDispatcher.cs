@@ -2,7 +2,7 @@
 using Assets.Scripts.GameScripts.GameLogic.Misc;
 using UnityEngine;
 
-namespace Assets
+namespace Assets.Scripts
 {
     [ExecuteInEditMode]
     public class UpdateSceneSpawnPointDispatcher : MonoBehaviour
@@ -19,7 +19,7 @@ namespace Assets
 
         void Updataaaa(GameObject obj)
         {
-            if (obj.name.Contains("EnemySpawnePoint"))
+            if (obj.name.Contains("EnemySpawner"))
             {
                 obj.GetComponent<SectionEnemySpawnPoint>().SpawnCoolDown = obj.GetComponent<FixTimeDispatcher>();
             }

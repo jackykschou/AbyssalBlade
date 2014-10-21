@@ -28,8 +28,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [SerializeField]
         private AxisOnHold VerticalAxis;
         [SerializeField]
-        private AxisOnHold JoyStickVerticalAxis;
-        [SerializeField]
         private ButtonOnPressed Attack1;
         
 
@@ -50,44 +48,86 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             };
             _popoutAmount = new Vector3(0, 0, -.75f);
             _numButtons = _buttonObjs.Count;
-            TriggerGameScriptEvent(GameScriptEvent.ButtonChange, _curButton);
+            _curButton = -1;
         }
 
         protected override void FixedUpdate()
         {
-            base.FixedUpdate(); 
-            if (Mathf.Abs(UnityEngine.Input.GetAxis("VerticalAxis")) > 0)
+            base.FixedUpdate();
+            if (VerticalAxis.Detect())
             {
-                float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
-                                    Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
-                ? VerticalAxis.GetAxisValue()
-                : JoyStickVerticalAxis.GetAxisValue();
-
-                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(verticalValue > 0));
+                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(VerticalAxis.GetAxisValue() > 0));
+            }
+            else
+            {
+                RaycastHit hit;
+                bool clicked = UnityEngine.Input.GetMouseButtonDown(0);
+                if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit))
+                {
+                    GameObject hitObj = hit.collider.gameObject;
+                    for (int index = 0; index < _buttonObjs.Count; index++)
+                    {
+                        if (hitObj == _buttonObjs[index].gameObject)
+                        {
+                            if (clicked)
+                            {
+                                switch (index)
+                                {
+                                    case 0:
+                                        TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
+                                        break;
+                                    case 1:
+                                        TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
+                                        break;
+                                    case 2:
+                                        TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
+                                        break;
+                                }
+                            }
+                            if (!_popped[index])
+                                TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, hitObj, index);
+                            return;
+                        }
+                    }
+                    for (int index = 0; index < _buttonObjs.Count; index++)
+                        if (_popped[index])
+                            TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, index);
+                }
+                return;
             }
 
-           // Debug.Log(Mathf.Abs(Input.GetAxis("VerticalAxis")));
-
-            if (!Attack1.Detect() && !UnityEngine.Input.GetMouseButtonDown(0)) 
-                return;
-
-            switch (_curButton)
+            if (Attack1.Detect())
             {
-                case 0:
-                    TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
-                    break;
-                case 1:
-                    TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
-                    break;
-                case 2:
-                    TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
-                    break;
+                switch (_curButton)
+                {
+                    case 0:
+                        TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
+                        break;
+                    case 1:
+                        TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
+                        break;
+                    case 2:
+                        TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
+                        break;
+                }
             }
         }
 
         private int GetNextButton(bool up)
         {
-            return up ? _curButton == _numButtons - 1 ? 0 : _curButton++ : _curButton == 0 ? _numButtons - 1 : _curButton--;
+            if (up)
+            {
+                _curButton--;
+                if (_curButton == -1)
+                    _curButton = _numButtons - 1;
+            }
+            else
+            {
+                _curButton++;
+                if (_curButton == _numButtons)
+                    _curButton = 0;
+            }
+            return _curButton;
         }
 
         [GameScriptEventAttribute(GameScriptEvent.ButtonChange)]
@@ -115,20 +155,20 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [GameScriptEventAttribute(GameScriptEvent.MenuStartButtonPressed)]
         public void OnStartPressed()
         {
-            AudioManager.Instance.PlayClip(ButtonPressClip);
+            AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuOptionsButtonPressed)]
         public void OnOptionsPressed()
         {
-            AudioManager.Instance.PlayClip(ButtonPressClip);
+            AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
         }
 
         [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
         public void OnQuitPressed()
         {
-            AudioManager.Instance.PlayClip(ButtonPressClip);
+            AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             Application.Quit();
         }
 

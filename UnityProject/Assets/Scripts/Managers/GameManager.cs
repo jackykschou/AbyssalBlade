@@ -50,6 +50,7 @@ namespace Assets.Scripts.Managers
             HUD.SetActive(false);
             PlayerMainCharacter.SetActive(false);
             LoadingScene.SetActive(true);
+            AudioManager.Instance.Mute();
             yield return new WaitForSeconds(0.1f);
             if (CurrentLevel != null)
             {
@@ -62,6 +63,7 @@ namespace Assets.Scripts.Managers
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
             yield return new WaitForSeconds(0.1f);
             LoadingScene.SetActive(false);
+            AudioManager.Instance.UnMute();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
         }
 

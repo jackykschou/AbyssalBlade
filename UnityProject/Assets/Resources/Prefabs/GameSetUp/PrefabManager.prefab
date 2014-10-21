@@ -41,6 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4718b38db72769a40bb6afc5113f674d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   _serializedPrefabPoolMapKeys:
   - Prefabs/EmptySection
   - Prefabs/MainLevelArea1
@@ -72,6 +73,7 @@ MonoBehaviour:
   - Prefabs/Level1/Level1Tiles/Level1Robot2
   - Prefabs/Level1/Level1Tiles/Level1Robot3
   - Prefabs/Menu/MainMenu
+  - Prefabs/ParticleSystems/SpawnParticleSystem
   - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemy
   - Prefabs/PreloadedPrefab/Character/SmallRangeEnemy
   - Prefabs/PreloadedPrefab/Character/StoneEnemy
@@ -115,6 +117,7 @@ MonoBehaviour:
   - Level1Tiles
   - Level1Tiles
   - Menu
+  - ParticleSystems
   - Character
   - Character
   - Character
@@ -127,12 +130,6 @@ MonoBehaviour:
   - Tutorial
   - Tutorial
   - Tutorial
-  _spawnCoolDown:
-    IsEnabled: 0
-    DispatchInterval: .200000003
-  _despawnCoolDown:
-    IsEnabled: 0
-    DispatchInterval: .200000003
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
