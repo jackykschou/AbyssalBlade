@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using System.Net.Mime;
-using Assets.Scripts.Attributes;
-using Assets.Scripts.GameScripts;
-using Assets.Scripts.Utility;
+using UnityEngine.UI;
 using UnityEngine;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
@@ -15,7 +12,7 @@ namespace Assets.Scripts.Managers
     [ExecuteInEditMode]
     public class MessageManager : MonoBehaviour
     {
-        public GameObject DeathMessageText;
+        public GameObject DeathScreen;
         public PrefabSpawner PrefabSpawner;
         public Camera MainCamera;
         public EaseType PreferredEaseType;
@@ -35,7 +32,7 @@ namespace Assets.Scripts.Managers
 
         public void DisplayDeathMessage()
         {
-            DeathMessageText.SetActive(true);
+            DeathScreen.SetActive(true);
             StartCoroutine(DeactivateObjectIE(3.0f));
             StartCoroutine(FadeInDeathScreenIE(3.0f));
         }
@@ -47,12 +44,12 @@ namespace Assets.Scripts.Managers
                 yield return new WaitForSeconds(Time.deltaTime);
                 time -= Time.deltaTime;
             }
-            DeathMessageText.SetActive(false);
+            DeathScreen.SetActive(false);
         }
         IEnumerator FadeInDeathScreenIE(float time)
         {
             float passedTime = 0.0f;
-            UnityEngine.UI.Image image = DeathMessageText.GetComponent<UnityEngine.UI.Image>();
+            Image image = DeathScreen.GetComponent<Image>();
             while (time > 0)
             {
                 image.color = new Color(image.color.r,image.color.g,image.color.b,passedTime/time); 
@@ -136,9 +133,9 @@ namespace Assets.Scripts.Managers
             {
                 MainCamera = Camera.main;
             }
-            if (DeathMessageText == null)
+            if (DeathScreen == null)
             {
-                DeathMessageText = GameObject.Find("DeathMessage");
+                DeathScreen = GameObject.Find("DeathScreen");
             }
         }
     }

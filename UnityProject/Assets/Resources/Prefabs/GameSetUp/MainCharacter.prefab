@@ -212,6 +212,7 @@ GameObject:
   - 114: {fileID: 11400078}
   - 114: {fileID: 11400076}
   - 114: {fileID: 11400074}
+  - 114: {fileID: 11400154}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -1726,6 +1727,20 @@ MonoBehaviour:
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 5
   Time: .100000001
+--- !u!114 &11400154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a090a8e160c5004cab34e8264153140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShakeIntensity: .300000012
+  ShakeDecay: .0199999996
+  MainCamera: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
