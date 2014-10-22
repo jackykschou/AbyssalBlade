@@ -34,14 +34,16 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
 
 	        pathfinding.TrySearchPath();
 
+            Vector2 moveDirection = pathfinding.GetMoveDirection();
+
             if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
-                pathfinding.gameObject.HitPointAtZero() || ((Vector2)pathfinding.GetMoveDirection() == Vector2.zero) || !pathfinding.CurrentPathReachable)
+                (moveDirection == Vector2.zero) || !pathfinding.CurrentPathReachable)
             {
                 stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AIRotateToTarget);
                 return;
             }
 
-            pathfinding.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, (Vector2)pathfinding.GetMoveDirection());
+            pathfinding.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, moveDirection);
 	    }
 	}
 }
