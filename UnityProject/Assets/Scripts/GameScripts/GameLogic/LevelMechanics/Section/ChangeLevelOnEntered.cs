@@ -21,7 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             base.Initialize();
             AreaCollider = GetComponent<Collider2D>();
             AreaCollider.isTrigger = true;
-            gameObject.layer = LayerConstants.LayerMask.LeaveLevelArea;
+            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.LeaveLevelArea);
             AreaCollider.enabled = true;
             _changed = false;
             _activated = false;
