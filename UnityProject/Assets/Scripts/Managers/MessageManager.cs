@@ -1,8 +1,4 @@
 ﻿using System.Collections;
-using System.Net.Mime;
-using Assets.Scripts.Attributes;
-using Assets.Scripts.GameScripts;
-using Assets.Scripts.Utility;
 using UnityEngine;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
@@ -52,7 +48,7 @@ namespace Assets.Scripts.Managers
         IEnumerator FadeInDeathScreenIE(float time)
         {
             float passedTime = 0.0f;
-            UnityEngine.UI.Image image = DeathMessageText.GetComponent<UnityEngine.UI.Image>();
+            UnityEngine.UI.Image image = DeathMessageText.GetComponentInChildren<UnityEngine.UI.Image>();
             while (time > 0)
             {
                 image.color = new Color(image.color.r,image.color.g,image.color.b,passedTime/time); 
