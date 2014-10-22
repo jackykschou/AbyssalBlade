@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
 using UnityEngine;
@@ -63,7 +62,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
         public void SpawnPrefab(Action<GameObject> onPrefabSpawned = null)
         {
-            if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
+            if (!CanSpawn())
             {
                 return;
             }

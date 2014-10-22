@@ -4,6 +4,7 @@ using Assets.Scripts.Constants;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Utility;
+using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.Managers
 {
@@ -32,6 +33,7 @@ namespace Assets.Scripts.Managers
         Dictionary<string, int> _queuedClipDict;
         List<string> _keys;
 
+        private bool muted = false;
         int _nextSourceIndex;
 
         private static AudioManager _instance;
@@ -47,20 +49,22 @@ namespace Assets.Scripts.Managers
                 return _instance;
             }
         }
+
         void Awake()
         {
             UpdateManager();
         }
-        void Update()
+        
+        protected void FixedUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Keypad5))
-                Instance.PlayLevelLoop(LoopName.TestMultiLoop);
-            if (Input.GetKeyDown(KeyCode.Keypad7))
-                Instance.SetLightIntensity(LoopName.TestMultiLoop);
-            if (Input.GetKeyDown(KeyCode.Keypad8))
-                Instance.SetMediumIntensity(LoopName.TestMultiLoop);
-            if (Input.GetKeyDown(KeyCode.Keypad9))
-                Instance.SetHeavyIntensity(LoopName.TestMultiLoop);
+            if (muted)
+            {
+                foreach (var key in _keys)
+                {
+                    _queuedClipDict[key] = 0;
+                }
+                return;
+            }
 
             if(_loops != null)
                 foreach (var loop in _loops)
@@ -87,6 +91,17 @@ namespace Assets.Scripts.Managers
                 _queuedClipDict[key] = 0;
             }
         }
+
+        public void Mute()
+        {
+            muted = true;
+        }
+
+        public void UnMute()
+        {
+            muted = false;
+        }
+
         public void UpdateManager()
         {
             DeleteClips();
@@ -134,6 +149,8 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////
         public bool PlayClip(ClipName name, GameObject sourceObject = null, float volume = 1.0f)
         {
+            if (muted)
+                return false;
             string clipName = AudioConstants.GetClipName(name);
             if (!_oneShotList.ContainsKey(clipName))
             {
@@ -143,11 +160,26 @@ namespace Assets.Scripts.Managers
             _queuedClipDict[clipName]++;
             return true;
         }
+        public bool PlayClipImmediate(ClipName name, GameObject sourceObject = null, float volume = 1.0f)
+        {
+            if (muted)
+                return false;
+            string clipName = AudioConstants.GetClipName(name);
+            if (!_oneShotList.ContainsKey(clipName))
+            {
+                Debug.Log("Cannot find the Clip >>" + name + "<<\n");
+                return false;
+            }
+            AudioSource.PlayClipAtPoint(findClip(name),transform.position);
+            return true;
+        }
         //////////////////////////////////////////////
         // SINGLE AUDIOCLIPS
         //////////////////////////////////////////////
         public bool PlayClip(ClipName name, AudioSource s)
         {
+            if (muted)
+                return false;
             string clipName = AudioConstants.GetClipName(name);
             if (!_oneShotList.ContainsKey(clipName))
             {
@@ -162,6 +194,8 @@ namespace Assets.Scripts.Managers
 
         public bool PlayClipDelayed(ClipName name, float delayTime, GameObject sourceObject = null, float volume = 1.0f)
         {
+            if (muted)
+                return false;
             string clipName = AudioConstants.GetClipName(name);
             if (!_oneShotList.ContainsKey(clipName))
                 return false;
@@ -179,12 +213,16 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////
         public bool PlayCue(CueName name, GameObject sourceObject = null, float volume = 1.0f)
         {
+            if (muted)
+                return false;
             if(_cueDict.ContainsKey(name))
                 _cueDict[name].Play();
             return true;
         }
         public bool PlayCue(CueName name, AudioSource source)
         {
+            if (muted)
+                return false;
             if (_cueDict.ContainsKey(name))
                 _cueDict[name].Play(source);
             return true;
@@ -194,6 +232,8 @@ namespace Assets.Scripts.Managers
         //////////////////////////////////////////////
         public bool PlayLoop(LoopName name, float volume = 1.0f)
         {
+            if (muted)
+                return false;
             if (!_loopDict.ContainsKey(name))
                 return false;
             if (_loopDict[name].running)
@@ -204,6 +244,8 @@ namespace Assets.Scripts.Managers
         }
         public bool SwapLoopTrack(LoopName name)
         {
+            if (muted)
+                return false;
             if (!_loopDict.ContainsKey(name)) 
                 return false;
             _loopDict[name].SwitchTrack();
@@ -218,6 +260,8 @@ namespace Assets.Scripts.Managers
         }
         public bool PlayLevelLoop(LoopName name, float volume = 1.0f)
         {
+            if (muted)
+                return false;
             if (!_levelLoopDict.ContainsKey(name))
                 return false;
             if (_levelLoopDict[name].running)
@@ -334,7 +378,6 @@ namespace Assets.Scripts.Managers
             return _sources[_nextSourceIndex++];
         }
 
-
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         // HELPER CLASSES
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -416,8 +459,6 @@ namespace Assets.Scripts.Managers
             public ClipName mediumClip;
             private AudioSource heavySource;
             public ClipName heavyClip;
-
-            private bool heavyEnabled = false;
 
             private double nextEventTime;
 

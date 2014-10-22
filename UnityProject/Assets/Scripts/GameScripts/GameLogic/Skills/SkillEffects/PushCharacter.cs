@@ -4,6 +4,7 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
+    [AddComponentMenu("Skill/SkillEffect/PushCharacter")]
     public class PushCharacter : SkillEffect 
     {
         [Range(0f, 100f)]

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.GameScripts.Components;
+﻿using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
@@ -10,6 +10,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 {
     [RequireComponent(typeof(PrefabSpawner))]
     [RequireComponent(typeof(TargetNotNull))]
+    [RequireComponent(typeof(PositionIndicator))]
     [AddComponentMenu("Skill/SkillEffect/SpawnProjectile")]
     public class SpawnProjectile : SkillEffect
     {

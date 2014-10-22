@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using Assets.Scripts.Attributes;
 using Assets.Scripts.Managers;
 using UnityEngine;
+using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
@@ -32,6 +34,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
                 return;
             }
             _reset = true;
+            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnPlayerDeath);
             StartCoroutine(ResetLevelIE());
         }
 

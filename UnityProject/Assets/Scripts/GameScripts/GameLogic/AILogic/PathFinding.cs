@@ -43,8 +43,41 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
     {
         public bool PathFindEnabled { get; private set; }
 
+        public bool TargetReachable
+        {
+            get
+            {
+                if (Target == null)
+                {
+                    return false;
+                }
+                GraphNode node1 = (GraphNode)AstarPath.active.GetNearest(transform.position, NNConstraint.Default);
+                GraphNode node2 = (GraphNode)AstarPath.active.GetNearest(Target.position, NNConstraint.Default);
+                return PathUtilities.IsPathPossible(node1, node2);
+            }       
+        }
+
+        public bool CurrentPathReachable
+        {
+            get
+            {
+                if (path == null || path.vectorPath == null || path.vectorPath.Count == 0)
+                {
+                    return false;
+                }
+                GraphNode node1 = (GraphNode)AstarPath.active.GetNearest(Target.position, NNConstraint.Default);
+                GraphNode node2 = (GraphNode)AstarPath.active.GetNearest(path.vectorPath[currentWaypointIndex], NNConstraint.Default);
+                return PathUtilities.IsPathPossible(node1, node2);
+            }
+        }
+
         [GameScriptEvent(Constants.GameScriptEvent.OnNewTargetDiscovered)]
         public void UpdateTarget(GameObject target)
+        {
+            Target = target.transform;
+        }
+
+        public void UpdateTargetWithTransform(Transform target)
         {
             Target = target.transform;
         }
@@ -89,6 +122,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
 
             //Make sure we receive callbacks when paths complete
             seeker.pathCallback -= OnPathComplete;
+
+            DisablePathFind();
         }
 
         public void EnablePathFind()

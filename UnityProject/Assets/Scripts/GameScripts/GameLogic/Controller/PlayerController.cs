@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.Input;
+using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -14,12 +14,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
 
         [SerializeField] 
         private AxisOnHold VerticalAxis;
-
-        [SerializeField]
-        private AxisOnHold JoyStickVerticalAxis;
-
-        [SerializeField]
-        private AxisOnHold JoyStickHorizontalAxis;
 
         [SerializeField] 
         private ButtonOnPressed Attack1;
@@ -62,19 +56,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
                 return;
             }
 
-            if ((HorizontalAxis.Detect() || JoyStickVerticalAxis.Detect() || VerticalAxis.Detect() || JoyStickHorizontalAxis.Detect()))
+            if ((HorizontalAxis.Detect() || VerticalAxis.Detect()))
             {
-                float horizontalValue = Mathf.Abs(HorizontalAxis.GetAxisValue()) >
-                                    Mathf.Abs(JoyStickHorizontalAxis.GetAxisValue())
-                ? HorizontalAxis.GetAxisValue()
-                : JoyStickHorizontalAxis.GetAxisValue();
-
-                float verticalValue = Mathf.Abs(VerticalAxis.GetAxisValue()) >
-                                    Mathf.Abs(JoyStickVerticalAxis.GetAxisValue())
-                ? VerticalAxis.GetAxisValue()
-                : JoyStickVerticalAxis.GetAxisValue();
-
-                Vector2 direction = new Vector2(horizontalValue, verticalValue);
+                Vector2 direction = new Vector2(HorizontalAxis.GetAxisValue(), VerticalAxis.GetAxisValue());
 
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, direction);
             }
@@ -83,6 +67,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         protected override void Update()
         {
             base.Update();
+            if (gameObject.HitPointAtZero())
+            {
+                return;
+            }
+
             if (Attack1.Detect() && _skill1Enabled)
             {
                 TriggerGameScriptEvent(GameScriptEvent.PlayerAttack1ButtonPressed);

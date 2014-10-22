@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
+using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
@@ -8,8 +9,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 {
-    [RequireComponent(typeof(CircleCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(PrefabSpawner))]
+    [RequireComponent(typeof(FixTimeDispatcher))]
     [AddComponentMenu("LevelMechanics/Section/SectionEnemySpawnPoint")]
     public class SectionEnemySpawnPoint : SectionLogic 
     {
@@ -18,9 +20,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         [Range(0f, 100f)] 
         public float SpawnRadius = 0f;
 
+        public bool FadeInEnemy = false;
+
+        [Range(0f, 5f)]
+        public float FadeInTime = 0f;
+
+
         public FixTimeDispatcher SpawnCoolDown;
 
-        public CircleCollider2D TriggerArea;
+        public Collider2D TriggerArea;
 
         public bool Activated = true;
 
@@ -96,8 +104,43 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                                                                  o.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
                 triggerNoHitPointOnSectionDeactivated.SectionId = SectionId;
                 triggerOnSectionEnemyDespawnedOnNoHitPoint.SectionId = SectionId;
+                if (FadeInEnemy)
+                {
+                    StartCoroutine(FadeInEnemyIE(o, FadeInTime));
+
+                }
             });
             TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
+        }
+
+        public IEnumerator FadeInEnemyIE(GameObject o, float time)
+        {
+            float timePass = 0.0f;
+            SpriteRenderer render = o.GetComponent<SpriteRenderer>();
+            if (render != null)
+            {
+                render.color = new Color(render.color.r, render.color.g, render.color.b, 0.0f);
+            }
+            var motor = o.GetComponent<ObjectMotor2D>();
+            float originalSpeed = motor.Speed.Value;
+            motor.Speed.Value = 0f;
+            while (timePass < time)
+            {
+                if (render != null)
+                {
+                    render.color = new Color(render.color.r, render.color.g, render.color.b, timePass / time);
+                }
+                yield return new WaitForSeconds(Time.deltaTime);
+                timePass += Time.deltaTime;
+            }
+            if (render != null)
+            {
+                render.color = new Color(render.color.r, render.color.g, render.color.b, 1.0f);
+            }
+            if (motor != null)
+            {
+                motor.Speed.Value = originalSpeed;
+            }
         }
 
         protected override void Initialize()
@@ -107,10 +150,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
-            TriggerArea = GetComponent<CircleCollider2D>();
+            TriggerArea = GetComponent<Collider2D>();
             TriggerArea.isTrigger = true;
             TriggerArea.enabled = false;
-            gameObject.layer = LayerConstants.LayerMask.SpawnArea;
+            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.SpawnArea);
             Activated = true;
             _triggered = false;
             _deactivated = false;

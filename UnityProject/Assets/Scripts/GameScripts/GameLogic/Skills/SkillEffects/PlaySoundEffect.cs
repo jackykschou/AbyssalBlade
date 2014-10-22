@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         public override void Activate()
         {
             base.Activate();
+            PlaySound();
             Activated = false;
         }
 

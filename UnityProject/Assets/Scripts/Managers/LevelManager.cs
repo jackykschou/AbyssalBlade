@@ -65,13 +65,9 @@ namespace Assets.Scripts.Managers
             }
             _levelStarted = true;
             GameManager.Instance.HUD.SetActive(IsPlayLevel);
-        }
-
-        [GameEventAttribute(GameEvent.OnLevelStarted)]
-        public void OnLevelStarted()
-        {
-            AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
             GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
+            AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
+            GameManager.Instance.MainCamera.camera.orthographic = IsPlayLevel;
         }
     }
 }

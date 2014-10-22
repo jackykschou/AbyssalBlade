@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         protected override void Initialize()
         {
             base.Initialize();
-            gameObject.layer = LayerConstants.LayerMask.StaticObstacle;
+            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.StaticObstacle);
             BlockCollider = GetComponent<Collider2D>();
             BlockCollider.isTrigger = false;
             LockGate();
@@ -24,19 +24,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         public override void OnSectionActivated(int sectionId)
         {
             base.OnSectionActivated(sectionId);
-            if (SectionId == sectionId || SectionId == (sectionId - 1))
-            {
-                LockGate();
-            }
+            LockGate();
         }
 
         public override void OnSectionDeactivated(int sectionId)
         {
             base.OnSectionDeactivated(sectionId);
-            if (SectionId == sectionId || SectionId == (sectionId - 1))
-            {
-                UnLockGate();
-            }
+            UnLockGate();
         }
 
         public void LockGate()

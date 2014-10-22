@@ -1,15 +1,15 @@
-﻿using Assets.Scripts.GameScripts.Components.GameValue;
+﻿using Assets.Scripts.GameScripts.GameLogic.GameValue;
 using Assets.Scripts.Utility;
 using UnityEngine;
-
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {
+    [RequireComponent(typeof(GameValue.GameValue))]
     public abstract class ObjectMotor2D : GameLogic
     {
-        public GameValue Speed;
+        public GameValue.GameValue Speed;
 
         private float _velocityX;
         private float _velocityY;
@@ -85,11 +85,23 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
         }
 
-        public void MoveByWithStyle(EaseType style, Vector2 amount, float speed)
+        public void MoveByWithStyle(EaseType style, Vector2 amount, float speed, float delay = 0.0f)
         {
             float moveDuration = amount.magnitude / speed;
-            gameObject.MoveBy(amount, moveDuration, 0, style);
+            gameObject.MoveBy(amount, moveDuration, delay, style);
             TriggerGameScriptEvent(GameScriptEvent.OnObjectMove);
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.ChangeObjectMotorSpeed)]
+        public void ChangeSpeed(GameValueChanger speedChanger)
+        {
+            Speed.ChangeGameValue(speedChanger);
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.UnchangeObjectMotorSpeed)]
+        public void UnchangeSpeed(GameValueChanger speedChanger)
+        {
+            Speed.UnchangeGameValue(speedChanger);
         }
     }
 }

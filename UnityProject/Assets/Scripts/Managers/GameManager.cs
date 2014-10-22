@@ -50,6 +50,8 @@ namespace Assets.Scripts.Managers
             HUD.SetActive(false);
             PlayerMainCharacter.SetActive(false);
             LoadingScene.SetActive(true);
+            AudioManager.Instance.Mute();
+            yield return new WaitForSeconds(0.1f);
             if (CurrentLevel != null)
             {
                 PrefabManager.Instance.ImmediateDespawnPrefab(CurrentLevel);
@@ -57,9 +59,11 @@ namespace Assets.Scripts.Managers
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
             PrefabManager.Instance.SpawnPrefabImmediate(levelPrefab, o => { CurrentLevel = o; });
             _currentLevelPrefab = levelPrefab;
+            yield return new WaitForSeconds(0.1f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             LoadingScene.SetActive(false);
+            AudioManager.Instance.UnMute();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
         }
 

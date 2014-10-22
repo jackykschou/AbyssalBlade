@@ -10,7 +10,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
         {
             base.Initialize();
             Collider.isTrigger = true;
-            Rigidbody.isKinematic = false;
+            Rigidbody.isKinematic = true;
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.Projectile);
         }
     }

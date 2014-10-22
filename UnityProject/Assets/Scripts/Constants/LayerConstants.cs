@@ -15,29 +15,30 @@
             public const string SpawnArea = "SpawnArea";
             public const string SectionActivateArea = "SectionActivateArea";
             public const string LeaveLevelArea = "LeaveLevelArea";
+            public const string PlayerPickUp = "PlayerPickUp";
         }
 
         public static class LayerMask
         {
             public static int StaticObstacle
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.StaticObstacle); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.StaticObstacle); }
             }
             public static int Projectile
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.Projectile); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.Projectile); }
             }
             public static int DamageArea
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.DamageArea); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.DamageArea); }
             }
             public static int Enemy
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.Enemy); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.Enemy); }
             }
             public static int PlayerCharacter
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.PlayerCharacter); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.PlayerCharacter); }
             }
             public static int Destroyable
             {
@@ -58,22 +59,27 @@
 
             public static int InvisibleWall
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.InvisibleWall); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.InvisibleWall); }
             }
 
             public static int SpawnArea
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.SpawnArea); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.SpawnArea); }
             }
 
             public static int SectionActivateArea
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.SectionActivateArea); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.SectionActivateArea); }
             }
 
             public static int LeaveLevelArea
             {
-                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.LeaveLevelArea); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.LeaveLevelArea); }
+            }
+
+            public static int PlayerPickUp
+            {
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.PlayerPickUp); }
             }
         }
     }

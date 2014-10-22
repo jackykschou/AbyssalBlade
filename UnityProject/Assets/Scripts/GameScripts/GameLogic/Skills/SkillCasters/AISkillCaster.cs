@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.Utility;
 using UnityEngine;
-
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
@@ -12,27 +11,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
     {
         public FixTimeDispatcher MinimumCoolDown;
 
-        protected override void Update()
+        public override Vector2 PointingDirection
         {
-            base.Update();
-            UpdatePointingDirection();
+            get
+            {
+                if (Target == null)
+                {
+                   return MathUtility.GetFacingDirectionVector(GameView.FacingDirection);
+                }
+                return MathUtility.GetDirection(transform.position, Target.position).normalized;
+            }
         }
 
         public bool CanCastAnySkill()
         {
             return Skills.Any(s => s.CanActivate()) && MinimumCoolDown.CanDispatch() && !gameObject.HitPointAtZero();
-        }
-
-        void UpdatePointingDirection()
-        {
-            if (Target == null)
-            {
-                PointingDirection = MathUtility.GetFacingDirectionVector(GameView.FacingDirection);
-            }
-            else if (Skills.All(s => s.IsPassive || !s.IsActivate))
-            {
-                PointingDirection = MathUtility.GetDirection(transform.position, Target.position).normalized;
-            }
         }
 
         [GameScriptEventAttribute(GameScriptEvent.AICastSkill)]

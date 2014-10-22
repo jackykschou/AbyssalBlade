@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Health;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using PathologicalGames;
 using UnityEngine;
 
@@ -36,11 +36,6 @@ namespace Assets.Scripts.Managers
         private List<Prefab> _spawnQueue;
         private List<Vector3> _spawnPositionQueue;
         private List<Action<GameObject>> _spawnDelegateQueue;
-
-        [SerializeField]
-        private FixTimeDispatcher _spawnCoolDown;
-        [SerializeField]
-        private FixTimeDispatcher _despawnCoolDown;
 
         void CreateSpawnPools()
         {
@@ -169,7 +164,7 @@ namespace Assets.Scripts.Managers
 
                 _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
@@ -210,11 +205,6 @@ namespace Assets.Scripts.Managers
 
         public IEnumerator DespawnPrefabIE()
         {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
             while (_despawnQueue.Count > 0)
             {
                 GameObject prefabGameObject = _despawnQueue.First();
@@ -229,22 +219,12 @@ namespace Assets.Scripts.Managers
                 _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
                 _spawnedPrefabsMap.Remove(prefabGameObject);
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
         public void ImmediateDespawnPrefab(GameObject prefabGameObject, Action<GameObject> onPrefabDespawned = null)
         {
-            StartCoroutine(ImmediateDespawnPrefabIE(prefabGameObject, onPrefabDespawned));
-        }
-
-        public IEnumerator ImmediateDespawnPrefabIE(GameObject prefabGameObject, Action<GameObject> onPrefabDespawned = null)
-        {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
             if (onPrefabDespawned != null)
             {
                 onPrefabDespawned(prefabGameObject);

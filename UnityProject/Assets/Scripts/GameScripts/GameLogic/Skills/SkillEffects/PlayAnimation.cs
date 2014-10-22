@@ -22,17 +22,29 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
         [SerializeField]
         private List<float> _animationEventMessagesSendTime;
 
+        [SerializeField] 
+        private List<SkillEffect> _animationSkillEffects;
+
+        [SerializeField]
+        private List<float> _animationSkillEffectsActivateTime;
+
         public override void EditorUpdate()
         {
             base.EditorUpdate();
-            if (_animationEventMessages == null)
+            if (_animationEventMessages != null)
             {
-                return;
+                if (_animationEventMessages.Count != _animationEventMessagesSendTime.Count)
+                {
+                    _animationEventMessagesSendTime.Resize(_animationEventMessages.Count);
+                }
             }
 
-            if (_animationEventMessages.Count != _animationEventMessagesSendTime.Count)
+            if (_animationSkillEffects != null)
             {
-                _animationEventMessagesSendTime.Resize(_animationEventMessages.Count);
+                if (_animationSkillEffects.Count != _animationSkillEffectsActivateTime.Count)
+                {
+                    _animationSkillEffectsActivateTime.Resize(_animationSkillEffects.Count);
+                }
             }
         }
 
@@ -45,13 +57,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 
         IEnumerator WaitForAnimationFinish()
         {
-            List<bool> messagesSent = new List<bool>(_animationEventMessages.Count);
-            for (int i = 0; i < _animationEventMessages.Count; ++i)
+            List<bool> eventMessagesSent = new List<bool>();
+            eventMessagesSent.AddRange(Enumerable.Repeat(false, _animationEventMessages.Count));
+            List<bool> skillEffectActivated = new List<bool>();
+            skillEffectActivated.AddRange(Enumerable.Repeat(false, _animationSkillEffects.Count));
+            for (int i = 0; i < _animationSkillEffects.Count; ++i)
             {
-                messagesSent.Add(false);
+                skillEffectActivated.Add(false);
             }
             float timer = 0f;
-            while ((timer < _animationDuration || messagesSent.Any(b => !b)) && !Skill.Caster.gameObject.IsInterrupted())
+            while ((timer < _animationDuration || eventMessagesSent.Any(b => !b)) && !Skill.Caster.gameObject.IsInterrupted() && !Skill.Caster.gameObject.HitPointAtZero())
             {
                 if (timer >= _animationDuration)
                 {
@@ -61,10 +76,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                 timer += Time.deltaTime;
                 for (int i = 0; i < _animationEventMessages.Count; ++i)
                 {
-                    if (!messagesSent[i] && (timer >= _animationEventMessagesSendTime[i]))
+                    if (!eventMessagesSent[i] && (timer >= _animationEventMessagesSendTime[i]))
                     {
-                        messagesSent[i] = true;
-                        gameObject.BroadcastMessage(_animationEventMessages[i], SendMessageOptions.DontRequireReceiver);
+                        eventMessagesSent[i] = true;
+                        Skill.Caster.gameObject.BroadcastMessage(_animationEventMessages[i], SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+                for (int i = 0; i < _animationSkillEffects.Count; ++i)
+                {
+                    if (!skillEffectActivated[i] && (timer >= _animationSkillEffectsActivateTime[i]))
+                    {
+                        skillEffectActivated[i] = true;
+                        if (_animationSkillEffects[i].CanActivate())
+                        {
+                            _animationSkillEffects[i].Activate();
+                        }
                     }
                 }
             }

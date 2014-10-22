@@ -1,11 +1,12 @@
 ﻿using System.Collections;
-using Assets.Scripts.GameScripts.Components.TimeDispatcher;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
+    [RequireComponent(typeof(FixTimeDispatcher))]
+    [AddComponentMenu("Misc/CharacterInterrupt")]
     public class CharacterInterrupt : GameLogic
     {
         public bool Interrupted { get; private set; }

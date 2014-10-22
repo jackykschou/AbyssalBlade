@@ -28,6 +28,7 @@
         EnableHighlightSkill,          // void(int,float)
         DisableHighlightSkill,         // void(int)
 
-        OnPlayerDashButtonPressed    // void()
+        OnPlayerDashButtonPressed,    // void()
+        OnPlayerDeath
      };
 }

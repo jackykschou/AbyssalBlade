@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
@@ -10,8 +9,9 @@ namespace Assets.Scripts.Managers
 {
     [AddComponentMenu("Manager/MessageManager")]
     [ExecuteInEditMode]
-    public class MessageManager : GameLogic
+    public class MessageManager : MonoBehaviour
     {
+        public GameObject DeathScreen;
         public PrefabSpawner PrefabSpawner;
         public Camera MainCamera;
         public EaseType PreferredEaseType;
@@ -29,6 +29,36 @@ namespace Assets.Scripts.Managers
             }
         }
 
+        public void DisplayDeathMessage()
+        {
+            DeathScreen.SetActive(true);
+            StartCoroutine(DeactivateObjectIE(3.0f));
+            StartCoroutine(FadeInDeathScreenIE(3.0f));
+        }
+
+        IEnumerator DeactivateObjectIE(float time)
+        {
+            while (time > 0)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+                time -= Time.deltaTime;
+            }
+            DeathScreen.SetActive(false);
+        }
+        IEnumerator FadeInDeathScreenIE(float time)
+        {
+            float passedTime = 0.0f;
+            UnityEngine.UI.Image image = DeathScreen.GetComponentInChildren<UnityEngine.UI.Image>();
+            while (time > 0)
+            {
+                image.color = new Color(image.color.r,image.color.g,image.color.b,passedTime/time); 
+                yield return new WaitForSeconds(Time.deltaTime);
+                time -= Time.deltaTime;
+                passedTime += Time.deltaTime;
+            }
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1.0f); 
+        }
+
         public void DisplayMessage(string message,Vector3 direction)
         {
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
@@ -42,8 +72,11 @@ namespace Assets.Scripts.Managers
             });
         }
 
-        public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly, float WhenToFly)
+        public void DisplayGameMessageFlyAway(string message, Vector3 direction, Vector3 directionToFly)
         {
+            float speed = 5.0f;
+            float distance = 1.5f;
+
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
             {
                 TextMesh mesh = o.GetComponent<TextMesh>();
@@ -51,9 +84,11 @@ namespace Assets.Scripts.Managers
 
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
-                StartCoroutine(DelayedMove(motor, directionToFly, WhenToFly));
+                motor.Shoot(PreferredEaseType, direction, speed, distance, 5.0f);
+                //float time = (direction*distance/speed).magnitude;
+                //motor.Shoot(PreferredEaseType, directionToFly, 30.0f, 20.0f, 2.0f);
             });
+            
         }
 
         public IEnumerator DelayedMove(TextMotor motor, Vector3 direction, float whenToMove)
@@ -64,44 +99,43 @@ namespace Assets.Scripts.Managers
 
         Vector3 MiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 2.0f, MainCamera.pixelHeight / 2.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width/2.0f, Screen.height/2.0f, 0.0f));
         }
         Vector3 TopMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 2.0f, MainCamera.pixelHeight*3.0f / 5.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
         Vector3 TopRightMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth*3.0f / 4.0f, MainCamera.pixelHeight * 3.0f / 5.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width * 3.0f / 4.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
         Vector3 TopLeftMiddleOfScreen()
         {
-            return MainCamera.ScreenToWorldPoint(new Vector3(MainCamera.pixelWidth / 4.0f, MainCamera.pixelHeight * 3.0f / 5.0f, 0.0f));
+            return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 4.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
 
-        protected override void Update()
+        void Update()
         {
             if (Input.GetKeyDown(KeyCode.Keypad1))
                 DisplayMessage("Regular Message", Vector3.up);
             if (Input.GetKeyDown(KeyCode.Keypad2))
-                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right*10.0f, 2.0f);
+                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right);
         }
 
-        protected override void Initialize()
+        void Awake()
         {
             if (PrefabSpawner == null)
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
-            if(MainCamera == null)
+            if (MainCamera == null)
             {
                 MainCamera = Camera.main;
             }
+            if (DeathScreen == null)
+            {
+                DeathScreen = GameObject.Find("DeathScreen");
+            }
         }
-
-        protected override void Deinitialize()
-        {
-        }
-
     }
 }

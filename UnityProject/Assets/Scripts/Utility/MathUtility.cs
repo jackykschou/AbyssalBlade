@@ -8,6 +8,15 @@ namespace Assets.Scripts.Utility
     {
         public static bool RollChance(float chance)
         {
+            if (chance >= 1.0f)
+            {
+                return true;
+            }
+            if (chance <= 0f)
+            {
+                return false;
+            }
+
             return UnityEngine.Random.value < chance;
         }
 
