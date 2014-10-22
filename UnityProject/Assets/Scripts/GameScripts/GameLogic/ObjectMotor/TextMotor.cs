@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using Assets.Scripts.Utility;
-using StateMachine.Action;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
 {

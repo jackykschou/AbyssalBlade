@@ -67,6 +67,7 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.HUD.SetActive(IsPlayLevel);
             GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
             AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
+            GameManager.Instance.MainCamera.camera.orthographic = IsPlayLevel;
         }
     }
 }
