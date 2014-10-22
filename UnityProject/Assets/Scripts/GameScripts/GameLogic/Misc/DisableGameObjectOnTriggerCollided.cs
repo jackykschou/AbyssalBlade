@@ -25,7 +25,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
 
         protected override void OnTriggerStay2D(Collider2D coll)
         {
-            base.OnTriggerStay2D(coll);
             if (TargetPhysicalLayers.Contains(coll.gameObject.layer))
             {
                 DisableOnTriggerCollided();
