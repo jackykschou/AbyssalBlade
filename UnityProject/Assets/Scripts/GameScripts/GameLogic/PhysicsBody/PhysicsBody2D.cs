@@ -28,5 +28,35 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
         {
             Collider.enabled = false;
         }
+
+        protected override void OnCollisionEnter2D(Collision2D coll)
+        {
+            TriggerGameScriptEvent(GameScriptEvent.OnPhysicsBodyOnTriggerEnter2D, coll);
+        }
+
+        protected override void OnCollisionStay2D(Collision2D coll)
+        {
+            TriggerGameScriptEvent(GameScriptEvent.OnPhysicsBodyOnCollisionStay2D, coll);
+        }
+
+        protected override void OnCollisionExit2D(Collision2D coll)
+        {
+            TriggerGameScriptEvent(GameScriptEvent.OnPhysicsBodyOnCollisionExit2D, coll);
+        }
+
+        protected override void OnTriggerEnter2D(Collider2D coll)
+        {
+            TriggerGameScriptEvent(GameScriptEvent.OnPhysicsBodyOnTriggerEnter2D, coll);
+        }
+
+        protected override void OnTriggerStay2D(Collider2D coll)
+        {
+            TriggerGameScriptEvent(GameScriptEvent.OnPhysicsBodyOnTriggerStay2D, coll);
+        }
+
+        protected override void OnTriggerExit2D(Collider2D coll)
+        {
+            TriggerGameScriptEvent(GameScriptEvent.OnPhysicsBodyOnTriggerExit2D, coll);
+        }
     }
 }

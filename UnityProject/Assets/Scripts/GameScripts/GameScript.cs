@@ -274,5 +274,17 @@ namespace Assets.Scripts.GameScripts
 
         protected virtual void OnTriggerStay2D(Collider2D coll)
         { }
+
+        protected virtual void OnTriggerExit2D(Collider2D coll)
+        { }
+
+        protected virtual void OnCollisionEnter2D(Collision2D coll)
+        { }
+
+        protected virtual void OnCollisionStay2D(Collision2D coll)
+        { }
+
+        protected virtual void OnCollisionExit2D(Collision2D coll)
+        { }
     }
 }

@@ -44,6 +44,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             _upPos = Position.localPosition;
             Position.RotateAround(Follower.position, Vector3.forward, 90);
             _leftPos = Position.localPosition;
+            Position.RotateAround(Follower.position, Vector3.forward, 90);
 
             Position.localPosition = _downPos;
             _currentFacingDirection = FacingDirection.Down;

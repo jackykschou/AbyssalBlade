@@ -33,7 +33,6 @@
         UpdateSkillCooldownPercentage,          // void(Skill, float)
         OnNewTargetDiscovered,                  // void(GameObject)
         UpdateSkillButtonHoldEffectTime,        // void(float)
-
         OnSkillComboChanged,                    // void(float)
         RefreshSkillCoolDown,                   // void()
 
@@ -47,8 +46,12 @@
         ObjectChangeHealth,                     // void(GameValueChanger)
         OnObjectTakeDamage,                     // void(float, bool)
         OnObjectTakeHeal,                       // void(float)
-
-        OnCollideTriggerTriggered,          // void(GameObject)
+        OnPhysicsBodyOnTriggerEnter2D,          // void(Collider2D)
+        OnPhysicsBodyOnTriggerStay2D,           // void(Collider2D)
+        OnPhysicsBodyOnTriggerExit2D,           // void(Collider2D)
+        OnPhysicsBodyOnCollisionEnter2D,        // void(Collision2D)
+        OnPhysicsBodyOnCollisionStay2D,        // void(Collision2D)
+        OnPhysicsBodyOnCollisionExit2D,        // void(Collision2D)
 
         UpdateSectionId,                    // void(int)
 
