@@ -62,7 +62,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
         public void SpawnPrefab(Action<GameObject> onPrefabSpawned = null)
         {
-            if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
+            if (!CanSpawn())
             {
                 return;
             }

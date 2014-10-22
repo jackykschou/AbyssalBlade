@@ -15,6 +15,7 @@
             public const string SpawnArea = "SpawnArea";
             public const string SectionActivateArea = "SectionActivateArea";
             public const string LeaveLevelArea = "LeaveLevelArea";
+            public const string PlayerPickUp = "PlayerPickUp";
         }
 
         public static class LayerMask
@@ -74,6 +75,11 @@
             public static int LeaveLevelArea
             {
                 get { return UnityEngine.LayerMask.NameToLayer(LayerNames.LeaveLevelArea); }
+            }
+
+            public static int PlayerPickUp
+            {
+                get { return UnityEngine.LayerMask.NameToLayer(LayerNames.PlayerPickUp); }
             }
         }
     }
