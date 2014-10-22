@@ -11,7 +11,7 @@ namespace Assets.Scripts.Managers
     [ExecuteInEditMode]
     public class MessageManager : MonoBehaviour
     {
-        public GameObject DeathMessageText;
+        public GameObject DeathScreen;
         public PrefabSpawner PrefabSpawner;
         public Camera MainCamera;
         public EaseType PreferredEaseType;
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Managers
 
         public void DisplayDeathMessage()
         {
-            DeathMessageText.SetActive(true);
+            DeathScreen.SetActive(true);
             StartCoroutine(DeactivateObjectIE(3.0f));
             StartCoroutine(FadeInDeathScreenIE(3.0f));
         }
@@ -43,12 +43,12 @@ namespace Assets.Scripts.Managers
                 yield return new WaitForSeconds(Time.deltaTime);
                 time -= Time.deltaTime;
             }
-            DeathMessageText.SetActive(false);
+            DeathScreen.SetActive(false);
         }
         IEnumerator FadeInDeathScreenIE(float time)
         {
             float passedTime = 0.0f;
-            UnityEngine.UI.Image image = DeathMessageText.GetComponentInChildren<UnityEngine.UI.Image>();
+            UnityEngine.UI.Image image = DeathScreen.GetComponentInChildren<UnityEngine.UI.Image>();
             while (time > 0)
             {
                 image.color = new Color(image.color.r,image.color.g,image.color.b,passedTime/time); 
@@ -132,9 +132,9 @@ namespace Assets.Scripts.Managers
             {
                 MainCamera = Camera.main;
             }
-            if (DeathMessageText == null)
+            if (DeathScreen == null)
             {
-                DeathMessageText = GameObject.Find("DeathMessage");
+                DeathScreen = GameObject.Find("DeathScreen");
             }
         }
     }
