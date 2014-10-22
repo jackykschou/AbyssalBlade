@@ -4,12 +4,12 @@ using UnityEditor;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc.Editor
 {
-    [CustomEditor(typeof(DisableGameObjectOnTriggerCollided))]
+    [CustomEditor(typeof(DisableGameObjectOnTriggerStay))]
     public class DisableGameObjectOnTriggerCollidedInspector : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
-            DisableGameObjectOnTriggerCollided script = (DisableGameObjectOnTriggerCollided)target;
+            DisableGameObjectOnTriggerStay script = (DisableGameObjectOnTriggerStay)target;
 
             if (script.TargetPhysicalLayers == null)
             {

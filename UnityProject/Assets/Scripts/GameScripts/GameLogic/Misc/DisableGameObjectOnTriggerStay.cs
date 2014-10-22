@@ -5,24 +5,15 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
-    [AddComponentMenu("Misc/DisableGameObjectOnTriggerCollided")]
+    [AddComponentMenu("Misc/DisableGameObjectOnTriggerStay")]
     [RequireComponent(typeof(PhysicsBody2D))]
-    public class DisableGameObjectOnTriggerCollided : GameLogic
+    public class DisableGameObjectOnTriggerStay : GameLogic
     {
         [Range(0f, 10f)]
         public float Delay = 0f;
         public List<int> TargetPhysicalLayers = new List<int>();
 
         private bool _gameObjectDisabled;
-
-        [GameScriptEvent(Constants.GameScriptEvent.OnPhysicsBodyOnTriggerEnter2D)]
-        protected void OnPhysicsBodyOnTriggerEnter2D(Collider2D coll)
-        {
-            if (TargetPhysicalLayers.Contains(coll.gameObject.layer))
-            {
-                DisableOnTriggerCollided();
-            }
-        }
 
         [GameScriptEvent(Constants.GameScriptEvent.OnPhysicsBodyOnTriggerStay2D)]
         protected void OnPhysicsBodyOnTriggerStay2D(Collider2D coll)
