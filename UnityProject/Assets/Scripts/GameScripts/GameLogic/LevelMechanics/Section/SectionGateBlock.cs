@@ -24,19 +24,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         public override void OnSectionActivated(int sectionId)
         {
             base.OnSectionActivated(sectionId);
-            if (SectionId == sectionId || SectionId == (sectionId - 1))
-            {
-                LockGate();
-            }
+            LockGate();
         }
 
         public override void OnSectionDeactivated(int sectionId)
         {
             base.OnSectionDeactivated(sectionId);
-            if (SectionId == sectionId || SectionId == (sectionId - 1))
-            {
-                UnLockGate();
-            }
+            UnLockGate();
         }
 
         public void LockGate()

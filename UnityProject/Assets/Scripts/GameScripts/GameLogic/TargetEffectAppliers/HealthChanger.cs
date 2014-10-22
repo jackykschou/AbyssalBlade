@@ -18,7 +18,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 
         private void ApplyHealthChange(GameObject target)
         {
-            Debug.Log("ApplyHealthChangeApplyHealthChangeApplyHealthChange");
             target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeHealth, GameValueChanger);
         }
 
