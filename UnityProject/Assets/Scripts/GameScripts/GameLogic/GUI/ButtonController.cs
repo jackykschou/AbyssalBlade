@@ -3,6 +3,7 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Managers;
 using UnityEngine;
+using UnityEngine.UI;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
@@ -26,7 +27,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private int _numButtons = 0;
         private int _curButton = 0;
         [SerializeField]
-        private AxisOnHold VerticalAxis;
+        private AxisOnHold AxisOnHold;
         [SerializeField]
         private ButtonOnPressed Attack1;
         
@@ -48,52 +49,48 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             };
             _popoutAmount = new Vector3(0, 0, -.75f);
             _numButtons = _buttonObjs.Count;
-            _curButton = -1;
+            _curButton = 0;
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (VerticalAxis.Detect())
+            OnButtonMouseOver(_curButton);
+            if (AxisOnHold.Detect())
             {
-                TriggerGameScriptEvent(GameScriptEvent.ButtonChange, GetNextButton(VerticalAxis.GetAxisValue() > 0.1));
+                ButtonChange(GetNextButton(AxisOnHold.GetAxisValue() > 0.01f));
             }
             else
             {
                 RaycastHit hit;
                 bool clicked = UnityEngine.Input.GetMouseButtonDown(0);
-                if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit))
+                if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit, LayerConstants.LayerMask.StaticObstacle))
                 {
                     GameObject hitObj = hit.collider.gameObject;
                     for (int index = 0; index < _buttonObjs.Count; index++)
                     {
                         if (hitObj == _buttonObjs[index].gameObject)
                         {
+                            _curButton = index;
+                            ButtonChange(_curButton);
                             if (clicked)
                             {
                                 switch (index)
                                 {
                                     case 0:
-                                        TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
+                                        OnStartPressed();
                                         break;
                                     case 1:
-                                        TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
+                                        OnOptionsPressed();
                                         break;
                                     case 2:
-                                        TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
+                                        OnQuitPressed();
                                         break;
                                 }
                             }
-                            if (!_popped[index])
-                                TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, hitObj, index);
-                            return;
                         }
                     }
-                    for (int index = 0; index < _buttonObjs.Count; index++)
-                        if (_popped[index])
-                            TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, index);
                 }
-                return;
             }
 
             if (Attack1.Detect())
@@ -101,13 +98,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                 switch (_curButton)
                 {
                     case 0:
-                        TriggerGameScriptEvent(GameScriptEvent.MenuStartButtonPressed);
+                        OnStartPressed();
                         break;
                     case 1:
-                        TriggerGameScriptEvent(GameScriptEvent.MenuOptionsButtonPressed);
+                        OnOptionsPressed();
                         break;
                     case 2:
-                        TriggerGameScriptEvent(GameScriptEvent.MenuQuitButtonPressed);
+                        OnQuitPressed();
                         break;
                 }
             }
@@ -130,51 +127,49 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             return _curButton;
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.ButtonChange)]
         public void ButtonChange(int buttonId)
         {
             switch (buttonId)
             {
                 case 0:
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, StartButton.gameObject, 0);
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 1);
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 2);
+                    OnButtonMouseOver(0);
+                    OnButtonMouseLeave(1);
+                    OnButtonMouseLeave(2);
                     break;
                 case 1:
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, OptionsButton.gameObject, 1);
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 0);
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 2);
+                    OnButtonMouseOver(1);
+                    OnButtonMouseLeave(0);
+                    OnButtonMouseLeave(2);
                     break;
                 case 2:
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseOver, QuitButton.gameObject, 2);
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 0);
-                    TriggerGameScriptEvent(GameScriptEvent.OnButtonMouseLeave, 1);
+                    OnButtonMouseOver(2);
+                    OnButtonMouseLeave(0);
+                    OnButtonMouseLeave(1);
                     break;
             }
+            _curButton = buttonId;
         }
-        [GameScriptEventAttribute(GameScriptEvent.MenuStartButtonPressed)]
+
         public void OnStartPressed()
         {
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.MenuOptionsButtonPressed)]
         public void OnOptionsPressed()
         {
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.MenuQuitButtonPressed)]
         public void OnQuitPressed()
         {
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             Application.Quit();
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnButtonMouseOver)]
-        public void OnButtonMouseOver(GameObject hitObj, int index)
+        public void OnButtonMouseOver(int index)
         {
+            GameObject hitObj = _buttonObjs[_curButton].gameObject;
             if (_popped[index])
                 return;
             _popped[index] = true;
@@ -183,9 +178,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             hitObj.transform.localScale *= BtnScaleAmount;
             hitObj.transform.Translate(_popoutAmount);
             hitObj.renderer.material.SetColor("_OutlineColor", HighlightColor);
+            _curButton = index;
+            for(int i = 0; i < _numButtons; i++)
+                if(i != index)
+                    OnButtonMouseLeave(i);
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.OnButtonMouseLeave)]
         public void OnButtonMouseLeave(int index)
         {
             if (!_popped[index])

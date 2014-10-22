@@ -153,7 +153,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             TriggerArea = GetComponent<Collider2D>();
             TriggerArea.isTrigger = true;
             TriggerArea.enabled = false;
-            gameObject.layer = LayerConstants.LayerMask.SpawnArea;
+            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.SpawnArea);
             Activated = true;
             _triggered = false;
             _deactivated = false;
