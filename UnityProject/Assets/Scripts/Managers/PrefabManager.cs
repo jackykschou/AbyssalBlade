@@ -164,7 +164,7 @@ namespace Assets.Scripts.Managers
 
                 _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
@@ -205,11 +205,6 @@ namespace Assets.Scripts.Managers
 
         public IEnumerator DespawnPrefabIE()
         {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
             while (_despawnQueue.Count > 0)
             {
                 GameObject prefabGameObject = _despawnQueue.First();
@@ -224,22 +219,12 @@ namespace Assets.Scripts.Managers
                 _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
                 _spawnedPrefabsMap.Remove(prefabGameObject);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
         public void ImmediateDespawnPrefab(GameObject prefabGameObject, Action<GameObject> onPrefabDespawned = null)
         {
-            StartCoroutine(ImmediateDespawnPrefabIE(prefabGameObject, onPrefabDespawned));
-        }
-
-        public IEnumerator ImmediateDespawnPrefabIE(GameObject prefabGameObject, Action<GameObject> onPrefabDespawned = null)
-        {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
             if (onPrefabDespawned != null)
             {
                 onPrefabDespawned(prefabGameObject);
