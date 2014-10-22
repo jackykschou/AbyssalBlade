@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Attributes;
+using Assets.Scripts.GameScripts.GameLogic.PhysicsBody;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
     [AddComponentMenu("Misc/DisableGameObjectOnTriggerCollided")]
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(PhysicsBody2D))]
     public class DisableGameObjectOnTriggerCollided : GameLogic
     {
         [Range(0f, 10f)]
@@ -12,18 +14,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         public List<int> TargetPhysicalLayers = new List<int>();
 
         private bool _gameObjectDisabled;
-        private Collider2D _collider;
 
-        protected override void OnTriggerEnter2D(Collider2D coll)
+        [GameScriptEvent(Constants.GameScriptEvent.OnPhysicsBodyOnTriggerEnter2D)]
+        protected void OnPhysicsBodyOnTriggerEnter2D(Collider2D coll)
         {
-            base.OnTriggerEnter2D(coll);
             if (TargetPhysicalLayers.Contains(coll.gameObject.layer))
             {
                 DisableOnTriggerCollided();
             }
         }
 
-        protected override void OnTriggerStay2D(Collider2D coll)
+        [GameScriptEvent(Constants.GameScriptEvent.OnPhysicsBodyOnTriggerStay2D)]
+        protected void OnPhysicsBodyOnTriggerStay2D(Collider2D coll)
         {
             if (TargetPhysicalLayers.Contains(coll.gameObject.layer))
             {
@@ -35,7 +37,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         {
             if (!_gameObjectDisabled)
             {
-                _collider.enabled = false;
                 _gameObjectDisabled = true;
                 DisableGameObject(Delay);
             }
@@ -45,9 +46,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         {
             base.Initialize();
             _gameObjectDisabled = false;
-            _collider = GetComponent<Collider2D>();
-            _collider.enabled = true;
-            _collider.isTrigger = true;
         }
 
         protected override void Deinitialize()

@@ -2,8 +2,8 @@
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders.Editor
 {
-    [CustomEditor(typeof(CollideWithTriggerFinder))]
-    public class CollideWithTriggerFinderInspector : TargetFinderInspector 
+    [CustomEditor(typeof(OnTriggerEnterFinder))]
+    public class OnTriggerEnterFinderInspector : TargetFinderInspector
     {
         public override void OnInspectorGUI()
         {

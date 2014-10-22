@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.PhysicsBody;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 {
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(LeaveLevelAreaPhysicsBody))]
     public class ChangeLevelOnEntered : SectionLogic
     {
-        public Collider2D AreaCollider;
         public Prefab ToLevel;
         [Range(0f, 10f)] 
         public float ChangeLevelDelay;
@@ -19,10 +19,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         protected override void Initialize()
         {
             base.Initialize();
-            AreaCollider = GetComponent<Collider2D>();
-            AreaCollider.isTrigger = true;
-            gameObject.layer = LayerConstants.LayerMask.LeaveLevelArea;
-            AreaCollider.enabled = true;
             _changed = false;
             _activated = false;
         }
@@ -40,12 +36,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
         }
 
-        protected override void OnTriggerStay2D(Collider2D coll)
+        [Attributes.GameScriptEvent(Constants.GameScriptEvent.OnPhysicsBodyOnTriggerStay2D)]
+        public void OnPhysicsBodyOnTriggerStay2D(Collider2D coll)
         {
             if (!GameManager.Instance.PlayerMainCharacter.HitPointAtZero() && !_changed && _activated)
             {
                 _changed = true;
-                AreaCollider.enabled = false;
                 StartCoroutine(ChangeLevel());
             }
         }
