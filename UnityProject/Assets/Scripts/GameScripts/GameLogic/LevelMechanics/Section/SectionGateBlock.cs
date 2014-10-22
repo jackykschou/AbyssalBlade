@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         protected override void Initialize()
         {
             base.Initialize();
-            gameObject.layer = LayerConstants.LayerMask.StaticObstacle;
+            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.StaticObstacle);
             BlockCollider = GetComponent<Collider2D>();
             BlockCollider.isTrigger = false;
             LockGate();

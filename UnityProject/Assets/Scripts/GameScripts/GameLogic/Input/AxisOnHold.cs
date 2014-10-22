@@ -20,6 +20,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Input
         {
             if (base.Detect() && IsAxisOnHold())
             {
+                CoolDownTimeDispatcher.Dispatch();
                 return true;
             }
             return false;

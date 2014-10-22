@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             base.Initialize();
             ActivationArea = GetComponent<Collider2D>();
             ActivationArea.isTrigger = true;
-            gameObject.layer = LayerConstants.LayerMask.SectionActivateArea;
+            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.SectionActivateArea);
             ActivationArea.enabled = true;
         }
 

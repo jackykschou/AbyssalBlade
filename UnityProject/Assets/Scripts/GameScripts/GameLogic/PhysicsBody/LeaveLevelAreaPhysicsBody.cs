@@ -9,7 +9,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
         protected override void Initialize()
         {
             base.Initialize();
-            gameObject.layer = LayerConstants.LayerMask.LeaveLevelArea;
+            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.LeaveLevelArea);
             Collider.isTrigger = true;
             Rigidbody.isKinematic = true;
         }
