@@ -20,10 +20,11 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400016}
-  - 114: {fileID: 11400018}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400020}
   - 114: {fileID: 11400022}
+  - 114: {fileID: 11400026}
+  - 114: {fileID: 11400024}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
@@ -203,26 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
---- !u!114 &11400018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 893e7b57a412362468d178415e36c369, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  TargetTags:
-  - Enemy
-  - Neutral
-  TargetPhysicalLayers: 0f000000100000000d000000
-  FinderPosition: {fileID: 0}
-  TargetEffectAppliers:
-  - {fileID: 11400014}
-  Targets: []
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,6 +245,40 @@ MonoBehaviour:
   InitialValue: 10
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7064223e3c1e7974fa8a1cf426eb9df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d0000000f00000010000000
+  FinderPosition: {fileID: 11400026}
+  TargetEffectAppliers:
+  - {fileID: 11400014}
+  Targets: []
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Follower: {fileID: 0}
+  Position: {fileID: 400000}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
