@@ -141,11 +141,11 @@ namespace Assets.Scripts.GameScripts
 
         void InitializeHelper()
         {
+
             if (_initialized)
             {
                 return;
             }
-
             InitializeFields();
             SubscribeGameEvents();
             Initialize();

@@ -1,4 +1,5 @@
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using Assets.Scripts.Utility;
 using StateMachine.Action;
 
@@ -8,13 +9,19 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
 	url = "")]
 	public class CastSkill : StateAction
 	{
+	    private AISkillCaster _aiSkillCaster;
+
 		public override void OnEnter()
 		{
+            if (_aiSkillCaster == null)
+            {
+                _aiSkillCaster = stateMachine.owner.GetComponent<AISkillCaster>();
+            }
 		}
 
 		public override void OnUpdate()
 		{
-            stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AICastSkill);
+            _aiSkillCaster.CastSkill();
 		}
 	}
 }
