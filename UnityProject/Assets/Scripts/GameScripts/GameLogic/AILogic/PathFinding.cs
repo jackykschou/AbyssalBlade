@@ -84,11 +84,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
 
         public Vector3 GetMoveDirection()
         {
-            if (!PathFindEnabled)
-            {
-                Debug.LogWarning("Pathing find is not enabled");
-            }
-
             return CalculateVelocity(GetFeetPosition()).normalized;
         }
 
@@ -431,7 +426,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             if (path == null || path.vectorPath == null || path.vectorPath.Count == 0) return Vector3.zero;
 
             List<Vector3> vPath = path.vectorPath;
-            //Vector3 currentPosition = GetFeetPosition();
 
             if (vPath.Count == 1)
             {
@@ -468,7 +462,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
 
             Vector3 dir = vPath[currentWaypointIndex] - vPath[currentWaypointIndex - 1];
 
-            return dir.normalized;
+            return dir;
         }
 
         /** Rotates in the specified direction.

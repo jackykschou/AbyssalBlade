@@ -1,3 +1,4 @@
+using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
 using Assets.Scripts.Utility;
 using StateMachine;
 using StateMachine.Action;
@@ -16,34 +17,45 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
         [FieldInfo(tooltip = "AI will not move if distance between the target is within distance")]
 	    public FloatParameter MinimumDistance;
 
-		public override void OnEnter()
+	    private CharacterMotor _characterMotor;
+	    private RotatesTowardTarget _rotatesTowardTarget;
+	    private PathFinding _pathFinding;
+
+	    public override void OnEnter()
 		{
-		
+	        if (_characterMotor == null)
+	        {
+                _characterMotor = stateMachine.owner.GetComponent<CharacterMotor>();
+	        }
+	        if (_rotatesTowardTarget == null)
+	        {
+                _rotatesTowardTarget = stateMachine.owner.GetComponent<RotatesTowardTarget>();
+	        }
+            if (_pathFinding == null)
+            {
+                _pathFinding = stateMachine.owner.GetComponent<PathFinding>();
+            }
 		}
 
 	    public override void OnFixedUpdate()
 	    {
-	        base.OnFixedUpdate();
-
             if (stateMachine.owner.HitPointAtZero() || stateMachine.owner.IsInterrupted())
             {
                 return;
             }
 
-            PathFinding pathfinding = stateMachine.owner.GetComponent<PathFinding>();
+            _pathFinding.TrySearchPath();
 
-	        pathfinding.TrySearchPath();
+            Vector2 moveDirection = _pathFinding.GetMoveDirection();
 
-            Vector2 moveDirection = pathfinding.GetMoveDirection();
-
-            if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
-                (moveDirection == Vector2.zero) || !pathfinding.CurrentPathReachable)
+            if (_pathFinding.Target == null || (Vector2.Distance(_pathFinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
+                (moveDirection == Vector2.zero) || !_pathFinding.CurrentPathReachable)
             {
-                stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AIRotateToTarget);
+                _rotatesTowardTarget.RotateTowardsTarget();
                 return;
             }
 
-            pathfinding.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, moveDirection);
+            _characterMotor.MoveCharacter(moveDirection);
 	    }
 	}
 }

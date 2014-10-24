@@ -6,23 +6,11 @@
 #if DEBUG
         Example, // void()
 #endif
-        PlayerAxisMoved,                        // void(Vector2)
-        UpdatePlayerAxis,                       // void(Vector2)
-        PlayerAttack1ButtonPressed,             // void()
-        PlayerAttack2ButtonPressed,             // void()
-        PlayerAttack3ButtonPressed,             // void()
-        PlayerAttack4ButtonPressed,             // void()
-        PlayerDashButtonPressed,                // void()
-
         UpdateFacingDirection,                  // void(FacingDirection)
 
         SetAnimatorBoolState,                   // void(string)
         SetAnimatorFloatState,                  // void(string, int)
         
-        AIRotateToTarget,                       // void()
-        AICastSkill,                            // void()
-        AIMove,                                 // void(Vector2)
-
         CharacterMove,                          // void(Vector2)
         OnCharacterMove,                        // void(Vector2)
         PushCharacter,                          // void(vector2, float)

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Input;
+using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -7,6 +8,7 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Controller
 {
+    [RequireComponent(typeof(PlayerCharacterSkillsCaster))]
     public class PlayerController : GameLogic
     {
         [SerializeField]
@@ -30,6 +32,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField] 
         private ButtonOnPressed Dash;
 
+        private PlayerCharacterSkillsCaster _playerCharacterSkillsCaster;
+
         private bool _skill1Enabled;
         private bool _skill2Enabled;
         private bool _skill3Enabled;
@@ -42,6 +46,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             _skill2Enabled = true;
             _skill3Enabled = true;
             _skill4Enabled = true;
+            _playerCharacterSkillsCaster = GetComponent<PlayerCharacterSkillsCaster>();
         }
 
         protected override void Deinitialize()
@@ -50,7 +55,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
 
         protected override void FixedUpdate()
         {
-            base.FixedUpdate();
             if (gameObject.HitPointAtZero())
             {
                 return;
@@ -60,7 +64,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             {
                 Vector2 direction = new Vector2(HorizontalAxis.GetAxisValue(), VerticalAxis.GetAxisValue());
 
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAxisMoved, direction);
+                _playerCharacterSkillsCaster.Direction = direction;
+
+                _playerCharacterSkillsCaster.ActivateMovement(direction);
             }
         }
 
@@ -74,24 +80,24 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
 
             if (Attack1.Detect() && _skill1Enabled)
             {
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAttack1ButtonPressed);
+                _playerCharacterSkillsCaster.ActivateSkillOne();
             }
             else if (Attack2.Detect() && _skill2Enabled)
             {
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAttack2ButtonPressed);
+                _playerCharacterSkillsCaster.ActivateSkillTwo();
             }
             else if (Attack3.Detect() && _skill3Enabled)
             {
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAttack3ButtonPressed);
+                _playerCharacterSkillsCaster.ActivateSkillThree();
             }
             else if (Attack4.Detect() && _skill4Enabled)
             {
-                TriggerGameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed);
+                _playerCharacterSkillsCaster.ActivateSkillFour();
             }
             else if (Dash.Detect())
             {
+                _playerCharacterSkillsCaster.ActivateDash();
                 TriggerGameEvent(GameEvent.OnPlayerDashButtonPressed);
-                TriggerGameScriptEvent(GameScriptEvent.PlayerDashButtonPressed);
             }
         }
 

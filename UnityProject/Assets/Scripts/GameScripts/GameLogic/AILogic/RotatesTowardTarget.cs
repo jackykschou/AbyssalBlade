@@ -17,7 +17,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             Target = target.transform;
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.AIRotateToTarget)]
         public void RotateTowardsTarget()
         {
             if (Target == null)

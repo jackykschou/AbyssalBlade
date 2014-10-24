@@ -28,7 +28,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
             return Skills.Any(s => s.CanActivate()) && MinimumCoolDown.CanDispatch() && !gameObject.HitPointAtZero();
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.AICastSkill)]
         public void CastSkill()
         {
             if (!CanCastAnySkill())
