@@ -39,6 +39,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         private bool _skill3Enabled;
         private bool _skill4Enabled;
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            _playerCharacterSkillsCaster = GetComponent<PlayerCharacterSkillsCaster>();
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -46,7 +52,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
             _skill2Enabled = true;
             _skill3Enabled = true;
             _skill4Enabled = true;
-            _playerCharacterSkillsCaster = GetComponent<PlayerCharacterSkillsCaster>();
         }
 
         protected override void Deinitialize()

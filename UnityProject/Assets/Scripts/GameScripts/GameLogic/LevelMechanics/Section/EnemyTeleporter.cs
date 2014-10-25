@@ -36,10 +36,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
         }
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            _health = GetComponent<Health.Health>();
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
-            _health = GetComponent<Health.Health>();
             _health.Invincible = true;
         }
 

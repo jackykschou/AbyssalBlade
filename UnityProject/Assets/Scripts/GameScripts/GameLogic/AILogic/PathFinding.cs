@@ -87,21 +87,22 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             return CalculateVelocity(GetFeetPosition()).normalized;
         }
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            seeker = GetComponent<Seeker>();
+            tr = transform;
+            controller = GetComponent<CharacterController>();
+            navController = GetComponent<NavmeshController>();
+            rvoController = GetComponent<RVOController>();
+            rigid = rigidbody;
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
 
-            seeker = GetComponent<Seeker>();
-
-            //This is a simple optimization, cache the transform component lookup
-            tr = transform;
-
-            //Cache some other components (not all are necessarily there)
-            controller = GetComponent<CharacterController>();
-            navController = GetComponent<NavmeshController>();
-            rvoController = GetComponent<RVOController>();
             if (rvoController != null) rvoController.enableRotation = false;
-            rigid = rigidbody;
 
             EnablePathFind();
         }

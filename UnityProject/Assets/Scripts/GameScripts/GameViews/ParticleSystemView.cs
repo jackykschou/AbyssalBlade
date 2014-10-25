@@ -9,9 +9,9 @@ namespace Assets.Scripts.GameScripts.GameViews
     {
         protected ParticleSystem _ParticleSystem;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             _ParticleSystem = GetComponent<ParticleSystem>();
             _ParticleSystem.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.ForegroundLayer;
         }

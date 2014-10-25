@@ -11,12 +11,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     {
         public Collider2D ActivationArea;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             ActivationArea = GetComponent<Collider2D>();
             ActivationArea.isTrigger = true;
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.SectionActivateArea);
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
             ActivationArea.enabled = true;
         }
 

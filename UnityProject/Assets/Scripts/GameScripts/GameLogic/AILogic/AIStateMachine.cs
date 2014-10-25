@@ -8,10 +8,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
     {
         private StateMachineBehaviour stateMachineBehaviour;
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            stateMachineBehaviour = GetComponent<StateMachineBehaviour>();
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
-            stateMachineBehaviour = GetComponent<StateMachineBehaviour>();
             StateMachine.StateMachine stateMachine = ScriptableObject.CreateInstance<StateMachine.StateMachine>();
             stateMachine.name = stateMachineBehaviour.stateMachine.name + "(Bind)";
             StateMachine.StateMachine.Copy(stateMachineBehaviour.stateMachine, stateMachine, false);

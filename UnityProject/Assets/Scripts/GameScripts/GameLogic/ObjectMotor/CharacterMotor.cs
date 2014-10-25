@@ -15,9 +15,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
     {
         private const float DecelerationRate = 0.95f;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             rigidbody2D.isKinematic = false;
             rigidbody2D.fixedAngle = true;
         }

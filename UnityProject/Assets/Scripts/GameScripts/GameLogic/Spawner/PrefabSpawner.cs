@@ -20,10 +20,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         private int _spawnCount;
         private List<ProportionValue<Prefab>> _prefabWeightMap;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
-            _spawnCount = 0;
+            base.FirstTimeInitialize();
             _prefabWeightMap = new List<ProportionValue<Prefab>>();
             for (int i = 0; i < Prefabs.Count; ++i)
             {
@@ -39,6 +38,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
                     SpawnPickWeights[i] = 0f;
                 }
             }
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            _spawnCount = 0;
         }
 
         public override void EditorUpdate()

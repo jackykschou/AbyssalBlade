@@ -9,12 +9,16 @@ namespace Assets.Scripts.GameScripts.GameViews
     {
         protected SpriteRenderer _render;
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            _render = GetComponent<SpriteRenderer>();
+            _render.sortingLayerName = SortingLayerConstants.SortingLayerNames.CharacterLayer;
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
-
-            _render = GetComponent<SpriteRenderer>();
-            _render.sortingLayerName = SortingLayerConstants.SortingLayerNames.CharacterLayer;
             renderer.enabled = true;
             UpdateSortingOrder();
         }

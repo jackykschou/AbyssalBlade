@@ -8,9 +8,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
     [AddComponentMenu("PhysicsBody/EnemyCharacterPhysicsBody")]
     public class EnemyCharacterPhysicsBody : CharacterPhysicsBody
     {
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.Enemy);
         }
     }

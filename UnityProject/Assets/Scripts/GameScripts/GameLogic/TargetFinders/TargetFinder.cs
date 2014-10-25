@@ -24,11 +24,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
 
         protected abstract void FindTargets();
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            TargetEffectAppliers.ForEach(a => a.TargetFinder = this);
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
             ClearTargets();
-            TargetEffectAppliers.ForEach(a => a.TargetFinder = this);
         }
 
         public void ClearTargets()

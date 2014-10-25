@@ -12,11 +12,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     {
         public List<int> DisabledSkills;
 
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
-
         protected override void Deinitialize()
         {
         }

@@ -6,12 +6,12 @@ namespace Assets.Scripts.GameScripts.GameViews
     [RequireComponent(typeof(Animator))]
     public class StaticAnimatedSpriteGameView : StaticSpriteGameView
     {
-        protected Animator _animator;
+        protected Animator Animator;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
-            _animator = GetComponent<Animator>();
+            base.FirstTimeInitialize();
+            Animator = GetComponent<Animator>();
         }
     }
 }
