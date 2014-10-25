@@ -235,7 +235,6 @@ GameObject:
   - 114: {fileID: 11400192}
   - 114: {fileID: 11400196}
   - 114: {fileID: 11400204}
-  - 114: {fileID: 11400206}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -1730,7 +1729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 1.5
+  DispatchInterval: 1
 --- !u!114 &11400156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2121,21 +2120,6 @@ MonoBehaviour:
   InitialValue: 10
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
---- !u!114 &11400206
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a090a8e160c5004cab34e8264153140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  ShakeIntensity: .100000001
-  ShakeDecay: .400000006
-  MainCamera: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
