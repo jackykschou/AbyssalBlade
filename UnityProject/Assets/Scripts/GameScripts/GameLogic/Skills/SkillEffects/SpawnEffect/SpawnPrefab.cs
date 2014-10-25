@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 {
     [RequireComponent(typeof(PrefabSpawner))]
+    [AddComponentMenu("Skill/SkillEffect/SpawnPrefab")]
     public class SpawnPrefab : SkillEffect 
     {
         public PrefabSpawner PrefabSpawner;

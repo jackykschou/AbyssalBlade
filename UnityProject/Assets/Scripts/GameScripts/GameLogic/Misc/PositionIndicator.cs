@@ -34,7 +34,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             }
             if (Position == null)
             {
-                throw new Exception("Position is null");
+                Position = transform;
             }
 
             _downPos = Position.localPosition;
