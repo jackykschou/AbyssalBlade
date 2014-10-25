@@ -37,9 +37,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
             }
         }
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             Objectives = GetComponents<SectionObjective>().ToList();
         }
 

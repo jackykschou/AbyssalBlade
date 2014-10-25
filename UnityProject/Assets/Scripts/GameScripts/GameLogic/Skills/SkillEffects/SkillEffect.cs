@@ -23,11 +23,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
             Activated = true;
         }
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             Skill = GetComponent<Skill>();
-            gameObject.tag = Skill.tag;
             if (ActivateConditions == null)
             {
                 ActivateConditions = new List<SkillEffectActivateCondition>();

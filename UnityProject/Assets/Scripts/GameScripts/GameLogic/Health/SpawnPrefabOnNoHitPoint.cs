@@ -11,9 +11,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
     {
         public PrefabSpawner PrefabSpawner;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             if (PrefabSpawner == null)
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();

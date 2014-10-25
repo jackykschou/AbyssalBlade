@@ -126,18 +126,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             return _coolDownPercentage;
         }
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             if (transform.parent == null || transform.parent.gameObject.GetComponent<SkillCaster>() == null)
             {
                 throw new Exception("A Skill must have a parent that is the caster");
             }
-            IsActivate = false;
             Caster = transform.parent.gameObject.GetComponent<SkillCaster>();
-            _coolDownPercentage = 1f;
             _castableConditions = GetComponents<SkillCastableCondition>().ToList();
-            gameObject.tag = Caster.gameObject.tag;
 
             _soretedSkillEffects = new SortedDictionary<int, List<SkillEffect>>();
             if (_skillEffects == null || _skillEffects.Count == 0)
@@ -172,6 +169,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
                     _soretedProSkillEffects[_proSkillEffectsOrder[i]].Add(_proSkillEffects[i]);
                 }
             }
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            IsActivate = false;
+            _coolDownPercentage = 1f;
         }
 
         protected override void Deinitialize()

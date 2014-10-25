@@ -44,10 +44,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc.ScaleWithTime
             MaxTime = Mathf.Clamp(MaxTime, MinTime, 10f);
         }
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            ParticleSystem = GetComponent<ParticleSystem>();
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
-            ParticleSystem = GetComponent<ParticleSystem>();
             _originalStartSize = particleSystem.startSize;
         }
 

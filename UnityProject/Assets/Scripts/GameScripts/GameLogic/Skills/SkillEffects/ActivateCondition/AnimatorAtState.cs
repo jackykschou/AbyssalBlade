@@ -12,16 +12,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.ActivateCondi
         private List<int> _stateHashes;
         private UnityEngine.Animator _animator;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             _stateHashes = new List<int>();
             foreach (var s in States)
             {
                 _stateHashes.Add(UnityEngine.Animator.StringToHash(s));
             }
         }
-
 
         public override bool CanActivate()
         {

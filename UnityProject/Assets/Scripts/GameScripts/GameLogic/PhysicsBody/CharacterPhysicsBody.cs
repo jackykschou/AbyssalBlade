@@ -5,9 +5,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
 {
     public abstract class CharacterPhysicsBody : PhysicsBody2D
     {
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             Rigidbody.isKinematic = false;
             Collider.isTrigger = false;
         }

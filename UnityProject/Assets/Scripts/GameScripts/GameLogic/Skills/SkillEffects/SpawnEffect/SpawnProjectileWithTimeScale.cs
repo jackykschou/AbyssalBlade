@@ -15,13 +15,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
         public PositionIndicator Position;
         private float _time;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             if (PrefabSpawner == null)
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
             _time = 0f;
         }
 

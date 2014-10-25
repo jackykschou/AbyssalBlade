@@ -143,17 +143,22 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
         }
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             if (PrefabSpawner == null)
             {
                 PrefabSpawner = GetComponent<PrefabSpawner>();
             }
             TriggerArea = GetComponent<Collider2D>();
             TriggerArea.isTrigger = true;
-            TriggerArea.enabled = false;
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.SpawnArea);
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            TriggerArea.enabled = false;
             Activated = true;
             _triggered = false;
             _deactivated = false;

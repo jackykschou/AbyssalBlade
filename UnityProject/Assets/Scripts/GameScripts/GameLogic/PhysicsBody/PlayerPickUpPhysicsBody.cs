@@ -6,9 +6,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
     [AddComponentMenu("PhysicsBody/Projectile/PlayerPickUpPhysicsBody")]
     public class PlayerPickUpPhysicsBody : PhysicsBody2D 
     {
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             Collider.isTrigger = true;
             Rigidbody.isKinematic = false;
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.PlayerPickUp);

@@ -18,10 +18,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Animator
 
         public UnityEngine.Animator Animator;
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            Animator = GetComponent<UnityEngine.Animator>();
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
-            Animator = GetComponent<UnityEngine.Animator>();
             _animationBoolParametesrAutoResetBufferMap = new Dictionary<string, float>();
             SetAnimatorBoolState(AnimatorControllerConstants.AnimatorParameterName.Idle);
         }
