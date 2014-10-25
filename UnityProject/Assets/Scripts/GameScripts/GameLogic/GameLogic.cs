@@ -8,7 +8,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
     {
         public GameView GameView { get; set; }
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
             GameView = GetComponent<GameView>();
             if (GameView == null)
@@ -19,6 +19,10 @@ namespace Assets.Scripts.GameScripts.GameLogic
             {
                 GameView = GetComponentInChildren<GameView>();
             }
+        }
+
+        protected override void Initialize()
+        {
         }
 
         protected abstract override void Deinitialize();

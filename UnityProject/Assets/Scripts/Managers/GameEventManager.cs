@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts;
 
 namespace Assets.Scripts.Managers
 {
@@ -9,16 +10,16 @@ namespace Assets.Scripts.Managers
     {
         public static GameEventManager Instance { get { return _instance; } }
 
-        private Dictionary<GameEvent, Dictionary<System.Object, List<MethodInfo>>> _gameEvents;
+        private Dictionary<GameEvent, Dictionary<GameScript, List<MethodInfo>>> _gameEvents;
 
         private static readonly GameEventManager _instance = new GameEventManager();
 
         GameEventManager()
         {
-            _gameEvents = new Dictionary<GameEvent, Dictionary<object, List<MethodInfo>>>();
+            _gameEvents = new Dictionary<GameEvent, Dictionary<GameScript, List<MethodInfo>>>();
         }
 
-        public void TriggerGameEvent(System.Object obj, GameEvent gameEvent, params System.Object[] args)
+        public void TriggerGameEvent(GameScript gameScript, GameEvent gameEvent, params System.Object[] args)
         {
             if (gameEvent != GameEvent.OnGameEventSent)
             {
@@ -30,12 +31,15 @@ namespace Assets.Scripts.Managers
                 return;
             }
 
-            if (!_gameEvents[gameEvent].ContainsKey(obj))
+            if (!_gameEvents[gameEvent].ContainsKey(gameScript))
             {
                 return;
             }
 
-            _gameEvents[gameEvent][obj].ForEach(m => m.Invoke(obj, args));
+            if (gameScript.Initialized)
+            {
+                _gameEvents[gameEvent][gameScript].ForEach(m => m.Invoke(gameScript, args));
+            }
         }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
@@ -54,8 +58,11 @@ namespace Assets.Scripts.Managers
             int originalCount = dict.Count;
             for (int i = 0; i < dict.Count; ++i)
             {
-                var key = dict.Keys.ElementAt(i);
-                dict[key].ForEach(m => m.Invoke(key, args));
+                GameScript key = dict.Keys.ElementAt(i);
+                if (key.Initialized)
+                {
+                    dict[key].ForEach(m => m.Invoke(key, args));
+                }
                 if (dict.Count != originalCount)
                 {
                     originalCount = dict.Count;
@@ -85,11 +92,11 @@ namespace Assets.Scripts.Managers
             }
         } 
 
-        public void SubscribeGameEvent(System.Object subscriber, GameEvent gameEvent, MethodInfo info)
+        public void SubscribeGameEvent(GameScript subscriber, GameEvent gameEvent, MethodInfo info)
         {
             if (!_gameEvents.ContainsKey(gameEvent))
             {
-                _gameEvents.Add(gameEvent, new Dictionary<object, List<MethodInfo>>());
+                _gameEvents.Add(gameEvent, new Dictionary<GameScript, List<MethodInfo>>());
             }
             if (!_gameEvents[gameEvent].ContainsKey(subscriber))
             {
@@ -98,7 +105,7 @@ namespace Assets.Scripts.Managers
             _gameEvents[gameEvent][subscriber].Add(info);
         }
 
-        public void UnsubscribeGameEvent(System.Object subscriber, GameEvent gameEvent)
+        public void UnsubscribeGameEvent(GameScript subscriber, GameEvent gameEvent)
         {
             if (!_gameEvents.ContainsKey(gameEvent))
             {
