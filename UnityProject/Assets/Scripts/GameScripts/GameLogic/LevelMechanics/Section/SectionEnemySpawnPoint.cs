@@ -112,7 +112,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                 if (FadeInEnemy)
                 {
                     StartCoroutine(FadeInEnemyIE(o, FadeInTime));
-
                 }
             });
             TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);

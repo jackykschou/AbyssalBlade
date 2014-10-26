@@ -2,15 +2,15 @@
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
-    [AddComponentMenu("Skill/SkillEffect/DisableScript")]
-    public class DisableScript : SkillEffect
+    [AddComponentMenu("Skill/SkillEffect/EnableCollider2D")]
+    public class EnableCollider2D : SkillEffect 
     {
-        public MonoBehaviour Script;
+        public Collider2D Collider;
 
         public override void Activate()
         {
             base.Activate();
-            Script.enabled = false;
+            Collider.enabled = true;
             Activated = false;
         }
     }
