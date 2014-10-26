@@ -7,13 +7,17 @@
         Example, // void()
 #endif
         UpdateFacingDirection,                  // void(FacingDirection)
+        UpdateMoveDirection,                    // void(Vector2)
 
         SetAnimatorBoolState,                   // void(string)
         SetAnimatorFloatState,                  // void(string, int)
         
-        CharacterMove,                          // void(Vector2)
+        CharacterRigidMove,                     // void(Vector2)
+        CharacterNonRigidMove,                  // void(Vector2)
         OnCharacterMove,                        // void(Vector2)
         PushCharacter,                          // void(vector2, float)
+
+        RotateTowardsTarget,                     // void()
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)

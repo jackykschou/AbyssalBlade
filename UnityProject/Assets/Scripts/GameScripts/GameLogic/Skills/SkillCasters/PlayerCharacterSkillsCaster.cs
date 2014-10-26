@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.GameScripts.GameLogic.Misc;
-using Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -25,8 +24,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         public PositionIndicator TargetHolder;
 
-        private MoveCharacter _moveCharacter;
-
         [HideInInspector]
         public Vector2 Direction;
 
@@ -39,7 +36,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         {
             base.Initialize();
             Target = TargetHolder.Position;
-            _moveCharacter = GetComponentInChildren<MoveCharacter>();
         }
 
         protected override void Deinitialize()
@@ -48,7 +44,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         public void ActivateMovement(Vector2 direction)
         {
-            _moveCharacter.UpdateMoveDirection(direction);
+            MovementSkill.TriggerGameScriptEvent(GameScriptEvent.UpdateMoveDirection, Direction);
             MovementSkill.Activate();
         }
 

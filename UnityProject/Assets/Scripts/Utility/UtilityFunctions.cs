@@ -1,11 +1,17 @@
 ﻿using System;
 using Assets.Scripts.Constants;
+using Pathfinding;
 using UnityEngine;
 
 namespace Assets.Scripts.Utility
 {
-    public static class MathUtility
+    public static class UtilityFunctions
     {
+        public static bool LocationPathFindingReachable(Vector3 from, Vector3 to)
+        {
+            return PathUtilities.IsPathPossible((GraphNode)AstarPath.active.GetNearest(from, NNConstraint.Default), (GraphNode)AstarPath.active.GetNearest(to, NNConstraint.Default));
+        }
+
         public static bool RollChance(float chance)
         {
             if (chance >= 1.0f)

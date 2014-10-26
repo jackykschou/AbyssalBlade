@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             Target = target.transform;
         }
 
+        [GameScriptEventAttribute(GameScriptEvent.RotateTowardsTarget)]
         public void RotateTowardsTarget()
         {
             if (Target == null)
@@ -24,7 +25,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
                 return;
             }
 
-            FacingDirection newDirection = MathUtility.GetDirection(transform.position, Target.position).GetFacingDirection();
+            FacingDirection newDirection = UtilityFunctions.GetDirection(transform.position, Target.position).GetFacingDirection();
             if (newDirection != GameView.FacingDirection)
             {
                 TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);

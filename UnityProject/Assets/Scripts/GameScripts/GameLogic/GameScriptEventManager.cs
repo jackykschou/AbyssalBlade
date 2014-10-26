@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Assets.Scripts.Attributes;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Assets.Scripts.GameScripts.GameLogic
 {
@@ -17,8 +15,6 @@ namespace Assets.Scripts.GameScripts.GameLogic
         {
             get
             {
-                return _gameScripts.All(s => s.Initialized);
-                Debug.Log("_gameScriptsInitialized: " + _gameScriptsInitialized + " _gameScripts.All(s => s.Initialized): " + (_gameScripts.All(s => s.Initialized)));
                 return _initialized && _gameScriptsInitialized;
             }
         }

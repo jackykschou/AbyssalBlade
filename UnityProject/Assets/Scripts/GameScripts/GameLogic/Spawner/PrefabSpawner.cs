@@ -74,7 +74,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             _spawnCount++;
 
-            if (MathUtility.RollChance(SpawnChance))
+            if (UtilityFunctions.RollChance(SpawnChance))
             {
                 PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), onPrefabSpawned);
             }
@@ -89,7 +89,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             _spawnCount++;
 
-            if (MathUtility.RollChance(SpawnChance))
+            if (UtilityFunctions.RollChance(SpawnChance))
             {
                 PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position, onPrefabSpawned);
             }
@@ -104,7 +104,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             _spawnCount++;
 
-            if (MathUtility.RollChance(SpawnChance))
+            if (UtilityFunctions.RollChance(SpawnChance))
             {
                 PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom(), onPrefabSpawned);
             }
@@ -119,7 +119,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             _spawnCount++;
 
-            if (MathUtility.RollChance(SpawnChance))
+            if (UtilityFunctions.RollChance(SpawnChance))
             {
                 PrefabManager.Instance.SpawnPrefabImmediate(_prefabWeightMap.ChooseByRandom(), position, onPrefabSpawned);
             }

@@ -32,6 +32,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField] 
         private ButtonOnPressed Dash;
 
+        //This dependency is injected for the sake of better runtime performance
         private PlayerCharacterSkillsCaster _playerCharacterSkillsCaster;
 
         private bool _skill1Enabled;
@@ -70,7 +71,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
                 Vector2 direction = new Vector2(HorizontalAxis.GetAxisValue(), VerticalAxis.GetAxisValue());
 
                 _playerCharacterSkillsCaster.Direction = direction;
-
                 _playerCharacterSkillsCaster.ActivateMovement(direction);
             }
         }

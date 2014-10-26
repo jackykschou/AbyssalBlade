@@ -20,17 +20,17 @@ namespace Assets.Scripts.GameScripts.GameViews
 
         public Vector2 ForwardDirection 
         {
-            get { return MathUtility.GetFacingDirectionVector(FacingDirection); } 
+            get { return UtilityFunctions.GetFacingDirectionVector(FacingDirection); } 
         }
         public Vector2 BackwardDirection 
         {
-            get { return -MathUtility.GetFacingDirectionVector(FacingDirection); }
+            get { return -UtilityFunctions.GetFacingDirectionVector(FacingDirection); }
         }
         public Vector2 LeftwardDirection 
         {
             get
             {
-                Vector2 dir = MathUtility.GetFacingDirectionVector(FacingDirection);
+                Vector2 dir = UtilityFunctions.GetFacingDirectionVector(FacingDirection);
                 return Quaternion.AngleAxis(-90f, Vector3.forward) * new Vector3(dir.x, dir.y, 0);
             }
         }
@@ -39,7 +39,7 @@ namespace Assets.Scripts.GameScripts.GameViews
         {
             get
             {
-                Vector2 dir = MathUtility.GetFacingDirectionVector(FacingDirection);
+                Vector2 dir = UtilityFunctions.GetFacingDirectionVector(FacingDirection);
                 return Quaternion.AngleAxis(90f, Vector3.forward) * new Vector3(dir.x, dir.y, 0);
             }
         }

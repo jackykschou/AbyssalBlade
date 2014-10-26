@@ -25,7 +25,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         [Range(0f, 5f)]
         public float FadeInTime = 0f;
 
-
         public FixTimeDispatcher SpawnCoolDown;
 
         public Collider2D TriggerArea;
@@ -83,19 +82,25 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
             if (_triggered)
             {
-                SpawnEnemy();
+                StartCoroutine(SpawnEnemy());
             }
         }
 
-        public void SpawnEnemy()
+        private IEnumerator SpawnEnemy()
         {
             if (!CanSpawn)
             {
-                return;
+                yield break;
             }
             SpawnCoolDown.Dispatch();
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
+            while (!UtilityFunctions.LocationPathFindingReachable(transform.position, spawnPosition))
+            {
+                spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
+                Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
+                yield return new WaitForSeconds(0f);
+            }
             PrefabSpawner.SpawnPrefab(spawnPosition, o =>
             {
                 var triggerNoHitPointOnSectionDeactivated = o.GetComponent<TriggerNoHitPointOnSectionDeactivated>() ??

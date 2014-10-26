@@ -202,7 +202,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.157729998, z: 0}
+  m_LocalPosition: {x: -.510420024, y: -.965120018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -214,8 +214,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.72930002, y: 0, z: 0}
+  m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children:
   - {fileID: 400000}
   - {fileID: 400008}
@@ -271,8 +271,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .879999995, y: 1.3836602}
-  m_Center: {x: 0, y: -.398178101}
+  m_Size: {x: 1.12512088, y: 1.06311703}
+  m_Center: {x: .348825902, y: -.190768242}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -351,15 +351,15 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: Range
-  _animationDuration: 1
+  _animationDuration: .649999976
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
   - {fileID: 11400000}
   - {fileID: 11400050}
   _animationSkillEffectsActivateTime:
-  - .349999994
-  - .349999994
+  - .270000011
+  - .270000011
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3280,7 +3280,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: fd89a8c93eb9f48578893f7a5d3dfee0, type: 3}
+  m_Sprite: {fileID: 21300038, guid: 23769ab38e7a7452987671dea9953b6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!222 &22200000
 CanvasRenderer:
