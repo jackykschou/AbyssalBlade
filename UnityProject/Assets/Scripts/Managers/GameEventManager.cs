@@ -19,29 +19,6 @@ namespace Assets.Scripts.Managers
             _gameEvents = new Dictionary<GameEvent, Dictionary<GameScript, List<MethodInfo>>>();
         }
 
-        public void TriggerGameEvent(GameScript gameScript, GameEvent gameEvent, params System.Object[] args)
-        {
-            if (gameEvent != GameEvent.OnGameEventSent)
-            {
-                TriggerGameEventSent(GameEvent.OnGameEventSent, gameEvent);
-            }
-
-            if (!_gameEvents.ContainsKey(gameEvent))
-            {
-                return;
-            }
-
-            if (!_gameEvents[gameEvent].ContainsKey(gameScript))
-            {
-                return;
-            }
-
-            if (gameScript.Initialized)
-            {
-                _gameEvents[gameEvent][gameScript].ForEach(m => m.Invoke(gameScript, args));
-            }
-        }
-
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
         {
             if (gameEvent != GameEvent.OnGameEventSent)
