@@ -65,6 +65,11 @@ GameObject:
   - 114: {fileID: 11400180}
   - 114: {fileID: 11400184}
   - 114: {fileID: 11400194}
+  - 114: {fileID: 11400214}
+  - 114: {fileID: 11400212}
+  - 114: {fileID: 11400210}
+  - 114: {fileID: 11400208}
+  - 114: {fileID: 11400206}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -579,11 +584,11 @@ MonoBehaviour:
   Movable: 1
   _skillEffects:
   - {fileID: 11400128}
-  - {fileID: 11400142}
+  - {fileID: 11400208}
   - {fileID: 11400050}
   - {fileID: 11400012}
   - {fileID: 11400136}
-  - {fileID: 11400140}
+  - {fileID: 11400206}
   _proSkillEffects:
   - {fileID: 11400130}
   _skillEffectsOrder: 000000000100000002000000030000000300000004000000
@@ -869,6 +874,8 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   TargetPhysicalLayers: 0d000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 10
@@ -889,6 +896,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d000000100000000f000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400202}
@@ -1050,6 +1059,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400200}
@@ -1410,6 +1421,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400198}
@@ -1610,8 +1623,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400142
 MonoBehaviour:
@@ -1625,8 +1643,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400144
 MonoBehaviour:
@@ -1714,6 +1737,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 5
@@ -2121,6 +2146,88 @@ MonoBehaviour:
   InitialValue: 10
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
+--- !u!114 &11400206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SpeedUnchange
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400212}
+--- !u!114 &11400208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SpeedChange
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400214}
+--- !u!114 &11400210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SelfFinderIndicator
+  Follower: {fileID: 0}
+  Position: {fileID: 0}
+--- !u!114 &11400212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60547f801d57df54c9866c9b1697aa0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: UnmodifySpeedFinder
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition: {fileID: 11400210}
+  TargetEffectAppliers:
+  - {fileID: 11400140}
+  Targets: []
+--- !u!114 &11400214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60547f801d57df54c9866c9b1697aa0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: ModifySpeedFinder
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition: {fileID: 11400210}
+  TargetEffectAppliers:
+  - {fileID: 11400142}
+  Targets: []
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

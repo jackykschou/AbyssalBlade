@@ -13,6 +13,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders.Editor
         {
             TargetFinder finder = (TargetFinder)target;
 
+            finder.LabelName = EditorGUILayout.TextField("Label Name", finder.LabelName);
+
             if (finder.TargetTags == null)
             {
                 finder.TargetTags = new List<string>();

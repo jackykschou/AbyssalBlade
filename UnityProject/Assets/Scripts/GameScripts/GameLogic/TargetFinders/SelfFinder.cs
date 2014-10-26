@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
 
         protected override void FindTargets()
         {
+            ClearTargets();
             Targets.Add(transform.root.gameObject);
         }
     }

@@ -12,6 +12,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers.Editor
         {
             TargetEffectApplier applier = (TargetEffectApplier)target;
 
+            applier.LabelName = EditorGUILayout.TextField("Label Name", applier.LabelName);
+
             applier.HasApplyCoolDown = EditorGUILayout.Toggle("Has Apply Cool Down", applier.HasApplyCoolDown);
             if (applier.HasApplyCoolDown)
             {

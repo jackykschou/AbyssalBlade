@@ -1,7 +1,5 @@
-﻿using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.GameLogic.GameValue;
+﻿using Assets.Scripts.GameScripts.GameLogic.GameValue;
 using UnityEditor;
-using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers.Editor
 {
@@ -14,7 +12,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers.Editor
 
             HealthChanger healthChanger = (HealthChanger)target;
 
+#pragma warning disable 618
             healthChanger.GameValueChanger = EditorGUILayout.ObjectField("GameValueChanger", healthChanger.GameValueChanger, typeof(GameValueChanger)) as GameValueChanger;
+#pragma warning restore 618
         }
     }
 }
