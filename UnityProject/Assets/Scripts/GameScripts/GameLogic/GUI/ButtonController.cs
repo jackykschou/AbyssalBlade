@@ -152,6 +152,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         public void OnStartPressed()
         {
+            OnButtonMouseLeave(0);
+            OnButtonMouseLeave(1);
+            OnButtonMouseLeave(2);
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
@@ -163,6 +166,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         public void OnQuitPressed()
         {
+            OnButtonMouseLeave(0);
+            OnButtonMouseLeave(1);
+            OnButtonMouseLeave(2);
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             Application.Quit();
         }
