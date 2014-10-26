@@ -22,8 +22,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             rigidbody2D.fixedAngle = true;
         }
 
-        [GameScriptEvent(GameScriptEvent.CharacterMove)]
-        public void MoveCharacter(Vector2 direction)
+        [GameScriptEvent(GameScriptEvent.CharacterRigidMove)]
+        public void MoveCharacterRigid(Vector2 direction)
         {
             direction = direction.normalized;
             FacingDirection newDirection = direction.GetFacingDirection();
@@ -33,6 +33,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             }
             TriggerGameScriptEvent(GameScriptEvent.OnCharacterMove, direction);
             RigidMove(direction, Speed);
+        }
+
+        [GameScriptEvent(GameScriptEvent.CharacterNonRigidMove)]
+        public void MoveCharacterNonRigid(Vector2 direction)
+        {
+            direction = direction.normalized;
+            FacingDirection newDirection = direction.GetFacingDirection();
+            if (newDirection != GameView.FacingDirection)
+            {
+                TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
+            }
+            TriggerGameScriptEvent(GameScriptEvent.OnCharacterMove, direction);
+            transform.Translate(direction * Speed * Time.fixedDeltaTime);
         }
 
         public void RigidMove(Vector2 direction, float speed)

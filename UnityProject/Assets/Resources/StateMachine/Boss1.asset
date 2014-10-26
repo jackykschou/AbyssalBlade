@@ -59,8 +59,7 @@ MonoBehaviour:
     height: 30
   id: 967e3263-94fa-4588-afb6-be28dab607e9
   isDefaultState: 1
-  transitions:
-  - {fileID: 11400014}
+  transitions: []
   actions:
   - {fileID: 11400006}
   description: 
@@ -77,7 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disabled: 0
   MaxiumSinglePathTime: {fileID: 11400008}
-  PatrolPointSelectionRadius: {fileID: 11400010}
+  MaximumPatrolPointSelectionRadius: {fileID: 11400014}
+  MinimumPatrolPointSelectionRadius: {fileID: 11400016}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,8 +127,7 @@ MonoBehaviour:
     height: 30
   id: 38af3812-e2fc-422b-a580-4c1fb1e56c3e
   isDefaultState: 0
-  transitions:
-  - {fileID: 11400016}
+  transitions: []
   actions: []
   description: 
 --- !u!114 &11400014
@@ -139,14 +138,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
-  m_Name: Patrol -> Patrol
+  m_Script: {fileID: 11500000, guid: 8fadbd82c28c4004dbd5d23eb1a5578b, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
-  fromState: {fileID: 11400004}
-  toState: {fileID: 11400012}
-  mute: 0
-  conditions:
-  - {fileID: 11400020}
+  isConstant: 1
+  reference: 
+  parameterName: 
+  value: 5
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,35 +153,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
-  m_Name: Attack -> Attack
+  m_Script: {fileID: 11500000, guid: 8fadbd82c28c4004dbd5d23eb1a5578b, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
-  fromState: {fileID: 11400012}
-  toState: {fileID: 11400004}
-  mute: 0
-  conditions:
-  - {fileID: 11400018}
---- !u!114 &11400018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d52cef80fbf5821469b14c78817bdadb, type: 3}
-  m_Name: Custom.NoSkillToCast
-  m_EditorClassIdentifier: 
-  disabled: 0
---- !u!114 &11400020
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0c58d7ab97845459533725c2ea4aa8, type: 3}
-  m_Name: Custom.CanCastSkill
-  m_EditorClassIdentifier: 
-  disabled: 0
+  isConstant: 1
+  reference: 
+  parameterName: 
+  value: 10

@@ -17,20 +17,10 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
         [FieldInfo(tooltip = "AI will not move if distance between the target is within distance")]
 	    public FloatParameter MinimumDistance;
 
-	    private CharacterMotor _characterMotor;
-	    private RotatesTowardTarget _rotatesTowardTarget;
 	    private PathFinding _pathFinding;
 
 	    public override void OnEnter()
 		{
-	        if (_characterMotor == null)
-	        {
-                _characterMotor = stateMachine.owner.GetComponent<CharacterMotor>();
-	        }
-	        if (_rotatesTowardTarget == null)
-	        {
-                _rotatesTowardTarget = stateMachine.owner.GetComponent<RotatesTowardTarget>();
-	        }
             if (_pathFinding == null)
             {
                 _pathFinding = stateMachine.owner.GetComponent<PathFinding>();
@@ -51,11 +41,11 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
             if (_pathFinding.Target == null || (Vector2.Distance(_pathFinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
                 (moveDirection == Vector2.zero) || !_pathFinding.CurrentPathReachable)
             {
-                _rotatesTowardTarget.RotateTowardsTarget();
+                stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.RotateTowardsTarget);
                 return;
             }
 
-            _characterMotor.MoveCharacter(moveDirection);
+            stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.CharacterNonRigidMove, moveDirection);
 	    }
 	}
 }
