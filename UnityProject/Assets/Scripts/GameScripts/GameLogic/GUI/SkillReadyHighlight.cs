@@ -11,9 +11,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
     {
         [Range(0,5)]
         public int SkillId;
+        [Range(0.0f, 1.0f)]
         public float HighlightDuration = .5f;
+        [Range(0.0f, 1.0f)]
+        public float MaxAlpha = .75f;
 
-        private bool _highlight = false;
+        private bool _highlight;
         private float _highlightDuration;
         private float _origHighlightDuration;
         private bool _on;
@@ -38,7 +41,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                     }
                     else
                     {
-                        _highlightImage.color = new Color(_highlightImage.color.r, _highlightImage.color.g, _highlightImage.color.b, 1.0f);
+                        _highlightImage.color = new Color(_highlightImage.color.r, _highlightImage.color.g, _highlightImage.color.b, MaxAlpha);
                     }
                 }
                 _highlightDuration -= Time.deltaTime;

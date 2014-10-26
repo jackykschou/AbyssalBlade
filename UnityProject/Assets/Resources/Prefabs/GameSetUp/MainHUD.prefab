@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Sprite: {fileID: 21300000, guid: a971c77ba764d524ab8f3ce980c2cf89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f791dd906bbca7a4d8185abc4eeefd7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: .493407637, b: .514705896, a: 1}
+  m_Color: {r: .75, g: .066176489, b: .476470858, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2766,7 +2766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: .683823526, b: .372565836, a: 1}
+  m_Color: {r: .691176474, g: .0457396209, b: .0457396209, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3068,7 +3068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .595588207, g: .595588207, b: .595588207, a: 1}
+  m_Color: {r: 0, g: .678431392, b: .372549027, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3411,7 +3411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Sprite: {fileID: 21300000, guid: 09755982a3a00424ca910605b324c2fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a971c77ba764d524ab8f3ce980c2cf89, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3831,7 +3831,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SkillId: 4
-  HighlightDuration: .5
+  HighlightDuration: 1
+  MaxAlpha: .75
 --- !u!114 &11400216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3867,7 +3868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SkillId: 3
-  HighlightDuration: .5
+  HighlightDuration: 1
+  MaxAlpha: .75
 --- !u!114 &11400222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3903,7 +3905,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SkillId: 2
-  HighlightDuration: .5
+  HighlightDuration: 1
+  MaxAlpha: .75
 --- !u!114 &11400228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4001,7 +4004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: .490196079, b: .509803951, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5620,7 +5623,7 @@ RectTransform:
   m_GameObject: {fileID: 100090}
   m_LocalRotation: {x: 0, y: 0, z: 1.47085558e-07, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.10000002, z: 1}
+  m_LocalScale: {x: 1, y: 1.08000004, z: 1}
   m_Children: []
   m_Father: {fileID: 22400052}
   m_RootOrder: 2
@@ -5688,7 +5691,7 @@ RectTransform:
   m_GameObject: {fileID: 100098}
   m_LocalRotation: {x: 0, y: 0, z: 1.47085558e-07, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.04999995, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22400052}
   m_RootOrder: 3
@@ -6244,7 +6247,7 @@ RectTransform:
   m_GameObject: {fileID: 100160}
   m_LocalRotation: {x: 0, y: 0, z: 1.59594833e-07, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .999999881, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22400078}
   m_RootOrder: 3
@@ -6261,7 +6264,7 @@ RectTransform:
   m_GameObject: {fileID: 100162}
   m_LocalRotation: {x: 0, y: 0, z: 1.47085558e-07, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.10000002, z: 1}
+  m_LocalScale: {x: 1, y: 1.08000004, z: 1}
   m_Children: []
   m_Father: {fileID: 22400078}
   m_RootOrder: 2
