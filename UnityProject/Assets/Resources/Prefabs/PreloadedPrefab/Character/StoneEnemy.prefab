@@ -139,6 +139,9 @@ GameObject:
   - 224: {fileID: 22400000}
   - 223: {fileID: 22300000}
   - 114: {fileID: 11400096}
+  - 114: {fileID: 11400104}
+  - 114: {fileID: 11400052}
+  - 114: {fileID: 11400046}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -157,9 +160,6 @@ GameObject:
   - 222: {fileID: 22200000}
   - 114: {fileID: 11400098}
   - 114: {fileID: 11400102}
-  - 114: {fileID: 11400104}
-  - 114: {fileID: 11400106}
-  - 114: {fileID: 11400108}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -339,6 +339,8 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400090}
@@ -645,6 +647,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+--- !u!114 &11400046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df1ef0962637d54885c8de095ca58a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  HealthToWatch: {fileID: 11400054}
+  HealthSliderImage: {fileID: 11400100}
 --- !u!114 &11400048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,6 +691,17 @@ MonoBehaviour:
   ActivateConditions: []
   clip: 14
   volume: 1
+--- !u!114 &11400052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11400054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1086,37 +1113,12 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
+  m_GameObject: {fileID: 100010}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400106
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400108
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df1ef0962637d54885c8de095ca58a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  HealthToWatch: {fileID: 11400054}
-  HealthSliderImage: {fileID: 11400100}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

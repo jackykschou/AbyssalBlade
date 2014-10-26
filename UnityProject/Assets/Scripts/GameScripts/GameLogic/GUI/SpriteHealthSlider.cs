@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Attributes;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.GameScripts.GameLogic.GUI
@@ -12,16 +13,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void Initialize()
         {
             base.Initialize();
-            _slider = gameObject.GetComponent<Slider>();
+            _slider = gameObject.GetComponentInChildren<Slider>();
         }
 
         protected override void Deinitialize()
         {
         }
 
-        protected override void Update()
+        [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
+        public void UpdateSlider(float damage, bool crit)
         {
-            _slider.value = HealthToWatch.HitPoint.Value / HealthToWatch.HitPoint.Max;
+            _slider.value = HealthToWatch.HitPoint.Percentage;
             if (HealthSliderImage != null)
                 HealthSliderImage.color = Color.Lerp(Color.red, Color.green, _slider.value);
         }

@@ -60,6 +60,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             get { return Mathf.Approximately(Value, Max); }
         }
 
+        public float Percentage
+        {
+            get { return Value/Max; }
+        }
+
         public GameValue(float value)
         {
             _valueTempChangeValueCache = new List<GameValueChanger>();
