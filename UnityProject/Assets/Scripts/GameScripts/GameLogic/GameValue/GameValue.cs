@@ -509,7 +509,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
 
         private bool RollCrit(float chance)
         {
-            return MathUtility.RollChance(chance);
+            return UtilityFunctions.RollChance(chance);
         }
 
         private float GetCriticalAmount(float amount, bool crit, float percentage)

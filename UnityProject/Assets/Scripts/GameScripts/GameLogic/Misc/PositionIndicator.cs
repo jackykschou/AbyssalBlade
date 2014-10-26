@@ -20,7 +20,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
 
         public Vector2 Direction 
         {
-            get { return MathUtility.GetFacingDirectionVector(_currentFacingDirection); }
+            get { return UtilityFunctions.GetFacingDirectionVector(_currentFacingDirection); }
         }
 
         private FacingDirection _currentFacingDirection;

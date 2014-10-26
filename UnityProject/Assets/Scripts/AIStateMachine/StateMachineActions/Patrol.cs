@@ -50,8 +50,8 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
 
             if (_currentPathPatroltime >= MaxiumSinglePathTime || !_pathFinding.CurrentPathReachable || (Vector2.Distance(_patrolPoint.transform.position, stateMachine.owner.transform.position) <= 0.5f))
             {
-                Vector3 newPatrolPointPosition = new Vector3(stateMachine.owner.transform.position.x + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (MathUtility.RollChance(0.5f) ? 1 : -1),
-                                                             stateMachine.owner.transform.position.y + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (MathUtility.RollChance(0.5f) ? 1 : -1),
+                Vector3 newPatrolPointPosition = new Vector3(stateMachine.owner.transform.position.x + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
+                                                             stateMachine.owner.transform.position.y + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
                                                              stateMachine.owner.transform.position.z);
                 _patrolPoint.transform.position = newPatrolPointPosition;
                 _pathFinding.UpdateTarget(_patrolPoint);

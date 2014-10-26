@@ -17,9 +17,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
             {
                 if (Target == null)
                 {
-                   return MathUtility.GetFacingDirectionVector(GameView.FacingDirection);
+                   return UtilityFunctions.GetFacingDirectionVector(GameView.FacingDirection);
                 }
-                return MathUtility.GetDirection(transform.position, Target.position).normalized;
+                return UtilityFunctions.GetDirection(transform.position, Target.position).normalized;
             }
         }
 

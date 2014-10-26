@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Attributes;
+using Assets.Scripts.Utility;
 using Pathfinding;
 using Pathfinding.RVO;
 using UnityEngine;
@@ -51,9 +52,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
                 {
                     return false;
                 }
-                GraphNode node1 = (GraphNode)AstarPath.active.GetNearest(transform.position, NNConstraint.Default);
-                GraphNode node2 = (GraphNode)AstarPath.active.GetNearest(Target.position, NNConstraint.Default);
-                return PathUtilities.IsPathPossible(node1, node2);
+                return UtilityFunctions.LocationPathFindingReachable(transform.position, Target.position);
             }       
         }
 
@@ -65,9 +64,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
                 {
                     return false;
                 }
-                GraphNode node1 = (GraphNode)AstarPath.active.GetNearest(Target.position, NNConstraint.Default);
-                GraphNode node2 = (GraphNode)AstarPath.active.GetNearest(path.vectorPath[currentWaypointIndex], NNConstraint.Default);
-                return PathUtilities.IsPathPossible(node1, node2);
+                return UtilityFunctions.LocationPathFindingReachable(Target.position, path.vectorPath[currentWaypointIndex]);
             }
         }
 

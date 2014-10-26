@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
 
         public override void Shoot()
         {
-            Vector2 direction = MathUtility.GetDirection(transform.position, Target.position);
+            Vector2 direction = UtilityFunctions.GetDirection(transform.position, Target.position);
             TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, direction.GetFacingDirection());
             MoveAlongWithStyle(EaseType, direction, Speed, 50f);
         }
