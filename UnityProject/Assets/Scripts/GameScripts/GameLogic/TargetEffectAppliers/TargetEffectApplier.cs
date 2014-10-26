@@ -9,18 +9,35 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
     {
         public List<string> TargetTags = new List<string>();
         public List<int> TargetPhysicalLayers = new List<int>();
+        public bool HasApplyCoolDown;
+        public float ApplyCooldown;
         public bool OneTimeOnlyPerTarget;
 
         [HideInInspector]
         public TargetFinder TargetFinder;
 
-        private List<GameObject> _changedCache;
+        private Dictionary<GameObject, float> _changedCache;
 
         public void ApplierApplyEffect(GameObject target)
         {
-            if (TargetTags.Contains(target.tag) && TargetPhysicalLayers.Contains(target.layer) && (!_changedCache.Contains(target) || !OneTimeOnlyPerTarget))
+            if (TargetTags.Contains(target.tag) && TargetPhysicalLayers.Contains(target.layer))
             {
-                _changedCache.Add(target);
+                if(_changedCache.ContainsKey(target))
+                {
+                    if (OneTimeOnlyPerTarget)
+                    {
+                        return;
+                    }
+                    if (HasApplyCoolDown && (Time.time - _changedCache[target]) < ApplyCooldown)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    _changedCache.Add(target, 0f);
+                }
+                _changedCache[target] = Time.time;
                 ApplyEffect(target);
             }
         }
@@ -30,7 +47,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
         protected override void Initialize()
         {
             base.Initialize();
-            _changedCache = new List<GameObject>();
+            _changedCache = new Dictionary<GameObject, float>();
         }
 
         protected override void Deinitialize()
