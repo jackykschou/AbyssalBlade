@@ -2144,6 +2144,36 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110204557
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeWalkRoughDown
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d5489c15773ec442da8eb21083ebf1ef, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -542, y: 454, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110206123
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeWalkRoughRight
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: f23ee2939556f43b7882a45051fcadf4, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -507, y: 519, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110209686
 State:
   m_ObjectHideFlags: 3
@@ -2171,6 +2201,21 @@ State:
   - {fileID: 20610916}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -756, y: 108, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110217825
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeWalkRoughLeft
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: db51e5790019b44ccb6303341eba8167, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -577, y: 389, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2354,6 +2399,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110279723
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeWalkRoughUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 88345c349c9e64c96ac9e5ae91342075, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -472, y: 584, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110280315
 State:
   m_ObjectHideFlags: 3
@@ -2420,6 +2480,10 @@ StateMachine:
   - {fileID: 110270627}
   - {fileID: 110209686}
   - {fileID: 110235539}
+  - {fileID: 110217825}
+  - {fileID: 110204557}
+  - {fileID: 110206123}
+  - {fileID: 110279723}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
