@@ -35,7 +35,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
             }
 		}
 
-		public override void OnUpdate()
+	    public override void OnUpdate()
 		{
 		}
 

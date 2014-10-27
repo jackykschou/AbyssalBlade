@@ -23,6 +23,7 @@ GameObject:
   - 114: {fileID: 11400078}
   - 114: {fileID: 11400084}
   - 114: {fileID: 11400090}
+  - 114: {fileID: 11400106}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -308,8 +309,9 @@ MonoBehaviour:
   FinderPosition: {fileID: 11400084}
   TargetEffectAppliers:
   - {fileID: 11400004}
+  - {fileID: 11400106}
   Targets: []
-  Radius: 2
+  Radius: 1.70000005
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -925,8 +927,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: Health
   InitialMinValue: 0
-  InitialMaxValue: 300
-  InitialValue: 300
+  InitialMaxValue: 200
+  InitialValue: 200
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400088
@@ -964,8 +966,8 @@ MonoBehaviour:
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -40
-  AmountVariantPercentage: 0
+  _amount: -35
+  AmountVariantPercentage: .0199999996
   ChangeDuration: 0
   ChangeInterval: 1
   CriticalChance: 0
@@ -998,6 +1000,9 @@ MonoBehaviour:
   Prefabs: 0b000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 1
   NumberOfSpawn: 1
   SpawnChance: .200000003
@@ -1119,6 +1124,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a6f2f51544072408e7b429508fc98b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  KnockBackSpeed: 5
+  Time: .100000001
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

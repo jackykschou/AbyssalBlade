@@ -6,7 +6,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 {
     public class SpriteHealthSlider : GameLogic
     {
-        public Health.Health HealthToWatch;
         public Image HealthSliderImage;
         private Slider _slider;
 
@@ -21,11 +20,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
-        public void UpdateSlider(float damage, bool crit)
+        [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeHeal)]
+        public void UpdateSlider(float damage, bool crit, GameValue.GameValue health)
         {
-            _slider.value = HealthToWatch.HitPoint.Percentage;
+            _slider.value = health.Percentage;
             if (HealthSliderImage != null)
+            {
                 HealthSliderImage.color = Color.Lerp(Color.red, Color.green, _slider.value);
+            }
         }
     }
 }

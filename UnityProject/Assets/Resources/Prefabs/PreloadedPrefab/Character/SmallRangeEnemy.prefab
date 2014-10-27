@@ -333,6 +333,9 @@ MonoBehaviour:
   Prefabs: 09000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 1
   SpawnChance: 1
@@ -651,7 +654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  HealthToWatch: {fileID: 11400054}
   HealthSliderImage: {fileID: 11400096}
 --- !u!114 &11400048
 MonoBehaviour:
@@ -773,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  InterruptionDuration: .5
+  InterruptionDuration: .25
   InterruptCoolDown: {fileID: 11400076}
 --- !u!114 &11400066
 MonoBehaviour:
@@ -848,7 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: CharacterInterruptCooldown
-  DispatchInterval: 1
+  DispatchInterval: .100000001
 --- !u!114 &11400078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -902,8 +904,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: Health
   InitialMinValue: 0
-  InitialMaxValue: 30
-  InitialValue: 30
+  InitialMaxValue: 50
+  InitialValue: 50
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400086
@@ -920,7 +922,7 @@ MonoBehaviour:
   LabelName: MovementSpeed
   InitialMinValue: 0
   InitialMaxValue: 10
-  InitialValue: 3
+  InitialValue: 8
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400088
@@ -938,6 +940,9 @@ MonoBehaviour:
   Prefabs: 0b000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 1
   NumberOfSpawn: 1
   SpawnChance: .100000001

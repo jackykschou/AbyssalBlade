@@ -18,12 +18,17 @@ GameObject:
   - 114: {fileID: 11400050}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400060}
-  - 114: {fileID: 11400000}
-  - 114: {fileID: 11400072}
   - 114: {fileID: 11400076}
   - 114: {fileID: 11400084}
   - 114: {fileID: 11400090}
-  m_Layer: 0
+  - 114: {fileID: 11400098}
+  - 114: {fileID: 11400110}
+  - 114: {fileID: 11400100}
+  - 61: {fileID: 6100002}
+  - 114: {fileID: 11400072}
+  - 50: {fileID: 5000002}
+  - 114: {fileID: 11400000}
+  m_Layer: 11
   m_Name: BasicMelee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +209,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.335610002, z: 0}
+  m_LocalPosition: {x: 0, y: -.560670018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -264,6 +269,21 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!50 &5000002
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -275,6 +295,17 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .76749742, y: 1.24864244}
   m_Center: {x: -.0562515259, y: -.330673218}
+--- !u!61 &6100002
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: .966237664, y: 1.06695187}
+  m_Center: {x: -.0703061223, y: -.0908395648}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -298,18 +329,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031f7a85e7361504d9ef702406f011c8, type: 3}
+  m_Script: {fileID: 11500000, guid: c0b8be9b29ac9b64a9aeaac1c0882d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  TargetTags:
-  - Player
-  TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400084}
-  TargetEffectAppliers:
-  - {fileID: 11400004}
-  Targets: []
-  Radius: .75
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,8 +362,8 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  HasApplyCoolDown: 0
-  ApplyCooldown: 0
+  HasApplyCoolDown: 1
+  ApplyCooldown: 1.20000005
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400090}
@@ -359,15 +382,17 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: Melee
-  _animationDuration: .5
+  _animationDuration: .850000024
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
-  - {fileID: 11400072}
+  - {fileID: 11400110}
   - {fileID: 11400050}
+  - {fileID: 11400100}
   _animationSkillEffectsActivateTime:
-  - .200000003
-  - .200000003
+  - 0
+  - 0
+  - .800000012
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,9 +410,10 @@ MonoBehaviour:
   IsPassive: 0
   Movable: 0
   _skillEffects:
+  - {fileID: 11400098}
   - {fileID: 11400006}
   _proSkillEffects: []
-  _skillEffectsOrder: 00000000
+  _skillEffectsOrder: 0000000000000000
   _proSkillEffectsOrder: 
 --- !u!114 &11400010
 MonoBehaviour:
@@ -659,7 +685,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  HealthToWatch: {fileID: 11400054}
   HealthSliderImage: {fileID: 11400104}
 --- !u!114 &11400048
 MonoBehaviour:
@@ -825,13 +850,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Script: {fileID: 11500000, guid: 7064223e3c1e7974fa8a1cf426eb9df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  TargetFinder: {fileID: 11400000}
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition: {fileID: 11400084}
+  TargetEffectAppliers:
+  - {fileID: 11400004}
+  Targets: []
 --- !u!114 &11400074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -858,7 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 1.5
+  DispatchInterval: 3
 --- !u!114 &11400078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -884,7 +913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: CharacterInterruptCooldown
-  DispatchInterval: .5
+  DispatchInterval: .100000001
 --- !u!114 &11400082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -925,8 +954,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: Health
   InitialMinValue: 0
-  InitialMaxValue: 20
-  InitialValue: 20
+  InitialMaxValue: 30
+  InitialValue: 30
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400088
@@ -964,8 +993,8 @@ MonoBehaviour:
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -3
-  AmountVariantPercentage: 0
+  _amount: -4
+  AmountVariantPercentage: .200000003
   ChangeDuration: 0
   ChangeInterval: 1
   CriticalChance: 0
@@ -998,6 +1027,9 @@ MonoBehaviour:
   Prefabs: 0b000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 1
   NumberOfSpawn: 1
   SpawnChance: .00999999978
@@ -1012,6 +1044,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1660fad3ec317c4b9c1d566df845d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Speed: 35
+  Time: 1
+--- !u!114 &11400100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3aaa42985660d4d80cfe5e2e1488ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Collider: {fileID: 6100002}
 --- !u!114 &11400102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1119,6 +1182,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11400110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5b438edf5601d4292c5635b066df0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Collider: {fileID: 6100002}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -7,7 +7,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
     [AddComponentMenu("Skill/SkillEffect/PushCharacter")]
     public class PushCharacter : SkillEffect 
     {
-        [Range(0f, 100f)]
+        [Range(0f, 1000f)]
         public float Speed;
         [Range(0f, 10f)]
         public float Time;

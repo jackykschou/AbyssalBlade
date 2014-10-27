@@ -74,11 +74,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             Target = target.transform;
         }
 
-        public void UpdateTargetWithTransform(Transform target)
-        {
-            Target = target.transform;
-        }
-
         public Vector3 GetMoveDirection()
         {
             return CalculateVelocity(GetFeetPosition()).normalized;

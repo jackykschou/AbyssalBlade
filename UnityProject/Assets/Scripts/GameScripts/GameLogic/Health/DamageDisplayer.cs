@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using UnityEngine;
-using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Health
 {
@@ -21,7 +20,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
-        public void TakeDamage(float damage, bool crit)
+        public void TakeDamage(float damage, bool crit, GameValue.GameValue health)
         {
             PrefabSpawner.SpawnPrefabImmediate(transform.position, o =>
             {

@@ -48,7 +48,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
         }
 
         [GameScriptEvent(GameScriptEvent.OnObjectTakeDamage)]
-        public void Shake(float damage, bool crit)
+        public void Shake(float damage, bool crit, GameValue.GameValue health)
         {
             if (_shaking)
                 return;

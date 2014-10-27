@@ -1,4 +1,3 @@
-using Assets.Scripts.GameScripts.GameLogic.ObjectMotor;
 using Assets.Scripts.Utility;
 using StateMachine;
 using StateMachine.Action;

@@ -15,7 +15,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
         public float Volume = 1.0f;
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectTakeDamage)]
-        public void StartPlayDamageSound(float f, bool crit)
+        public void StartPlayDamageSound(float f, bool crit, GameValue.GameValue health)
         {
             AudioManager.Instance.PlayClip(Clip, gameObject, Volume);
         }
