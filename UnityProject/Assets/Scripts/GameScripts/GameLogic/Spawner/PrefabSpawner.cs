@@ -11,22 +11,34 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
     {
         public List<Prefab> Prefabs;
         public List<float> SpawnPickWeights;
+        public List<int> PrefabSpawnValues;
+
+        public bool UseLimitSpawnValue = false;
+        public int LimitSpawnValue;
         public bool LimitNumberOfSpawn = false;
+
         [Range(0, 100000)]
         public int NumberOfSpawn = 1;
         [Range(0f, 1.0f)] 
         public float SpawnChance = 1.0f;
 
         private int _spawnCount;
+        private int _currentSpawnedValue;
         private List<ProportionValue<Prefab>> _prefabWeightMap;
+        private Dictionary<Prefab, int> _prefabSpawnValueMap;
 
         protected override void FirstTimeInitialize()
         {
             base.FirstTimeInitialize();
             _prefabWeightMap = new List<ProportionValue<Prefab>>();
+            _prefabSpawnValueMap = new Dictionary<Prefab, int>();
             for (int i = 0; i < Prefabs.Count; ++i)
             {
                 _prefabWeightMap.Add(ProportionValue.Create(SpawnPickWeights[i], Prefabs[i]));
+                if (UseLimitSpawnValue)
+                {
+                    _prefabSpawnValueMap.Add(Prefabs[i], PrefabSpawnValues[i]);
+                }
             }
             float sum = 0f;
             SpawnPickWeights.ForEach(w => sum += w);
@@ -44,24 +56,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         {
             base.Initialize();
             _spawnCount = 0;
-        }
-
-        public override void EditorUpdate()
-        {
-            base.EditorUpdate();
-            if (Prefabs == null)
-            {
-                return;
-            }
-
-            if (Prefabs.Count != SpawnPickWeights.Count)
-            {
-                SpawnPickWeights.Resize(Prefabs.Count);
-            }
+            _currentSpawnedValue = 0;
         }
 
         public bool CanSpawn()
         {
+            if (UseLimitSpawnValue && LimitSpawnValue >= _currentSpawnedValue)
+            {
+                return false;
+            }
             return !(_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn);
         }
 
@@ -76,7 +79,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             if (UtilityFunctions.RollChance(SpawnChance))
             {
-                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), onPrefabSpawned);
+                Prefab prefabToSpawn = _prefabWeightMap.ChooseByRandom();
+                PrefabManager.Instance.SpawnPrefab(prefabToSpawn, onPrefabSpawned);
+
+                if (UseLimitSpawnValue)
+                {
+                    _currentSpawnedValue += _prefabSpawnValueMap[prefabToSpawn];
+                }
             }
         }
 
