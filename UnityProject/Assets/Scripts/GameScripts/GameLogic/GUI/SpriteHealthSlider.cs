@@ -13,6 +13,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         {
             base.Initialize();
             _slider = gameObject.GetComponentInChildren<Slider>();
+            _slider.targetGraphic.enabled = true;
         }
 
         protected override void Deinitialize()
@@ -27,6 +28,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             if (HealthSliderImage != null)
             {
                 HealthSliderImage.color = Color.Lerp(Color.red, Color.green, _slider.value);
+                if (Mathf.Approximately(health.Percentage, 0f))
+                {
+                    _slider.targetGraphic.enabled = false;
+                }
+                else
+                {
+                    _slider.targetGraphic.enabled = true;
+                }
             }
         }
     }
