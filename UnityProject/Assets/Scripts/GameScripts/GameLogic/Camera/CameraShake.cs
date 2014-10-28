@@ -1,16 +1,13 @@
-﻿using Assets.Scripts.Managers;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.Managers;
 using UnityEngine;
-using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
-using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Camera
 {
     public class CameraShake : GameLogic
     {
-        [Range(0.0f, 1.0f)]
-        public float ShakeIntensity = .2f;
-        [Range(0.0f, 1.0f)]
-        public float ShakeDecay = .02f;
+        private float _shakeIntensity;
+        private const float ShakeDecay = .04f;
 
         public GameObject MainCamera;
 
@@ -47,14 +44,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
             }
         }
 
-        [GameScriptEvent(GameScriptEvent.OnObjectTakeDamage)]
-        public void Shake(float damage, bool crit, GameValue.GameValue health)
+        [GameEvent(Constants.GameEvent.ShakeCamera)]
+        public void Shake(float shakeIntensity)
         {
             if (_shaking)
+            {
                 return;
+            }
+            _shakeIntensity = shakeIntensity;
             _originalPos = _cameraTransform.position;
             _originalRot = _cameraTransform.rotation;
-            _shakeIntensityLeft = ShakeIntensity;
+            _shakeIntensityLeft = _shakeIntensity;
             _shaking = true;
         }
 

@@ -29,6 +29,8 @@
         DisableHighlightSkill,         // void(int)
 
         OnPlayerDashButtonPressed,    // void()
-        OnPlayerDeath
+        OnPlayerDeath,
+
+        ShakeCamera                     // void(float)
      };
 }
