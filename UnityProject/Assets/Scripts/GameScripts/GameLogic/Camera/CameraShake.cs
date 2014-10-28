@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Attributes;
+﻿using System.Collections;
+using Assets.Scripts.Attributes;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
@@ -6,60 +7,51 @@ namespace Assets.Scripts.GameScripts.GameLogic.Camera
 {
     public class CameraShake : GameLogic
     {
-        private float _shakeIntensity;
-        private const float ShakeDecay = .04f;
-
-        public GameObject MainCamera;
-
-        private float _shakeIntensityLeft;
-        private Transform _cameraTransform;
         private bool _shaking;
-        private Vector3 _originalPos;
-        private Quaternion _originalRot;
-
 
         protected override void Initialize()
         {
             _shaking = false;
-            MainCamera = GameManager.Instance.MainCamera;
-            _cameraTransform = MainCamera.transform;
-        }
-
-        protected override void Update()
-        {
-            if (_shakeIntensityLeft > 0)
-            {
-                _cameraTransform.position = _originalPos + Random.insideUnitSphere * _shakeIntensityLeft;
-                _cameraTransform.rotation = new Quaternion(
-                    _originalRot.x/* + Random.Range(-_shakeIntensityLeft, _shakeIntensityLeft) * .2f*/,
-                    _originalRot.y + Random.Range(-_shakeIntensityLeft, _shakeIntensityLeft) * .2f,
-                    _originalRot.z/* + Random.Range(-_shakeIntensityLeft, _shakeIntensityLeft) * .2f*/,
-                    _originalRot.w/* + Random.Range(-_shakeIntensityLeft, _shakeIntensityLeft) * .2f*/);
-                _shakeIntensityLeft -= ShakeDecay;
-            }
-            else if (_shaking)
-            {
-                _cameraTransform.rotation = _originalRot;
-                _shaking = false;
-            }
         }
 
         [GameEvent(Constants.GameEvent.ShakeCamera)]
-        public void Shake(float shakeIntensity)
+        public void ShakeCamera(float shakeIntensity, float duration)
         {
             if (_shaking)
             {
                 return;
             }
-            _shakeIntensity = shakeIntensity;
-            _originalPos = _cameraTransform.position;
-            _originalRot = _cameraTransform.rotation;
-            _shakeIntensityLeft = _shakeIntensity;
-            _shaking = true;
+            StartCoroutine(ShakeCameraIE(shakeIntensity, duration));
         }
 
         protected override void Deinitialize()
         {
+        }
+
+        private IEnumerator ShakeCameraIE(float shakeIntensity, float duration)
+        {
+            _shaking = true;
+            float elapsed = 0.0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+
+                float percentComplete = elapsed / duration;
+                float damper = 1.0f - Mathf.Clamp(4.0f * percentComplete - 3.0f, 0.0f, 1.0f);
+
+                float x = Random.Range(-1f, 1f);
+                float y = Random.Range(-1f, 1f);
+                x *= shakeIntensity * damper;
+                y *= shakeIntensity * damper;
+
+                Vector3 originalPos = UnityEngine.Camera.main.transform.position;
+                UnityEngine.Camera.main.transform.position = new Vector3(originalPos.x + x, originalPos.y + y, originalPos.z);
+
+                yield return null;
+            }
+
+            _shaking = false;
         }
     }
 }

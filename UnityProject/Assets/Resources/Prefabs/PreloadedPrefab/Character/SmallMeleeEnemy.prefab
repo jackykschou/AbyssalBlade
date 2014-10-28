@@ -28,6 +28,7 @@ GameObject:
   - 114: {fileID: 11400072}
   - 50: {fileID: 5000002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400112}
   m_Layer: 11
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -380,19 +381,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
-  ActivateConditions: []
+  ActivateConditions:
+  - {fileID: 11400112}
   BoolParameterName: Melee
-  _animationDuration: .850000024
+  _animationDuration: .5
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
   - {fileID: 11400110}
   - {fileID: 11400050}
   - {fileID: 11400100}
+  - {fileID: 11400098}
   _animationSkillEffectsActivateTime:
+  - .100000001
   - 0
-  - 0
-  - .800000012
+  - .449999988
+  - .100000001
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -410,10 +414,9 @@ MonoBehaviour:
   IsPassive: 0
   Movable: 0
   _skillEffects:
-  - {fileID: 11400098}
   - {fileID: 11400006}
   _proSkillEffects: []
-  _skillEffectsOrder: 0000000000000000
+  _skillEffectsOrder: 00000000
   _proSkillEffectsOrder: 
 --- !u!114 &11400010
 MonoBehaviour:
@@ -450,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
-  Distance: 1.5
+  Distance: 1.70000005
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -993,7 +996,7 @@ MonoBehaviour:
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -4
+  _amount: -5
   AmountVariantPercentage: .200000003
   ChangeDuration: 0
   ChangeInterval: 1
@@ -1058,8 +1061,8 @@ MonoBehaviour:
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  Speed: 35
-  Time: 1
+  Speed: 45
+  Time: .800000012
 --- !u!114 &11400100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1197,6 +1200,20 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   Collider: {fileID: 6100002}
+--- !u!114 &11400112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eaa7783e8ebe0f4290cd8d444aab420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SkillEffect: {fileID: 0}
+  Chance: .400000006
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
