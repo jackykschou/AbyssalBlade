@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
     {
         public PrefabSpawner PrefabSpawner;
         public PositionIndicator Position;
+        public float RayAngleRandomness;
 
         protected override void FirstTimeInitialize()
         {
@@ -40,7 +41,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
                 ProjectileMotor motor = o.GetComponent<ProjectileMotor>();
                 motor.tag = Skill.Caster.gameObject.tag;
                 motor.Target = Skill.Caster.Target;
-                motor.Shoot(Skill.Caster.PointingDirection);
+                Vector2 castDirecation = Quaternion.AngleAxis(Random.Range(-RayAngleRandomness, RayAngleRandomness), Vector3.forward) * Skill.Caster.PointingDirection;
+                motor.Shoot(castDirecation);
             });
         }
     }
