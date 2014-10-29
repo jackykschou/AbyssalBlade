@@ -6,6 +6,11 @@
 #if DEBUG
         Example, // void()
 #endif
+        UpdateProjectileDirection,              // void(Vector2)
+        UpdateProjectileTarget,                 // void(Transform)
+        ShootProjectile,                        // void()
+        OnProjectileArriveDestination,          // void(Vector2)
+
         UpdateFacingDirection,                  // void(FacingDirection)
         UpdateMoveDirection,                    // void(Vector2)
 

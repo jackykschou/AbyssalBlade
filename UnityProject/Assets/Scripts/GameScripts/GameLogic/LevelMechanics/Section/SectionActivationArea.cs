@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.PhysicsBody;
 using UnityEngine;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -7,43 +8,30 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 {
     [AddComponentMenu("LevelMechanics/Section/SectionActivationArea")]
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(PlayerInteractiveAreaPhysicsBody))]
     public class SectionActivationArea : SectionLogic 
     {
-        public Collider2D ActivationArea;
-
-        protected override void FirstTimeInitialize()
-        {
-            base.FirstTimeInitialize();
-            ActivationArea = GetComponent<Collider2D>();
-            ActivationArea.isTrigger = true;
-            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.SectionActivateArea);
-        }
+        private bool _activated;
 
         protected override void Initialize()
         {
             base.Initialize();
-            ActivationArea.enabled = true;
+            _activated = false;
         }
 
         protected override void Deinitialize()
         {
         }
 
+        [Attributes.GameScriptEvent(Constants.GameScriptEvent.OnPhysicsBodyOnTriggerStay2D)]
         protected override void OnTriggerEnter2D(Collider2D coll)
         {
-            base.OnTriggerEnter2D(coll);
-            TriggerGameEvent(GameEvent.OnSectionActivated, SectionId);
-            ActivationArea.enabled = false;
-        }
-
-        [GameEventAttribute(GameEvent.OnSectionActivated)]
-        public override void OnSectionActivated(int sectionId)
-        {
-            base.OnSectionActivated(sectionId);
-            if (sectionId == SectionId)
+            if (_activated)
             {
-                ActivationArea.enabled = false;
+                return;
             }
+            TriggerGameEvent(GameEvent.OnSectionActivated, SectionId);
+            _activated = true;
         }
     }
 }

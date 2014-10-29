@@ -17,7 +17,9 @@ namespace Assets.Scripts.Constants
         EnemyProjectile = 9,
         MainLevelArea1 = 10,
         HealthPotion = 11,
-        MainLevelArea2 = 12
+        MainLevelArea2 = 12,
+        Boss1 = 13,
+        BossLevel = 14
     };
 
     public class PrefabConstants
@@ -40,7 +42,9 @@ namespace Assets.Scripts.Constants
             {Prefab.EnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/EnemyProjectile"},
             {Prefab.MainLevelArea1, "Prefabs/MainLevelArea1"},
             {Prefab.HealthPotion, "Prefabs/PreloadedPrefab/PowerUp/HealthPotion"},
-            {Prefab.MainLevelArea2, "Prefabs/MainLevelArea2"}
+            {Prefab.MainLevelArea2, "Prefabs/MainLevelArea2"},
+            {Prefab.Boss1, "Prefabs/Character/BossEnemy"},
+            {Prefab.BossLevel, "Prefabs/BossLevel"}
         };
 
         public static string GetPrefabName(Prefab prefab)

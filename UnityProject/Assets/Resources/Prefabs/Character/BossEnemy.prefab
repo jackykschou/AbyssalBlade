@@ -179,6 +179,9 @@ GameObject:
   - 114: {fileID: 11400162}
   - 114: {fileID: 11400160}
   - 114: {fileID: 11400158}
+  - 114: {fileID: 11400166}
+  - 114: {fileID: 11400164}
+  - 114: {fileID: 11400168}
   m_Layer: 11
   m_Name: Charge
   m_TagString: Untagged
@@ -621,6 +624,9 @@ MonoBehaviour:
   Prefabs: 01000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 100000
   SpawnChance: 1
@@ -820,6 +826,9 @@ MonoBehaviour:
   Prefabs: 0b000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 1
   NumberOfSpawn: 1
   SpawnChance: .100000001
@@ -1193,6 +1202,9 @@ MonoBehaviour:
   - .100000001
   - .800000012
   - .100000001
+  PrefabSpawnValues: 000000000000000000000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 1
   SpawnChance: 1
@@ -1280,7 +1292,11 @@ MonoBehaviour:
   _animationSkillEffects:
   - {fileID: 11400160}
   - {fileID: 11400158}
+  - {fileID: 11400166}
+  - {fileID: 11400164}
   _animationSkillEffectsActivateTime:
+  - 0
+  - 1.79999995
   - 0
   - 1.79999995
 --- !u!114 &11400118
@@ -1389,6 +1405,7 @@ MonoBehaviour:
   ActivateConditions: []
   PrefabSpawner: {fileID: 11400134}
   Position: {fileID: 11400136}
+  ShootAngle: 0
 --- !u!114 &11400132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1417,6 +1434,9 @@ MonoBehaviour:
   Prefabs: 09000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 1
   SpawnChance: 1
@@ -1576,7 +1596,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9f018d6b4416a849a9982f3deb16ef1, type: 3}
   m_Name: 
@@ -1645,6 +1665,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+--- !u!114 &11400164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30951944a2590ab44adb6b8f94ce1194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Script: {fileID: 11400154}
+--- !u!114 &11400166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6ebdc04856c2144b6b64aa374944d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Script: {fileID: 11400154}
+--- !u!114 &11400168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddffe9254782bfa44905046bf21ca695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  RayCastPhysicalLayers: 0e000000100000000a000000
+  Range: 20
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
