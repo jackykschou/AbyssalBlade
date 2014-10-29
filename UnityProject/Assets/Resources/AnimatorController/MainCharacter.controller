@@ -2294,6 +2294,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110245116
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroSprintCleanV1Right
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 2dd81650d3b154ca5b610e0b679980f2, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -87, y: 1299, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110249527
 State:
   m_ObjectHideFlags: 3
@@ -2384,6 +2399,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110268396
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroSprintCleanV1Down
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 0132f7bf8e4814cb8a19495ea78ff04d, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -122, y: 1234, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110269345
 State:
   m_ObjectHideFlags: 3
@@ -2456,6 +2486,21 @@ State:
   - {fileID: 7400000, guid: cac822173c3884d03815b87caaa75531, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -297, y: 909, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110278621
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroSprintCleanV1Left
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 649e80b6e69bb42a5bdef8fd4d0f4b4b, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -157, y: 1169, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2564,6 +2609,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110293782
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroSprintCleanV1Up
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 93808ef563ad34ada9fc0a3f0ed06100, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -52, y: 1364, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110299486
 State:
   m_ObjectHideFlags: 3
@@ -2612,6 +2672,10 @@ StateMachine:
   - {fileID: 110282675}
   - {fileID: 110265158}
   - {fileID: 110202244}
+  - {fileID: 110278621}
+  - {fileID: 110268396}
+  - {fileID: 110245116}
+  - {fileID: 110293782}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
