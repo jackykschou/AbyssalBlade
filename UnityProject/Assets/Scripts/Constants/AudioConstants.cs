@@ -19,7 +19,13 @@ namespace Assets.Scripts.Constants
         Forest_Loop_Light = 2,
         Forest_Loop_Medium = 3,
         Forest_Loop_Heavy = 4,
-        Warp_In_Random= 5
+        Warp_In_Random= 5,
+        Sword_Shing_Random = 6,
+        Shotgun_Random = 7,
+        Portal_Strike_Random = 8,
+        Electric_Short_Random = 9,
+        Dog_Death_Random = 10, 
+        Dog_Attack_Random = 11
     };
 
     public enum ClipName
@@ -67,6 +73,7 @@ namespace Assets.Scripts.Constants
         Dog_Attack          = 40,
         Dog_Attack_2        = 41,
         Dog_Attack_3        = 42,
+        // 43 is open
         Dog_Death           = 44,
         Dog_Death_2         = 45,
         Dog_Death_3         = 46,
@@ -211,7 +218,13 @@ namespace Assets.Scripts.Constants
             {CueName.Forest_Loop_Light, "Forest_Loop_Light"},
             {CueName.Forest_Loop_Medium, "Forest_Loop_Medium"},
             {CueName.Forest_Loop_Heavy, "Forest_Loop_Heavy"},
-            {CueName.Warp_In_Random, "Warp_In_Random"}
+            {CueName.Sword_Shing_Random, "Sword_Shing_Random" },
+            {CueName.Shotgun_Random, "Shotgun_Random" },
+            {CueName.Portal_Strike_Random, "Portal_Strike_Random" },
+            {CueName.Electric_Short_Random, "Electric_Short_Random" },
+            {CueName.Dog_Death_Random, "Dog_Death_Random" },
+            {CueName.Dog_Attack_Random, "Dog_Attack_Random" },
+            {CueName.Warp_In_Random, "Warp_In_Random" }
         };
 
 
@@ -224,7 +237,7 @@ namespace Assets.Scripts.Constants
 
         public static void CreateCustomCues()
         {
-            // Examples
+            //Warp_In_Random
             List<ClipName> warpInClipsClipNames = new List<ClipName> 
             { 
                 ClipName.Warp_In,
@@ -234,6 +247,61 @@ namespace Assets.Scripts.Constants
                 ClipName.Warp_In_5
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Warp_In_Random, warpInClipsClipNames);
+
+            //Sword_Shing_Random
+            List<ClipName> swordShingRandom = new List<ClipName> 
+            { 
+                ClipName.Sword_Shing,
+                ClipName.Sword_Shing_2,
+                ClipName.Sword_Shing_3,
+                ClipName.Sword_Shing_4
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Sword_Shing_Random, swordShingRandom);
+            //Shotgun_Random 
+            List<ClipName> shotgunRandom = new List<ClipName> 
+            { 
+                ClipName.Shotgun,
+                ClipName.Shotgun_2,
+                ClipName.Shotgun_3,
+                ClipName.Shotgun_4
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Shotgun_Random, shotgunRandom);
+            //Portal_Strike_Random 
+            List<ClipName> portalStrikeRandom = new List<ClipName> 
+            { 
+                ClipName.Portal_Strike,
+                ClipName.Portal_Strike_2,
+                ClipName.Portal_Strike_3,
+                ClipName.Portal_Being_Hit,
+                ClipName.Portal_Being_Hit_2,
+                ClipName.Portal_Being_Hit_3
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Portal_Strike_Random, portalStrikeRandom);
+            //Electric_Short_Random
+            List<ClipName> electricShortRandom = new List<ClipName> 
+            { 
+                ClipName.Electric_Short,
+                ClipName.Electric_Short_2,
+                ClipName.Electric_Short_3
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Electric_Short_Random, electricShortRandom);
+            //Dog_Death_Random
+            List<ClipName> dogDeathRandom = new List<ClipName> 
+            { 
+                ClipName.Dog_Death,
+                ClipName.Dog_Death_2,
+                ClipName.Dog_Death_3,
+                ClipName.Dog_Growl
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Dog_Death_Random, dogDeathRandom);
+            //Dog_Attack_Random 
+            List<ClipName> Dog_Attack_Random = new List<ClipName> 
+            { 
+                ClipName.Dog_Attack,
+                ClipName.Dog_Attack_2,
+                ClipName.Dog_Attack_3
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Dog_Attack_Random, Dog_Attack_Random);
 
             List<ClipName> levelLoopIntensities = new List<ClipName>
             {
