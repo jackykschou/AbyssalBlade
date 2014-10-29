@@ -22,6 +22,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         {
         }
 
+        protected override void Update()
+        {
+            base.Update();
+            if (Mathf.Approximately(_slider.value, 0f))
+            {
+                _slider.targetGraphic.enabled = false;
+            }
+            else
+            {
+                _slider.targetGraphic.enabled = true;
+            }
+        }
+
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeHeal)]
         public void UpdateSlider(float damage, bool crit, GameValue.GameValue health)
@@ -30,14 +43,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             if (HealthSliderImage != null)
             {
                 HealthSliderImage.color = Color.Lerp(Color.red, Color.green, _slider.value);
-                if (Mathf.Approximately(health.Percentage, 0f))
-                {
-                    _slider.targetGraphic.enabled = false;
-                }
-                else
-                {
-                    _slider.targetGraphic.enabled = true;
-                }
             }
         }
     }
