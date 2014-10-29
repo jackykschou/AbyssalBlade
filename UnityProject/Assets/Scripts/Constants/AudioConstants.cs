@@ -239,7 +239,8 @@ namespace Assets.Scripts.Constants
             {CueName.Ranged_Enemy_Attack_Random, "Ranged_Enemy_Attack_Random"},
             {CueName.Stone_Enemy_Take_Damage_Random, "Stone_Enemy_Take_Damage_Random"},
             {CueName.Stone_Enemy_Death_Random, "Stone_Enemy_Death_Random"},
-            {CueName.Stone_Enemy_Attack_Random, "Stone_Enemy_Attack_Random"}
+            {CueName.Stone_Enemy_Attack_Random, "Stone_Enemy_Attack_Random"},
+            {CueName.Charged_Shot_Random, "Charged_Shot_Random"}
         };
 
 
