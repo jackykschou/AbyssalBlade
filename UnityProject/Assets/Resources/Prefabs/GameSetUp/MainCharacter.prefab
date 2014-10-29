@@ -186,7 +186,6 @@ GameObject:
   - 114: {fileID: 11400056}
   - 114: {fileID: 11400066}
   - 114: {fileID: 11400058}
-  - 114: {fileID: 11400060}
   - 114: {fileID: 11400062}
   - 114: {fileID: 11400046}
   - 114: {fileID: 11400044}
@@ -195,6 +194,7 @@ GameObject:
   - 114: {fileID: 11400190}
   - 114: {fileID: 11400202}
   - 114: {fileID: 11400220}
+  - 114: {fileID: 11400060}
   m_Layer: 0
   m_Name: StrongMelee
   m_TagString: Untagged
@@ -229,7 +229,6 @@ GameObject:
   - 114: {fileID: 11400082}
   - 114: {fileID: 11400080}
   - 114: {fileID: 11400078}
-  - 114: {fileID: 11400076}
   - 114: {fileID: 11400074}
   - 114: {fileID: 11400162}
   - 114: {fileID: 11400160}
@@ -243,6 +242,7 @@ GameObject:
   - 114: {fileID: 11400192}
   - 114: {fileID: 11400196}
   - 114: {fileID: 11400204}
+  - 114: {fileID: 11400076}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -279,7 +279,6 @@ GameObject:
   - 114: {fileID: 11400110}
   - 114: {fileID: 11400120}
   - 114: {fileID: 11400116}
-  - 114: {fileID: 11400114}
   - 114: {fileID: 11400150}
   - 114: {fileID: 11400148}
   - 114: {fileID: 11400118}
@@ -288,6 +287,7 @@ GameObject:
   - 114: {fileID: 11400154}
   - 114: {fileID: 11400186}
   - 114: {fileID: 11400198}
+  - 114: {fileID: 11400114}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -636,7 +636,7 @@ MonoBehaviour:
   Prefabs: 05000000
   SpawnPickWeights:
   - 1
-  PrefabSpawnValues: 
+  PrefabSpawnValues: 00000000
   UseLimitSpawnValue: 0
   LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
@@ -673,7 +673,7 @@ MonoBehaviour:
   - {fileID: 11400134}
   PrefabSpawner: {fileID: 11400014}
   Position: {fileID: 11400184}
-  RayAngleRandomness: 0
+  ShootAngle: 0
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1022,14 +1022,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  clip: 34
-  volume: 1
+  Cue: 13
+  Volume: 1
 --- !u!114 &11400062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1152,12 +1152,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69b16d40545ede74dab4395fb43132c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bad07ae872926648a86322fb35c8ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  clip: 3
-  volume: 1
+  Cue: 12
+  Volume: 1
 --- !u!114 &11400078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1224,7 +1224,7 @@ MonoBehaviour:
   Prefabs: 01000000
   SpawnPickWeights:
   - 1
-  PrefabSpawnValues: 
+  PrefabSpawnValues: 00000000
   UseLimitSpawnValue: 0
   LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  clip: 6
+  Clip: 0
   volume: .680999994
 --- !u!114 &11400090
 MonoBehaviour:
@@ -1446,14 +1446,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  clip: 12
-  volume: .200000003
+  Cue: 7
+  Volume: 1
 --- !u!114 &11400116
 MonoBehaviour:
   m_ObjectHideFlags: 1

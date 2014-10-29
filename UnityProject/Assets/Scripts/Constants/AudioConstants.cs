@@ -25,7 +25,13 @@ namespace Assets.Scripts.Constants
         Portal_Strike_Random = 8,
         Electric_Short_Random = 9,
         Dog_Death_Random = 10, 
-        Dog_Attack_Random = 11
+        Dog_Attack_Random = 11,
+        Character_Death_Random = 12,
+        Heavy_Attack_Random = 13,
+        Ranged_Enemy_Attack_Random = 14,
+        Stone_Enemy_Take_Damage_Random = 15,
+        Stone_Enemy_Death_Random = 16,
+        Stone_Enemy_Attack_Random = 17
     };
 
     public enum ClipName
@@ -224,7 +230,13 @@ namespace Assets.Scripts.Constants
             {CueName.Electric_Short_Random, "Electric_Short_Random" },
             {CueName.Dog_Death_Random, "Dog_Death_Random" },
             {CueName.Dog_Attack_Random, "Dog_Attack_Random" },
-            {CueName.Warp_In_Random, "Warp_In_Random" }
+            {CueName.Warp_In_Random, "Warp_In_Random" },
+            {CueName.Character_Death_Random, "Character_Death_Random"},
+            {CueName.Heavy_Attack_Random, "Heavy_Attack_Random"},
+            {CueName.Ranged_Enemy_Attack_Random, "Ranged_Enemy_Attack_Random"},
+            {CueName.Stone_Enemy_Take_Damage_Random, "Stone_Enemy_Take_Damage_Random"},
+            {CueName.Stone_Enemy_Death_Random, "Stone_Enemy_Death_Random"},
+            {CueName.Stone_Enemy_Attack_Random, "Stone_Enemy_Attack_Random"}
         };
 
 
@@ -257,6 +269,7 @@ namespace Assets.Scripts.Constants
                 ClipName.Sword_Shing_4
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Sword_Shing_Random, swordShingRandom);
+
             //Shotgun_Random 
             List<ClipName> shotgunRandom = new List<ClipName> 
             { 
@@ -266,6 +279,7 @@ namespace Assets.Scripts.Constants
                 ClipName.Shotgun_4
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Shotgun_Random, shotgunRandom);
+
             //Portal_Strike_Random 
             List<ClipName> portalStrikeRandom = new List<ClipName> 
             { 
@@ -277,6 +291,7 @@ namespace Assets.Scripts.Constants
                 ClipName.Portal_Being_Hit_3
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Portal_Strike_Random, portalStrikeRandom);
+
             //Electric_Short_Random
             List<ClipName> electricShortRandom = new List<ClipName> 
             { 
@@ -285,6 +300,7 @@ namespace Assets.Scripts.Constants
                 ClipName.Electric_Short_3
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Electric_Short_Random, electricShortRandom);
+
             //Dog_Death_Random
             List<ClipName> dogDeathRandom = new List<ClipName> 
             { 
@@ -294,6 +310,7 @@ namespace Assets.Scripts.Constants
                 ClipName.Dog_Growl
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Dog_Death_Random, dogDeathRandom);
+
             //Dog_Attack_Random 
             List<ClipName> Dog_Attack_Random = new List<ClipName> 
             { 
@@ -303,6 +320,61 @@ namespace Assets.Scripts.Constants
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Dog_Attack_Random, Dog_Attack_Random);
 
+
+            //Character_Death_Random 
+            List<ClipName> Character_Death_Random = new List<ClipName> 
+            { 
+                ClipName.Death_Sound_1,
+                ClipName.Death_Sound_2,
+                ClipName.Death_Sound_3
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Character_Death_Random, Character_Death_Random);
+
+            //Heavy_Attack_Random 
+            List<ClipName> Heavy_Attack_Random = new List<ClipName> 
+            { 
+                ClipName.Heavy_Attack,
+                ClipName.Heavy_Attack_2,
+                ClipName.Heavy_Attack_3
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Heavy_Attack_Random, Heavy_Attack_Random);
+
+            //Ranged_Enemy_Attack_Random 
+            List<ClipName> Ranged_Enemy_Attack_Random = new List<ClipName> 
+            { 
+                ClipName.Laser,
+                ClipName.Laser2,
+                ClipName.Laser3
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Ranged_Enemy_Attack_Random, Ranged_Enemy_Attack_Random);
+
+            //Stone_Enemy_Take_Damage_Random 
+            List<ClipName> Stone_Enemy_Take_Damage_Random = new List<ClipName> 
+            { 
+                ClipName.Stone_Enemy_Take_Damage,
+                ClipName.Stone_Enemy_Take_Damage_2
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Stone_Enemy_Take_Damage_Random, Stone_Enemy_Take_Damage_Random);
+
+            //Stone_Enemy_Death_Random 
+            List<ClipName> Stone_Enemy_Death_Random = new List<ClipName> 
+            { 
+                ClipName.Stone_Enemy_Death_Rattle,
+                ClipName.Stone_Enemy_Death_Rattle_2
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Stone_Enemy_Death_Random, Stone_Enemy_Death_Random);
+
+            //Stone_Enemy_Attack_Random 
+            List<ClipName> Stone_Enemy_Attack_Random = new List<ClipName> 
+            { 
+                ClipName.MetalClang,
+                ClipName.MetalClang2,
+                ClipName.Metal_Strike,
+                ClipName.Metal_Strike_2
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Stone_Enemy_Attack_Random, Stone_Enemy_Attack_Random);
+
+            // level loop
             List<ClipName> levelLoopIntensities = new List<ClipName>
             {
                 ClipName.Forest_Level_Basic,
