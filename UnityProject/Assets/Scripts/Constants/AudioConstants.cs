@@ -31,7 +31,8 @@ namespace Assets.Scripts.Constants
         Ranged_Enemy_Attack_Random = 14,
         Stone_Enemy_Take_Damage_Random = 15,
         Stone_Enemy_Death_Random = 16,
-        Stone_Enemy_Attack_Random = 17
+        Stone_Enemy_Attack_Random = 17,
+        Charged_Shot_Random = 18
     };
 
     public enum ClipName
@@ -117,7 +118,8 @@ namespace Assets.Scripts.Constants
         Sword_Shing         = 78,
         Sword_Shing_2       = 79,
         Sword_Shing_3       = 80,
-        Sword_Shing_4       = 81
+        Sword_Shing_4       = 81,
+        Charged_Shot        = 82
     };
 
     public enum LoopName
@@ -214,7 +216,8 @@ namespace Assets.Scripts.Constants
             {ClipName.Sword_Shing, "Sword_Shing" },
             {ClipName.Sword_Shing_2, "Sword_Shing_2" },
             {ClipName.Sword_Shing_3, "Sword_Shing_3" },
-            {ClipName.Sword_Shing_4, "Sword_Shing_4" }
+            {ClipName.Sword_Shing_4, "Sword_Shing_4" },
+            {ClipName.Charged_Shot, "Charged_Shot"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
@@ -333,8 +336,8 @@ namespace Assets.Scripts.Constants
             //Heavy_Attack_Random 
             List<ClipName> Heavy_Attack_Random = new List<ClipName> 
             { 
-                ClipName.Heavy_Attack,
-                ClipName.Heavy_Attack_2,
+                //ClipName.Heavy_Attack,
+                //ClipName.Heavy_Attack_2,
                 ClipName.Heavy_Attack_3
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Heavy_Attack_Random, Heavy_Attack_Random);
@@ -373,6 +376,13 @@ namespace Assets.Scripts.Constants
                 ClipName.Metal_Strike_2
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Stone_Enemy_Attack_Random, Stone_Enemy_Attack_Random);
+
+            //Charged_Shot_Random
+            List<ClipName> Charged_Shot_Random = new List<ClipName> 
+            {
+                ClipName.Charged_Shot
+            };
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Charged_Shot_Random, Charged_Shot_Random);
 
             // level loop
             List<ClipName> levelLoopIntensities = new List<ClipName>
