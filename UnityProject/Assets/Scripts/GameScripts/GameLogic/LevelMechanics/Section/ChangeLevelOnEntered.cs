@@ -7,7 +7,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 {
-    [RequireComponent(typeof(LeaveLevelAreaPhysicsBody))]
+    [AddComponentMenu("LevelMechanics/Section/ChangeLevelOnEntered")]
+    [RequireComponent(typeof(PlayerInteractiveAreaPhysicsBody))]
     public class ChangeLevelOnEntered : SectionLogic
     {
         public Prefab ToLevel;

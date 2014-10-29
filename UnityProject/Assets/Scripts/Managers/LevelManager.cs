@@ -12,6 +12,8 @@ namespace Assets.Scripts.Managers
     {
         public bool IsPlayLevel;
 
+        public int CurrentSectionId;
+
         public static LevelManager Instance
         {
             get { return _instance ?? (_instance = FindObjectOfType<LevelManager>()); }

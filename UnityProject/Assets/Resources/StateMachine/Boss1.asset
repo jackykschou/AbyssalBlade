@@ -53,13 +53,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position:
     serializedVersion: 2
-    x: 347
-    y: 375
+    x: 210
+    y: 361
     width: 150
     height: 30
   id: 967e3263-94fa-4588-afb6-be28dab607e9
   isDefaultState: 1
-  transitions: []
+  transitions:
+  - {fileID: 11400018}
   actions:
   - {fileID: 11400006}
   description: 
@@ -92,7 +93,7 @@ MonoBehaviour:
   isConstant: 1
   reference: 
   parameterName: 
-  value: 5
+  value: 7
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,14 +122,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position:
     serializedVersion: 2
-    x: 552
-    y: 376
+    x: 470
+    y: 359
     width: 150
     height: 30
   id: 38af3812-e2fc-422b-a580-4c1fb1e56c3e
   isDefaultState: 0
-  transitions: []
-  actions: []
+  transitions:
+  - {fileID: 11400024}
+  actions:
+  - {fileID: 11400022}
   description: 
 --- !u!114 &11400014
 MonoBehaviour:
@@ -144,7 +147,7 @@ MonoBehaviour:
   isConstant: 1
   reference: 
   parameterName: 
-  value: 5
+  value: 15
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,3 +163,71 @@ MonoBehaviour:
   reference: 
   parameterName: 
   value: 10
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
+  m_Name: Patrol -> Patrol
+  m_EditorClassIdentifier: 
+  fromState: {fileID: 11400004}
+  toState: {fileID: 11400012}
+  mute: 0
+  conditions:
+  - {fileID: 11400020}
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17dcfe14ce00ac46940fff1e2c9ea6a, type: 3}
+  m_Name: Custom.EnemyDetected
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa96a09792721e47b28bd5e6717552f, type: 3}
+  m_Name: Custom.CastSkill
+  m_EditorClassIdentifier: 
+  disabled: 0
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06df66cd75d8c1146aecebdb0dba5ae6, type: 3}
+  m_Name: Attack -> Attack
+  m_EditorClassIdentifier: 
+  fromState: {fileID: 11400012}
+  toState: {fileID: 11400004}
+  mute: 0
+  conditions:
+  - {fileID: 11400026}
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52cef80fbf5821469b14c78817bdadb, type: 3}
+  m_Name: Custom.NoSkillToCast
+  m_EditorClassIdentifier: 
+  disabled: 0

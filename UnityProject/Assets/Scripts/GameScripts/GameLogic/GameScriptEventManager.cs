@@ -51,37 +51,6 @@ namespace Assets.Scripts.GameScripts.GameLogic
             }
         }
 
-        public void TriggerGameScriptEvent<T>(Constants.GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
-        {
-            foreach (var typeDictPair in _gameScriptEvents)
-            {
-                if ((typeof(T) == (typeDictPair.Key) || typeDictPair.Key.IsSubclassOf(typeof(T))) && typeDictPair.Value.ContainsKey(gameScriptEvent))
-                {
-                    foreach (var gameScriptMethodsPair in typeDictPair.Value[gameScriptEvent])
-                    {
-                        if (gameScriptMethodsPair.Key.Initialized)
-                        {
-                            gameScriptMethodsPair.Value.ForEach(m => m.Invoke(gameScriptMethodsPair.Key, args));
-                        }
-                    }
-                }
-            }
-        }
-
-        public void TriggerGameScriptEvent(GameScript gameScript, Constants.GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            if (ContainGameScriptEvent(gameScript, gameScriptEvent))
-            {
-                foreach (var m in _gameScriptEvents[gameScript.GetType()][gameScriptEvent][gameScript])
-                {
-                    if (gameScript.Initialized)
-                    {
-                        m.Invoke(gameScript, args);
-                    }
-                }
-            }
-        }
-
         private bool ContainGameScriptEvent(GameScript gameScript, Constants.GameScriptEvent gameScriptEvent)
         {
             return _gameScriptEvents.ContainsKey(gameScript.GetType()) && _gameScriptEvents[gameScript.GetType()].ContainsKey(gameScriptEvent) && _gameScriptEvents[gameScript.GetType()][gameScriptEvent].ContainsKey(gameScript);

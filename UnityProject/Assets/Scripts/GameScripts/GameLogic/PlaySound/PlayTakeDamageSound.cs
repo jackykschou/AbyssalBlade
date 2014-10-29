@@ -7,6 +7,7 @@ using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
 {
+    [AddComponentMenu("PlaySound/PlayTakeDamageSound")]
     public class PlayTakeDamageSound : GameLogic
     {
         public ClipName Clip;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
         public float Volume = 1.0f;
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectTakeDamage)]
-        public void StartPlayDamageSound(float f, bool crit)
+        public void StartPlayDamageSound(float f, bool crit, GameValue.GameValue health)
         {
             AudioManager.Instance.PlayClip(Clip, gameObject, Volume);
         }

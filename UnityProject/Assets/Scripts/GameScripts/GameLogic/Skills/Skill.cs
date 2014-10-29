@@ -53,7 +53,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
 
         public bool CanActivate()
         {
-            return _castableConditions.All(c => c.CanCast()) && (!OnceAtATime || !IsActivate) && (IsPassive || !Caster.CastingActiveSkill) && (Movable || !Caster.Moving);
+            return _castableConditions.All(c => c.CanCast()) && 
+                (!OnceAtATime || !IsActivate) && 
+                (IsPassive || (!Caster.CastingActiveSkill || (!OnceAtATime && IsActivate))) && 
+                (Movable || !Caster.Moving);
         }
 
         public void Activate()

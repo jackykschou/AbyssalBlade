@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Managers;
+using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -9,6 +10,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     [AddComponentMenu("LevelMechanics/Section/Section")]
     public class Section : SectionLogic
     {
+        public override void OnSectionActivated(int sectionId)
+        {
+            LevelManager.Instance.CurrentSectionId = sectionId;
+        }
+
         [GameEventAttribute(GameEvent.OnSectionObjectivesCompleted)]
         public void OnSectionObjectivesCompleted(int sectionId)
         {

@@ -21,6 +21,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400020}
   m_Layer: 22
   m_Name: HealthPotion
   m_TagString: Untagged
@@ -95,6 +96,8 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 1
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400004}
@@ -202,6 +205,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
 --- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+--- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

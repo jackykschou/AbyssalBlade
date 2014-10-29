@@ -28,6 +28,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
             if (_patrolPoint == null)
 		    {
 		        _patrolPoint = new GameObject();
+		        _patrolPoint.transform.parent = stateMachine.owner.transform;
 		    }
             if (_pathFinding == null)
             {
@@ -35,7 +36,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
             }
 		}
 
-		public override void OnUpdate()
+	    public override void OnUpdate()
 		{
 		}
 
@@ -53,6 +54,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
                 Vector3 newPatrolPointPosition = new Vector3(stateMachine.owner.transform.position.x + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
                                                              stateMachine.owner.transform.position.y + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
                                                              stateMachine.owner.transform.position.z);
+                Debug.Log("_patrolPoint: " + _patrolPoint.transform.position);
                 _patrolPoint.transform.position = newPatrolPointPosition;
                 _pathFinding.UpdateTarget(_patrolPoint);
                 _currentPathPatroltime = 0f;

@@ -43,7 +43,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   _serializedPrefabPoolMapKeys:
+  - Prefabs/BossLevel
   - Prefabs/EmptySection
+  - Prefabs/HealthbarCanvas
   - Prefabs/MainLevelArea1
   - Prefabs/MainLevelArea2
   - Prefabs/TutorialLevel
@@ -85,12 +87,16 @@ MonoBehaviour:
   - Prefabs/Menu/MainMenu
   - Prefabs/ParticleSystems/SpawnParticleSystem
   - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemy
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemy 1
   - Prefabs/PreloadedPrefab/Character/SmallRangeEnemy
   - Prefabs/PreloadedPrefab/Character/StoneEnemy
   - Prefabs/PreloadedPrefab/PowerUp/HealthPotion
+  - Prefabs/PreloadedPrefab/Projectile/BossMissle
+  - Prefabs/PreloadedPrefab/Projectile/BossMissleExplosion
   - Prefabs/PreloadedPrefab/Projectile/EnemyProjectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile2
+  - Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile
   - Prefabs/PreloadedPrefab/TextMeshes/DamageTextMesh
   - Prefabs/PreloadedPrefab/TextMeshes/MessageTextMesh
   - Prefabs/PropsPrefab/General/Teleporter
@@ -98,6 +104,8 @@ MonoBehaviour:
   - Prefabs/PropsPrefab/Tutorial/PinkStatue
   - Prefabs/PropsPrefab/Tutorial/PurpleLightpole
   _serializedPrefabPoolMapValues:
+  - Prefabs
+  - Prefabs
   - Prefabs
   - Prefabs
   - Prefabs
@@ -142,7 +150,11 @@ MonoBehaviour:
   - Character
   - Character
   - Character
+  - Character
   - PowerUp
+  - Projectile
+  - Projectile
+  - Projectile
   - Projectile
   - Projectile
   - Projectile

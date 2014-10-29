@@ -60,6 +60,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             get { return Mathf.Approximately(Value, Max); }
         }
 
+        public float Percentage
+        {
+            get { return Value/Max; }
+        }
+
         public GameValue(float value)
         {
             _valueTempChangeValueCache = new List<GameValueChanger>();
@@ -363,6 +368,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 yield break;
             }
 
+            _nonStackableTypeCache.Add(nonStackableType);
+
             while (duration >= 0)
             {
                 bool crited = RollCrit(critChance);
@@ -384,6 +391,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 Debug.Log("Change not stackable");
                 yield break;
             }
+
+            _nonStackableTypeCache.Add(gameValueChanger.NonStackableLabel);
 
             if (_valueTempChangeValueCache.Contains(gameValueChanger))
             {
@@ -414,6 +423,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 yield break;
             }
 
+            _nonStackableTypeCache.Add(nonStackableType);
+
             while (duration >= 0)
             {
                 bool crited = RollCrit(critChance);
@@ -435,6 +446,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 Debug.Log("Change not stackable");
                 yield break;
             }
+
+            _nonStackableTypeCache.Add(gameValueChanger.NonStackableLabel);
 
             if (_valueTempChangeValueCache.Contains(gameValueChanger))
             {
@@ -465,6 +478,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 yield break;
             }
 
+            _nonStackableTypeCache.Add(nonStackableType);
+
             while (duration >= 0)
             {
                 bool crited = RollCrit(critChance);
@@ -486,6 +501,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 Debug.Log("Change not stackable");
                 yield break;
             }
+
+            _nonStackableTypeCache.Add(gameValueChanger.NonStackableLabel);
 
             if (_valueTempChangeValueCache.Contains(gameValueChanger))
             {

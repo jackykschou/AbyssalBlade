@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         private float _accumulatedHitDamage;
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectTakeDamage)]
-        public void UpdateDamageThreshold(float damage, bool crit)
+        public void UpdateDamageThreshold(float damage, bool crit, GameValue.GameValue health)
         {
             if (HitDamageThresholdResetTime.CanDispatch())
             {

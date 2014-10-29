@@ -60,69 +60,16 @@ namespace Assets.Scripts.GameScripts
                 yield return new WaitForSeconds(Time.deltaTime);
             }
 
-            GameScriptEventManager.TriggerGameScriptEvent(gameScriptEvent, args);
-
-            foreach (Transform t in transform)
-            {
-                foreach (var s in t.gameObject.GetComponents<GameScript>())
-                {
-                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
-                }
-            }
+            TriggerChildrenGameScriptEvent(gameObject, gameScriptEvent, args);
         }
 
-        public void TriggerGameScriptEvent<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
+        private void TriggerChildrenGameScriptEvent(GameObject child, GameScriptEvent gameScriptEvent, params object[] args)
         {
-            StartCoroutine(TriggerGameScriptEventIE(gameScriptEvent, args));
-        }
-
-        public IEnumerator TriggerGameScriptEventIE<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
-        {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
+            child.TriggerGameScriptEvent(gameScriptEvent, args);
+            foreach (Transform t in child.transform)
             {
-                yield return new WaitForSeconds(Time.deltaTime);
+                TriggerChildrenGameScriptEvent(t.gameObject, gameScriptEvent, args);
             }
-
-            GameScriptEventManager.TriggerGameScriptEvent<T>(gameScriptEvent, args);
-
-            foreach (Transform t in transform)
-            {
-                foreach (var s in t.gameObject.GetComponents<GameScript>())
-                {
-                    if (s is T)
-                    {
-                        s.TriggerGameScriptEvent(s, gameScriptEvent, args);
-                    }
-                }
-            }
-        }
-
-        public void TriggerGameScriptEvent(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            StartCoroutine(TriggerGameScriptEventIE(gameScript, gameScriptEvent, args));
-        }
-
-        public IEnumerator TriggerGameScriptEventIE(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
-            GameScriptEventManager.TriggerGameScriptEvent(gameScript, gameScriptEvent, args);
-
-            foreach (Transform t in transform)
-            {
-                foreach (var s in t.gameObject.GetComponents<GameScript>())
-                {
-                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
-                }
-            }
-        }
-
-        public void TriggerGameEvent(GameScript gameScript, GameEvent gameEvent, params System.Object[] args)
-        {
-            GameEventManager.Instance.TriggerGameEvent(gameScript, gameEvent, args);
         }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)

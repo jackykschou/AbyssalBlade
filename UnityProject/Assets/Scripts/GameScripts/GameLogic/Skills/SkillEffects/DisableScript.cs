@@ -3,7 +3,7 @@
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
     [AddComponentMenu("Skill/SkillEffect/DisableScript")]
-    public class DisableScript : SkillEffect
+    public class DisableScript : SkillEffect 
     {
         public MonoBehaviour Script;
 

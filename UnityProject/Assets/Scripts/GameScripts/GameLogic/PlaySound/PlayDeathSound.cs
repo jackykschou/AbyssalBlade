@@ -9,15 +9,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
 {
     public class PlayDeathSound : GameLogic 
     {
-        public ClipName clip;
+        public ClipName Clip;
 
         [Range(0.0f, 1.0f)]
-        public float volume = 1.0f;
+        public float Volume = 1.0f;
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectHasNoHitPoint)]
         public void StartPlayDeathSound()
         {
-            AudioManager.Instance.PlayClip(clip, gameObject, volume);
+            AudioManager.Instance.PlayClip(Clip, gameObject, Volume);
         }
 
         protected override void Deinitialize()

@@ -17,7 +17,6 @@ GameObject:
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400010}
-  - 114: {fileID: 11400004}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400020}
@@ -25,6 +24,7 @@ GameObject:
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400004}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
@@ -117,12 +117,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25fb3986804f41b4c81f5809cfd7983f, type: 3}
+  m_Script: {fileID: 11500000, guid: 11970c2eb0241ec42b4a1e30738592ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
   Speed: {fileID: 11400022}
   Target: {fileID: 0}
+  Direction: {x: 0, y: 0, z: 0}
   EaseType: 21
 --- !u!114 &11400006
 MonoBehaviour:
@@ -189,6 +190,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0f000000100000000d000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 1
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400020}
