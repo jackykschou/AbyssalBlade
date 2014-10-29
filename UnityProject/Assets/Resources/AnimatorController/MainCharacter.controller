@@ -2144,6 +2144,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110202244
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeFireUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: a519f22ec438141528b0d42c870e9eaa, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -192, y: 1104, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110204557
 State:
   m_ObjectHideFlags: 3
@@ -2156,6 +2171,21 @@ State:
   - {fileID: 7400000, guid: d5489c15773ec442da8eb21083ebf1ef, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -542, y: 454, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110205556
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroShotgunRoughRight
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: dda566367b8624517b81f4eefde54412, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -367, y: 779, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2294,6 +2324,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110258768
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroShotgunRoughDown
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d7c5112b3e0d043b4ab416ed4b8d26fd, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -402, y: 714, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110264618
 State:
   m_ObjectHideFlags: 3
@@ -2306,6 +2351,21 @@ State:
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -552, y: 36, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110265158
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeFireRight
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 64467c079da73458ca90e24e35fcd2bb, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -227, y: 1039, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2384,6 +2444,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110275440
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeFireLeft
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: cac822173c3884d03815b87caaa75531, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -297, y: 909, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110279282
 State:
   m_ObjectHideFlags: 3
@@ -2429,6 +2504,36 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110282675
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroChargeFireDown
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: a6f488eb92b114d8f80a5d59633908d3, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -262, y: 974, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110283490
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroShotgunRough
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d006022215a434251801d0f0b969e7f9, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -437, y: 649, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110286331
 State:
   m_ObjectHideFlags: 3
@@ -2459,6 +2564,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110299486
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: heroShotgunRoughUp
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: e8c737f64e9604aa7a31274b0543e3dc, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -332, y: 844, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1107 &110700000
 StateMachine:
   serializedVersion: 2
@@ -2484,6 +2604,14 @@ StateMachine:
   - {fileID: 110204557}
   - {fileID: 110206123}
   - {fileID: 110279723}
+  - {fileID: 110283490}
+  - {fileID: 110258768}
+  - {fileID: 110205556}
+  - {fileID: 110299486}
+  - {fileID: 110275440}
+  - {fileID: 110282675}
+  - {fileID: 110265158}
+  - {fileID: 110202244}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
