@@ -53,6 +53,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
                 Vector3 newPatrolPointPosition = new Vector3(stateMachine.owner.transform.position.x + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
                                                              stateMachine.owner.transform.position.y + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
                                                              stateMachine.owner.transform.position.z);
+                Debug.Log("_patrolPoint: " + _patrolPoint.transform.position);
                 _patrolPoint.transform.position = newPatrolPointPosition;
                 _pathFinding.UpdateTarget(_patrolPoint);
                 _currentPathPatroltime = 0f;

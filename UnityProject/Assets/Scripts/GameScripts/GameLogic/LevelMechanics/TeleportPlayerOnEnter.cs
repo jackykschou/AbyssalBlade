@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
         public Transform TeleportDestination;
 
         [GameScriptEvent(Constants.GameScriptEvent.OnPhysicsBodyOnTriggerStay2D)]
-        public void TeleportPlayer()
+        public void TeleportPlayer(Collider2D coll)
         {
             GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(TeleportDestination.position.x, TeleportDestination.position.y, GameManager.Instance.PlayerMainCharacter.transform.position.z);
         }

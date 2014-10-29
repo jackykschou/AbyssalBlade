@@ -13,7 +13,10 @@ namespace Assets.Scripts.GameScripts.GameViews
         {
             base.FirstTimeInitialize();
             _render = GetComponent<SpriteRenderer>();
-            _render.sortingLayerName = SortingLayerConstants.SortingLayerNames.CharacterLayer;
+            if (_render.sortingLayerName == SortingLayerConstants.SortingLayerNames.Default)
+            {
+                _render.sortingLayerName = SortingLayerConstants.SortingLayerNames.CharacterLayer;
+            }
         }
 
         protected override void Initialize()

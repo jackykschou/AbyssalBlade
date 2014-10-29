@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Constants;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Constants;
 using Assets.Scripts.Utility;
 using UnityEditor;
 
@@ -12,6 +13,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner.Editor
             PrefabSpawner spawner = (PrefabSpawner)target;
 
             spawner.LabelName = EditorGUILayout.TextField("Label Name", spawner.LabelName);
+
+            if (spawner.Prefabs == null)
+            {
+                spawner.Prefabs = new List<Prefab>();
+            }
 
             spawner.Prefabs.Resize(EditorGUILayout.IntField("Prefabs Size", spawner.Prefabs.Count));
 
