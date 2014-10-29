@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Assets.Scripts.Utility;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders.Editor

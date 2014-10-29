@@ -29,6 +29,9 @@ GameObject:
   - 50: {fileID: 5000002}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400112}
+  - 114: {fileID: 11400114}
+  - 114: {fileID: 11400118}
+  - 114: {fileID: 11400116}
   m_Layer: 11
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -392,11 +395,15 @@ MonoBehaviour:
   - {fileID: 11400050}
   - {fileID: 11400100}
   - {fileID: 11400098}
+  - {fileID: 11400118}
+  - {fileID: 11400116}
   _animationSkillEffectsActivateTime:
   - .100000001
   - 0
   - .449999988
   - .100000001
+  - .100000001
+  - .449999988
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -851,7 +858,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7064223e3c1e7974fa8a1cf426eb9df2, type: 3}
   m_Name: 
@@ -1214,6 +1221,51 @@ MonoBehaviour:
   LabelName: 
   SkillEffect: {fileID: 0}
   Chance: .400000006
+--- !u!114 &11400114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddffe9254782bfa44905046bf21ca695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  RayCastPhysicalLayers: 0a0000000f0000000e000000
+  Range: 8
+--- !u!114 &11400116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30951944a2590ab44adb6b8f94ce1194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Script: {fileID: 11400072}
+--- !u!114 &11400118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6ebdc04856c2144b6b64aa374944d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Script: {fileID: 11400072}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
