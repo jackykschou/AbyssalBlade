@@ -28,7 +28,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner.Editor
 
             if (spawner.Prefabs == null)
             {
-                return;
+                spawner.Prefabs = new List<Prefab>();
             }
 
             if (spawner.Prefabs.Count != spawner.SpawnPickWeights.Count)

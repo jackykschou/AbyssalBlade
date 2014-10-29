@@ -23,7 +23,8 @@ namespace Assets.Scripts.Constants
         BossMissleExplosion = 15,
         BossMissle = 16,
         GreenRangeEnemy = 17,
-        GreenRangeEnemyProjectile = 18
+        GreenRangeEnemyProjectile = 18,
+        RegenStoneEnemy = 19
     };
 
     public class PrefabConstants
@@ -52,7 +53,8 @@ namespace Assets.Scripts.Constants
             {Prefab.BossMissleExplosion, "Prefabs/PreloadedPrefab/Projectile/BossMissleExplosion"},
             {Prefab.BossMissle, "Prefabs/PreloadedPrefab/Projectile/BossMissle"},
             {Prefab.GreenRangeEnemy, "Prefabs/PreloadedPrefab/Character/GreenSmallRangeEnemy"},
-            {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"}
+            {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"},
+            {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"}
         };
 
         public static string GetPrefabName(Prefab prefab)
