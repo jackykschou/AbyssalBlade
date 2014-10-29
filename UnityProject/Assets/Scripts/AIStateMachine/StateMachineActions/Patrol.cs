@@ -28,6 +28,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
             if (_patrolPoint == null)
 		    {
 		        _patrolPoint = new GameObject();
+		        _patrolPoint.transform.parent = stateMachine.owner.transform;
 		    }
             if (_pathFinding == null)
             {

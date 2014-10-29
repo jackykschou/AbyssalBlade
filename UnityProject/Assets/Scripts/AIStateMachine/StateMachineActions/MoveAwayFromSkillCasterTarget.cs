@@ -1,4 +1,3 @@
-using System;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.AILogic;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
@@ -27,6 +26,7 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
             if (_movePoint == null)
             {
                 _movePoint = new GameObject();
+                _movePoint.transform.parent = stateMachine.owner.transform;
             }
             if (_pathFinding == null)
             {

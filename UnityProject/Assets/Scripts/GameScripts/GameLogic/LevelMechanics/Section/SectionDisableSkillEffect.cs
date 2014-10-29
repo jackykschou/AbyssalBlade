@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 using GameEvent = Assets.Scripts.Constants.GameEvent;
