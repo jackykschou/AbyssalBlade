@@ -4,13 +4,13 @@ using Assets.Scripts.Constants;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 {
-    [AddComponentMenu("Skill/SkillEffect/PlaySoundEffect")]
-    public class PlaySoundEffect : SkillEffect
+    [AddComponentMenu("Skill/SkillEffect/PlaySoundCue")]
+    public class PlaySoundCue : SkillEffect
     {
-        public ClipName clip;
+        public CueName Cue;
 
         [Range(0.0f, 1.0f)]
-        public float volume = 1.0f;
+        public float Volume = 1.0f;
 
         public override void Activate()
         {
@@ -21,7 +21,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
 
         public void PlaySound()
         {
-            AudioManager.Instance.PlayClip(clip,this.gameObject,volume);
+            AudioManager.Instance.PlayCue(Cue, this.gameObject, Volume);
         }
     }
 }
