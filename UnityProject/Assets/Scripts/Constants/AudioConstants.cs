@@ -67,7 +67,6 @@ namespace Assets.Scripts.Constants
         Dog_Attack          = 40,
         Dog_Attack_2        = 41,
         Dog_Attack_3        = 42,
-        Dog_Attack_4        = 43,
         Dog_Death           = 44,
         Dog_Death_2         = 45,
         Dog_Death_3         = 46,
@@ -248,7 +247,7 @@ namespace Assets.Scripts.Constants
         public static string GetClipName(ClipName name)
         {
             if (!AudioClipNames.ContainsKey(name))
-                throw new Exception("Clip is not defined");
+                throw new Exception("Clip is not defined" + name);
             return AudioClipNames[name];
         }
 
@@ -262,7 +261,7 @@ namespace Assets.Scripts.Constants
         public static string GetLoopName(LoopName name)
         {
             if (!AudioLoopNames.ContainsKey(name))
-                throw new Exception("Loop is not defined");
+                throw new Exception("Loop is not defined" + name);
             return AudioLoopNames[name];
         }
     }
