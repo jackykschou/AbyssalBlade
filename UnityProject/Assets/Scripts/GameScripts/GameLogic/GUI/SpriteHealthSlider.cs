@@ -15,6 +15,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             _slider = gameObject.GetComponentInChildren<Slider>();
             _slider.targetGraphic.enabled = true;
             _slider.value = 1.0f;
+            HealthSliderImage.color = Color.green;
         }
 
         protected override void Deinitialize()

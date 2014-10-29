@@ -31,6 +31,7 @@
         OnPlayerDashButtonPressed,    // void()
         OnPlayerDeath,
 
-        ShakeCamera                     // void(float, float)
+        ShakeCamera,                     // void(float, float)
+        SetCameraWidth                  // void(float)
      };
 }
