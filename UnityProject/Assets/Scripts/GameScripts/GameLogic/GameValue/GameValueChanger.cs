@@ -55,7 +55,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         {
             get
             {
-                LastAmountCrited = MathUtility.RollChance(CriticalChance);
+                LastAmountCrited = UtilityFunctions.RollChance(CriticalChance);
                 float amount = _amount * (LastAmountCrited ? CriticalPercentage : 1.0f);
                 return amount + Random.Range(-amount * AmountVariantPercentage, amount * AmountVariantPercentage);
             }

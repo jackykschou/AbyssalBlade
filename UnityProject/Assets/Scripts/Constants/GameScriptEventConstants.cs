@@ -6,26 +6,23 @@
 #if DEBUG
         Example, // void()
 #endif
-        PlayerAxisMoved,                        // void(Vector2)
-        UpdatePlayerAxis,                       // void(Vector2)
-        PlayerAttack1ButtonPressed,             // void()
-        PlayerAttack2ButtonPressed,             // void()
-        PlayerAttack3ButtonPressed,             // void()
-        PlayerAttack4ButtonPressed,             // void()
-        PlayerDashButtonPressed,                // void()
+        UpdateProjectileDirection,              // void(Vector2)
+        UpdateProjectileTarget,                 // void(Transform)
+        ShootProjectile,                        // void()
+        OnProjectileArriveDestination,          // void(Vector2)
 
         UpdateFacingDirection,                  // void(FacingDirection)
+        UpdateMoveDirection,                    // void(Vector2)
 
         SetAnimatorBoolState,                   // void(string)
         SetAnimatorFloatState,                  // void(string, int)
         
-        AIRotateToTarget,                       // void()
-        AICastSkill,                            // void()
-        AIMove,                                 // void(Vector2)
-
-        CharacterMove,                          // void(Vector2)
+        CharacterRigidMove,                     // void(Vector2)
+        CharacterNonRigidMove,                  // void(Vector2)
         OnCharacterMove,                        // void(Vector2)
         PushCharacter,                          // void(vector2, float)
+
+        RotateTowardsTarget,                     // void()
 
         SkillCastTriggerSucceed,                // void(Skill)
         SkillCastTriggerFailed,                 // void(Skill)
@@ -44,8 +41,8 @@
         OnCharacterInterrupted,                 // void()
         OnCharacterKnockBacked,                 // void(Vector2, float)
         ObjectChangeHealth,                     // void(GameValueChanger)
-        OnObjectTakeDamage,                     // void(float, bool)
-        OnObjectTakeHeal,                       // void(float)
+        OnObjectTakeDamage,                     // void(float, bool, GameValue.GameValue)
+        OnObjectTakeHeal,                       // void(float, bool, GameValue.GameValue)
         OnPhysicsBodyOnTriggerEnter2D,          // void(Collider2D)
         OnPhysicsBodyOnTriggerStay2D,           // void(Collider2D)
         OnPhysicsBodyOnTriggerExit2D,           // void(Collider2D)

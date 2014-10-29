@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Utility;
 using UnityEditor;
+using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers.Editor
 {
@@ -10,6 +11,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers.Editor
         public override void OnInspectorGUI()
         {
             TargetEffectApplier applier = (TargetEffectApplier)target;
+
+            applier.LabelName = EditorGUILayout.TextField("Label Name", applier.LabelName);
+
+            applier.HasApplyCoolDown = EditorGUILayout.Toggle("Has Apply Cool Down", applier.HasApplyCoolDown);
+            if (applier.HasApplyCoolDown)
+            {
+                applier.ApplyCooldown = EditorGUILayout.FloatField("Apply Cooldown", applier.ApplyCooldown);
+                applier.ApplyCooldown = Mathf.Clamp(applier.ApplyCooldown, 0f, float.MaxValue);
+            }
 
             if (applier.TargetTags == null)
             {

@@ -13,9 +13,12 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
 	{
         [FieldInfo(tooltip = "Maxium time allowed of a patrol path before renewing a new path")]
         public FloatParameter MaxiumSinglePathTime;
-        [FieldInfo(tooltip = "Radius within which the patrol point is allowed to chose from")]
-        public FloatParameter PatrolPointSelectionRadius;
+        [FieldInfo(tooltip = "Maximum Radius within which the patrol point is allowed to chose from")]
+        public FloatParameter MaximumPatrolPointSelectionRadius;
+        [FieldInfo(tooltip = "Minimum Radius within which the patrol point is allowed to chose from")]
+        public FloatParameter MinimumPatrolPointSelectionRadius;
 
+	    private PathFinding _pathFinding;
 	    private float _currentPathPatroltime;
 	    private GameObject _patrolPoint;
 
@@ -25,10 +28,15 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
             if (_patrolPoint == null)
 		    {
 		        _patrolPoint = new GameObject();
+		        _patrolPoint.transform.parent = stateMachine.owner.transform;
 		    }
+            if (_pathFinding == null)
+            {
+                _pathFinding = stateMachine.owner.GetComponent<PathFinding>();
+            }
 		}
 
-		public override void OnUpdate()
+	    public override void OnUpdate()
 		{
 		}
 
@@ -41,28 +49,27 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions{
                 return;
             }
 
-            PathFinding pathfinding = stateMachine.owner.GetComponent<PathFinding>();
-
-            if (_currentPathPatroltime >= MaxiumSinglePathTime || !pathfinding.CurrentPathReachable || _patrolPoint || (Vector2.Distance(_patrolPoint.transform.position, stateMachine.owner.transform.position) <= 0.5f))
+            if (_currentPathPatroltime >= MaxiumSinglePathTime || !_pathFinding.CurrentPathReachable || (Vector2.Distance(_patrolPoint.transform.position, stateMachine.owner.transform.position) <= 0.5f))
             {
-                Vector3 newPatrolPointPosition = new Vector3(stateMachine.owner.transform.position.x + Random.Range(-PatrolPointSelectionRadius, PatrolPointSelectionRadius), 
-                    stateMachine.owner.transform.position.y + Random.Range(-PatrolPointSelectionRadius, PatrolPointSelectionRadius),
-                    stateMachine.owner.transform.position.z);
+                Vector3 newPatrolPointPosition = new Vector3(stateMachine.owner.transform.position.x + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
+                                                             stateMachine.owner.transform.position.y + Random.Range(MinimumPatrolPointSelectionRadius, MaximumPatrolPointSelectionRadius) * (UtilityFunctions.RollChance(0.5f) ? 1 : -1),
+                                                             stateMachine.owner.transform.position.z);
+                Debug.Log("_patrolPoint: " + _patrolPoint.transform.position);
                 _patrolPoint.transform.position = newPatrolPointPosition;
-                pathfinding.UpdateTarget(_patrolPoint);
+                _pathFinding.UpdateTarget(_patrolPoint);
                 _currentPathPatroltime = 0f;
             }
 
-            pathfinding.TrySearchPath();
+            _pathFinding.TrySearchPath();
 
-	        Vector2 moveDirection = pathfinding.GetMoveDirection();
+            Vector2 moveDirection = _pathFinding.GetMoveDirection();
 
-            if ((moveDirection == Vector2.zero) || !pathfinding.CurrentPathReachable)
+            if ((moveDirection == Vector2.zero) || !_pathFinding.CurrentPathReachable)
             {
                 return;
             }
 
-            pathfinding.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, moveDirection);
+            stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.CharacterNonRigidMove, moveDirection);
 	    }
 	}
 }

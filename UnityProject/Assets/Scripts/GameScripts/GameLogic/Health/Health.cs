@@ -48,11 +48,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (changedAmount <= 0f)
             {
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited);
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited, HitPoint);
             }
             else
             {
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount));
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount), crited, HitPoint);
             }
 
             if (HitPoint <= 0f)

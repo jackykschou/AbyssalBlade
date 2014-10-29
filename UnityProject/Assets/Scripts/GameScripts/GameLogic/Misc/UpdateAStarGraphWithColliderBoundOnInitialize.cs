@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
     [RequireComponent(typeof(Collider2D))]
+    [AddComponentMenu("Misc/UpdateAStarGraphWithColliderBoundOnInitialize")]
     public class UpdateAStarGraphWithColliderBoundOnInitialize : GameLogic
     {
         private GraphUpdateObject _guo;

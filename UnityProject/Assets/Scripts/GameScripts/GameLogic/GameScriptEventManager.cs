@@ -13,7 +13,10 @@ namespace Assets.Scripts.GameScripts.GameLogic
         private List<GameScript> _gameScripts;
         public bool Initialized 
         {
-            get { return _initialized && _gameScriptsInitialized; }
+            get
+            {
+                return _initialized && _gameScriptsInitialized;
+            }
         }
 
         public bool Disabled
@@ -21,7 +24,8 @@ namespace Assets.Scripts.GameScripts.GameLogic
             get { return _gameScripts.Any(s => s.Disabled); }
         }
 
-        private bool _gameScriptsInitialized;
+        private bool _gameScriptsInitialized = false;
+        private bool _firstTimeInitialized = false;
         private bool _initialized = false;
         private bool _deinitialized = false;
 
@@ -38,33 +42,11 @@ namespace Assets.Scripts.GameScripts.GameLogic
                 {
                     foreach (var pair in value[gameScriptEvent])
                     {
-                        pair.Value.ForEach(m => m.Invoke(pair.Key, args));
+                        if (pair.Key.Initialized)
+                        {
+                            pair.Value.ForEach(m => m.Invoke(pair.Key, args));
+                        }
                     }
-                }
-            }
-        }
-
-        public void TriggerGameScriptEvent<T>(Constants.GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
-        {
-            foreach (var typeDictPair in _gameScriptEvents)
-            {
-                if ((typeof(T) == (typeDictPair.Key) || typeDictPair.Key.IsSubclassOf(typeof(T))) && typeDictPair.Value.ContainsKey(gameScriptEvent))
-                {
-                    foreach (var gameScriptMethodsPair in typeDictPair.Value[gameScriptEvent])
-                    {
-                        gameScriptMethodsPair.Value.ForEach(m => m.Invoke(gameScriptMethodsPair.Key, args));
-                    }
-                }
-            }
-        }
-
-        public void TriggerGameScriptEvent(GameScript gameScript, Constants.GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            if (ContainGameScriptEvent(gameScript, gameScriptEvent))
-            {
-                foreach (var m in _gameScriptEvents[gameScript.GetType()][gameScriptEvent][gameScript])
-                {
-                    m.Invoke(gameScript, args);
                 }
             }
         }
@@ -96,8 +78,12 @@ namespace Assets.Scripts.GameScripts.GameLogic
                 return;
             }
 
-            _gameScriptEvents = new Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>>();
-            _gameScripts = GetComponents<GameScript>().ToList();
+            if (!_firstTimeInitialized)
+            {
+                _gameScriptEvents = new Dictionary<Type, Dictionary<Constants.GameScriptEvent, Dictionary<GameScript, List<MethodInfo>>>>();
+                _gameScripts = GetComponents<GameScript>().ToList();
+                _firstTimeInitialized = true;
+            }
             _initialized = true;
             _deinitialized = false;
         }
@@ -124,6 +110,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
                 return;
             }
 
+            _gameScriptsInitialized = false;
             _initialized = false;
             _deinitialized = true;
         }

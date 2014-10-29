@@ -11,8 +11,8 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   - 114: {fileID: 11400008}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: MovementSkill
   m_TagString: Untagged
@@ -65,6 +65,11 @@ GameObject:
   - 114: {fileID: 11400180}
   - 114: {fileID: 11400184}
   - 114: {fileID: 11400194}
+  - 114: {fileID: 11400210}
+  - 114: {fileID: 11400208}
+  - 114: {fileID: 11400206}
+  - 114: {fileID: 11400214}
+  - 114: {fileID: 11400212}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -144,6 +149,8 @@ GameObject:
   - 114: {fileID: 11400164}
   - 114: {fileID: 11400188}
   - 114: {fileID: 11400200}
+  - 114: {fileID: 11400218}
+  - 114: {fileID: 11400216}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -179,7 +186,6 @@ GameObject:
   - 114: {fileID: 11400056}
   - 114: {fileID: 11400066}
   - 114: {fileID: 11400058}
-  - 114: {fileID: 11400060}
   - 114: {fileID: 11400062}
   - 114: {fileID: 11400046}
   - 114: {fileID: 11400044}
@@ -187,6 +193,8 @@ GameObject:
   - 114: {fileID: 11400156}
   - 114: {fileID: 11400190}
   - 114: {fileID: 11400202}
+  - 114: {fileID: 11400220}
+  - 114: {fileID: 11400060}
   m_Layer: 0
   m_Name: StrongMelee
   m_TagString: Untagged
@@ -221,7 +229,6 @@ GameObject:
   - 114: {fileID: 11400082}
   - 114: {fileID: 11400080}
   - 114: {fileID: 11400078}
-  - 114: {fileID: 11400076}
   - 114: {fileID: 11400074}
   - 114: {fileID: 11400162}
   - 114: {fileID: 11400160}
@@ -235,6 +242,7 @@ GameObject:
   - 114: {fileID: 11400192}
   - 114: {fileID: 11400196}
   - 114: {fileID: 11400204}
+  - 114: {fileID: 11400076}
   m_Layer: 14
   m_Name: MainCharacter
   m_TagString: Player
@@ -271,7 +279,6 @@ GameObject:
   - 114: {fileID: 11400110}
   - 114: {fileID: 11400120}
   - 114: {fileID: 11400116}
-  - 114: {fileID: 11400114}
   - 114: {fileID: 11400150}
   - 114: {fileID: 11400148}
   - 114: {fileID: 11400118}
@@ -280,6 +287,7 @@ GameObject:
   - 114: {fileID: 11400154}
   - 114: {fileID: 11400186}
   - 114: {fileID: 11400198}
+  - 114: {fileID: 11400114}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -512,7 +520,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69546c09ef1a3cc48b5f8efb3b46de43, type: 3}
+  m_Script: {fileID: 11500000, guid: 311de525b09ef0b4ba33a09c9a29a748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
@@ -579,11 +587,11 @@ MonoBehaviour:
   Movable: 1
   _skillEffects:
   - {fileID: 11400128}
-  - {fileID: 11400142}
+  - {fileID: 11400208}
   - {fileID: 11400050}
   - {fileID: 11400012}
   - {fileID: 11400136}
-  - {fileID: 11400140}
+  - {fileID: 11400206}
   _proSkillEffects:
   - {fileID: 11400130}
   _skillEffectsOrder: 000000000100000002000000030000000300000004000000
@@ -628,6 +636,9 @@ MonoBehaviour:
   Prefabs: 05000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 100000
   SpawnChance: 1
@@ -662,6 +673,7 @@ MonoBehaviour:
   - {fileID: 11400134}
   PrefabSpawner: {fileID: 11400014}
   Position: {fileID: 11400184}
+  ShootAngle: 0
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,7 +816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   IsActivate: 0
-  OnceAtATime: 1
+  OnceAtATime: 0
   IsPassive: 0
   Movable: 0
   _skillEffects:
@@ -845,7 +857,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: Skill1
-  _animationDuration: .300000012
+  _animationDuration: .5
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
@@ -869,9 +881,11 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   TargetPhysicalLayers: 0d000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
-  KnockBackSpeed: 10
+  KnockBackSpeed: 20
   Time: .200000003
 --- !u!114 &11400046
 MonoBehaviour:
@@ -889,6 +903,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d000000100000000f000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400202}
@@ -987,14 +1003,16 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: Skill3
-  _animationDuration: 1
+  _animationDuration: .600000024
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
   - {fileID: 11400060}
   - {fileID: 11400144}
+  - {fileID: 11400220}
   _animationSkillEffectsActivateTime:
   - 0
+  - .5
   - .5
 --- !u!114 &11400060
 MonoBehaviour:
@@ -1004,14 +1022,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  clip: 34
-  volume: 1
+  Cue: 13
+  Volume: 1
 --- !u!114 &11400062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1033,7 +1051,7 @@ MonoBehaviour:
   - {fileID: 11400046}
   - {fileID: 11400044}
   Targets: []
-  Radius: 4
+  Radius: 3
 --- !u!114 &11400064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1050,6 +1068,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400200}
@@ -1132,12 +1152,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69b16d40545ede74dab4395fb43132c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bad07ae872926648a86322fb35c8ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  clip: 3
-  volume: 1
+  Cue: 12
+  Volume: 1
 --- !u!114 &11400078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1204,6 +1224,9 @@ MonoBehaviour:
   Prefabs: 01000000
   SpawnPickWeights:
   - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 100000
   SpawnChance: 1
@@ -1219,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  clip: 6
+  Clip: 0
   volume: .680999994
 --- !u!114 &11400090
 MonoBehaviour:
@@ -1270,6 +1293,7 @@ MonoBehaviour:
   Skill4: {fileID: 11400010}
   Dash: {fileID: 11400026}
   TargetHolder: {fileID: 11400192}
+  Direction: {x: 0, y: 0}
 --- !u!114 &11400096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1409,6 +1433,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400198}
@@ -1420,14 +1446,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  clip: 12
-  volume: .200000003
+  Cue: 7
+  Volume: 1
 --- !u!114 &11400116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1506,7 +1532,7 @@ MonoBehaviour:
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  clip: 10
+  clip: 82
   volume: 1
 --- !u!114 &11400128
 MonoBehaviour:
@@ -1609,8 +1635,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400142
 MonoBehaviour:
@@ -1624,8 +1655,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400144
 MonoBehaviour:
@@ -1679,7 +1715,7 @@ MonoBehaviour:
   - {fileID: 11400152}
   Targets: []
   Range: 20
-  RayAngleRandomness: 40
+  RayAngleRandomness: 45
 --- !u!114 &11400150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1695,7 +1731,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   SkillEffect: {fileID: 11400118}
-  RepeatTime: 8
+  RepeatTime: 12
   RepeatCooldown: 0
 --- !u!114 &11400152
 MonoBehaviour:
@@ -1713,6 +1749,8 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 5
@@ -1742,7 +1780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 10
+  DispatchInterval: 8
 --- !u!114 &11400158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2097,7 +2135,7 @@ MonoBehaviour:
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -50
+  _amount: -40
   AmountVariantPercentage: 0
   ChangeDuration: 0
   ChangeInterval: 1
@@ -2120,6 +2158,133 @@ MonoBehaviour:
   InitialValue: 10
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
+--- !u!114 &11400206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SpeedUnchange
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400212}
+--- !u!114 &11400208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SpeedChange
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400214}
+--- !u!114 &11400210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SelfFinderIndicator
+  Follower: {fileID: 0}
+  Position: {fileID: 400020}
+--- !u!114 &11400212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a026caf44bb0340a4d0a9e05d8fbde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: UnchangeSpeed
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition: {fileID: 11400210}
+  TargetEffectAppliers:
+  - {fileID: 11400140}
+  Targets: []
+  Target: {fileID: 100018}
+--- !u!114 &11400214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a026caf44bb0340a4d0a9e05d8fbde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: ChangeSpeed
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition: {fileID: 11400210}
+  TargetEffectAppliers:
+  - {fileID: 11400142}
+  Targets: []
+  Target: {fileID: 100018}
+--- !u!114 &11400216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SkillCoolDown
+  DispatchInterval: .300000012
+--- !u!114 &11400218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b2014cc0ccbef4f924020a9731f163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  CoolDownDispatcher: {fileID: 11400216}
+--- !u!114 &11400220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edcd0d3e5ac7af649938cc80f54c17d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  ShakeIntensity: .400000006
+  ShakeDuration: .400000006
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

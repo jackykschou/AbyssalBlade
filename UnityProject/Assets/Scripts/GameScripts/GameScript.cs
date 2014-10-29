@@ -19,6 +19,8 @@ namespace Assets.Scripts.GameScripts
         public string LabelName;
         public GameScriptEventManager GameScriptEventManager { get; set; }
 
+        private bool _firstTimeInitialized = false;
+
         public bool Initialized {
             get { return _initialized; }
         }
@@ -33,6 +35,10 @@ namespace Assets.Scripts.GameScripts
             get { return _disabled; }
         }
         private bool _disabled = false;
+
+        protected virtual void FirstTimeInitialize()
+        {
+        }
 
         protected abstract void Initialize();
 
@@ -54,69 +60,16 @@ namespace Assets.Scripts.GameScripts
                 yield return new WaitForSeconds(Time.deltaTime);
             }
 
-            GameScriptEventManager.TriggerGameScriptEvent(gameScriptEvent, args);
-
-            foreach (Transform t in transform)
-            {
-                foreach (var s in t.gameObject.GetComponents<GameScript>())
-                {
-                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
-                }
-            }
+            TriggerChildrenGameScriptEvent(gameObject, gameScriptEvent, args);
         }
 
-        public void TriggerGameScriptEvent<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
+        private void TriggerChildrenGameScriptEvent(GameObject child, GameScriptEvent gameScriptEvent, params object[] args)
         {
-            StartCoroutine(TriggerGameScriptEventIE(gameScriptEvent, args));
-        }
-
-        public IEnumerator TriggerGameScriptEventIE<T>(GameScriptEvent gameScriptEvent, params object[] args) where T : GameScript
-        {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
+            child.TriggerGameScriptEvent(gameScriptEvent, args);
+            foreach (Transform t in child.transform)
             {
-                yield return new WaitForSeconds(Time.deltaTime);
+                TriggerChildrenGameScriptEvent(t.gameObject, gameScriptEvent, args);
             }
-
-            GameScriptEventManager.TriggerGameScriptEvent<T>(gameScriptEvent, args);
-
-            foreach (Transform t in transform)
-            {
-                foreach (var s in t.gameObject.GetComponents<GameScript>())
-                {
-                    if (s is T)
-                    {
-                        s.TriggerGameScriptEvent(s, gameScriptEvent, args);
-                    }
-                }
-            }
-        }
-
-        public void TriggerGameScriptEvent(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            StartCoroutine(TriggerGameScriptEventIE(gameScript, gameScriptEvent, args));
-        }
-
-        public IEnumerator TriggerGameScriptEventIE(GameScript gameScript, GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
-            GameScriptEventManager.TriggerGameScriptEvent(gameScript, gameScriptEvent, args);
-
-            foreach (Transform t in transform)
-            {
-                foreach (var s in t.gameObject.GetComponents<GameScript>())
-                {
-                    s.TriggerGameScriptEvent(s, gameScriptEvent, args);
-                }
-            }
-        }
-
-        public void TriggerGameEvent(System.Object obj, GameEvent gameEvent, params System.Object[] args)
-        {
-            GameEventManager.Instance.TriggerGameEvent(obj, gameEvent, args);
         }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)
@@ -141,15 +94,25 @@ namespace Assets.Scripts.GameScripts
 
         void InitializeHelper()
         {
+
             if (_initialized)
             {
                 return;
             }
+            if (!_firstTimeInitialized)
+            {
+                InitializeFields();
+                SubscribeGameEvents();
+                FirstTimeInitialize();
+            }
 
-            InitializeFields();
-            SubscribeGameEvents();
             Initialize();
-            gameObject.CacheGameObject();
+
+            if (!_firstTimeInitialized)
+            {
+                gameObject.CacheGameObject();
+                _firstTimeInitialized = true;
+            }
             _deinitialized = false;
             _initialized = true;
             _disabled = false;
@@ -166,7 +129,7 @@ namespace Assets.Scripts.GameScripts
 
         public void DisableGameObject(float delay = 0f)
         {
-            if (!gameObject.activeSelf || _disabled || GameScriptEventManager.Disabled)
+            if (!gameObject.activeSelf || _disabled)
             {
                 return;
             }
@@ -195,13 +158,21 @@ namespace Assets.Scripts.GameScripts
 
         public void ImmediateDisableGameObject()
         {
-            if (!gameObject.activeSelf || _disabled || GameScriptEventManager.Disabled)
+            if (!gameObject.activeSelf || _disabled)
             {
                 return;
             }
 
             _disabled = true;
-            PrefabManager.Instance.DespawnPrefab(gameObject);
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
+            if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
+            {
+                PrefabManager.Instance.DespawnPrefab(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         void OnDespawned()
@@ -226,9 +197,13 @@ namespace Assets.Scripts.GameScripts
                 return;
             }
 
-            UnsubscribeGameEvents();
+            if (_disabled && !PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
+            {
+                UnsubscribeGameEvents();
+                gameObject.UncacheGameObject();
+            }
+
             Deinitialize();
-            gameObject.UncacheGameObject();
             _initialized = false;
             _deinitialized = true;
         }

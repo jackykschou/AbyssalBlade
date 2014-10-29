@@ -8,12 +8,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     {
         public Collider2D BlockCollider;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
+            base.FirstTimeInitialize();
             base.Initialize();
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.StaticObstacle);
             BlockCollider = GetComponent<Collider2D>();
             BlockCollider.isTrigger = false;
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
             LockGate();
         }
 

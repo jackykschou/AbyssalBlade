@@ -13,8 +13,7 @@
             public const string DestroyableObstacle = "DestroyableObstacle";
             public const string InvisibleWall = "InvisibleWall";
             public const string SpawnArea = "SpawnArea";
-            public const string SectionActivateArea = "SectionActivateArea";
-            public const string LeaveLevelArea = "LeaveLevelArea";
+            public const string PlayerInteractiveArea = "PlayerInteractiveArea";
             public const string PlayerPickUp = "PlayerPickUp";
         }
 
@@ -67,14 +66,9 @@
                 get { return UnityEngine.LayerMask.GetMask(LayerNames.SpawnArea); }
             }
 
-            public static int SectionActivateArea
+            public static int PlayerInteractiveArea
             {
-                get { return UnityEngine.LayerMask.GetMask(LayerNames.SectionActivateArea); }
-            }
-
-            public static int LeaveLevelArea
-            {
-                get { return UnityEngine.LayerMask.GetMask(LayerNames.LeaveLevelArea); }
+                get { return UnityEngine.LayerMask.GetMask(LayerNames.PlayerInteractiveArea); }
             }
 
             public static int PlayerPickUp

@@ -5,19 +5,26 @@ namespace Assets.Scripts.Constants
 {
     public enum Prefab
     {
-        Projectile,
-        DamageText,
-        StoneEnemy,
-        TutorialLevel,
-        MainMenu,
-        Projectile2,
-        MessageText,
-        SimpleLightMeleeEnemy,
-        SimpleRangeEnemy,
-        EnemyProjectile,
-        MainLevelArea1,
-        HealthPotion,
-        MainLevelArea2
+        Projectile = 0,
+        DamageText = 1,
+        StoneEnemy = 2,
+        TutorialLevel = 3,
+        MainMenu = 4,
+        Projectile2 = 5,
+        MessageText = 6,
+        SimpleLightMeleeEnemy = 7,
+        SimpleRangeEnemy = 8,
+        EnemyProjectile = 9,
+        MainLevelArea1 = 10,
+        HealthPotion = 11,
+        MainLevelArea2 = 12,
+        Boss1 = 13,
+        BossLevel = 14,
+        BossMissleExplosion = 15,
+        BossMissle = 16,
+        GreenRangeEnemy = 17,
+        GreenRangeEnemyProjectile = 18,
+        RegenStoneEnemy = 19
     };
 
     public class PrefabConstants
@@ -40,7 +47,14 @@ namespace Assets.Scripts.Constants
             {Prefab.EnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/EnemyProjectile"},
             {Prefab.MainLevelArea1, "Prefabs/MainLevelArea1"},
             {Prefab.HealthPotion, "Prefabs/PreloadedPrefab/PowerUp/HealthPotion"},
-            {Prefab.MainLevelArea2, "Prefabs/MainLevelArea2"}
+            {Prefab.MainLevelArea2, "Prefabs/MainLevelArea2"},
+            {Prefab.Boss1, "Prefabs/Character/BossEnemy"},
+            {Prefab.BossLevel, "Prefabs/BossLevel"},
+            {Prefab.BossMissleExplosion, "Prefabs/PreloadedPrefab/Projectile/BossMissleExplosion"},
+            {Prefab.BossMissle, "Prefabs/PreloadedPrefab/Projectile/BossMissle"},
+            {Prefab.GreenRangeEnemy, "Prefabs/PreloadedPrefab/Character/GreenSmallRangeEnemy"},
+            {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"},
+            {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"}
         };
 
         public static string GetPrefabName(Prefab prefab)

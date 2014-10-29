@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -11,13 +12,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
     {
         public Transform Target;
 
+        private SkillCaster _skillCaster;
+
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            _skillCaster = GetComponent<SkillCaster>();
+        }
+
         [GameScriptEventAttribute(GameScriptEvent.OnNewTargetDiscovered)]
         public void UpdateTarget(GameObject target)
         {
             Target = target.transform;
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.AIRotateToTarget)]
+        [GameScriptEventAttribute(GameScriptEvent.RotateTowardsTarget)]
         public void RotateTowardsTarget()
         {
             if (Target == null)
@@ -25,7 +34,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
                 return;
             }
 
-            FacingDirection newDirection = MathUtility.GetDirection(transform.position, Target.position).GetFacingDirection();
+            if (_skillCaster != null && _skillCaster.CastingActiveSkill)
+            {
+                return;
+            }
+
+            FacingDirection newDirection = UtilityFunctions.GetDirection(transform.position, Target.position).GetFacingDirection();
             if (newDirection != GameView.FacingDirection)
             {
                 TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);

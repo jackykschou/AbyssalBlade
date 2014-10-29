@@ -2,7 +2,6 @@
 using Assets.Scripts.Constants;
 using Assets.Scripts.Utility;
 using UnityEngine;
-using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
@@ -15,15 +14,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
     {
         private const float DecelerationRate = 0.95f;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             rigidbody2D.isKinematic = false;
             rigidbody2D.fixedAngle = true;
         }
 
-        [GameScriptEvent(GameScriptEvent.CharacterMove)]
-        public void MoveCharacter(Vector2 direction)
+        [GameScriptEvent(GameScriptEvent.CharacterRigidMove)]
+        public void MoveCharacterRigid(Vector2 direction)
         {
             direction = direction.normalized;
             FacingDirection newDirection = direction.GetFacingDirection();
@@ -33,6 +32,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor
             }
             TriggerGameScriptEvent(GameScriptEvent.OnCharacterMove, direction);
             RigidMove(direction, Speed);
+        }
+
+        [GameScriptEvent(GameScriptEvent.CharacterNonRigidMove)]
+        public void MoveCharacterNonRigid(Vector2 direction)
+        {
+            direction = direction.normalized;
+            FacingDirection newDirection = direction.GetFacingDirection();
+            if (newDirection != GameView.FacingDirection)
+            {
+                TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
+            }
+            TriggerGameScriptEvent(GameScriptEvent.OnCharacterMove, direction);
+            transform.Translate(direction * Speed * Time.fixedDeltaTime);
         }
 
         public void RigidMove(Vector2 direction, float speed)

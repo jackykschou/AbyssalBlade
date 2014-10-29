@@ -10,12 +10,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
     {
         protected Collider2D Collider;
         protected Rigidbody2D Rigidbody;
-        protected override void Initialize()
+
+        protected override void FirstTimeInitialize()
         {
+            base.FirstTimeInitialize();
             Collider = GetComponent<Collider2D>();
             Rigidbody = GetComponent<Rigidbody2D>();
             rigidbody2D.gravityScale = 0f;
             Rigidbody.fixedAngle = true;
+        }
+
+        protected override void Initialize()
+        {
             Collider.enabled = true;
         }
 

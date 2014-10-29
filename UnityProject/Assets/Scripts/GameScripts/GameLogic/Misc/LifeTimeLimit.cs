@@ -12,7 +12,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         protected override void Initialize()
         {
             base.Initialize();
-            gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.Projectile);
             DisableGameObject(LifeTime);
         }
 

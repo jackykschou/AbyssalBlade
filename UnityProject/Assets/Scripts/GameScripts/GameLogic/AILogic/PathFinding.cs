@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Attributes;
+using Assets.Scripts.Utility;
 using Pathfinding;
 using Pathfinding.RVO;
 using UnityEngine;
@@ -51,9 +52,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
                 {
                     return false;
                 }
-                GraphNode node1 = (GraphNode)AstarPath.active.GetNearest(transform.position, NNConstraint.Default);
-                GraphNode node2 = (GraphNode)AstarPath.active.GetNearest(Target.position, NNConstraint.Default);
-                return PathUtilities.IsPathPossible(node1, node2);
+                return UtilityFunctions.LocationPathFindingReachable(transform.position, Target.position);
             }       
         }
 
@@ -65,9 +64,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
                 {
                     return false;
                 }
-                GraphNode node1 = (GraphNode)AstarPath.active.GetNearest(Target.position, NNConstraint.Default);
-                GraphNode node2 = (GraphNode)AstarPath.active.GetNearest(path.vectorPath[currentWaypointIndex], NNConstraint.Default);
-                return PathUtilities.IsPathPossible(node1, node2);
+                return UtilityFunctions.LocationPathFindingReachable(Target.position, path.vectorPath[currentWaypointIndex]);
             }
         }
 
@@ -77,36 +74,27 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             Target = target.transform;
         }
 
-        public void UpdateTargetWithTransform(Transform target)
-        {
-            Target = target.transform;
-        }
-
         public Vector3 GetMoveDirection()
         {
-            if (!PathFindEnabled)
-            {
-                Debug.LogWarning("Pathing find is not enabled");
-            }
-
             return CalculateVelocity(GetFeetPosition()).normalized;
+        }
+
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            seeker = GetComponent<Seeker>();
+            tr = transform;
+            controller = GetComponent<CharacterController>();
+            navController = GetComponent<NavmeshController>();
+            rvoController = GetComponent<RVOController>();
+            rigid = rigidbody;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            seeker = GetComponent<Seeker>();
-
-            //This is a simple optimization, cache the transform component lookup
-            tr = transform;
-
-            //Cache some other components (not all are necessarily there)
-            controller = GetComponent<CharacterController>();
-            navController = GetComponent<NavmeshController>();
-            rvoController = GetComponent<RVOController>();
             if (rvoController != null) rvoController.enableRotation = false;
-            rigid = rigidbody;
 
             EnablePathFind();
         }
@@ -431,7 +419,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
             if (path == null || path.vectorPath == null || path.vectorPath.Count == 0) return Vector3.zero;
 
             List<Vector3> vPath = path.vectorPath;
-            //Vector3 currentPosition = GetFeetPosition();
 
             if (vPath.Count == 1)
             {
@@ -468,7 +455,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.AILogic
 
             Vector3 dir = vPath[currentWaypointIndex] - vPath[currentWaypointIndex - 1];
 
-            return dir.normalized;
+            return dir;
         }
 
         /** Rotates in the specified direction.

@@ -13,12 +13,9 @@ namespace Assets.Scripts.Tests.GameLogic
             Debug.Log("SampleGameLogic Initialize");
 
 
-            TriggerGameScriptEvent(this, Constants.GameScriptEvent.Example);
-            TriggerGameScriptEvent<SampleGameLogic>(Constants.GameScriptEvent.Example);
             TriggerGameScriptEvent(Constants.GameScriptEvent.Example);
 
             TriggerGameEvent(GameEvent.ExampleEvent);
-            TriggerGameEvent(this, GameEvent.ExampleEvent);
         }
 
         protected override void Deinitialize()

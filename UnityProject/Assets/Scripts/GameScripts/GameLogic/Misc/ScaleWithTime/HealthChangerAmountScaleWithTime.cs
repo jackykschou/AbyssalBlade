@@ -33,10 +33,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc.ScaleWithTime
             }
         }
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            _healthChanger = GetComponent<HealthChanger>();
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
-            _healthChanger = GetComponent<HealthChanger>();
             _originalAmount = _healthChanger.GameValueChanger.RawAmount;
         }
 

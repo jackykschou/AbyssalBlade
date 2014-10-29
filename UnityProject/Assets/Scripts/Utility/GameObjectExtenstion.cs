@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts;
+using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Health;
 using Assets.Scripts.GameScripts.GameLogic.Misc;
 using UnityEngine;
@@ -9,19 +10,19 @@ namespace Assets.Scripts.Utility
 {
     public static class GameObjectExtenstion
     {
-        private static readonly Dictionary<GameObject, GameScript> GameScriptsCache = new Dictionary<GameObject, GameScript>();
-        private static readonly Dictionary<GameObject, Health> HealthCache = new Dictionary<GameObject, Health>();
-        private static readonly Dictionary<GameObject, CharacterInterrupt> OnHitInterruptCache = new Dictionary<GameObject, CharacterInterrupt>();
+        public static readonly Dictionary<GameObject, GameScriptEventManager> GameScriptEventManagersCache = new Dictionary<GameObject, GameScriptEventManager>();
+        public static readonly Dictionary<GameObject, Health> HealthCache = new Dictionary<GameObject, Health>();
+        public static readonly Dictionary<GameObject, CharacterInterrupt> OnHitInterruptCache = new Dictionary<GameObject, CharacterInterrupt>();
 
         public static void CacheGameObject(this GameObject o)
         {
-            GameScript gameScript = o.GetComponent<GameScript>();
+            GameScriptEventManager gameScriptEventManager = o.GetComponent<GameScriptEventManager>();
             Health health = o.GetComponent<Health>();
             CharacterInterrupt characterInterrupt = o.GetComponent<CharacterInterrupt>();
 
-            if (gameScript != null && !GameScriptsCache.ContainsKey(o))
+            if (gameScriptEventManager != null && !GameScriptEventManagersCache.ContainsKey(o))
             {
-                GameScriptsCache.Add(o, gameScript);
+                GameScriptEventManagersCache.Add(o, gameScriptEventManager);
             }
             if (health != null && !HealthCache.ContainsKey(o))
             {
@@ -35,35 +36,24 @@ namespace Assets.Scripts.Utility
 
         public static void UncacheGameObject(this GameObject o)
         {
-            GameScriptsCache.Remove(o);
+            GameScriptEventManagersCache.Remove(o);
             HealthCache.Remove(o);
             OnHitInterruptCache.Remove(o);
         }
 
         public static void TriggerGameScriptEvent(this GameObject o, GameScriptEvent gameScriptEvent, params object[] args)
         {
-            if (!GameScriptsCache.ContainsKey(o))
+            if (!GameScriptEventManagersCache.ContainsKey(o))
             {
-                GameScript gameScript = o.GetComponent<GameScript>();
-                if (gameScript != null)
-                {
-                    gameScript.TriggerGameScriptEvent(gameScriptEvent, args);
-                }
                 return;
             }
-
-            GameScriptsCache[o].TriggerGameScriptEvent(gameScriptEvent, args);
+            GameScriptEventManagersCache[o].TriggerGameScriptEvent(gameScriptEvent, args);
         }
 
         public static bool IsInterrupted(this GameObject o)
         {
             if (!OnHitInterruptCache.ContainsKey(o))
             {
-                CharacterInterrupt characterInterrupt = o.GetComponent<CharacterInterrupt>();
-                if (characterInterrupt != null)
-                {
-                    return characterInterrupt.Interrupted;
-                }
                 return false;
             }
 
@@ -74,11 +64,6 @@ namespace Assets.Scripts.Utility
         {
             if (!HealthCache.ContainsKey(o))
             {
-                Health health = o.GetComponent<Health>();
-                if (health != null)
-                {
-                    return health.HitPointAtZero;
-                }
                 return false;
             }
 

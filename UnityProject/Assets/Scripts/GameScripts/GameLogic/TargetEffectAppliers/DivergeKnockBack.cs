@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 
         protected override void ApplyEffect(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, MathUtility.GetDirection(TargetFinder.FinderPosition.Position.position, target.transform.position).normalized, KnockBackSpeed, Time);
+            target.TriggerGameScriptEvent(GameScriptEvent.OnCharacterKnockBacked, UtilityFunctions.GetDirection(TargetFinder.FinderPosition.Position.position, target.transform.position).normalized, KnockBackSpeed, Time);
         }
     }
 }

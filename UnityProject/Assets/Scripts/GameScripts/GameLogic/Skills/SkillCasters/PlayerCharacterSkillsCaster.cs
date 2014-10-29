@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.GameScripts.GameLogic.Misc;
+using Assets.Scripts.Utility;
 using UnityEngine;
-
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
@@ -24,6 +24,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         public PositionIndicator TargetHolder;
 
+        [HideInInspector]
+        public Vector2 Direction;
+
         public override Vector2 PointingDirection
         {
             get { return TargetHolder.Direction; }
@@ -39,41 +42,60 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         {
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.PlayerAxisMoved)]
         public void ActivateMovement(Vector2 direction)
         {
-            TriggerGameScriptEvent(GameScriptEvent.UpdatePlayerAxis, direction);
+            MovementSkill.TriggerGameScriptEvent(GameScriptEvent.UpdateMoveDirection, Direction);
             MovementSkill.Activate();
         }
 
-        [GameScriptEvent(GameScriptEvent.PlayerAttack1ButtonPressed)]
         public void ActivateSkillOne()
         {
+            if (Skill1.CanActivate())
+            {
+                UpdateFacingDirection();
+            }
             Skill1.Activate();
         }
 
-        [GameScriptEvent(GameScriptEvent.PlayerAttack2ButtonPressed)]
         public void ActivateSkillTwo()
         {
+            if (Skill2.CanActivate())
+            {
+                UpdateFacingDirection();
+            }
             Skill2.Activate();
         }
 
-        [GameScriptEvent(GameScriptEvent.PlayerAttack3ButtonPressed)]
         public void ActivateSkillThree()
         {
+            if (Skill3.CanActivate())
+            {
+                UpdateFacingDirection();
+            }
             Skill3.Activate();
         }
 
-        [GameScriptEvent(GameScriptEvent.PlayerAttack4ButtonPressed)]
         public void ActivateSkillFour()
         {
+            if (Skill4.CanActivate())
+            {
+                UpdateFacingDirection();
+            }
             Skill4.Activate();
         }
 
-        [GameScriptEvent(GameScriptEvent.PlayerDashButtonPressed)]
         public void ActivateDash()
         {
+            if (Dash.CanActivate())
+            {
+                UpdateFacingDirection();
+            }
             Dash.Activate();
+        }
+
+        private void UpdateFacingDirection()
+        {
+            TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection,  Direction.GetFacingDirection());
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -11,11 +10,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     public class SectionDisableSkillEffect : SectionLogic
     {
         public List<int> DisabledSkills;
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
 
         protected override void Deinitialize()
         {

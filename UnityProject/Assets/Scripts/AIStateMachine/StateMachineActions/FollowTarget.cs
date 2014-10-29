@@ -16,34 +16,35 @@ namespace Assets.Scripts.AIStateMachine.StateMachineActions
         [FieldInfo(tooltip = "AI will not move if distance between the target is within distance")]
 	    public FloatParameter MinimumDistance;
 
-		public override void OnEnter()
+	    private PathFinding _pathFinding;
+
+	    public override void OnEnter()
 		{
-		
+            if (_pathFinding == null)
+            {
+                _pathFinding = stateMachine.owner.GetComponent<PathFinding>();
+            }
 		}
 
 	    public override void OnFixedUpdate()
 	    {
-	        base.OnFixedUpdate();
-
             if (stateMachine.owner.HitPointAtZero() || stateMachine.owner.IsInterrupted())
             {
                 return;
             }
 
-            PathFinding pathfinding = stateMachine.owner.GetComponent<PathFinding>();
+            _pathFinding.TrySearchPath();
 
-	        pathfinding.TrySearchPath();
+            Vector2 moveDirection = _pathFinding.GetMoveDirection();
 
-            Vector2 moveDirection = pathfinding.GetMoveDirection();
-
-            if (pathfinding.Target == null || (Vector2.Distance(pathfinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
-                (moveDirection == Vector2.zero) || !pathfinding.CurrentPathReachable)
+            if (_pathFinding.Target == null || (Vector2.Distance(_pathFinding.Target.position, stateMachine.owner.transform.position) <= MinimumDistance) ||
+                (moveDirection == Vector2.zero) || !_pathFinding.CurrentPathReachable)
             {
-                stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.AIRotateToTarget);
+                stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.RotateTowardsTarget);
                 return;
             }
 
-            pathfinding.TriggerGameScriptEvent(GameScriptEvent.CharacterMove, moveDirection);
+            stateMachine.owner.TriggerGameScriptEvent(GameScriptEvent.CharacterNonRigidMove, moveDirection);
 	    }
 	}
 }

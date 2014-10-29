@@ -6,9 +6,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
     [AddComponentMenu("PhysicsBody/Obstacle/InvisibleWallPhysicsBody")]
     public class InvisibleWallPhysicsBody : ObstaclePhysicsBody
     {
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.InvisibleWall);
         }
     }

@@ -2,13 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects;
 using Assets.Scripts.Utility;
 using UnityEngine;
-
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
@@ -39,7 +37,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
         private float _coolDownPercentage;
 
         private List<SkillCastableCondition> _castableConditions;
-        private Vector2 _direction;
 
         public override void EditorUpdate()
         {
@@ -56,14 +53,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
 
         public bool CanActivate()
         {
-            return _castableConditions.All(c => c.CanCast()) && (!OnceAtATime || !IsActivate) && (IsPassive || !Caster.CastingActiveSkill) && (Movable || !Caster.Moving);
+            return _castableConditions.All(c => c.CanCast()) && 
+                (!OnceAtATime || !IsActivate) && 
+                (IsPassive || (!Caster.CastingActiveSkill || (!OnceAtATime && IsActivate))) && 
+                (Movable || !Caster.Moving);
         }
 
         public void Activate()
         {
             if (CanActivate())
             {
-                UpdateFacingDirection();
                 IsActivate = true;
                 Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastTriggerSucceed, this);
                 StartCoroutine(ActivateSkillEffects());
@@ -72,13 +71,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             {
                 Caster.TriggerGameScriptEvent(GameScriptEvent.SkillCastTriggerFailed, this);
             }
-        }
-
-        public void UpdateFacingDirection()
-        {
-            _direction = _direction.normalized;
-            FacingDirection newDirection = _direction.GetFacingDirection();
-            Caster.TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection, newDirection);
         }
 
         IEnumerator ActivateSkillEffects()
@@ -135,24 +127,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             return _coolDownPercentage;
         }
 
-        [GameScriptEventAttribute(GameScriptEvent.UpdatePlayerAxis)]
-        void UpdateMoveDirection(Vector2 direction)
+        protected override void FirstTimeInitialize()
         {
-            _direction = direction;
-        }
-
-        protected override void Initialize()
-        {
-            base.Initialize();
+            base.FirstTimeInitialize();
             if (transform.parent == null || transform.parent.gameObject.GetComponent<SkillCaster>() == null)
             {
                 throw new Exception("A Skill must have a parent that is the caster");
             }
-            IsActivate = false;
             Caster = transform.parent.gameObject.GetComponent<SkillCaster>();
-            _coolDownPercentage = 1f;
             _castableConditions = GetComponents<SkillCastableCondition>().ToList();
-            gameObject.tag = Caster.gameObject.tag;
 
             _soretedSkillEffects = new SortedDictionary<int, List<SkillEffect>>();
             if (_skillEffects == null || _skillEffects.Count == 0)
@@ -187,6 +170,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
                     _soretedProSkillEffects[_proSkillEffectsOrder[i]].Add(_proSkillEffects[i]);
                 }
             }
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            IsActivate = false;
+            _coolDownPercentage = 1f;
         }
 
         protected override void Deinitialize()
