@@ -14,6 +14,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             base.Initialize();
             _slider = gameObject.GetComponentInChildren<Slider>();
             _slider.targetGraphic.enabled = true;
+            _slider.value = 1.0f;
         }
 
         protected override void Deinitialize()
