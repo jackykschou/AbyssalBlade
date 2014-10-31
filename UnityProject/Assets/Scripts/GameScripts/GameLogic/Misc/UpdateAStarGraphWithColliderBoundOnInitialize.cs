@@ -1,4 +1,5 @@
-﻿using Pathfinding;
+﻿using Assets.Scripts.Attributes;
+using Pathfinding;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
@@ -9,14 +10,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
     {
         private GraphUpdateObject _guo;
 
-        protected override void Initialize()
+        protected override void Deinitialize()
         {
-            base.Initialize();
-            _guo = new GraphUpdateObject(collider.bounds) {setWalkability = false};
+        }
+
+        [GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
+        public void OnLevelFinishedLoading()
+        {
+            _guo = new GraphUpdateObject(collider2D.bounds) { setWalkability = false };
             AstarPath.active.UpdateGraphs(_guo);
         }
 
-        protected override void Deinitialize()
+        [GameEvent(Constants.GameEvent.OnLevelEnded)]
+        public void OnLevelEnded()
         {
             _guo.setWalkability = true;
             AstarPath.active.UpdateGraphs(_guo);
