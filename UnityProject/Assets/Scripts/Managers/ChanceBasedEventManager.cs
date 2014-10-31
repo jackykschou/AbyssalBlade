@@ -6,8 +6,7 @@ namespace Assets.Scripts.Managers
 {
     public enum ChanceBasedEvent
     {
-        Event1,
-        Event2
+        DropHealthPotion
     }
 
     public class ChanceBasedEventManager : GameLogic
@@ -15,6 +14,8 @@ namespace Assets.Scripts.Managers
         public List<string> ChanceBasedEvents; 
         public List<float> EventBaseChances; 
         public List<float> EventCurrentChances;
+        public List<float> EventChanceChangeAmountsOnRollSuccess;
+        public List<float> EventChanceChangeAmountsOnRollFail; 
 
         private static ChanceBasedEventManager _instance;
         public static ChanceBasedEventManager Instance
@@ -32,7 +33,16 @@ namespace Assets.Scripts.Managers
 
         public bool RollEventChance(ChanceBasedEvent Event)
         {
-            return UtilityFunctions.RollChance(EventCurrentChances[(int)Event]);
+            bool rollResult = UtilityFunctions.RollChance(EventCurrentChances[(int)Event]);
+            if (rollResult)
+            {
+                ChangeEventCurrentChanceBy(Event, EventChanceChangeAmountsOnRollSuccess[(int)Event]);
+            }
+            else
+            {
+                ChangeEventCurrentChanceBy(Event, EventChanceChangeAmountsOnRollFail[(int)Event]);
+            }
+            return rollResult;
         }
 
         public void ChangeEventCurrentChanceBy(ChanceBasedEvent Event, float amount)
@@ -84,6 +94,8 @@ namespace Assets.Scripts.Managers
             }
             EventBaseChances.Resize(enumValues.Length);
             EventCurrentChances.Resize(enumValues.Length);
+            EventChanceChangeAmountsOnRollSuccess.Resize(enumValues.Length);
+            EventChanceChangeAmountsOnRollFail.Resize(enumValues.Length);
         }
     }
 }

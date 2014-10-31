@@ -2,7 +2,7 @@
 using Assets.Scripts.Managers;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Misc
+namespace Assets.Scripts.GameScripts.GameLogic.Misc.EventBridger
 {
     [AddComponentMenu("Misc/TriggerNoHitPointOnSectionDeactivated")]
     public class TriggerNoHitPointOnSectionDeactivated : GameLogic
