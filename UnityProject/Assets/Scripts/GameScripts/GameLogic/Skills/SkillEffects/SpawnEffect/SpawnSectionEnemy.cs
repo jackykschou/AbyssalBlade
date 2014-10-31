@@ -35,13 +35,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
 
         public IEnumerator StartSpawn()
         {
+            const float blockRadius = 0.5f;
+
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
-            while (!UtilityFunctions.LocationPathFindingReachable(transform.position, spawnPosition))
+            while (!UtilityFunctions.LocationPathFindingReachable(transform.position, spawnPosition) ||
+                Physics2D.OverlapCircle(spawnPosition, blockRadius, LayerConstants.LayerMask.Obstacle) != null)
             {
                 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
-                yield return new WaitForSeconds(0f);
+                yield return new WaitForSeconds(Time.deltaTime);
             }
             PrefabSpawner.SpawnPrefab(spawnPosition, o =>
             {
