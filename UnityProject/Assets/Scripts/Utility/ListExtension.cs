@@ -6,6 +6,11 @@ namespace Assets.Scripts.Utility
     {
         public static void Resize<T>(this List<T> list, int size)
         {
+            if (list == null)
+            {
+                list = new List<T>();
+            }
+
             if (list.Count == size)
             {
                 return;

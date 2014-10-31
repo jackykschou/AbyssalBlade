@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
         private const string PrefabManagerPrefabName = "Prefabs/GameSetUp/PrefabManager";
         private const string AStarPrefabName = "Prefabs/GameSetUp/AStar";
         private const string MessageManagerPrefabName = "Prefabs/GameSetUp/MessageManager";
+        private const string ChanceBasedEventManagerName = "Prefabs/GameSetUp/ChanceBasedEventManager";
 
         [SerializeField]
         private GameObject _hud;
@@ -36,6 +37,8 @@ namespace Assets.Scripts.GameScripts.GameLogic
         private GameObject _aStar;
         [SerializeField]
         private GameObject _messageManager;
+        [SerializeField]
+        private GameObject _chanceBasedEventManager;
 
 
         protected override void Initialize()
@@ -99,7 +102,10 @@ namespace Assets.Scripts.GameScripts.GameLogic
             {
                 _messageManager = CreateGameObject(MessageManagerPrefabName);
             }
-
+            if (_chanceBasedEventManager == null)
+            {
+                _chanceBasedEventManager = CreateGameObject(ChanceBasedEventManagerName);
+            }
         }
 
         public override void EditorUpdate()
