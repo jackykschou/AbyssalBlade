@@ -18,6 +18,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400136}
   m_Layer: 0
   m_Name: HealthRegen
   m_TagString: Untagged
@@ -390,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: SkillCooldown
-  DispatchInterval: 1
+  DispatchInterval: 20
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,13 +427,13 @@ MonoBehaviour:
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
-  ChangeType: 0
+  ChangeType: 3
   Stackable: 0
   NonStackableLabel: 0
-  _amount: 5
+  _amount: 2
   AmountVariantPercentage: 0
-  ChangeDuration: 0
-  ChangeInterval: 1
+  ChangeDuration: 10
+  ChangeInterval: .100000001
   CriticalChance: 0
   CriticalPercentage: 2
 --- !u!114 &11400010
@@ -1430,6 +1431,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SectionId: 0
+--- !u!114 &11400136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6ff5fe37ed6cc4abffeb0d3d53d2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  LowerThanValuePercentage: .200000003
+  Health: {fileID: 11400104}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

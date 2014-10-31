@@ -4,7 +4,8 @@ using UnityEngine;
 namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.ActivateCondition
 {
     [AddComponentMenu("Skill/SkillEffect/SkillEffectActivateCondition/ButtonHoldBelowTime")]
-    public class ButtonHoldBelowTime : SkillEffectActivateCondition {
+    public class ButtonHoldBelowTime : SkillEffectActivateCondition 
+    {
 
         [Range(0f, 10f)]
         public float TimeBelow;
