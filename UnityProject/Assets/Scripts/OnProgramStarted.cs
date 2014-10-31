@@ -1,15 +1,21 @@
-﻿using Assets.Scripts.Managers;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class OnProgramStarted : MonoBehaviour 
+    public class OnProgramStarted : MonoBehaviour
     {
+        private const int GameLevelSceneIndex = 1;
+
         void Awake()
         {
-            GameManager.Instance.ShowLoadingScreen();
-            GameManager.Instance.HUD.SetActive(false);
-            GameManager.Instance.PlayerMainCharacter.SetActive(false);
+            StartCoroutine(LoadStartGameLevel());
+        }
+
+        IEnumerator LoadStartGameLevel()
+        {
+            yield return new WaitForSeconds(1.0f);
+            Application.LoadLevel(GameLevelSceneIndex);
         }
     }
 }
