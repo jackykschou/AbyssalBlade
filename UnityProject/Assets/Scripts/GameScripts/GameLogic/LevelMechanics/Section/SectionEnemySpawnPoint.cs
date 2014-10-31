@@ -106,18 +106,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
             PrefabSpawner.SpawnPrefab(spawnPosition, o =>
             {
-                var triggerNoHitPointOnSectionDeactivated = o.GetComponent<TriggerNoHitPointOnSectionDeactivated>() ??
-                                                            o.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
-                var triggerOnSectionEnemyDespawnedOnNoHitPoint = o.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>() ??
-                                                                 o.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
-                triggerNoHitPointOnSectionDeactivated.SectionId = SectionId;
-                triggerOnSectionEnemyDespawnedOnNoHitPoint.SectionId = SectionId;
                 if (FadeInEnemy)
                 {
                     StartCoroutine(FadeInEnemyIE(o, FadeInTime));
                 }
+                TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
             });
-            TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
         }
 
         public IEnumerator FadeInEnemyIE(GameObject o, float time)

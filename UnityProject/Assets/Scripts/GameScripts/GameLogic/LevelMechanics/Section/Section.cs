@@ -12,7 +12,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     {
         public override void OnSectionActivated(int sectionId)
         {
-            LevelManager.Instance.CurrentSectionId = sectionId;
+            base.OnSectionActivated(SectionId);
+            if (sectionId == SectionId)
+            {
+                LevelManager.Instance.CurrentSectionId = SectionId;
+            }
         }
 
         [GameEventAttribute(GameEvent.OnSectionObjectivesCompleted)]

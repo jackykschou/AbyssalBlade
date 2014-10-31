@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Managers;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine;
@@ -45,10 +44,6 @@ namespace Assets.Scripts.GameScripts.GameLogic
         {
             base.Initialize();
             InstantiateGameObjects();
-            GameManager.Instance.LoadingScene = _loadingScreen;
-            GameManager.Instance.HUD = _hud;
-            GameManager.Instance.PlayerMainCharacter = _mainCharacter;
-            GameManager.Instance.MainCamera = _mainCamera;
         }
 
         private GameObject CreateGameObject(string gameObjectname)

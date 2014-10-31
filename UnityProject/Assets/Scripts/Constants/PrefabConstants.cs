@@ -5,26 +5,31 @@ namespace Assets.Scripts.Constants
 {
     public enum Prefab
     {
-        Projectile = 0,
-        DamageText = 1,
-        StoneEnemy = 2,
-        TutorialLevel = 3,
         MainMenu = 4,
+        TutorialLevel = 3,
+        MainLevelArea1 = 10,
+        MainLevelArea2 = 12,
+        BossLevel = 14,
+
+        Projectile = 0,
         Projectile2 = 5,
-        MessageText = 6,
+        EnemyProjectile = 9,
+        BossMissle = 16,
+        GreenRangeEnemyProjectile = 18,
+
+        BossMissleExplosion = 15,
+
+        StoneEnemy = 2,
+        GreenRangeEnemy = 17,
+        Boss1 = 13,
+        RegenStoneEnemy = 19,       //!!!
         SimpleLightMeleeEnemy = 7,
         SimpleRangeEnemy = 8,
-        EnemyProjectile = 9,
-        MainLevelArea1 = 10,
+
         HealthPotion = 11,
-        MainLevelArea2 = 12,
-        Boss1 = 13,
-        BossLevel = 14,
-        BossMissleExplosion = 15,
-        BossMissle = 16,
-        GreenRangeEnemy = 17,
-        GreenRangeEnemyProjectile = 18,
-        RegenStoneEnemy = 19
+
+        DamageText = 1,
+        MessageText = 6
     };
 
     public class PrefabConstants

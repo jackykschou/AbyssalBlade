@@ -32,6 +32,6 @@
         OnPlayerDeath,
 
         ShakeCamera,                     // void(float, float)
-        SetCameraWidth                  // void(float)
+        SetCameraWidth,                  // void(float)
      };
 }

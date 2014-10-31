@@ -149,6 +149,8 @@ GameObject:
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400054}
+  - 114: {fileID: 11400110}
+  - 114: {fileID: 11400108}
   m_Layer: 0
   m_Name: GreenSmallRangeEnemy
   m_TagString: Enemy
@@ -632,7 +634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  InterruptionDuration: .25
+  InterruptionDuration: .5
   InterruptCoolDown: {fileID: 11400026}
 --- !u!114 &11400040
 MonoBehaviour:
@@ -1156,6 +1158,32 @@ MonoBehaviour:
   PrefabSpawner: {fileID: 11400098}
   Position: {fileID: 11400020}
   ShootAngle: 20
+--- !u!114 &11400108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb232a93e898cc459e40a976f5c5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
+--- !u!114 &11400110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209d6705b3b032e47ac1dd2a63184358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

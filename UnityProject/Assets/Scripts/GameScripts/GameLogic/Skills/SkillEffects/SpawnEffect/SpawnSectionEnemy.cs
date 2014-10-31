@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
@@ -48,14 +47,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
             }
             PrefabSpawner.SpawnPrefab(spawnPosition, o =>
             {
-                var triggerNoHitPointOnSectionDeactivated = o.GetComponent<TriggerNoHitPointOnSectionDeactivated>() ??
-                                                            o.AddComponent<TriggerNoHitPointOnSectionDeactivated>();
-                var triggerOnSectionEnemyDespawnedOnNoHitPoint = o.GetComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>() ??
-                                                                 o.AddComponent<TriggerOnSectionEnemyDespawnedOnNoHitPoint>();
-                triggerNoHitPointOnSectionDeactivated.SectionId = LevelManager.Instance.CurrentSectionId;
-                triggerOnSectionEnemyDespawnedOnNoHitPoint.SectionId = LevelManager.Instance.CurrentSectionId;
+                TriggerGameEvent(GameEvent.OnSectionEnemySpawned, LevelManager.Instance.CurrentSectionId);
             });
-            TriggerGameEvent(GameEvent.OnSectionEnemySpawned, LevelManager.Instance.CurrentSectionId);
         }
     }
 }
