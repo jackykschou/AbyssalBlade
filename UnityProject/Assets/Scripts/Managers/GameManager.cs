@@ -10,8 +10,6 @@ namespace Assets.Scripts.Managers
 {
     public class GameManager : GameLogic
     {
-        public GameObject MainCamera;
-
         public bool LoadLevelOnStart = true;
 
         public const string MainCharacterGameObjectName = "MainCharacter";
@@ -30,11 +28,57 @@ namespace Assets.Scripts.Managers
 
         private Prefab _currentLevelPrefab;
 
-        public GameObject LoadingScene;
+        private GameObject _mainCamera;
+        public GameObject MainCamera
+        {
+            get
+            {
+                if (_mainCamera == null)
+                {
+                    _mainCamera = GameObject.Find(MainCameraGameObjectName);
+                }
+                return _mainCamera;
+            }
+        }
 
-        public GameObject HUD;
+        private GameObject _loadingScreen;
+        public GameObject LoadingScreen
+        {
+            get
+            {
+                if (_loadingScreen == null)
+                {
+                    _loadingScreen = GameObject.Find(LoadingSceneGameObjectName);
+                }
+                return _loadingScreen;
+            }
+        }
 
-        public GameObject PlayerMainCharacter;
+        private GameObject _HUD;
+        public GameObject HUD
+        {
+            get
+            {
+                if (_HUD == null)
+                {
+                    _HUD = GameObject.Find(HUDGameObjectName);
+                }
+                return _HUD;
+            }
+        }
+
+        private GameObject _playerMainCharacter;
+        public GameObject PlayerMainCharacter
+        {
+            get
+            {
+                if (_playerMainCharacter == null)
+                {
+                    _playerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
+                }
+                return _playerMainCharacter;
+            }
+        }
 
         [Range(0, 10)]
         public int Difficulity;
@@ -49,7 +93,7 @@ namespace Assets.Scripts.Managers
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelEnded);
             HUD.SetActive(false);
             PlayerMainCharacter.SetActive(false);
-            LoadingScene.SetActive(true);
+            ShowLoadingScreen();
             AudioManager.Instance.Mute();
             yield return new WaitForSeconds(1.0f);
             if (CurrentLevel != null)
@@ -62,7 +106,7 @@ namespace Assets.Scripts.Managers
             yield return new WaitForSeconds(1.0f);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
             yield return new WaitForSeconds(1.0f);
-            LoadingScene.SetActive(false);
+            HideLoadingScreen();
             AudioManager.Instance.UnMute();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
         }
@@ -85,23 +129,6 @@ namespace Assets.Scripts.Managers
         {
             base.Initialize();
             DontDestroyOnLoad(Instance);
-            if (PlayerMainCharacter == null)
-            {
-                PlayerMainCharacter = GameObject.Find(MainCharacterGameObjectName);
-            }
-            if (HUD == null)
-            {
-                HUD = GameObject.Find(HUDGameObjectName);
-            }
-            HUD.transform.position = Vector3.zero;
-            if (MainCamera == null)
-            {
-                MainCamera = GameObject.Find(MainCameraGameObjectName);
-            }
-            if (LoadingScene == null)
-            {
-                LoadingScene = GameObject.Find(LoadingSceneGameObjectName);
-            }
             if (LoadLevelOnStart)
             {
                 ChangeLevel(StartingLevelPrefab);
@@ -110,6 +137,16 @@ namespace Assets.Scripts.Managers
 
         protected override void Deinitialize()
         {
+        }
+
+        public void ShowLoadingScreen()
+        {
+            LoadingScreen.SetActive(true);
+        }
+
+        public void HideLoadingScreen()
+        {
+            LoadingScreen.SetActive(false);
         }
     }
 }

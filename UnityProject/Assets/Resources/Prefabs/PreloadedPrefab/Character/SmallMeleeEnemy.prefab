@@ -94,6 +94,8 @@ GameObject:
   - 114: {fileID: 11400092}
   - 114: {fileID: 11400094}
   - 114: {fileID: 11400050}
+  - 114: {fileID: 11400124}
+  - 114: {fileID: 11400122}
   m_Layer: 0
   m_Name: SmallMeleeEnemy
   m_TagString: Enemy
@@ -1304,6 +1306,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   HealthSliderImage: {fileID: 11400102}
+--- !u!114 &11400122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb232a93e898cc459e40a976f5c5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
+--- !u!114 &11400124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209d6705b3b032e47ac1dd2a63184358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
