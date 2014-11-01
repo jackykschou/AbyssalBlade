@@ -2,7 +2,7 @@
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Misc
+namespace Assets.Scripts.GameScripts.GameLogic.Misc.EventBridger
 {
     [RequireComponent(typeof(PrefabSpawner))]
     [AddComponentMenu("Misc/SpawnPrefabOnProjectileArriveDestination")]

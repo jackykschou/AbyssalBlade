@@ -3,7 +3,7 @@ using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.PhysicsBody;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Misc
+namespace Assets.Scripts.GameScripts.GameLogic.Misc.EventBridger
 {
     [AddComponentMenu("Misc/DisableGameObjectOnTriggerStay")]
     [RequireComponent(typeof(PhysicsBody2D))]

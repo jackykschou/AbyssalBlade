@@ -91,11 +91,12 @@ GameObject:
   - 114: {fileID: 11400078}
   - 114: {fileID: 11400086}
   - 114: {fileID: 11400088}
-  - 114: {fileID: 11400092}
   - 114: {fileID: 11400094}
   - 114: {fileID: 11400050}
   - 114: {fileID: 11400124}
   - 114: {fileID: 11400122}
+  - 114: {fileID: 11400126}
+  - 114: {fileID: 11400092}
   m_Layer: 0
   m_Name: SmallMeleeEnemy
   m_TagString: Enemy
@@ -1044,11 +1045,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45054e6e03c87944e8d79892aedf9fab, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b68f3f070903004381724d4c9c63b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  PrefabSpawner: {fileID: 11400094}
+  Event: 0
+  AdditionalChanceChangeAmount: 0
 --- !u!114 &11400094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1069,7 +1071,7 @@ MonoBehaviour:
   LimitSpawnValue: 0
   LimitNumberOfSpawn: 1
   NumberOfSpawn: 1
-  SpawnChance: .00999999978
+  SpawnChance: 1
 --- !u!114 &11400096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1332,6 +1334,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SectionId: 0
+--- !u!114 &11400126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e982cfdd0b9f3940b0fbb19366db90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: HealthPotion
+  SpawnRadius: .5
+  PrefabSpawner: {fileID: 11400094}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
