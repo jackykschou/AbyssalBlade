@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.Utility;
+using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
@@ -15,7 +16,21 @@ namespace Assets.Scripts.Managers
         public List<float> EventBaseChances; 
         public List<float> EventCurrentChances;
         public List<float> EventChanceChangeAmountsOnRollSuccess;
-        public List<float> EventChanceChangeAmountsOnRollFail; 
+        public List<float> EventChanceChangeAmountsOnRollFail;
+        public List<float> EventCooldowns;
+
+        [SerializeField]
+        private List<float> _eventCooldownsTimers;
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            for(int i = 0; i < EventBaseChances.Count; ++i)
+            {
+                EventCurrentChances[i] = EventBaseChances[i];
+                _eventCooldownsTimers[i] = -100;
+            }
+        }
 
         private static ChanceBasedEventManager _instance;
         public static ChanceBasedEventManager Instance
@@ -31,11 +46,17 @@ namespace Assets.Scripts.Managers
             }
         }
 
-        public bool RollEventChance(ChanceBasedEvent Event)
+        public bool RollEventChance(ChanceBasedEvent Event, float additionalChanceChangeAmount = 0f)
         {
-            bool rollResult = UtilityFunctions.RollChance(EventCurrentChances[(int)Event]);
+            if ((Time.time - _eventCooldownsTimers[(int)Event]) < EventCooldowns[(int)Event])
+            {
+                return false;
+            }
+            _eventCooldownsTimers[(int) Event] = Time.time;
+            bool rollResult = UtilityFunctions.RollChance(EventCurrentChances[(int)Event] + additionalChanceChangeAmount);
             if (rollResult)
             {
+                ResetEventToBaseChance(Event);
                 ChangeEventCurrentChanceBy(Event, EventChanceChangeAmountsOnRollSuccess[(int)Event]);
             }
             else
@@ -96,6 +117,8 @@ namespace Assets.Scripts.Managers
             EventCurrentChances.Resize(enumValues.Length);
             EventChanceChangeAmountsOnRollSuccess.Resize(enumValues.Length);
             EventChanceChangeAmountsOnRollFail.Resize(enumValues.Length);
+            EventCooldowns.Resize(enumValues.Length);
+            _eventCooldownsTimers.Resize(enumValues.Length);
         }
     }
 }

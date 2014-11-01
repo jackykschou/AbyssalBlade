@@ -55,6 +55,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount), crited, HitPoint);
             }
 
+            TriggerGameScriptEvent(GameScriptEvent.OnObjectHealthChanged, changedAmount, HitPoint);
+
             if (HitPoint <= 0f)
             {
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint);

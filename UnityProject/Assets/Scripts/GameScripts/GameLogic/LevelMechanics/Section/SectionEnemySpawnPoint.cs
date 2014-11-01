@@ -88,7 +88,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 
         private IEnumerator SpawnEnemy()
         {
-            const float blockRadius = 0.5f;
+            const float blockRadius = 0.2f;
 
             if (!CanSpawn)
             {

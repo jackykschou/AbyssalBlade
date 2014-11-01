@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
-using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
+namespace Assets.Scripts.GameScripts.GameLogic.ChanceBasedEvent.ChanceBaseEventEffects
 {
+    [AddComponentMenu("ChanceBaseEventEffect/SpawnPrefabEffect")]
     [RequireComponent(typeof(PrefabSpawner))]
-    [AddComponentMenu("Skill/SkillEffect/SpawnSectionEnemy")]
-    public class SpawnSectionEnemy : SkillEffect 
+    public class SpawnPrefabEffect : ChanceBaseEventEffect
     {
-        public PrefabSpawner PrefabSpawner;
-
         [Range(0f, 100f)]
         public float SpawnRadius = 0f;
+
+        public PrefabSpawner PrefabSpawner;
 
         protected override void FirstTimeInitialize()
         {
@@ -25,17 +24,23 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
             }
         }
 
-        public override void Activate()
+        protected override void Deinitialize()
         {
-            base.Activate();
-            StartCoroutine(StartSpawn());
-            Activated = false;
         }
 
-        public IEnumerator StartSpawn()
+        public override void Activate()
+        {
+            StartCoroutine(SpawnEnemy());
+        }
+
+        private IEnumerator SpawnEnemy()
         {
             const float blockRadius = 0.2f;
 
+            if (!PrefabSpawner.CanSpawn())
+            {
+                yield break;
+            }
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
             while (!UtilityFunctions.LocationPathFindingReachable(transform.position, spawnPosition) ||
@@ -45,10 +50,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
-            PrefabSpawner.SpawnPrefab(spawnPosition, o =>
-            {
-                TriggerGameEvent(GameEvent.OnSectionEnemySpawned, LevelManager.Instance.CurrentSectionId);
-            });
+            PrefabSpawner.SpawnPrefab(spawnPosition);
         }
     }
 }

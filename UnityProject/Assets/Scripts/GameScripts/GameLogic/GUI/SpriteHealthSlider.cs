@@ -35,9 +35,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             }
         }
 
-        [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeDamage)]
-        [GameScriptEvent(Constants.GameScriptEvent.OnObjectTakeHeal)]
-        public void UpdateSlider(float damage, bool crit, GameValue.GameValue health)
+        [GameScriptEvent(Constants.GameScriptEvent.OnObjectHealthChanged)]
+        public void UpdateSlider(float changedAmount, GameValue.GameValue health)
         {
             _slider.value = health.Percentage;
             if (HealthSliderImage != null)

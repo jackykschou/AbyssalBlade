@@ -43,13 +43,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   ChanceBasedEvents:
-  - Event1
-  - Event2
+  - DropHealthPotion
   EventBaseChances:
-  - 0
   - 0
   EventCurrentChances:
   - 0
+  EventChanceChangeAmountsOnRollSuccess:
+  - 0
+  EventChanceChangeAmountsOnRollFail:
+  - 0
+  EventCooldowns:
+  - 5
+  _eventCooldownsTimers:
   - 0
 --- !u!114 &11400002
 MonoBehaviour:
