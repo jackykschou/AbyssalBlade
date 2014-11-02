@@ -4,7 +4,7 @@
     public enum GameEvent
     {
 #if DEBUG
-        ExampleEvent,                 // void()
+        ExampleEvent,                           // void()
 #endif
         OnSectionActivated,                     // void(int)
         OnSectionDeactivated,                   // void(int)
@@ -33,5 +33,7 @@
 
         ShakeCamera,                     // void(float, float)
         SetCameraWidth,                  // void(float)
+        DisablePlayerCharacter,          // void()
+        EnablePlayerCharacter            // void()
      };
 }

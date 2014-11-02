@@ -10,8 +10,6 @@ namespace Assets.Scripts.Managers.Editor
         {
             ChanceBasedEventManager manager = (ChanceBasedEventManager)target;
 
-            System.Array enumValues = System.Enum.GetValues(typeof(ChanceBasedEvent));
-
             if (manager.EventBaseChances == null)
             {
                 return;

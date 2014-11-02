@@ -21,6 +21,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             Invincible = false;
         }
 
+        [Attributes.GameScriptEvent(GameScriptEvent.ResetHealth)]
+        public virtual void ResetHealth()
+        {
+            HitPoint.Value = HitPoint.Max;
+            HitPointAtZero = false;
+            Invincible = false;
+        }
+
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectChangeHealth)]
         public virtual void ChangeHealthFixed(GameValueChanger healthChanger)
         {
