@@ -67,7 +67,16 @@ namespace Assets.Scripts.Managers
             }
             _levelStarted = true;
             GameManager.Instance.HUD.SetActive(IsPlayLevel);
-            GameManager.Instance.PlayerMainCharacter.SetActive(IsPlayLevel);
+            if (IsPlayLevel)
+            {
+                TriggerGameEvent(GameEvent.EnablePlayerCharacter);
+                GameManager.Instance.PlayerMainCharacter.TriggerGameScriptEvent(GameScriptEvent.SetAnimatorBoolState, AnimatorControllerConstants.AnimatorParameterName.Idle);
+                if (GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
+                {
+                    GameManager.Instance.PlayerMainCharacter.TriggerGameScriptEvent(GameScriptEvent.ResetHealth);
+                }
+                GameManager.Instance.PlayerMainCharacter.renderer.enabled = true;
+            }
             AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
             GameManager.Instance.MainCamera.camera.orthographic = IsPlayLevel;
         }

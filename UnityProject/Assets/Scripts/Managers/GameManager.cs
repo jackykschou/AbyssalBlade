@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic;
 using UnityEngine;
@@ -92,7 +93,9 @@ namespace Assets.Scripts.Managers
         {
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelEnded);
             HUD.SetActive(false);
-            PlayerMainCharacter.SetActive(false);
+            PlayerMainCharacter.renderer.enabled = false;
+            PlayerMainCharacter.GetComponentsInChildren<MonoBehaviour>().ToList().ForEach(mono => mono.StopAllCoroutines());
+            TriggerGameEvent(GameEvent.DisablePlayerCharacter);
             ShowLoadingScreen();
             AudioManager.Instance.Mute();
             yield return new WaitForSeconds(1.0f);

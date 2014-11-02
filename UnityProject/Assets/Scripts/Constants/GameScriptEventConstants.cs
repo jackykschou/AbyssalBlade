@@ -65,6 +65,7 @@
         ChangeObjectMotorSpeed,                  // void(GameValueChanger)
         UnchangeObjectMotorSpeed,                // void(GameValueChanger)
 
-        ButtonChange                             // void(int buttonID)
+        ButtonChange,                            // void(int buttonID)
+        ResetHealth                              // void()
     };
 }
