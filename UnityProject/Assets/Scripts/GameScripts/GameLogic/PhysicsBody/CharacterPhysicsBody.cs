@@ -17,5 +17,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.PhysicsBody
         {
             Collider.enabled = false;
         }
+
+        [GameScriptEventAttribute(GameScriptEvent.ResetHealth)]
+        public void ResetHealth()
+        {
+            Collider.enabled = true;
+        }
     }
 }

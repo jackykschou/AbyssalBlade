@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Constants;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using Assets.Scripts.Utility;
@@ -32,6 +33,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField] 
         private ButtonOnPressed Dash;
 
+        public bool ControllerEnabled = true;
+
         //This dependency is injected for the sake of better runtime performance
         private PlayerCharacterSkillsCaster _playerCharacterSkillsCaster;
 
@@ -61,6 +64,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
 
         protected override void FixedUpdate()
         {
+            if (!ControllerEnabled)
+            {
+                return;
+            }
+
             if (gameObject.HitPointAtZero())
             {
                 return;
@@ -77,6 +85,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
 
         protected override void Update()
         {
+            if (!ControllerEnabled)
+            {
+                return;
+            }
             base.Update();
             if (gameObject.HitPointAtZero())
             {
@@ -144,6 +156,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
                     _skill4Enabled = false;
                     break;
             }
+        }
+
+        [GameEventAttribute(GameEvent.EnablePlayerCharacter)]
+        public void EnablePlayerCharacter()
+        {
+            ControllerEnabled = true;
+        }
+
+        [GameEventAttribute(GameEvent.DisablePlayerCharacter)]
+        public void DisablePlayerCharacter()
+        {
+            ControllerEnabled = false;
         }
     }
 }

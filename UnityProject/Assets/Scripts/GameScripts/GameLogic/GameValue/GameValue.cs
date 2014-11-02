@@ -65,30 +65,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             get { return Value/Max; }
         }
 
-        public GameValue(float value)
-        {
-            _valueTempChangeValueCache = new List<GameValueChanger>();
-            _nonStackableTypeCache = new List<GameValueChanger.NonStackableType>();
-            _min = float.MinValue;
-            _max = float.MaxValue;
-            Value = value;
-        }
-
-        public GameValue(float value, float min, float max) : this(value)
-        {
-            SetBound(min, max);
-        }
-
         public void SetBound(float min, float max)
         {
             _min = (min > Mathf.Max(_max, max)) ? max : min;
             _max = (max < _min) ? Min : max;
             TrimValue();
-        }
-
-        public static explicit operator GameValue(float value)
-        {
-            return new GameValue(value);
         }
 
         public static implicit operator float(GameValue v)

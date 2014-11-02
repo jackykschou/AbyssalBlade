@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.GameScripts.GameLogic.Misc;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.Utility;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -96,6 +97,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         private void UpdateFacingDirection()
         {
             TriggerGameScriptEvent(GameScriptEvent.UpdateFacingDirection,  Direction.GetFacingDirection());
+        }
+
+        [GameEvent(Constants.GameEvent.EnablePlayerCharacter)]
+        public void EnablePlayerCharacter()
+        {
+            TriggerGameScriptEvent(GameScriptEvent.RefreshSkillCoolDown);
         }
     }
 }
