@@ -13,6 +13,7 @@ namespace Assets.Scripts.Managers
     {
         public GameObject DeathScreen;
         public PrefabSpawner PrefabSpawner;
+        public GameObject TipText;
         public Camera MainCamera;
         public EaseType PreferredEaseType;
 
@@ -27,6 +28,11 @@ namespace Assets.Scripts.Managers
                 DontDestroyOnLoad(_instance.gameObject);
                 return _instance;
             }
+        }
+
+        public void SetTipText(string tipText)
+        {
+            TipText.GetComponent<UnityEngine.UI.Text>().text = tipText;
         }
 
         public void DisplayDeathMessage()
@@ -135,6 +141,10 @@ namespace Assets.Scripts.Managers
             if (DeathScreen == null)
             {
                 DeathScreen = GameObject.Find("DeathScreen");
+            }
+            if (TipText == null)
+            {
+                TipText = GameObject.Find("LoadingTipText");
             }
         }
     }
