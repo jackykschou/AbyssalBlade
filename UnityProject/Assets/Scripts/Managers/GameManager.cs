@@ -144,6 +144,7 @@ namespace Assets.Scripts.Managers
 
         public void ShowLoadingScreen()
         {
+            MessageManager.Instance.SetTipText(LoadScreenHintConstant.LoadScreenHints[Random.Range(0, LoadScreenHintConstant.LoadScreenHints.Count)]);
             LoadingScreen.SetActive(true);
         }
 

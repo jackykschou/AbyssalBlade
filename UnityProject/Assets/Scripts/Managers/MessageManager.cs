@@ -142,10 +142,6 @@ namespace Assets.Scripts.Managers
             {
                 DeathScreen = GameObject.Find("DeathScreen");
             }
-            if (TipText == null)
-            {
-                TipText = GameObject.Find("LoadingTipText");
-            }
         }
     }
 }
