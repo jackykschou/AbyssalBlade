@@ -91,27 +91,29 @@ namespace Assets.Scripts.Managers
 
         private IEnumerator ChangeLevelIE(Prefab levelPrefab)
         {
+            AudioManager.Instance.Mute();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelEnded);
             HUD.SetActive(false);
             PlayerMainCharacter.renderer.enabled = false;
             PlayerMainCharacter.GetComponentsInChildren<MonoBehaviour>().ToList().ForEach(mono => mono.StopAllCoroutines());
+            yield return new WaitForSeconds(.1f);
             TriggerGameEvent(GameEvent.DisablePlayerCharacter);
             ShowLoadingScreen();
-            AudioManager.Instance.Mute();
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(.1f);
             if (CurrentLevel != null)
             {
                 PrefabManager.Instance.ImmediateDespawnPrefab(CurrentLevel);
             }
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStartLoading);
             PrefabManager.Instance.SpawnPrefabImmediate(levelPrefab, o => { CurrentLevel = o; });
+            yield return new WaitForSeconds(.1f);
             _currentLevelPrefab = levelPrefab;
-            yield return new WaitForSeconds(1.0f);
-            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
-            yield return new WaitForSeconds(1.0f);
-            HideLoadingScreen();
             AudioManager.Instance.UnMute();
+            GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+            yield return new WaitForSeconds(.1f);
+            HideLoadingScreen();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
+            yield return new WaitForSeconds(.1f);
         }
 
         public void DestroyScene(GameObject sceneGameObject)
