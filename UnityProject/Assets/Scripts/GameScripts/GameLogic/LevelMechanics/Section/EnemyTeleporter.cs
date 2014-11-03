@@ -11,11 +11,22 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         public List<SectionEnemySpawnPoint> SpawnPoints;
 
         private Health.Health _health;
+        private ParticleSystem _onEnemySpawnedSystem;
 
         [GameScriptEvent(Constants.GameScriptEvent.OnObjectHasNoHitPoint)]
         public void StopSpawn()
         {
             SpawnPoints.ForEach(p => p.Activated = false);
+        }
+
+        [GameEvent(Constants.GameEvent.OnSectionEnemySpawned)]
+        public void PlayParticleSystem(int sectionID)
+        {
+            if (sectionID == SectionId)
+            {
+                if(_onEnemySpawnedSystem)
+                    _onEnemySpawnedSystem.Play();
+            }
         }
 
         public override void OnSectionActivated(int sectionId)
@@ -40,6 +51,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
             base.FirstTimeInitialize();
             _health = GetComponent<Health.Health>();
+            _onEnemySpawnedSystem = GetComponentInChildren<ParticleSystem>();
         }
 
         protected override void Initialize()
