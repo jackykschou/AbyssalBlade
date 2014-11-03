@@ -76,7 +76,7 @@ namespace Assets.Scripts.Managers
 
                     PrefabPool prefabPool = new PrefabPool(obj.transform)
                     {
-                        preloadAmount = 50,
+                        preloadAmount = 5,
                         cullDespawned = true,
                         cullAbove = 200,
                         cullDelay = 5,
@@ -228,8 +228,11 @@ namespace Assets.Scripts.Managers
             {
                 onPrefabDespawned(prefabGameObject);
             }
-            _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
-            _spawnedPrefabsMap.Remove(prefabGameObject);
+            if (_spawnedPrefabsMap.ContainsKey(prefabGameObject))
+            {
+                _spawnedPrefabsMap[prefabGameObject].Despawn(prefabGameObject.transform);
+                _spawnedPrefabsMap.Remove(prefabGameObject);
+            }
         }
 
         public bool IsSpawnedFromPrefab(GameObject obj)
