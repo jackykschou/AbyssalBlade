@@ -3,9 +3,7 @@ using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.UI;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
-using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.GUI
@@ -30,7 +28,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private AxisOnHold AxisOnHold;
         [SerializeField]
         private ButtonOnPressed Attack1;
-        
 
         protected override void Initialize()
         {
@@ -152,9 +149,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         public void OnStartPressed()
         {
-            OnButtonMouseLeave(0);
-            OnButtonMouseLeave(1);
-            OnButtonMouseLeave(2);
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
@@ -166,9 +160,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         public void OnQuitPressed()
         {
-            OnButtonMouseLeave(0);
-            OnButtonMouseLeave(1);
-            OnButtonMouseLeave(2);
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
             Application.Quit();
         }
