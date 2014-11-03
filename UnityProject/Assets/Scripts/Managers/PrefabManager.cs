@@ -5,6 +5,7 @@ using System.Linq;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Health;
+using Assets.Scripts.Utility;
 using PathologicalGames;
 using UnityEngine;
 
@@ -66,26 +67,6 @@ namespace Assets.Scripts.Managers
                 }
 
                 _prefabNameMap.Add(_serializedPrefabPoolMapKeys[i], obj);
-
-                if (_serializedPrefabPoolMapKeys[i].Contains(PreloadedPrefabFolderName))
-                {
-                    if (obj.GetComponent<DestroyOnLevelEnded>() == null)
-                    {
-                        obj.AddComponent<DestroyOnLevelEnded>();
-                    }
-
-                    PrefabPool prefabPool = new PrefabPool(obj.transform)
-                    {
-                        preloadAmount = 5,
-                        cullDespawned = true,
-                        cullAbove = 200,
-                        cullDelay = 5,
-                        limitInstances = false,
-                        limitFIFO = true
-                    };
-
-                    spawnPool.CreatePrefabPool(prefabPool);
-                }
             }
         }
 

@@ -20,12 +20,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private List<Selectable>_buttons;
         private bool _paused = false;
 
-        protected override void Initialize()
+        protected override void FirstTimeInitialize()
         {
-            base.Initialize();
+            base.FirstTimeInitialize();
             _eventSystem = GetComponent<EventSystem>();
             _optionsBG = GameObject.Find("OptionsBG");
-            _curSelectedIndex = 0;
             _buttons = new List<Selectable>();
             _resumeButton = GameObject.Find("ResumeButtonOptions").GetComponent<Selectable>();
             _buttons.Add(_resumeButton);
@@ -33,6 +32,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             _buttons.Add(_menuButton);
             _quitButton = GameObject.Find("QuitButtonOptions").GetComponent<Selectable>();
             _buttons.Add(_quitButton);
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            _curSelectedIndex = 0;
             SelectButton();
             HideMenu();
         }
