@@ -245,17 +245,20 @@ namespace Assets.Scripts.Managers
             SerializedPrefabPoolMapKeys = new List<string>();
             SerializedPrefabPoolMapValues = new List<string>();
             UpdateManagerHelper();
+            for (int i = 0; i < PrefabPreloadAmountsKeys.Count; ++i)
+            {
+                if (!SerializedPrefabPoolMapKeys.Contains(PrefabPreloadAmountsKeys[i]))
+                {
+                    PrefabPreloadAmountsKeys.RemoveAt(i);
+                    PrefabPreloadAmountsValues.RemoveAt(i);
+                    --i;
+                }
+            }
         }
 
         void UpdateManagerHelper(string assetDirectoryPath = PrefabConstants.StartingAssetPrefabPath, string resourcesPrefabPath = PrefabConstants.StartingResourcesPrefabPath)
         {
 #if UNITY_EDITOR && !UNITY_WEBPLAYER
-
-            if (PrefabPreloadAmountsKeys == null)
-            {
-                PrefabPreloadAmountsKeys = new List<string>();
-                PrefabPreloadAmountsValues = new List<int>();
-            }
 
             DirectoryInfo dir = new DirectoryInfo(assetDirectoryPath);
 
@@ -267,20 +270,11 @@ namespace Assets.Scripts.Managers
                 {
                     SerializedPrefabPoolMapKeys.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name));
                     SerializedPrefabPoolMapValues.Add(poolName);
-                    if (!PrefabPreloadAmountsKeys.Contains(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name)))
+                    if (PrefabPreloadAmountsKeys.All(s => s != (resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name))))
                     {
                         PrefabPreloadAmountsKeys.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name));
                         PrefabPreloadAmountsValues.Add(1);
                     }
-                }
-            }
-            for (int i = 0; i < PrefabPreloadAmountsKeys.Count; ++i)
-            {
-                if (!SerializedPrefabPoolMapKeys.Contains(PrefabPreloadAmountsKeys[i]))
-                {
-                    PrefabPreloadAmountsKeys.RemoveAt(i);
-                    PrefabPreloadAmountsValues.RemoveAt(i);
-                    --i;
                 }
             }
 
