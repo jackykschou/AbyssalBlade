@@ -5,7 +5,6 @@ using System.Linq;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic;
 using Assets.Scripts.GameScripts.GameLogic.Health;
-using Assets.Scripts.Utility;
 using PathologicalGames;
 using UnityEngine;
 
@@ -18,14 +17,12 @@ namespace Assets.Scripts.Managers
     [AddComponentMenu("Manager/PrefabManager")] 
     public class PrefabManager : GameLogic
     {
-        public const string PreloadedPrefabFolderName = "PreloadedPrefab";
-
         public static PrefabManager Instance;
 
-        [SerializeField]
-        private List<string> _serializedPrefabPoolMapKeys;
-        [SerializeField]
-        private List<string> _serializedPrefabPoolMapValues;
+        public List<string> SerializedPrefabPoolMapKeys;
+        public List<string> SerializedPrefabPoolMapValues;
+        public List<string> PrefabPreloadAmountsKeys;
+        public List<int> PrefabPreloadAmountsValues;
 
         private Dictionary<string, GameObject> _prefabNameMap;
         private Dictionary<GameObject, SpawnPool> _prefabPoolMap;
@@ -39,34 +36,52 @@ namespace Assets.Scripts.Managers
 
         void CreateSpawnPools()
         {
-            for (int i = 0; i < _serializedPrefabPoolMapKeys.Count; ++i)
+            Dictionary<string, SpawnPool> poolNameCache = new Dictionary<string, SpawnPool>();
+            for (int i = 0; i < SerializedPrefabPoolMapKeys.Count; ++i)
             {
                 SpawnPool spawnPool;
-                GameObject obj = Resources.Load(_serializedPrefabPoolMapKeys[i]) as GameObject;
+                GameObject obj = Resources.Load(SerializedPrefabPoolMapKeys[i]) as GameObject;
 
                 if (obj == null)
                 {
                     throw new Exception("Object is not a prefab");
                 }
 
-                if (_prefabPoolMap.Values.All(s => s.poolName != _serializedPrefabPoolMapValues[i]))
+                if (!poolNameCache.ContainsKey(SerializedPrefabPoolMapValues[i]))
                 {
-                    spawnPool = PoolManager.Pools.Create(_serializedPrefabPoolMapValues[i]);
+                    spawnPool = PoolManager.Pools.Create(SerializedPrefabPoolMapValues[i] + i);
                     spawnPool.gameObject.transform.parent = transform;
                     spawnPool.gameObject.transform.position = transform.position;
-                    spawnPool.gameObject.name = _serializedPrefabPoolMapValues[i];
+                    spawnPool.gameObject.name = SerializedPrefabPoolMapValues[i] + i;
                     spawnPool.dontDestroyOnLoad = true;
 
+                    poolNameCache.Add(SerializedPrefabPoolMapValues[i], spawnPool);
                     _prefabPoolMap.Add(obj, spawnPool);
                 }
                 else
                 {
-                    spawnPool =
-                        _prefabPoolMap.Values.First(s => s.poolName == _serializedPrefabPoolMapValues[i]);
+                    spawnPool = poolNameCache[SerializedPrefabPoolMapValues[i]];
                     _prefabPoolMap.Add(obj, spawnPool);
                 }
 
-                _prefabNameMap.Add(_serializedPrefabPoolMapKeys[i], obj);
+                _prefabNameMap.Add(SerializedPrefabPoolMapKeys[i], obj);
+
+                if (obj.GetComponent<DestroyOnLevelEnded>() == null)
+                {
+                    obj.AddComponent<DestroyOnLevelEnded>();
+                }
+
+                PrefabPool prefabPool = new PrefabPool(obj.transform)
+                {
+                    preloadAmount = PrefabPreloadAmountsValues[PrefabPreloadAmountsKeys.IndexOf(SerializedPrefabPoolMapKeys[i])],
+                    cullDespawned = true,
+                    cullAbove = 100,
+                    cullDelay = 5,
+                    limitInstances = false,
+                    limitFIFO = true
+                };
+
+                spawnPool.CreatePrefabPool(prefabPool);
             }
         }
 
@@ -227,24 +242,45 @@ namespace Assets.Scripts.Managers
             Debug.LogWarning("PrefabManager's Update is not functional in WebPlayer");
             return;
 #endif
-            _serializedPrefabPoolMapKeys = new List<string>();
-            _serializedPrefabPoolMapValues = new List<string>();
+            SerializedPrefabPoolMapKeys = new List<string>();
+            SerializedPrefabPoolMapValues = new List<string>();
             UpdateManagerHelper();
         }
 
         void UpdateManagerHelper(string assetDirectoryPath = PrefabConstants.StartingAssetPrefabPath, string resourcesPrefabPath = PrefabConstants.StartingResourcesPrefabPath)
         {
 #if UNITY_EDITOR && !UNITY_WEBPLAYER
+
+            if (PrefabPreloadAmountsKeys == null)
+            {
+                PrefabPreloadAmountsKeys = new List<string>();
+                PrefabPreloadAmountsValues = new List<int>();
+            }
+
             DirectoryInfo dir = new DirectoryInfo(assetDirectoryPath);
 
             var files = dir.GetFiles("*.prefab").Where(f => (f.Extension == PrefabConstants.PrefabExtension)).ToList();
             if (files.Any())
             {
-                string poolName = dir.Name;
+                string poolName = resourcesPrefabPath;
                 foreach (var f in files)
                 {
-                    _serializedPrefabPoolMapKeys.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name));
-                    _serializedPrefabPoolMapValues.Add(poolName);
+                    SerializedPrefabPoolMapKeys.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name));
+                    SerializedPrefabPoolMapValues.Add(poolName);
+                    if (!PrefabPreloadAmountsKeys.Contains(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name)))
+                    {
+                        PrefabPreloadAmountsKeys.Add(resourcesPrefabPath + Path.GetFileNameWithoutExtension(f.Name));
+                        PrefabPreloadAmountsValues.Add(1);
+                    }
+                }
+            }
+            for (int i = 0; i < PrefabPreloadAmountsKeys.Count; ++i)
+            {
+                if (!SerializedPrefabPoolMapKeys.Contains(PrefabPreloadAmountsKeys[i]))
+                {
+                    PrefabPreloadAmountsKeys.RemoveAt(i);
+                    PrefabPreloadAmountsValues.RemoveAt(i);
+                    --i;
                 }
             }
 
