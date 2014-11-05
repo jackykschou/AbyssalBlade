@@ -70,6 +70,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint);
             }
         }
+
+        [Attributes.GameScriptEvent(GameScriptEvent.ChangeDamageReduction)]
+        public void ChangeDamageReduction(float amount)
+        {
+            HitPoint.NegativeChangeEmphasizePercentage += amount;
+        }
     
         protected override void Deinitialize()
         {

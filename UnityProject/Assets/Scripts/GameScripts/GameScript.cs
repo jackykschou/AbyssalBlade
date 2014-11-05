@@ -60,16 +60,7 @@ namespace Assets.Scripts.GameScripts
                 yield return new WaitForSeconds(Time.deltaTime);
             }
 
-            TriggerChildrenGameScriptEvent(gameObject, gameScriptEvent, args);
-        }
-
-        private void TriggerChildrenGameScriptEvent(GameObject child, GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            child.TriggerGameScriptEvent(gameScriptEvent, args);
-            foreach (Transform t in child.transform)
-            {
-                TriggerChildrenGameScriptEvent(t.gameObject, gameScriptEvent, args);
-            }
+            gameObject.TriggerGameScriptEvent(gameScriptEvent, args);
         }
 
         public void TriggerGameEvent(GameEvent gameEvent, params System.Object[] args)

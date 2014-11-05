@@ -22,13 +22,15 @@ GameObject:
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400022}
+  - 114: {fileID: 11400024}
   m_Layer: 22
   m_Name: HealthPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -114,14 +116,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   TargetValueType: 0
-  OneTimeDurationType: 0
+  OneTimeDurationType: 1
   IntervalDurationType: 0
-  ChangeType: 3
+  ChangeType: 4
   Stackable: 1
   NonStackableLabel: 0
-  _amount: 3
+  _amount: .00999999978
   AmountVariantPercentage: 0
-  ChangeDuration: 5
+  ChangeDuration: 3
   ChangeInterval: .100000001
   CriticalChance: 0
   CriticalPercentage: 2
@@ -143,6 +145,7 @@ MonoBehaviour:
   FinderPosition: {fileID: 11400008}
   TargetEffectAppliers:
   - {fileID: 11400002}
+  - {fileID: 11400022}
   Targets: []
 --- !u!114 &11400008
 MonoBehaviour:
@@ -228,6 +231,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c259f78c03e0d4295d8dde32d293c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  Message: Health Recovery
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f9cce5ba306bb4d931ecb8a63d336c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -248,7 +283,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 4061382801
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba6b6d8b51b059243b143b1b20a16874, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0cadb55b42eabe4fa627acae22be524, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

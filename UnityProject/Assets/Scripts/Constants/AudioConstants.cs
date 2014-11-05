@@ -119,14 +119,16 @@ namespace Assets.Scripts.Constants
         Sword_Shing_2       = 79,
         Sword_Shing_3       = 80,
         Sword_Shing_4       = 81,
-        Charged_Shot        = 82
+        Charged_Shot        = 82,
+        MenuAndSceneMusic   = 83
     };
 
     public enum LoopName
     {
         MainLoop = 0,
         Forest_Level_Loop = 1,
-        TestMultiLoop = 2
+        TestMultiLoop = 2,
+        MenuLoop
     };
 
 
@@ -217,7 +219,8 @@ namespace Assets.Scripts.Constants
             {ClipName.Sword_Shing_2, "Sword_Shing_2" },
             {ClipName.Sword_Shing_3, "Sword_Shing_3" },
             {ClipName.Sword_Shing_4, "Sword_Shing_4" },
-            {ClipName.Charged_Shot, "Charged_Shot"}
+            {ClipName.Charged_Shot, "Charged_Shot"},
+            {ClipName.MenuAndSceneMusic, "MenuAndScenemusic"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
@@ -248,7 +251,8 @@ namespace Assets.Scripts.Constants
         {
             {LoopName.MainLoop, "MainLoop"},
             {LoopName.Forest_Level_Loop, "Forest_Level_Loop"},
-            {LoopName.TestMultiLoop, "TestMultiLoop"}
+            {LoopName.TestMultiLoop, "TestMultiLoop"},
+            {LoopName.MenuLoop, "MenuLoop"}
         };
 
         public static void CreateCustomCues()
@@ -393,6 +397,15 @@ namespace Assets.Scripts.Constants
                 ClipName.Forest_Level_Hard_Full
             };
             AudioManager.Instance.CreateLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
+
+            // level loop
+            List<ClipName> menuLoop = new List<ClipName>
+            {
+                ClipName.MenuAndSceneMusic,
+                ClipName.MenuAndSceneMusic,
+                ClipName.MenuAndSceneMusic
+            };
+            AudioManager.Instance.CreateLevelLoop(LoopName.MenuLoop, menuLoop);
         }
 
         public static string GetClipName(ClipName name)

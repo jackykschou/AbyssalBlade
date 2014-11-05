@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Constants;
+﻿using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.GameValue;
 using Assets.Scripts.Utility;
 using UnityEngine;
@@ -18,11 +18,20 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 
         private void ApplyHealthChange(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.ObjectChangeHealth, GameValueChanger);
+            target.TriggerGameScriptEvent(Constants.GameScriptEvent.ObjectChangeHealth, GameValueChanger);
         }
 
         protected override void Deinitialize()
         {
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ChangeDamageCriticalChance)]
+        public void ChangeDamageCriticalChance(float changeAmount)
+        {
+            if (GameValueChanger._amount <= 0f)
+            {
+                GameValueChanger.CriticalChance += changeAmount;
+            }
         }
     }
 }
