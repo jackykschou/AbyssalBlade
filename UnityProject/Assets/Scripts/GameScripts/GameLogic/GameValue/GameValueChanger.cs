@@ -48,8 +48,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         public bool Stackable;
         public NonStackableType NonStackableLabel;
 
-        [SerializeField]
-        private float _amount;
+        public float _amount;
         public float AmountVariantPercentage;
         public float Amount
         {

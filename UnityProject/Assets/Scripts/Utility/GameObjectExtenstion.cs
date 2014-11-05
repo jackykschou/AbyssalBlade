@@ -43,11 +43,16 @@ namespace Assets.Scripts.Utility
 
         public static void TriggerGameScriptEvent(this GameObject o, GameScriptEvent gameScriptEvent, params object[] args)
         {
-            if (!GameScriptEventManagersCache.ContainsKey(o))
+            if (GameScriptEventManagersCache.ContainsKey(o))
             {
-                return;
+                GameScriptEventManagersCache[o].TriggerGameScriptEvent(gameScriptEvent, args);
             }
-            GameScriptEventManagersCache[o].TriggerGameScriptEvent(gameScriptEvent, args);
+
+            foreach (Transform t in o.transform)
+            {
+                TriggerGameScriptEvent(t.gameObject, gameScriptEvent, args);
+            }
+
         }
 
         public static bool IsInterrupted(this GameObject o)

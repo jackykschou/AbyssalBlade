@@ -51,7 +51,7 @@
         OnPhysicsBodyOnCollisionStay2D,        // void(Collision2D)
         OnPhysicsBodyOnCollisionExit2D,        // void(Collision2D)
 
-        UpdateSectionId,                    // void(int)
+        UpdateSectionId,                         // void(int)
 
         MenuStartButtonPressed,                  // void()
         MenuOptionsButtonPressed,                // void()
@@ -66,6 +66,7 @@
         UnchangeObjectMotorSpeed,                // void(GameValueChanger)
 
         ButtonChange,                            // void(int buttonID)
-        ResetHealth                              // void()
+        ResetHealth,                             // void()
+        ChangeDamageCriticalChance               // void(float)
     };
 }

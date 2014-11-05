@@ -21,15 +21,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue.Editor
                 {
                     case GameValueChanger.CurrentValueChangeType.FixedAmount:
                     case GameValueChanger.CurrentValueChangeType.FixedAmountByInterval:
-                        changer.RawAmount = EditorGUILayout.FloatField("Amount", changer.RawAmount);
+                        changer._amount = EditorGUILayout.FloatField("Amount", changer._amount);
                         break;
                     case GameValueChanger.CurrentValueChangeType.CurrentPercentage:
                     case GameValueChanger.CurrentValueChangeType.CurrentPercentageByInterval:
-                        changer.RawAmount = EditorGUILayout.FloatField("Percentage", changer.RawAmount);
+                        changer._amount = EditorGUILayout.FloatField("Percentage", changer._amount);
                         break;
                     case GameValueChanger.CurrentValueChangeType.MaxPercentage:
                     case GameValueChanger.CurrentValueChangeType.MaxPercentageByInterval:
-                        changer.RawAmount = EditorGUILayout.FloatField("Max Percentage", changer.RawAmount);
+                        changer._amount = EditorGUILayout.FloatField("Max Percentage", changer._amount);
                         break;
                 }
                 switch (changer.ChangeType)
@@ -67,7 +67,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue.Editor
             }
             else
             {
-                changer.RawAmount = EditorGUILayout.FloatField("Amount", changer.RawAmount);
+                changer._amount = EditorGUILayout.FloatField("Amount", changer._amount);
                 changer.OneTimeDurationType = (GameValueChanger.OneTimeChangeDurationType)EditorGUILayout.EnumPopup("Duration Type", changer.OneTimeDurationType);
                 if (changer.OneTimeDurationType == (GameValueChanger.OneTimeChangeDurationType.TempFixedTime))
                 {
