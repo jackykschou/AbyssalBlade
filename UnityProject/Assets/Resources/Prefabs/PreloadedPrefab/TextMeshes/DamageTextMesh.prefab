@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff9feb77862efd46b694c09cd3de3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
   OrigDespawnTime: 1
   MinSpeed: 10
   MaxSpeed: 20
@@ -140,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,10 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deff34cb8b1fe8d4bb587ee4838a1e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed:
-    InitialMinValue: 0
-    InitialMaxValue: 0
-    InitialValue: 0
+  LabelName: 
+  Speed: {fileID: 0}
   EaseType: 7
 --- !u!1001 &100100000
 Prefab:
