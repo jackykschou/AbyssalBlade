@@ -225,6 +225,8 @@ GameObject:
   - 114: {fileID: 11400132}
   - 114: {fileID: 11400138}
   - 114: {fileID: 11400082}
+  - 114: {fileID: 11400140}
+  - 114: {fileID: 11400142}
   m_Layer: 0
   m_Name: RegenStoneEnemy
   m_TagString: Enemy
@@ -1462,6 +1464,40 @@ MonoBehaviour:
   LabelName: 
   Event: 0
   AdditionalChanceChangeAmount: 1
+--- !u!114 &11400140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45054e6e03c87944e8d79892aedf9fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PrefabSpawner: {fileID: 11400142}
+--- !u!114 &11400142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Prefabs: 14000000
+  SpawnPickWeights:
+  - 1
+  PrefabSpawnValues: 00000000
+  UseLimitSpawnValue: 0
+  LimitSpawnValue: 0
+  LimitNumberOfSpawn: 1
+  NumberOfSpawn: 1
+  SpawnChance: 1
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

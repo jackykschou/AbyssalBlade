@@ -22,11 +22,13 @@ namespace Assets.Scripts.Constants
         StoneEnemy = 2,
         GreenRangeEnemy = 17,
         Boss1 = 13,
-        RegenStoneEnemy = 19,       //!!!
+        RegenStoneEnemy = 19,
         SimpleLightMeleeEnemy = 7,
         SimpleRangeEnemy = 8,
 
         HealthPotion = 11,
+        DamageReductionPowerUp = 20,
+        CritChancePowerUp = 21,     //!!!
 
         DamageText = 1,
         MessageText = 6
@@ -59,7 +61,9 @@ namespace Assets.Scripts.Constants
             {Prefab.BossMissle, "Prefabs/PreloadedPrefab/Projectile/BossMissle"},
             {Prefab.GreenRangeEnemy, "Prefabs/PreloadedPrefab/Character/GreenSmallRangeEnemy"},
             {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"},
-            {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"}
+            {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"},
+            {Prefab.CritChancePowerUp, "Prefabs/PreloadedPrefab/PowerUp/CritChanceUp"},
+            {Prefab.DamageReductionPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"}
         };
 
         public static string GetPrefabName(Prefab prefab)
