@@ -81,28 +81,28 @@ BlendTree:
   m_PrefabInternal: {fileID: 0}
   m_Name: Move
   m_Childs:
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: 4ad5b51e7ab85492ba787daa4ac895e6, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: f67e8bb71c32142d9a089cb9c40372c7, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: 08094fe7ce64c4af29d0408e068dd209, type: 2}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: 4123399069d374a36ad3c968e4302319, type: 2}
     m_Threshold: 3
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -121,12 +121,40 @@ BlendTree:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Charge
-  m_Childs: []
+  m_Childs:
+  - m_Motion: {fileID: 7400000, guid: 4ad5b51e7ab85492ba787daa4ac895e6, type: 2}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: f67e8bb71c32142d9a089cb9c40372c7, type: 2}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: 08094fe7ce64c4af29d0408e068dd209, type: 2}
+    m_Threshold: 2
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: 4123399069d374a36ad3c968e4302319, type: 2}
+    m_Threshold: 3
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
   m_BlendParameter: FacingDirection
   m_BlendParameterY: FacingDirection
   m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_MaxThreshold: 3
+  m_UseAutomaticThresholds: 0
   m_BlendType: 0
 --- !u!206 &20618076
 BlendTree:
@@ -135,28 +163,28 @@ BlendTree:
   m_PrefabInternal: {fileID: 0}
   m_Name: Melee
   m_Childs:
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: be5703d0a3c0544999b079998838ece0, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: bebb4f84e5f064a6bb09ebd6a55911fb, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: d8246cf02637c4146a029f76d903e61a, type: 2}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
-  - m_Motion: {fileID: 0}
+  - m_Motion: {fileID: 7400000, guid: ac33c815d38474dff98983d40c9f8c70, type: 2}
     m_Threshold: 3
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -175,12 +203,40 @@ BlendTree:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Blend Tree
-  m_Childs: []
+  m_Childs:
+  - m_Motion: {fileID: 7400000, guid: cee809374cebc421e8c253b40cbd36af, type: 2}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: 0fb8904c576134cc89d5cd8d664cdd2a, type: 2}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: ccf126a8ebc364e0a88e36a26a451606, type: 2}
+    m_Threshold: 2
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: 231abb6d9215a4026a520d6125ed39ec, type: 2}
+    m_Threshold: 3
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
   m_BlendParameter: FacingDirection
   m_BlendParameterY: FacingDirection
   m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_MaxThreshold: 3
+  m_UseAutomaticThresholds: 0
   m_BlendType: 0
 --- !u!206 &20646416
 BlendTree:
@@ -270,12 +326,40 @@ BlendTree:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Summon
-  m_Childs: []
+  m_Childs:
+  - m_Motion: {fileID: 7400000, guid: 885e2a3d4863343e29509ac5d6ae50df, type: 2}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: 2256173f887b04eafb7d16866bebc56a, type: 2}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: c9c119ba7ba3c4e258fbd554a3668840, type: 2}
+    m_Threshold: 2
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
+  - m_Motion: {fileID: 7400000, guid: bc3cbe274befa43bab50d002cac88cb1, type: 2}
+    m_Threshold: 3
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_IsAnim: 1
+    m_Mirror: 0
   m_BlendParameter: FacingDirection
   m_BlendParameterY: FacingDirection
   m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_MaxThreshold: 3
+  m_UseAutomaticThresholds: 0
   m_BlendType: 0
 --- !u!206 &20684589
 BlendTree:
@@ -843,7 +927,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Charge
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 20605249}
@@ -983,7 +1067,7 @@ State:
   m_Motions:
   - {fileID: 20647852}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 264, y: 60, z: 0}
+  m_Position: {x: 264, y: 72, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
