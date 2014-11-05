@@ -28,10 +28,12 @@ namespace Assets.Scripts.Constants
 
         HealthPotion = 11,
         DamageReductionPowerUp = 20,
-        CritChancePowerUp = 21,     //!!!
+        CritChancePowerUp = 21,     
 
         DamageText = 1,
-        MessageText = 6
+        MessageText = 6,
+
+        IntroStoryBoardLevel = 22   //!!!
     };
 
     public class PrefabConstants
@@ -63,7 +65,8 @@ namespace Assets.Scripts.Constants
             {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"},
             {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"},
             {Prefab.CritChancePowerUp, "Prefabs/PreloadedPrefab/PowerUp/CritChanceUp"},
-            {Prefab.DamageReductionPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"}
+            {Prefab.DamageReductionPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
+            {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"}
         };
 
         public static string GetPrefabName(Prefab prefab)
