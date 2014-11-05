@@ -9,7 +9,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
     [AddComponentMenu("LevelMechanics/StoryBoardPlayer")]
     public class StoryBoardPlayer : GameLogic
     {
-
         public List<Sprite> FlipBook;
         public float FlipDelay = 3.0f;
         public Prefab NextLevelPrefab;
