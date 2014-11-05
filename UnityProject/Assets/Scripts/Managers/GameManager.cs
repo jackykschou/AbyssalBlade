@@ -29,6 +29,7 @@ namespace Assets.Scripts.Managers
 
         private Prefab _currentLevelPrefab;
 
+        [SerializeField]
         private GameObject _mainCamera;
         public GameObject MainCamera
         {
@@ -42,6 +43,7 @@ namespace Assets.Scripts.Managers
             }
         }
 
+        [SerializeField]
         private GameObject _loadingScreen;
         public GameObject LoadingScreen
         {
@@ -55,6 +57,7 @@ namespace Assets.Scripts.Managers
             }
         }
 
+        [SerializeField]
         private GameObject _HUD;
         public GameObject HUD
         {
@@ -68,6 +71,7 @@ namespace Assets.Scripts.Managers
             }
         }
 
+        [SerializeField]
         private GameObject _playerMainCharacter;
         public GameObject PlayerMainCharacter
         {
@@ -86,7 +90,7 @@ namespace Assets.Scripts.Managers
 
         public void ChangeLevel(Prefab levelPrefab)
         {
-            StartCoroutine(ChangeLevelIE(levelPrefab));
+           StartCoroutine(ChangeLevelIE(levelPrefab));
         }
 
         private IEnumerator ChangeLevelIE(Prefab levelPrefab)
