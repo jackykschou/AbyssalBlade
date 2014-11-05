@@ -67,6 +67,7 @@
 
         ButtonChange,                            // void(int buttonID)
         ResetHealth,                             // void()
-        ChangeDamageCriticalChance               // void(float)
+        ChangeDamageCriticalChance,              // void(float)
+        ChangeDamageReduction                    // void(float)
     };
 }
