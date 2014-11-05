@@ -44,7 +44,24 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            
+
+            if (OptionsButton.Detect())
+            {
+                _paused = !_paused;
+                if (_paused)
+                {
+                    ShowMenu();
+                    _curSelectedIndex = 2;
+                    SelectButton();
+                    _curSelectedIndex = 0;
+                    SelectButton();
+                }
+                else
+                {
+                    HideMenu();
+                }
+            }
+
             if (_paused)
             {
                 if (AxisOnHold.Detect())
@@ -61,19 +78,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                     SelectButton();
                 }
             }
-
-            if (OptionsButton.Detect())
-            {
-                _paused = !_paused;
-                if (_paused)
-                {
-                    ShowMenu();
-                }
-                else
-                {
-                    HideMenu();
-                }
-            }
         }
 
         private void ShowMenu()
@@ -81,35 +85,29 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             TriggerGameEvent(Constants.GameEvent.DisablePlayerCharacter);
             _optionsBG.SetActive(true);
             SelectButton();
-            _paused = true;
+            //_paused = true;
         }
         private void HideMenu()
         {
-            _optionsBG.SetActive(false);
             SelectButton();
+            _optionsBG.SetActive(false);
             TriggerGameEvent(Constants.GameEvent.EnablePlayerCharacter);
-            _paused = false;
+            //_paused = false;
         }
 
         private void SelectButton()
         {
-            //if (!_paused)
-              //  return;
             _eventSystem.SetSelectedGameObject(_buttons[_curSelectedIndex].gameObject, new BaseEventData(_eventSystem));
         }
 
         private void GoUp()
         {
-           // if (!_paused)
-             //   return;
             if (_curSelectedIndex < _buttons.Count - 1)
                 _curSelectedIndex = _curSelectedIndex + 1;
         }
 
         private void GoDown()
         {
-            //if (!_paused)
-            //    return;
             if (_curSelectedIndex > 0)
                 _curSelectedIndex = _curSelectedIndex - 1;
         }
@@ -123,6 +121,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         public void OnMenuPressed()
         {
             _paused = false;
+            HideMenu();
             GameManager.Instance.ChangeLevel(Prefab.MainMenu);
         }
 

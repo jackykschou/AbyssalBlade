@@ -46,13 +46,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             };
             _popoutAmount = new Vector3(0, 0, -.75f);
             _numButtons = _buttonObjs.Count;
-            _curButton = 0;
+            ButtonChange(0);
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            OnButtonMouseOver(_curButton);
+            //OnButtonMouseOver(_curButton);
             if (AxisOnHold.Detect())
             {
                 ButtonChange(GetNextButton(AxisOnHold.GetAxisValue() > 0.01f));
@@ -143,13 +143,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                     OnButtonMouseLeave(0);
                     OnButtonMouseLeave(1);
                     break;
+                case 3:
+                    OnButtonMouseLeave(0);
+                    OnButtonMouseLeave(1);
+                    OnButtonMouseLeave(2);
+                    break;
             }
             _curButton = buttonId;
         }
 
         public void OnStartPressed()
         {
+            ButtonChange(3);
+            _curButton = 0;
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
+
             GameManager.Instance.ChangeLevel(StartLevelPrefab);
         }
 
