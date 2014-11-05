@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Attributes;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,8 +11,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 {
     public class OptionsMenuController : GameLogic
     {
-        private EventSystem _eventSystem;
+        [SerializeField]
+        private AxisOnHold AxisOnHold;
+        [SerializeField]
+        private ButtonOnPressed OptionsButton;
 
+        private EventSystem _eventSystem;
         private Selectable _resumeButton;
         private Selectable _menuButton;
         private Selectable _quitButton;
@@ -32,71 +37,79 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             _buttons.Add(_menuButton);
             _quitButton = GameObject.Find("QuitButtonOptions").GetComponent<Selectable>();
             _buttons.Add(_quitButton);
-        }
-
-        protected override void Initialize()
-        {
-            base.Initialize();
             _curSelectedIndex = 0;
-            SelectButton();
             HideMenu();
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
+            
+            if (_paused)
+            {
+                if (AxisOnHold.Detect())
+                {
+                    float v = AxisOnHold.GetAxisValue();
+                    if (v > 0.0f)
+                    {
+                        GoDown();
+                    }
+                    else if (v < 0.0f)
+                    {
+                        GoUp();
+                    }
+                    SelectButton();
+                }
+            }
 
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+            if (OptionsButton.Detect())
             {
                 _paused = !_paused;
                 if (_paused)
                 {
-                    TriggerGameEvent(Constants.GameEvent.DisablePlayerCharacter);
                     ShowMenu();
                 }
                 else
                 {
-                    TriggerGameEvent(Constants.GameEvent.EnablePlayerCharacter);
                     HideMenu();
-                }
-            }
-
-            if (_paused)
-            {
-                float v = UnityEngine.Input.GetAxis("VerticalAxis");
-                if (v > 0.01)
-                {
-                    GoDown();
-                }
-                else if (v < -.01)
-                {
-                    GoUp();
                 }
             }
         }
 
         private void ShowMenu()
         {
+            TriggerGameEvent(Constants.GameEvent.DisablePlayerCharacter);
             _optionsBG.SetActive(true);
+            SelectButton();
+            _paused = true;
         }
         private void HideMenu()
         {
             _optionsBG.SetActive(false);
+            SelectButton();
+            TriggerGameEvent(Constants.GameEvent.EnablePlayerCharacter);
+            _paused = false;
         }
 
         private void SelectButton()
         {
+            //if (!_paused)
+              //  return;
             _eventSystem.SetSelectedGameObject(_buttons[_curSelectedIndex].gameObject, new BaseEventData(_eventSystem));
         }
 
         private void GoUp()
         {
+           // if (!_paused)
+             //   return;
             if (_curSelectedIndex < _buttons.Count - 1)
                 _curSelectedIndex = _curSelectedIndex + 1;
         }
 
         private void GoDown()
         {
+            //if (!_paused)
+            //    return;
             if (_curSelectedIndex > 0)
                 _curSelectedIndex = _curSelectedIndex - 1;
         }
@@ -109,11 +122,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         public void OnMenuPressed()
         {
+            _paused = false;
             GameManager.Instance.ChangeLevel(Prefab.MainMenu);
         }
 
         public void OnQuitPressed()
         {
+            Application.Quit();
         }
 
         protected override void Deinitialize()

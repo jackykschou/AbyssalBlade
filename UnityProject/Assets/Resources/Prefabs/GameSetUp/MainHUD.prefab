@@ -240,8 +240,6 @@ GameObject:
   - 224: {fileID: 22400026}
   - 223: {fileID: 22300000}
   - 114: {fileID: 11400028}
-  - 114: {fileID: 11400140}
-  - 114: {fileID: 11400142}
   m_Layer: 5
   m_Name: MainHUD
   m_TagString: Untagged
@@ -768,6 +766,9 @@ GameObject:
   - 114: {fileID: 11400138}
   - 114: {fileID: 11400136}
   - 114: {fileID: 11400134}
+  - 114: {fileID: 11400146}
+  - 114: {fileID: 11400142}
+  - 114: {fileID: 11400144}
   m_Layer: 5
   m_Name: OptionsScreen
   m_TagString: Untagged
@@ -1637,7 +1638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 11400078}
     m_SelectOnDown: {fileID: 11400062}
     m_SelectOnLeft: {fileID: 0}
@@ -1753,7 +1754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 11400054}
     m_SelectOnDown: {fileID: 11400078}
     m_SelectOnLeft: {fileID: 0}
@@ -1939,7 +1940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_SelectOnUp: {fileID: 11400062}
     m_SelectOnDown: {fileID: 11400054}
     m_SelectOnLeft: {fileID: 0}
@@ -2406,6 +2407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  AxisOnHold: {fileID: 11400142}
+  OptionsButton: {fileID: 11400144}
 --- !u!114 &11400130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2451,8 +2454,8 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: HorizontalAxis
-  m_VerticalAxis: VerticalAxis
+  m_HorizontalAxis: HorizontalAxisJoystick
+  m_VerticalAxis: VerticalAxisJoystick
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
@@ -2470,28 +2473,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
---- !u!114 &11400140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400142
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100026}
+  m_GameObject: {fileID: 100086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 414f09ae9da674541b56879ae5bf7604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
+  KeyCodes: 0200000000000000
+  CoolDownTimeDispatcher: {fileID: 11400146}
+--- !u!114 &11400144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89645e3c8adfebb428c95b87db9f487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  KeyCodes: 0b000000
+  CoolDownTimeDispatcher: {fileID: 11400146}
+--- !u!114 &11400146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  DispatchInterval: .200000003
 --- !u!114 &11400164
 MonoBehaviour:
   m_ObjectHideFlags: 1
