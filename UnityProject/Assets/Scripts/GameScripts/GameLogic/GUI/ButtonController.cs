@@ -52,7 +52,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            //OnButtonMouseOver(_curButton);
             if (AxisOnHold.Detect())
             {
                 ButtonChange(GetNextButton(AxisOnHold.GetAxisValue() > 0.01f));

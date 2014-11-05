@@ -29,7 +29,9 @@ namespace Assets.Scripts.Constants
         HealthPotion = 11,
 
         DamageText = 1,
-        MessageText = 6
+        MessageText = 6,
+
+        IntroStoryBoardLevel = 20
     };
 
     public class PrefabConstants
@@ -59,7 +61,8 @@ namespace Assets.Scripts.Constants
             {Prefab.BossMissle, "Prefabs/PreloadedPrefab/Projectile/BossMissle"},
             {Prefab.GreenRangeEnemy, "Prefabs/PreloadedPrefab/Character/GreenSmallRangeEnemy"},
             {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"},
-            {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"}
+            {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"},
+            {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"}
         };
 
         public static string GetPrefabName(Prefab prefab)
