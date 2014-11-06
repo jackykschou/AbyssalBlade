@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Assets.Scripts.Attributes;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -15,6 +14,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         public float Delay = 1.0f;
 
         private bool _reset = false;
+
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            _reset = false;
+        }
 
         protected override void Initialize()
         {
@@ -36,6 +41,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
             _reset = true;
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnPlayerDeath);
             StartCoroutine(ResetLevelIE());
+        }
+
+        [Attributes.GameEvent(GameEvent.EnablePlayerCharacter)]
+        public void EnablePlayerCharacter()
+        {
+            _reset = false;
         }
 
         IEnumerator ResetLevelIE()
