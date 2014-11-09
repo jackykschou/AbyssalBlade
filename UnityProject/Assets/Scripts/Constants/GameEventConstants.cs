@@ -34,6 +34,7 @@
         ShakeCamera,                     // void(float, float)
         SetCameraWidth,                  // void(float)
         DisablePlayerCharacter,          // void()
-        EnablePlayerCharacter            // void()
+        EnablePlayerCharacter,           // void()
+        OnLoadingScreenFinished          // void()
      };
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -114,10 +115,13 @@ namespace Assets.Scripts.Managers
             _currentLevelPrefab = levelPrefab;
             AudioManager.Instance.UnMute();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
-            yield return new WaitForSeconds(.1f);
-            HideLoadingScreen();
+        }
+
+        [GameEventAttribute(GameEvent.OnLoadingScreenFinished)]
+        public void OnLoadingScreenFinished()
+        {
+            FinishLoadingScreen();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
-            yield return new WaitForSeconds(.1f);
         }
 
         public void DestroyScene(GameObject sceneGameObject)
@@ -152,9 +156,10 @@ namespace Assets.Scripts.Managers
         {
             MessageManager.Instance.SetTipText(LoadScreenHintConstant.LoadScreenHints[Random.Range(0, LoadScreenHintConstant.LoadScreenHints.Count)]);
             LoadingScreen.SetActive(true);
+            LoadingScreen.TriggerGameScriptEvent(GameScriptEvent.LoadingScreenStartLoading);
         }
 
-        public void HideLoadingScreen()
+        public void FinishLoadingScreen()
         {
             LoadingScreen.SetActive(false);
         }
