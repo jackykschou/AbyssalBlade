@@ -48,8 +48,8 @@
         OnPhysicsBodyOnTriggerStay2D,           // void(Collider2D)
         OnPhysicsBodyOnTriggerExit2D,           // void(Collider2D)
         OnPhysicsBodyOnCollisionEnter2D,        // void(Collision2D)
-        OnPhysicsBodyOnCollisionStay2D,        // void(Collision2D)
-        OnPhysicsBodyOnCollisionExit2D,        // void(Collision2D)
+        OnPhysicsBodyOnCollisionStay2D,         // void(Collision2D)
+        OnPhysicsBodyOnCollisionExit2D,         // void(Collision2D)
 
         UpdateSectionId,                         // void(int)
 
@@ -68,6 +68,7 @@
         ButtonChange,                            // void(int buttonID)
         ResetHealth,                             // void()
         ChangeDamageCriticalChance,              // void(float)
-        ChangeDamageReduction                    // void(float)
+        ChangeDamageReduction,                   // void(float)
+        LoadingScreenStartLoading,               // void()
     };
 }
