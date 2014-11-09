@@ -67,7 +67,8 @@ namespace Assets.Scripts.Constants
             {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"},
             {Prefab.CritChancePowerUp, "Prefabs/PreloadedPrefab/PowerUp/CritChanceUp"},
             {Prefab.DamageReductionPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
-            {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"}
+            {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"},
+            {Prefab.SimpleRangeNoDropEnemy, "Prefabs/PreloadedPrefab/Character/SimpleRangeNoDropEnemy"}
         };
 
         public static string GetPrefabName(Prefab prefab)
