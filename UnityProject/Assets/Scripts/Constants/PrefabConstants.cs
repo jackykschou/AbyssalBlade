@@ -25,6 +25,7 @@ namespace Assets.Scripts.Constants
         RegenStoneEnemy = 19,
         SimpleLightMeleeEnemy = 7,
         SimpleRangeEnemy = 8,
+        SimpleRangeNoDropEnemy = 23, //!!!
 
         HealthPotion = 11,
         DamageReductionPowerUp = 20,
@@ -33,7 +34,7 @@ namespace Assets.Scripts.Constants
         DamageText = 1,
         MessageText = 6,
 
-        IntroStoryBoardLevel = 22   //!!!
+        IntroStoryBoardLevel = 22
     };
 
     public class PrefabConstants

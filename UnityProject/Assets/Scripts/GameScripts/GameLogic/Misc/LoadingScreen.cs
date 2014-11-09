@@ -15,6 +15,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         [GameScriptEvent(Constants.GameScriptEvent.LoadingScreenStartLoading)]
         public void LoadingScreenStartLoading()
         {
+            LoadingText.color = new Color(LoadingText.color.r, LoadingText.color.g, LoadingText.color.b, 1);
             LoadingText.text = "Loading...";
         }
 
@@ -30,6 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             while (!ButtonOnPressed.Detect())
             {
                 yield return new WaitForSeconds(Time.deltaTime);
+                LoadingText.color = new Color(LoadingText.color.r, LoadingText.color.g, LoadingText.color.b, Mathf.PingPong(Time.time, 1));
             }
             TriggerGameEvent(Constants.GameEvent.OnLoadingScreenFinished);
         }
