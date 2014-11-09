@@ -8,7 +8,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
     [RequireComponent(typeof(GameValue.GameValue))]
     public class Health : GameLogic
     {
-        public bool Invincible;
+        private bool _invincible;
+
+        public bool Invincible
+        {
+            get { return _invincible; }
+            set
+            {
+                if (value != _invincible)
+                {
+                    TriggerGameScriptEvent(value ? GameScriptEvent.OnHealthInvincibleEnable : GameScriptEvent.OnHealthInvincibleDisable);
+                }
+                _invincible = value;
+            }
+        }
+
 
         public GameValue.GameValue HitPoint;
 

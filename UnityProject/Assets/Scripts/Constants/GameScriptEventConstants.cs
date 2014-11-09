@@ -70,5 +70,9 @@
         ChangeDamageCriticalChance,              // void(float)
         ChangeDamageReduction,                   // void(float)
         LoadingScreenStartLoading,               // void()
+        HealthInvincibleEnable,                  // void()
+        HealthInvincibleDisable,                 // void()
+        OnHealthInvincibleEnable,                  // void()
+        OnHealthInvincibleDisable                  // void()
     };
 }
