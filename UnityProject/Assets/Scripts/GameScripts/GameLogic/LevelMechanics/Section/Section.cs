@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     {
         public override void OnSectionActivated(int sectionId)
         {
-            base.OnSectionActivated(SectionId);
+            base.OnSectionActivated(sectionId);
             if (sectionId == SectionId)
             {
                 LevelManager.Instance.CurrentSectionId = SectionId;
