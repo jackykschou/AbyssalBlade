@@ -46,7 +46,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             };
             _popoutAmount = new Vector3(0, 0, -.75f);
             _numButtons = _buttonObjs.Count;
-            ButtonChange(0);
+            ButtonChange(3);
         }
 
         protected override void FixedUpdate()
