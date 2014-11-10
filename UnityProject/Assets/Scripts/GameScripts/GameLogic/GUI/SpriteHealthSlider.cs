@@ -17,6 +17,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             _slider.value = 1.0f;
             HealthSliderImage.color = Color.green;
             _canvas = GetComponent<Canvas>();
+            _canvas.enabled = true;
         }
 
         protected override void Deinitialize()
@@ -52,5 +53,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             if (_canvas != null)
                 _canvas.enabled = false;
         }
+
     }
 }
