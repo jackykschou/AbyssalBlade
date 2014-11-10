@@ -8,7 +8,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
     {
         public Image HealthSliderImage;
         private Slider _slider;
-
+        private Canvas _canvas;
         protected override void Initialize()
         {
             base.Initialize();
@@ -16,6 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             _slider.targetGraphic.enabled = true;
             _slider.value = 1.0f;
             HealthSliderImage.color = Color.green;
+            _canvas = GetComponent<Canvas>();
         }
 
         protected override void Deinitialize()
@@ -43,6 +44,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             {
                 HealthSliderImage.color = Color.Lerp(Color.red, Color.green, _slider.value);
             }
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.OnObjectHasNoHitPoint)]
+        public void DisableCanvas()
+        {
+            if (_canvas != null)
+                _canvas.enabled = false;
         }
     }
 }
