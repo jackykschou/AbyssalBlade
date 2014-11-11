@@ -96,6 +96,7 @@ namespace Assets.Scripts.Managers
 
         private IEnumerator ChangeLevelIE(Prefab levelPrefab)
         {
+            ShowLoadingScreen();
             AudioManager.Instance.Mute();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelEnded);
             HUD.SetActive(false);
@@ -103,7 +104,6 @@ namespace Assets.Scripts.Managers
             PlayerMainCharacter.GetComponentsInChildren<MonoBehaviour>().ToList().ForEach(mono => mono.StopAllCoroutines());
             yield return new WaitForSeconds(.1f);
             TriggerGameEvent(GameEvent.DisablePlayerCharacter);
-            ShowLoadingScreen();
             yield return new WaitForSeconds(.1f);
             if (CurrentLevel != null)
             {
@@ -120,8 +120,8 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLoadingScreenFinished)]
         public void OnLoadingScreenFinished()
         {
-            FinishLoadingScreen();
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
+            FinishLoadingScreen();
         }
 
         public void DestroyScene(GameObject sceneGameObject)

@@ -146,11 +146,8 @@ GameObject:
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400012}
-  - 114: {fileID: 11400014}
   - 114: {fileID: 11400054}
   - 114: {fileID: 11400108}
-  - 114: {fileID: 11400112}
-  - 114: {fileID: 11400110}
   - 114: {fileID: 11400116}
   - 114: {fileID: 11400114}
   - 114: {fileID: 11400040}
@@ -455,28 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  PrefabSpawner: {fileID: 11400014}
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Prefabs: 0b000000
-  SpawnPickWeights:
-  - 1
-  PrefabSpawnValues: 00000000
-  UseLimitSpawnValue: 0
-  LimitSpawnValue: 0
-  LimitNumberOfSpawn: 1
-  NumberOfSpawn: 1
-  SpawnChance: 1
+  PrefabSpawner: {fileID: 0}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1173,34 +1149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SectionId: 0
---- !u!114 &11400110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b68f3f070903004381724d4c9c63b5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Event: 0
-  AdditionalChanceChangeAmount: 1
---- !u!114 &11400112
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e982cfdd0b9f3940b0fbb19366db90d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: HealthPotion
-  SpawnRadius: .5
-  PrefabSpawner: {fileID: 11400014}
 --- !u!114 &11400114
 MonoBehaviour:
   m_ObjectHideFlags: 1
