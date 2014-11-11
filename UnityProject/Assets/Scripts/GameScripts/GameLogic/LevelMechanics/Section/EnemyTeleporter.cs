@@ -24,7 +24,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
             if (sectionID == SectionId)
             {
-                if(_onEnemySpawnedSystem)
+                if(_onEnemySpawnedSystem && _health.HitPoint.Value > 0)
                     _onEnemySpawnedSystem.Play();
             }
         }

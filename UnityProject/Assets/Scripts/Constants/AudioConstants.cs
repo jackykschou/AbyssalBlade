@@ -28,11 +28,14 @@ namespace Assets.Scripts.Constants
         Dog_Attack_Random = 11,
         Character_Death_Random = 12,
         Heavy_Attack_Random = 13,
-        Ranged_Enemy_Attack_Random = 14,
+        // 14 is open
         Stone_Enemy_Take_Damage_Random = 15,
         Stone_Enemy_Death_Random = 16,
         Stone_Enemy_Attack_Random = 17,
-        Charged_Shot_Random = 18
+        Charged_Shot_Random = 18,
+        Flying_Enemy_Attack_Parallel = 19,
+        Flying_Enemy_Death_Random = 20,
+        Flying_Enemy_Evade_Random = 21
     };
 
     public enum ClipName
@@ -120,7 +123,17 @@ namespace Assets.Scripts.Constants
         Sword_Shing_3       = 80,
         Sword_Shing_4       = 81,
         Charged_Shot        = 82,
-        MenuAndSceneMusic   = 83
+        MenuAndSceneMusic   = 83,
+
+        Flying_Enemy_Attack = 84,
+        Flying_Enemy_Attack_2 = 85,
+        Flying_Enemy_Death = 86,
+        Flying_Enemy_Death_2 = 87,
+        Flying_Enemy_Death_3 = 88,
+        Flying_Enemy_Evade = 89,
+        Flying_Enemy_Evade2 = 90,
+        Flying_Enemy_Projectile = 91,
+        Flying_Enemy_Static = 92
     };
 
     public enum LoopName
@@ -220,7 +233,16 @@ namespace Assets.Scripts.Constants
             {ClipName.Sword_Shing_3, "Sword_Shing_3" },
             {ClipName.Sword_Shing_4, "Sword_Shing_4" },
             {ClipName.Charged_Shot, "Charged_Shot"},
-            {ClipName.MenuAndSceneMusic, "MenuAndScenemusic"}
+            {ClipName.MenuAndSceneMusic, "MenuAndScenemusic"},
+            {ClipName.Flying_Enemy_Attack, "Flying_Enemy_Attack"},
+            {ClipName.Flying_Enemy_Attack_2, "Flying_Enemy_Attack_2" },
+            {ClipName.Flying_Enemy_Death, "Flying_Enemy_Death" },
+            {ClipName.Flying_Enemy_Death_2, "Flying_Enemy_Death_2" },
+            {ClipName.Flying_Enemy_Death_3, "Flying_Enemy_Death_3" },
+            {ClipName.Flying_Enemy_Evade, "Flying_Enemy_Evade" },
+            {ClipName.Flying_Enemy_Evade2, "Flying_Enemy_Evade2" },
+            {ClipName.Flying_Enemy_Projectile, "Flying_Enemy_Projectile" },
+            {ClipName.Flying_Enemy_Static, "Flying_Enemy_Static" }
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
@@ -239,11 +261,13 @@ namespace Assets.Scripts.Constants
             {CueName.Warp_In_Random, "Warp_In_Random" },
             {CueName.Character_Death_Random, "Character_Death_Random"},
             {CueName.Heavy_Attack_Random, "Heavy_Attack_Random"},
-            {CueName.Ranged_Enemy_Attack_Random, "Ranged_Enemy_Attack_Random"},
             {CueName.Stone_Enemy_Take_Damage_Random, "Stone_Enemy_Take_Damage_Random"},
             {CueName.Stone_Enemy_Death_Random, "Stone_Enemy_Death_Random"},
             {CueName.Stone_Enemy_Attack_Random, "Stone_Enemy_Attack_Random"},
-            {CueName.Charged_Shot_Random, "Charged_Shot_Random"}
+            {CueName.Charged_Shot_Random, "Charged_Shot_Random"},
+            {CueName.Flying_Enemy_Attack_Parallel, "Flying_Enemy_Attack_Random"},
+            {CueName.Flying_Enemy_Death_Random, "Flying_Enemy_Death_Random"},
+            {CueName.Flying_Enemy_Evade_Random, "Flying_Enemy_Evade_Random"}
         };
 
 
@@ -347,14 +371,6 @@ namespace Assets.Scripts.Constants
             };
             AudioManager.Instance.CreateMultiCueRandom(CueName.Heavy_Attack_Random, Heavy_Attack_Random);
 
-            //Ranged_Enemy_Attack_Random 
-            List<ClipName> Ranged_Enemy_Attack_Random = new List<ClipName> 
-            { 
-                ClipName.Laser,
-                ClipName.Laser2,
-                ClipName.Laser3
-            };
-            AudioManager.Instance.CreateMultiCueRandom(CueName.Ranged_Enemy_Attack_Random, Ranged_Enemy_Attack_Random);
 
             //Stone_Enemy_Take_Damage_Random 
             List<ClipName> Stone_Enemy_Take_Damage_Random = new List<ClipName> 
@@ -398,7 +414,7 @@ namespace Assets.Scripts.Constants
             };
             AudioManager.Instance.CreateLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
 
-            // level loop
+            // menu level loop
             List<ClipName> menuLoop = new List<ClipName>
             {
                 ClipName.MenuAndSceneMusic,
@@ -406,6 +422,32 @@ namespace Assets.Scripts.Constants
                 ClipName.MenuAndSceneMusic
             };
             AudioManager.Instance.CreateLevelLoop(LoopName.MenuLoop, menuLoop);
+
+            List<ClipName> Flying_Enemy_Attack_Parallel = new List<ClipName>
+            {
+                ClipName.Flying_Enemy_Attack,
+                ClipName.Flying_Enemy_Attack_2,
+                ClipName.Flying_Enemy_Projectile
+            };
+
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Flying_Enemy_Attack_Parallel, Flying_Enemy_Attack_Parallel);
+
+            List<ClipName> Flying_Enemy_Death_Random = new List<ClipName>
+            {
+                ClipName.Flying_Enemy_Death,
+                ClipName.Flying_Enemy_Death_2,
+                ClipName.Flying_Enemy_Death_3
+            };
+
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Flying_Enemy_Death_Random, Flying_Enemy_Death_Random);
+
+            List<ClipName> Flying_Enemy_Evade_Random = new List<ClipName>
+            {
+                ClipName.Flying_Enemy_Evade,
+                ClipName.Flying_Enemy_Evade2
+            };
+
+            AudioManager.Instance.CreateMultiCueRandom(CueName.Flying_Enemy_Death_Random, Flying_Enemy_Evade_Random);
         }
 
         public static string GetClipName(ClipName name)
