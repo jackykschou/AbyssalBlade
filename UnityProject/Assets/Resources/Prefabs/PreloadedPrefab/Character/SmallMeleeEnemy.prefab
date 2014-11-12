@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad3d280b0f70b24cb37801aa111c51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateMachine: {fileID: 11400000, guid: eb20716fc7f540a448f3d070e4f6b1a7, type: 2}
+  stateMachine: {fileID: 11400000, guid: c3e8573b1909295419231a6360741317, type: 2}
   executingStateMachine: {fileID: 0}
   anyState: {fileID: 0}
   currentState: {fileID: 0}
@@ -777,7 +777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Invincible: 0
   HitPoint: {fileID: 11400086}
 --- !u!114 &11400056
 MonoBehaviour:
@@ -925,7 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 3
+  DispatchInterval: 2
 --- !u!114 &11400078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1024,14 +1023,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
+  LabelName: Damage
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -5
+  _amount: -4
   AmountVariantPercentage: .200000003
   ChangeDuration: 0
   ChangeInterval: 1
@@ -1249,7 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SkillEffect: {fileID: 0}
-  Chance: .600000024
+  Chance: 1
 --- !u!114 &11400114
 MonoBehaviour:
   m_ObjectHideFlags: 1
