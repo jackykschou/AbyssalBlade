@@ -38,8 +38,8 @@ namespace Assets.Scripts.Managers
 
             if (!GameManager.Instance.LoadLevelOnStart)
             {
-                TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
-                TriggerGameEvent(GameEvent.OnLevelStarted);
+                GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
+                GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelStarted);
             }
         }
 
@@ -55,6 +55,14 @@ namespace Assets.Scripts.Managers
         }
 
         [GameEventAttribute(GameEvent.OnLevelStarted)]
+        public void OnLevelStarted()
+        {
+            GameManager.Instance.HUD.SetActive(IsPlayLevel);
+            GameEventManager.Instance.TriggerGameEvent(GameEvent.EnablePlayerCharacter);
+            _levelStarted = true;
+        }
+
+        [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
             if (CameraInitialFollowTransform == null)
@@ -65,11 +73,8 @@ namespace Assets.Scripts.Managers
             {
                 GameManager.Instance.MainCamera.TriggerGameScriptEvent(GameScriptEvent.CameraFollowTarget, CameraInitialFollowTransform);
             }
-            _levelStarted = true;
-            GameManager.Instance.HUD.SetActive(IsPlayLevel);
             if (IsPlayLevel)
             {
-                TriggerGameEvent(GameEvent.EnablePlayerCharacter);
                 GameManager.Instance.PlayerMainCharacter.TriggerGameScriptEvent(GameScriptEvent.SetAnimatorBoolState, AnimatorControllerConstants.AnimatorParameterName.Idle);
                 if (GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
                 {
@@ -77,8 +82,11 @@ namespace Assets.Scripts.Managers
                 }
                 GameManager.Instance.PlayerMainCharacter.renderer.enabled = true;
             }
+            else
+            {
+                GameManager.Instance.PlayerMainCharacter.renderer.enabled = false;
+            }
             AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
-            GameManager.Instance.MainCamera.camera.orthographic = IsPlayLevel;
         }
     }
 }
