@@ -149,6 +149,7 @@ GameObject:
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400104}
   - 114: {fileID: 11400102}
+  - 114: {fileID: 11400046}
   m_Layer: 11
   m_Name: Charge
   m_TagString: Untagged
@@ -817,6 +818,21 @@ MonoBehaviour:
   LabelName: 
   Cue: 0
   volume: 1
+--- !u!114 &11400046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  BoolParameterName: ChargeFinish
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1302,10 +1318,12 @@ MonoBehaviour:
   - {fileID: 11400100}
   - {fileID: 11400080}
   - {fileID: 11400026}
+  - {fileID: 11400046}
   _animationSkillEffectsActivateTime:
-  - 0
-  - .300000012
-  - 1.60000002
+  - .899999976
+  - 1
+  - 1.29999995
+  - 1.29999995
 --- !u!114 &11400112
 MonoBehaviour:
   m_ObjectHideFlags: 1
