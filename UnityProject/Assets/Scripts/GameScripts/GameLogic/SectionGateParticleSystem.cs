@@ -20,6 +20,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
         public void PlayDeactivateParticleSystem()
         {
             _gateParticleSystem.Stop();
+            _gateParticleSystem.Clear();
         }
 
         protected override void Initialize()
