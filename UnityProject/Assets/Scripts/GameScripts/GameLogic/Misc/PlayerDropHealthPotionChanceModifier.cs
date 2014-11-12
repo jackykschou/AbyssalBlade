@@ -27,7 +27,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             }
             else if (health.Percentage < 0.7f && currentChange < 0.02f)
             {
-                ChanceBasedEventManager.Instance.ChangeEventCurrentChanceTo(Managers.ChanceBasedEvent.DropHealthPotion, 0.02f);
+                ChanceBasedEventManager.Instance.ChangeEventCurrentChanceTo(Managers.ChanceBasedEvent.DropHealthPotion, 0.04f);
             }
         }
     }
