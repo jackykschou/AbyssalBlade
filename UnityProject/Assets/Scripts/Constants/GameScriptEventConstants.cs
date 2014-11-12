@@ -71,7 +71,8 @@
         ChangeDamageReduction,                   // void(float)
         LoadingScreenStartLoading,               // void()
         SetHealthInvincibility,                  // void(bool)
-        OnHealthInvincibleEnable,                  // void()
-        OnHealthInvincibleDisable                  // void()
+        OnHealthInvincibleEnable,                // void()
+        OnHealthInvincibleDisable,               // void()
+        SpawnPrefabOnSpriteGameViewOnRandomPosition              // void(Prefab)
     };
 }

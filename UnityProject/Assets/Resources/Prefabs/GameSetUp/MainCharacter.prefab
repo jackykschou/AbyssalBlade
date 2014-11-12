@@ -296,6 +296,7 @@ GameObject:
   - 114: {fileID: 11400186}
   - 114: {fileID: 11400198}
   - 114: {fileID: 11400114}
+  - 114: {fileID: 11400238}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -1725,6 +1726,7 @@ MonoBehaviour:
   TargetEffectAppliers:
   - {fileID: 11400112}
   - {fileID: 11400152}
+  - {fileID: 11400238}
   Targets: []
   Range: 20
   RayAngleRandomness: 45
@@ -2433,6 +2435,27 @@ MonoBehaviour:
   LabelName: 
   Follower: {fileID: 0}
   Position: {fileID: 0}
+--- !u!114 &11400238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c081d97354b974eb1bc48eb65ff935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d0000000f000000100000000a000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  Prefab: 24
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
