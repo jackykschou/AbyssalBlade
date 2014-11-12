@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 
         protected override void ApplyEffect(GameObject target)
         {
-            target.TriggerGameScriptEvent(GameScriptEvent.InterruptCharacter, Enable);
+            target.TriggerGameScriptEvent(GameScriptEvent.SetHealthInvincibility, Enable);
         }
     }
 }

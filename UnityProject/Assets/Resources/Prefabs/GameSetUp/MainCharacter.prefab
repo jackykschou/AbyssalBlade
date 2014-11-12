@@ -92,6 +92,13 @@ GameObject:
   - 114: {fileID: 11400030}
   - 114: {fileID: 11400032}
   - 114: {fileID: 11400158}
+  - 114: {fileID: 11400236}
+  - 114: {fileID: 11400234}
+  - 114: {fileID: 11400232}
+  - 114: {fileID: 11400230}
+  - 114: {fileID: 11400228}
+  - 114: {fileID: 11400226}
+  - 114: {fileID: 11400224}
   m_Layer: 0
   m_Name: Dash
   m_TagString: Untagged
@@ -766,8 +773,12 @@ MonoBehaviour:
   _animationDuration: .200000003
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
-  _animationSkillEffects: []
-  _animationSkillEffectsActivateTime: []
+  _animationSkillEffects:
+  - {fileID: 11400226}
+  - {fileID: 11400224}
+  _animationSkillEffectsActivateTime:
+  - 0
+  - .200000003
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -788,7 +799,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
   m_Name: 
@@ -1184,7 +1195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Invincible: 1
   HitPoint: {fileID: 11400196}
 --- !u!114 &11400082
 MonoBehaviour:
@@ -2299,6 +2309,130 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+--- !u!114 &11400224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: DisableInvincibility
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400228}
+--- !u!114 &11400226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: EnableInvincibility
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400234}
+--- !u!114 &11400228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a026caf44bb0340a4d0a9e05d8fbde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Disable
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition: {fileID: 11400236}
+  TargetEffectAppliers:
+  - {fileID: 11400230}
+  Targets: []
+  Target: {fileID: 100018}
+--- !u!114 &11400230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a593ab91fc3b1e7428337d35aea4aad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Disable
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  Enable: 0
+--- !u!114 &11400232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a593ab91fc3b1e7428337d35aea4aad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Enable
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  HasApplyCoolDown: 0
+  ApplyCooldown: 0
+  OneTimeOnlyPerTarget: 0
+  TargetFinder: {fileID: 0}
+  Enable: 1
+--- !u!114 &11400234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a026caf44bb0340a4d0a9e05d8fbde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Enable
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
+  FinderPosition: {fileID: 11400236}
+  TargetEffectAppliers:
+  - {fileID: 11400232}
+  Targets: []
+  Target: {fileID: 100018}
+--- !u!114 &11400236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Follower: {fileID: 0}
+  Position: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
