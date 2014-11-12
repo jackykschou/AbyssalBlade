@@ -90,6 +90,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         {
             HitPoint.NegativeChangeEmphasizePercentage += amount;
         }
+
+        [Attributes.GameScriptEvent(GameScriptEvent.SetHealthInvincibility)]
+        public void HealthInvincibleEnable(bool enable)
+        {
+            Invincible = enable;
+        }
     
         protected override void Deinitialize()
         {

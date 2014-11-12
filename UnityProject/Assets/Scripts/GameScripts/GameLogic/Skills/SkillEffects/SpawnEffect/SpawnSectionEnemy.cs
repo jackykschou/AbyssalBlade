@@ -39,7 +39,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
             Vector3 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);
             while (!UtilityFunctions.LocationPathFindingReachable(transform.position, spawnPosition) ||
-                Physics2D.OverlapCircle(spawnPosition, blockRadius, LayerConstants.LayerMask.Obstacle) != null)
+                Physics2D.OverlapCircle(spawnPosition, blockRadius, LayerConstants.LayerMask.Obstacle) != null ||
+                (Vector2.Distance(spawnPosition, GameManager.Instance.PlayerMainCharacter.transform.position) < 1.0f))
             {
                 spawnPosition = new Vector3(Random.Range(transform.position.x - SpawnRadius, transform.position.x + SpawnRadius),
                 Random.Range(transform.position.y - SpawnRadius, transform.position.y + SpawnRadius), transform.position.z);

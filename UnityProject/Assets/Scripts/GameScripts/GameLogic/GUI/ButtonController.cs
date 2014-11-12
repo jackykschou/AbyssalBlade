@@ -49,9 +49,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             ButtonChange(3);
         }
 
-        protected override void FixedUpdate()
+        protected override void Update()
         {
-            base.FixedUpdate();
+            base.Update();
             if (AxisOnHold.Detect())
             {
                 ButtonChange(GetNextButton(AxisOnHold.GetAxisValue() > 0.01f));
