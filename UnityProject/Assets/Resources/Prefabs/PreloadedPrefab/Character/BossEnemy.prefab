@@ -30,11 +30,7 @@ GameObject:
   - 114: {fileID: 11400034}
   - 114: {fileID: 11400036}
   - 114: {fileID: 11400038}
-  - 114: {fileID: 11400040}
-  - 114: {fileID: 11400042}
   - 114: {fileID: 11400044}
-  - 114: {fileID: 11400046}
-  - 114: {fileID: 11400048}
   - 114: {fileID: 11400050}
   - 114: {fileID: 11400052}
   - 114: {fileID: 11400054}
@@ -103,6 +99,7 @@ GameObject:
   - 114: {fileID: 11400062}
   - 114: {fileID: 11400060}
   - 114: {fileID: 11400030}
+  - 114: {fileID: 11400042}
   m_Layer: 0
   m_Name: Shoot
   m_TagString: Untagged
@@ -176,6 +173,7 @@ GameObject:
   - 114: {fileID: 11400124}
   - 114: {fileID: 11400122}
   - 114: {fileID: 11400120}
+  - 114: {fileID: 11400040}
   m_Layer: 0
   m_Name: Summon
   m_TagString: Untagged
@@ -412,7 +410,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .612030029, z: 0}
+  m_LocalPosition: {x: 0, y: 1.10109997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
@@ -735,7 +733,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Invincible: 0
   HitPoint: {fileID: 11400052}
 --- !u!114 &11400034
 MonoBehaviour:
@@ -781,29 +778,31 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abebd14585553649b50328476e1bdb8, type: 3}
+  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
-  HitDamageThreshold: 100
-  HitDamageThresholdResetTime: {fileID: 11400046}
+  LabelName: SummonFinish
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  BoolParameterName: SummonFinish
 --- !u!114 &11400042
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ecb47d838bd976499bee73e1203f9e8, type: 3}
+  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
-  InterruptionDuration: .5
-  InterruptCoolDown: {fileID: 11400048}
+  LabelName: ShootFinish
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  BoolParameterName: ShootFinish
 --- !u!114 &11400044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -818,32 +817,6 @@ MonoBehaviour:
   LabelName: 
   Cue: 0
   volume: 1
---- !u!114 &11400046
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: InterruptHitDamageThresholdReset
-  DispatchInterval: 1
---- !u!114 &11400048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: CharacterInterruptCoolDown
-  DispatchInterval: 1
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -870,8 +843,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: Health
   InitialMinValue: 0
-  InitialMaxValue: 1000
-  InitialValue: 1000
+  InitialMaxValue: 700
+  InitialValue: 700
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400054
@@ -1018,7 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Follower: {fileID: 0}
+  Follower: {fileID: 400016}
   Position: {fileID: 400016}
 --- !u!114 &11400072
 MonoBehaviour:
@@ -1040,8 +1013,10 @@ MonoBehaviour:
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
   - {fileID: 11400062}
+  - {fileID: 11400042}
   _animationSkillEffectsActivateTime:
   - 0
+  - 4
 --- !u!114 &11400074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1471,8 +1446,10 @@ MonoBehaviour:
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
   - {fileID: 11400126}
+  - {fileID: 11400040}
   _animationSkillEffectsActivateTime:
   - .5
+  - 3
 --- !u!114 &11400130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4136,7 +4113,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1833413749
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300088, guid: 18f210f7da19747e3834bda8629ecd34, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 839fe75b3ceae4e3e863703be7179bdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!222 &22200000
 CanvasRenderer:
