@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using Assets.Scripts.Constants;
+using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
@@ -9,6 +11,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
     {
         public float Range;
         public float RayAngleRandomness;
+
+        public Prefab ProjectilePrefab;
 
         protected override void Deinitialize()
         {
@@ -21,6 +25,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
             string[] layers = TargetPhysicalLayers.Select(l => LayerMask.LayerToName(l)).ToArray();
             int mask = LayerMask.GetMask(layers);
             RaycastHit2D raycast = Physics2D.Raycast(FinderPosition.Position.position, castDirecation, Range, mask);
+            PrefabManager.Instance.SpawnPrefabImmediate(ProjectilePrefab, FinderPosition.Position.position, o =>
+            {
+                o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDirection, castDirecation);
+                o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDestination, raycast.collider != null ? 
+                    (Vector2)raycast.collider.transform.position :
+                    (Vector2)(FinderPosition.Position.position + (new Vector3(castDirecation.x, castDirecation.y, 0) * 100f)));
+                o.TriggerGameScriptEvent(GameScriptEvent.ShootProjectile);
+            });
             if (raycast.collider != null)
             {
                 AddTarget(raycast.collider.gameObject);
