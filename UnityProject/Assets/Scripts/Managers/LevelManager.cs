@@ -60,6 +60,7 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.HUD.SetActive(IsPlayLevel);
             GameEventManager.Instance.TriggerGameEvent(GameEvent.EnablePlayerCharacter);
             _levelStarted = true;
+            AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
         }
 
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
@@ -86,7 +87,6 @@ namespace Assets.Scripts.Managers
             {
                 GameManager.Instance.PlayerMainCharacter.renderer.enabled = false;
             }
-            AudioManager.Instance.PlayLevelLoop(BackGroundMusicLoop);
         }
     }
 }

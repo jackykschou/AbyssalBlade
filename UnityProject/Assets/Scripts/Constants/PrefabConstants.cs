@@ -10,6 +10,8 @@ namespace Assets.Scripts.Constants
         MainLevelArea1 = 10,
         MainLevelArea2 = 12,
         BossLevel = 14,
+        SurvivalLevel = 100,
+
 
         Projectile = 0,
         Projectile2 = 5,
@@ -71,7 +73,8 @@ namespace Assets.Scripts.Constants
             {Prefab.DamageReductionPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
             {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"},
             {Prefab.SimpleRangeNoDropEnemy, "Prefabs/PreloadedPrefab/Character/SimpleRangeNoDropEnemy"},
-            {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"}
+            {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"},
+            {Prefab.SurvivalLevel, "Prefabs/PreloadedPrefab/Level/SurvivalLevel"}
         };
 
         public static string GetPrefabName(Prefab prefab)
