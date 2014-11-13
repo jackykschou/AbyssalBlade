@@ -297,6 +297,8 @@ GameObject:
   - 114: {fileID: 11400198}
   - 114: {fileID: 11400114}
   - 114: {fileID: 11400238}
+  - 114: {fileID: 11400242}
+  - 114: {fileID: 11400240}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -1427,7 +1429,9 @@ MonoBehaviour:
   _animationSkillEffects:
   - {fileID: 11400150}
   - {fileID: 11400114}
+  - {fileID: 11400240}
   _animationSkillEffectsActivateTime:
+  - .150000006
   - .150000006
   - .150000006
 --- !u!114 &11400112
@@ -1745,7 +1749,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   SkillEffect: {fileID: 11400118}
-  RepeatTime: 12
+  RepeatTime: 11
   RepeatCooldown: 0
 --- !u!114 &11400152
 MonoBehaviour:
@@ -2456,6 +2460,45 @@ MonoBehaviour:
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   Prefab: 24
+--- !u!114 &11400240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SingleStraightRayCastFinder
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400242}
+--- !u!114 &11400242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83848d5ec849eab4a8b8513f5ccca6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SingleStraightCast
+  TargetTags:
+  - Enemy
+  - Neutral
+  TargetPhysicalLayers: 0d0000000f000000100000000a000000
+  FinderPosition: {fileID: 11400186}
+  TargetEffectAppliers:
+  - {fileID: 11400112}
+  - {fileID: 11400152}
+  - {fileID: 11400238}
+  Targets: []
+  Range: 20
+  RayAngleRandomness: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
