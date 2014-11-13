@@ -4,13 +4,14 @@ Capstone2D2014Fall
 Current Version of Unity 4.6.0.b20
 
 The following tools are necessary to be put in a folder name "ThirdParty" at the root asset folder:
+- Elementals (by G.E. TeamDev)
 - AstarPathfindingProject (by Arongranberg.com)
 - iTween (by Pixelplacement)
 - PoolManager (by Path-o-logical Games)
 - Rotorz Tile System
 - Toon Shading (Unity standard assets)
 - AI For Mecanim (by Zerano)
-- Elementals (by G.E.TeamDev)
+- 
 =====
 
 Team Members:
