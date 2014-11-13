@@ -36,7 +36,8 @@ namespace Assets.Scripts.Constants
 
         IntroStoryBoardLevel = 22,
 
-        ShotGunSmoke = 24 //!!!
+        ShotGunSmoke = 24, //!!!
+        ShotGunTrail = 25  //!!!
     };
 
     public class PrefabConstants
@@ -71,7 +72,8 @@ namespace Assets.Scripts.Constants
             {Prefab.DamageReductionPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
             {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"},
             {Prefab.SimpleRangeNoDropEnemy, "Prefabs/PreloadedPrefab/Character/SimpleRangeNoDropEnemy"},
-            {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"}
+            {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"},
+            {Prefab.ShotGunTrail, "Prefabs/PreloadedPrefab/Particle/ShotGunTrail"}
         };
 
         public static string GetPrefabName(Prefab prefab)
