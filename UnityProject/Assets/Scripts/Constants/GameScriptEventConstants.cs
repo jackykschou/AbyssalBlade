@@ -34,6 +34,7 @@
         RefreshSkillCoolDown,                   // void()
 
         OnGameValueCurrentValueChanged,         // void(GameValue, float, bool)
+        OnGameValueChangerApplyChange,          // void(GameValueChanger, GameValue, float, bool)
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()
