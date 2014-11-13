@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Constants;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,6 +18,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders.Editor
 
             finder.RayAngleRandomness = EditorGUILayout.FloatField("Ray Angle Randomness", finder.RayAngleRandomness);
             finder.RayAngleRandomness = Mathf.Clamp(finder.RayAngleRandomness, -360f, 360f);
+
+            finder.ProjectilePrefab = (Prefab)EditorGUILayout.EnumPopup("Projectile Prefab", finder.ProjectilePrefab);
         }
     }
 }

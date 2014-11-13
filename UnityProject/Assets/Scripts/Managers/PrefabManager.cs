@@ -121,6 +121,11 @@ namespace Assets.Scripts.Managers
 
         public void SpawnPrefab(Prefab prefab, Vector2 position, Action<GameObject> onPrefabSpawned = null)
         {
+            if (prefab == Prefab.None)
+            {
+                return;
+            }
+
             if (_spawnQueue.Count == 0)
             {
                 _spawnQueue.Add(prefab);
@@ -165,6 +170,11 @@ namespace Assets.Scripts.Managers
 
         public void SpawnPrefab(Prefab prefab, Action<GameObject> onPrefabSpawned = null)
         {
+            if (prefab == Prefab.None)
+            {
+                return;
+            }
+
             string prefabName = PrefabConstants.GetPrefabName(prefab);
             GameObject prefabGameObject = _prefabNameMap[prefabName];
 
@@ -173,11 +183,21 @@ namespace Assets.Scripts.Managers
 
         public void SpawnPrefabImmediate(Prefab prefab, Vector2 position, Action<GameObject> onPrefabSpawned = null)
         {
+            if (prefab == Prefab.None)
+            {
+                return;
+            }
+
             SpawnHelper(prefab, position, onPrefabSpawned);
         }
 
         public void SpawnPrefabImmediate(Prefab prefab, Action<GameObject> onPrefabSpawned = null)
         {
+            if (prefab == Prefab.None)
+            {
+                return;
+            }
+
             string prefabName = PrefabConstants.GetPrefabName(prefab);
             GameObject prefabGameObject = _prefabNameMap[prefabName];
             SpawnHelper(prefab, prefabGameObject.transform.position, onPrefabSpawned);

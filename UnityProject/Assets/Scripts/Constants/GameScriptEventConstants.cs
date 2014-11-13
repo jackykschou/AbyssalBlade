@@ -73,6 +73,8 @@
         SetHealthInvincibility,                  // void(bool)
         OnHealthInvincibleEnable,                // void()
         OnHealthInvincibleDisable,               // void()
-        SpawnPrefabOnSpriteGameViewOnRandomPosition              // void(Prefab)
+        SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
+
+        UpdateProjectileDestination,                 // void(Vector2)
     };
 }

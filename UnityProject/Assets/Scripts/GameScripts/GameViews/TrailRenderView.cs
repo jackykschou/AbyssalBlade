@@ -13,6 +13,7 @@ namespace Assets.Scripts.GameScripts.GameViews
         {
             base.FirstTimeInitialize();
             Render = GetComponent<TrailRenderer>();
+            Render.sortingLayerName = SortingLayerConstants.SortingLayerNames.ForegroundLayer;
         }
 
         protected override void Update()

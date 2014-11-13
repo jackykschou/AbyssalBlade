@@ -42,6 +42,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
                 Vector2 castDirecation = Quaternion.AngleAxis(ShootAngle, Vector3.forward) * Skill.Caster.PointingDirection;
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDirection, castDirecation);
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileTarget, Skill.Caster.Target);
+                o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDestination, (Vector2)Skill.Caster.Target.transform.position);
                 o.TriggerGameScriptEvent(GameScriptEvent.ShootProjectile);
             });
         }

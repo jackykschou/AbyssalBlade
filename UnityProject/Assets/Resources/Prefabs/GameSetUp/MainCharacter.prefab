@@ -1733,7 +1733,8 @@ MonoBehaviour:
   - {fileID: 11400238}
   Targets: []
   Range: 20
-  RayAngleRandomness: 45
+  RayAngleRandomness: 20
+  ProjectilePrefab: 25
 --- !u!114 &11400150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2454,12 +2455,14 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   - Neutral
+  - Untagged
   TargetPhysicalLayers: 0d0000000f000000100000000a000000
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
   TargetFinder: {fileID: 0}
   Prefab: 24
+  PrefabSpawner: {fileID: 0}
 --- !u!114 &11400240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2490,6 +2493,7 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   - Neutral
+  - Untagged
   TargetPhysicalLayers: 0d0000000f000000100000000a000000
   FinderPosition: {fileID: 11400186}
   TargetEffectAppliers:
@@ -2499,6 +2503,7 @@ MonoBehaviour:
   Targets: []
   Range: 20
   RayAngleRandomness: 0
+  ProjectilePrefab: 25
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
