@@ -117,7 +117,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             else
             {
                 _curButton++;
-                if (_curButton == _numButtons)
+                if (_curButton >= _numButtons)
                     _curButton = 0;
             }
             return _curButton;
