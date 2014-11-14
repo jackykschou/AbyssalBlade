@@ -163,6 +163,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         public void OnOptionsPressed()
         {
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
+
+            GameManager.Instance.ChangeLevel(Prefab.SurvivalLevel);
         }
 
         public void OnQuitPressed()

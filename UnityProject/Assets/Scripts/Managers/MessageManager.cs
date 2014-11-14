@@ -12,6 +12,7 @@ namespace Assets.Scripts.Managers
     public class MessageManager : MonoBehaviour
     {
         public GameObject DeathScreen;
+        public GameObject KillCountGUI;
         public PrefabSpawner PrefabSpawner;
         public GameObject TipText;
         public Camera MainCamera;
@@ -40,6 +41,11 @@ namespace Assets.Scripts.Managers
             DeathScreen.SetActive(true);
             StartCoroutine(DeactivateObjectIE(3.0f));
             StartCoroutine(FadeInDeathScreenIE(3.0f));
+        }
+
+        public void DisplayKillCount(bool active)
+        {
+            KillCountGUI.SetActive(active);
         }
 
         IEnumerator DeactivateObjectIE(float time)
@@ -120,14 +126,6 @@ namespace Assets.Scripts.Managers
             return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 4.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-                DisplayMessage("Regular Message", Vector3.up);
-            if (Input.GetKeyDown(KeyCode.Keypad2))
-                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right);
-        }
-
         void Awake()
         {
             if (PrefabSpawner == null)
@@ -141,6 +139,10 @@ namespace Assets.Scripts.Managers
             if (DeathScreen == null)
             {
                 DeathScreen = GameObject.Find("DeathScreen");
+            }
+            if (KillCountGUI == null)
+            {
+                KillCountGUI = GameObject.Find("KillCountMeter");
             }
         }
     }
