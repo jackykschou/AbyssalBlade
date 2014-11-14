@@ -46,6 +46,7 @@
         OnObjectTakeDamage,                     // void(float, bool, GameValue, GameValueChanger)
         OnObjectTakeHeal,                       // void(float, bool, GameValue, GameValueChanger)
         OnObjectHealthChanged,                  // void(float, GameValue)
+        ObObjectDealDamage,                     // void(GameValue, GameValueChanger, float, bool)
         OnPhysicsBodyOnTriggerEnter2D,          // void(Collider2D)
         OnPhysicsBodyOnTriggerStay2D,           // void(Collider2D)
         OnPhysicsBodyOnTriggerExit2D,           // void(Collider2D)

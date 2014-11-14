@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.GameValue;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Health
@@ -70,6 +71,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (changedAmount <= 0f)
             {
+                healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.ObObjectDealDamage, health, healthChanger, Mathf.Abs(changedAmount), crited);
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited, HitPoint, healthChanger);
             }
             else
