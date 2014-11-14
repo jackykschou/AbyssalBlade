@@ -10,6 +10,8 @@ namespace Assets.Scripts.Constants
         MainLevelArea1 = 10,
         MainLevelArea2 = 12,
         BossLevel = 14,
+        SurvivalLevel = 100,
+
 
         Projectile = 0,
         Projectile2 = 5,
@@ -74,6 +76,7 @@ namespace Assets.Scripts.Constants
             {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"},
             {Prefab.SimpleRangeNoDropEnemy, "Prefabs/PreloadedPrefab/Character/SimpleRangeNoDropEnemy"},
             {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"},
+            {Prefab.SurvivalLevel, "Prefabs/PreloadedPrefab/Level/SurvivalLevel"},
             {Prefab.ShotGunTrail, "Prefabs/PreloadedPrefab/Particle/ShotGunTrail"},
             {Prefab.None, ""}
         };
