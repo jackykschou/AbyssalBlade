@@ -61,7 +61,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged)]
-        public void OnHealthCurrentValueChanged(GameValue.GameValue health, float changedAmount, bool crited)
+        public void OnHealthCurrentValueChanged(GameValue.GameValue health, GameValueChanger healthChanger, float changedAmount, bool crited)
         {
             if (health != HitPoint)
             {
@@ -70,11 +70,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (changedAmount <= 0f)
             {
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited, HitPoint);
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited, HitPoint, healthChanger);
             }
             else
             {
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount), crited, HitPoint);
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount), crited, HitPoint, healthChanger);
             }
 
             TriggerGameScriptEvent(GameScriptEvent.OnObjectHealthChanged, changedAmount, HitPoint);
@@ -96,7 +96,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         {
             Invincible = enable;
         }
-    
+
         protected override void Deinitialize()
         {
         }
