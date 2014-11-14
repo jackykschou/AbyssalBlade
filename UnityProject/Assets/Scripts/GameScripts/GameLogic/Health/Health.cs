@@ -61,7 +61,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged)]
-        public void OnHealthCurrentValueChanged(GameValue.GameValue health, float changedAmount, bool crited)
+        public void OnHealthCurrentValueChanged(GameValue.GameValue health, GameValueChanger healthChanger, float changedAmount, bool crited)
         {
             if (health != HitPoint)
             {

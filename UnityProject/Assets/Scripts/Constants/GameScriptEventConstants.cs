@@ -33,7 +33,7 @@
         OnSkillComboChanged,                    // void(float)
         RefreshSkillCoolDown,                   // void()
 
-        OnGameValueCurrentValueChanged,         // void(GameValue, float, bool)
+        OnGameValueCurrentValueChanged,         // void(GameValue, GameValueChanger, float, bool)
         OnGameValueChangerApplyChange,          // void(GameValueChanger, GameValue, float, bool)
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()

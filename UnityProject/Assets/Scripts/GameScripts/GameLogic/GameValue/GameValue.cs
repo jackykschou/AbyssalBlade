@@ -130,7 +130,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
                                         Value += amount;
-                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, gameValueChanger.LastAmountCrited);
+                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
                                         gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
@@ -148,7 +148,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
                                         Value += (Value * amount);
-                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, gameValueChanger.LastAmountCrited);
+                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
                                         gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
@@ -166,7 +166,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
                                         Value += (Max * amount);
-                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, gameValueChanger.LastAmountCrited);
+                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
                                         gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
@@ -274,11 +274,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         {
             amount = GetEmphasizedChange(amount);
             Value += amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, crited);
             gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, crited);
             yield return new WaitForSeconds(time);
             Value -= amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, -amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, -amount, crited);
             if (gameValueChanger != null)
             {
                 gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, -amount, crited);
@@ -340,7 +340,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             }
             amount = GetEmphasizedChange(amount);
             Value += amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, crited);
             gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, crited);
             _valueTempChangeValueCache.Add(gameValueChanger);
             while (gameValueChanger != null && _valueTempChangeValueCache.Contains(gameValueChanger))
@@ -348,7 +348,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 yield return new WaitForSeconds(0.1f);
             }
             Value -= amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, -amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, -amount, crited);
             if (gameValueChanger != null)
             {
                 gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, -amount, crited);
@@ -373,7 +373,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 changedAmount = changedAmount + Random.Range(-changedAmount * variantPercentage, changedAmount * variantPercentage);
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, crited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, crited);
                 if (gameValueChanger != null)
                 {
                     gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, crited);
@@ -408,7 +408,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 float changedAmount = gameValueChanger.Amount;
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, gameValueChanger.LastAmountCrited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, gameValueChanger.LastAmountCrited);
                 gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, gameValueChanger.LastAmountCrited);
                 yield return new WaitForSeconds(gameValueChanger.ChangeInterval);
             }
@@ -433,7 +433,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 changedAmount = changedAmount + Random.Range(-changedAmount * variantPercentage, changedAmount * variantPercentage);
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, crited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, crited);
                 if (gameValueChanger != null)
                 {
                     gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, crited);
@@ -468,7 +468,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 float changedAmount = Value * gameValueChanger.Amount;
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, gameValueChanger.LastAmountCrited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, gameValueChanger.LastAmountCrited);
                 gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, gameValueChanger.LastAmountCrited);
                 yield return new WaitForSeconds(gameValueChanger.ChangeInterval);
             }
@@ -493,7 +493,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 changedAmount = changedAmount + Random.Range(-changedAmount * variantPercentage, changedAmount * variantPercentage);
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, crited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, crited);
                 if (gameValueChanger != null)
                 {
                     gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, crited);
@@ -528,7 +528,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 float changedAmount = Max * gameValueChanger.Amount;
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, gameValueChanger.LastAmountCrited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, gameValueChanger.LastAmountCrited);
                 gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, gameValueChanger.LastAmountCrited);
                 yield return new WaitForSeconds(gameValueChanger.ChangeInterval);
             }
