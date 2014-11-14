@@ -80,6 +80,7 @@
         OnHealthInvincibleDisable,               // void()
         SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
 
-        UpdateProjectileDestination                 // void(Vector2)
+        UpdateProjectileDestination,              // void(Vector2)
+        CasterUpdateSkills                        // void()
     };
 }

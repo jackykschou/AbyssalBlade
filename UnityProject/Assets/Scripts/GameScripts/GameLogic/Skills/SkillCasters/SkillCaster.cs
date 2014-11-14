@@ -23,6 +23,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
         protected override void Initialize()
         {
             base.Initialize();
+            UpdateSkills();
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.CasterUpdateSkills)]
+        public void UpdateSkills()
+        {
             Skills = GetComponentsInChildren<Skill>().ToList();
         }
 
