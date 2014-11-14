@@ -746,7 +746,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Invincible: 0
   HitPoint: {fileID: 11400086}
 --- !u!114 &11400056
 MonoBehaviour:
@@ -957,8 +956,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: Health
   InitialMinValue: 0
-  InitialMaxValue: 150
-  InitialValue: 150
+  InitialMaxValue: 120
+  InitialValue: 120
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400088
@@ -975,7 +974,7 @@ MonoBehaviour:
   LabelName: MovementSpeed
   InitialMinValue: 0
   InitialMaxValue: 10
-  InitialValue: 3
+  InitialValue: 2.5
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400090
