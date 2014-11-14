@@ -9,6 +9,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
     [AddComponentMenu("Misc/GameValue")]
     public sealed class GameValue : GameLogic
     {
+        public GameObject Owner;
+
         public float InitialMinValue;
         public float InitialMaxValue;
         public float InitialValue;
@@ -80,6 +82,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         private void TrimValue()
         {
             _value = Mathf.Clamp(_value, Min, Max);
+        }
+
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            if (Owner == null)
+            {
+                Owner = gameObject;
+            }
         }
 
         protected override void Initialize()

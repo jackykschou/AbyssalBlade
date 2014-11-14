@@ -102,6 +102,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             MaxPercentageByInterval
         }
 
+        public GameObject Owner;
+
         public ChangeTargetValueType TargetValueType;
         public OneTimeChangeDurationType OneTimeDurationType;
         public ByIntervalChangeDurationType IntervalDurationType;
@@ -148,6 +150,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         protected override void FirstTimeInitialize()
         {
             base.FirstTimeInitialize();
+            if (Owner == null)
+            {
+                Owner = gameObject;
+            }
             _initialChangeDuration = ChangeDuration;
             _initialChangeInterval = ChangeInterval;
             _initialCriticalChance = CriticalChance;

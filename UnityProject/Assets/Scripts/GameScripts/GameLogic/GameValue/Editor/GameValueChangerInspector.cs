@@ -81,6 +81,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue.Editor
             changer.CriticalPercentage = Mathf.Clamp(changer.CriticalPercentage, 0f, 100.0f);
             changer.AmountVariantPercentage = EditorGUILayout.FloatField("Change Amount Variant Percentage", changer.AmountVariantPercentage);
             changer.AmountVariantPercentage = Mathf.Clamp(changer.AmountVariantPercentage, 0f, 100.0f);
+
+            #pragma warning disable 618
+                changer.Owner = EditorGUILayout.ObjectField("Owner", changer.Owner, typeof(GameObject)) as GameObject;
+            #pragma warning restore 618
         }
     }
 }

@@ -96,7 +96,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         {
             Invincible = enable;
         }
-    
+
         protected override void Deinitialize()
         {
         }
