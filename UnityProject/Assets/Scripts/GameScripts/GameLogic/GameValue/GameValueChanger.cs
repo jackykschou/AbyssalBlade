@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Attributes;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.GameValue
@@ -146,6 +147,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         private float _initialCriticalChance;
         private float _initialCriticalPercentage;
         private float _initialAmount;
+
+        [GameScriptEvent(Constants.GameScriptEvent.UpdateGameValueChangerOwner)]
+        public void UpdateGameValueChangerOwner(GameObject owner)
+        {
+            Owner = owner;
+        }
 
         protected override void FirstTimeInitialize()
         {

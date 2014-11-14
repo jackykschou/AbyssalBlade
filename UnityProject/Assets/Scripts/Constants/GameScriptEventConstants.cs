@@ -35,6 +35,8 @@
 
         OnGameValueCurrentValueChanged,         // void(GameValue, GameValueChanger, float, bool)
         OnGameValueChangerApplyChange,          // void(GameValueChanger, GameValue, float, bool)
+        UpdateGameValueChangerOwner,            // void(GameObject)
+        UpdateGameValueOwner,                   // void(GameObject)
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()
@@ -76,6 +78,6 @@
         OnHealthInvincibleDisable,               // void()
         SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
 
-        UpdateProjectileDestination,                 // void(Vector2)
+        UpdateProjectileDestination                 // void(Vector2)
     };
 }

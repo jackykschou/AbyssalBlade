@@ -84,6 +84,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             _value = Mathf.Clamp(_value, Min, Max);
         }
 
+        [Attributes.GameScriptEvent(GameScriptEvent.UpdateGameValueOwner)]
+        public void UpdateGameValueOwner(GameObject owner)
+        {
+            Owner = owner;
+        }
+
         protected override void FirstTimeInitialize()
         {
             base.FirstTimeInitialize();

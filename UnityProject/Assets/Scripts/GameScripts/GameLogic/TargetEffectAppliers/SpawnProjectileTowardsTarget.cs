@@ -27,6 +27,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDirection, castDirecation);
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileTarget, target.transform);
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDestination, (Vector2)target.transform.position);
+                o.TriggerGameScriptEvent(GameScriptEvent.UpdateGameValueChangerOwner, gameObject);
+                o.TriggerGameScriptEvent(GameScriptEvent.UpdateGameValueOwner, gameObject);
                 o.TriggerGameScriptEvent(GameScriptEvent.ShootProjectile);
             });
         }
