@@ -37,7 +37,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
             }
             else
             {
-                HealthChanger.ApplierApplyEffect(Owner)
+                HealthChanger.ApplierApplyEffect(Owner);
             }
         }
 
