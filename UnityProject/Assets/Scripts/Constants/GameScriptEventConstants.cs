@@ -77,5 +77,6 @@
         SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
 
         UpdateProjectileDestination,                 // void(Vector2)
+        SurvivalAreaSpawned
     };
 }
