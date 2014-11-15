@@ -6,8 +6,8 @@ using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 {
-    [AddComponentMenu("TargetEffectApplier/TeleportPlayerOnPickUp")]
-    public class TeleportPlayerOnPickUp : TargetEffectApplier
+    [AddComponentMenu("TargetEffectApplier/TeleportPlayer")]
+    public class TeleportPlayer : TargetEffectApplier
     {
         private ParticleSystem _playerParticles;
         protected override void Initialize()
