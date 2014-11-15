@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.GameScripts.GameLogic.TargetFinders;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 {
-    [RequireComponent(typeof(TargetFinder))]
     public abstract class TargetEffectApplier : GameLogic
     {
         public List<string> TargetTags = new List<string>();
@@ -12,9 +10,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
         public bool HasApplyCoolDown;
         public float ApplyCooldown;
         public bool OneTimeOnlyPerTarget;
-
-        [HideInInspector]
-        public TargetFinder TargetFinder;
 
         private Dictionary<GameObject, float> _changedCache;
 

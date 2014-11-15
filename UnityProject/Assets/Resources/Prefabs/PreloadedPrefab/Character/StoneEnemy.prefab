@@ -327,12 +327,12 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400084}
   TargetEffectAppliers:
   - {fileID: 11400004}
   - {fileID: 11400106}
   Targets: []
   Radius: 1.70000005
+  PositionIndicator: {fileID: 11400084}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1178,6 +1178,7 @@ MonoBehaviour:
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 8
   Time: .100000001
+  PositionIndicator: {fileID: 11400084}
 --- !u!114 &11400108
 MonoBehaviour:
   m_ObjectHideFlags: 1

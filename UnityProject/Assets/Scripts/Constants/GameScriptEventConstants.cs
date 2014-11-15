@@ -8,6 +8,7 @@
 #endif
         UpdateProjectileDirection,              // void(Vector2)
         UpdateProjectileTarget,                 // void(Transform)
+        UpdateOnProjectileArrivalAction,       // void(Action)
         ShootProjectile,                        // void()
         OnProjectileArriveDestination,          // void(Vector2)
 

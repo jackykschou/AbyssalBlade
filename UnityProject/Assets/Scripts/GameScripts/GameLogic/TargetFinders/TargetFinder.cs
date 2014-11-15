@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.GameScripts.GameLogic.Misc;
 using Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
 {
-    [RequireComponent(typeof(PositionIndicator))]
     public abstract class TargetFinder : GameLogic
     {
         public List<string> TargetTags = new List<string>();
         public List<int> TargetPhysicalLayers = new List<int>();
-        public PositionIndicator FinderPosition;
         public List<TargetEffectApplier> TargetEffectAppliers;
 
         public List<GameObject> Targets;
@@ -23,12 +20,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
         }
 
         protected abstract void FindTargets();
-
-        protected override void FirstTimeInitialize()
-        {
-            base.FirstTimeInitialize();
-            TargetEffectAppliers.ForEach(a => a.TargetFinder = this);
-        }
 
         protected override void Initialize()
         {

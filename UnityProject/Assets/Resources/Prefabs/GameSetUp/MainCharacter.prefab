@@ -902,6 +902,7 @@ MonoBehaviour:
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 20
   Time: .200000003
+  PositionIndicator: {fileID: 11400190}
 --- !u!114 &11400046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1061,12 +1062,12 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d000000100000000f000000
-  FinderPosition: {fileID: 11400190}
   TargetEffectAppliers:
   - {fileID: 11400046}
   - {fileID: 11400044}
   Targets: []
   Radius: 3
+  PositionIndicator: {fileID: 11400190}
 --- !u!114 &11400064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1140,11 +1141,11 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
-  FinderPosition: {fileID: 11400188}
   TargetEffectAppliers:
   - {fileID: 11400064}
   Targets: []
   Radius: 1
+  PositionIndicator: {fileID: 11400188}
 --- !u!114 &11400074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1726,7 +1727,6 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f000000100000000a000000
-  FinderPosition: {fileID: 11400186}
   TargetEffectAppliers:
   - {fileID: 11400112}
   - {fileID: 11400152}
@@ -1734,6 +1734,7 @@ MonoBehaviour:
   Targets: []
   Range: 20
   RayAngleRandomness: 20
+  PositionIndicator: {fileID: 11400186}
   ProjectilePrefab: 25
 --- !u!114 &11400150
 MonoBehaviour:
@@ -1774,6 +1775,7 @@ MonoBehaviour:
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 5
   Time: .100000001
+  PositionIndicator: {fileID: 11400186}
 --- !u!114 &11400154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2242,7 +2244,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400210}
   TargetEffectAppliers:
   - {fileID: 11400140}
   Targets: []
@@ -2262,7 +2263,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400210}
   TargetEffectAppliers:
   - {fileID: 11400142}
   Targets: []
@@ -2367,7 +2367,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400236}
   TargetEffectAppliers:
   - {fileID: 11400230}
   Targets: []
@@ -2427,7 +2426,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400236}
   TargetEffectAppliers:
   - {fileID: 11400232}
   Targets: []
@@ -2501,7 +2499,6 @@ MonoBehaviour:
   - Neutral
   - Untagged
   TargetPhysicalLayers: 0d0000000f000000100000000a000000
-  FinderPosition: {fileID: 11400186}
   TargetEffectAppliers:
   - {fileID: 11400112}
   - {fileID: 11400152}
@@ -2509,6 +2506,7 @@ MonoBehaviour:
   Targets: []
   Range: 20
   RayAngleRandomness: 0
+  PositionIndicator: {fileID: 0}
   ProjectilePrefab: 25
 --- !u!212 &21200000
 SpriteRenderer:
