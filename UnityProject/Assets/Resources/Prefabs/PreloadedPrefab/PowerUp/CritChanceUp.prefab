@@ -250,9 +250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd6386072c8ba9429e34b5fa467e6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
-  TargetTags: []
-  TargetPhysicalLayers: 00000000
+  LabelName: EndArea
+  TargetTags:
+  - Player
+  TargetPhysicalLayers: 0e000000
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
