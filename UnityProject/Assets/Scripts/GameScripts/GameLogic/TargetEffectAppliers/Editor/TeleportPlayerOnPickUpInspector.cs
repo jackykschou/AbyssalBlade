@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers.Editor
 {
-    [CustomEditor(typeof(TeleportPlayerOnPickUp))]
+    [CustomEditor(typeof(TeleportPlayer))]
     public class TeleportPlayerOnPickUpInspector : TargetEffectApplierInspector {
 
         public override void OnInspectorGUI()
