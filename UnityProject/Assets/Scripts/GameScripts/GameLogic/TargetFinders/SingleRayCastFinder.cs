@@ -28,8 +28,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders
             PrefabManager.Instance.SpawnPrefabImmediate(ProjectilePrefab, FinderPosition.Position.position, o =>
             {
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDirection, castDirecation);
-                o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDestination, raycast.collider != null ? 
-                    (Vector2)raycast.collider.transform.position :
+                o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDestination, raycast.collider != null ?
+                    (Vector2)(FinderPosition.Position.position + (Vector3)(castDirecation * Vector2.Distance(raycast.collider.transform.position, FinderPosition.Position.position))) :
                     (Vector2)(FinderPosition.Position.position + (new Vector3(castDirecation.x, castDirecation.y, 0) * 100f)));
                 o.TriggerGameScriptEvent(GameScriptEvent.ShootProjectile);
             });

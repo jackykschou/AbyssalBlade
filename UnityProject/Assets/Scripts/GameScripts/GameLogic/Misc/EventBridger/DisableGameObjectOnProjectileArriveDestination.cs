@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Attributes;
 using UnityEngine;
 
-namespace Assets.Scripts.GameScripts.GameLogic.Misc
+namespace Assets.Scripts.GameScripts.GameLogic.Misc.EventBridger
 {
     [AddComponentMenu("2DObjectMotor/ProjectileMotor/DisableGameObjectOnProjectileArriveDestination")]
     public class DisableGameObjectOnProjectileArriveDestination : GameLogic

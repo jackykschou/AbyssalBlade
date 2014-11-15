@@ -9,6 +9,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
     [AddComponentMenu("Misc/GameValue")]
     public sealed class GameValue : GameLogic
     {
+        public GameObject Owner;
+
         public float InitialMinValue;
         public float InitialMaxValue;
         public float InitialValue;
@@ -82,6 +84,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             _value = Mathf.Clamp(_value, Min, Max);
         }
 
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            if (Owner == null)
+            {
+                Owner = gameObject;
+            }
+        }
+
         protected override void Initialize()
         {
             _valueTempChangeValueCache = new List<GameValueChanger>();
@@ -130,13 +141,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
                                         Value += amount;
-                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, gameValueChanger.LastAmountCrited);
+                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
+                                        gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
                                         StartCoroutine(TempChangeCurrentValue(gameValueChanger, gameValueChanger.Amount, gameValueChanger.LastAmountCrited));
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.TempFixedTime:
-                                        StartCoroutine(TempChangeCurrentValue(gameValueChanger.Amount, gameValueChanger.ChangeDuration, gameValueChanger.LastAmountCrited));
+                                        StartCoroutine(TempChangeCurrentValue(gameValueChanger, gameValueChanger.Amount, gameValueChanger.ChangeDuration, gameValueChanger.LastAmountCrited));
                                         break;
                                 }
                                 break;
@@ -147,13 +159,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
                                         Value += (Value * amount);
-                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, gameValueChanger.LastAmountCrited);
+                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
+                                        gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
                                         StartCoroutine(TempChangeCurrentValue(gameValueChanger, Value * gameValueChanger.Amount, gameValueChanger.LastAmountCrited));
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.TempFixedTime:
-                                        StartCoroutine(TempChangeCurrentValue(Value * gameValueChanger.Amount, gameValueChanger.ChangeDuration, gameValueChanger.LastAmountCrited));
+                                        StartCoroutine(TempChangeCurrentValue(gameValueChanger, Value * gameValueChanger.Amount, gameValueChanger.ChangeDuration, gameValueChanger.LastAmountCrited));
                                         break;
                                 }
                                 break;
@@ -164,13 +177,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
                                         Value += (Max * amount);
-                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, gameValueChanger.LastAmountCrited);
+                                        TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
+                                        gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
                                         StartCoroutine(TempChangeCurrentValue(gameValueChanger, Max * gameValueChanger.Amount, gameValueChanger.LastAmountCrited));
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.TempFixedTime:
-                                        StartCoroutine(TempChangeCurrentValue(Max * gameValueChanger.Amount, gameValueChanger.ChangeDuration, gameValueChanger.LastAmountCrited));
+                                        StartCoroutine(TempChangeCurrentValue(gameValueChanger, Max * gameValueChanger.Amount, gameValueChanger.ChangeDuration, gameValueChanger.LastAmountCrited));
                                         break;
                                 }
                                 break;
@@ -178,7 +192,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                 switch (gameValueChanger.IntervalDurationType)
                                 {
                                     case GameValueChanger.ByIntervalChangeDurationType.FixedTime:
-                                        StartCoroutine(ChangeHealthFixedAmountByInterval(gameValueChanger.RawAmount,
+                                        StartCoroutine(ChangeHealthFixedAmountByInterval(gameValueChanger, gameValueChanger.RawAmount,
                                             gameValueChanger.ChangeDuration, gameValueChanger.Stackable,
                                             gameValueChanger.NonStackableLabel,
                                             gameValueChanger.CriticalChance, gameValueChanger.CriticalPercentage,
@@ -194,7 +208,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                 switch (gameValueChanger.IntervalDurationType)
                                 {
                                     case GameValueChanger.ByIntervalChangeDurationType.FixedTime:
-                                        StartCoroutine(ChangeHealthCurrentPercentageByInterval(gameValueChanger.RawAmount,
+                                        StartCoroutine(ChangeHealthCurrentPercentageByInterval(gameValueChanger, 
+                                            gameValueChanger.RawAmount,
                                             gameValueChanger.ChangeDuration, gameValueChanger.Stackable,
                                             gameValueChanger.NonStackableLabel,
                                             gameValueChanger.CriticalChance, gameValueChanger.CriticalPercentage,
@@ -210,7 +225,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                 switch (gameValueChanger.IntervalDurationType)
                                 {
                                     case GameValueChanger.ByIntervalChangeDurationType.FixedTime:
-                                        StartCoroutine(ChangeHealthMaxPercentageByInterval(gameValueChanger.RawAmount,
+                                        StartCoroutine(ChangeHealthMaxPercentageByInterval(gameValueChanger, 
+                                            gameValueChanger.RawAmount,
                                             gameValueChanger.ChangeDuration, gameValueChanger.Stackable,
                                             gameValueChanger.NonStackableLabel,
                                             gameValueChanger.CriticalChance, gameValueChanger.CriticalPercentage,
@@ -265,14 +281,19 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             _valueTempChangeValueCache.Remove(gameValueChanger);
         }
 
-        private IEnumerator TempChangeCurrentValue(float amount, float time, bool crited)
+        private IEnumerator TempChangeCurrentValue(GameValueChanger gameValueChanger, float amount, float time, bool crited)
         {
             amount = GetEmphasizedChange(amount);
             Value += amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, crited);
+            gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, crited);
             yield return new WaitForSeconds(time);
             Value -= amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, -amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, -amount, crited);
+            if (gameValueChanger != null)
+            {
+                gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, -amount, crited);
+            }
         }
 
         private IEnumerator TempChangeMax(float amount, float time)
@@ -330,17 +351,22 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             }
             amount = GetEmphasizedChange(amount);
             Value += amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, crited);
+            gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, amount, crited);
             _valueTempChangeValueCache.Add(gameValueChanger);
             while (gameValueChanger != null && _valueTempChangeValueCache.Contains(gameValueChanger))
             {
                 yield return new WaitForSeconds(0.1f);
             }
             Value -= amount;
-            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, -amount, crited);
+            TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, -amount, crited);
+            if (gameValueChanger != null)
+            {
+                gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, -amount, crited);
+            }
         }
 
-        private IEnumerator ChangeHealthFixedAmountByInterval(float amount, float duration, bool stackable, GameValueChanger.NonStackableType nonStackableType,
+        private IEnumerator ChangeHealthFixedAmountByInterval(GameValueChanger gameValueChanger, float amount, float duration, bool stackable, GameValueChanger.NonStackableType nonStackableType,
             float critChance, float critPercentage, float interval, float variantPercentage)
         {
             if (!stackable && _nonStackableTypeCache.Contains(nonStackableType))
@@ -358,7 +384,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 changedAmount = changedAmount + Random.Range(-changedAmount * variantPercentage, changedAmount * variantPercentage);
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, crited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, crited);
+                if (gameValueChanger != null && !gameValueChanger.Deinitialized)
+                {
+                    gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, crited);
+                }
                 yield return new WaitForSeconds(interval);
                 duration -= interval;
             }
@@ -389,13 +419,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 float changedAmount = gameValueChanger.Amount;
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, gameValueChanger.LastAmountCrited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, gameValueChanger.LastAmountCrited);
+                if (!gameValueChanger.Deinitialized)
+                {
+                    gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, gameValueChanger.LastAmountCrited);
+                }
                 yield return new WaitForSeconds(gameValueChanger.ChangeInterval);
             }
             _nonStackableTypeCache.Remove(nonStackableType);
         }
 
-        private IEnumerator ChangeHealthCurrentPercentageByInterval(float percentage, float duration, bool stackable, GameValueChanger.NonStackableType nonStackableType,
+        private IEnumerator ChangeHealthCurrentPercentageByInterval(GameValueChanger gameValueChanger, float percentage, float duration, bool stackable, GameValueChanger.NonStackableType nonStackableType,
             float critChance, float critPercentage, float interval, float variantPercentage)
         {
             if (!stackable && _nonStackableTypeCache.Contains(nonStackableType))
@@ -413,7 +447,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 changedAmount = changedAmount + Random.Range(-changedAmount * variantPercentage, changedAmount * variantPercentage);
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, crited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, crited);
+                if (gameValueChanger != null && !gameValueChanger.Deinitialized)
+                {
+                    gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, crited);
+                }
                 yield return new WaitForSeconds(interval);
                 duration -= interval;
             }
@@ -439,18 +477,22 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             GameValueChanger.NonStackableType nonStackableType = gameValueChanger.NonStackableLabel;
 
             _valueTempChangeValueCache.Add(gameValueChanger);
-            while (gameValueChanger != null && _valueTempChangeValueCache.Contains(gameValueChanger))
+            while (gameValueChanger != null && _valueTempChangeValueCache.Contains(gameValueChanger) )
             {
                 float changedAmount = Value * gameValueChanger.Amount;
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, gameValueChanger.LastAmountCrited);
+                if (!gameValueChanger.Deinitialized)
+                {
+                    TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, gameValueChanger.LastAmountCrited);
+                }
+                gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, gameValueChanger.LastAmountCrited);
                 yield return new WaitForSeconds(gameValueChanger.ChangeInterval);
             }
             _nonStackableTypeCache.Remove(nonStackableType);
         }
 
-        private IEnumerator ChangeHealthMaxPercentageByInterval(float percentage, float duration, bool stackable, GameValueChanger.NonStackableType nonStackableType,
+        private IEnumerator ChangeHealthMaxPercentageByInterval(GameValueChanger gameValueChanger, float percentage, float duration, bool stackable, GameValueChanger.NonStackableType nonStackableType,
             float critChance, float critPercentage, float interval, float variantPercentage)
         {
             if (!stackable && _nonStackableTypeCache.Contains(nonStackableType))
@@ -468,7 +510,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 changedAmount = changedAmount + Random.Range(-changedAmount * variantPercentage, changedAmount * variantPercentage);
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, crited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, crited);
+                if (gameValueChanger != null && !gameValueChanger.Deinitialized)
+                {
+                    gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, crited);
+                }
                 yield return new WaitForSeconds(interval);
                 duration -= interval;
             }
@@ -499,7 +545,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                 float changedAmount = Max * gameValueChanger.Amount;
                 changedAmount = GetEmphasizedChange(changedAmount);
                 Value += changedAmount;
-                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, changedAmount, gameValueChanger.LastAmountCrited);
+                TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, changedAmount, gameValueChanger.LastAmountCrited);
+                gameValueChanger.TriggerGameScriptEvent(GameScriptEvent.OnGameValueChangerApplyChange, gameValueChanger, this, changedAmount, gameValueChanger.LastAmountCrited);
                 yield return new WaitForSeconds(gameValueChanger.ChangeInterval);
             }
             _nonStackableTypeCache.Remove(nonStackableType);
