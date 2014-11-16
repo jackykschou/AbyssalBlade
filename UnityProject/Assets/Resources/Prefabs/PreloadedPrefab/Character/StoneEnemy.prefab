@@ -327,12 +327,12 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400084}
   TargetEffectAppliers:
   - {fileID: 11400004}
   - {fileID: 11400106}
   Targets: []
   Radius: 1.70000005
+  PositionIndicator: {fileID: 11400084}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -955,6 +955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: Health
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 120
   InitialValue: 120
@@ -972,6 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: MovementSpeed
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 10
   InitialValue: 2.5
@@ -989,13 +991,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 100004}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -35
+  _amount: -30
   AmountVariantPercentage: .0199999996
   ChangeDuration: 0
   ChangeInterval: 1
@@ -1175,6 +1178,7 @@ MonoBehaviour:
   TargetFinder: {fileID: 0}
   KnockBackSpeed: 8
   Time: .100000001
+  PositionIndicator: {fileID: 11400084}
 --- !u!114 &11400108
 MonoBehaviour:
   m_ObjectHideFlags: 1

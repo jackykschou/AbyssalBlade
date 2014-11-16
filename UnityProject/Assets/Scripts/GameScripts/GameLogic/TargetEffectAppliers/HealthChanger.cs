@@ -33,5 +33,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
                 GameValueChanger.CriticalChance += changeAmount;
             }
         }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ChangeHealthChangerRawAmountToInitialPercentage)]
+        public void ChangeHealthChangerRawAmountToOriginalPercentage(float percentage)
+        {
+            GameValueChanger.RawAmount = GameValueChanger.InitialAmount * percentage;
+        }
     }
 }

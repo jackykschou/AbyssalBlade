@@ -26,6 +26,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
             Skills = GetComponentsInChildren<Skill>().ToList();
         }
 
+        [GameScriptEventAttribute(GameScriptEvent.AddPowerUpSkill)]
+        public void AddPowerUpSkill()
+        {
+            Skills = GetComponentsInChildren<Skill>().ToList();
+        }
+
         [GameScriptEventAttribute(GameScriptEvent.OnNewTargetDiscovered)]
         public void UpdateTarget(GameObject target)
         {

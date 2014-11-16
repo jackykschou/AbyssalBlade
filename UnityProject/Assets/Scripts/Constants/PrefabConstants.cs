@@ -45,7 +45,12 @@ namespace Assets.Scripts.Constants
 
         ShotGunSmoke = 24,
         ShotGunTrail = 25,
-        None = 26 //!!!
+        None = 26, 
+        HealOnKillTrail = 27,
+        HealOnKillPowerUp = 28,
+        HealOnKillPowerUpPickUp = 29,
+        DamageReflectPowerUp = 30,
+        DamageReflectPowerUpPickUp = 31 //!
     };
 
     public class PrefabConstants
@@ -83,6 +88,11 @@ namespace Assets.Scripts.Constants
             {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"},
             {Prefab.SurvivalLevel, "Prefabs/PreloadedPrefab/Level/SurvivalLevel"},
             {Prefab.ShotGunTrail, "Prefabs/PreloadedPrefab/Particle/ShotGunTrail"},
+            {Prefab.HealOnKillTrail, "Prefabs/PreloadedPrefab/Particle/HealOnKillTrail"},
+            {Prefab.HealOnKillPowerUp, "Prefabs/PreloadedPrefab/PowerUp/HealOnKillPowerUp"},
+            {Prefab.HealOnKillPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/HealthOnKill"},
+            {Prefab.DamageReflectPowerUp, "Prefabs/PreloadedPrefab/PowerUp/ReflectDamagePowerUp"},
+            {Prefab.DamageReflectPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/ReflectDamage"},
             {Prefab.SurvivalArea1, "Prefabs/PreloadedPrefab/Level/SurvivalArea1"},
             {Prefab.SurvivalArea2, "Prefabs/PreloadedPrefab/Level/SurvivalArea2"},
             {Prefab.SurvivalArea3, "Prefabs/PreloadedPrefab/Level/SurvivalArea3"},

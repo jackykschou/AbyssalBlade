@@ -8,6 +8,8 @@
 #endif
         UpdateProjectileDirection,              // void(Vector2)
         UpdateProjectileTarget,                 // void(Transform)
+        UpdateProjectileDestination,            // void(Vector2)
+        UpdateOnProjectileArrivalAction,       // void(Action)
         ShootProjectile,                        // void()
         OnProjectileArriveDestination,          // void(Vector2)
 
@@ -34,7 +36,8 @@
         RefreshSkillCoolDown,                   // void()
 
         OnGameValueCurrentValueChanged,         // void(GameValue, GameValueChanger, float, bool)
-        OnGameValueChangerApplyChange,          // void(GameValueChanger, GameValue, float, bool)
+        UpdateGameValueChangerOwner,            // void(GameObject)
+        UpdateGameValueOwner,                   // void(GameObject)
         OnObjectMove,                           // void()
         OnObjectHasNoHitPoint,                  // void()
         OnObjectDestroyed,                      // void()
@@ -45,6 +48,9 @@
         OnObjectTakeDamage,                     // void(float, bool, GameValue, GameValueChanger)
         OnObjectTakeHeal,                       // void(float, bool, GameValue, GameValueChanger)
         OnObjectHealthChanged,                  // void(float, GameValue)
+        OnObjectDealDamage,                     // void(GameValue, GameValueChanger, float, bool)
+        OnObjectDealHeal,                       // void(GameValue, GameValueChanger, float, bool)
+        OnObjectKills,                          // void(GameValue, GameValueChanger, float, bool)
         OnPhysicsBodyOnTriggerEnter2D,          // void(Collider2D)
         OnPhysicsBodyOnTriggerStay2D,           // void(Collider2D)
         OnPhysicsBodyOnTriggerExit2D,           // void(Collider2D)
@@ -70,13 +76,15 @@
         ResetHealth,                             // void()
         ChangeDamageCriticalChance,              // void(float)
         ChangeDamageReduction,                   // void(float)
+        ChangeHealthChangerRawAmountToInitialPercentage, // void(float)
         LoadingScreenStartLoading,               // void()
         SetHealthInvincibility,                  // void(bool)
         OnHealthInvincibleEnable,                // void()
         OnHealthInvincibleDisable,               // void()
         SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
 
-        UpdateProjectileDestination,                 // void(Vector2)
+        ApplyPowerUp,                             // void(GameObject, Prefab)
+        AddPowerUpSkill,                          // void(Prefab)
         SurvivalAreaSpawned
     };
 }
