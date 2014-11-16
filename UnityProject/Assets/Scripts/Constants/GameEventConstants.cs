@@ -36,6 +36,7 @@
         DisablePlayerCharacter,          // void()
         EnablePlayerCharacter,           // void()
         OnLoadingScreenFinished,          // void()
-        SurvivalSectionEnded
+        SurvivalSectionStarted,          // void()
+        SurvivalSectionEnded             // void()
      };
 }

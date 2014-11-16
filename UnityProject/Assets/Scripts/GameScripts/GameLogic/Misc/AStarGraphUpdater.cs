@@ -22,6 +22,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             AstarPath.active.UpdateGraphs(bounds);
         }
 
+        [GameEventAttribute(GameEvent.SurvivalSectionStarted)]
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void RescanGraph()
         {
