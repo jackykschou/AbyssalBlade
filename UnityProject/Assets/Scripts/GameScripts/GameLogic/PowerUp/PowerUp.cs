@@ -10,7 +10,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
 
         protected int AppliedCounter;
         private static Dictionary<GameObject, Dictionary<Prefab, PowerUp>> _powerUpMap = new Dictionary<GameObject, Dictionary<Prefab, PowerUp>>();
-        protected GameObject Owner;
+        public GameObject Owner;
 
         protected abstract void Apply();
         protected abstract void UnApply();
@@ -58,11 +58,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
             transform.parent = null;
             Owner = null;
             DisableGameObject();
-        }
-
-        protected override void Deinitialize()
-        {
-            UnapplyPowerUp();
         }
     }
 }

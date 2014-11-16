@@ -75,6 +75,7 @@
         ResetHealth,                             // void()
         ChangeDamageCriticalChance,              // void(float)
         ChangeDamageReduction,                   // void(float)
+        ChangeHealthChangerRawAmountToInitialPercentage, // void(float)
         LoadingScreenStartLoading,               // void()
         SetHealthInvincibility,                  // void(bool)
         OnHealthInvincibleEnable,                // void()

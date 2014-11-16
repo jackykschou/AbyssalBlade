@@ -40,7 +40,9 @@ namespace Assets.Scripts.Constants
 
         ShotGunSmoke = 24,
         ShotGunTrail = 25,
-        None = 26 //!!!
+        None = 26, 
+        HealthOnKillTrail = 27,
+        HealthOnKillPowerUp = 28 ///!!!
     };
 
     public class PrefabConstants
@@ -78,6 +80,8 @@ namespace Assets.Scripts.Constants
             {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"},
             {Prefab.SurvivalLevel, "Prefabs/PreloadedPrefab/Level/SurvivalLevel"},
             {Prefab.ShotGunTrail, "Prefabs/PreloadedPrefab/Particle/ShotGunTrail"},
+            {Prefab.HealthOnKillTrail, "Prefabs/PreloadedPrefab/Particle/HealthOnKillTrail"},
+            {Prefab.HealthOnKillPowerUp, "Prefabs/PreloadedPrefab/PowerUp/HealthOnKillPowerUp"},
             {Prefab.None, ""}
         };
 

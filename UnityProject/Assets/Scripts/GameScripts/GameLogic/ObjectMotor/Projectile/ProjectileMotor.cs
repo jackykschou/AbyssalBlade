@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using Assets.Scripts.Attributes;
 using UnityEngine;
 
@@ -47,7 +48,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.ObjectMotor.Projectile
         protected override void Update()
         {
             base.Update();
-            if (!_arrived && ((Vector2)transform.position) == Destination)
+            if (!_arrived && (Vector2.Distance(transform.position, Destination) <= 0.1f))
             {
                 _arrived = true;
                 if (_onDestinationArrivalAction != null)

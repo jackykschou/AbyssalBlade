@@ -48,8 +48,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
                 o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateProjectileDirection, castDirecation);
                 o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateProjectileTarget, Skill.Caster.Target);
                 o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateProjectileDestination, (Vector2)Skill.Caster.Target.transform.position);
-                o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateGameValueChangerOwner, Skill.Caster.Target.gameObject);
-                o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateGameValueOwner, Skill.Caster.Target.gameObject);
+                o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateGameValueChangerOwner, Skill.Caster.gameObject);
+                o.TriggerGameScriptEvent(Constants.GameScriptEvent.UpdateGameValueOwner, Skill.Caster.gameObject);
                 o.TriggerGameScriptEvent(Constants.GameScriptEvent.ShootProjectile);
             });
         }

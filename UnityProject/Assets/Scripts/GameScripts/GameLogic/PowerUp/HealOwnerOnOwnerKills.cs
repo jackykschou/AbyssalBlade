@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
 {
     [AddComponentMenu("PowerUp/HealOwnerOnOwnerKills")]
-    [RequireComponent(typeof(GameValueChanger))]
+    [RequireComponent(typeof(HealthChanger))]
     public class HealOwnerOnOwnerKills : PowerUp
     {
         public Prefab EffectProjectilePrefab;
@@ -43,10 +43,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
 
         protected override void Apply()
         {
-
+            HealthChanger.TriggerGameScriptEvent(GameScriptEvent.ChangeHealthChangerRawAmountToInitialPercentage, 1.0f + (AppliedCounter * 0.5f) - 0.5f);
         }
 
         protected override void UnApply()
+        {
+        }
+
+        protected override void Deinitialize()
         {
         }
     }

@@ -424,7 +424,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.9680004, y: -21.6650009, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400006}
@@ -899,7 +899,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   KnockBackSpeed: 20
   Time: .200000003
   PositionIndicator: {fileID: 11400190}
@@ -922,7 +921,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400202}
 --- !u!114 &11400048
 MonoBehaviour:
@@ -1087,7 +1085,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400200}
 --- !u!114 &11400066
 MonoBehaviour:
@@ -1454,7 +1451,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400198}
 --- !u!114 &11400114
 MonoBehaviour:
@@ -1659,7 +1655,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400142
 MonoBehaviour:
@@ -1679,7 +1674,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400144
 MonoBehaviour:
@@ -1772,7 +1766,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   KnockBackSpeed: 5
   Time: .100000001
   PositionIndicator: {fileID: 11400186}
@@ -2074,6 +2067,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2117,6 +2115,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 1.29999995
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2142,6 +2145,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2167,6 +2175,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 1.5
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2389,7 +2402,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Enable: 0
 --- !u!114 &11400232
 MonoBehaviour:
@@ -2409,7 +2421,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Enable: 1
 --- !u!114 &11400234
 MonoBehaviour:
@@ -2464,7 +2475,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Prefab: 24
   PrefabSpawner: {fileID: 0}
 --- !u!114 &11400240

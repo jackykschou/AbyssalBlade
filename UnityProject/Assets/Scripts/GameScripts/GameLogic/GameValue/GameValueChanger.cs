@@ -142,11 +142,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         public float CriticalChance = 0f;
         public float CriticalPercentage = 2.0f;
 
-        private float _initialChangeDuration;
-        private float _initialChangeInterval;
-        private float _initialCriticalChance;
-        private float _initialCriticalPercentage;
-        private float _initialAmount;
+        public float InitialChangeDuration;
+        public float InitialChangeInterval;
+        public float InitialCriticalChance;
+        public float InitialCriticalPercentage;
+        public float InitialAmount;
 
         [GameScriptEvent(Constants.GameScriptEvent.UpdateGameValueChangerOwner)]
         public void UpdateGameValueChangerOwner(GameObject owner)
@@ -161,21 +161,21 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
             {
                 Owner = gameObject;
             }
-            _initialChangeDuration = ChangeDuration;
-            _initialChangeInterval = ChangeInterval;
-            _initialCriticalChance = CriticalChance;
-            _initialCriticalPercentage = CriticalPercentage;
-            _initialAmount = _amount;
+            InitialChangeDuration = ChangeDuration;
+            InitialChangeInterval = ChangeInterval;
+            InitialCriticalChance = CriticalChance;
+            InitialCriticalPercentage = CriticalPercentage;
+            InitialAmount = _amount;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            ChangeDuration = _initialChangeDuration;
-            ChangeInterval = _initialChangeInterval;
-            CriticalChance = _initialCriticalChance;
-            CriticalPercentage = _initialCriticalPercentage;
-            _amount = _initialAmount;
+            ChangeDuration = InitialChangeDuration;
+            ChangeInterval = InitialChangeInterval;
+            CriticalChance = InitialCriticalChance;
+            CriticalPercentage = InitialCriticalPercentage;
+            _amount = InitialAmount;
         }
 
         protected override void Deinitialize()

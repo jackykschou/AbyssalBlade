@@ -10,21 +10,20 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 61: {fileID: 6100000}
+  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400022}
+  - 114: {fileID: 11400014}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400010}
+  - 50: {fileID: 5000000}
+  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400014}
-  - 114: {fileID: 11400016}
-  - 114: {fileID: 11400006}
-  - 50: {fileID: 5000000}
-  - 114: {fileID: 11400018}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400020}
-  - 114: {fileID: 11400022}
-  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400016}
   m_Layer: 22
-  m_Name: HealthPotion
+  m_Name: HealthOnKill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,12 +75,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317d9cd7579b3c744b9bcb7f6352c97f, type: 3}
+  m_Script: {fileID: 11500000, guid: 84f9cce5ba306bb4d931ecb8a63d336c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Delay: 0
-  TargetPhysicalLayers: 0e000000
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70f7252f79f0ae442bfd8e89eaeaeef8, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c259f78c03e0d4295d8dde32d293c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
@@ -99,8 +96,8 @@ MonoBehaviour:
   TargetPhysicalLayers: 0e000000
   HasApplyCoolDown: 0
   ApplyCooldown: 0
-  OneTimeOnlyPerTarget: 1
-  GameValueChanger: {fileID: 11400004}
+  OneTimeOnlyPerTarget: 0
+  Message: Heal On Killing Enemy
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,29 +106,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
+  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Owner: {fileID: 0}
-  TargetValueType: 0
-  OneTimeDurationType: 1
-  IntervalDurationType: 0
-  ChangeType: 5
-  Stackable: 1
-  NonStackableLabel: 0
-  _amount: .00999999978
-  AmountVariantPercentage: 0
-  ChangeDuration: 3
-  ChangeInterval: .100000001
-  CriticalChance: 0
-  CriticalPercentage: 2
-  InitialChangeDuration: 0
-  InitialChangeInterval: 0
-  InitialCriticalChance: 0
-  InitialCriticalPercentage: 0
-  InitialAmount: 0
 --- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317d9cd7579b3c744b9bcb7f6352c97f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Delay: 0
+  TargetPhysicalLayers: 0e000000
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+--- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -147,20 +152,9 @@ MonoBehaviour:
   - Player
   TargetPhysicalLayers: 0e000000
   TargetEffectAppliers:
+  - {fileID: 11400016}
   - {fileID: 11400002}
-  - {fileID: 11400022}
   Targets: []
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,9 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ac7324fab67f354299a6d697f28de37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,43 +187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac7324fab67f354299a6d697f28de37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
---- !u!114 &11400018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
---- !u!114 &11400020
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
---- !u!114 &11400022
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c259f78c03e0d4295d8dde32d293c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 65e946ad2fa2b084cb9eff4243f59283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
@@ -238,7 +197,18 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  Message: Health Recovery
+  PowerUpPrefab: 28
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,10 +217,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f9cce5ba306bb4d931ecb8a63d336c, type: 3}
+  m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LabelName: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -271,7 +240,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 4061382801
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f0cadb55b42eabe4fa627acae22be524, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a00f43589c3c7141b5e24a70f6714fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
