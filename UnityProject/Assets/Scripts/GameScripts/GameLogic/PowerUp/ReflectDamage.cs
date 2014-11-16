@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.GameValue;
 using Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers;
+using Assets.Scripts.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
@@ -28,6 +29,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
         [Attributes.GameScriptEvent(GameScriptEvent.OnObjectTakeDamage)]
         public void OnObjectTakeDamage(float amount, bool crited, GameValue.GameValue gameValue, GameValueChanger gameValueChanger)
         {
+            PrefabManager.Instance.SpawnPrefabImmediate(Prefab.ReflectDamgeParticle, gameValue.Owner.transform.position);
             HealthChanger.ApplierApplyEffect(gameValueChanger.Owner);
         }
 
