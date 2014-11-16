@@ -23,6 +23,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             }
         }
 
+        [GameEvent(Constants.GameEvent.OnLevelStarted)]
         [GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
