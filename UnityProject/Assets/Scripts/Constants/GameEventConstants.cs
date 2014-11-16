@@ -35,6 +35,7 @@
         SetCameraWidth,                  // void(float)
         DisablePlayerCharacter,          // void()
         EnablePlayerCharacter,           // void()
+        OnPlayerReset,                   // void()
         OnLoadingScreenFinished,          // void()
         SurvivalSectionStarted,          // void()
         SurvivalSectionEnded             // void()
