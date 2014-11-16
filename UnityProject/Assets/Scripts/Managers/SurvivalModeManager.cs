@@ -13,7 +13,9 @@ namespace Assets.Scripts.Managers
     public class SurvivalModeManager : GameLogic
     {
         public List<Prefab> SpawnPoints;
+        public List<Transform> AreaSpawnPoints;
 
+        private int _nextSpawnAreaIndex;
         private Prefab _currentAreaPrefab;
         private GameObject _currentArea;
 
@@ -22,6 +24,13 @@ namespace Assets.Scripts.Managers
             get { return _instance ?? (_instance = FindObjectOfType<SurvivalModeManager>()); }
         }
         private static SurvivalModeManager _instance;
+
+        private Vector3 NextSpawnPosition()
+        {
+            Vector3 nextPoint = AreaSpawnPoints[_nextSpawnAreaIndex++].position;
+            _nextSpawnAreaIndex %= AreaSpawnPoints.Count;
+            return nextPoint;
+        }
 
         public Prefab GetNextArea()
         {
@@ -41,8 +50,13 @@ namespace Assets.Scripts.Managers
         {
             _currentAreaPrefab = GetNextArea();
             GameObject oldArea = _currentArea;
-            PrefabManager.Instance.SpawnPrefabImmediate(Prefab.SpawnParticleSystem,GameManager.Instance.PlayerMainCharacter.transform.position);
-            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, o => { _currentArea = o; o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);});
+            PrefabManager.Instance.SpawnPrefabImmediate(Prefab.SpawnParticleSystem, GameManager.Instance.PlayerMainCharacter.transform.position);
+            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, NextSpawnPosition(), o => 
+            { 
+                _currentArea = o; 
+                o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
+                TriggerGameEvent(GameEvent.SurvivalSectionStarted);
+            });
             yield return new WaitForSeconds(0.5f);
             GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                                        _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,

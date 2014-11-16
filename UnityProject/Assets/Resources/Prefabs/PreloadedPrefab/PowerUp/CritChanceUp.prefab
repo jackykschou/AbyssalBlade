@@ -12,7 +12,6 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400020}
   - 114: {fileID: 11400018}
-  - 114: {fileID: 11400016}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
@@ -21,9 +20,10 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400022}
-  - 114: {fileID: 11400012}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400024}
+  - 114: {fileID: 11400012}
+  - 114: {fileID: 11400016}
   m_Layer: 22
   m_Name: CritChanceUp
   m_TagString: Untagged
@@ -122,7 +122,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400016}
   TargetEffectAppliers:
   - {fileID: 11400012}
   - {fileID: 11400022}
@@ -160,18 +159,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21b0c8cf8b55eb6499cbad38c11d7bde, type: 3}
+  m_Script: {fileID: 11500000, guid: 65e946ad2fa2b084cb9eff4243f59283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  TargetTags:
-  - Player
-  TargetPhysicalLayers: 0e000000
+  TargetTags: []
+  TargetPhysicalLayers: 
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
-  ChangeAmount: .25
+  PowerUpPrefab: 32
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,7 +183,7 @@ MonoBehaviour:
   LabelName: 
 --- !u!114 &11400016
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
@@ -238,7 +235,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Message: Critical Chance Increased
 --- !u!114 &11400024
 MonoBehaviour:
@@ -258,7 +254,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
