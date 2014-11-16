@@ -16,6 +16,8 @@ namespace Assets.Scripts.Constants
         SurvivalArea3 = 103,
         SurvivalArea4 = 104,
         SurvivalArea5 = 105,
+        SpawnParticleSystem = 106,
+
 
         Projectile = 0,
         Projectile2 = 5,
@@ -101,6 +103,7 @@ namespace Assets.Scripts.Constants
             {Prefab.CritChanceUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/CritChanceUp"},
             {Prefab.DefenseUpPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUpPowerUp"},
             {Prefab.DefenseUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
+            {Prefab.SpawnParticleSystem, "Prefabs/PreloadedPrefab/Particle/SpawnParticleSystem"},
             {Prefab.None, ""}
         };
 
