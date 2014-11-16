@@ -17,7 +17,6 @@ namespace Assets.Scripts.Constants
         SurvivalArea4 = 104,
         SurvivalArea5 = 105,
 
-
         Projectile = 0,
         Projectile2 = 5,
         EnemyProjectile = 9,
@@ -35,8 +34,6 @@ namespace Assets.Scripts.Constants
         SimpleRangeNoDropEnemy = 23,
 
         HealthPotion = 11,
-        DamageReductionPowerUp = 20,
-        CritChancePowerUp = 21,     
 
         DamageText = 1,
         MessageText = 6,
@@ -50,7 +47,11 @@ namespace Assets.Scripts.Constants
         HealOnKillPowerUp = 28,
         HealOnKillPowerUpPickUp = 29,
         DamageReflectPowerUp = 30,
-        DamageReflectPowerUpPickUp = 31 //!
+        DamageReflectPowerUpPickUp = 31,
+        CritChanceUpPowerUp = 32,
+        CritChanceUpPowerUpPickUp = 33,
+        DefenseUpPowerUp = 34,
+        DefenseUpPowerUpPickUp = 35
     };
 
     public class PrefabConstants
@@ -81,8 +82,6 @@ namespace Assets.Scripts.Constants
             {Prefab.GreenRangeEnemy, "Prefabs/PreloadedPrefab/Character/GreenSmallRangeEnemy"},
             {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"},
             {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"},
-            {Prefab.CritChancePowerUp, "Prefabs/PreloadedPrefab/PowerUp/CritChanceUp"},
-            {Prefab.DamageReductionPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
             {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"},
             {Prefab.SimpleRangeNoDropEnemy, "Prefabs/PreloadedPrefab/Character/SimpleRangeNoDropEnemy"},
             {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"},
@@ -90,7 +89,7 @@ namespace Assets.Scripts.Constants
             {Prefab.ShotGunTrail, "Prefabs/PreloadedPrefab/Particle/ShotGunTrail"},
             {Prefab.HealOnKillTrail, "Prefabs/PreloadedPrefab/Particle/HealOnKillTrail"},
             {Prefab.HealOnKillPowerUp, "Prefabs/PreloadedPrefab/PowerUp/HealOnKillPowerUp"},
-            {Prefab.HealOnKillPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/HealthOnKill"},
+            {Prefab.HealOnKillPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/HealOnKill"},
             {Prefab.DamageReflectPowerUp, "Prefabs/PreloadedPrefab/PowerUp/ReflectDamagePowerUp"},
             {Prefab.DamageReflectPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/ReflectDamage"},
             {Prefab.SurvivalArea1, "Prefabs/PreloadedPrefab/Level/SurvivalArea1"},
@@ -98,6 +97,10 @@ namespace Assets.Scripts.Constants
             {Prefab.SurvivalArea3, "Prefabs/PreloadedPrefab/Level/SurvivalArea3"},
             {Prefab.SurvivalArea4, "Prefabs/PreloadedPrefab/Level/SurvivalArea4"},
             {Prefab.SurvivalArea5, "Prefabs/PreloadedPrefab/Level/SurvivalArea5"},
+            {Prefab.CritChanceUpPowerUp, "Prefabs/PreloadedPrefab/PowerUp/CritChanceUpPowerUp"},
+            {Prefab.CritChanceUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/CritChanceUp"},
+            {Prefab.DefenseUpPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUpPowerUp"},
+            {Prefab.DefenseUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
             {Prefab.None, ""}
         };
 
