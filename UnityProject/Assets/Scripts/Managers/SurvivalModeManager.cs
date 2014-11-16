@@ -72,7 +72,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelStarted()
         {
-            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, o => { _currentArea = o; o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);});
+            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, NextSpawnPosition(), o => { _currentArea = o; o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned); });
             GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                                        _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
                                                                                        GameManager.Instance.PlayerMainCharacter.transform.position.z);
