@@ -71,12 +71,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (changedAmount <= 0f)
             {
-                healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectDealDamage, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                if (healthChanger != null && !healthChanger.Deinitialized)
+                {
+                    healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectDealDamage, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                }
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited, HitPoint, healthChanger);
             }
             else
             {
-                healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectDealHeal, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                if (healthChanger != null && !healthChanger.Deinitialized)
+                {
+                    healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectDealHeal, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                }
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount), crited, HitPoint, healthChanger);
             }
 
@@ -84,12 +90,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (HitPoint <= 0f)
             {
-                healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectKills, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                if (healthChanger != null && !healthChanger.Deinitialized)
+                {
+                    healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectKills, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                }
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint);
             }
         }
 
-        [Attributes.GameScriptEvent(GameScriptEvent.ChangeDamageReduction)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ChangeDamageReductionBy)]
         public void ChangeDamageReduction(float amount)
         {
             HitPoint.NegativeChangeEmphasizePercentage += amount;

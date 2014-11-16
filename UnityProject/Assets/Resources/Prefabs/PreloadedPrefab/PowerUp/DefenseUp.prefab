@@ -12,7 +12,6 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400008}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400014}
@@ -21,8 +20,8 @@ GameObject:
   - 114: {fileID: 11400018}
   - 114: {fileID: 11400020}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400000}
   - 114: {fileID: 11400022}
+  - 114: {fileID: 11400000}
   m_Layer: 22
   m_Name: DefenseUp
   m_TagString: Untagged
@@ -76,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd948fe8e66a0514ebfcb45f200e2b02, type: 3}
+  m_Script: {fileID: 11500000, guid: 65e946ad2fa2b084cb9eff4243f59283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
@@ -86,8 +85,7 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
-  ChangeAmount: -.150000006
+  PowerUpPrefab: 34
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,7 +104,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Message: Defense Up
 --- !u!114 &11400004
 MonoBehaviour:
@@ -130,20 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Follower: {fileID: 0}
-  Position: {fileID: 400000}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,7 +166,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400008}
   TargetEffectAppliers:
   - {fileID: 11400000}
   - {fileID: 11400002}

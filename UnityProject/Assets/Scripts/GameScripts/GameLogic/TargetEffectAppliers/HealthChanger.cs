@@ -25,12 +25,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
         {
         }
 
-        [GameScriptEvent(Constants.GameScriptEvent.ChangeDamageCriticalChance)]
+        [GameScriptEvent(Constants.GameScriptEvent.ChangeDamageCriticalChanceBy)]
         public void ChangeDamageCriticalChance(float changeAmount)
         {
             if (GameValueChanger._amount <= 0f)
             {
-                GameValueChanger.CriticalChance += changeAmount;
+                GameValueChanger.CriticalChance = changeAmount;
             }
         }
 

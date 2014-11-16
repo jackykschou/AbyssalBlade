@@ -410,7 +410,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400008}
 --- !u!114 &11400008
 MonoBehaviour:
@@ -437,6 +436,11 @@ MonoBehaviour:
   ChangeInterval: .100000001
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -760,7 +764,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   KnockBackSpeed: 8
   Time: .100000001
   PositionIndicator: {fileID: 11400050}
@@ -789,6 +792,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -883,7 +891,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400048}
 --- !u!114 &11400062
 MonoBehaviour:
@@ -1440,7 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Prefabs: 14000000
+  Prefabs: 23000000
   SpawnPickWeights:
   - 1
   PrefabSpawnValues: 00000000
