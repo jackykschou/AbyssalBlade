@@ -69,7 +69,7 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.MainCamera.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                              _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
                                                                              GameManager.Instance.MainCamera.transform.position.z);    
-            yield return new WaitForSeconds(1.0f);
+            //yield return new WaitForSeconds(1.0f);
             PrefabManager.Instance.DespawnPrefab(oldArea);
        
         }
