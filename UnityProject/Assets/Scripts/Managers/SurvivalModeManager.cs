@@ -13,7 +13,9 @@ namespace Assets.Scripts.Managers
     public class SurvivalModeManager : GameLogic
     {
         public List<Prefab> SpawnPoints;
+        public List<Transform> AreaSpawnPoints;
 
+        private int _nextSpawnAreaIndex;
         private Prefab _currentAreaPrefab;
         private GameObject _currentArea;
 
@@ -22,6 +24,13 @@ namespace Assets.Scripts.Managers
             get { return _instance ?? (_instance = FindObjectOfType<SurvivalModeManager>()); }
         }
         private static SurvivalModeManager _instance;
+
+        private Vector3 NextSpawnPosition()
+        {
+            Vector3 nextPoint = AreaSpawnPoints[_nextSpawnAreaIndex++].position;
+            _nextSpawnAreaIndex %= AreaSpawnPoints.Count;
+            return nextPoint;
+        }
 
         public Prefab GetNextArea()
         {
@@ -41,7 +50,7 @@ namespace Assets.Scripts.Managers
         {
             _currentAreaPrefab = GetNextArea();
             GameObject oldArea = _currentArea;
-            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, o => 
+            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, NextSpawnPosition(), o => 
             { 
                 _currentArea = o; 
                 o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
