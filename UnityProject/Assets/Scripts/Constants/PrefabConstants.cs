@@ -11,6 +11,11 @@ namespace Assets.Scripts.Constants
         MainLevelArea2 = 12,
         BossLevel = 14,
         SurvivalLevel = 100,
+        SurvivalArea1 = 101,
+        SurvivalArea2 = 102,
+        SurvivalArea3 = 103,
+        SurvivalArea4 = 104,
+        SurvivalArea5 = 105,
 
 
         Projectile = 0,
@@ -88,6 +93,11 @@ namespace Assets.Scripts.Constants
             {Prefab.HealOnKillPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/HealthOnKill"},
             {Prefab.DamageReflectPowerUp, "Prefabs/PreloadedPrefab/PowerUp/ReflectDamagePowerUp"},
             {Prefab.DamageReflectPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/ReflectDamage"},
+            {Prefab.SurvivalArea1, "Prefabs/PreloadedPrefab/Level/SurvivalArea1"},
+            {Prefab.SurvivalArea2, "Prefabs/PreloadedPrefab/Level/SurvivalArea2"},
+            {Prefab.SurvivalArea3, "Prefabs/PreloadedPrefab/Level/SurvivalArea3"},
+            {Prefab.SurvivalArea4, "Prefabs/PreloadedPrefab/Level/SurvivalArea4"},
+            {Prefab.SurvivalArea5, "Prefabs/PreloadedPrefab/Level/SurvivalArea5"},
             {Prefab.None, ""}
         };
 

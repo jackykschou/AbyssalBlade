@@ -71,13 +71,15 @@ namespace Assets.Scripts.Managers
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1.0f); 
         }
 
-        public void DisplayMessage(string message,Vector3 direction)
+        public void DisplayMessage(string message,Vector3 direction, float despawnTime = 3.0f)
         {
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
             {
                 TextMesh mesh = o.GetComponent<TextMesh>();
                 TextMotor motor = o.GetComponent<TextMotor>();
+                DamageTextDespawn dtd = o.GetComponent<DamageTextDespawn>();
 
+                dtd.OrigDespawnTime = despawnTime;
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
                 motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);

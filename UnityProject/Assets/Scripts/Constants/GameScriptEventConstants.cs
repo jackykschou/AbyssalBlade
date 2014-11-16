@@ -82,9 +82,8 @@
         OnHealthInvincibleDisable,               // void()
         SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
 
-        UpdateProjectileDestination,              // void(Vector2)
-
         ApplyPowerUp,                             // void(GameObject, Prefab)
         AddPowerUpSkill                           // void(Prefab)
+        SurvivalAreaSpawned
     };
 }
