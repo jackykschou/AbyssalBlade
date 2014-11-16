@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.GameLogic.PhysicsBody;
+﻿using Assets.Scripts.GameScripts.GameLogic.PhysicsBody;
 using UnityEngine;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -24,6 +23,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 
         protected override void Deinitialize()
         {
+            _canSpawn = false;
         }
 
         [GameScriptEvent(GameScriptEvent.OnPhysicsBodyOnTriggerStay2D)]

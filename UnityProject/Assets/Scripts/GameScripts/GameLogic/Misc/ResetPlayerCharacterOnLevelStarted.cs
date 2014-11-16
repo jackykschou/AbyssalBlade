@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         {
             GameManager.Instance.PlayerMainCharacter.SetActive(false);
             GameManager.Instance.PlayerMainCharacter.SetActive(true);
-            GameEventManager.Instance.TriggerGameEvent(Constants.GameEvent.DisablePlayerCharacter);
+            GameEventManager.Instance.TriggerGameEvent(Constants.GameEvent.OnPlayerReset);
         }
 
         protected override void Deinitialize()

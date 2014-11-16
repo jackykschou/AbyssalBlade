@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Utility;
@@ -36,60 +35,52 @@ namespace Assets.Scripts.Managers
         {
             Prefab nextArea = SpawnPoints[Random.Range(0, SpawnPoints.Count-1)];
             while (nextArea == _currentAreaPrefab)
+            {
                 nextArea = SpawnPoints[Random.Range(0, SpawnPoints.Count - 1)];
+            }
             return nextArea;
         }
 
         [GameEventAttribute(GameEvent.SurvivalSectionEnded)]
-        public void SurvivalSectionEnded()
+        public void SpawnNextSection()
         {
-            StartCoroutine(SurvivalSectionEndedIE());
-        }
+            if (_currentArea != null)
+            {
+                PrefabManager.Instance.DespawnPrefab(_currentArea);
+            }
 
-        private IEnumerator SurvivalSectionEndedIE()
-        {
             _currentAreaPrefab = GetNextArea();
-            GameObject oldArea = _currentArea;
+
             PrefabManager.Instance.SpawnPrefabImmediate(Prefab.SpawnParticleSystem, GameManager.Instance.PlayerMainCharacter.transform.position, o =>
             {
                 o.transform.parent = GameManager.Instance.PlayerMainCharacter.transform;
                 o.GetComponent<ParticleSystem>().Play();
             });
-            yield return new WaitForSeconds(0.2f);
-            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, NextSpawnPosition(), o => 
-            { 
-                _currentArea = o; 
-                o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
-                TriggerGameEvent(GameEvent.SurvivalSectionStarted);
+            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, NextSpawnPosition(), o =>
+            {
+                _currentArea = o;
             });
-            yield return new WaitForSeconds(0.5f);
+            _currentArea.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
+            TriggerGameEvent(GameEvent.SurvivalSectionStarted);
             GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                                        _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
                                                                                        GameManager.Instance.PlayerMainCharacter.transform.position.z);
             GameManager.Instance.MainCamera.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                              _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
-                                                                             GameManager.Instance.MainCamera.transform.position.z);    
-            //yield return new WaitForSeconds(1.0f);
-            PrefabManager.Instance.DespawnPrefab(oldArea);
-       
+                                                                             GameManager.Instance.MainCamera.transform.position.z);
         }
 
         [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelStarted()
         {
-            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, NextSpawnPosition(), o => { _currentArea = o; o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned); });
-            GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
-                                                                                       _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
-                                                                                       GameManager.Instance.PlayerMainCharacter.transform.position.z);
-            GameManager.Instance.MainCamera.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
-                                                                             _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
-                                                                             GameManager.Instance.MainCamera.transform.position.z);    
+            SpawnNextSection();
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            _currentAreaPrefab = Prefab.SurvivalArea1;
+            _currentAreaPrefab = Prefab.None;
+            _currentArea = null;
         }
 
         protected override void Deinitialize()

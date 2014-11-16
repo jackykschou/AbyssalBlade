@@ -41,7 +41,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
             }
         }
 
-        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectDestroyed)]
         [Attributes.GameEvent(GameEvent.OnPlayerReset)]
         public void UnapplyPowerUp()
         {
