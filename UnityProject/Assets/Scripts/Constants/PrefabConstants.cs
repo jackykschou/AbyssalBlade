@@ -17,6 +17,7 @@ namespace Assets.Scripts.Constants
         SurvivalArea4 = 104,
         SurvivalArea5 = 105,
 
+        SpawnParticleSystem = 106,
 
         Projectile = 0,
         Projectile2 = 5,
@@ -42,6 +43,7 @@ namespace Assets.Scripts.Constants
         MessageText = 6,
 
         IntroStoryBoardLevel = 22,
+
 
         ShotGunSmoke = 24,
         ShotGunTrail = 25,
@@ -98,7 +100,8 @@ namespace Assets.Scripts.Constants
             {Prefab.SurvivalArea3, "Prefabs/PreloadedPrefab/Level/SurvivalArea3"},
             {Prefab.SurvivalArea4, "Prefabs/PreloadedPrefab/Level/SurvivalArea4"},
             {Prefab.SurvivalArea5, "Prefabs/PreloadedPrefab/Level/SurvivalArea5"},
-            {Prefab.None, ""}
+            {Prefab.None, ""},
+            {Prefab.SpawnParticleSystem, "Prefabs/PreloadedPrefab/Particle/SpawnParticleSystem"}
         };
 
         public static string GetPrefabName(Prefab prefab)

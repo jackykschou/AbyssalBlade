@@ -41,6 +41,7 @@ namespace Assets.Scripts.Managers
         {
             _currentAreaPrefab = GetNextArea();
             GameObject oldArea = _currentArea;
+            PrefabManager.Instance.SpawnPrefabImmediate(Prefab.SpawnParticleSystem,GameManager.Instance.PlayerMainCharacter.transform.position);
             PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, o => { _currentArea = o; o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);});
             yield return new WaitForSeconds(0.5f);
             GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
