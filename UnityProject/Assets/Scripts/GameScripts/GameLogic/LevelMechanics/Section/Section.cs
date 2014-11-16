@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Managers;
+﻿using System.Security.Cryptography.X509Certificates;
+using Assets.Scripts.Managers;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
 using GameScriptEventAttribute = Assets.Scripts.Attributes.GameScriptEvent;
@@ -28,11 +29,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
         }
 
-        protected override void Initialize()
+        [GameScriptEventAttribute(GameScriptEvent.SurvivalAreaSpawned)]
+        [GameEventAttribute(GameEvent.OnLevelStarted)]
+        public void UpdateSectionId()
         {
-            base.Initialize();
             TriggerGameScriptEvent(GameScriptEvent.UpdateSectionId, SectionId);
         }
+        
 
         protected override void Deinitialize()
         {
