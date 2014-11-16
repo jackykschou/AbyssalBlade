@@ -48,6 +48,7 @@ GameObject:
   - 114: {fileID: 11401900}
   - 114: {fileID: 11401898}
   - 114: {fileID: 11401896}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: SurvivalModeManager
   m_TagString: Untagged
@@ -93,6 +94,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 401060}
   m_RootOrder: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f16a0cea3a9d57488bcba4b5cfdf2f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!114 &11401654
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -66,11 +66,6 @@ namespace Assets.Scripts.Managers
 
                 _prefabNameMap.Add(SerializedPrefabPoolMapKeys[i], obj);
 
-                if (obj.GetComponent<DestroyOnLevelEnded>() == null)
-                {
-                    obj.AddComponent<DestroyOnLevelEnded>();
-                }
-
                 PrefabPool prefabPool = new PrefabPool(obj.transform)
                 {
                     preloadAmount = PrefabPreloadAmountsValues[PrefabPreloadAmountsKeys.IndexOf(SerializedPrefabPoolMapKeys[i])],
