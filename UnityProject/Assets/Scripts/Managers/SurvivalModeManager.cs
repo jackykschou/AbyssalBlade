@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Utility;
+using StateMachine;
 using UnityEngine;
 using Assets.Scripts.GameScripts.GameLogic;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -41,7 +42,12 @@ namespace Assets.Scripts.Managers
         {
             _currentAreaPrefab = GetNextArea();
             GameObject oldArea = _currentArea;
-            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, o => { _currentArea = o; o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);});
+            PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, o => 
+            { 
+                _currentArea = o; 
+                o.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
+                TriggerGameEvent(GameEvent.SurvivalSectionStarted);
+            });
             yield return new WaitForSeconds(0.5f);
             GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                                        _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
