@@ -26,7 +26,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         [GameEventAttribute(GameEvent.OnLevelFinishedLoading)]
         public void RescanGraph()
         {
-            AstarPath.active.Scan();
+            if (AstarPath.active != null)
+            {
+                AstarPath.active.Scan();
+            }
         }
     }
 }
