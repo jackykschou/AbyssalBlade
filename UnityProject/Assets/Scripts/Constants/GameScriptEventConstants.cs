@@ -8,6 +8,7 @@
 #endif
         UpdateProjectileDirection,              // void(Vector2)
         UpdateProjectileTarget,                 // void(Transform)
+        UpdateProjectileDestination,            // void(Vector2)
         UpdateOnProjectileArrivalAction,       // void(Action)
         ShootProjectile,                        // void()
         OnProjectileArriveDestination,          // void(Vector2)
@@ -83,7 +84,7 @@
         SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
 
         ApplyPowerUp,                             // void(GameObject, Prefab)
-        AddPowerUpSkill                           // void(Prefab)
+        AddPowerUpSkill,                          // void(Prefab)
         SurvivalAreaSpawned
     };
 }
