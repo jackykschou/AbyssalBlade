@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
 using Assets.Scripts.Utility;
-using StateMachine;
 using UnityEngine;
 using Assets.Scripts.GameScripts.GameLogic;
 using GameEvent = Assets.Scripts.Constants.GameEvent;

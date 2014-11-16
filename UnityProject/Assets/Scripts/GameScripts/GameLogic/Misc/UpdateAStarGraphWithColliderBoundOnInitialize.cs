@@ -14,25 +14,35 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         {
         }
 
-        //[GameScriptEvent(Constants.GameScriptEvent.GateActivated)]
+        protected override void Initialize()
+        {
+            base.Initialize();
+            if (_guo == null)
+            {
+                _guo = new GraphUpdateObject(collider2D.bounds);
+            }
+        }
+
         [GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
-            if(_guo == null)
-                _guo = new GraphUpdateObject(collider2D.bounds);
-            _guo.setWalkability = false;
+            _guo.setWalkability = !collider2D.enabled;
             AstarPath.active.UpdateGraphs(_guo);
-            //AstarPath.active.Scan();
         }
 
-        //[GameScriptEvent(Constants.GameScriptEvent.GateDeactivated)]
+        [GameScriptEvent(Constants.GameScriptEvent.GateActivated)]
+        public void GateActivated()
+        {
+            _guo.setWalkability = false;
+            AstarPath.active.UpdateGraphs(_guo);
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.GateDeactivated)]
         [GameEvent(Constants.GameEvent.OnLevelEnded)]
         public void OnLevelEnded()
         {
-            
             _guo.setWalkability = true;
             AstarPath.active.UpdateGraphs(_guo);
-            //AstarPath.active.Scan();
         }
         
     }
