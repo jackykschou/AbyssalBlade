@@ -44,6 +44,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.SurvivalSectionEnded)]
         public void SpawnNextSection()
         {
+            TriggerGameEvent(GameEvent.DisablePlayerCharacter);
             if (_currentArea != null)
             {
                 PrefabManager.Instance.DespawnPrefab(_currentArea);
@@ -68,6 +69,7 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.MainCamera.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                              _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
                                                                              GameManager.Instance.MainCamera.transform.position.z);
+            TriggerGameEvent(GameEvent.EnablePlayerCharacter);
         }
 
         [GameEventAttribute(GameEvent.OnLevelStarted)]
