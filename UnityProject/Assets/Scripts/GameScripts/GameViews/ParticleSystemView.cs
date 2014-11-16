@@ -8,12 +8,13 @@ namespace Assets.Scripts.GameScripts.GameViews
     public class ParticleSystemView : GameView
     {
         protected ParticleSystem _ParticleSystem;
-
+        protected ParticleSystem[] _ParticleSystems;
         protected override void FirstTimeInitialize()
         {
             base.FirstTimeInitialize();
             _ParticleSystem = GetComponent<ParticleSystem>();
             _ParticleSystem.renderer.sortingLayerName = SortingLayerConstants.SortingLayerNames.ForegroundLayer;
+            _ParticleSystems = GetComponentsInChildren<ParticleSystem>();
         }
 
         protected override void Update()
@@ -25,6 +26,10 @@ namespace Assets.Scripts.GameScripts.GameViews
         protected void UpdateSortingOrder()
         {
             _ParticleSystem.renderer.sortingOrder = (int)(transform.position.y * WorldScaleConstant.LayerSortingScale);
+            foreach (ParticleSystem pSystem in _ParticleSystems)
+            {
+                pSystem.renderer.sortingOrder = (int)(transform.position.y * WorldScaleConstant.LayerSortingScale);
+            }
         }
 
         protected override void Deinitialize()

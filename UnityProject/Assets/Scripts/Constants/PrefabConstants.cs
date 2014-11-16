@@ -17,6 +17,7 @@ namespace Assets.Scripts.Constants
         SurvivalArea4 = 104,
         SurvivalArea5 = 105,
         SpawnParticleSystem = 106,
+        HeavyMeleeParticleSystem = 107,
 
 
         Projectile = 0,
@@ -104,6 +105,7 @@ namespace Assets.Scripts.Constants
             {Prefab.DefenseUpPowerUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUpPowerUp"},
             {Prefab.DefenseUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
             {Prefab.SpawnParticleSystem, "Prefabs/PreloadedPrefab/Particle/SpawnParticleSystem"},
+            {Prefab.HeavyMeleeParticleSystem, "Prefabs/PreloadedPrefab/Particle/HeavyMeleeParticleSystem"},
             {Prefab.None, ""}
         };
 
