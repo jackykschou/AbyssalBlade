@@ -50,6 +50,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
         {
         }
 
+        protected override void Initialize()
+        {
+            base.Initialize();
+            if (HealthChanger == null)
+            {
+                HealthChanger = GetComponent<HealthChanger>();
+            }
+        }
+
         protected override void Deinitialize()
         {
         }

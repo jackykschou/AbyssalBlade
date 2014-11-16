@@ -41,6 +41,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
             }
         }
 
+        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint)]
         [Attributes.GameScriptEvent(GameScriptEvent.OnObjectDestroyed)]
         public void UnapplyPowerUp()
         {
