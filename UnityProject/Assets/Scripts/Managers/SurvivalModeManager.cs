@@ -50,7 +50,12 @@ namespace Assets.Scripts.Managers
         {
             _currentAreaPrefab = GetNextArea();
             GameObject oldArea = _currentArea;
-            PrefabManager.Instance.SpawnPrefabImmediate(Prefab.SpawnParticleSystem, GameManager.Instance.PlayerMainCharacter.transform.position);
+            PrefabManager.Instance.SpawnPrefabImmediate(Prefab.SpawnParticleSystem, GameManager.Instance.PlayerMainCharacter.transform.position, o =>
+            {
+                o.transform.parent = GameManager.Instance.PlayerMainCharacter.transform;
+                o.GetComponent<ParticleSystem>().Play();
+            });
+            yield return new WaitForSeconds(0.2f);
             PrefabManager.Instance.SpawnPrefabImmediate(_currentAreaPrefab, NextSpawnPosition(), o => 
             { 
                 _currentArea = o; 
@@ -64,7 +69,7 @@ namespace Assets.Scripts.Managers
             GameManager.Instance.MainCamera.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                              _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
                                                                              GameManager.Instance.MainCamera.transform.position.z);    
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
             PrefabManager.Instance.DespawnPrefab(oldArea);
        
         }
