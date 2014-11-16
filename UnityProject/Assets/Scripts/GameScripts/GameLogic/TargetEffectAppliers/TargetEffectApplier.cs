@@ -15,6 +15,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
 
         public void ApplierApplyEffect(GameObject target)
         {
+            if (target == null)
+            {
+                return;
+            }
+
             if (TargetTags.Contains(target.tag) && TargetPhysicalLayers.Contains(target.layer))
             {
                 if(_changedCache.ContainsKey(target))

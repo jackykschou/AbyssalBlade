@@ -15,6 +15,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
         {
         }
 
+        protected override void Initialize()
+        {
+            _changedAmount = 0f;
+            base.Initialize();
+        }
+
         protected override void Apply()
         {
             if (_changedAmount >= 0.8f)

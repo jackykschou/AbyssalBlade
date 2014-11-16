@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Attributes;
 using Assets.Scripts.GameScripts.GameLogic.GameValue;
 using Assets.Scripts.GameScripts.GameLogic.Spawner;
+using Assets.Scripts.Managers;
+using StateMachine.Action;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Health
@@ -32,13 +34,26 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
                 {
                     textMesh.transform.localScale *= 1.5f;
                     textMesh.fontStyle = FontStyle.Italic;
-                    //MessageManager.Instance.DisplayMessage("CRIT!",Vector3.up);
                 }
                 else
                 {
                     textMesh.fontStyle = FontStyle.Normal;
                 }
             });
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.OnObjectDealDamage)]
+        public void OnObjectDealDamage(GameValue.GameValue health, GameValueChanger gameValueChanger, float damage, bool crit)
+        {
+            if (crit)
+            {
+                PrefabSpawner.SpawnPrefabImmediate(transform.position, o =>
+                {
+                    TextMesh textMesh = o.GetComponent<TextMesh>();
+                    textMesh.text = "CRIT!";
+                    textMesh.color = Color.blue;
+                });
+            }
         }
 
         protected override void Deinitialize()
