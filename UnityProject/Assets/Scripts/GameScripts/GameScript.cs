@@ -35,6 +35,11 @@ namespace Assets.Scripts.GameScripts
             get { return _disabled; }
         }
         private bool _disabled = false;
+        public bool Destroyed
+        {
+            get { return _destroyed; }
+        }
+        private bool _destroyed = false;
 
         protected virtual void FirstTimeInitialize()
         {
@@ -107,6 +112,7 @@ namespace Assets.Scripts.GameScripts
             _deinitialized = false;
             _initialized = true;
             _disabled = false;
+            _destroyed = false;
             GameScriptEventManager.UpdateInitialized();
         }
 
@@ -120,12 +126,11 @@ namespace Assets.Scripts.GameScripts
 
         public void DisableGameObject(float delay = 0f)
         {
-            if (!gameObject.activeSelf || _disabled)
+            if (!gameObject.activeSelf || _destroyed || GameScriptEventManager.Destroyed)
             {
                 return;
             }
-
-            _disabled = true;
+            _destroyed = true;
             StartCoroutine(DisableGameObjectIE(delay));
         }
 
@@ -137,6 +142,7 @@ namespace Assets.Scripts.GameScripts
                 yield return new WaitForSeconds(delay);
             }
             TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
+            _disabled = true;
             if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
             {
                 PrefabManager.Instance.DespawnPrefab(gameObject);
@@ -149,13 +155,13 @@ namespace Assets.Scripts.GameScripts
 
         public void ImmediateDisableGameObject()
         {
-            if (!gameObject.activeSelf || _disabled)
+            if (!gameObject.activeSelf || _destroyed || GameScriptEventManager.Destroyed)
             {
                 return;
             }
-
-            _disabled = true;
+            _destroyed = true;
             TriggerGameScriptEvent(GameScriptEvent.OnObjectDestroyed);
+            _disabled = true;
             if (PrefabManager.Instance.IsSpawnedFromPrefab(gameObject))
             {
                 PrefabManager.Instance.DespawnPrefab(gameObject);

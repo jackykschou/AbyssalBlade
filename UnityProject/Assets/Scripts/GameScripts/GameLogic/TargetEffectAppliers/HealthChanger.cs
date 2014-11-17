@@ -39,5 +39,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
         {
             GameValueChanger.RawAmount = GameValueChanger.InitialAmount * percentage;
         }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ChangeHealthChangerDamageRawAmountToInitialPercentage)]
+        public void ChangeHealthChangerDamageRawAmountToInitialPercentage(float percentage)
+        {
+            if (GameValueChanger.RawAmount >= 0f)
+            {
+                return;
+            }
+            GameValueChanger.RawAmount = GameValueChanger.InitialAmount * percentage;
+        }
     }
 }

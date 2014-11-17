@@ -24,6 +24,11 @@ namespace Assets.Scripts.GameScripts.GameLogic
             get { return _gameScripts.Any(s => s.Disabled); }
         }
 
+        public bool Destroyed
+        {
+            get { return _gameScripts.Any(s => s.Destroyed); }
+        }
+
         private bool _gameScriptsInitialized = false;
         private bool _firstTimeInitialized = false;
         private bool _initialized = false;
@@ -42,7 +47,7 @@ namespace Assets.Scripts.GameScripts.GameLogic
                 {
                     foreach (var pair in value[gameScriptEvent])
                     {
-                        if (pair.Key.Initialized)
+                        if (pair.Key.GameScriptEventManager.Initialized && !pair.Key.GameScriptEventManager.Disabled)
                         {
                             pair.Value.ForEach(m => m.Invoke(pair.Key, args));
                         }

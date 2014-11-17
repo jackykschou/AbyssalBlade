@@ -62,15 +62,22 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Level/SurvivalLevel
   - Prefabs/PreloadedPrefab/Level/TutorialLevel
   - Prefabs/PreloadedPrefab/Menu/MainMenu
+  - Prefabs/PreloadedPrefab/Particle/EnemyExplosionOnDeath
+  - Prefabs/PreloadedPrefab/Particle/ExplosionOnDeathSmoke
   - Prefabs/PreloadedPrefab/Particle/HealOnKillTrail
+  - Prefabs/PreloadedPrefab/Particle/HeavyShootChargeParticle
+  - Prefabs/PreloadedPrefab/Particle/OnDeathPreExplosion
   - Prefabs/PreloadedPrefab/Particle/ReflectDamgeParticle
   - Prefabs/PreloadedPrefab/Particle/ShotGunSmoke
   - Prefabs/PreloadedPrefab/Particle/ShotGunTrail
   - Prefabs/PreloadedPrefab/Particle/SpawnParticleSystem
+  - Prefabs/PreloadedPrefab/PowerUp/AttackUp
+  - Prefabs/PreloadedPrefab/PowerUp/AttackUpPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/CritChanceUp
   - Prefabs/PreloadedPrefab/PowerUp/CritChanceUpPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/DefenseUp
   - Prefabs/PreloadedPrefab/PowerUp/DefenseUpPowerUp
+  - Prefabs/PreloadedPrefab/PowerUp/ExplodeOnDeathPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/HealOnKill
   - Prefabs/PreloadedPrefab/PowerUp/HealOnKillPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/HealthPotion
@@ -109,6 +116,13 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Particle/
   - Prefabs/PreloadedPrefab/Particle/
   - Prefabs/PreloadedPrefab/Particle/
+  - Prefabs/PreloadedPrefab/Particle/
+  - Prefabs/PreloadedPrefab/Particle/
+  - Prefabs/PreloadedPrefab/Particle/
+  - Prefabs/PreloadedPrefab/Particle/
+  - Prefabs/PreloadedPrefab/PowerUp/
+  - Prefabs/PreloadedPrefab/PowerUp/
+  - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
@@ -168,7 +182,14 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Particle/HealOnKillTrail
   - Prefabs/PreloadedPrefab/Particle/ReflectDamgeParticle
   - Prefabs/PreloadedPrefab/Particle/SpawnParticleSystem
-  PrefabPreloadAmountsValues: 0100000001000000010000001e0000000f0000000a0000000100000001000000010000000100000001000000010000000a0000000a0000000a0000000a0000000a000000060000001e0000001e000000010000000100000001000000010000001400000014000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000001900000001000000
+  - Prefabs/PreloadedPrefab/PowerUp/AttackUp
+  - Prefabs/PreloadedPrefab/PowerUp/AttackUpPowerUp
+  - Prefabs/PreloadedPrefab/Particle/HeavyShootChargeParticle
+  - Prefabs/PreloadedPrefab/Particle/EnemyExplosionOnDeath
+  - Prefabs/PreloadedPrefab/Particle/ExplosionOnDeathSmoke
+  - Prefabs/PreloadedPrefab/Particle/OnDeathPreExplosion
+  - Prefabs/PreloadedPrefab/PowerUp/ExplodeOnDeathPowerUp
+  PrefabPreloadAmountsValues: 0100000001000000010000001e0000000f0000000a0000000100000001000000010000000100000001000000010000000a0000000a0000000a0000000a0000000a000000060000001e0000001e0000000100000001000000010000000100000014000000140000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000019000000010000000100000001000000030000000a0000000a0000000a0000000a000000
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

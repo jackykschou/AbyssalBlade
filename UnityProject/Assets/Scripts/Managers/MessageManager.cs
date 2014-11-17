@@ -82,7 +82,7 @@ namespace Assets.Scripts.Managers
                 dtd.OrigDespawnTime = despawnTime;
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
+                motor.Shoot(PreferredEaseType, direction, despawnTime + 5.0f, 1.5f);
             });
         }
 
