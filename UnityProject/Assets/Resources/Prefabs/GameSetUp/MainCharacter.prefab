@@ -71,6 +71,7 @@ GameObject:
   - 114: {fileID: 11400214}
   - 114: {fileID: 11400212}
   - 114: {fileID: 11400244}
+  - 114: {fileID: 11400246}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -958,9 +959,11 @@ MonoBehaviour:
   _onHoldFinishEventMessages: []
   _loopEventMessages: []
   _loopEventMessagesSendTime: []
-  _loopSkillEffects: []
-  _loopSkillEffectsActivateTime: []
-  TimePerLoop: .25
+  _loopSkillEffects:
+  - {fileID: 11400246}
+  _loopSkillEffectsActivateTime:
+  - .25
+  TimePerLoop: .5
 --- !u!114 &11400052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2535,6 +2538,23 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: ChargeFail
+--- !u!114 &11400246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc086c34e4e382c4c9debda9b2d43026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions:
+  - {fileID: 11400134}
+  Prefab: 39
+  PositionIndicator: {fileID: 11400184}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

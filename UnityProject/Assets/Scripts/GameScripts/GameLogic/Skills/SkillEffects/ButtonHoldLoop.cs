@@ -96,7 +96,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects
                 if (loopTimer >= TimePerLoop)
                 {
                     loopTimer = 0f;
-                    loopMessagesSent.ForEach(b => b = false);
+                    for (int i = 0; i < loopMessagesSent.Count; ++i)
+                    {
+                        loopMessagesSent[i] = false;
+                    }
+                    for (int i = 0; i < skillEffectActivated.Count; ++i)
+                    {
+                        skillEffectActivated[i] = false;
+                    }
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
                 TriggerGameScriptEvent(GameScriptEvent.UpdateSkillButtonHoldEffectTime, holdTimer);
