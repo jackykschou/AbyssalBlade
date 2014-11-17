@@ -54,7 +54,9 @@ namespace Assets.Scripts.Constants
         CritChanceUpPowerUpPickUp = 33,
         DefenseUpPowerUp = 34,
         DefenseUpPowerUpPickUp = 35,
-        ReflectDamgeParticle = 36
+        ReflectDamgeParticle = 36,
+        AttackUpPowerUp = 37,
+        AttackUpPowerUpPickUp = 38
     };
 
     public class PrefabConstants
@@ -106,6 +108,8 @@ namespace Assets.Scripts.Constants
             {Prefab.DefenseUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/DefenseUp"},
             {Prefab.ReflectDamgeParticle, "Prefabs/PreloadedPrefab/Particle/ReflectDamgeParticle"},
             {Prefab.SpawnParticleSystem, "Prefabs/PreloadedPrefab/Particle/SpawnParticleSystem"},
+            {Prefab.AttackUpPowerUp, "Prefabs/PreloadedPrefab/PowerUp/AttackUpPowerUp"},
+            {Prefab.AttackUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/AttackUp"},
             {Prefab.None, ""}
         };
 

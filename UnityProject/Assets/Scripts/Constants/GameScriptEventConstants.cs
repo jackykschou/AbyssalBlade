@@ -74,9 +74,11 @@
 
         ButtonChange,                            // void(int buttonID)
         ResetHealth,                             // void()
+        ChangeDamageToInitialPercentage,         // void(float)                
         ChangeDamageCriticalChanceBy,              // void(float)
         ChangeDamageReductionBy,                   // void(float)
         ChangeHealthChangerRawAmountToInitialPercentage, // void(float)
+        ChangeHealthChangerDamageRawAmountToInitialPercentage,  // void(float)
         LoadingScreenStartLoading,               // void()
         SetHealthInvincibility,                  // void(bool)
         OnHealthInvincibleEnable,                // void()

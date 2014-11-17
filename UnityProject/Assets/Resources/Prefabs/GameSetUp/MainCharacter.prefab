@@ -70,6 +70,7 @@ GameObject:
   - 114: {fileID: 11400206}
   - 114: {fileID: 11400214}
   - 114: {fileID: 11400212}
+  - 114: {fileID: 11400244}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -605,8 +606,9 @@ MonoBehaviour:
   - {fileID: 11400206}
   _proSkillEffects:
   - {fileID: 11400130}
+  - {fileID: 11400244}
   _skillEffectsOrder: 000000000100000002000000030000000300000004000000
-  _proSkillEffectsOrder: 01000000
+  _proSkillEffectsOrder: 0100000000000000
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2518,6 +2520,21 @@ MonoBehaviour:
   RayAngleRandomness: 0
   PositionIndicator: {fileID: 0}
   ProjectilePrefab: 25
+--- !u!114 &11400244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: ChargeFail
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  BoolParameterName: ChargeFail
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

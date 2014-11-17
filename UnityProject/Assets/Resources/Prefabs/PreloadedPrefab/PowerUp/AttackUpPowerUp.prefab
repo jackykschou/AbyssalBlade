@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 114: {fileID: 11400008}
-  - 114: {fileID: 11400010}
+  - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
-  m_Name: CritChanceUpPowerUp
+  m_Name: AttackUpPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,21 +30,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483e84714e311cf47a41c51e2a33512e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Owner: {fileID: 0}
-  ChangeAmount: .100000001
---- !u!114 &11400008
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -55,7 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400010
+--- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,6 +52,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ce40862dd8efc48884dbd8cf76ff4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Owner: {fileID: 0}
+  ChangeAmount: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
