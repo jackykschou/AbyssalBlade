@@ -57,8 +57,10 @@ namespace Assets.Scripts.Constants
         ReflectDamgeParticle = 36,
         AttackUpPowerUp = 37,
         AttackUpPowerUpPickUp = 38,
-        HeavyShootChargeParticle = 39
-
+        HeavyShootChargeParticle = 39,
+        OnDeathExplosion = 40,
+        ExplosionOnDeathSmoke = 41,
+        OnDeathPreExplosion = 42
     };
 
     public class PrefabConstants
@@ -113,7 +115,12 @@ namespace Assets.Scripts.Constants
             {Prefab.AttackUpPowerUp, "Prefabs/PreloadedPrefab/PowerUp/AttackUpPowerUp"},
             {Prefab.AttackUpPowerUpPickUp, "Prefabs/PreloadedPrefab/PowerUp/AttackUp"},
             {Prefab.HeavyShootChargeParticle, "Prefabs/PreloadedPrefab/Particle/HeavyShootChargeParticle"},
+            {Prefab.OnDeathExplosion, "Prefabs/PreloadedPrefab/Particle/EnemyExplosionOnDeath"},
+            {Prefab.ExplosionOnDeathSmoke, "Prefabs/PreloadedPrefab/Particle/ExplosionOnDeathSmoke"},
+            {Prefab.OnDeathPreExplosion, "Prefabs/PreloadedPrefab/Particle/OnDeathPreExplosion"},
             {Prefab.None, ""}
+
+
         };
 
         public static string GetPrefabName(Prefab prefab)

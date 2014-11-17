@@ -35,7 +35,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
 
         protected override void Apply()
         {
-            HealthChanger.TriggerGameScriptEvent(GameScriptEvent.ChangeHealthChangerRawAmountToInitialPercentage, 1.0f + (AppliedCounter * 0.3f) - 0.3f);
+            HealthChanger.TriggerGameScriptEvent(GameScriptEvent.ChangeHealthChangerRawAmountToInitialPercentage, 1.0f + (AppliedCounter * 0.5f) - 0.5f);
         }
 
         protected override void UnApply()
