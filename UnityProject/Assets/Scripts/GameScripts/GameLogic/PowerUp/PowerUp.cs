@@ -59,7 +59,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
             transform.parent = null;
             Owner = null;
 
-            if (!Disabled)
+            if (!Destroyed)
             {
                 DisableGameObject();
             }

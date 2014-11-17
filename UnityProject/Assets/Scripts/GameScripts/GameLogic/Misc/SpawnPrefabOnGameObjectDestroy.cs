@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
     [AddComponentMenu("Misc/SpawnPrefabOnGameObjectDestroy")]
-    public class SpawnPrefabOnGameObjectDestroy : MonoBehaviour
+    public class SpawnPrefabOnGameObjectDestroy : GameLogic
     {
         public Prefab Prefab;
 
@@ -13,6 +13,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         public void OnObjectDestroyed()
         {
             PrefabManager.Instance.SpawnPrefabImmediate(Prefab, transform.position);
+        }
+
+        protected override void Deinitialize()
+        {
         }
     }
 }

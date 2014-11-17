@@ -163,7 +163,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                     case GameValueChanger.OneTimeChangeDurationType.Permanent:
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
-                                        Value += (Value * amount);
+                                        amount = Value * amount;
+                                        Value += amount;
                                         TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
@@ -180,7 +181,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
                                     case GameValueChanger.OneTimeChangeDurationType.Permanent:
                                         float amount = gameValueChanger.Amount;
                                         amount = GetEmphasizedChange(amount);
-                                        Value += (Max * amount);
+                                        amount = amount * Max;
+                                        Value += amount;
                                         TriggerGameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged, this, gameValueChanger, amount, gameValueChanger.LastAmountCrited);
                                         break;
                                     case GameValueChanger.OneTimeChangeDurationType.Nondeterministic:
