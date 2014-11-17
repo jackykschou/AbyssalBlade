@@ -40,7 +40,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
                 DisableGameObject();
             }
         }
-
+        
+        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectDestroyed)]
         [Attributes.GameEvent(GameEvent.OnPlayerReset)]
         public void UnapplyPowerUp()
         {
@@ -57,7 +58,11 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
             }
             transform.parent = null;
             Owner = null;
-            DisableGameObject();
+
+            if (!Disabled)
+            {
+                DisableGameObject();
+            }
         }
     }
 }

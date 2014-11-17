@@ -87,6 +87,7 @@
 
         ApplyPowerUp,                             // void(GameObject, Prefab)
         AddPowerUpSkill,                          // void(Prefab)
-        SurvivalAreaSpawned
+        SurvivalAreaSpawned,                      // void()
+        OnSectionEnemySpawned                     // void(GameObject)
     };
 }
