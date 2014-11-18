@@ -9,6 +9,7 @@ namespace Assets.Scripts.GameScripts.GameViews
     public class StaticSpriteGameView : GameView
     {
         protected SpriteRenderer Render;
+        private Color _originalSpriteColor;
 
         protected override void FirstTimeInitialize()
         {
@@ -18,6 +19,7 @@ namespace Assets.Scripts.GameScripts.GameViews
             {
                 Render.sortingLayerName = SortingLayerConstants.SortingLayerNames.CharacterLayer;
             }
+            _originalSpriteColor = Render.color;
         }
 
         protected override void Initialize()
@@ -25,6 +27,7 @@ namespace Assets.Scripts.GameScripts.GameViews
             base.Initialize();
             renderer.enabled = true;
             UpdateSortingOrder();
+            Render.color = _originalSpriteColor;
         }
 
         protected override void Deinitialize()
@@ -124,6 +127,18 @@ namespace Assets.Scripts.GameScripts.GameViews
         {
             PrefabManager.Instance.SpawnPrefab(prefab, new Vector2(Render.bounds.center.x + Random.Range(-Render.bounds.extents.x * 0.5f, Render.bounds.extents.x * 0.5f), 
                 Render.bounds.center.y + Random.Range(-Render.bounds.extents.y * 0.5f, Render.bounds.extents.y * 0.5f)));
+        }
+
+        [Attributes.GameScriptEvent(GameScriptEvent.ChangeSpriteViewColor)]
+        public void ChangeSpriteViewColor(Color color)
+        {
+            Render.color = color;
+        }
+
+        [Attributes.GameScriptEvent(GameScriptEvent.ChangeSpriteViewToOriginalColor)]
+        public void ChangeSpriteViewToOriginalColor()
+        {
+            Render.color = _originalSpriteColor;
         }
     }
 }

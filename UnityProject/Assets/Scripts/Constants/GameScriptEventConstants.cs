@@ -86,8 +86,11 @@
         SpawnPrefabOnSpriteGameViewOnRandomPosition,              // void(Prefab)
 
         ApplyPowerUp,                             // void(GameObject, Prefab)
-        AddPowerUpSkill,                          // void(Prefab)
+        UpdateSkills,                             // void()
+        RemoveSkill,                              // void(Skill)
         SurvivalAreaSpawned,                      // void()
-        OnSectionEnemySpawned                     // void(GameObject)
+        OnSectionEnemySpawned,                    // void(GameObject)
+        ChangeSpriteViewColor,                    // void(Color)
+        ChangeSpriteViewToOriginalColor           // void()
     };
 }

@@ -15,7 +15,23 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
     [AddComponentMenu("Skill/Skill")]
     public sealed class Skill : GameLogic
     {
-        public SkillCaster Caster { get; private set; }
+        private SkillCaster _caster;
+        public SkillCaster Caster
+        {
+            get
+            {
+                if (_caster == null)
+                {
+                    GetCaster();
+                }
+                return _caster;
+            }
+            private set
+            {
+                _caster = value;
+            }
+            
+        }
         public bool IsActivate;
         public bool OnceAtATime;
         public bool IsPassive;
@@ -128,14 +144,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             return _coolDownPercentage;
         }
 
+        private void GetCaster()
+        {
+            if (transform.parent != null && transform.parent.gameObject.GetComponent<SkillCaster>() != null)
+            {
+                Caster = transform.parent.gameObject.GetComponent<SkillCaster>();
+            }
+        }
+
         protected override void FirstTimeInitialize()
         {
             base.FirstTimeInitialize();
-            if (transform.parent == null || transform.parent.gameObject.GetComponent<SkillCaster>() == null)
-            {
-                throw new Exception("A Skill must have a parent that is the caster");
-            }
-            Caster = transform.parent.gameObject.GetComponent<SkillCaster>();
             _castableConditions = GetComponents<SkillCastableCondition>().ToList();
 
             _soretedSkillEffects = new SortedDictionary<int, List<SkillEffect>>();
@@ -178,6 +197,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills
             base.Initialize();
             IsActivate = false;
             _coolDownPercentage = 1f;
+            Caster = null;
         }
 
         protected override void Deinitialize()

@@ -1,8 +1,10 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.Utility;
+using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
 {
+    [AddComponentMenu("PowerUp/DamageUp")]
     public class DamageUp : PowerUp
     {
         public float ChangeAmount;
