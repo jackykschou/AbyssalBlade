@@ -6,7 +6,8 @@ using UnityEngine;
 namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
 {
     [RequireComponent(typeof(Skill))]
-    public abstract class SkillPowerUp : PowerUp 
+    [AddComponentMenu("PowerUp/SkillPowerUp")]
+    public class SkillPowerUp : PowerUp 
     {
         protected override void Deinitialize()
         {

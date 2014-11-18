@@ -14,11 +14,10 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400020}
   - 114: {fileID: 11400018}
-  - 114: {fileID: 11400016}
-  - 114: {fileID: 11400014}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
+  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: BerserkPowerUp
   m_TagString: Untagged
@@ -73,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Owner: {fileID: 0}
-  BerserkColor: {r: 1, g: .647058845, b: .647058845, a: 0}
+  BerserkColor: {r: 1, g: .641379297, b: 0, a: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,7 +110,7 @@ MonoBehaviour:
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  ChangeAmount: -.75
+  ChangeAmount: -.850000024
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +145,7 @@ MonoBehaviour:
   ChangeType: 1
   Stackable: 0
   NonStackableLabel: 0
-  _amount: .25
+  _amount: .400000006
   AmountVariantPercentage: 0
   ChangeDuration: 0
   ChangeInterval: 1
@@ -165,25 +164,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b2014cc0ccbef4f924020a9731f163, type: 3}
+  m_Script: {fileID: 11500000, guid: afd8c97e1e3317649b8f9dfefb31afd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
-  CoolDownDispatcher: {fileID: 11400016}
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  DispatchInterval: 9999
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
-  LowerThanValuePercentage: .25
+  LowerThanValuePercentage: .300000012
   Health: {fileID: 0}
 --- !u!114 &11400020
 MonoBehaviour:
@@ -213,7 +198,7 @@ MonoBehaviour:
   LabelName: 
   Skill: {fileID: 0}
   ActivateConditions: []
-  Color: {r: 1, g: .0147058964, b: .0147058964, a: 0}
+  Color: {r: 1, g: .0147058964, b: .0147058964, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
