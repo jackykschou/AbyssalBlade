@@ -33,7 +33,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         {
             base.Initialize();
             _critChangeAmount = 0f;
-            _damagePercentage = 0f;
+            _damagePercentage = 1f;
         }
 
         protected override void Deinitialize()
