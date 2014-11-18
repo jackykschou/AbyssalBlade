@@ -62,6 +62,10 @@ namespace Assets.Scripts.Managers
             });
             _currentArea.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
             TriggerGameEvent(GameEvent.SurvivalSectionStarted);
+            if (AstarPath.active != null)
+            {
+                AstarPath.active.Scan();
+            }
             GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
                                                                                        _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
                                                                                        GameManager.Instance.PlayerMainCharacter.transform.position.z);
