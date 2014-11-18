@@ -38,6 +38,7 @@
         OnPlayerReset,                   // void()
         OnLoadingScreenFinished,          // void()
         SurvivalSectionStarted,          // void()
-        SurvivalSectionEnded             // void()
+        SurvivalSectionEnded,             // void()
+        SurvivalDifficultyIncreased      //void(int)
      };
 }

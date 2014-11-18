@@ -1450,6 +1450,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400264}
   - 114: {fileID: 11400254}
+  - 114: {fileID: 11400430}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -1580,6 +1581,7 @@ GameObject:
   - 58: {fileID: 5800002}
   - 114: {fileID: 11400302}
   - 114: {fileID: 11400300}
+  - 114: {fileID: 11400432}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -10585,6 +10587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
 --- !u!114 &11400156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15541,7 +15544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 5
+  DispatchInterval: 3
 --- !u!114 &11400256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85606,7 +85609,7 @@ MonoBehaviour:
   SectionId: 0
   SectionActivated: 0
   PrefabSpawner: {fileID: 0}
-  SpawnRadius: .5
+  SpawnRadius: 3
   FadeInEnemy: 1
   FadeInTime: .25
   SpawnCoolDown: {fileID: 11400254}
@@ -85631,7 +85634,7 @@ MonoBehaviour:
   UseLimitSpawnValue: 0
   LimitSpawnValue: 0
   LimitNumberOfSpawn: 1
-  NumberOfSpawn: 5
+  NumberOfSpawn: 8
   SpawnChance: 1
 --- !u!114 &11400268
 MonoBehaviour:
@@ -85767,6 +85770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
 --- !u!114 &11400284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85895,7 +85899,7 @@ MonoBehaviour:
   SectionId: 0
   SectionActivated: 0
   PrefabSpawner: {fileID: 0}
-  SpawnRadius: .5
+  SpawnRadius: 4
   FadeInEnemy: 1
   FadeInTime: .25
   SpawnCoolDown: {fileID: 11400300}
@@ -86633,6 +86637,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
+--- !u!114 &11400430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdde16b6d841047a278dbeb92589cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PowerUpPrefabs: 2b000000
+  MaxApplierTime: 0
+--- !u!114 &11400432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdde16b6d841047a278dbeb92589cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PowerUpPrefabs: 2c000000
+  MaxApplierTime: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

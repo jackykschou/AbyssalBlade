@@ -17,16 +17,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
         [Attributes.GameScriptEvent(GameScriptEvent.OnSectionEnemySpawned)]
         public void OnSectionEnemySpawned(GameObject enemy)
         {
-            //if (_appliedCounter > MaxApplierTime)
-            //{
-            //    return;
-            //}
+            if (_appliedCounter > MaxApplierTime)
+            {
+                return;
+            }
             _appliedCounter++;
 
             Prefab powerupPrefab = PowerUpPrefabs[Random.Range(0, PowerUpPrefabs.Count)];
             PrefabManager.Instance.SpawnPrefab(powerupPrefab, o => o.TriggerGameScriptEvent(GameScriptEvent.ApplyPowerUp, enemy, powerupPrefab));
         }
 
+        [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
         public void UpdateMaxApplierTime(int difficulty)
         {
             MaxApplierTime = 1 + (int)(difficulty / 2.0f);

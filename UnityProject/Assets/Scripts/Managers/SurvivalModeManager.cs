@@ -11,7 +11,8 @@ namespace Assets.Scripts.Managers
 {
     public class SurvivalModeManager : GameLogic
     {
-        public List<Prefab> SpawnPoints;
+        public int CurrentDifficulty;
+        public List<Prefab> SurvivalAreaPrefabs;
         public List<Transform> AreaSpawnPoints;
 
         private int _nextSpawnAreaIndex;
@@ -23,6 +24,14 @@ namespace Assets.Scripts.Managers
             get { return _instance ?? (_instance = FindObjectOfType<SurvivalModeManager>()); }
         }
         private static SurvivalModeManager _instance;
+        
+        protected override void Initialize()
+        {
+            base.Initialize();
+            _currentAreaPrefab = Prefab.None;
+            _currentArea = null;
+            CurrentDifficulty = 0;
+        }
 
         private Vector3 NextSpawnPosition()
         {
@@ -31,12 +40,12 @@ namespace Assets.Scripts.Managers
             return nextPoint;
         }
 
-        public Prefab GetNextArea()
+        private Prefab GetNextArea()
         {
-            Prefab nextArea = SpawnPoints[Random.Range(0, SpawnPoints.Count-1)];
+            Prefab nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count-1)];
             while (nextArea == _currentAreaPrefab)
             {
-                nextArea = SpawnPoints[Random.Range(0, SpawnPoints.Count - 1)];
+                nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count-1)];
             }
             return nextArea;
         }
@@ -62,16 +71,18 @@ namespace Assets.Scripts.Managers
                 _currentArea = o;
             });
             _currentArea.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
+            TriggerGameEvent(GameEvent.SurvivalDifficultyIncreased, CurrentDifficulty++);
             TriggerGameEvent(GameEvent.SurvivalSectionStarted);
             if (AstarPath.active != null)
             {
                 AstarPath.active.Scan();
             }
-            GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
-                                                                                       _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
-                                                                                       GameManager.Instance.PlayerMainCharacter.transform.position.z);
-            GameManager.Instance.MainCamera.transform.position = new Vector3(_currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.x,
-                                                                             _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position.y,
+            Vector3 playerSpawnPoint = _currentArea.GetComponentInChildren<PlayerSpawnPoint>().transform.position;
+            GameManager.Instance.PlayerMainCharacter.transform.position = new Vector3(playerSpawnPoint.x,
+                                                                                      playerSpawnPoint.y,
+                                                                                      GameManager.Instance.PlayerMainCharacter.transform.position.z);
+            GameManager.Instance.MainCamera.transform.position = new Vector3(playerSpawnPoint.x,
+                                                                             playerSpawnPoint.y,
                                                                              GameManager.Instance.MainCamera.transform.position.z);
             TriggerGameEvent(GameEvent.EnablePlayerCharacter);
         }
@@ -79,14 +90,8 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelStarted()
         {
+            CurrentDifficulty = 0;
             SpawnNextSection();
-        }
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-            _currentAreaPrefab = Prefab.None;
-            _currentArea = null;
         }
 
         protected override void Deinitialize()
