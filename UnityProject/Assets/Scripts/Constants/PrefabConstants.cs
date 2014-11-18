@@ -63,7 +63,8 @@ namespace Assets.Scripts.Constants
         OnDeathPreExplosion = 42,
         OnDeathExplodePowerUp = 43,
         BerserkPowerUp = 44,
-        HealAuraPowerUp = 45
+        HealAuraPowerUp = 45,
+        SlowAuraPowerUp = 46
     };
 
     public class PrefabConstants
@@ -124,6 +125,7 @@ namespace Assets.Scripts.Constants
             {Prefab.OnDeathExplodePowerUp, "Prefabs/PreloadedPrefab/PowerUp/ExplodeOnDeathPowerUp"},
             {Prefab.BerserkPowerUp, "Prefabs/PreloadedPrefab/PowerUp/BerserkPowerUp"},
             {Prefab.HealAuraPowerUp, "Prefabs/PreloadedPrefab/PowerUp/HealAuraPowerUp"},
+            {Prefab.SlowAuraPowerUp, "Prefabs/PreloadedPrefab/PowerUp/SlowAuraPowerUp"},
             {Prefab.None, ""}
 
 
