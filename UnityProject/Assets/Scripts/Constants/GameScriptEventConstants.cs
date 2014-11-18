@@ -91,6 +91,7 @@
         SurvivalAreaSpawned,                      // void()
         OnSectionEnemySpawned,                    // void(GameObject)
         ChangeSpriteViewColor,                    // void(Color)
-        ChangeSpriteViewToOriginalColor           // void()
+        ChangeSpriteViewToOriginalColor,          // void()
+        HeavyChargeShootCritChangeAndDamageUpdate // void(GameObject)
     };
 }
