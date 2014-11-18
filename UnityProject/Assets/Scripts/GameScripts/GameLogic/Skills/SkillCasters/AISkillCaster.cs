@@ -25,7 +25,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
 
         public bool CanCastAnySkill()
         {
-            return Skills.Any(s => s.CanActivate()) && MinimumCoolDown.CanDispatch() && !gameObject.HitPointAtZero();
+            return Skills.Any(s => s.CanActivate() && (MinimumCoolDown.CanDispatch() || s.IsPassive)) && !gameObject.HitPointAtZero();
         }
 
         public void CastSkill()
