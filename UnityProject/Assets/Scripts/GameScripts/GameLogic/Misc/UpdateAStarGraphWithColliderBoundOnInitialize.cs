@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Attributes;
-using Pathfinding;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
@@ -8,7 +6,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
     [AddComponentMenu("Misc/UpdateAStarGraphWithColliderBoundOnInitialize")]
     public class UpdateAStarGraphWithColliderBoundOnInitialize : GameLogic
     {
-        private GraphUpdateObject _guo;
+        public Collider2D Collider2D;
 
         protected override void Deinitialize()
         {
@@ -17,33 +15,29 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         protected override void Initialize()
         {
             base.Initialize();
-            if (_guo == null)
-            {
-                _guo = new GraphUpdateObject(collider2D.bounds);
-            }
+            Collider2D = GetComponent<Collider2D>();
         }
 
-        [GameEvent(Constants.GameEvent.OnLevelStarted)]
-        [GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
+        [Attributes.GameEvent(Constants.GameEvent.OnLevelStarted)]
+        [Attributes.GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
-            _guo.setWalkability = !collider2D.enabled;
-            AstarPath.active.UpdateGraphs(_guo);
+            AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
         }
 
-        [GameScriptEvent(Constants.GameScriptEvent.GateActivated)]
+        [Attributes.GameScriptEvent(Constants.GameScriptEvent.GateActivated)]
         public void GateActivated()
         {
-            _guo.setWalkability = false;
-            AstarPath.active.UpdateGraphs(_guo);
+            Collider2D.enabled = true;
+            AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
         }
 
-        [GameScriptEvent(Constants.GameScriptEvent.GateDeactivated)]
-        [GameEvent(Constants.GameEvent.OnLevelEnded)]
+        [Attributes.GameScriptEvent(Constants.GameScriptEvent.GateDeactivated)]
+        [Attributes.GameEvent(Constants.GameEvent.OnLevelEnded)]
         public void OnLevelEnded()
         {
-            _guo.setWalkability = true;
-            AstarPath.active.UpdateGraphs(_guo);
+            Collider2D.enabled = false;
+            AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
         }
         
     }

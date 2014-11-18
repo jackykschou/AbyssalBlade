@@ -11,10 +11,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.CastableCondition
 
         protected override void Deinitialize()
         {
+            Health = null;
         }
 
         public override bool CanCast()
         {
+            if (Health == null)
+            {
+                Health = Skill.Caster.gameObject.GetComponent<Health.Health>();
+            }
+
             return Health.HitPoint.Percentage <= LowerThanValuePercentage;
         }
     }

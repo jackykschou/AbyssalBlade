@@ -73,16 +73,19 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Particle/SpawnParticleSystem
   - Prefabs/PreloadedPrefab/PowerUp/AttackUp
   - Prefabs/PreloadedPrefab/PowerUp/AttackUpPowerUp
+  - Prefabs/PreloadedPrefab/PowerUp/BerserkPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/CritChanceUp
   - Prefabs/PreloadedPrefab/PowerUp/CritChanceUpPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/DefenseUp
   - Prefabs/PreloadedPrefab/PowerUp/DefenseUpPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/ExplodeOnDeathPowerUp
+  - Prefabs/PreloadedPrefab/PowerUp/HealAuraPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/HealOnKill
   - Prefabs/PreloadedPrefab/PowerUp/HealOnKillPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/HealthPotion
   - Prefabs/PreloadedPrefab/PowerUp/ReflectDamage
   - Prefabs/PreloadedPrefab/PowerUp/ReflectDamagePowerUp
+  - Prefabs/PreloadedPrefab/PowerUp/SlowAuraPowerUp
   - Prefabs/PreloadedPrefab/Projectile/BossMissle
   - Prefabs/PreloadedPrefab/Projectile/BossMissleExplosion
   - Prefabs/PreloadedPrefab/Projectile/EnemyProjectile
@@ -120,6 +123,9 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Particle/
   - Prefabs/PreloadedPrefab/Particle/
   - Prefabs/PreloadedPrefab/Particle/
+  - Prefabs/PreloadedPrefab/PowerUp/
+  - Prefabs/PreloadedPrefab/PowerUp/
+  - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
@@ -189,7 +195,10 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Particle/ExplosionOnDeathSmoke
   - Prefabs/PreloadedPrefab/Particle/OnDeathPreExplosion
   - Prefabs/PreloadedPrefab/PowerUp/ExplodeOnDeathPowerUp
-  PrefabPreloadAmountsValues: 0100000001000000010000001e0000000f0000000a0000000100000001000000010000000100000001000000010000000a0000000a0000000a0000000a0000000a000000060000001e0000001e0000000100000001000000010000000100000014000000140000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000019000000010000000100000001000000030000000a0000000a0000000a0000000a000000
+  - Prefabs/PreloadedPrefab/PowerUp/BerserkPowerUp
+  - Prefabs/PreloadedPrefab/PowerUp/HealAuraPowerUp
+  - Prefabs/PreloadedPrefab/PowerUp/SlowAuraPowerUp
+  PrefabPreloadAmountsValues: 0100000001000000010000001e0000000f0000000a0000000100000001000000010000000100000001000000010000000a0000000a0000000a0000000a0000000a000000060000001e0000001e0000000100000001000000010000000100000014000000140000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000019000000010000000100000001000000030000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
