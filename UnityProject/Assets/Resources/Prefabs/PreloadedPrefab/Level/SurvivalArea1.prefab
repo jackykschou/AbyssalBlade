@@ -325,6 +325,7 @@ GameObject:
   - 114: {fileID: 11400058}
   - 114: {fileID: 11400056}
   - 114: {fileID: 11400054}
+  - 114: {fileID: 11400402}
   m_Layer: 0
   m_Name: SurvivalSection0
   m_TagString: Untagged
@@ -1959,6 +1960,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400368}
   - 114: {fileID: 11400366}
+  - 114: {fileID: 11400400}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -2016,6 +2018,7 @@ GameObject:
   - 58: {fileID: 5800002}
   - 114: {fileID: 11400384}
   - 114: {fileID: 11400382}
+  - 114: {fileID: 11400404}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -19162,6 +19165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
 --- !u!114 &11400198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19905,6 +19909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
 --- !u!114 &11400312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20232,7 +20237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 5
+  DispatchInterval: 3
 --- !u!114 &11400368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20343,7 +20348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 2
+  DispatchInterval: 1
 --- !u!114 &11400384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20454,6 +20459,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
+--- !u!114 &11400400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdde16b6d841047a278dbeb92589cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PowerUpPrefabs: 2b000000
+  MaxApplierTime: 0
+--- !u!114 &11400402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ec1c536d6b8804aa441df8247101f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
+  SectionActivated: 0
+  OnActivate: 1
+  OnDeactivate: 0
+--- !u!114 &11400404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdde16b6d841047a278dbeb92589cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PowerUpPrefabs: 2e000000
+  MaxApplierTime: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

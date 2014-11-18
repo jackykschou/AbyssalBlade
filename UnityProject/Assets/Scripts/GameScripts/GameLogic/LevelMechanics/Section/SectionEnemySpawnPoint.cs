@@ -146,6 +146,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             }
         }
 
+        [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
+        public void SurvivalDifficultyIncreased(int difficulty)
+        {
+            PrefabSpawner.NumberOfSpawn++;
+            PrefabSpawner.LimitSpawnValue += difficulty*2;
+            SpawnCoolDown.DispatchInterval *= .95f;
+        }
+
+
         protected override void FirstTimeInitialize()
         {
             base.FirstTimeInitialize();
