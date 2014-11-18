@@ -1425,6 +1425,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400262}
   - 114: {fileID: 11400254}
+  - 114: {fileID: 11400432}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -1512,6 +1513,7 @@ GameObject:
   - 58: {fileID: 5800002}
   - 114: {fileID: 11400288}
   - 114: {fileID: 11400286}
+  - 114: {fileID: 11400430}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -3214,7 +3216,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.70590019, y: -6.57630014, z: 0}
+  m_LocalPosition: {x: -4.74119997, y: -8.76729965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400142}
@@ -3277,7 +3279,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.65890002, y: 3.40089989, z: 0}
+  m_LocalPosition: {x: -2.87080002, y: 3.81830001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400142}
@@ -4532,7 +4534,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Radius: 15.3299999
-  m_Center: {x: 4, y: 4.82999992}
+  m_Center: {x: .349999994, y: 6.57999992}
 --- !u!58 &5800002
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -4543,7 +4545,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Radius: 15.1000004
-  m_Center: {x: -6.9000001, y: -5.30000019}
+  m_Center: {x: -1.19000006, y: -5.30000019}
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -15555,7 +15557,7 @@ MonoBehaviour:
   SectionId: 0
   SectionActivated: 0
   PrefabSpawner: {fileID: 0}
-  SpawnRadius: .5
+  SpawnRadius: 3
   FadeInEnemy: 1
   FadeInTime: .25
   SpawnCoolDown: {fileID: 11400254}
@@ -15709,7 +15711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 5
+  DispatchInterval: 2
 --- !u!114 &11400288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15725,7 +15727,7 @@ MonoBehaviour:
   SectionId: 0
   SectionActivated: 0
   PrefabSpawner: {fileID: 0}
-  SpawnRadius: .5
+  SpawnRadius: 5
   FadeInEnemy: 1
   FadeInTime: .25
   SpawnCoolDown: {fileID: 11400286}
@@ -15743,14 +15745,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Prefabs: 02000000
+  Prefabs: 08000000
   SpawnPickWeights:
   - 1
   PrefabSpawnValues: 00000000
   UseLimitSpawnValue: 0
   LimitSpawnValue: 0
   LimitNumberOfSpawn: 1
-  NumberOfSpawn: 5
+  NumberOfSpawn: 10
   SpawnChance: 1
 --- !u!114 &11400292
 MonoBehaviour:
@@ -16231,6 +16233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
 --- !u!114 &11400376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16309,6 +16312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
 --- !u!114 &11400388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16557,6 +16561,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Collider2D: {fileID: 0}
+--- !u!114 &11400430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdde16b6d841047a278dbeb92589cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PowerUpPrefabs: 2d000000
+  MaxApplierTime: 0
+--- !u!114 &11400432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdde16b6d841047a278dbeb92589cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PowerUpPrefabs: 2b000000
+  MaxApplierTime: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

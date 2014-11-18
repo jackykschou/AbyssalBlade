@@ -161,12 +161,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         public void EnablePlayerCharacter()
         {
             ControllerEnabled = true;
+            GetComponent<Collider2D>().enabled = true;
         }
 
         [GameEventAttribute(GameEvent.DisablePlayerCharacter)]
         public void DisablePlayerCharacter()
         {
             ControllerEnabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }

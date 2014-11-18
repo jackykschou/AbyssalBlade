@@ -92,6 +92,7 @@
         OnSectionEnemySpawned,                    // void(GameObject)
         ChangeSpriteViewColor,                    // void(Color)
         ChangeSpriteViewToOriginalColor,          // void()
-        HeavyChargeShootCritChangeAndDamageUpdate // void(GameObject)
+        HeavyChargeShootCritChangeAndDamageUpdate, // void(GameObject)
+        SurvivalDifficultyIncreased               //void(int)
     };
 }
