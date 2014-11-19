@@ -2399,6 +2399,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100266
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400266}
+  - 114: {fileID: 11400446}
+  - 114: {fileID: 11400444}
+  - 114: {fileID: 11400442}
+  - 58: {fileID: 5800004}
+  - 114: {fileID: 11400440}
+  - 114: {fileID: 11400438}
+  - 114: {fileID: 11400436}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -2465,8 +2487,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400260}
-  - {fileID: 400262}
+  - {fileID: 400266}
   - {fileID: 400264}
+  - {fileID: 400262}
   m_Father: {fileID: 400002}
   m_RootOrder: 2
 --- !u!4 &400010
@@ -4110,11 +4133,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.498199999, y: 4.01189995, z: 0}
+  m_LocalPosition: {x: 7.17460012, y: -3.24889994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!4 &400264
 Transform:
   m_ObjectHideFlags: 1
@@ -4127,6 +4150,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400008}
   m_RootOrder: 2
+--- !u!4 &400266
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.498199999, y: 4.01189995, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400008}
+  m_RootOrder: 1
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -5092,7 +5127,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Radius: 17.3799992
-  m_Center: {x: -1.00999999, y: -1.10000002}
+  m_Center: {x: -5.46999979, y: 4.23999977}
 --- !u!58 &5800002
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -5104,6 +5139,17 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: 17.5
   m_Center: {x: 6.0999999, y: 2.75}
+--- !u!58 &5800004
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Radius: 17.3799992
+  m_Center: {x: -1.00999999, y: -1.10000002}
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -17021,9 +17067,9 @@ MonoBehaviour:
   SpawnPickWeights:
   - .5
   - .5
-  PrefabSpawnValues: 0100000000000000
+  PrefabSpawnValues: 0100000003000000
   UseLimitSpawnValue: 1
-  LimitSpawnValue: 3
+  LimitSpawnValue: 10
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 10
   SpawnChance: 1
@@ -17042,7 +17088,7 @@ MonoBehaviour:
   SectionId: 0
   SectionActivated: 0
   PrefabSpawner: {fileID: 0}
-  SpawnRadius: 3
+  SpawnRadius: .5
   FadeInEnemy: 1
   FadeInTime: .25
   SpawnCoolDown: {fileID: 11400420}
@@ -17114,7 +17160,7 @@ MonoBehaviour:
   - 1
   PrefabSpawnValues: 08000000
   UseLimitSpawnValue: 1
-  LimitSpawnValue: 8
+  LimitSpawnValue: 4
   LimitNumberOfSpawn: 0
   NumberOfSpawn: 5
   SpawnChance: 1
@@ -17166,6 +17212,98 @@ MonoBehaviour:
   LabelName: 
   PowerUpPrefabs: 2c0000002b000000
   MaxApplierTime: 0
+--- !u!114 &11400436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdde16b6d841047a278dbeb92589cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  PowerUpPrefabs: 2b0000002e000000
+  MaxApplierTime: 0
+--- !u!114 &11400438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  DispatchInterval: 2
+--- !u!114 &11400440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e6044ded4ea2941b4d722a5d69cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
+  SectionActivated: 0
+  PrefabSpawner: {fileID: 0}
+  SpawnRadius: .5
+  FadeInEnemy: 1
+  FadeInTime: .25
+  SpawnCoolDown: {fileID: 11400438}
+  TriggerArea: {fileID: 0}
+  Activated: 1
+--- !u!114 &11400442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49f6cb605298045ae29b8263783644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Prefabs: 2f00000031000000
+  SpawnPickWeights:
+  - .5
+  - .5
+  PrefabSpawnValues: 0100000003000000
+  UseLimitSpawnValue: 1
+  LimitSpawnValue: 10
+  LimitNumberOfSpawn: 0
+  NumberOfSpawn: 10
+  SpawnChance: 1
+--- !u!114 &11400444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f700e75c9df4b4da10d82a8419d932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
