@@ -35,17 +35,18 @@ namespace Assets.Scripts.Managers
 
         private Vector3 NextSpawnPosition()
         {
-            Vector3 nextPoint = AreaSpawnPoints[_nextSpawnAreaIndex++].position;
+            Vector3 nextPoint = AreaSpawnPoints[_nextSpawnAreaIndex].position;
+            _nextSpawnAreaIndex++;
             _nextSpawnAreaIndex %= AreaSpawnPoints.Count;
             return nextPoint;
         }
 
         private Prefab GetNextArea()
         {
-            Prefab nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count-1)];
+            Prefab nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count)];
             while (nextArea == _currentAreaPrefab)
             {
-                nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count-1)];
+                nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count)];
             }
             return nextArea;
         }
@@ -72,6 +73,7 @@ namespace Assets.Scripts.Managers
             });
             _currentArea.TriggerGameScriptEvent(GameScriptEvent.SurvivalAreaSpawned);
             TriggerGameEvent(GameEvent.SurvivalDifficultyIncreased, CurrentDifficulty++);
+            GameManager.Instance.Difficulity = CurrentDifficulty;
             TriggerGameEvent(GameEvent.SurvivalSectionStarted);
             if (AstarPath.active != null)
             {
@@ -91,6 +93,9 @@ namespace Assets.Scripts.Managers
         public void OnLevelStarted()
         {
             CurrentDifficulty = 0;
+            _currentAreaPrefab = Prefab.None;
+            _currentArea = null;
+            GameManager.Instance.Difficulity = CurrentDifficulty;
             SpawnNextSection();
         }
 
