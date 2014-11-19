@@ -38,7 +38,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                 _curTargetTime = Random.Range(MinDelay, MaxDelay);
                 _timeElapsed = 0.0f;
                 Flip(false);
-                _on = false;
             }
         }
 
