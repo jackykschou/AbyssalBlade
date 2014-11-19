@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System;
-using System.IO;
 using Assets.Scripts.Managers;
 
 namespace Assets.Scripts.Constants
@@ -133,15 +132,24 @@ namespace Assets.Scripts.Constants
         Flying_Enemy_Evade = 89,
         Flying_Enemy_Evade2 = 90,
         Flying_Enemy_Projectile = 91,
-        Flying_Enemy_Static = 92
+        Flying_Enemy_Static = 92,
+        Level_1_Basic = 93,
+        Level_1_Light = 94,
+        Level_1_Medium = 95,
+        Level_1_Heavy = 96,
+        Level_2_Basic = 97,
+        Level_2_Medium = 98,
+        Level_2_Heavy = 99
     };
 
     public enum LoopName
     {
         MainLoop = 0,
         Forest_Level_Loop = 1,
-        TestMultiLoop = 2,
-        MenuLoop
+        TestMultiLoop = 2, // TUTORIAL LEVEL
+        MenuLoop = 3, 
+        Level_1_LevelLoop = 4,
+        Level_2_LevelLoop = 5
     };
 
 
@@ -242,7 +250,14 @@ namespace Assets.Scripts.Constants
             {ClipName.Flying_Enemy_Evade, "Flying_Enemy_Evade" },
             {ClipName.Flying_Enemy_Evade2, "Flying_Enemy_Evade2" },
             {ClipName.Flying_Enemy_Projectile, "Flying_Enemy_Projectile" },
-            {ClipName.Flying_Enemy_Static, "Flying_Enemy_Static" }
+            {ClipName.Flying_Enemy_Static, "Flying_Enemy_Static" },
+            {ClipName.Level_1_Basic, "Level_1_Basic"},
+            {ClipName.Level_1_Light, "Level_1_Light"},
+            {ClipName.Level_1_Medium, "Level_1_Medium"},
+            {ClipName.Level_1_Heavy, "Level_1_Heavy"},
+            {ClipName.Level_2_Basic, "Level_2_Basic"},
+            {ClipName.Level_2_Medium, "Level_2_Medium"},
+            {ClipName.Level_2_Heavy, "Level_2_Heavy"},
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()
@@ -276,7 +291,9 @@ namespace Assets.Scripts.Constants
             {LoopName.MainLoop, "MainLoop"},
             {LoopName.Forest_Level_Loop, "Forest_Level_Loop"},
             {LoopName.TestMultiLoop, "TestMultiLoop"},
-            {LoopName.MenuLoop, "MenuLoop"}
+            {LoopName.MenuLoop, "MenuLoop"},
+            {LoopName.Level_1_LevelLoop, "Level_1_LevelLoop"},
+            {LoopName.Level_2_LevelLoop, "Level_2_LevelLoop"}
         };
 
         public static void CreateCustomCues()
@@ -414,6 +431,24 @@ namespace Assets.Scripts.Constants
             };
             AudioManager.Instance.CreateLevelLoop(LoopName.TestMultiLoop, levelLoopIntensities);
 
+            // level 1 loop
+            List<ClipName> Level_1_LevelLoop = new List<ClipName>
+            {
+                ClipName.Level_1_Basic,
+                //ClipName.Level_1_Light,
+                ClipName.Level_1_Medium,
+                ClipName.Level_1_Heavy
+            };
+            AudioManager.Instance.CreateLevelLoop(LoopName.Level_1_LevelLoop, Level_1_LevelLoop);
+
+            // level 2 loop
+            List<ClipName> Level_2_LevelLoop = new List<ClipName>
+            {
+                ClipName.Level_2_Basic,
+                ClipName.Level_2_Medium,
+                ClipName.Level_2_Heavy
+            };
+            AudioManager.Instance.CreateLevelLoop(LoopName.Level_2_LevelLoop, Level_2_LevelLoop);
             // menu level loop
             List<ClipName> menuLoop = new List<ClipName>
             {

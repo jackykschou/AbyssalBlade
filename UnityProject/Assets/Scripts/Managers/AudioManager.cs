@@ -118,13 +118,13 @@ namespace Assets.Scripts.Managers
                 _queuedClipDict.Add(clip.name, 0);
             }
 
+            _sourceHolder = new GameObject("SourceHolder");
+            _sourceHolder.transform.parent = gameObject.transform;
             AudioConstants.CreateCustomCues();
 
             foreach (MultiCue cue in _cues)
                 _cueDict[cue.CueName] = cue;
 
-            _sourceHolder = new GameObject("SourceHolder");
-            _sourceHolder.transform.parent = gameObject.transform;
 
             for (int i = 0; i < NumAudioSources; i++)
                 _sources.Add(_sourceHolder.AddComponent<AudioSource>());
@@ -476,21 +476,21 @@ namespace Assets.Scripts.Managers
                 mediumClip = clips[1];
                 heavyClip = clips[2];
                 sources = new List<AudioSource>();
-                lightSource = Instance.gameObject.AddComponent("AudioSource") as AudioSource;
+                lightSource = GameObject.Find("SourceHolder").AddComponent("AudioSource") as AudioSource;
                 lightSource.clip = Instance.findClip(lightClip);
                 lightSource.loop = true;
                 lightSource.volume = 1.0f;
                 lightSource.playOnAwake = false;
                 sources.Add(lightSource);
 
-                mediumSource = Instance.gameObject.AddComponent("AudioSource") as AudioSource;
+                mediumSource = GameObject.Find("SourceHolder").AddComponent("AudioSource") as AudioSource;
                 mediumSource.clip = Instance.findClip(mediumClip);
                 mediumSource.volume = 0.0f;
                 mediumSource.loop = true;
                 mediumSource.playOnAwake = false;
                 sources.Add(mediumSource);
 
-                heavySource = Instance.gameObject.AddComponent("AudioSource") as AudioSource;
+                heavySource = GameObject.Find("SourceHolder").AddComponent("AudioSource") as AudioSource;
                 heavySource.clip = Instance.findClip(heavyClip);
                 heavySource.volume = 0.0f;
                 heavySource.loop = true;
