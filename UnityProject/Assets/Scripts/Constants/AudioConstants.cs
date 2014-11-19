@@ -140,9 +140,13 @@ namespace Assets.Scripts.Constants
         Level_2_Basic = 97,
         Level_2_Medium = 98,
         Level_2_Heavy = 99,
-        Ice_Level_Battle = 100,
-        Ice_Level_Primary = 101,
-        Ice_Level_Transition = 102
+        BossShoot = 100,
+        BossMissleExplode = 101,
+        BossCharge = 102,
+        BossSummon = 103,
+        Ice_Level_Battle = 104,
+        Ice_Level_Primary = 105,
+        Ice_Level_Transition = 106,
     };
 
     public enum LoopName
@@ -264,7 +268,11 @@ namespace Assets.Scripts.Constants
             {ClipName.Level_2_Heavy, "Level_2_Heavy"},
             {ClipName.Ice_Level_Transition, "Ice_Level_Transition"},
             {ClipName.Ice_Level_Primary, "Ice_Level_Primary"},
-            {ClipName.Ice_Level_Battle, "Ice_Level_Battle"}
+            {ClipName.Ice_Level_Battle, "Ice_Level_Battle"},
+            {ClipName.BossCharge, "boss_charge"},
+            {ClipName.BossMissleExplode, "boss_missle_explode"},
+            {ClipName.BossSummon, "boss_summon"},
+            {ClipName.BossShoot, "boss_shoot"}
         };
 
         private static readonly Dictionary<CueName, string> AudioCueNames = new Dictionary<CueName, string>()

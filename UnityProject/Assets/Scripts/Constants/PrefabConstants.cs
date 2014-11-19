@@ -166,6 +166,8 @@ namespace Assets.Scripts.Constants
             {Prefab.StoneEnemyHard, "Prefabs/PreloadedPrefab/Character/StoneEnemyHard"},
             {Prefab.SimpleRangeEnemyMediumNoDrop, "Prefabs/PreloadedPrefab/Character/SmallRangeEnemyMediumNoDrop"},
             {Prefab.SimpleRangeEnemyHardNoDrop, "Prefabs/PreloadedPrefab/Character/SmallRangeEnemyHardNoDrop"},
+            {Prefab.MediumProjectile, "Prefabs/PreloadedPrefab/Projectile/MediumProjectile"},
+            {Prefab.HardProjectile, "Prefabs/PreloadedPrefab/Projectile/HardProjectile"},
             {Prefab.None, ""}
 
 
