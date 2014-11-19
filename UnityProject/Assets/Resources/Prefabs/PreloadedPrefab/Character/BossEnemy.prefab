@@ -100,6 +100,8 @@ GameObject:
   - 114: {fileID: 11400060}
   - 114: {fileID: 11400030}
   - 114: {fileID: 11400042}
+  - 114: {fileID: 11400192}
+  - 114: {fileID: 11400190}
   m_Layer: 0
   m_Name: Shoot
   m_TagString: Untagged
@@ -150,6 +152,8 @@ GameObject:
   - 114: {fileID: 11400104}
   - 114: {fileID: 11400102}
   - 114: {fileID: 11400046}
+  - 114: {fileID: 11400184}
+  - 114: {fileID: 11400182}
   m_Layer: 11
   m_Name: Charge
   m_TagString: Untagged
@@ -175,6 +179,8 @@ GameObject:
   - 114: {fileID: 11400122}
   - 114: {fileID: 11400120}
   - 114: {fileID: 11400040}
+  - 114: {fileID: 11400188}
+  - 114: {fileID: 11400186}
   m_Layer: 0
   m_Name: Summon
   m_TagString: Untagged
@@ -205,6 +211,7 @@ GameObject:
   - 114: {fileID: 11400142}
   - 114: {fileID: 11400140}
   - 114: {fileID: 11400138}
+  - 114: {fileID: 11400048}
   m_Layer: 0
   m_Name: BasicMelee
   m_TagString: Untagged
@@ -833,6 +840,22 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: ChargeFinish
+--- !u!114 &11400048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Cue: 0
+  Volume: 1
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1032,9 +1055,11 @@ MonoBehaviour:
   _animationSkillEffects:
   - {fileID: 11400062}
   - {fileID: 11400042}
+  - {fileID: 11400190}
   _animationSkillEffectsActivateTime:
   - 0
   - 4
+  - 0
 --- !u!114 &11400074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1111,7 +1136,6 @@ MonoBehaviour:
   HasApplyCoolDown: 1
   ApplyCooldown: 3
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400084}
 --- !u!114 &11400084
 MonoBehaviour:
@@ -1138,6 +1162,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1321,11 +1350,15 @@ MonoBehaviour:
   - {fileID: 11400080}
   - {fileID: 11400026}
   - {fileID: 11400046}
+  - {fileID: 11400184}
+  - {fileID: 11400182}
   _animationSkillEffectsActivateTime:
   - .899999976
   - 1
   - 1.29999995
   - 1.29999995
+  - 0
+  - .899999976
 --- !u!114 &11400112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1467,9 +1500,11 @@ MonoBehaviour:
   _animationSkillEffects:
   - {fileID: 11400126}
   - {fileID: 11400040}
+  - {fileID: 11400186}
   _animationSkillEffectsActivateTime:
   - .5
   - 3
+  - .5
 --- !u!114 &11400130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1559,6 +1594,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1652,7 +1692,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400138}
 --- !u!114 &11400152
 MonoBehaviour:
@@ -1732,9 +1771,11 @@ MonoBehaviour:
   _animationSkillEffects:
   - {fileID: 11400144}
   - {fileID: 11400152}
+  - {fileID: 11400048}
   _animationSkillEffectsActivateTime:
   - .699999988
   - .699999988
+  - 0
 --- !u!114 &11400162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1926,6 +1967,104 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   SectionId: 0
+--- !u!114 &11400182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: ChargeSound
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Cue: 0
+  Volume: 1
+--- !u!114 &11400184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: PreChargeSound
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Cue: 0
+  Volume: 1
+--- !u!114 &11400186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e057bbec07dacd644a1cf0b3203c6b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Sound
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  SkillEffect: {fileID: 11400188}
+  RepeatTime: 7
+  RepeatCooldown: .5
+--- !u!114 &11400188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c96ccab74cff646b0f23b536e15259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  Cue: 5
+  Volume: 1
+--- !u!114 &11400190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e057bbec07dacd644a1cf0b3203c6b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: Sound
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  SkillEffect: {fileID: 11400192}
+  RepeatTime: 10
+  RepeatCooldown: .5
+--- !u!114 &11400192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: decba3e136ef10f44b3413da11e4b73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  clip: 35
+  volume: 1
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

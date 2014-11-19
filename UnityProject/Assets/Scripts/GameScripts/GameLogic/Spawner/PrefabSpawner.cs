@@ -68,7 +68,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
         public bool CanSpawn()
         {
-            if (UseLimitSpawnValue && LimitSpawnValue >= _currentSpawnedValue)
+            if (UseLimitSpawnValue && _currentSpawnedValue >= LimitSpawnValue)
             {
                 return false;
             }
@@ -98,7 +98,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
         public void SpawnPrefab(Vector3 position, Action<GameObject> onPrefabSpawned = null)
         {
-            if (_spawnCount >= NumberOfSpawn && LimitNumberOfSpawn)
+            if (!CanSpawn())
             {
                 return;
             }
@@ -107,7 +107,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
 
             if (UtilityFunctions.RollChance(SpawnChance))
             {
-                PrefabManager.Instance.SpawnPrefab(_prefabWeightMap.ChooseByRandom(), position, onPrefabSpawned);
+                Prefab prefabToSpawn = _prefabWeightMap.ChooseByRandom();
+                PrefabManager.Instance.SpawnPrefab(prefabToSpawn, position, onPrefabSpawned);
+
+                if (UseLimitSpawnValue)
+                {
+                    _currentSpawnedValue += _prefabSpawnValueMap[prefabToSpawn];
+                }
             }
         }
 
