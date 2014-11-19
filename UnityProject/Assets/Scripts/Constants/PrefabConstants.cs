@@ -27,6 +27,7 @@ namespace Assets.Scripts.Constants
         SurvivalArea4Section3 = 158,
         SurvivalArea5Section2 = 159,
         SurvivalArea5Section3 = 160,
+        EndingStoryBoardLevel = 161,
 
 
         Projectile = 0,
@@ -116,6 +117,7 @@ namespace Assets.Scripts.Constants
             {Prefab.GreenRangeEnemyProjectile, "Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile"},
             {Prefab.RegenStoneEnemy, "Prefabs/PreloadedPrefab/Character/RegenStoneEnemy"},
             {Prefab.IntroStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"},
+            {Prefab.EndingStoryBoardLevel, "Prefabs/PreloadedPrefab/Level/StoryBoardLevel"},
             {Prefab.SimpleRangeNoDropEnemy, "Prefabs/PreloadedPrefab/Character/SimpleRangeNoDropEnemy"},
             {Prefab.ShotGunSmoke, "Prefabs/PreloadedPrefab/Particle/ShotGunSmoke"},
             {Prefab.SurvivalLevel, "Prefabs/PreloadedPrefab/Level/SurvivalLevel"},

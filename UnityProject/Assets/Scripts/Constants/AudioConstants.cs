@@ -143,7 +143,10 @@ namespace Assets.Scripts.Constants
         BossShoot = 100,
         BossMissleExplode = 101,
         BossCharge = 102,
-        BossSummon = 103
+        BossSummon = 103,
+        Ice_Level_Battle = 104,
+        Ice_Level_Primary = 105,
+        Ice_Level_Transition = 106,
     };
 
     public enum LoopName
@@ -153,7 +156,8 @@ namespace Assets.Scripts.Constants
         TestMultiLoop = 2, // TUTORIAL LEVEL
         MenuLoop = 3, 
         Level_1_LevelLoop = 4,
-        Level_2_LevelLoop = 5
+        Level_2_LevelLoop = 5,
+        Boss_LevelLoop = 6
     };
 
 
@@ -262,6 +266,9 @@ namespace Assets.Scripts.Constants
             {ClipName.Level_2_Basic, "Level_2_Basic"},
             {ClipName.Level_2_Medium, "Level_2_Medium"},
             {ClipName.Level_2_Heavy, "Level_2_Heavy"},
+            {ClipName.Ice_Level_Transition, "Ice_Level_Transition"},
+            {ClipName.Ice_Level_Primary, "Ice_Level_Primary"},
+            {ClipName.Ice_Level_Battle, "Ice_Level_Battle"},
             {ClipName.BossCharge, "boss_charge"},
             {ClipName.BossMissleExplode, "boss_missle_explode"},
             {ClipName.BossSummon, "boss_summon"},
@@ -301,7 +308,8 @@ namespace Assets.Scripts.Constants
             {LoopName.TestMultiLoop, "TestMultiLoop"},
             {LoopName.MenuLoop, "MenuLoop"},
             {LoopName.Level_1_LevelLoop, "Level_1_LevelLoop"},
-            {LoopName.Level_2_LevelLoop, "Level_2_LevelLoop"}
+            {LoopName.Level_2_LevelLoop, "Level_2_LevelLoop"},
+            {LoopName.Boss_LevelLoop, "Boss_LevelLoop"}
         };
 
         public static void CreateCustomCues()
@@ -457,6 +465,16 @@ namespace Assets.Scripts.Constants
                 ClipName.Level_2_Heavy
             };
             AudioManager.Instance.CreateLevelLoop(LoopName.Level_2_LevelLoop, Level_2_LevelLoop);
+
+            // boss loop
+            List<ClipName> Boss_LevelLoop = new List<ClipName>
+            {
+                ClipName.Ice_Level_Primary,
+                ClipName.Level_2_Medium,
+                ClipName.Level_2_Heavy
+            };
+            AudioManager.Instance.CreateLevelLoop(LoopName.Boss_LevelLoop, Boss_LevelLoop);
+
             // menu level loop
             List<ClipName> menuLoop = new List<ClipName>
             {
