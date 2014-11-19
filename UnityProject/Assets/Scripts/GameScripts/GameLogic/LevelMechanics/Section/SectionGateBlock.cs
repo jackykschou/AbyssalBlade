@@ -41,14 +41,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 
         public void LockGate()
         {
-            TriggerGameScriptEvent(GameScriptEvent.GateActivated);
             BlockCollider.enabled = true;
+            TriggerGameScriptEvent(GameScriptEvent.GateActivated);
         }
 
         public void UnLockGate()
         {
-            TriggerGameScriptEvent(GameScriptEvent.GateDeactivated);
             BlockCollider.enabled = false;
+            TriggerGameScriptEvent(GameScriptEvent.GateDeactivated);
         }
     }
 }

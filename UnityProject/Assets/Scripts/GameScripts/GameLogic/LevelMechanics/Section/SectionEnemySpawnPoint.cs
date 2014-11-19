@@ -112,6 +112,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                     StartCoroutine(FadeInEnemyIE(o, FadeInTime));
                 }
                 TriggerGameEvent(GameEvent.OnSectionEnemySpawned, SectionId);
+                TriggerGameScriptEvent(GameScriptEvent.OnSectionEnemySpawned, o);
             });
         }
 
@@ -144,6 +145,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
                 motor.Speed.Value = originalSpeed;
             }
         }
+
+        [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
+        public void SurvivalDifficultyIncreased(int difficulty)
+        {
+            PrefabSpawner.NumberOfSpawn += (int)(PrefabSpawner.NumberOfSpawn * 0.2f * difficulty);
+            PrefabSpawner.LimitSpawnValue += (int)(PrefabSpawner.LimitSpawnValue * 0.2f * difficulty);
+        }
+
 
         protected override void FirstTimeInitialize()
         {

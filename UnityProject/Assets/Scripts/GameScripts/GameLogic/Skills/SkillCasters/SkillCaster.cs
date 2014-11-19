@@ -26,6 +26,18 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters
             Skills = GetComponentsInChildren<Skill>().ToList();
         }
 
+        [GameScriptEventAttribute(GameScriptEvent.UpdateSkills)]
+        public void UpdateSkills()
+        {
+            Skills = GetComponentsInChildren<Skill>().ToList();
+        }
+
+        [GameScriptEventAttribute(GameScriptEvent.RemoveSkill)]
+        public void RemoveSkill(Skill skill)
+        {
+            Skills.Remove(skill);
+        }
+
         [GameScriptEventAttribute(GameScriptEvent.OnNewTargetDiscovered)]
         public void UpdateTarget(GameObject target)
         {

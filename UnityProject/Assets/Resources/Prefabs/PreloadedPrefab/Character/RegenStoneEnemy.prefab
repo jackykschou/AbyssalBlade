@@ -410,7 +410,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400008}
 --- !u!114 &11400008
 MonoBehaviour:
@@ -424,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 0}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
@@ -436,6 +436,11 @@ MonoBehaviour:
   ChangeInterval: .100000001
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -451,7 +456,6 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   TargetPhysicalLayers: 0d000000
-  FinderPosition: {fileID: 11400012}
   TargetEffectAppliers:
   - {fileID: 11400006}
   Targets: []
@@ -760,9 +764,9 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   KnockBackSpeed: 8
   Time: .100000001
+  PositionIndicator: {fileID: 11400050}
 --- !u!114 &11400048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -775,18 +779,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 100018}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -45
+  _amount: -55
   AmountVariantPercentage: .0199999996
   ChangeDuration: 0
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -844,12 +854,12 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400050}
   TargetEffectAppliers:
   - {fileID: 11400060}
   - {fileID: 11400046}
   Targets: []
   Radius: 2.5
+  PositionIndicator: {fileID: 11400050}
 --- !u!114 &11400058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -881,7 +891,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400048}
 --- !u!114 &11400062
 MonoBehaviour:
@@ -939,7 +948,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: Melee
-  _animationDuration: 1.20000005
+  _animationDuration: 1.39999998
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
@@ -1033,9 +1042,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: MovementSpeed
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 10
-  InitialValue: 3
+  InitialValue: 2.5
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400086
@@ -1050,6 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: Health
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 300
   InitialValue: 300
@@ -1436,7 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Prefabs: 14000000
+  Prefabs: 23000000
   SpawnPickWeights:
   - 1
   PrefabSpawnValues: 00000000

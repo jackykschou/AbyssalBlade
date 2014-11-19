@@ -70,6 +70,9 @@ GameObject:
   - 114: {fileID: 11400206}
   - 114: {fileID: 11400214}
   - 114: {fileID: 11400212}
+  - 114: {fileID: 11400244}
+  - 114: {fileID: 11400246}
+  - 114: {fileID: 11400248}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -297,6 +300,8 @@ GameObject:
   - 114: {fileID: 11400198}
   - 114: {fileID: 11400114}
   - 114: {fileID: 11400238}
+  - 114: {fileID: 11400242}
+  - 114: {fileID: 11400240}
   m_Layer: 0
   m_Name: BasicRange
   m_TagString: Untagged
@@ -397,7 +402,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -.114430003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400022}
@@ -603,8 +608,9 @@ MonoBehaviour:
   - {fileID: 11400206}
   _proSkillEffects:
   - {fileID: 11400130}
+  - {fileID: 11400244}
   _skillEffectsOrder: 000000000100000002000000030000000300000004000000
-  _proSkillEffectsOrder: 01000000
+  _proSkillEffectsOrder: 0100000000000000
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -897,9 +903,9 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   KnockBackSpeed: 20
   Time: .200000003
+  PositionIndicator: {fileID: 11400190}
 --- !u!114 &11400046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -919,7 +925,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400202}
 --- !u!114 &11400048
 MonoBehaviour:
@@ -955,9 +960,11 @@ MonoBehaviour:
   _onHoldFinishEventMessages: []
   _loopEventMessages: []
   _loopEventMessagesSendTime: []
-  _loopSkillEffects: []
-  _loopSkillEffectsActivateTime: []
-  TimePerLoop: .25
+  _loopSkillEffects:
+  - {fileID: 11400246}
+  _loopSkillEffectsActivateTime:
+  - .25
+  TimePerLoop: .5
 --- !u!114 &11400052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1059,12 +1066,12 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d000000100000000f000000
-  FinderPosition: {fileID: 11400190}
   TargetEffectAppliers:
   - {fileID: 11400046}
   - {fileID: 11400044}
   Targets: []
   Radius: 3
+  PositionIndicator: {fileID: 11400190}
 --- !u!114 &11400064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1084,7 +1091,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400200}
 --- !u!114 &11400066
 MonoBehaviour:
@@ -1138,11 +1144,11 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
-  FinderPosition: {fileID: 11400188}
   TargetEffectAppliers:
   - {fileID: 11400064}
   Targets: []
   Radius: 1
+  PositionIndicator: {fileID: 11400188}
 --- !u!114 &11400074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1427,7 +1433,9 @@ MonoBehaviour:
   _animationSkillEffects:
   - {fileID: 11400150}
   - {fileID: 11400114}
+  - {fileID: 11400240}
   _animationSkillEffectsActivateTime:
+  - .150000006
   - .150000006
   - .150000006
 --- !u!114 &11400112
@@ -1449,7 +1457,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400198}
 --- !u!114 &11400114
 MonoBehaviour:
@@ -1654,7 +1661,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400142
 MonoBehaviour:
@@ -1674,7 +1680,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   SpeedChanger: {fileID: 11400194}
 --- !u!114 &11400144
 MonoBehaviour:
@@ -1722,14 +1727,15 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f000000100000000a000000
-  FinderPosition: {fileID: 11400186}
   TargetEffectAppliers:
   - {fileID: 11400112}
   - {fileID: 11400152}
   - {fileID: 11400238}
   Targets: []
   Range: 20
-  RayAngleRandomness: 45
+  RayAngleRandomness: 20
+  PositionIndicator: {fileID: 11400186}
+  ProjectilePrefab: 25
 --- !u!114 &11400150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1745,7 +1751,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   SkillEffect: {fileID: 11400118}
-  RepeatTime: 12
+  RepeatTime: 7
   RepeatCooldown: 0
 --- !u!114 &11400152
 MonoBehaviour:
@@ -1766,9 +1772,9 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   KnockBackSpeed: 5
   Time: .100000001
+  PositionIndicator: {fileID: 11400186}
 --- !u!114 &11400154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2054,6 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: SpeedChanger
+  Owner: {fileID: 100018}
   TargetValueType: 0
   OneTimeDurationType: 2
   IntervalDurationType: 0
@@ -2066,6 +2073,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2078,6 +2090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 550
   InitialValue: 550
@@ -2095,6 +2108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 100018}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
@@ -2107,6 +2121,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 1.29999995
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2119,6 +2138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 100018}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
@@ -2131,6 +2151,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2143,6 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 100018}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
@@ -2155,6 +2181,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 1.5
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2167,6 +2198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: MotorSpeed
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 10
   InitialValue: 10
@@ -2231,7 +2263,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400210}
   TargetEffectAppliers:
   - {fileID: 11400140}
   Targets: []
@@ -2251,7 +2282,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400210}
   TargetEffectAppliers:
   - {fileID: 11400142}
   Targets: []
@@ -2356,7 +2386,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400236}
   TargetEffectAppliers:
   - {fileID: 11400230}
   Targets: []
@@ -2379,7 +2408,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Enable: 0
 --- !u!114 &11400232
 MonoBehaviour:
@@ -2399,7 +2427,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Enable: 1
 --- !u!114 &11400234
 MonoBehaviour:
@@ -2416,7 +2443,6 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400236}
   TargetEffectAppliers:
   - {fileID: 11400232}
   Targets: []
@@ -2450,12 +2476,98 @@ MonoBehaviour:
   TargetTags:
   - Enemy
   - Neutral
+  - Untagged
   TargetPhysicalLayers: 0d0000000f000000100000000a000000
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   Prefab: 24
+  PrefabSpawner: {fileID: 0}
+--- !u!114 &11400240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SingleStraightRayCastFinder
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  TargetFinder: {fileID: 11400242}
+--- !u!114 &11400242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83848d5ec849eab4a8b8513f5ccca6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: SingleStraightCast
+  TargetTags:
+  - Enemy
+  - Neutral
+  - Untagged
+  TargetPhysicalLayers: 0d0000000f000000100000000a000000
+  TargetEffectAppliers:
+  - {fileID: 11400112}
+  - {fileID: 11400152}
+  - {fileID: 11400238}
+  Targets: []
+  Range: 20
+  RayAngleRandomness: 0
+  PositionIndicator: {fileID: 0}
+  ProjectilePrefab: 25
+--- !u!114 &11400244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: ChargeFail
+  Skill: {fileID: 0}
+  ActivateConditions: []
+  BoolParameterName: ChargeFail
+--- !u!114 &11400246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc086c34e4e382c4c9debda9b2d43026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Skill: {fileID: 0}
+  ActivateConditions:
+  - {fileID: 11400134}
+  Prefab: 39
+  PositionIndicator: {fileID: 11400184}
+--- !u!114 &11400248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca9f90dc4a5e60428adfc98f762430a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

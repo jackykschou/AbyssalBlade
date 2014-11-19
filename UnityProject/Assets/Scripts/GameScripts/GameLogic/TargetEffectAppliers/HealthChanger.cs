@@ -25,13 +25,29 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetEffectAppliers
         {
         }
 
-        [GameScriptEvent(Constants.GameScriptEvent.ChangeDamageCriticalChance)]
-        public void ChangeDamageCriticalChance(float changeAmount)
+        [GameScriptEvent(Constants.GameScriptEvent.ChangeDamageCriticalChanceBy)]
+        public void ChangeDamageCriticalChanceBy(float changeAmount)
         {
             if (GameValueChanger._amount <= 0f)
             {
                 GameValueChanger.CriticalChance += changeAmount;
             }
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ChangeHealthChangerRawAmountToInitialPercentage)]
+        public void ChangeHealthChangerRawAmountToOriginalPercentage(float percentage)
+        {
+            GameValueChanger.RawAmount = GameValueChanger.InitialAmount * percentage;
+        }
+
+        [GameScriptEvent(Constants.GameScriptEvent.ChangeHealthChangerDamageRawAmountToInitialPercentage)]
+        public void ChangeHealthChangerDamageRawAmountToInitialPercentage(float percentage)
+        {
+            if (GameValueChanger.RawAmount >= 0f)
+            {
+                return;
+            }
+            GameValueChanger.RawAmount = GameValueChanger.InitialAmount * percentage;
         }
     }
 }

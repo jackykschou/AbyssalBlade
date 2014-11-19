@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Attributes;
-using Pathfinding;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
@@ -8,24 +6,39 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
     [AddComponentMenu("Misc/UpdateAStarGraphWithColliderBoundOnInitialize")]
     public class UpdateAStarGraphWithColliderBoundOnInitialize : GameLogic
     {
-        private GraphUpdateObject _guo;
+        public Collider2D Collider2D;
 
         protected override void Deinitialize()
         {
         }
 
-        [GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
-        public void OnLevelFinishedLoading()
+        protected override void Initialize()
         {
-            _guo = new GraphUpdateObject(collider2D.bounds) { setWalkability = false };
-            AstarPath.active.UpdateGraphs(_guo);
+            base.Initialize();
+            Collider2D = GetComponent<Collider2D>();
         }
 
-        [GameEvent(Constants.GameEvent.OnLevelEnded)]
+        [Attributes.GameEvent(Constants.GameEvent.OnLevelStarted)]
+        [Attributes.GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
+        public void OnLevelFinishedLoading()
+        {
+            AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
+        }
+
+        [Attributes.GameScriptEvent(Constants.GameScriptEvent.GateActivated)]
+        public void GateActivated()
+        {
+            Collider2D.enabled = true;
+            AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
+        }
+
+        [Attributes.GameScriptEvent(Constants.GameScriptEvent.GateDeactivated)]
+        [Attributes.GameEvent(Constants.GameEvent.OnLevelEnded)]
         public void OnLevelEnded()
         {
-            _guo.setWalkability = true;
-            AstarPath.active.UpdateGraphs(_guo);
+            Collider2D.enabled = false;
+            AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
         }
+        
     }
 }

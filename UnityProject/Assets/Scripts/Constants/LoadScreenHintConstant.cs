@@ -10,7 +10,8 @@ namespace Assets.Scripts.Constants
             "Shotgun can knock back enemies",
             "Use your heavy attack wisely, they have a long cooldown",
             "This game is created by The Nerd Herd",
-            "You are invincible during dashing"
+            "You are invincible during dashing",
+            "The longer you hold your charge attack, the more powerful it will be"
         };
     }
 }

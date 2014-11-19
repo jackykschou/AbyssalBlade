@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.GameValue;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Health
@@ -61,7 +62,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.OnGameValueCurrentValueChanged)]
-        public void OnHealthCurrentValueChanged(GameValue.GameValue health, float changedAmount, bool crited)
+        public void OnHealthCurrentValueChanged(GameValue.GameValue health, GameValueChanger healthChanger, float changedAmount, bool crited)
         {
             if (health != HitPoint)
             {
@@ -70,22 +71,34 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
 
             if (changedAmount <= 0f)
             {
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited, HitPoint);
+                if (healthChanger != null && !healthChanger.Deinitialized)
+                {
+                    healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectDealDamage, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                }
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeDamage, Mathf.Abs(changedAmount), crited, HitPoint, healthChanger);
             }
             else
             {
-                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount), crited, HitPoint);
+                if (healthChanger != null && !healthChanger.Deinitialized)
+                {
+                    healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectDealHeal, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                }
+                TriggerGameScriptEvent(GameScriptEvent.OnObjectTakeHeal, Mathf.Abs(changedAmount), crited, HitPoint, healthChanger);
             }
 
             TriggerGameScriptEvent(GameScriptEvent.OnObjectHealthChanged, changedAmount, HitPoint);
 
             if (HitPoint <= 0f)
             {
+                if (healthChanger != null && !healthChanger.Deinitialized)
+                {
+                    healthChanger.Owner.TriggerGameScriptEvent(GameScriptEvent.OnObjectKills, health, healthChanger, Mathf.Abs(changedAmount), crited);
+                }
                 TriggerGameScriptEvent(GameScriptEvent.OnObjectHasNoHitPoint);
             }
         }
 
-        [Attributes.GameScriptEvent(GameScriptEvent.ChangeDamageReduction)]
+        [Attributes.GameScriptEvent(GameScriptEvent.ChangeDamageReductionBy)]
         public void ChangeDamageReduction(float amount)
         {
             HitPoint.NegativeChangeEmphasizePercentage += amount;
@@ -96,7 +109,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         {
             Invincible = enable;
         }
-    
+
         protected override void Deinitialize()
         {
         }

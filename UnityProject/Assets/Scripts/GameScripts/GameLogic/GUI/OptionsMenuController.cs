@@ -23,7 +23,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private GameObject _optionsBG;
         private int _curSelectedIndex;
         private List<Selectable>_buttons;
-        private bool _paused = false;
+        private bool _paused;
 
         protected override void FirstTimeInitialize()
         {
@@ -41,58 +41,42 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             HideMenu();
         }
 
-        protected override void FixedUpdate()
+        protected override void Update()
         {
-            base.FixedUpdate();
+            base.Update();
 
             if (OptionsButton.Detect())
             {
                 _paused = !_paused;
                 if (_paused)
-                {
                     ShowMenu();
-                    _curSelectedIndex = 2;
-                    SelectButton();
-                    _curSelectedIndex = 0;
-                    SelectButton();
-                }
                 else
-                {
                     HideMenu();
-                }
             }
 
-            if (_paused)
+            if (!_paused) 
+                return;
+
+            if (AxisOnHold.Detect())
             {
-                if (AxisOnHold.Detect())
-                {
-                    float v = AxisOnHold.GetAxisValue();
-                    if (v > 0.0f)
-                    {
-                        GoDown();
-                    }
-                    else if (v < 0.0f)
-                    {
-                        GoUp();
-                    }
-                    SelectButton();
-                }
+                if (AxisOnHold.GetAxisValue() > 0.0f)
+                    GoDown();
+                else
+                    GoUp();
+                SelectButton();
             }
+
         }
 
         private void ShowMenu()
         {
             TriggerGameEvent(Constants.GameEvent.DisablePlayerCharacter);
             _optionsBG.SetActive(true);
-            SelectButton();
-            //_paused = true;
         }
         private void HideMenu()
         {
-            SelectButton();
             _optionsBG.SetActive(false);
             TriggerGameEvent(Constants.GameEvent.EnablePlayerCharacter);
-            //_paused = false;
         }
 
         private void SelectButton()
@@ -132,7 +116,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         protected override void Deinitialize()
         {
-
+            _curSelectedIndex = 0;
+            SelectButton();
         }
     }
 }

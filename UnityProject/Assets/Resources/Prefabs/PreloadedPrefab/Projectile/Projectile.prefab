@@ -21,7 +21,6 @@ GameObject:
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400020}
   - 114: {fileID: 11400022}
-  - 114: {fileID: 11400026}
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400004}
@@ -124,6 +123,7 @@ MonoBehaviour:
   Speed: {fileID: 11400022}
   Target: {fileID: 0}
   Direction: {x: 0, y: 0}
+  Destination: {x: 0, y: 0}
   EaseType: 21
 --- !u!114 &11400006
 MonoBehaviour:
@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 0}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: MotorSpeed
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 10
   InitialValue: 10
@@ -264,24 +266,9 @@ MonoBehaviour:
   - Enemy
   - Neutral
   TargetPhysicalLayers: 0d0000000f00000010000000
-  FinderPosition: {fileID: 11400026}
   TargetEffectAppliers:
   - {fileID: 11400014}
   Targets: []
---- !u!114 &11400026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Follower: {fileID: 0}
-  Position: {fileID: 400000}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

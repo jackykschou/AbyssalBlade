@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Attributes;
-using Assets.Scripts.Constants;
-using Assets.Scripts.GameScripts.GameLogic.Input;
+﻿using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.GameScripts.GameLogic.Skills.SkillCasters;
 using Assets.Scripts.Utility;
 using UnityEngine;
@@ -33,7 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         [SerializeField] 
         private ButtonOnPressed Dash;
 
-        public bool ControllerEnabled = true;
+        public bool ControllerEnabled;
 
         //This dependency is injected for the sake of better runtime performance
         private PlayerCharacterSkillsCaster _playerCharacterSkillsCaster;
@@ -47,6 +45,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         {
             base.FirstTimeInitialize();
             _playerCharacterSkillsCaster = GetComponent<PlayerCharacterSkillsCaster>();
+            ControllerEnabled = false;
         }
 
         protected override void Initialize()
@@ -162,12 +161,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.Controller
         public void EnablePlayerCharacter()
         {
             ControllerEnabled = true;
+            GetComponent<Collider2D>().enabled = true;
         }
 
         [GameEventAttribute(GameEvent.DisablePlayerCharacter)]
         public void DisablePlayerCharacter()
         {
             ControllerEnabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }

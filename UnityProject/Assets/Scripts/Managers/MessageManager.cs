@@ -12,6 +12,7 @@ namespace Assets.Scripts.Managers
     public class MessageManager : MonoBehaviour
     {
         public GameObject DeathScreen;
+        public GameObject KillCountGUI;
         public PrefabSpawner PrefabSpawner;
         public GameObject TipText;
         public Camera MainCamera;
@@ -42,6 +43,11 @@ namespace Assets.Scripts.Managers
             StartCoroutine(FadeInDeathScreenIE(3.0f));
         }
 
+        public void DisplayKillCount(bool active)
+        {
+            KillCountGUI.SetActive(active);
+        }
+
         IEnumerator DeactivateObjectIE(float time)
         {
             while (time > 0)
@@ -65,16 +71,18 @@ namespace Assets.Scripts.Managers
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1.0f); 
         }
 
-        public void DisplayMessage(string message,Vector3 direction)
+        public void DisplayMessage(string message,Vector3 direction, float despawnTime = 3.0f)
         {
             PrefabSpawner.SpawnPrefab(TopMiddleOfScreen(), o =>
             {
                 TextMesh mesh = o.GetComponent<TextMesh>();
                 TextMotor motor = o.GetComponent<TextMotor>();
+                DamageTextDespawn dtd = o.GetComponent<DamageTextDespawn>();
 
+                dtd.OrigDespawnTime = despawnTime;
                 o.transform.parent = MainCamera.gameObject.transform;
                 mesh.text = message;
-                motor.Shoot(PreferredEaseType, direction, 5.0f, 1.5f);
+                motor.Shoot(PreferredEaseType, direction, despawnTime + 5.0f, 1.5f);
             });
         }
 
@@ -120,14 +128,6 @@ namespace Assets.Scripts.Managers
             return MainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 4.0f, Screen.height * 3.0f / 5.0f, 0.0f));
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-                DisplayMessage("Regular Message", Vector3.up);
-            if (Input.GetKeyDown(KeyCode.Keypad2))
-                DisplayGameMessageFlyAway("Fly Away", Vector3.up, Vector3.right);
-        }
-
         void Awake()
         {
             if (PrefabSpawner == null)
@@ -141,6 +141,10 @@ namespace Assets.Scripts.Managers
             if (DeathScreen == null)
             {
                 DeathScreen = GameObject.Find("DeathScreen");
+            }
+            if (KillCountGUI == null)
+            {
+                KillCountGUI = GameObject.Find("KillCountMeter");
             }
         }
     }

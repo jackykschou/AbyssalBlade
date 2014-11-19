@@ -51,8 +51,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.TargetFinders.Editor
             {
                 finder.TargetEffectAppliers[i] = EditorGUILayout.ObjectField("Applier" + i, finder.TargetEffectAppliers[i], typeof(TargetEffectApplier)) as TargetEffectApplier;
             }
-
-            finder.FinderPosition = EditorGUILayout.ObjectField("Finder Position", finder.FinderPosition, typeof(PositionIndicator)) as PositionIndicator;
 #pragma warning restore 618
         }
     }

@@ -35,6 +35,10 @@
         SetCameraWidth,                  // void(float)
         DisablePlayerCharacter,          // void()
         EnablePlayerCharacter,           // void()
-        OnLoadingScreenFinished          // void()
+        OnPlayerReset,                   // void()
+        OnLoadingScreenFinished,          // void()
+        SurvivalSectionStarted,          // void()
+        SurvivalSectionEnded,             // void()
+        SurvivalDifficultyIncreased      //void(int)
      };
 }

@@ -327,12 +327,12 @@ MonoBehaviour:
   TargetTags:
   - Player
   TargetPhysicalLayers: 0e000000
-  FinderPosition: {fileID: 11400084}
   TargetEffectAppliers:
   - {fileID: 11400004}
   - {fileID: 11400106}
   Targets: []
   Radius: 1.70000005
+  PositionIndicator: {fileID: 11400084}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,7 +365,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400090}
 --- !u!114 &11400006
 MonoBehaviour:
@@ -382,7 +381,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   BoolParameterName: Melee
-  _animationDuration: 1.20000005
+  _animationDuration: 1.39999998
   _animationEventMessages: []
   _animationEventMessagesSendTime: []
   _animationSkillEffects:
@@ -746,7 +745,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  Invincible: 0
   HitPoint: {fileID: 11400086}
 --- !u!114 &11400056
 MonoBehaviour:
@@ -956,9 +954,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: Health
+  Owner: {fileID: 0}
   InitialMinValue: 0
-  InitialMaxValue: 150
-  InitialValue: 150
+  InitialMaxValue: 120
+  InitialValue: 120
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400088
@@ -973,9 +972,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: MovementSpeed
+  Owner: {fileID: 0}
   InitialMinValue: 0
   InitialMaxValue: 10
-  InitialValue: 3
+  InitialValue: 2.5
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
 --- !u!114 &11400090
@@ -990,18 +990,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
+  Owner: {fileID: 100004}
   TargetValueType: 0
   OneTimeDurationType: 0
   IntervalDurationType: 0
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -35
+  _amount: -30
   AmountVariantPercentage: .0199999996
   ChangeDuration: 0
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1015,7 +1021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Event: 0
-  AdditionalChanceChangeAmount: .200000003
+  AdditionalChanceChangeAmount: .150000006
 --- !u!114 &11400094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1173,9 +1179,9 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  TargetFinder: {fileID: 0}
   KnockBackSpeed: 8
   Time: .100000001
+  PositionIndicator: {fileID: 11400084}
 --- !u!114 &11400108
 MonoBehaviour:
   m_ObjectHideFlags: 1

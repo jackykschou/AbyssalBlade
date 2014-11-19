@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.GameValue;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using GameScriptEvent = Assets.Scripts.Constants.GameScriptEvent;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.PlaySound
         public float Volume = 1.0f;
 
         [GameScriptEventAttribute(GameScriptEvent.OnObjectTakeDamage)]
-        public void StartPlayDamageSound(float f, bool crit, GameValue.GameValue health)
+        public void StartPlayDamageSound(float f, bool crit, GameValue.GameValue health, GameValueChanger gameValueChanger)
         {
             AudioManager.Instance.PlayCue(Cue, gameObject, Volume);
         }

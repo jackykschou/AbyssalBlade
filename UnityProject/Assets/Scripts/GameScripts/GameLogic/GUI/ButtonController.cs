@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Managers;
@@ -10,86 +11,75 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 {
     public class ButtonController : GameLogic
     {
+        public Prefab StoryLevelPrefab;
+        public Prefab SurvivalLevelPrefab;
+        public ClipName ButtonPressClip;
+        [SerializeField]
+        public List<Transform> ButtonCubes;
+
         public Color HighlightColor;
         public float BtnScaleAmount;
-        public Transform StartButton;
-        public Transform OptionsButton;
-        public Transform QuitButton;
-        public Prefab StartLevelPrefab;
-        public ClipName ButtonPressClip;
-
-        private List<Transform> _buttonObjs;
         private Vector3 _popoutAmount;
         private List<bool> _popped;
         private const float RotateAmount = 30.0f;
-        private int _numButtons = 0;
-        private int _curButton = 0;
+        private int _curButton;
         [SerializeField]
         private AxisOnHold AxisOnHold;
         [SerializeField]
-        private ButtonOnPressed Attack1;
+        private ButtonOnPressed ButtonOnPressed;
+
+        private bool _canClick;
 
         protected override void Initialize()
         {
             base.Initialize();
-            _buttonObjs = new List<Transform>()
-            {
-                StartButton,
-                OptionsButton,
-                QuitButton
-            };
-            _popped = new List<bool>()
-            {
-                false,
-                false,
-                false
-            };
             _popoutAmount = new Vector3(0, 0, -.75f);
-            _numButtons = _buttonObjs.Count;
-            ButtonChange(3);
+            _popped = new List<bool>();
+            for (int index = 0; index < ButtonCubes.Count; index++)
+                _popped.Add(false);
+            _canClick = false;
+            _curButton = 0;
+        }
+
+        [GameEventAttribute(GameEvent.OnLevelStarted)]
+        public void AllowClicks()
+        {
+            StartCoroutine(AllowClicksIE());
+        }
+
+        private IEnumerator AllowClicksIE()
+        {
+            yield return new WaitForSeconds(0.2f);
+            _canClick = true;
+            ButtonChange(0);
         }
 
         protected override void Update()
         {
             base.Update();
+            RaycastHit hit;
+
+            if (!_canClick)
+                return;
+            
+            // Handle Joystick
             if (AxisOnHold.Detect())
-            {
                 ButtonChange(GetNextButton(AxisOnHold.GetAxisValue() > 0.01f));
-            }
-            else
+
+            // Handle Mouse
+            bool clicked = false;
+            if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit,
+                LayerConstants.LayerMask.StaticObstacle))
             {
-                RaycastHit hit;
-                bool clicked = UnityEngine.Input.GetMouseButtonDown(0);
-                if (Physics.Raycast(UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition), out hit, LayerConstants.LayerMask.StaticObstacle))
-                {
-                    GameObject hitObj = hit.collider.gameObject;
-                    for (int index = 0; index < _buttonObjs.Count; index++)
-                    {
-                        if (hitObj == _buttonObjs[index].gameObject)
-                        {
-                            _curButton = index;
-                            ButtonChange(_curButton);
-                            if (clicked)
-                            {
-                                switch (index)
-                                {
-                                    case 0:
-                                        OnStartPressed();
-                                        break;
-                                    case 1:
-                                        OnOptionsPressed();
-                                        break;
-                                    case 2:
-                                        OnQuitPressed();
-                                        break;
-                                }
-                            }
-                        }
-                    }
-                }
+                for (int index = 0; index < ButtonCubes.Count; index++)
+                    if (hit.collider.gameObject == ButtonCubes[index].gameObject)
+                        ButtonChange(index);
+                if (UnityEngine.Input.GetMouseButtonDown(0))
+                    clicked = true;
             }
 
-            if (Attack1.Detect())
+            // Handle Clicks
+            if (ButtonOnPressed.Detect() || clicked)
             {
                 switch (_curButton)
                 {
@@ -97,7 +87,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                         OnStartPressed();
                         break;
                     case 1:
-                        OnOptionsPressed();
+                        OnSurvivalPressed();
                         break;
                     case 2:
                         OnQuitPressed();
@@ -109,60 +99,32 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private int GetNextButton(bool up)
         {
             if (up)
-            {
                 _curButton--;
-                if (_curButton == -1)
-                    _curButton = _numButtons - 1;
-            }
             else
-            {
                 _curButton++;
-                if (_curButton >= _numButtons)
-                    _curButton = 0;
-            }
-            return _curButton;
+            return _curButton %= ButtonCubes.Count;
         }
 
         public void ButtonChange(int buttonId)
         {
-            switch (buttonId)
-            {
-                case 0:
-                    OnButtonMouseOver(0);
-                    OnButtonMouseLeave(1);
-                    OnButtonMouseLeave(2);
-                    break;
-                case 1:
-                    OnButtonMouseOver(1);
-                    OnButtonMouseLeave(0);
-                    OnButtonMouseLeave(2);
-                    break;
-                case 2:
-                    OnButtonMouseOver(2);
-                    OnButtonMouseLeave(0);
-                    OnButtonMouseLeave(1);
-                    break;
-                case 3:
-                    OnButtonMouseLeave(0);
-                    OnButtonMouseLeave(1);
-                    OnButtonMouseLeave(2);
-                    break;
-            }
+            for (int i = 0; i < ButtonCubes.Count; i++)
+                if (i == buttonId)
+                    OnButtonMouseOver(i);
             _curButton = buttonId;
         }
 
         public void OnStartPressed()
         {
-            ButtonChange(3);
-            _curButton = 0;
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
-
-            GameManager.Instance.ChangeLevel(StartLevelPrefab);
+            OnButtonMouseLeave(_curButton);
+            GameManager.Instance.ChangeLevel(StoryLevelPrefab);
         }
 
-        public void OnOptionsPressed()
+        public void OnSurvivalPressed()
         {
             AudioManager.Instance.PlayClipImmediate(ButtonPressClip);
+            OnButtonMouseLeave(_curButton);
+            GameManager.Instance.ChangeLevel(SurvivalLevelPrefab);
         }
 
         public void OnQuitPressed()
@@ -173,9 +135,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
 
         public void OnButtonMouseOver(int index)
         {
-            GameObject hitObj = _buttonObjs[_curButton].gameObject;
             if (_popped[index])
                 return;
+            GameObject hitObj = ButtonCubes[index].gameObject;
             _popped[index] = true;
             hitObj.GetComponentInChildren<ParticleSystem>().Play();
             hitObj.transform.Rotate(Vector3.up, RotateAmount);
@@ -183,7 +145,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             hitObj.transform.Translate(_popoutAmount);
             hitObj.renderer.material.SetColor("_OutlineColor", HighlightColor);
             _curButton = index;
-            for(int i = 0; i < _numButtons; i++)
+            for (int i = 0; i < ButtonCubes.Count; i++)
                 if(i != index)
                     OnButtonMouseLeave(i);
         }
@@ -192,13 +154,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         {
             if (!_popped[index])
                 return;
+            Transform hitObj = ButtonCubes[index];
             _popped[index] = false;
-            _buttonObjs[index].GetComponentInChildren<ParticleSystem>().Stop();
-            _buttonObjs[index].Translate(-_popoutAmount);
-            _buttonObjs[index].localScale /= BtnScaleAmount;
-            _buttonObjs[index].Rotate(Vector3.up, -RotateAmount);
-            _buttonObjs[index].renderer.material.SetColor("_OutlineColor", Color.black);
+            hitObj.GetComponentInChildren<ParticleSystem>().Stop();
+            hitObj.Translate(-_popoutAmount);
+            hitObj.localScale /= BtnScaleAmount;
+            hitObj.Rotate(Vector3.up, -RotateAmount);
+            hitObj.renderer.material.SetColor("_OutlineColor", Color.black);
         }
+
         protected override void Deinitialize()
         {
         }
