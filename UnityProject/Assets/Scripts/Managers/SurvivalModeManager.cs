@@ -117,6 +117,7 @@ namespace Assets.Scripts.Managers
         [GameEventAttribute(GameEvent.OnLevelStarted)]
         public void OnLevelStarted()
         {
+            TriggerGameEvent(GameEvent.OnPlayerReset);
             CurrentDifficulty = 0;
             _currentAreaPrefab = Prefab.None;
             _currentArea = null;
