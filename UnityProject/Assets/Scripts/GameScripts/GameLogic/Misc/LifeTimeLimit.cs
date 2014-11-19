@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Constants;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {

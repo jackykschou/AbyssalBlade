@@ -48,8 +48,16 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Character/RegenStoneEnemy
   - Prefabs/PreloadedPrefab/Character/SimpleRangeNoDropEnemy
   - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemy
+  - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemyHard
+  - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemyMedium
   - Prefabs/PreloadedPrefab/Character/SmallRangeEnemy
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyHard
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyHardNoDrop
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyMedium
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyMediumNoDrop
   - Prefabs/PreloadedPrefab/Character/StoneEnemy
+  - Prefabs/PreloadedPrefab/Character/StoneEnemyHard
+  - Prefabs/PreloadedPrefab/Character/StoneEnemyMedium
   - Prefabs/PreloadedPrefab/Level/BossLevel
   - Prefabs/PreloadedPrefab/Level/MainLevelArea1
   - Prefabs/PreloadedPrefab/Level/MainLevelArea2
@@ -99,12 +107,22 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Projectile/BossMissle
   - Prefabs/PreloadedPrefab/Projectile/BossMissleExplosion
   - Prefabs/PreloadedPrefab/Projectile/EnemyProjectile
+  - Prefabs/PreloadedPrefab/Projectile/HardProjectile
+  - Prefabs/PreloadedPrefab/Projectile/MediumProjectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile
   - Prefabs/PreloadedPrefab/Projectile/Projectile2
   - Prefabs/PreloadedPrefab/Projectile/SmallRangeEnemyProjectile
   - Prefabs/PreloadedPrefab/TextMeshes/DamageTextMesh
   - Prefabs/PreloadedPrefab/TextMeshes/MessageTextMesh
   SerializedPrefabPoolMapValues:
+  - Prefabs/PreloadedPrefab/Character/
+  - Prefabs/PreloadedPrefab/Character/
+  - Prefabs/PreloadedPrefab/Character/
+  - Prefabs/PreloadedPrefab/Character/
+  - Prefabs/PreloadedPrefab/Character/
+  - Prefabs/PreloadedPrefab/Character/
+  - Prefabs/PreloadedPrefab/Character/
+  - Prefabs/PreloadedPrefab/Character/
   - Prefabs/PreloadedPrefab/Character/
   - Prefabs/PreloadedPrefab/Character/
   - Prefabs/PreloadedPrefab/Character/
@@ -158,6 +176,8 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
   - Prefabs/PreloadedPrefab/PowerUp/
+  - Prefabs/PreloadedPrefab/Projectile/
+  - Prefabs/PreloadedPrefab/Projectile/
   - Prefabs/PreloadedPrefab/Projectile/
   - Prefabs/PreloadedPrefab/Projectile/
   - Prefabs/PreloadedPrefab/Projectile/
@@ -218,6 +238,16 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/PowerUp/BerserkPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/HealAuraPowerUp
   - Prefabs/PreloadedPrefab/PowerUp/SlowAuraPowerUp
+  - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemyHard
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyHard
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyHardNoDrop
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyMedium
+  - Prefabs/PreloadedPrefab/Character/SmallRangeEnemyMediumNoDrop
+  - Prefabs/PreloadedPrefab/Character/StoneEnemyHard
+  - Prefabs/PreloadedPrefab/Character/StoneEnemyMedium
+  - Prefabs/PreloadedPrefab/Projectile/HardProjectile
+  - Prefabs/PreloadedPrefab/Projectile/MediumProjectile
+  - Prefabs/PreloadedPrefab/Character/SmallMeleeEnemyMedium
   - Prefabs/PreloadedPrefab/Level/SurvivalArea1Section2
   - Prefabs/PreloadedPrefab/Level/SurvivalArea1Section3
   - Prefabs/PreloadedPrefab/Level/SurvivalArea2Section2
@@ -228,7 +258,7 @@ MonoBehaviour:
   - Prefabs/PreloadedPrefab/Level/SurvivalArea4Section3
   - Prefabs/PreloadedPrefab/Level/SurvivalArea5Section2
   - Prefabs/PreloadedPrefab/Level/SurvivalArea5Section3
-  PrefabPreloadAmountsValues: 0100000001000000010000001e0000000f0000000a0000000100000001000000010000000100000001000000010000000a0000000a0000000a0000000a0000000a000000060000001e0000001e0000000100000001000000010000000100000014000000140000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000019000000010000000100000001000000030000000a0000000a0000000a0000000a0000000a0000000a0000000a00000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  PrefabPreloadAmountsValues: 010000000100000001000000280000000f0000000a0000000100000001000000010000000100000001000000010000000a0000000a0000000a0000000a0000000a000000060000001e0000001e0000000100000001000000010000000100000014000000140000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000019000000010000000100000001000000050000001400000014000000140000001400000014000000140000001400000032000000280000001e0000001e0000001e00000014000000140000001e0000001e0000002800000001000000010000000100000001000000010000000100000001000000010000000100000001000000
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

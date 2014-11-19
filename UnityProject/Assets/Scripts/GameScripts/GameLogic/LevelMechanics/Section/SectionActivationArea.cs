@@ -29,7 +29,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         [GameScriptEvent(GameScriptEvent.OnPhysicsBodyOnTriggerStay2D)]
         protected override void OnTriggerEnter2D(Collider2D coll)
         {
-            if (_activated || !_canSpawn)
+            if (_activated || !_canSpawn || !Initialized || Deinitialized)
             {
                 return;
             }
