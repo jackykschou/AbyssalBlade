@@ -21,13 +21,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             {
                 ChanceBasedEventManager.Instance.ChangeEventCurrentChanceTo(Managers.ChanceBasedEvent.DropHealthPotion, 0.2f);
             }
-            else if (health.Percentage < 0.3f && currentChange < 0.1f)
+            else if (health.Percentage < 0.4f && currentChange < 0.15f)
             {
-                ChanceBasedEventManager.Instance.ChangeEventCurrentChanceTo(Managers.ChanceBasedEvent.DropHealthPotion, 0.1f);
+                ChanceBasedEventManager.Instance.ChangeEventCurrentChanceTo(Managers.ChanceBasedEvent.DropHealthPotion, 0.15f);
             }
-            else if (health.Percentage < 0.7f && currentChange < 0.04f)
+            else if (health.Percentage < 0.7f && currentChange < 0.08f)
             {
-                ChanceBasedEventManager.Instance.ChangeEventCurrentChanceTo(Managers.ChanceBasedEvent.DropHealthPotion, 0.04f);
+                ChanceBasedEventManager.Instance.ChangeEventCurrentChanceTo(Managers.ChanceBasedEvent.DropHealthPotion, 0.08f);
             }
         }
     }
