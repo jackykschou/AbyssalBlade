@@ -31,7 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
         [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
         public void UpdateMaxApplierTime(int difficulty)
         {
-            MaxApplierTime += (int)(MaxApplierTime * 0.5f * difficulty);
+            MaxApplierTime += (int)(0.5f * difficulty);
         }
 
         protected override void FirstTimeInitialize()
