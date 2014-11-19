@@ -64,7 +64,17 @@ namespace Assets.Scripts.Constants
         OnDeathExplodePowerUp = 43,
         BerserkPowerUp = 44,
         HealAuraPowerUp = 45,
-        SlowAuraPowerUp = 46
+        SlowAuraPowerUp = 46,
+        SimpleLightMeleeEnemyMedium = 47,
+        SimpleLightMeleeEnemyHard = 48,
+        SimpleRangeEnemyMedium = 49,
+        SimpleRangeEnemyHard = 50,
+        StoneEnemyMedium = 51,
+        StoneEnemyHard = 52,
+        SimpleRangeEnemyMediumNoDrop = 53,
+        SimpleRangeEnemyHardNoDrop = 54,
+        MediumProjectile = 55,
+        HardProjectile = 56
     };
 
     public class PrefabConstants
@@ -126,6 +136,14 @@ namespace Assets.Scripts.Constants
             {Prefab.BerserkPowerUp, "Prefabs/PreloadedPrefab/PowerUp/BerserkPowerUp"},
             {Prefab.HealAuraPowerUp, "Prefabs/PreloadedPrefab/PowerUp/HealAuraPowerUp"},
             {Prefab.SlowAuraPowerUp, "Prefabs/PreloadedPrefab/PowerUp/SlowAuraPowerUp"},
+            {Prefab.SimpleLightMeleeEnemyMedium, "Prefabs/PreloadedPrefab/Character/SmallMeleeEnemyMedium"},
+            {Prefab.SimpleLightMeleeEnemyHard, "Prefabs/PreloadedPrefab/Character/SmallMeleeEnemyHard"},
+            {Prefab.SimpleRangeEnemyMedium, "Prefabs/PreloadedPrefab/Character/SmallRangeEnemyMedium"},
+            {Prefab.SimpleRangeEnemyHard, "Prefabs/PreloadedPrefab/Character/SmallRangeEnemyHard"},
+            {Prefab.StoneEnemyMedium, "Prefabs/PreloadedPrefab/Character/StoneEnemyMedium"},
+            {Prefab.StoneEnemyHard, "Prefabs/PreloadedPrefab/Character/StoneEnemyHard"},
+            {Prefab.SimpleRangeEnemyMediumNoDrop, "Prefabs/PreloadedPrefab/Character/SmallRangeEnemyMediumNoDrop"},
+            {Prefab.SimpleRangeEnemyHardNoDrop, "Prefabs/PreloadedPrefab/Character/SmallRangeEnemyHardNoDrop"},
             {Prefab.None, ""}
 
 
