@@ -12,6 +12,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
         public List<Prefab> PowerUpPrefabs;
 
         public int MaxApplierTime;
+        private int _initialMaxApplierTime;
         private int _appliedCounter;
 
         [Attributes.GameScriptEvent(GameScriptEvent.OnSectionEnemySpawned)]
@@ -30,13 +31,20 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
         [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
         public void UpdateMaxApplierTime(int difficulty)
         {
-            MaxApplierTime = 1 + (int)(difficulty / 2.0f);
+            MaxApplierTime += (int)(MaxApplierTime * 0.5f * difficulty);
+        }
+
+        protected override void FirstTimeInitialize()
+        {
+            base.FirstTimeInitialize();
+            _initialMaxApplierTime = MaxApplierTime;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
             _appliedCounter = 0;
+            MaxApplierTime = _initialMaxApplierTime;
         }
 
         protected override void Deinitialize()

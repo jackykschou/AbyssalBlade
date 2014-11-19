@@ -149,9 +149,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
         public void SurvivalDifficultyIncreased(int difficulty)
         {
-            PrefabSpawner.NumberOfSpawn++;
-            PrefabSpawner.LimitSpawnValue += difficulty*2;
-            SpawnCoolDown.DispatchInterval *= .95f;
+            PrefabSpawner.NumberOfSpawn += (int)(PrefabSpawner.NumberOfSpawn * 0.2f * difficulty);
+            PrefabSpawner.LimitSpawnValue += (int)(PrefabSpawner.LimitSpawnValue * 0.2f * difficulty);
         }
 
 
