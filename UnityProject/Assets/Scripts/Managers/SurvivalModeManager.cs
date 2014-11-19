@@ -48,6 +48,7 @@ namespace Assets.Scripts.Managers
 
         private Prefab GetNextArea()
         {
+            return Prefab.SurvivalArea5;
             Prefab nextArea;
             if (CurrentDifficulty < EasyDifficultyCap)
             {
