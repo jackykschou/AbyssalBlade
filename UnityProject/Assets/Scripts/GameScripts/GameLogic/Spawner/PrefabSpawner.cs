@@ -22,6 +22,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
         [Range(0f, 1.0f)] 
         public float SpawnChance = 1.0f;
 
+        private int _initialNumberOfSpawn;
+        private int _initialLimitSpawnValue;
+
         private int _spawnCount;
         private int _currentSpawnedValue;
         private List<ProportionValue<Prefab>> _prefabWeightMap;
@@ -32,6 +35,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             base.FirstTimeInitialize();
             _prefabWeightMap = new List<ProportionValue<Prefab>>();
             _prefabSpawnValueMap = new Dictionary<Prefab, int>();
+            _initialNumberOfSpawn = NumberOfSpawn;
+            _initialLimitSpawnValue = LimitSpawnValue;
             for (int i = 0; i < Prefabs.Count; ++i)
             {
                 _prefabWeightMap.Add(ProportionValue.Create(SpawnPickWeights[i], Prefabs[i]));
@@ -57,6 +62,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.Spawner
             base.Initialize();
             _spawnCount = 0;
             _currentSpawnedValue = 0;
+            NumberOfSpawn = _initialNumberOfSpawn;
+            LimitSpawnValue = _initialLimitSpawnValue;
         }
 
         public bool CanSpawn()

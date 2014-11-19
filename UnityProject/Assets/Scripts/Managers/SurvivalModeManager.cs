@@ -11,8 +11,13 @@ namespace Assets.Scripts.Managers
 {
     public class SurvivalModeManager : GameLogic
     {
+        public int EasyDifficultyCap;
+        public int MediumDifficultyCap;
+
         public int CurrentDifficulty;
-        public List<Prefab> SurvivalAreaPrefabs;
+        public List<Prefab> EasySurvivalAreaPrefabs;
+        public List<Prefab> MediumSurvivalAreaPrefabs;
+        public List<Prefab> HardSurvivalAreaPrefabs;
         public List<Transform> AreaSpawnPoints;
 
         private int _nextSpawnAreaIndex;
@@ -43,10 +48,30 @@ namespace Assets.Scripts.Managers
 
         private Prefab GetNextArea()
         {
-            Prefab nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count)];
-            while (nextArea == _currentAreaPrefab)
+            Prefab nextArea;
+            if (CurrentDifficulty < EasyDifficultyCap)
             {
-                nextArea = SurvivalAreaPrefabs[Random.Range(0, SurvivalAreaPrefabs.Count)];
+                nextArea = EasySurvivalAreaPrefabs[Random.Range(0, EasySurvivalAreaPrefabs.Count)];
+                while (nextArea == _currentAreaPrefab)
+                {
+                    nextArea = EasySurvivalAreaPrefabs[Random.Range(0, EasySurvivalAreaPrefabs.Count)];
+                }
+            }
+            else if (CurrentDifficulty < MediumDifficultyCap)
+            {
+                nextArea = MediumSurvivalAreaPrefabs[Random.Range(0, MediumSurvivalAreaPrefabs.Count)];
+                while (nextArea == _currentAreaPrefab)
+                {
+                    nextArea = MediumSurvivalAreaPrefabs[Random.Range(0, MediumSurvivalAreaPrefabs.Count)];
+                }
+            }
+            else
+            {
+                nextArea = HardSurvivalAreaPrefabs[Random.Range(0, HardSurvivalAreaPrefabs.Count)];
+                while (nextArea == _currentAreaPrefab)
+                {
+                    nextArea = HardSurvivalAreaPrefabs[Random.Range(0, HardSurvivalAreaPrefabs.Count)];
+                } 
             }
             return nextArea;
         }
