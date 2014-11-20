@@ -10,6 +10,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     public class SectionDisableSkillEffect : SectionLogic
     {
         public List<int> DisabledSkills;
+        public bool ResetOnDeactivate = true;
 
         protected override void Deinitialize()
         {
@@ -20,8 +21,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             base.OnSectionActivated(sectionId);
             if (SectionId == sectionId)
             {
-                foreach (int skillID in DisabledSkills)
-                    TriggerGameEvent(GameEvent.DisableAbility, skillID);
+                for(int i = 0; i <= 5; i++)
+                    TriggerGameEvent(GameEvent.EnableAbility, i);
+                foreach (int skillId in DisabledSkills)
+                    TriggerGameEvent(GameEvent.DisableAbility, skillId);
             }
         }
 
@@ -29,10 +32,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
             base.OnSectionDeactivated(sectionId);
             if (SectionId == sectionId)
-            {
-                foreach (int skillID in DisabledSkills)
-                    TriggerGameEvent(GameEvent.EnableAbility, skillID);
-            }
+                if(ResetOnDeactivate)
+                    foreach (int skillId in DisabledSkills)
+                        TriggerGameEvent(GameEvent.EnableAbility, skillId);
         }
 
     }
