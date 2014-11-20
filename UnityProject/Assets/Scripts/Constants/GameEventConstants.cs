@@ -39,6 +39,7 @@
         OnLoadingScreenFinished,          // void()
         SurvivalSectionStarted,          // void()
         SurvivalSectionEnded,             // void()
-        SurvivalDifficultyIncreased      //void(int)
+        SurvivalDifficultyIncreased,      //void(int)
+        OnPlayerSkillPressed          // void (int)
      };
 }
