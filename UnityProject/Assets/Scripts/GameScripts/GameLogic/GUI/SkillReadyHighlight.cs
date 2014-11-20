@@ -11,40 +11,25 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
     {
         [Range(0,5)]
         public int SkillId;
-        [Range(0.0f, 1.0f)]
+        [Range(0.0f, 10.0f)]
         public float HighlightDuration = .5f;
         [Range(0.0f, 1.0f)]
         public float MaxAlpha = .75f;
 
-        private bool _highlight;
         private float _highlightDuration;
-        private float _origHighlightDuration;
-        private bool _on;
-
         private Image _highlightImage;
+        private bool _hasActivated;
+        private bool _skillUsed;
 
         protected override void Update()
         {
             base.Update();
-            if (_highlight)
+            if (_hasActivated)
             {
-                if (_highlightDuration < 0.0f)
+                if ((_highlightDuration -= Time.deltaTime) < 0.0f)
                 {
-                    _on = !_on;
-                    _highlightDuration = _origHighlightDuration;
+                    DisableHighlight();
                 }
-                if (_highlightImage != null)
-                {
-                    if (_on)
-                    {
-                        _highlightImage.color = new Color(_highlightImage.color.r, _highlightImage.color.g, _highlightImage.color.b, 0.0f);
-                    }
-                    else
-                    {
-                        _highlightImage.color = new Color(_highlightImage.color.r, _highlightImage.color.g, _highlightImage.color.b, MaxAlpha);
-                    }
-                }
-                _highlightDuration -= Time.deltaTime;
             }
         }
 
@@ -53,39 +38,44 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         {
             if (id == SkillId)
             {
-                if (percentage > .99f && !_highlight)
+                if (percentage > .99f)
                 {
+                    if (!_skillUsed)
+                        return;
                     EnableHighlight(HighlightDuration);
                 }
-                else if(percentage < .99f && _highlight)
+                else
                 {
-                    DisableHighlight();
+                    _skillUsed = true;
                 }
             }
         }
+
         public void EnableHighlight(float origHighlightDuration)
         {
+            if (_hasActivated)
+                return;
+            _highlightImage.color = new Color(_highlightImage.color.r, _highlightImage.color.g, _highlightImage.color.b, 1.0f);
             _highlightDuration = origHighlightDuration;
-            _origHighlightDuration = origHighlightDuration;
-            _highlight = true;
+            _hasActivated = true;
         }
 
         public void DisableHighlight()
         {
+            if (!_skillUsed)
+                return;
+            _highlightImage.color = new Color(_highlightImage.color.r, _highlightImage.color.g, _highlightImage.color.b, 0.0f);
             _highlightDuration = 0.0f;
-            if (_highlightImage != null)
-            {
-                _highlightImage.color = new Color(_highlightImage.color.r, _highlightImage.color.g, _highlightImage.color.b, 0.0f);
-            }
-            _highlight = false;
+            _skillUsed = false;
+            _hasActivated = false;
         }
         protected override void Initialize()
         {
             base.Initialize();
             _highlightImage = GetComponent<Image>();
-            _highlight = false;
-            _origHighlightDuration = 0.0f;
-            _on = false;
+            _skillUsed = false;
+            _hasActivated = false;
+            DisableHighlight();
         }
         
         protected override void Deinitialize()
