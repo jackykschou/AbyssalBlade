@@ -51,28 +51,10 @@ GameObject:
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400126}
-  - 114: {fileID: 11400050}
-  - 114: {fileID: 11400018}
-  - 114: {fileID: 11400134}
-  - 114: {fileID: 11400132}
-  - 114: {fileID: 11400130}
-  - 114: {fileID: 11400128}
-  - 114: {fileID: 11400136}
-  - 114: {fileID: 11400142}
-  - 114: {fileID: 11400140}
   - 114: {fileID: 11400138}
-  - 114: {fileID: 11400182}
-  - 114: {fileID: 11400180}
   - 114: {fileID: 11400184}
-  - 114: {fileID: 11400194}
-  - 114: {fileID: 11400210}
-  - 114: {fileID: 11400208}
-  - 114: {fileID: 11400206}
-  - 114: {fileID: 11400214}
-  - 114: {fileID: 11400212}
-  - 114: {fileID: 11400244}
-  - 114: {fileID: 11400246}
   - 114: {fileID: 11400248}
+  - 114: {fileID: 11400018}
   m_Layer: 0
   m_Name: HeavyRange
   m_TagString: Untagged
@@ -600,17 +582,10 @@ MonoBehaviour:
   IsPassive: 0
   Movable: 1
   _skillEffects:
-  - {fileID: 11400128}
-  - {fileID: 11400208}
-  - {fileID: 11400050}
   - {fileID: 11400012}
-  - {fileID: 11400136}
-  - {fileID: 11400206}
-  _proSkillEffects:
-  - {fileID: 11400130}
-  - {fileID: 11400244}
-  _skillEffectsOrder: 000000000100000002000000030000000300000004000000
-  _proSkillEffectsOrder: 0100000000000000
+  _proSkillEffects: []
+  _skillEffectsOrder: 00000000
+  _proSkillEffectsOrder: 
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -624,8 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
-  ActivateConditions:
-  - {fileID: 11400134}
+  ActivateConditions: []
   BoolParameterName: Skill4
   _animationDuration: .400000006
   _animationEventMessages: []
@@ -679,13 +653,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c8d90af3c3b4344ae88afdfc8638c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a6724143802ca54b92d97a8266c65d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
   Skill: {fileID: 0}
-  ActivateConditions:
-  - {fileID: 11400134}
+  ActivateConditions: []
   PrefabSpawner: {fileID: 11400014}
   Position: {fileID: 11400184}
   ShootAngle: 0
@@ -903,8 +876,8 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 0
-  KnockBackSpeed: 20
-  Time: .200000003
+  KnockBackSpeed: 30
+  Time: .300000012
   PositionIndicator: {fileID: 11400190}
 --- !u!114 &11400046
 MonoBehaviour:
@@ -942,29 +915,6 @@ MonoBehaviour:
   ActivateConditions: []
   clip: 20
   volume: 1
---- !u!114 &11400050
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77094f8027071bb4eb2abf3e5249f42b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  _button: {fileID: 11400182}
-  _onHoldFinishEventMessages: []
-  _loopEventMessages: []
-  _loopEventMessagesSendTime: []
-  _loopSkillEffects:
-  - {fileID: 11400246}
-  _loopSkillEffectsActivateTime:
-  - .25
-  TimePerLoop: .5
 --- !u!114 &11400052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1554,82 +1504,6 @@ MonoBehaviour:
   ActivateConditions: []
   clip: 11
   volume: 1
---- !u!114 &11400128
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  BoolParameterName: Charge
---- !u!114 &11400130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72457b39cd979374090d003b81b7b026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions:
-  - {fileID: 11400132}
-  Skills:
-  - {fileID: 11400010}
---- !u!114 &11400132
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57dbd4586f94252448d33dc102cd3692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  SkillEffect: {fileID: 0}
-  TimeBelow: .5
---- !u!114 &11400134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69d8d501392174646b61990124f844d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  SkillEffect: {fileID: 0}
-  TimeAbove: .5
---- !u!114 &11400136
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions:
-  - {fileID: 11400132}
-  BoolParameterName: ChargeFail
 --- !u!114 &11400138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1642,45 +1516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: SkillCoolDown
-  DispatchInterval: 5
---- !u!114 &11400140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2c6762ae2b51f41b86fff92579fd24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  TargetTags:
-  - Player
-  TargetPhysicalLayers: 0e000000
-  HasApplyCoolDown: 0
-  ApplyCooldown: 0
-  OneTimeOnlyPerTarget: 0
-  SpeedChanger: {fileID: 11400194}
---- !u!114 &11400142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fc8074e212445499d0a175f1d3ed29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  TargetTags:
-  - Player
-  TargetPhysicalLayers: 0e000000
-  HasApplyCoolDown: 0
-  ApplyCooldown: 0
-  OneTimeOnlyPerTarget: 0
-  SpeedChanger: {fileID: 11400194}
+  DispatchInterval: 12
 --- !u!114 &11400144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1733,7 +1569,7 @@ MonoBehaviour:
   - {fileID: 11400238}
   Targets: []
   Range: 20
-  RayAngleRandomness: 20
+  RayAngleRandomness: 10
   PositionIndicator: {fileID: 11400186}
   ProjectilePrefab: 25
 --- !u!114 &11400150
@@ -1751,7 +1587,7 @@ MonoBehaviour:
   Skill: {fileID: 0}
   ActivateConditions: []
   SkillEffect: {fileID: 11400118}
-  RepeatTime: 7
+  RepeatTime: 11
   RepeatCooldown: 0
 --- !u!114 &11400152
 MonoBehaviour:
@@ -1800,7 +1636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
-  DispatchInterval: 8
+  DispatchInterval: 9
 --- !u!114 &11400158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1951,33 +1787,6 @@ MonoBehaviour:
   LabelName: HorizontalAxis
   KeyCodes: 0100000003000000
   CoolDownTimeDispatcher: {fileID: 11400160}
---- !u!114 &11400180
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cca07093fbb9df409856520120cdfe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: ButtonCooldown
-  DispatchInterval: 0
---- !u!114 &11400182
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44271527e711b1843a3489003b3e5570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  KeyCodes: 07000000
-  CoolDownTimeDispatcher: {fileID: 11400180}
 --- !u!114 &11400184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2048,36 +1857,6 @@ MonoBehaviour:
   LabelName: 
   Follower: {fileID: 0}
   Position: {fileID: 400010}
---- !u!114 &11400194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4f432f6aca2c5429a318036df86c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: SpeedChanger
-  Owner: {fileID: 100018}
-  TargetValueType: 0
-  OneTimeDurationType: 2
-  IntervalDurationType: 0
-  ChangeType: 1
-  Stackable: 0
-  NonStackableLabel: 0
-  _amount: -.5
-  AmountVariantPercentage: 0
-  ChangeDuration: 0
-  ChangeInterval: 1
-  CriticalChance: 0
-  CriticalPercentage: 2
-  InitialChangeDuration: 0
-  InitialChangeInterval: 0
-  InitialCriticalChance: 0
-  InitialCriticalPercentage: 0
-  InitialAmount: 0
 --- !u!114 &11400196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2115,12 +1894,12 @@ MonoBehaviour:
   ChangeType: 0
   Stackable: 0
   NonStackableLabel: 0
-  _amount: -5
+  _amount: -4
   AmountVariantPercentage: 0
   ChangeDuration: 0
   ChangeInterval: 1
   CriticalChance: 0
-  CriticalPercentage: 1.29999995
+  CriticalPercentage: 1.5
   InitialChangeDuration: 0
   InitialChangeInterval: 0
   InitialCriticalChance: 0
@@ -2204,88 +1983,6 @@ MonoBehaviour:
   InitialValue: 10
   PositiveChangeEmphasizePercentage: 0
   NegativeChangeEmphasizePercentage: 0
---- !u!114 &11400206
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: SpeedUnchange
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  TargetFinder: {fileID: 11400212}
---- !u!114 &11400208
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7ed5c2df61a574cb6b1b22eafab768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: SpeedChange
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  TargetFinder: {fileID: 11400214}
---- !u!114 &11400210
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b88688a14417c0e4fbfac1fc19cf10f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: SelfFinderIndicator
-  Follower: {fileID: 0}
-  Position: {fileID: 400020}
---- !u!114 &11400212
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a026caf44bb0340a4d0a9e05d8fbde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: UnchangeSpeed
-  TargetTags:
-  - Player
-  TargetPhysicalLayers: 0e000000
-  TargetEffectAppliers:
-  - {fileID: 11400140}
-  Targets: []
-  Target: {fileID: 100018}
---- !u!114 &11400214
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a026caf44bb0340a4d0a9e05d8fbde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: ChangeSpeed
-  TargetTags:
-  - Player
-  TargetPhysicalLayers: 0e000000
-  TargetEffectAppliers:
-  - {fileID: 11400142}
-  Targets: []
-  Target: {fileID: 100018}
 --- !u!114 &11400216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2524,38 +2221,6 @@ MonoBehaviour:
   RayAngleRandomness: 0
   PositionIndicator: {fileID: 0}
   ProjectilePrefab: 25
---- !u!114 &11400244
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f47c7e35f7c4c3d468dac2cac11f0716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: ChargeFail
-  Skill: {fileID: 0}
-  ActivateConditions: []
-  BoolParameterName: ChargeFail
---- !u!114 &11400246
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc086c34e4e382c4c9debda9b2d43026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
-  Skill: {fileID: 0}
-  ActivateConditions:
-  - {fileID: 11400134}
-  Prefab: 39
-  PositionIndicator: {fileID: 11400184}
 --- !u!114 &11400248
 MonoBehaviour:
   m_ObjectHideFlags: 1
