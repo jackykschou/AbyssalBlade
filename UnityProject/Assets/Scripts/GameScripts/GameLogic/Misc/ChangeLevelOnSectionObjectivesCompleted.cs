@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
+using Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section;
 using Assets.Scripts.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
-    public class ChangeLevelOnObjectDestroy : GameLogic
+    public class ChangeLevelOnSectionObjectivesCompleted : SectionLogic
     {
         public Prefab LevelPrefab;
         [Range(0, 100f)]
@@ -19,14 +20,20 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
             _levelChanged = false;
         }
 
-        [Attributes.GameScriptEvent(GameScriptEvent.OnObjectDestroyed)]
-        public void OnObjectHasNoHitPoint()
+        [Attributes.GameEvent(GameEvent.OnSectionObjectivesCompleted)]
+        public void OnSectionObjectivesCompleted(int sectionId)
         {
-            if (!_levelChanged)
+            if (!_levelChanged && sectionId == SectionId)
             {
                 _levelChanged = true;
-                GameManager.Instance.ChangeLevel(LevelPrefab);
+                StartCoroutine(ChangeLevel());
             }
+        }
+
+        IEnumerator ChangeLevel()
+        {
+            yield return new WaitForSeconds(Delay);
+            GameManager.Instance.ChangeLevel(LevelPrefab);
         }
 
         protected override void Deinitialize()
