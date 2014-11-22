@@ -16,69 +16,22 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         public Transform Icon;
         public Transform Highlight;
 
-        private Image fillImage;
-        private Image iconImage;
-        private Image highlightImage;
-        private bool highlight;
-        private float highlightDuration;
-        private float origHighlightDuration;
-        private int highlightedSkill;
-        private bool ON;
+        private Image _buttonIconImage;
+        private Image _buttonIconImageHighlight;
 
         protected override void Initialize()
         {
             base.Initialize();
-            fillImage = Fill.GetComponent<Image>();
             CooldownBar = GetComponent<Slider>();
             if(Icon)
-                iconImage = Icon.GetComponent<Image>();
+                _buttonIconImage = Icon.GetComponent<Image>();
             if(Highlight)
-                highlightImage = Highlight.GetComponent<Image>();
-            highlight = false;
-            origHighlightDuration = 0.0f;
-            highlightedSkill = -1;
-            ON = false;
+                _buttonIconImageHighlight = Highlight.GetComponent<Image>();
         }
 
         protected override void Deinitialize()
         {
-            highlight = false;
-            highlightDuration = 0.0f;
-            highlightedSkill = -1;
-            if(highlightImage != null)
-                highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 0.0f);
-            if (iconImage != null)
-                iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-            if (SkillId == highlightedSkill)
-            {
-                if (highlight)
-                {
-                    if (highlightDuration < 0.0f)
-                    {
-                        ON = !ON;
-                        highlightDuration = origHighlightDuration;
-                    }
-                    if (highlightImage != null)
-                    {
-                        if (ON)
-                        {
-                            highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 0.0f);
-                            iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
-                        }
-                        else
-                        {
-                            highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 1.0f);
-                            iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 1.0f);
-                        }
-                    }
-                    highlightDuration -= Time.deltaTime;
-                }
-            }
+            DisableHighlight(SkillId);
         }
 
         [GameEventAttribute(GameEvent.OnPlayerSkillCoolDownUpdate)]
@@ -90,45 +43,38 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             }
         }
 
-        [GameEventAttribute(GameEvent.DisableAbility)]
-        public void DisableAbility(int id)
-        {
-            if (id == SkillId)
-            {
-                if (fillImage != null)
-                    fillImage.color = new Color(fillImage.color.r, fillImage.color.g, fillImage.color.b, 0.0f);
-            }
-        }
-
-        [GameEventAttribute(GameEvent.EnableAbility)]
-        public void EnableAbility(int id)
-        {
-            if (id == SkillId)
-            {
-                if (fillImage != null)
-                    fillImage.color = new Color(fillImage.color.r, fillImage.color.g, fillImage.color.b, 1.0f);
-            }
-        }
-
         [GameEventAttribute(GameEvent.EnableHighlightSkill)]
         public void EnableHighlight(int id, float origHighlightDuration)
         {
-            highlight = true;
-            highlightedSkill = id;
-            highlightDuration = origHighlightDuration;
-            this.origHighlightDuration = origHighlightDuration;
+            if (id == SkillId)
+            {
+                if (_buttonIconImageHighlight != null && _buttonIconImage != null)
+                {
+
+                    _buttonIconImageHighlight.color = new Color(_buttonIconImageHighlight.color.r,
+                                                                _buttonIconImageHighlight.color.g,
+                                                                _buttonIconImageHighlight.color.b, 1.0f);
+                    _buttonIconImage.color = new Color(_buttonIconImage.color.r,
+                                                       _buttonIconImage.color.g,
+                                                       _buttonIconImage.color.b, 1.0f);
+                }
+            }
         }
 
         [GameEventAttribute(GameEvent.DisableHighlightSkill)]
         public void DisableHighlight(int id)
         {
-            highlight = false;
-            highlightDuration = 0.0f;
-            highlightedSkill = -1;
-            if (highlightImage != null)
+            if (id == SkillId)
             {
-                highlightImage.color = new Color(highlightImage.color.r, highlightImage.color.g, highlightImage.color.b, 0.0f);
-                iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.0f);
+                if (_buttonIconImageHighlight != null && _buttonIconImage != null)
+                {
+                    _buttonIconImageHighlight.color = new Color(_buttonIconImageHighlight.color.r, 
+                                                                _buttonIconImageHighlight.color.g,
+                                                                _buttonIconImageHighlight.color.b, 0.0f);
+                    _buttonIconImage.color = new Color(_buttonIconImage.color.r, 
+                                                       _buttonIconImage.color.g, 
+                                                       _buttonIconImage.color.b, 0.0f);
+                }
             }
         }
     }
