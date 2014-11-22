@@ -45,6 +45,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Skills.SkillEffects.SpawnEffect
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateProjectileDestination, (Vector2)Skill.Caster.Target.transform.position);
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateGameValueChangerOwner, Skill.Caster.gameObject);
                 o.TriggerGameScriptEvent(GameScriptEvent.UpdateGameValueOwner, Skill.Caster.gameObject);
+                TriggerGameScriptEvent(GameScriptEvent.HeavyChargeShootCritChangeAndDamageUpdate, o);
                 o.TriggerGameScriptEvent(GameScriptEvent.ShootProjectile);
             });
         }
