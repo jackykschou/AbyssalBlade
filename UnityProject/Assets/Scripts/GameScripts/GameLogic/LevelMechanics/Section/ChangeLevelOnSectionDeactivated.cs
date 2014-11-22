@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Assets.Scripts.Constants;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
@@ -23,7 +24,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         public override void OnSectionDeactivated(int sectionId)
         {
             base.OnSectionDeactivated(sectionId);
-            if (sectionId == SectionId && !_levelChanged)
+            if (sectionId == SectionId && !_levelChanged && !GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
                 _levelChanged = true;
                 StartCoroutine(ChangeLevel());

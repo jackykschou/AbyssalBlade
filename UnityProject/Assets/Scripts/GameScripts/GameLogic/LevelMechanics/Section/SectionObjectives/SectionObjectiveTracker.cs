@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
@@ -30,10 +32,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
 
         public void TrackObjective()
         {
-            if (Objectives.All(o => o.ObjectiveCompleted()))
+            if (GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
-                TriggerGameEvent(GameEvent.OnSectionObjectivesCompleted, SectionId);
                 CancelInvoke();
+                return;
+            }
+            if (Objectives.All(o => o.ObjectiveCompleted()) && !GameScriptEventManager.Destroyed)
+            {
+                CancelInvoke();
+                TriggerGameEvent(GameEvent.OnSectionObjectivesCompleted, SectionId);
             }
         }
 
