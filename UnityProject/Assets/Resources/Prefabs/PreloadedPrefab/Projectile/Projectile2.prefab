@@ -214,7 +214,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 1
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400014}
 --- !u!114 &11400014
 MonoBehaviour:
@@ -241,6 +240,11 @@ MonoBehaviour:
   ChangeInterval: 1
   CriticalChance: 0
   CriticalPercentage: 2
+  InitialChangeDuration: 0
+  InitialChangeInterval: 0
+  InitialCriticalChance: 0
+  InitialCriticalPercentage: 0
+  InitialAmount: 0
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,7 +302,6 @@ MonoBehaviour:
   HasApplyCoolDown: 0
   ApplyCooldown: 0
   OneTimeOnlyPerTarget: 1
-  TargetFinder: {fileID: 0}
   GameValueChanger: {fileID: 11400014}
 --- !u!114 &11400024
 MonoBehaviour:
