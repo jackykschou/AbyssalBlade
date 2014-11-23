@@ -8,10 +8,8 @@ namespace Assets.Scripts.Constants
         {
             "You can interrupt the actions of enemies by hitting them hard enough",
             "Shotgun can knock back enemies",
-            "Use your heavy attack wisely, they have a long cooldown",
-            "This game is created by The Nerd Herd",
+            "Use your heavy attacks wisely, they have a long cooldown",
             "You are invincible during dashing",
-            "The longer you hold your charge attack, the more powerful it will be"
         };
     }
 }
