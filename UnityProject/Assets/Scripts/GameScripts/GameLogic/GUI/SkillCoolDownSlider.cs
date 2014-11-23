@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts.GameScripts.GameLogic.Misc;
+using Assets.Scripts.GameScripts.GameLogic.Skills;
+using UnityEngine;
 using UnityEngine.UI;
 
 using GameEvent = Assets.Scripts.Constants.GameEvent;
@@ -15,6 +19,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         public Transform Fill;
         public Transform Icon;
         public Transform Highlight;
+        public FixTimeDispatcher SkillCooldownFixTimeDispatcher;
+        public Text SkillTimerText; 
 
         private Image _buttonIconImage;
         private Image _buttonIconImageHighlight;
@@ -40,6 +46,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             if (id == SkillId)
             {
                 CooldownBar.value = percentage;
+                if (SkillCooldownFixTimeDispatcher == null)
+                    return;
+                if (SkillCooldownFixTimeDispatcher.CanDispatch() || percentage >= .99f)
+                    SkillTimerText.text = "";
+                else
+                    SkillTimerText.text = (SkillCooldownFixTimeDispatcher.DispatchInterval - (SkillCooldownFixTimeDispatcher.DispatchInterval * CooldownBar.value)).ToString("#.##") + "s";
             }
         }
 
