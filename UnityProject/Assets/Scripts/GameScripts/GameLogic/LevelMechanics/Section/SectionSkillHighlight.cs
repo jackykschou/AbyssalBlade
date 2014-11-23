@@ -17,6 +17,16 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         {
         }
 
+        [GameEventAttribute(GameEvent.OnLevelEnded)]
+        public void LevelEnded()
+        {
+            for (int i = 0; i <= 5; i++)
+            {
+                TriggerGameEvent(GameEvent.EnableAbility, i);
+                TriggerGameEvent(GameEvent.DisableHighlightSkill, i);
+            }
+        }
+
         public override void OnSectionActivated(int sectionId)
         {
             base.OnSectionActivated(sectionId);
