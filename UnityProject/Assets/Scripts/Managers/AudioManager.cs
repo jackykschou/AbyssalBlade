@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Configuration;
 using Assets.Scripts.Constants;
 using System.Collections.Generic;
-using StateMachine.Action.UnityVector3;
 using UnityEngine;
 using Assets.Scripts.Utility;
-using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.Managers
 {

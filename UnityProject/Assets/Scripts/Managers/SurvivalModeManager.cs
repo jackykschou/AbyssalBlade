@@ -100,6 +100,7 @@ namespace Assets.Scripts.Managers
             TriggerGameEvent(GameEvent.SurvivalDifficultyIncreased, CurrentDifficulty++);
             GameManager.Instance.Difficulity = CurrentDifficulty;
             TriggerGameEvent(GameEvent.SurvivalSectionStarted);
+            TriggerGameEvent(GameEvent.WaveCountIncreased,CurrentDifficulty-1);
             if (AstarPath.active != null)
             {
                 AstarPath.active.Scan();
