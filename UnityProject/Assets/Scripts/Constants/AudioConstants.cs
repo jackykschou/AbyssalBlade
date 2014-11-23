@@ -123,7 +123,6 @@ namespace Assets.Scripts.Constants
         Sword_Shing_4       = 81,
         Charged_Shot        = 82,
         MenuAndSceneMusic   = 83,
-
         Flying_Enemy_Attack = 84,
         Flying_Enemy_Attack_2 = 85,
         Flying_Enemy_Death = 86,

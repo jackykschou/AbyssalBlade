@@ -40,6 +40,7 @@
         SurvivalSectionStarted,          // void()
         SurvivalSectionEnded,             // void()
         SurvivalDifficultyIncreased,      //void(int)
-        OnPlayerSkillPressed          // void (int)
+        OnPlayerSkillPressed,          // void (int)
+        WaveCountIncreased              // void (int)
      };
 }
