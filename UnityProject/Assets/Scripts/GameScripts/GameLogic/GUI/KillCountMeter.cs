@@ -1,25 +1,25 @@
-﻿using System.Runtime.InteropServices;
-using Assets.Scripts.Managers;
-using StateMachine.Action;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
 namespace Assets.Scripts.GameScripts.GameLogic.GUI
 {
-    [RequireComponent(typeof(Text))]
     public class KillCountMeter : GameLogic
     {
-        private Text text;
-        private int currentKillCount;
+        public Text KillCountText;
+        public Text WaveCountText;
+        private int _currentKillCount;
+        private int _currentWaveNumber;
 
         protected override void Initialize()
         {
             base.Initialize();
-            text = GetComponent<Text>();
-            currentKillCount = 0;
-            text.text = currentKillCount.ToString();
+            _currentKillCount = 0;
+            _currentWaveNumber = 0;
+            if(KillCountText != null)
+                KillCountText.text = _currentKillCount.ToString();
+            if (WaveCountText != null)
+                WaveCountText.text = _currentWaveNumber.ToString();
         }
 
         protected override void Deinitialize()
@@ -29,15 +29,17 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         [GameEventAttribute(GameEvent.OnSectionEnemyDespawned)]
         public void IncreaseCount(int sectionId)
         {
-            currentKillCount++;
-            text.text = currentKillCount.ToString();
+            _currentKillCount++;
+            if (KillCountText != null)
+                KillCountText.text = _currentKillCount.ToString();
         }
 
-        [GameEventAttribute(GameEvent.OnLevelStarted)]
-        public void Reset()
+        [GameEventAttribute(GameEvent.WaveCountIncreased)]
+        public void WaveCountUpdate(int count)
         {
-            currentKillCount = 0;
-            text.text = currentKillCount.ToString();
+            _currentWaveNumber = count;
+            if (WaveCountText != null)
+                WaveCountText.text = _currentWaveNumber.ToString();
         }
     }
 }
