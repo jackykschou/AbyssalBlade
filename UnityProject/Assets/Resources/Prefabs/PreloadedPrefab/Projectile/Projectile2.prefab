@@ -38,7 +38,6 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400012}
-  - 114: {fileID: 11400016}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400034}
   - 114: {fileID: 11400036}
@@ -47,6 +46,7 @@ GameObject:
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400032}
   - 114: {fileID: 11400010}
+  - 114: {fileID: 11400030}
   m_Layer: 11
   m_Name: Projectile2
   m_TagString: Untagged
@@ -245,18 +245,6 @@ MonoBehaviour:
   InitialCriticalChance: 0
   InitialCriticalPercentage: 0
   InitialAmount: 0
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LabelName: 
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,6 +329,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cceacee09b8e973488821a45787a044a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+--- !u!114 &11400030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94e3756755457d4182663a1f94a123e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LabelName: 
