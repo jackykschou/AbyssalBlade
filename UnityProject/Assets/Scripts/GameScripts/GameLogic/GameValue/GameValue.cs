@@ -15,6 +15,9 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         public float InitialMaxValue;
         public float InitialValue;
 
+        private float _initialPositiveChangeEmphasizePercentage;
+        private float _initialNegativeChangeEmphasizePercentage;
+
         [Range(0f, 10f)]
         public float PositiveChangeEmphasizePercentage;
         [Range(0f, 10f)]
@@ -93,6 +96,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         protected override void FirstTimeInitialize()
         {
             base.FirstTimeInitialize();
+            _initialPositiveChangeEmphasizePercentage = PositiveChangeEmphasizePercentage;
+            _initialNegativeChangeEmphasizePercentage = NegativeChangeEmphasizePercentage;
             if (Owner == null)
             {
                 Owner = gameObject;
@@ -103,6 +108,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GameValue
         {
             _valueTempChangeValueCache = new List<GameValueChanger>();
             _nonStackableTypeCache = new List<GameValueChanger.NonStackableType>();
+            PositiveChangeEmphasizePercentage = _initialPositiveChangeEmphasizePercentage;
+            NegativeChangeEmphasizePercentage = _initialNegativeChangeEmphasizePercentage;
             if (Mathf.Approximately(InitialMaxValue, 0) && Mathf.Approximately(InitialMinValue, 0) &&
                 Mathf.Approximately(InitialValue, 0))
             {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using GameEvent = Assets.Scripts.Constants.GameEvent;
 using GameEventAttribute = Assets.Scripts.Attributes.GameEvent;
 
@@ -7,11 +8,23 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
     [AddComponentMenu("LevelMechanics/Section/SectionSkillHighlight")]
     public class SectionSkillHighlight : SectionLogic
     {
-        public int SkillToHighlight;
-        private const float Duration = .5f;
+        public List<int> SkillsToHighlight;
+        public bool ResetOnDeactivate = true;
+        private const float Duration = .6f;
+
 
         protected override void Deinitialize()
         {
+        }
+
+        [GameEventAttribute(GameEvent.OnLevelEnded)]
+        public void LevelEnded()
+        {
+            for (int i = 0; i <= 5; i++)
+            {
+                TriggerGameEvent(GameEvent.EnableAbility, i);
+                TriggerGameEvent(GameEvent.DisableHighlightSkill, i);
+            }
         }
 
         public override void OnSectionActivated(int sectionId)
@@ -19,7 +32,13 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             base.OnSectionActivated(sectionId);
             if (SectionId == sectionId)
             {
-                TriggerGameEvent(GameEvent.EnableHighlightSkill, SkillToHighlight, Duration);
+                for(int i = 0; i <= 5; i++)
+                    TriggerGameEvent(GameEvent.DisableHighlightSkill, i);
+                foreach (int skillId in SkillsToHighlight)
+                {
+                    TriggerGameEvent(GameEvent.EnableAbility, skillId);
+                    TriggerGameEvent(GameEvent.EnableHighlightSkill, skillId, Duration);
+                }
             }
         }
 
@@ -28,9 +47,14 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             base.OnSectionDeactivated(sectionId);
             if (SectionId == sectionId)
             {
-                TriggerGameEvent(GameEvent.DisableHighlightSkill, SkillToHighlight);
+                if (ResetOnDeactivate)
+                {
+                    foreach (int skillId in SkillsToHighlight)
+                    {
+                        TriggerGameEvent(GameEvent.DisableHighlightSkill, skillId);
+                    }
+                }
             }
         }
-
     }
 }
