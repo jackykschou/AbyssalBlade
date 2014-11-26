@@ -3,9 +3,7 @@
     //Add more events here, please specify the signiture of the event
     public enum GameEvent
     {
-#if DEBUG
         ExampleEvent,                           // void()
-#endif
         OnSectionActivated,                     // void(int)
         OnSectionDeactivated,                   // void(int)
         OnSectionObjectivesCompleted,           // void(int)
