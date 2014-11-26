@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
 {
-    [RequireComponent(typeof(Collider2D))]
     public class SectionGateBlock : SectionLogic
     {
         public Collider2D BlockCollider;
@@ -13,7 +12,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
             base.FirstTimeInitialize();
             base.Initialize();
             gameObject.layer = LayerMask.NameToLayer(LayerConstants.LayerNames.StaticObstacle);
-            BlockCollider = GetComponent<Collider2D>();
+            if (BlockCollider == null)
+            {
+                BlockCollider = GetComponent<Collider2D>();
+            }
             BlockCollider.isTrigger = false;
         }
 
