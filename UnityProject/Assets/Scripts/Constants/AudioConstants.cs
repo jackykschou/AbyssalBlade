@@ -449,10 +449,10 @@ namespace Assets.Scripts.Constants
             // level 1 loop
             List<ClipName> Level_1_LevelLoop = new List<ClipName>
             {
-                ClipName.Level_1_Basic,
-                //ClipName.Level_1_Light,
+                ClipName.Level_1_Light,
                 ClipName.Level_1_Medium,
-                ClipName.Level_1_Heavy
+                ClipName.Level_1_Heavy,
+                ClipName.Level_1_Basic,
             };
             AudioManager.Instance.CreateLevelLoop(LoopName.Level_1_LevelLoop, Level_1_LevelLoop);
 

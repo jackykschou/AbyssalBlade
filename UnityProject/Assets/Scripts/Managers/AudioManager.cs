@@ -463,6 +463,8 @@ namespace Assets.Scripts.Managers
             public ClipName mediumClip;
             private AudioSource heavySource;
             public ClipName heavyClip;
+            private AudioSource backgroundSource;
+            public ClipName backgroundClip;
 
             private double nextEventTime;
 
@@ -472,6 +474,9 @@ namespace Assets.Scripts.Managers
                 lightClip = clips[0];
                 mediumClip = clips[1];
                 heavyClip = clips[2];
+                if(clips.Count > 3)
+                    backgroundClip = clips[3];
+
                 sources = new List<AudioSource>();
                 lightSource = GameObject.Find("SourceHolder").AddComponent("AudioSource") as AudioSource;
                 lightSource.clip = Instance.findClip(lightClip);
@@ -493,6 +498,16 @@ namespace Assets.Scripts.Managers
                 heavySource.loop = true;
                 heavySource.playOnAwake = false;
                 sources.Add(heavySource);
+
+                if (clips.Count > 3)
+                {
+                    backgroundSource = GameObject.Find("SourceHolder").AddComponent("AudioSource") as AudioSource;
+                    backgroundSource.clip = Instance.findClip(backgroundClip);
+                    backgroundSource.volume = 1.0f;
+                    backgroundSource.loop = true;
+                    backgroundSource.playOnAwake = false;
+                    sources.Add(backgroundSource);
+                }
 
             }
             public void Play()
@@ -517,27 +532,33 @@ namespace Assets.Scripts.Managers
                 if (!mediumSource || !heavySource || !running)
                     return;
                 if (mediumSource.volume > .99f)
-                    Instance.StartCoroutine(this.FadeOut(mediumSource));
+                    Instance.StartCoroutine(FadeOut(mediumSource));
                 if (heavySource.volume > .99f)
-                    Instance.StartCoroutine(this.FadeOut(heavySource));
+                    Instance.StartCoroutine(FadeOut(heavySource));
+                if (sources.Count > 3 && lightSource.volume < .01f)
+                    Instance.StartCoroutine(FadeIn(lightSource));
             }
             public void EnableMedium()
             {
                 if (!mediumSource || !heavySource || !running)
                     return;
                 if (mediumSource.volume < .01f)
-                    Instance.StartCoroutine(this.FadeIn(mediumSource));
+                    Instance.StartCoroutine(FadeIn(mediumSource));
                 if (heavySource.volume > .99f)
-                    Instance.StartCoroutine(this.FadeOut(heavySource));
+                    Instance.StartCoroutine(FadeOut(heavySource));
+                if (sources.Count > 3 && lightSource.volume > .99f)
+                    Instance.StartCoroutine(FadeOut(lightSource));
             }
             public void EnableHeavy()
             {
                 if (!mediumSource || !heavySource || !running)
                     return;
                 if(mediumSource.volume > .99f)
-                    Instance.StartCoroutine(this.FadeOut(mediumSource));
+                    Instance.StartCoroutine(FadeOut(mediumSource));
                 if(heavySource.volume < .01f)
-                    Instance.StartCoroutine(this.FadeIn(heavySource));
+                    Instance.StartCoroutine(FadeIn(heavySource));
+                if (sources.Count > 3 && lightSource.volume > .99f)
+                    Instance.StartCoroutine(FadeOut(lightSource));
             }
 
             public IEnumerator FadeIn(AudioSource s)
