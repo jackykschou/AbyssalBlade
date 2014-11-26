@@ -12,8 +12,10 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
     public class SectionObjectiveTracker : SectionLogic
     {
         public List<SectionObjective> Objectives;
-        private const float StartTrackObjectivesDelay = 1.5f;
         private const float TrackObjectivesInterval = 1.0f;
+
+        private bool _startTracking;
+        private float _trackTimer;
 
         [GameEventAttribute(GameEvent.OnLevelEnded)]
         public void OnLevelEnded()
@@ -26,21 +28,38 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
             base.OnSectionActivated(sectionId);
             if (sectionId == SectionId)
             {
-                InvokeRepeating("TrackObjective", StartTrackObjectivesDelay, TrackObjectivesInterval);
+                _startTracking = true;
             }
         }
 
         public void TrackObjective()
         {
+            Debug.Log("Tracking Objective......");
             if (GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
-                CancelInvoke();
+                _startTracking = false;
                 return;
             }
             if (Objectives.All(o => o.ObjectiveCompleted()) && !GameScriptEventManager.Destroyed)
             {
-                CancelInvoke();
+                Debug.Log("Objective Completed");
+                _startTracking = false;
+                _trackTimer = 0f;
                 TriggerGameEvent(GameEvent.OnSectionObjectivesCompleted, SectionId);
+            }
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            if (_startTracking && _trackTimer >= TrackObjectivesInterval)
+            {
+                _trackTimer = 0f;
+                TrackObjective();
+            }
+            else if (_startTracking)
+            {
+                _trackTimer += Time.deltaTime;
             }
         }
 
@@ -48,6 +67,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
         {
             base.FirstTimeInitialize();
             Objectives = GetComponents<SectionObjective>().ToList();
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            _startTracking = false;
         }
 
         protected override void Deinitialize()
