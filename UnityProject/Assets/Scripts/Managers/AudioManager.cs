@@ -535,6 +535,8 @@ namespace Assets.Scripts.Managers
                     Instance.StartCoroutine(FadeOut(mediumSource));
                 if (heavySource.volume > .99f)
                     Instance.StartCoroutine(FadeOut(heavySource));
+                if (sources.Count > 3 && lightSource.volume < .01f)
+                    Instance.StartCoroutine(FadeIn(lightSource));
             }
             public void EnableMedium()
             {
@@ -544,6 +546,8 @@ namespace Assets.Scripts.Managers
                     Instance.StartCoroutine(FadeIn(mediumSource));
                 if (heavySource.volume > .99f)
                     Instance.StartCoroutine(FadeOut(heavySource));
+                if (sources.Count > 3 && lightSource.volume > .99f)
+                    Instance.StartCoroutine(FadeOut(lightSource));
             }
             public void EnableHeavy()
             {
@@ -553,6 +557,8 @@ namespace Assets.Scripts.Managers
                     Instance.StartCoroutine(FadeOut(mediumSource));
                 if(heavySource.volume < .01f)
                     Instance.StartCoroutine(FadeIn(heavySource));
+                if (sources.Count > 3 && lightSource.volume > .99f)
+                    Instance.StartCoroutine(FadeOut(lightSource));
             }
 
             public IEnumerator FadeIn(AudioSource s)
