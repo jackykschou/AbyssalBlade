@@ -45,7 +45,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Health
         }
 
         [Attributes.GameScriptEvent(GameScriptEvent.ObjectChangeHealth)]
-        public virtual void ChangeHealthFixed(GameValueChanger healthChanger)
+        public virtual void ChangeHealth(GameValueChanger healthChanger)
         {
             if ((Invincible && healthChanger.RawAmount < 0f) || HitPointAtZero || Mathf.Approximately(0f, healthChanger.RawAmount))
             {

@@ -22,6 +22,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         [Attributes.GameEvent(Constants.GameEvent.OnLevelFinishedLoading)]
         public void OnLevelFinishedLoading()
         {
+            //hacky code
             AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
         }
 
@@ -29,6 +30,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         public void GateActivated()
         {
             Collider2D.enabled = true;
+            //hacky code
             AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
         }
 
@@ -37,6 +39,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.Misc
         public void OnLevelEnded()
         {
             Collider2D.enabled = false;
+            //hacky code
             AstarPath.active.UpdateGraphs(new Bounds(Collider2D.bounds.center, new Vector3(10, 10, 10)));
         }
         

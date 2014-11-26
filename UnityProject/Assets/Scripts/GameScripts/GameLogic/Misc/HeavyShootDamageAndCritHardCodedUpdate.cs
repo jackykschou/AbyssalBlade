@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameScripts.GameLogic.Misc
 {
+    //hacky code
     [AddComponentMenu("Misc/HeavyShootDamageAndCritHardCodedUpdate")]
     public class HeavyShootDamageAndCritHardCodedUpdate : GameLogic
     {

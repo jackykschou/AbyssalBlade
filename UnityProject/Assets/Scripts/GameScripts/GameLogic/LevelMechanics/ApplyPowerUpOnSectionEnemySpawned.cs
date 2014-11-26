@@ -31,6 +31,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics
         [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
         public void UpdateMaxApplierTime(int difficulty)
         {
+            //hacky code
             MaxApplierTime += (int)(0.35f * difficulty);
         }
 

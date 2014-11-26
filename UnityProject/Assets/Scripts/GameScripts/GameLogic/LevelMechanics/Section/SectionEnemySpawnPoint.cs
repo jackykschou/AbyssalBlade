@@ -149,6 +149,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section
         [Attributes.GameEvent(GameEvent.SurvivalDifficultyIncreased)]
         public void SurvivalDifficultyIncreased(int difficulty)
         {
+            //hacky code
             PrefabSpawner.NumberOfSpawn += (int)(PrefabSpawner.NumberOfSpawn * 0.1f * difficulty);
             PrefabSpawner.LimitSpawnValue += (int)(PrefabSpawner.LimitSpawnValue * 0.1f * difficulty);
         }
