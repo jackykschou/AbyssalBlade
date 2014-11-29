@@ -3,6 +3,7 @@ using Assets.Scripts.Attributes;
 using Assets.Scripts.Constants;
 using Assets.Scripts.GameScripts.GameLogic.Input;
 using Assets.Scripts.Managers;
+using StateMachine.Action.UNavMeshAgent;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         private AxisOnHold AxisOnHold;
         [SerializeField]
         private ButtonOnPressed OptionsButton;
+        [SerializeField] 
+        private ButtonOnPressed SubmitButton;
 
         private EventSystem _eventSystem;
         private Selectable _resumeButton;
@@ -38,6 +41,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             _quitButton = GameObject.Find("QuitButtonOptions").GetComponent<Selectable>();
             _buttons.Add(_quitButton);
             _curSelectedIndex = 0;
+            _paused = false;
             HideMenu();
         }
 
@@ -45,6 +49,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         {
             base.Update();
 
+            // Handle Pause Button
             if (OptionsButton.Detect())
             {
                 _paused = !_paused;
@@ -57,6 +62,26 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
             if (!_paused) 
                 return;
 
+
+            // Handle Submit
+            if (SubmitButton.Detect())
+            {
+                Selectable selected = _eventSystem.currentSelectedGameObject.GetComponent<Selectable>();
+                if (selected == _resumeButton)
+                {
+                    OnResumePressed();
+                }
+                else if (selected == _menuButton)
+                {
+                    OnMenuPressed();
+                }
+                else if (selected == _quitButton)
+                {
+                    OnQuitPressed();
+                }
+            }
+
+            // Handle Joystick
             if (AxisOnHold.Detect())
             {
                 if (AxisOnHold.GetAxisValue() > 0.0f)
@@ -65,13 +90,15 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                     GoUp();
                 SelectButton();
             }
-
         }
 
         private void ShowMenu()
         {
             TriggerGameEvent(Constants.GameEvent.DisablePlayerCharacter);
+            _curSelectedIndex = 0;
             _optionsBG.SetActive(true);
+            _eventSystem.SetSelectedGameObject(null, new BaseEventData(_eventSystem));
+            _eventSystem.SetSelectedGameObject(_resumeButton.gameObject, new BaseEventData(_eventSystem));
         }
         private void HideMenu()
         {
@@ -117,6 +144,7 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
         protected override void Deinitialize()
         {
             _curSelectedIndex = 0;
+            _paused = false;
             SelectButton();
         }
     }
