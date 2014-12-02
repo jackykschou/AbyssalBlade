@@ -34,7 +34,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
 
         public void TrackObjective()
         {
-            Debug.Log("Tracking Objective......");
             if (GameManager.Instance.PlayerMainCharacter.HitPointAtZero())
             {
                 _startTracking = false;
@@ -42,7 +41,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.LevelMechanics.Section.SectionObj
             }
             if (Objectives.All(o => o.ObjectiveCompleted()) && !GameScriptEventManager.Destroyed)
             {
-                Debug.Log("Objective Completed");
                 _startTracking = false;
                 _trackTimer = 0f;
                 TriggerGameEvent(GameEvent.OnSectionObjectivesCompleted, SectionId);
