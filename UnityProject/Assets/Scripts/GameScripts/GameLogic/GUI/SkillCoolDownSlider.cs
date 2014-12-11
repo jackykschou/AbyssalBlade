@@ -51,7 +51,12 @@ namespace Assets.Scripts.GameScripts.GameLogic.GUI
                 if (SkillCooldownFixTimeDispatcher.CanDispatch() || percentage >= .99f)
                     SkillTimerText.text = "";
                 else
-                    SkillTimerText.text = (SkillCooldownFixTimeDispatcher.DispatchInterval - (SkillCooldownFixTimeDispatcher.DispatchInterval * CooldownBar.value)).ToString("#.##") + "s";
+				{
+					if((int)(SkillCooldownFixTimeDispatcher.DispatchInterval - (SkillCooldownFixTimeDispatcher.DispatchInterval * CooldownBar.value)) == 0)
+						SkillTimerText.text = "";
+					else
+						SkillTimerText.text = ((int)(SkillCooldownFixTimeDispatcher.DispatchInterval - (SkillCooldownFixTimeDispatcher.DispatchInterval * CooldownBar.value))).ToString() + "s";
+				}
             }
         }
 
