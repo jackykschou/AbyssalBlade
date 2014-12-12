@@ -35,6 +35,11 @@ namespace Assets.Scripts.Managers
 
         void CreateSpawnPools()
         {
+            StartCoroutine(CreateSpawnPoolsIe());
+        }
+
+        private IEnumerator CreateSpawnPoolsIe()
+        {
             Dictionary<string, SpawnPool> poolNameCache = new Dictionary<string, SpawnPool>();
             for (int i = 0; i < SerializedPrefabPoolMapKeys.Count; ++i)
             {
@@ -76,6 +81,8 @@ namespace Assets.Scripts.Managers
                 };
 
                 spawnPool.CreatePrefabPool(prefabPool);
+
+                yield return new WaitForEndOfFrame();
             }
         }
 
