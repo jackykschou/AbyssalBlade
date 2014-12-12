@@ -114,8 +114,13 @@ namespace Assets.Scripts.Managers
             yield return new WaitForSeconds(.1f);
             _currentLevelPrefab = levelPrefab;
             AudioManager.Instance.UnMute();
+            while (!PrefabManager.Instance.PoolsCreated)
+            {
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
             GameEventManager.Instance.TriggerGameEvent(GameEvent.OnLevelFinishedLoading);
         }
+
 
         [GameEventAttribute(GameEvent.OnLoadingScreenFinished)]
         public void OnLoadingScreenFinished()
