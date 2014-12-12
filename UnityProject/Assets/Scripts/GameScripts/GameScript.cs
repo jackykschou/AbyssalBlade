@@ -55,16 +55,6 @@ namespace Assets.Scripts.GameScripts
 
         public void TriggerGameScriptEvent(GameScriptEvent gameScriptEvent, params object[] args)
         {
-            StartCoroutine(TriggerGameScriptEventIE(gameScriptEvent, args));
-        }
-
-        IEnumerator TriggerGameScriptEventIE(GameScriptEvent gameScriptEvent, params object[] args)
-        {
-            while (GameScriptEventManager == null || !GameScriptEventManager.Initialized)
-            {
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-
             gameObject.TriggerGameScriptEvent(gameScriptEvent, args);
         }
 
