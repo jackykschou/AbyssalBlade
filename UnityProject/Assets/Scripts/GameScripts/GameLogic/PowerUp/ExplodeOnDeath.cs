@@ -21,12 +21,6 @@ namespace Assets.Scripts.GameScripts.GameLogic.PowerUp
 
         protected override void Apply()
         {
-            PrefabManager.Instance.SpawnPrefab(Prefab.ExplosionOnDeathSmoke, Owner.transform.position, o =>
-            {
-                _smoke = o;
-            });
-            _smoke.transform.parent = Owner.transform;
-            _smoke.transform.position = Owner.transform.position;
         }
 
         protected override void UnApply()

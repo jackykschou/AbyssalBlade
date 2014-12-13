@@ -1343,6 +1343,8 @@ GameObject:
   - 114: {fileID: 11400218}
   - 114: {fileID: 11400216}
   - 114: {fileID: 11400214}
+  - 114: {fileID: 11400502}
+  - 114: {fileID: 11400512}
   m_Layer: 0
   m_Name: GateLockVertical
   m_TagString: Untagged
@@ -1961,6 +1963,8 @@ GameObject:
   - 114: {fileID: 11400282}
   - 114: {fileID: 11400284}
   - 114: {fileID: 11400286}
+  - 114: {fileID: 11400504}
+  - 114: {fileID: 11400508}
   m_Layer: 0
   m_Name: GateLockHorizontal
   m_TagString: Untagged
@@ -2370,6 +2374,8 @@ GameObject:
   - 114: {fileID: 11400500}
   - 114: {fileID: 11400498}
   - 114: {fileID: 11400496}
+  - 114: {fileID: 11400506}
+  - 114: {fileID: 11400510}
   m_Layer: 0
   m_Name: GateLockHorizontal
   m_TagString: Untagged
@@ -22031,6 +22037,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f6de9e63bd72c4ea9550c8f9be26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996f912024a56e4468db3f3267999e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
+  SectionActivated: 0
+  MinDelay: 3
+  MaxDelay: 6
+--- !u!114 &11400504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996f912024a56e4468db3f3267999e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
+  SectionActivated: 0
+  MinDelay: 3
+  MaxDelay: 6
+--- !u!114 &11400506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996f912024a56e4468db3f3267999e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  SectionId: 0
+  SectionActivated: 0
+  MinDelay: 3
+  MaxDelay: 6
+--- !u!114 &11400508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510e9655a6b801a4ca63d94e2916734f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Collider2D: {fileID: 0}
+--- !u!114 &11400510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510e9655a6b801a4ca63d94e2916734f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Collider2D: {fileID: 0}
+--- !u!114 &11400512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510e9655a6b801a4ca63d94e2916734f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LabelName: 
+  Collider2D: {fileID: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
