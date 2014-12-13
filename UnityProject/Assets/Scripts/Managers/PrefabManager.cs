@@ -33,6 +33,8 @@ namespace Assets.Scripts.Managers
         private List<Vector3> _spawnPositionQueue;
         private List<Action<GameObject>> _spawnDelegateQueue;
 
+        public bool PoolsCreated;
+
         void CreateSpawnPools()
         {
             StartCoroutine(CreateSpawnPoolsIe());
@@ -40,6 +42,7 @@ namespace Assets.Scripts.Managers
 
         private IEnumerator CreateSpawnPoolsIe()
         {
+            PoolsCreated = false;
             Dictionary<string, SpawnPool> poolNameCache = new Dictionary<string, SpawnPool>();
             for (int i = 0; i < SerializedPrefabPoolMapKeys.Count; ++i)
             {
@@ -82,8 +85,9 @@ namespace Assets.Scripts.Managers
 
                 spawnPool.CreatePrefabPool(prefabPool);
 
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(0.05f);
             }
+            PoolsCreated = true;
         }
 
         protected override void Initialize()
@@ -107,6 +111,16 @@ namespace Assets.Scripts.Managers
 
         private void SpawnHelper(Prefab prefab, Vector2 position, Action<GameObject> onPrefabSpawned = null)
         {
+            StartCoroutine(SpawnHelperIe(prefab, position, onPrefabSpawned));
+        }
+
+        private IEnumerator SpawnHelperIe(Prefab prefab, Vector2 position, Action<GameObject> onPrefabSpawned = null)
+        {
+            while (!PoolsCreated)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+
             string prefabName = PrefabConstants.GetPrefabName(prefab);
             GameObject prefabGameObject = _prefabNameMap[prefabName];
 
@@ -119,6 +133,7 @@ namespace Assets.Scripts.Managers
 
             _spawnedPrefabsMap.Add(spawned, _prefabPoolMap[_prefabNameMap[prefabName]]);
         }
+
 
         public void SpawnPrefab(Prefab prefab, Vector2 position, Action<GameObject> onPrefabSpawned = null)
         {
@@ -176,6 +191,16 @@ namespace Assets.Scripts.Managers
                 return;
             }
 
+            StartCoroutine(SpawnPrefabIe(prefab, onPrefabSpawned));
+        }
+
+        private IEnumerator SpawnPrefabIe(Prefab prefab, Action<GameObject> onPrefabSpawned = null)
+        {
+            while (!PoolsCreated)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+
             string prefabName = PrefabConstants.GetPrefabName(prefab);
             GameObject prefabGameObject = _prefabNameMap[prefabName];
 
@@ -197,6 +222,16 @@ namespace Assets.Scripts.Managers
             if (prefab == Prefab.None)
             {
                 return;
+            }
+
+            StartCoroutine(SpawnPrefabImmediateIe(prefab, onPrefabSpawned));
+        }
+
+        private IEnumerator SpawnPrefabImmediateIe(Prefab prefab, Action<GameObject> onPrefabSpawned = null)
+        {
+            while (!PoolsCreated)
+            {
+                yield return new WaitForSeconds(0.1f);
             }
 
             string prefabName = PrefabConstants.GetPrefabName(prefab);
